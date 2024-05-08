@@ -85,7 +85,9 @@ class ThreadPerfPAPI : public ThreadPerf {
   int retval, EventSet = PAPI_NULL, dummycollect = 0, eventcode;
  public:
 
-  ThreadPerfPAPI() {}
+  ThreadPerfPAPI() {
+    initPapiLib();
+  }
 
   /**
    * @brief To setup this perf to specific cpu
@@ -199,22 +201,22 @@ class ThreadPerfPAPI : public ThreadPerf {
   virtual ConfigMapPtr resultToConfigMap() {
     ConfigMapPtr ru = newConfigMap();
     for (size_t i = 0; i < papiStrVec.size(); i++) {
-      ru->edit(papiStrVec[i], (uint64_t) papiValueVec[i]);
+      ru->edit(papiStrVec[i], (int64_t) papiValueVec[i]);
     }
     //additional test the elapsed time
-    ru->edit("perfElapsedTime", (uint64_t) timeLastUs(tstart, tend));
+    ru->edit("perfElapsedTime", (int64_t) timeLastUs(tstart, tend));
     return ru;
   }
   void initEventsByCfg(ConfigMapPtr cfg) {
-    if (cfg->tryU64("perfUseExternalList", 0)) {
       std::string perfListSrc = cfg->tryString("perfListSrc", "perfLists/perfList.csv", 1);
       ConfigMapPtr perfList = newConfigMap();
-      perfList->fromFile(perfListSrc);
+      if(perfList->fromFile(perfListSrc)==false) {
+        exit(-1);
+      }
       auto strMap = perfList->getStrMap();
       for (auto &iter : strMap) {
         addPapiTag(iter.first, iter.second);
         //return;
-      }
     }
     /*if (cfg->tryU64("perfInstructions", 0)) {
       addPapiTag("instructions", PAPI_TOT_INS);
