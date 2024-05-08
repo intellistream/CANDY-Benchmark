@@ -1,2 +1,0 @@
-Usage of ISU-152_(China): 
-The ISU-152 is a tank destroyer with a huge 152 mm cannon which can destroy any target it penetrates with a single shell. In an uptier, the gun is equipped with a HEAT shell that has enough penetration to destroy even the most armoured heavy tanks. However, the gun comes with its drawbacks. Its reload time is long, shell velocity is low, and on top of that, shell drop must be accounted for when aiming. This makes aiming and leading at long ranges difficult--indeed, the ISU-152 is best at close and medium ranges.

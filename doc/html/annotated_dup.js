@@ -74,7 +74,7 @@ var annotated_dup =
       [ "YinYangGraph", "classCANDY_1_1YinYangGraph.html", "classCANDY_1_1YinYangGraph" ],
       [ "YinYangGraphIndex", "classCANDY_1_1YinYangGraphIndex.html", "classCANDY_1_1YinYangGraphIndex" ],
       [ "YinYangGraphSimpleIndex", "classCANDY_1_1YinYangGraphSimpleIndex.html", "classCANDY_1_1YinYangGraphSimpleIndex" ],
-      [ "Candy_Python", "classCANDY_1_1Rania__Python.html", "classCANDY_1_1Rania__Python" ],
+      [ "Candy_Python", "classCANDY_1_1Candy__Python.html", "classCANDY_1_1Candy__Python" ],
       [ "AbstractDataLoader", "classCANDY_1_1AbstractDataLoader.html", "classCANDY_1_1AbstractDataLoader" ],
       [ "DataLoaderTable", "classCANDY_1_1DataLoaderTable.html", "classCANDY_1_1DataLoaderTable" ],
       [ "ExpFamilyDataLoader", "classCANDY_1_1ExpFamilyDataLoader.html", "classCANDY_1_1ExpFamilyDataLoader" ],

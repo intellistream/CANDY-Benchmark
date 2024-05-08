@@ -1,3 +1,0 @@
-Description of Bf_109_F-4/trop: 
-The Bf 109 F-4/trop is a rank III German fighter 
-with a battle rating of 4.3 (AB) and 4.0 (RB/SB). It has been in the game since the start of the Open Beta Test prior to Update 1.27.

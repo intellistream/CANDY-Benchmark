@@ -66,9 +66,9 @@ var NAVTREEINDEX =
 [
 "AbstractC20Thread_8hpp.html",
 "cl__gl_8h_source.html",
-"classCANDY_1_1DPGIndex.html#a99c760379aa5596d09d4c9f18bd7ace9",
-"classCANDY_1_1FlatAMMIPIndex.html#af809a4d0daa8b5a55a3dfb5f81a167b4",
-"classCANDY_1_1NNDescentIndex.html#a6d6df101cdda8c44b74a9872be88a526",
+"classCANDY_1_1CongestionDropIndexWorker.html",
+"classCANDY_1_1FlannComponent.html#a83755b53a66550b538830768b64e80dd",
+"classCANDY_1_1KmeansTree.html#a640a35d5fe49e93ddafc582c0ef0ec9b",
 "classCANDY_1_1SimpleStreamClustering.html#a0776c10728d0936808f8b20ca5306193",
 "classINTELLI_1_1IntelliTimeStampGenerator.html#acf86dff87f8eee751aec0dd5d00a2ecf",
 "group__CANDY__lib__bottom__sub.html#ga23606f290228bd2dd6128d494fbc5b45",

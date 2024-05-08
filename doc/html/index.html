@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">Introduction </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This project is an index library for online vector management, our key idea is Ranging Augmented Navigation Indexing Approach, while some typical state-or-art is also included </p>
+<div class="textblock"><p>This project is an index library and benchmark kit for online vector management, covering various AKNN algos, datasets, online insert benchmark, and examples for more fancy downstream tasks. </p>
 <h1><a class="anchor" id="supported"></a>
 data format</h1>
 <p>The api interface is torch::Tensor for both c++ and python, and we also include support for loading the following data formats from file</p><ul>
@@ -118,7 +118,10 @@ Of index approaches (Please go to class @ref IndexTable for more details)</h2>
 <li>onlinePQ OnlinePQIndex</li>
 <li>onlineIVFLSH OnlineIVFLSHIndex</li>
 <li>HNSWNaive HNSWNaiveIndex</li>
-<li>faiss FaissIndex </li>
+<li>faiss FaissIndex</li>
+<li>congestionDrop CongestionDropIndex</li>
+<li>bufferedCongestionDrop BufferedCongestionDropIndex</li>
+<li>flatAMMIP FlatAMMIPIndex </li>
 </ul>
 <h2><a class="anchor" id="subsec_tag_loader"></a>
 Of data loaders (Please go to class @ref DataLoaderTable for more details)</h2>
@@ -185,7 +188,10 @@ How to add a single point test</h1>
 </ul>
 <h1><a class="anchor" id="python_doc"></a>
 Python Documents</h1>
-<p>Please find the class named Candy_Python for python APIs </p>
+<ul>
+<li>Please find the class named Candy_Python for python APIs (old style)</li>
+<li>Please enable pybind build and install the *.so to system path, you can import PyCANDY, see benchmark/scripts/PyCANDY for details </li>
+</ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

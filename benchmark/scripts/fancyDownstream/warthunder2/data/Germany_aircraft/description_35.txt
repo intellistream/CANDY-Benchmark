@@ -1,3 +1,0 @@
-Description of Bf_109_E-1: 
-The Bf 109 E-1 is a rank II German fighter 
-with a battle rating of 2.3 (AB/RB) and 2.0 (SB). It was introduced in Update 1.35. The second Bf 109 in the German aviation tech tree, introducing the Emil airframe to the player, it improves from its predecessor Bf 109 B in every regard. The E-1 is better in armament, climb rate, sustained turn rate and top speed. The Bf 109 E-1 is succeeded by the cannon-armed E-3 variant.

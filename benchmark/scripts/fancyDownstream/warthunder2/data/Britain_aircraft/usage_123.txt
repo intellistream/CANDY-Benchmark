@@ -1,2 +1,0 @@
-Usage of Buccaneer_S.2: 
-The Buccaneer is a fully air-to-ground plane with very limited defensive capabilities against aircraft, with no interceptor or bomber spawn. It should never be used to attack enemy aircraft despite having the AIM-9B. These missiles are meant to be used in defence if there is a chance to get behind the enemy who is engaging the aircraft or against helicopters in combined battles. Using the Buccaneer as a fighter will quickly lead to death.

@@ -84,7 +84,7 @@
 *
 * @section python_doc Python Documents
 * - Please find the class named @ref Candy_Python for python APIs (old style)
-* - Please enable pybind build and install the *.so to system path, you can import 
+* - Please enable pybind build and install the *.so to system path, you can import PyCANDY, see benchmark/scripts/PyCANDY for details
 **/
 /**
 *

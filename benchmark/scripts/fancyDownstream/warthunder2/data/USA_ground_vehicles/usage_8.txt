@@ -1,2 +1,0 @@
-Usage of M15_CGMC: 
-Compared to certain other SPAAs (ZSU-37, Wirbelwind, M13, etc.) the M15 cannot be used effectively in an anti-vehicle role. The average battle-rating is too high and the penetration value of the AP shells to low. While it does have increased armour compared to earlier models, it is still not strong enough against the devastating tank HE shells. However, the armour performs well versus the average aircraft armament.

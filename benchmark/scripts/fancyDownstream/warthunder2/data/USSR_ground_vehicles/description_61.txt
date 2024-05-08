@@ -1,3 +1,0 @@
-Description of PT-76B: 
-The PT-76B is a rank III Soviet light tank 
-with a battle rating of 5.0 (AB) and 5.3 (RB/SB). It was the first amphibious tank to be implemented in the game, being introduced with Update 1.53 "Fire Storm" (although the amphibious feature was not implemented until Update 1.55 "Royal Armour").

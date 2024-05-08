@@ -1,2 +1,0 @@
-Usage of ItO_90M: 
-To use the ItO 90M in effect, you should set convenient hotkeys for "Lock radar/IRST target on", "Switch between Radar and IRST", and "Switch Radar/IRST search on/off". The effective range for the radar lock is 16 km, and for the IRST lock, 10 km. Although many people only use radar lock, ItO's IRST sensor has brilliant available range and is very sensitive that can even lock on a scout UAV. It won't trigger LWS or suffer from multipath interference, too. Therefore, you should set a hotkey to switch between radar lock and IRST regarding the situation.
