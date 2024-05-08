@@ -1,2 +1,0 @@
-History of H8K3: 
-The H8K3 was a prototype variant of the H8K2. It was modified to allow the dorsal turret and the landing floats to retract, as well as to include fowler flaps, and the blisters which housed the side guns were replaced with sliding hatches. All such changes were made in order to reduce drag and thereby increase speed (Note: None of the turret modifications are currently modeled in game). A total of only 2 were built.

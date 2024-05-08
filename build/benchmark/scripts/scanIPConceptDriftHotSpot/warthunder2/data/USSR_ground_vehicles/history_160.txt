@@ -1,2 +1,0 @@
-History of T-80BVM: 
-The T-80BVM is a current program for the Russian army in the modernization of Soviet T-80BV tanks to the level of the T-72B3 and T-90M main battle tanks, as well as unification with them. The modernization includes an up-to-date fire control system with a duplicate sight for the commander, and the ability to operate the 9M119 tandem ATGMs, as well as the "Relikt" ERA pack instead of outdated "Kontakt-1". Thanks to the latter, the protection of the vehicle from HEAT and AP projectiles was significantly increased.

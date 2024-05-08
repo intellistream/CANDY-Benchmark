@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/demo_weighted_kmeans.dir/demo_weighted_kmeans.cpp.o -o ../../hdf5-1.14.3/bin/demo_weighted_kmeans  -Wl,-rpath,/home/tony/projects/CANDY/build/thirdparty/hdf5-1.14.3/bin ../../hdf5-1.14.3/bin/libfaiss.so 

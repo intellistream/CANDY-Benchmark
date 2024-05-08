@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -shared -Wl,-soname,libgtest_main.so.1.12.1 -o ../../../lib/libgtest_main.so.1.12.1 CMakeFiles/gtest_main.dir/src/gtest_main.cc.o  -Wl,-rpath,/home/tony/projects/CANDY/build/lib ../../../lib/libgtest.so.1.12.1 

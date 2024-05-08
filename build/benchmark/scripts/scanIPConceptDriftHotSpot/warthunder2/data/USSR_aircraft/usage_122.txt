@@ -1,2 +1,0 @@
-Usage of Yak-3T: 
-The Yak-3T has the performance of the Yak-3T and the weapons of the Yak-9P but with a slightly smaller ammunition pool. As such, it should be flown as a Yak-3P, prioritizing engagements below 3000m with enemies at similar or lower energy states. Engagements with unoccupied A6M/A7Ms and Spitfires is inadvisable, as they have a better climb rate, better turn radius, and great performance at the same altitudes you do.

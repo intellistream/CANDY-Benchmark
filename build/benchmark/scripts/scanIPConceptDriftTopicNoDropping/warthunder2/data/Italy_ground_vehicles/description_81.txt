@@ -1,2 +1,0 @@
-Description of Ariete_PSO: 
-The C1 Ariete was developed by OTO Melara during the late Cold War to allow the Italian army to equip itself with a modern tank which could easily deal with Yugoslav and Warsaw pact tanks. The PSO (Peace Support Operation) modification entailed additional composite armour blocks on the sides of the tank, mainly to increase crew protection against RPG fire, though they were also found to work well against low level APFSDS and standard HEAT munitions.

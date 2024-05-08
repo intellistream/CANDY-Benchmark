@@ -1,2 +1,0 @@
-History of F4D-1: 
-The program for F4D Skyray traces back to a German aerodynamic engineer, Alexander Martin Lippisch. As one of the pioneers of rocket-powered aircraft (the designer of the Me 163) and supersonic designs, he had also been interested in many other new aspects of aerodynamics, including tailless aircraft, and one design stood out - delta wings. As part of the efforts to gain the upper hand against the Soviet Union before the end of the European Theatre of WWII, Lippisch and his designs were among part of Operation Paperclip to bring German engineers to the US.

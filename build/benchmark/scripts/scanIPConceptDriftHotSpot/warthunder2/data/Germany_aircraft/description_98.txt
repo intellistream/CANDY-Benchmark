@@ -1,3 +1,0 @@
-Description of Bf_109_G-2/trop: 
-The Bf 109 G-2/trop is a rank IV German fighter 
-with a battle rating of 5.3 (AB) and 4.3 (RB/SB). It has been in the game since the start of the Open Beta Test prior to Update 1.27.

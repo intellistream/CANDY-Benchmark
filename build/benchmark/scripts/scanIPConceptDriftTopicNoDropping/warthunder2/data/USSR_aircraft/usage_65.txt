@@ -1,2 +1,0 @@
-Usage of I-29: 
-On this plane there is an interesting remark: the "Instructor" does not work well with the yaw axis (as if it lacks traction, which is objectively not the case) especially when aiming at the target and the plane wants to constantly rolls over on its side and it becomes difficult to keep sight of an enemy when in a turn. You will need to keep this in mind and make adjustments if you enter this kind of manoeuvre, however you can counteract much of this issue by utilising the control keys on the keyboard for the ailerons to help balance the aircraft.

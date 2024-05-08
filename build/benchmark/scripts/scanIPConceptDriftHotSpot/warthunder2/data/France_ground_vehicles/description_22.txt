@@ -1,3 +1,0 @@
-Description of CCKW_353_AA: 
-The GMC CCKW 353 (40 mm Bofors) is a rank II French self-propelled anti-aircraft gun 
-with a battle rating of 2.7 (AB) and 2.0 (RB/SB). It was introduced in Update 1.75 "La Résistance". Its main armament is a very potent Bofors L/60 cannon which can shred both tanks and planes if you manage to hit them properly. While armour is pretty nonexistent, it has good mobility, even for a truck-based SPAA.

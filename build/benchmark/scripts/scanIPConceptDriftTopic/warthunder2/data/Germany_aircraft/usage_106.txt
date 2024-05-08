@@ -1,2 +1,0 @@
-Usage of Fw_190_D-12: 
-The Fw 190 D-12 was developed and tested alongside the Fw 190 D-13. They share the same airframe and engine performance with the only difference between the D-12 and the D-13 being the cannon mounted in the propeller. (The D-12 was tested with a Mk 108 30 mm cannon while the D-13 was tested with an MG 151 20 mm cannon in the propeller)

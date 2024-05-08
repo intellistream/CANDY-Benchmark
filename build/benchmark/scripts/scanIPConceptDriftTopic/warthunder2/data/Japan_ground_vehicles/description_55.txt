@@ -1,2 +1,0 @@
-Description of Type_74_(E): 
-The Type 74 (E) (74式戦車E型) is a variant on the Type 74 MBT series featuring an enhanced fire control system that allows it to fire Type 91 HEAT-MP rounds instead of Type 75 HESH rounds. It also has a thermal sleeve for the L7A3 (105 mm) rifled gun, which was added in the Type 74 (D) upgrade. Moreover, it can mount a dozer blade to create a hull-down position.
