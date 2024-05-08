@@ -226,651 +226,651 @@
 \contentsline {subsubsection}{\numberline {8.20.3.4}data()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{119}{subsubsection.8.20.3.4}%
 \contentsline {subsubsection}{\numberline {8.20.3.5}data()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{119}{subsubsection.8.20.3.5}%
 \contentsline {subsubsection}{\numberline {8.20.3.6}size()}{119}{subsubsection.8.20.3.6}%
-\contentsline {section}{\numberline {8.21}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::CANDYObject Class Reference}{120}{section.8.21}%
-\contentsline {subsection}{\numberline {8.21.1}Detailed Description}{121}{subsection.8.21.1}%
-\contentsline {subsection}{\numberline {8.21.2}Member Function Documentation}{121}{subsection.8.21.2}%
-\contentsline {subsubsection}{\numberline {8.21.2.1}getStr()}{121}{subsubsection.8.21.2.1}%
-\contentsline {subsubsection}{\numberline {8.21.2.2}setStr()}{121}{subsubsection.8.21.2.2}%
-\contentsline {section}{\numberline {8.22}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}char16 Union Reference}{121}{section.8.22}%
-\contentsline {section}{\numberline {8.23}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}char2 Union Reference}{122}{section.8.23}%
-\contentsline {section}{\numberline {8.24}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}char4 Union Reference}{122}{section.8.24}%
-\contentsline {section}{\numberline {8.25}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}char8 Union Reference}{122}{section.8.25}%
-\contentsline {section}{\numberline {8.26}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}double16 Union Reference}{122}{section.8.26}%
-\contentsline {section}{\numberline {8.27}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}double2 Union Reference}{123}{section.8.27}%
-\contentsline {section}{\numberline {8.28}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}double4 Union Reference}{123}{section.8.28}%
-\contentsline {section}{\numberline {8.29}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}double8 Union Reference}{123}{section.8.29}%
-\contentsline {section}{\numberline {8.30}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}float16 Union Reference}{123}{section.8.30}%
-\contentsline {section}{\numberline {8.31}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}float2 Union Reference}{124}{section.8.31}%
-\contentsline {section}{\numberline {8.32}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}float4 Union Reference}{124}{section.8.32}%
-\contentsline {section}{\numberline {8.33}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}float8 Union Reference}{124}{section.8.33}%
-\contentsline {section}{\numberline {8.34}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}half16 Union Reference}{124}{section.8.34}%
-\contentsline {section}{\numberline {8.35}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}half2 Union Reference}{125}{section.8.35}%
-\contentsline {section}{\numberline {8.36}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}half4 Union Reference}{125}{section.8.36}%
-\contentsline {section}{\numberline {8.37}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}half8 Union Reference}{125}{section.8.37}%
-\contentsline {section}{\numberline {8.38}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}int16 Union Reference}{125}{section.8.38}%
-\contentsline {section}{\numberline {8.39}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}int2 Union Reference}{126}{section.8.39}%
-\contentsline {section}{\numberline {8.40}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}int4 Union Reference}{126}{section.8.40}%
-\contentsline {section}{\numberline {8.41}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}int8 Union Reference}{126}{section.8.41}%
-\contentsline {section}{\numberline {8.42}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}long16 Union Reference}{126}{section.8.42}%
-\contentsline {section}{\numberline {8.43}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}long2 Union Reference}{127}{section.8.43}%
-\contentsline {section}{\numberline {8.44}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}long4 Union Reference}{127}{section.8.44}%
-\contentsline {section}{\numberline {8.45}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}long8 Union Reference}{127}{section.8.45}%
-\contentsline {section}{\numberline {8.46}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}short16 Union Reference}{127}{section.8.46}%
-\contentsline {section}{\numberline {8.47}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}short2 Union Reference}{128}{section.8.47}%
-\contentsline {section}{\numberline {8.48}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}short4 Union Reference}{128}{section.8.48}%
-\contentsline {section}{\numberline {8.49}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}short8 Union Reference}{128}{section.8.49}%
-\contentsline {section}{\numberline {8.50}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uchar16 Union Reference}{128}{section.8.50}%
-\contentsline {section}{\numberline {8.51}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uchar2 Union Reference}{129}{section.8.51}%
-\contentsline {section}{\numberline {8.52}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uchar4 Union Reference}{129}{section.8.52}%
-\contentsline {section}{\numberline {8.53}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uchar8 Union Reference}{129}{section.8.53}%
-\contentsline {section}{\numberline {8.54}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uint16 Union Reference}{129}{section.8.54}%
-\contentsline {section}{\numberline {8.55}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uint2 Union Reference}{130}{section.8.55}%
-\contentsline {section}{\numberline {8.56}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uint4 Union Reference}{130}{section.8.56}%
-\contentsline {section}{\numberline {8.57}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uint8 Union Reference}{130}{section.8.57}%
-\contentsline {section}{\numberline {8.58}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ulong16 Union Reference}{130}{section.8.58}%
-\contentsline {section}{\numberline {8.59}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ulong2 Union Reference}{131}{section.8.59}%
-\contentsline {section}{\numberline {8.60}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ulong4 Union Reference}{131}{section.8.60}%
-\contentsline {section}{\numberline {8.61}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ulong8 Union Reference}{131}{section.8.61}%
-\contentsline {section}{\numberline {8.62}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ushort16 Union Reference}{131}{section.8.62}%
-\contentsline {section}{\numberline {8.63}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ushort2 Union Reference}{132}{section.8.63}%
-\contentsline {section}{\numberline {8.64}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ushort4 Union Reference}{132}{section.8.64}%
-\contentsline {section}{\numberline {8.65}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ushort8 Union Reference}{132}{section.8.65}%
-\contentsline {section}{\numberline {8.66}TONY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}CL\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}HOST\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::CLContainer Class Reference}{132}{section.8.66}%
-\contentsline {section}{\numberline {8.67}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Clustering Class Reference}{133}{section.8.67}%
-\contentsline {subsection}{\numberline {8.67.1}Detailed Description}{135}{subsection.8.67.1}%
-\contentsline {subsection}{\numberline {8.67.2}Member Function Documentation}{135}{subsection.8.67.2}%
-\contentsline {subsubsection}{\numberline {8.67.2.1}computeCentroids()}{135}{subsubsection.8.67.2.1}%
-\contentsline {subsubsection}{\numberline {8.67.2.2}imbalance\_factor()}{135}{subsubsection.8.67.2.2}%
-\contentsline {subsubsection}{\numberline {8.67.2.3}splitClusters()}{136}{subsubsection.8.67.2.3}%
-\contentsline {subsubsection}{\numberline {8.67.2.4}train()}{136}{subsubsection.8.67.2.4}%
-\contentsline {section}{\numberline {8.68}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Clustering\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Iteration\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stats Class Reference}{137}{section.8.68}%
-\contentsline {subsection}{\numberline {8.68.1}Detailed Description}{137}{subsection.8.68.1}%
-\contentsline {section}{\numberline {8.69}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Clustering\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parameters Class Reference}{138}{section.8.69}%
-\contentsline {subsection}{\numberline {8.69.1}Detailed Description}{139}{subsection.8.69.1}%
-\contentsline {section}{\numberline {8.70}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Config\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Map Class Reference}{139}{section.8.70}%
-\contentsline {subsection}{\numberline {8.70.1}Detailed Description}{141}{subsection.8.70.1}%
-\contentsline {section}{\numberline {8.71}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Congestion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drop\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{141}{section.8.71}%
-\contentsline {subsection}{\numberline {8.71.1}Detailed Description}{143}{subsection.8.71.1}%
-\contentsline {subsection}{\numberline {8.71.2}Member Function Documentation}{144}{subsection.8.71.2}%
-\contentsline {subsubsection}{\numberline {8.71.2.1}deleteStringObject()}{144}{subsubsection.8.71.2.1}%
-\contentsline {subsubsection}{\numberline {8.71.2.2}deleteTensor()}{145}{subsubsection.8.71.2.2}%
-\contentsline {subsubsection}{\numberline {8.71.2.3}endHPC()}{145}{subsubsection.8.71.2.3}%
-\contentsline {subsubsection}{\numberline {8.71.2.4}getTensorByIndex()}{145}{subsubsection.8.71.2.4}%
-\contentsline {subsubsection}{\numberline {8.71.2.5}insertStringObject()}{146}{subsubsection.8.71.2.5}%
-\contentsline {subsubsection}{\numberline {8.71.2.6}insertTensor()}{146}{subsubsection.8.71.2.6}%
-\contentsline {subsubsection}{\numberline {8.71.2.7}loadInitialStringObject()}{147}{subsubsection.8.71.2.7}%
-\contentsline {subsubsection}{\numberline {8.71.2.8}loadInitialTensor()}{147}{subsubsection.8.71.2.8}%
-\contentsline {subsubsection}{\numberline {8.71.2.9}offlineBuild()}{148}{subsubsection.8.71.2.9}%
-\contentsline {subsubsection}{\numberline {8.71.2.10}rawData()}{148}{subsubsection.8.71.2.10}%
-\contentsline {subsubsection}{\numberline {8.71.2.11}reviseTensor()}{148}{subsubsection.8.71.2.11}%
-\contentsline {subsubsection}{\numberline {8.71.2.12}searchStringObject()}{149}{subsubsection.8.71.2.12}%
-\contentsline {subsubsection}{\numberline {8.71.2.13}searchTensor()}{149}{subsubsection.8.71.2.13}%
-\contentsline {subsubsection}{\numberline {8.71.2.14}searchTensorAndStringObject()}{150}{subsubsection.8.71.2.14}%
-\contentsline {subsubsection}{\numberline {8.71.2.15}setConfig()}{150}{subsubsection.8.71.2.15}%
-\contentsline {subsubsection}{\numberline {8.71.2.16}setFrozenLevel()}{151}{subsubsection.8.71.2.16}%
-\contentsline {subsubsection}{\numberline {8.71.2.17}startHPC()}{151}{subsubsection.8.71.2.17}%
-\contentsline {subsubsection}{\numberline {8.71.2.18}waitPendingOperations()}{152}{subsubsection.8.71.2.18}%
-\contentsline {section}{\numberline {8.72}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Congestion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drop\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Worker Class Reference}{152}{section.8.72}%
-\contentsline {subsection}{\numberline {8.72.1}Detailed Description}{153}{subsection.8.72.1}%
-\contentsline {section}{\numberline {8.73}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Table Class Reference}{154}{section.8.73}%
-\contentsline {subsection}{\numberline {8.73.1}Detailed Description}{155}{subsection.8.73.1}%
-\contentsline {subsection}{\numberline {8.73.2}Constructor \& Destructor Documentation}{155}{subsection.8.73.2}%
-\contentsline {subsubsection}{\numberline {8.73.2.1}DataLoaderTable()}{155}{subsubsection.8.73.2.1}%
-\contentsline {subsection}{\numberline {8.73.3}Member Function Documentation}{155}{subsection.8.73.3}%
-\contentsline {subsubsection}{\numberline {8.73.3.1}findDataLoader()}{155}{subsubsection.8.73.3.1}%
-\contentsline {subsubsection}{\numberline {8.73.3.2}registerNewDataLoader()}{156}{subsubsection.8.73.3.2}%
-\contentsline {section}{\numberline {8.74}default\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}attrs Struct Reference}{156}{section.8.74}%
-\contentsline {subsection}{\numberline {8.74.1}Detailed Description}{156}{subsection.8.74.1}%
-\contentsline {section}{\numberline {8.75}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::FLANN\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Distance\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{157}{section.8.75}%
-\contentsline {subsection}{\numberline {8.75.1}Detailed Description}{157}{subsection.8.75.1}%
-\contentsline {section}{\numberline {8.76}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Distance\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Queryer Class Reference}{157}{section.8.76}%
-\contentsline {subsection}{\numberline {8.76.1}Member Function Documentation}{158}{subsection.8.76.1}%
-\contentsline {subsubsection}{\numberline {8.76.1.1}operator()()}{158}{subsubsection.8.76.1.1}%
-\contentsline {section}{\numberline {8.77}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Distributed\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Worker Class Reference}{159}{section.8.77}%
-\contentsline {subsection}{\numberline {8.77.1}Detailed Description}{160}{subsection.8.77.1}%
-\contentsline {subsection}{\numberline {8.77.2}Member Function Documentation}{161}{subsection.8.77.2}%
-\contentsline {subsubsection}{\numberline {8.77.2.1}deleteTensor()}{161}{subsubsection.8.77.2.1}%
-\contentsline {subsubsection}{\numberline {8.77.2.2}endHPC()}{161}{subsubsection.8.77.2.2}%
-\contentsline {subsubsection}{\numberline {8.77.2.3}getUnblockQueryResult()}{161}{subsubsection.8.77.2.3}%
-\contentsline {subsubsection}{\numberline {8.77.2.4}insertTensor()}{162}{subsubsection.8.77.2.4}%
-\contentsline {subsubsection}{\numberline {8.77.2.5}loadInitialTensor()}{162}{subsubsection.8.77.2.5}%
-\contentsline {subsubsection}{\numberline {8.77.2.6}loadInitialTensorUnblocked()}{162}{subsubsection.8.77.2.6}%
-\contentsline {subsubsection}{\numberline {8.77.2.7}offlineBuild()}{163}{subsubsection.8.77.2.7}%
-\contentsline {subsubsection}{\numberline {8.77.2.8}offlineBuildUnblocked()}{163}{subsubsection.8.77.2.8}%
-\contentsline {subsubsection}{\numberline {8.77.2.9}searchTensor()}{163}{subsubsection.8.77.2.9}%
-\contentsline {subsubsection}{\numberline {8.77.2.10}searchTensorUnblock()}{164}{subsubsection.8.77.2.10}%
-\contentsline {subsubsection}{\numberline {8.77.2.11}setConfig()}{164}{subsubsection.8.77.2.11}%
-\contentsline {subsubsection}{\numberline {8.77.2.12}setFrozenLevel()}{164}{subsubsection.8.77.2.12}%
-\contentsline {subsubsection}{\numberline {8.77.2.13}startHPC()}{165}{subsubsection.8.77.2.13}%
-\contentsline {subsubsection}{\numberline {8.77.2.14}waitPendingOperations()}{165}{subsubsection.8.77.2.14}%
-\contentsline {section}{\numberline {8.78}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Distributed\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Partition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{166}{section.8.78}%
-\contentsline {subsection}{\numberline {8.78.1}Detailed Description}{167}{subsection.8.78.1}%
-\contentsline {subsection}{\numberline {8.78.2}Member Function Documentation}{168}{subsection.8.78.2}%
-\contentsline {subsubsection}{\numberline {8.78.2.1}deleteTensor()}{168}{subsubsection.8.78.2.1}%
-\contentsline {subsubsection}{\numberline {8.78.2.2}endHPC()}{168}{subsubsection.8.78.2.2}%
-\contentsline {subsubsection}{\numberline {8.78.2.3}getTensorByIndex()}{169}{subsubsection.8.78.2.3}%
-\contentsline {subsubsection}{\numberline {8.78.2.4}insertTensor()}{169}{subsubsection.8.78.2.4}%
-\contentsline {subsubsection}{\numberline {8.78.2.5}loadInitialTensor()}{170}{subsubsection.8.78.2.5}%
-\contentsline {subsubsection}{\numberline {8.78.2.6}offlineBuild()}{170}{subsubsection.8.78.2.6}%
-\contentsline {subsubsection}{\numberline {8.78.2.7}rawData()}{170}{subsubsection.8.78.2.7}%
-\contentsline {subsubsection}{\numberline {8.78.2.8}reviseTensor()}{171}{subsubsection.8.78.2.8}%
-\contentsline {subsubsection}{\numberline {8.78.2.9}searchTensor()}{171}{subsubsection.8.78.2.9}%
-\contentsline {subsubsection}{\numberline {8.78.2.10}setConfig()}{172}{subsubsection.8.78.2.10}%
-\contentsline {subsubsection}{\numberline {8.78.2.11}setFrozenLevel()}{172}{subsubsection.8.78.2.11}%
-\contentsline {subsubsection}{\numberline {8.78.2.12}startHPC()}{172}{subsubsection.8.78.2.12}%
-\contentsline {subsubsection}{\numberline {8.78.2.13}waitPendingOperations()}{173}{subsubsection.8.78.2.13}%
-\contentsline {section}{\numberline {8.79}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DIW\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Ray\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Wrapper Class Reference}{173}{section.8.79}%
-\contentsline {subsection}{\numberline {8.79.1}Detailed Description}{174}{subsection.8.79.1}%
-\contentsline {subsection}{\numberline {8.79.2}Member Function Documentation}{174}{subsection.8.79.2}%
-\contentsline {subsubsection}{\numberline {8.79.2.1}deleteTensor()}{174}{subsubsection.8.79.2.1}%
-\contentsline {subsubsection}{\numberline {8.79.2.2}endHPC()}{175}{subsubsection.8.79.2.2}%
-\contentsline {subsubsection}{\numberline {8.79.2.3}insertTensor()}{175}{subsubsection.8.79.2.3}%
-\contentsline {subsubsection}{\numberline {8.79.2.4}loadInitialTensor()}{175}{subsubsection.8.79.2.4}%
-\contentsline {subsubsection}{\numberline {8.79.2.5}offlineBuild()}{176}{subsubsection.8.79.2.5}%
-\contentsline {subsubsection}{\numberline {8.79.2.6}searchTensor()}{176}{subsubsection.8.79.2.6}%
-\contentsline {subsubsection}{\numberline {8.79.2.7}setConfig()}{177}{subsubsection.8.79.2.7}%
-\contentsline {subsubsection}{\numberline {8.79.2.8}setFrozenLevel()}{177}{subsubsection.8.79.2.8}%
-\contentsline {subsubsection}{\numberline {8.79.2.9}startHPC()}{177}{subsubsection.8.79.2.9}%
-\contentsline {subsubsection}{\numberline {8.79.2.10}waitPendingOperations()}{178}{subsubsection.8.79.2.10}%
-\contentsline {section}{\numberline {8.80}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DPGIndex Class Reference}{178}{section.8.80}%
-\contentsline {subsection}{\numberline {8.80.1}Detailed Description}{180}{subsection.8.80.1}%
-\contentsline {subsection}{\numberline {8.80.2}Member Function Documentation}{181}{subsection.8.80.2}%
-\contentsline {subsubsection}{\numberline {8.80.2.1}deleteTensor()}{181}{subsubsection.8.80.2.1}%
-\contentsline {subsubsection}{\numberline {8.80.2.2}endHPC()}{181}{subsubsection.8.80.2.2}%
-\contentsline {subsubsection}{\numberline {8.80.2.3}getTensorByIndex()}{181}{subsubsection.8.80.2.3}%
-\contentsline {subsubsection}{\numberline {8.80.2.4}insertTensor()}{182}{subsubsection.8.80.2.4}%
-\contentsline {subsubsection}{\numberline {8.80.2.5}loadInitialTensor()}{182}{subsubsection.8.80.2.5}%
-\contentsline {subsubsection}{\numberline {8.80.2.6}offlineBuild()}{183}{subsubsection.8.80.2.6}%
-\contentsline {subsubsection}{\numberline {8.80.2.7}rawData()}{183}{subsubsection.8.80.2.7}%
-\contentsline {subsubsection}{\numberline {8.80.2.8}reviseTensor()}{183}{subsubsection.8.80.2.8}%
-\contentsline {subsubsection}{\numberline {8.80.2.9}searchTensor()}{184}{subsubsection.8.80.2.9}%
-\contentsline {subsubsection}{\numberline {8.80.2.10}setConfig()}{184}{subsubsection.8.80.2.10}%
-\contentsline {subsubsection}{\numberline {8.80.2.11}setFrozenLevel()}{185}{subsubsection.8.80.2.11}%
-\contentsline {subsubsection}{\numberline {8.80.2.12}startHPC()}{185}{subsubsection.8.80.2.12}%
-\contentsline {section}{\numberline {8.81}DIVERSE\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}METER\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Esp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Meter\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Uart Class Reference}{186}{section.8.81}%
-\contentsline {subsection}{\numberline {8.81.1}Detailed Description}{187}{subsection.8.81.1}%
-\contentsline {subsection}{\numberline {8.81.2}Member Function Documentation}{187}{subsection.8.81.2}%
-\contentsline {subsubsection}{\numberline {8.81.2.1}setConfig()}{187}{subsubsection.8.81.2.1}%
-\contentsline {section}{\numberline {8.82}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Exp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Family\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader Class Reference}{187}{section.8.82}%
-\contentsline {subsection}{\numberline {8.82.1}Detailed Description}{189}{subsection.8.82.1}%
-\contentsline {subsection}{\numberline {8.82.2}Member Function Documentation}{190}{subsection.8.82.2}%
-\contentsline {subsubsection}{\numberline {8.82.2.1}getData()}{190}{subsubsection.8.82.2.1}%
-\contentsline {subsubsection}{\numberline {8.82.2.2}getQuery()}{190}{subsubsection.8.82.2.2}%
-\contentsline {subsubsection}{\numberline {8.82.2.3}hijackConfig()}{190}{subsubsection.8.82.2.3}%
-\contentsline {subsubsection}{\numberline {8.82.2.4}setConfig()}{191}{subsubsection.8.82.2.4}%
-\contentsline {section}{\numberline {8.83}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Faiss\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{191}{section.8.83}%
-\contentsline {subsection}{\numberline {8.83.1}Detailed Description}{193}{subsection.8.83.1}%
-\contentsline {subsection}{\numberline {8.83.2}Member Function Documentation}{193}{subsection.8.83.2}%
-\contentsline {subsubsection}{\numberline {8.83.2.1}getTensorByIndex()}{193}{subsubsection.8.83.2.1}%
-\contentsline {subsubsection}{\numberline {8.83.2.2}insertTensor()}{194}{subsubsection.8.83.2.2}%
-\contentsline {subsubsection}{\numberline {8.83.2.3}loadInitialTensor()}{194}{subsubsection.8.83.2.3}%
-\contentsline {subsubsection}{\numberline {8.83.2.4}searchIndex()}{195}{subsubsection.8.83.2.4}%
-\contentsline {subsubsection}{\numberline {8.83.2.5}searchTensor()}{195}{subsubsection.8.83.2.5}%
-\contentsline {subsubsection}{\numberline {8.83.2.6}setConfig()}{196}{subsubsection.8.83.2.6}%
-\contentsline {section}{\numberline {8.84}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flann\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Component Class Reference}{196}{section.8.84}%
-\contentsline {subsection}{\numberline {8.84.1}Member Function Documentation}{197}{subsection.8.84.1}%
-\contentsline {subsubsection}{\numberline {8.84.1.1}setParams()}{197}{subsubsection.8.84.1.1}%
-\contentsline {section}{\numberline {8.85}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flann\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{198}{section.8.85}%
-\contentsline {subsection}{\numberline {8.85.1}Member Function Documentation}{199}{subsection.8.85.1}%
-\contentsline {subsubsection}{\numberline {8.85.1.1}getTensorByIndex()}{199}{subsubsection.8.85.1.1}%
-\contentsline {subsubsection}{\numberline {8.85.1.2}insertTensor()}{199}{subsubsection.8.85.1.2}%
-\contentsline {subsubsection}{\numberline {8.85.1.3}loadInitialTensor()}{200}{subsubsection.8.85.1.3}%
-\contentsline {subsubsection}{\numberline {8.85.1.4}searchIndex()}{200}{subsubsection.8.85.1.4}%
-\contentsline {subsubsection}{\numberline {8.85.1.5}searchTensor()}{200}{subsubsection.8.85.1.5}%
-\contentsline {subsubsection}{\numberline {8.85.1.6}setConfig()}{201}{subsubsection.8.85.1.6}%
-\contentsline {section}{\numberline {8.86}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flann\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Param Struct Reference}{202}{section.8.86}%
-\contentsline {section}{\numberline {8.87}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}AMMIPIndex Class Reference}{202}{section.8.87}%
-\contentsline {subsection}{\numberline {8.87.1}Detailed Description}{204}{subsection.8.87.1}%
-\contentsline {subsection}{\numberline {8.87.2}Member Function Documentation}{205}{subsection.8.87.2}%
-\contentsline {subsubsection}{\numberline {8.87.2.1}deleteTensor()}{205}{subsubsection.8.87.2.1}%
-\contentsline {subsubsection}{\numberline {8.87.2.2}getTensorByIndex()}{205}{subsubsection.8.87.2.2}%
-\contentsline {subsubsection}{\numberline {8.87.2.3}insertTensor()}{206}{subsubsection.8.87.2.3}%
-\contentsline {subsubsection}{\numberline {8.87.2.4}rawData()}{207}{subsubsection.8.87.2.4}%
-\contentsline {subsubsection}{\numberline {8.87.2.5}reviseTensor()}{207}{subsubsection.8.87.2.5}%
-\contentsline {subsubsection}{\numberline {8.87.2.6}searchIndex()}{208}{subsubsection.8.87.2.6}%
-\contentsline {subsubsection}{\numberline {8.87.2.7}searchTensor()}{208}{subsubsection.8.87.2.7}%
-\contentsline {subsubsection}{\numberline {8.87.2.8}setConfig()}{208}{subsubsection.8.87.2.8}%
-\contentsline {subsubsection}{\numberline {8.87.2.9}size()}{209}{subsubsection.8.87.2.9}%
-\contentsline {section}{\numberline {8.88}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}AMMIPObj\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{209}{section.8.88}%
-\contentsline {subsection}{\numberline {8.88.1}Detailed Description}{211}{subsection.8.88.1}%
-\contentsline {subsection}{\numberline {8.88.2}Member Function Documentation}{211}{subsection.8.88.2}%
-\contentsline {subsubsection}{\numberline {8.88.2.1}deleteStringObject()}{211}{subsubsection.8.88.2.1}%
-\contentsline {subsubsection}{\numberline {8.88.2.2}deleteTensor()}{212}{subsubsection.8.88.2.2}%
-\contentsline {subsubsection}{\numberline {8.88.2.3}getTensorByIndex()}{212}{subsubsection.8.88.2.3}%
-\contentsline {subsubsection}{\numberline {8.88.2.4}insertStringObject()}{213}{subsubsection.8.88.2.4}%
-\contentsline {subsubsection}{\numberline {8.88.2.5}insertTensor()}{213}{subsubsection.8.88.2.5}%
-\contentsline {subsubsection}{\numberline {8.88.2.6}rawData()}{214}{subsubsection.8.88.2.6}%
-\contentsline {subsubsection}{\numberline {8.88.2.7}reviseTensor()}{214}{subsubsection.8.88.2.7}%
-\contentsline {subsubsection}{\numberline {8.88.2.8}searchIndex()}{214}{subsubsection.8.88.2.8}%
-\contentsline {subsubsection}{\numberline {8.88.2.9}searchStringObject()}{215}{subsubsection.8.88.2.9}%
-\contentsline {subsubsection}{\numberline {8.88.2.10}searchTensor()}{215}{subsubsection.8.88.2.10}%
-\contentsline {subsubsection}{\numberline {8.88.2.11}setConfig()}{216}{subsubsection.8.88.2.11}%
-\contentsline {subsubsection}{\numberline {8.88.2.12}size()}{216}{subsubsection.8.88.2.12}%
-\contentsline {section}{\numberline {8.89}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{216}{section.8.89}%
-\contentsline {subsection}{\numberline {8.89.1}Detailed Description}{218}{subsection.8.89.1}%
-\contentsline {subsection}{\numberline {8.89.2}Member Function Documentation}{218}{subsection.8.89.2}%
-\contentsline {subsubsection}{\numberline {8.89.2.1}deleteTensor()}{218}{subsubsection.8.89.2.1}%
-\contentsline {subsubsection}{\numberline {8.89.2.2}getTensorByIndex()}{218}{subsubsection.8.89.2.2}%
-\contentsline {subsubsection}{\numberline {8.89.2.3}insertTensor()}{219}{subsubsection.8.89.2.3}%
-\contentsline {subsubsection}{\numberline {8.89.2.4}rawData()}{219}{subsubsection.8.89.2.4}%
-\contentsline {subsubsection}{\numberline {8.89.2.5}reviseTensor()}{219}{subsubsection.8.89.2.5}%
-\contentsline {subsubsection}{\numberline {8.89.2.6}searchIndex()}{220}{subsubsection.8.89.2.6}%
-\contentsline {subsubsection}{\numberline {8.89.2.7}searchTensor()}{220}{subsubsection.8.89.2.7}%
-\contentsline {subsubsection}{\numberline {8.89.2.8}setConfig()}{221}{subsubsection.8.89.2.8}%
-\contentsline {subsubsection}{\numberline {8.89.2.9}size()}{221}{subsubsection.8.89.2.9}%
-\contentsline {section}{\numberline {8.90}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::FVECSData\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader Class Reference}{222}{section.8.90}%
-\contentsline {subsection}{\numberline {8.90.1}Detailed Description}{223}{subsection.8.90.1}%
-\contentsline {subsection}{\numberline {8.90.2}Member Function Documentation}{224}{subsection.8.90.2}%
-\contentsline {subsubsection}{\numberline {8.90.2.1}getData()}{224}{subsubsection.8.90.2.1}%
-\contentsline {subsubsection}{\numberline {8.90.2.2}getQuery()}{224}{subsubsection.8.90.2.2}%
-\contentsline {subsubsection}{\numberline {8.90.2.3}setConfig()}{224}{subsubsection.8.90.2.3}%
-\contentsline {subsubsection}{\numberline {8.90.2.4}tensorFromFVECS()}{225}{subsubsection.8.90.2.4}%
-\contentsline {section}{\numberline {8.91}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HDF5\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader Class Reference}{225}{section.8.91}%
-\contentsline {subsection}{\numberline {8.91.1}Detailed Description}{227}{subsection.8.91.1}%
-\contentsline {subsection}{\numberline {8.91.2}Member Function Documentation}{227}{subsection.8.91.2}%
-\contentsline {subsubsection}{\numberline {8.91.2.1}getData()}{227}{subsubsection.8.91.2.1}%
-\contentsline {subsubsection}{\numberline {8.91.2.2}getQuery()}{228}{subsubsection.8.91.2.2}%
-\contentsline {subsubsection}{\numberline {8.91.2.3}setConfig()}{228}{subsubsection.8.91.2.3}%
-\contentsline {subsubsection}{\numberline {8.91.2.4}tensorFromHDF5()}{228}{subsubsection.8.91.2.4}%
-\contentsline {section}{\numberline {8.92}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::FLANN\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Heap$<$ T $>$ Class Template Reference}{229}{section.8.92}%
-\contentsline {subsection}{\numberline {8.92.1}Detailed Description}{229}{subsection.8.92.1}%
-\contentsline {section}{\numberline {8.93}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSW Class Reference}{230}{section.8.93}%
-\contentsline {subsection}{\numberline {8.93.1}Detailed Description}{232}{subsection.8.93.1}%
-\contentsline {subsection}{\numberline {8.93.2}Member Function Documentation}{232}{subsection.8.93.2}%
-\contentsline {subsubsection}{\numberline {8.93.2.1}add\_links\_starting\_from()}{232}{subsubsection.8.93.2.1}%
-\contentsline {subsubsection}{\numberline {8.93.2.2}add\_without\_lock()}{232}{subsubsection.8.93.2.2}%
-\contentsline {subsubsection}{\numberline {8.93.2.3}cum\_nb\_neighbors()}{233}{subsubsection.8.93.2.3}%
-\contentsline {subsubsection}{\numberline {8.93.2.4}nb\_neighbors()}{233}{subsubsection.8.93.2.4}%
-\contentsline {subsubsection}{\numberline {8.93.2.5}neighbor\_range()}{234}{subsubsection.8.93.2.5}%
-\contentsline {subsubsection}{\numberline {8.93.2.6}prepare\_level\_tab()}{234}{subsubsection.8.93.2.6}%
-\contentsline {subsubsection}{\numberline {8.93.2.7}random\_level()}{234}{subsubsection.8.93.2.7}%
-\contentsline {subsubsection}{\numberline {8.93.2.8}search()}{235}{subsubsection.8.93.2.8}%
-\contentsline {subsubsection}{\numberline {8.93.2.9}set\_nb\_neighbors()}{235}{subsubsection.8.93.2.9}%
-\contentsline {subsubsection}{\numberline {8.93.2.10}set\_probs()}{235}{subsubsection.8.93.2.10}%
-\contentsline {subsection}{\numberline {8.93.3}Member Data Documentation}{236}{subsection.8.93.3}%
-\contentsline {subsubsection}{\numberline {8.93.3.1}cum\_nneighbor\_per\_level\_}{236}{subsubsection.8.93.3.1}%
-\contentsline {subsubsection}{\numberline {8.93.3.2}search\_bounded\_queue}{236}{subsubsection.8.93.3.2}%
-\contentsline {section}{\numberline {8.94}HNSWAlter Class Reference}{236}{section.8.94}%
-\contentsline {section}{\numberline {8.95}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSWNaive\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{236}{section.8.95}%
-\contentsline {subsection}{\numberline {8.95.1}Detailed Description}{238}{subsection.8.95.1}%
-\contentsline {subsection}{\numberline {8.95.2}Member Function Documentation}{238}{subsection.8.95.2}%
-\contentsline {subsubsection}{\numberline {8.95.2.1}deleteTensor()}{238}{subsubsection.8.95.2.1}%
-\contentsline {subsubsection}{\numberline {8.95.2.2}insertTensor()}{239}{subsubsection.8.95.2.2}%
-\contentsline {subsubsection}{\numberline {8.95.2.3}reviseTensor()}{239}{subsubsection.8.95.2.3}%
-\contentsline {subsubsection}{\numberline {8.95.2.4}searchTensor()}{239}{subsubsection.8.95.2.4}%
-\contentsline {subsubsection}{\numberline {8.95.2.5}setConfig()}{240}{subsubsection.8.95.2.5}%
-\contentsline {section}{\numberline {8.96}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSWVertex Class Reference}{240}{section.8.96}%
-\contentsline {subsection}{\numberline {8.96.1}Detailed Description}{241}{subsection.8.96.1}%
-\contentsline {section}{\numberline {8.97}Host\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Para Class Reference}{242}{section.8.97}%
-\contentsline {section}{\numberline {8.98}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Table Class Reference}{242}{section.8.98}%
-\contentsline {subsection}{\numberline {8.98.1}Detailed Description}{243}{subsection.8.98.1}%
-\contentsline {subsection}{\numberline {8.98.2}Member Function Documentation}{243}{subsection.8.98.2}%
-\contentsline {subsubsection}{\numberline {8.98.2.1}addIndex()}{243}{subsubsection.8.98.2.1}%
-\contentsline {subsubsection}{\numberline {8.98.2.2}getIndex()}{244}{subsubsection.8.98.2.2}%
-\contentsline {section}{\numberline {8.99}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Log Class Reference}{244}{section.8.99}%
-\contentsline {subsection}{\numberline {8.99.1}Detailed Description}{244}{subsection.8.99.1}%
-\contentsline {section}{\numberline {8.100}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Log\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}File\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Protector Class Reference}{245}{section.8.100}%
-\contentsline {subsection}{\numberline {8.100.1}Detailed Description}{245}{subsection.8.100.1}%
-\contentsline {section}{\numberline {8.101}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}OP Class Reference}{245}{section.8.101}%
-\contentsline {subsection}{\numberline {8.101.1}Member Function Documentation}{246}{subsection.8.101.1}%
-\contentsline {subsubsection}{\numberline {8.101.1.1}appendRows()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{246}{subsubsection.8.101.1.1}%
-\contentsline {subsubsection}{\numberline {8.101.1.2}appendRows()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{247}{subsubsection.8.101.1.2}%
-\contentsline {subsubsection}{\numberline {8.101.1.3}appendRowsBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{247}{subsubsection.8.101.1.3}%
-\contentsline {subsubsection}{\numberline {8.101.1.4}appendRowsBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{248}{subsubsection.8.101.1.4}%
-\contentsline {subsubsection}{\numberline {8.101.1.5}deleteRow()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{248}{subsubsection.8.101.1.5}%
-\contentsline {subsubsection}{\numberline {8.101.1.6}deleteRow()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{249}{subsubsection.8.101.1.6}%
-\contentsline {subsubsection}{\numberline {8.101.1.7}deleteRowBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{249}{subsubsection.8.101.1.7}%
-\contentsline {subsubsection}{\numberline {8.101.1.8}deleteRowBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{249}{subsubsection.8.101.1.8}%
-\contentsline {subsubsection}{\numberline {8.101.1.9}deleteRows()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{250}{subsubsection.8.101.1.9}%
-\contentsline {subsubsection}{\numberline {8.101.1.10}deleteRows()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{250}{subsubsection.8.101.1.10}%
-\contentsline {subsubsection}{\numberline {8.101.1.11}deleteRowsBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{251}{subsubsection.8.101.1.11}%
-\contentsline {subsubsection}{\numberline {8.101.1.12}deleteRowsBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{251}{subsubsection.8.101.1.12}%
-\contentsline {subsubsection}{\numberline {8.101.1.13}editRows()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{252}{subsubsection.8.101.1.13}%
-\contentsline {subsubsection}{\numberline {8.101.1.14}editRows()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{252}{subsubsection.8.101.1.14}%
-\contentsline {subsubsection}{\numberline {8.101.1.15}insertRows()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{253}{subsubsection.8.101.1.15}%
-\contentsline {subsubsection}{\numberline {8.101.1.16}insertRows()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{254}{subsubsection.8.101.1.16}%
-\contentsline {subsubsection}{\numberline {8.101.1.17}l2Normalize()}{254}{subsubsection.8.101.1.17}%
-\contentsline {subsubsection}{\numberline {8.101.1.18}rowSampling()}{255}{subsubsection.8.101.1.18}%
-\contentsline {subsubsection}{\numberline {8.101.1.19}tensorFromFile()}{255}{subsubsection.8.101.1.19}%
-\contentsline {subsubsection}{\numberline {8.101.1.20}tensorFromFlatBin()}{255}{subsubsection.8.101.1.20}%
-\contentsline {subsubsection}{\numberline {8.101.1.21}tensorToFile()}{256}{subsubsection.8.101.1.21}%
-\contentsline {subsubsection}{\numberline {8.101.1.22}tensorToFlatBin()}{256}{subsubsection.8.101.1.22}%
-\contentsline {section}{\numberline {8.102}INTELLITensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}OP Class Reference}{257}{section.8.102}%
-\contentsline {subsection}{\numberline {8.102.1}Detailed Description}{257}{subsection.8.102.1}%
-\contentsline {section}{\numberline {8.103}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Time\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stamp Class Reference}{257}{section.8.103}%
-\contentsline {subsection}{\numberline {8.103.1}Detailed Description}{258}{subsection.8.103.1}%
-\contentsline {section}{\numberline {8.104}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Time\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stamp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Generator Class Reference}{258}{section.8.104}%
-\contentsline {subsection}{\numberline {8.104.1}Detailed Description}{259}{subsection.8.104.1}%
-\contentsline {subsection}{\numberline {8.104.2}Member Function Documentation}{260}{subsection.8.104.2}%
-\contentsline {subsubsection}{\numberline {8.104.2.1}generateArrival()}{260}{subsubsection.8.104.2.1}%
-\contentsline {subsubsection}{\numberline {8.104.2.2}getTimeStamps()}{260}{subsubsection.8.104.2.2}%
-\contentsline {subsubsection}{\numberline {8.104.2.3}setConfig()}{260}{subsubsection.8.104.2.3}%
-\contentsline {section}{\numberline {8.105}DIVERSE\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}METER\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intel\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Meter Class Reference}{261}{section.8.105}%
-\contentsline {subsection}{\numberline {8.105.1}Detailed Description}{262}{subsection.8.105.1}%
-\contentsline {subsection}{\numberline {8.105.2}Member Function Documentation}{262}{subsection.8.105.2}%
-\contentsline {subsubsection}{\numberline {8.105.2.1}setConfig()}{262}{subsubsection.8.105.2.1}%
-\contentsline {section}{\numberline {8.106}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::IVFList\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Bucket Class Reference}{263}{section.8.106}%
-\contentsline {subsection}{\numberline {8.106.1}Detailed Description}{264}{subsection.8.106.1}%
-\contentsline {subsection}{\numberline {8.106.2}Member Function Documentation}{264}{subsection.8.106.2}%
-\contentsline {subsubsection}{\numberline {8.106.2.1}deleteTensor()}{264}{subsubsection.8.106.2.1}%
-\contentsline {subsubsection}{\numberline {8.106.2.2}deleteTensorWithEncode()}{264}{subsubsection.8.106.2.2}%
-\contentsline {subsubsection}{\numberline {8.106.2.3}getAllTensors()}{265}{subsubsection.8.106.2.3}%
-\contentsline {subsubsection}{\numberline {8.106.2.4}getAllTensorsWithEncode()}{265}{subsubsection.8.106.2.4}%
-\contentsline {subsubsection}{\numberline {8.106.2.5}getMinimumTensorsUnderHamming()}{265}{subsubsection.8.106.2.5}%
-\contentsline {subsubsection}{\numberline {8.106.2.6}insertTensorWithEncode()}{266}{subsubsection.8.106.2.6}%
-\contentsline {subsubsection}{\numberline {8.106.2.7}sizeWithEncode()}{266}{subsubsection.8.106.2.7}%
-\contentsline {section}{\numberline {8.107}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::IVFList\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Cell Class Reference}{267}{section.8.107}%
-\contentsline {subsection}{\numberline {8.107.1}Detailed Description}{267}{subsection.8.107.1}%
-\contentsline {subsection}{\numberline {8.107.2}Member Function Documentation}{268}{subsection.8.107.2}%
-\contentsline {subsubsection}{\numberline {8.107.2.1}deleteTensor()}{268}{subsubsection.8.107.2.1}%
-\contentsline {subsubsection}{\numberline {8.107.2.2}deleteTensorPtr()}{268}{subsubsection.8.107.2.2}%
-\contentsline {subsubsection}{\numberline {8.107.2.3}getAllTensors()}{268}{subsubsection.8.107.2.3}%
-\contentsline {subsubsection}{\numberline {8.107.2.4}insertTensor()}{269}{subsubsection.8.107.2.4}%
-\contentsline {subsubsection}{\numberline {8.107.2.5}insertTensorPtr()}{269}{subsubsection.8.107.2.5}%
-\contentsline {section}{\numberline {8.108}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::IVFTensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encoding\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}List Class Reference}{269}{section.8.108}%
-\contentsline {subsection}{\numberline {8.108.1}Detailed Description}{270}{subsection.8.108.1}%
-\contentsline {subsection}{\numberline {8.108.2}Member Function Documentation}{270}{subsection.8.108.2}%
-\contentsline {subsubsection}{\numberline {8.108.2.1}deleteTensorWithEncode()}{270}{subsubsection.8.108.2.1}%
-\contentsline {subsubsection}{\numberline {8.108.2.2}getMinimumNumOfTensors()}{271}{subsubsection.8.108.2.2}%
-\contentsline {subsubsection}{\numberline {8.108.2.3}getMinimumNumOfTensorsHamming()}{271}{subsubsection.8.108.2.3}%
-\contentsline {subsubsection}{\numberline {8.108.2.4}getMinimumNumOfTensorsInsideBucket()}{272}{subsubsection.8.108.2.4}%
-\contentsline {subsubsection}{\numberline {8.108.2.5}getMinimumNumOfTensorsInsideBucketHamming()}{273}{subsubsection.8.108.2.5}%
-\contentsline {subsubsection}{\numberline {8.108.2.6}init()}{273}{subsubsection.8.108.2.6}%
-\contentsline {subsubsection}{\numberline {8.108.2.7}insertTensorWithEncode()}{273}{subsubsection.8.108.2.7}%
-\contentsline {section}{\numberline {8.109}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kd\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree Class Reference}{274}{section.8.109}%
-\contentsline {subsection}{\numberline {8.109.1}Member Function Documentation}{275}{subsection.8.109.1}%
-\contentsline {subsubsection}{\numberline {8.109.1.1}addPoints()}{275}{subsubsection.8.109.1.1}%
-\contentsline {subsubsection}{\numberline {8.109.1.2}addPointToTree()}{276}{subsubsection.8.109.1.2}%
-\contentsline {subsubsection}{\numberline {8.109.1.3}divideTree()}{276}{subsubsection.8.109.1.3}%
-\contentsline {subsubsection}{\numberline {8.109.1.4}getNeighbors()}{276}{subsubsection.8.109.1.4}%
-\contentsline {subsubsection}{\numberline {8.109.1.5}knnSearch()}{277}{subsubsection.8.109.1.5}%
-\contentsline {subsubsection}{\numberline {8.109.1.6}meanSplit()}{277}{subsubsection.8.109.1.6}%
-\contentsline {subsubsection}{\numberline {8.109.1.7}planeSplit()}{278}{subsubsection.8.109.1.7}%
-\contentsline {subsubsection}{\numberline {8.109.1.8}searchLevel()}{278}{subsubsection.8.109.1.8}%
-\contentsline {subsubsection}{\numberline {8.109.1.9}selectDivision()}{279}{subsubsection.8.109.1.9}%
-\contentsline {subsubsection}{\numberline {8.109.1.10}setConfig()}{279}{subsubsection.8.109.1.10}%
-\contentsline {subsubsection}{\numberline {8.109.1.11}setParams()}{279}{subsubsection.8.109.1.11}%
-\contentsline {section}{\numberline {8.110}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kmeans\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree Class Reference}{280}{section.8.110}%
-\contentsline {subsection}{\numberline {8.110.1}Detailed Description}{282}{subsection.8.110.1}%
-\contentsline {subsection}{\numberline {8.110.2}Member Function Documentation}{282}{subsection.8.110.2}%
-\contentsline {subsubsection}{\numberline {8.110.2.1}addPoints()}{282}{subsubsection.8.110.2.1}%
-\contentsline {subsubsection}{\numberline {8.110.2.2}addPointToTree()}{282}{subsubsection.8.110.2.2}%
-\contentsline {subsubsection}{\numberline {8.110.2.3}computeClustering()}{282}{subsubsection.8.110.2.3}%
-\contentsline {subsubsection}{\numberline {8.110.2.4}computeNodeStat()}{283}{subsubsection.8.110.2.4}%
-\contentsline {subsubsection}{\numberline {8.110.2.5}explore()}{283}{subsubsection.8.110.2.5}%
-\contentsline {subsubsection}{\numberline {8.110.2.6}findNN()}{283}{subsubsection.8.110.2.6}%
-\contentsline {subsubsection}{\numberline {8.110.2.7}getNeighbors()}{284}{subsubsection.8.110.2.7}%
-\contentsline {subsubsection}{\numberline {8.110.2.8}knnSearch()}{284}{subsubsection.8.110.2.8}%
-\contentsline {subsubsection}{\numberline {8.110.2.9}setConfig()}{285}{subsubsection.8.110.2.9}%
-\contentsline {subsubsection}{\numberline {8.110.2.10}setParams()}{285}{subsubsection.8.110.2.10}%
-\contentsline {section}{\numberline {8.111}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Memory\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tracker Class Reference}{286}{section.8.111}%
-\contentsline {subsection}{\numberline {8.111.1}Detailed Description}{286}{subsection.8.111.1}%
-\contentsline {subsection}{\numberline {8.111.2}Member Function Documentation}{287}{subsection.8.111.2}%
-\contentsline {subsubsection}{\numberline {8.111.2.1}getAvgCpu()}{287}{subsubsection.8.111.2.1}%
-\contentsline {subsubsection}{\numberline {8.111.2.2}getAvgMem()}{287}{subsubsection.8.111.2.2}%
-\contentsline {subsubsection}{\numberline {8.111.2.3}getCurMem()}{287}{subsubsection.8.111.2.3}%
-\contentsline {subsubsection}{\numberline {8.111.2.4}getMaxCpu()}{287}{subsubsection.8.111.2.4}%
-\contentsline {subsubsection}{\numberline {8.111.2.5}getMaxMem()}{288}{subsubsection.8.111.2.5}%
-\contentsline {subsubsection}{\numberline {8.111.2.6}start()}{288}{subsubsection.8.111.2.6}%
-\contentsline {section}{\numberline {8.112}DIVERSE\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}METER\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Meter\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Table Class Reference}{288}{section.8.112}%
-\contentsline {subsection}{\numberline {8.112.1}Detailed Description}{289}{subsection.8.112.1}%
-\contentsline {subsection}{\numberline {8.112.2}Constructor \& Destructor Documentation}{290}{subsection.8.112.2}%
-\contentsline {subsubsection}{\numberline {8.112.2.1}MeterTable()}{290}{subsubsection.8.112.2.1}%
-\contentsline {subsection}{\numberline {8.112.3}Member Function Documentation}{290}{subsection.8.112.3}%
-\contentsline {subsubsection}{\numberline {8.112.3.1}findMeter()}{290}{subsubsection.8.112.3.1}%
-\contentsline {subsubsection}{\numberline {8.112.3.2}registerNewMeter()}{290}{subsubsection.8.112.3.2}%
-\contentsline {section}{\numberline {8.113}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Micro\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Set Class Reference}{291}{section.8.113}%
-\contentsline {subsection}{\numberline {8.113.1}Detailed Description}{291}{subsection.8.113.1}%
-\contentsline {section}{\numberline {8.114}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSW\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Minimax\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Heap Struct Reference}{292}{section.8.114}%
-\contentsline {subsection}{\numberline {8.114.1}Detailed Description}{292}{subsection.8.114.1}%
-\contentsline {section}{\numberline {8.115}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::MLPBucket\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Idx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Model Class Reference}{293}{section.8.115}%
-\contentsline {subsection}{\numberline {8.115.1}Member Function Documentation}{293}{subsection.8.115.1}%
-\contentsline {subsubsection}{\numberline {8.115.1.1}hash()}{293}{subsubsection.8.115.1.1}%
-\contentsline {subsubsection}{\numberline {8.115.1.2}init()}{293}{subsubsection.8.115.1.2}%
-\contentsline {subsubsection}{\numberline {8.115.1.3}trainModel()}{294}{subsubsection.8.115.1.3}%
-\contentsline {section}{\numberline {8.116}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::MLPHashing\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Model Class Reference}{294}{section.8.116}%
-\contentsline {subsection}{\numberline {8.116.1}Member Function Documentation}{295}{subsection.8.116.1}%
-\contentsline {subsubsection}{\numberline {8.116.1.1}fineTuneModel()}{295}{subsubsection.8.116.1.1}%
-\contentsline {subsubsection}{\numberline {8.116.1.2}hash()}{295}{subsubsection.8.116.1.2}%
-\contentsline {subsubsection}{\numberline {8.116.1.3}init()}{295}{subsubsection.8.116.1.3}%
-\contentsline {subsubsection}{\numberline {8.116.1.4}trainModel()}{296}{subsubsection.8.116.1.4}%
-\contentsline {section}{\numberline {8.117}BS\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::multi\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}future$<$ T $>$ Class Template Reference}{296}{section.8.117}%
-\contentsline {subsection}{\numberline {8.117.1}Detailed Description}{297}{subsection.8.117.1}%
-\contentsline {subsection}{\numberline {8.117.2}Constructor \& Destructor Documentation}{297}{subsection.8.117.2}%
-\contentsline {subsubsection}{\numberline {8.117.2.1}multi\_future()}{297}{subsubsection.8.117.2.1}%
-\contentsline {subsection}{\numberline {8.117.3}Member Function Documentation}{297}{subsection.8.117.3}%
-\contentsline {subsubsection}{\numberline {8.117.3.1}get()}{298}{subsubsection.8.117.3.1}%
-\contentsline {subsubsection}{\numberline {8.117.3.2}operator[]()}{298}{subsubsection.8.117.3.2}%
-\contentsline {subsubsection}{\numberline {8.117.3.3}push\_back()}{298}{subsubsection.8.117.3.3}%
-\contentsline {subsubsection}{\numberline {8.117.3.4}size()}{298}{subsubsection.8.117.3.4}%
-\contentsline {section}{\numberline {8.118}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DPGIndex\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Neighbor Struct Reference}{299}{section.8.118}%
-\contentsline {section}{\numberline {8.119}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::NNDescent\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Neighbor Struct Reference}{300}{section.8.119}%
-\contentsline {section}{\numberline {8.120}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::NNDescent\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Nhood Struct Reference}{300}{section.8.120}%
-\contentsline {section}{\numberline {8.121}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DPGIndex\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Nhood\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Layer0 Struct Reference}{301}{section.8.121}%
-\contentsline {section}{\numberline {8.122}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DPGIndex\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Nhood\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Layer1 Struct Reference}{302}{section.8.122}%
-\contentsline {section}{\numberline {8.123}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::NNDescent\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{303}{section.8.123}%
-\contentsline {subsection}{\numberline {8.123.1}Detailed Description}{305}{subsection.8.123.1}%
-\contentsline {subsection}{\numberline {8.123.2}Member Function Documentation}{305}{subsection.8.123.2}%
-\contentsline {subsubsection}{\numberline {8.123.2.1}deleteTensor()}{305}{subsubsection.8.123.2.1}%
-\contentsline {subsubsection}{\numberline {8.123.2.2}endHPC()}{305}{subsubsection.8.123.2.2}%
-\contentsline {subsubsection}{\numberline {8.123.2.3}getTensorByIndex()}{306}{subsubsection.8.123.2.3}%
-\contentsline {subsubsection}{\numberline {8.123.2.4}insertTensor()}{306}{subsubsection.8.123.2.4}%
-\contentsline {subsubsection}{\numberline {8.123.2.5}loadInitialTensor()}{307}{subsubsection.8.123.2.5}%
-\contentsline {subsubsection}{\numberline {8.123.2.6}offlineBuild()}{307}{subsubsection.8.123.2.6}%
-\contentsline {subsubsection}{\numberline {8.123.2.7}rawData()}{307}{subsubsection.8.123.2.7}%
-\contentsline {subsubsection}{\numberline {8.123.2.8}reviseTensor()}{308}{subsubsection.8.123.2.8}%
-\contentsline {subsubsection}{\numberline {8.123.2.9}searchTensor()}{308}{subsubsection.8.123.2.9}%
-\contentsline {subsubsection}{\numberline {8.123.2.10}setConfig()}{308}{subsubsection.8.123.2.10}%
-\contentsline {subsubsection}{\numberline {8.123.2.11}setFrozenLevel()}{309}{subsubsection.8.123.2.11}%
-\contentsline {subsubsection}{\numberline {8.123.2.12}startHPC()}{309}{subsubsection.8.123.2.12}%
-\contentsline {section}{\numberline {8.124}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kd\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node Struct Reference}{310}{section.8.124}%
-\contentsline {section}{\numberline {8.125}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kmeans\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node Struct Reference}{310}{section.8.125}%
-\contentsline {section}{\numberline {8.126}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSW\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Dist\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Closer Struct Reference}{311}{section.8.126}%
-\contentsline {subsection}{\numberline {8.126.1}Detailed Description}{312}{subsection.8.126.1}%
-\contentsline {section}{\numberline {8.127}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSW\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Dist\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Farther Struct Reference}{312}{section.8.127}%
-\contentsline {subsection}{\numberline {8.127.1}Detailed Description}{312}{subsection.8.127.1}%
-\contentsline {section}{\numberline {8.128}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kmeans\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Info Struct Reference}{313}{section.8.128}%
-\contentsline {section}{\numberline {8.129}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Online\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IVFL2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}HIndex Class Reference}{313}{section.8.129}%
-\contentsline {subsection}{\numberline {8.129.1}Detailed Description}{315}{subsection.8.129.1}%
-\contentsline {subsection}{\numberline {8.129.2}Member Function Documentation}{315}{subsection.8.129.2}%
-\contentsline {subsubsection}{\numberline {8.129.2.1}loadInitialTensor()}{315}{subsubsection.8.129.2.1}%
-\contentsline {subsubsection}{\numberline {8.129.2.2}loadInitialTensorAndQueryDistribution()}{316}{subsubsection.8.129.2.2}%
-\contentsline {subsubsection}{\numberline {8.129.2.3}setConfig()}{316}{subsubsection.8.129.2.3}%
-\contentsline {subsubsection}{\numberline {8.129.2.4}trainModelWithData()}{317}{subsubsection.8.129.2.4}%
-\contentsline {section}{\numberline {8.130}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Online\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IVFLSHIndex Class Reference}{317}{section.8.130}%
-\contentsline {subsection}{\numberline {8.130.1}Detailed Description}{319}{subsection.8.130.1}%
-\contentsline {subsection}{\numberline {8.130.2}Member Function Documentation}{319}{subsection.8.130.2}%
-\contentsline {subsubsection}{\numberline {8.130.2.1}crsAmm()}{319}{subsubsection.8.130.2.1}%
-\contentsline {subsubsection}{\numberline {8.130.2.2}deleteRowsInline()}{320}{subsubsection.8.130.2.2}%
-\contentsline {subsubsection}{\numberline {8.130.2.3}deleteTensor()}{320}{subsubsection.8.130.2.3}%
-\contentsline {subsubsection}{\numberline {8.130.2.4}insertTensor()}{321}{subsubsection.8.130.2.4}%
-\contentsline {subsubsection}{\numberline {8.130.2.5}reviseTensor()}{321}{subsubsection.8.130.2.5}%
-\contentsline {subsubsection}{\numberline {8.130.2.6}searchTensor()}{321}{subsubsection.8.130.2.6}%
-\contentsline {subsubsection}{\numberline {8.130.2.7}setConfig()}{322}{subsubsection.8.130.2.7}%
-\contentsline {section}{\numberline {8.131}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Online\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}PQIndex Class Reference}{322}{section.8.131}%
-\contentsline {subsection}{\numberline {8.131.1}Detailed Description}{324}{subsection.8.131.1}%
-\contentsline {subsection}{\numberline {8.131.2}Member Function Documentation}{325}{subsection.8.131.2}%
-\contentsline {subsubsection}{\numberline {8.131.2.1}deleteRowsInline()}{325}{subsubsection.8.131.2.1}%
-\contentsline {subsubsection}{\numberline {8.131.2.2}deleteTensor()}{325}{subsubsection.8.131.2.2}%
-\contentsline {subsubsection}{\numberline {8.131.2.3}fineGrainedEncode()}{326}{subsubsection.8.131.2.3}%
-\contentsline {subsubsection}{\numberline {8.131.2.4}insertTensor()}{326}{subsubsection.8.131.2.4}%
-\contentsline {subsubsection}{\numberline {8.131.2.5}loadInitialTensor()}{326}{subsubsection.8.131.2.5}%
-\contentsline {subsubsection}{\numberline {8.131.2.6}offlineBuild()}{327}{subsubsection.8.131.2.6}%
-\contentsline {subsubsection}{\numberline {8.131.2.7}reviseTensor()}{328}{subsubsection.8.131.2.7}%
-\contentsline {subsubsection}{\numberline {8.131.2.8}searchTensor()}{328}{subsubsection.8.131.2.8}%
-\contentsline {subsubsection}{\numberline {8.131.2.9}setConfig()}{328}{subsubsection.8.131.2.9}%
-\contentsline {subsubsection}{\numberline {8.131.2.10}setFrozenLevel()}{329}{subsubsection.8.131.2.10}%
-\contentsline {section}{\numberline {8.132}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Parallel\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Worker Class Reference}{330}{section.8.132}%
-\contentsline {subsection}{\numberline {8.132.1}Detailed Description}{332}{subsection.8.132.1}%
-\contentsline {section}{\numberline {8.133}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Parallel\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Partition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{333}{section.8.133}%
-\contentsline {subsection}{\numberline {8.133.1}Detailed Description}{335}{subsection.8.133.1}%
-\contentsline {subsection}{\numberline {8.133.2}Member Function Documentation}{335}{subsection.8.133.2}%
-\contentsline {subsubsection}{\numberline {8.133.2.1}deleteStringObject()}{335}{subsubsection.8.133.2.1}%
-\contentsline {subsubsection}{\numberline {8.133.2.2}deleteTensor()}{336}{subsubsection.8.133.2.2}%
-\contentsline {subsubsection}{\numberline {8.133.2.3}endHPC()}{336}{subsubsection.8.133.2.3}%
-\contentsline {subsubsection}{\numberline {8.133.2.4}getTensorByIndex()}{337}{subsubsection.8.133.2.4}%
-\contentsline {subsubsection}{\numberline {8.133.2.5}insertStringObject()}{337}{subsubsection.8.133.2.5}%
-\contentsline {subsubsection}{\numberline {8.133.2.6}insertTensor()}{337}{subsubsection.8.133.2.6}%
-\contentsline {subsubsection}{\numberline {8.133.2.7}loadInitialStringObject()}{338}{subsubsection.8.133.2.7}%
-\contentsline {subsubsection}{\numberline {8.133.2.8}loadInitialTensor()}{338}{subsubsection.8.133.2.8}%
-\contentsline {subsubsection}{\numberline {8.133.2.9}offlineBuild()}{339}{subsubsection.8.133.2.9}%
-\contentsline {subsubsection}{\numberline {8.133.2.10}rawData()}{339}{subsubsection.8.133.2.10}%
-\contentsline {subsubsection}{\numberline {8.133.2.11}reviseTensor()}{339}{subsubsection.8.133.2.11}%
-\contentsline {subsubsection}{\numberline {8.133.2.12}searchStringObject()}{340}{subsubsection.8.133.2.12}%
-\contentsline {subsubsection}{\numberline {8.133.2.13}searchTensor()}{340}{subsubsection.8.133.2.13}%
-\contentsline {subsubsection}{\numberline {8.133.2.14}searchTensorAndStringObject()}{341}{subsubsection.8.133.2.14}%
-\contentsline {subsubsection}{\numberline {8.133.2.15}setConfig()}{341}{subsubsection.8.133.2.15}%
-\contentsline {subsubsection}{\numberline {8.133.2.16}setFrozenLevel()}{342}{subsubsection.8.133.2.16}%
-\contentsline {subsubsection}{\numberline {8.133.2.17}startHPC()}{342}{subsubsection.8.133.2.17}%
-\contentsline {subsubsection}{\numberline {8.133.2.18}waitPendingOperations()}{343}{subsubsection.8.133.2.18}%
-\contentsline {section}{\numberline {8.134}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Thread\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Perf\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Perf\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pair Class Reference}{343}{section.8.134}%
-\contentsline {subsection}{\numberline {8.134.1}Detailed Description}{344}{subsection.8.134.1}%
-\contentsline {section}{\numberline {8.135}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Thread\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Perf\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Perf\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tool Class Reference}{344}{section.8.135}%
-\contentsline {section}{\numberline {8.136}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::PQDecoder Class Reference}{344}{section.8.136}%
-\contentsline {subsection}{\numberline {8.136.1}Detailed Description}{345}{subsection.8.136.1}%
-\contentsline {subsection}{\numberline {8.136.2}Member Function Documentation}{345}{subsection.8.136.2}%
-\contentsline {subsubsection}{\numberline {8.136.2.1}decode()}{345}{subsubsection.8.136.2.1}%
-\contentsline {section}{\numberline {8.137}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::PQEncoder Class Reference}{346}{section.8.137}%
-\contentsline {subsection}{\numberline {8.137.1}Detailed Description}{346}{subsection.8.137.1}%
-\contentsline {subsection}{\numberline {8.137.2}Member Function Documentation}{346}{subsection.8.137.2}%
-\contentsline {subsubsection}{\numberline {8.137.2.1}encode()}{346}{subsubsection.8.137.2.1}%
-\contentsline {section}{\numberline {8.138}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::PQIndex Class Reference}{347}{section.8.138}%
-\contentsline {subsection}{\numberline {8.138.1}Detailed Description}{349}{subsection.8.138.1}%
-\contentsline {subsection}{\numberline {8.138.2}Member Function Documentation}{349}{subsection.8.138.2}%
-\contentsline {subsubsection}{\numberline {8.138.2.1}add()}{349}{subsubsection.8.138.2.1}%
-\contentsline {subsubsection}{\numberline {8.138.2.2}deleteTensor()}{349}{subsubsection.8.138.2.2}%
-\contentsline {subsubsection}{\numberline {8.138.2.3}getTensorByIndex()}{351}{subsubsection.8.138.2.3}%
-\contentsline {subsubsection}{\numberline {8.138.2.4}insertTensor()}{351}{subsubsection.8.138.2.4}%
-\contentsline {subsubsection}{\numberline {8.138.2.5}loadInitialTensor()}{352}{subsubsection.8.138.2.5}%
-\contentsline {subsubsection}{\numberline {8.138.2.6}rawData()}{352}{subsubsection.8.138.2.6}%
-\contentsline {subsubsection}{\numberline {8.138.2.7}reviseTensor()}{352}{subsubsection.8.138.2.7}%
-\contentsline {subsubsection}{\numberline {8.138.2.8}searchIndex()}{353}{subsubsection.8.138.2.8}%
-\contentsline {subsubsection}{\numberline {8.138.2.9}searchTensor()}{353}{subsubsection.8.138.2.9}%
-\contentsline {subsubsection}{\numberline {8.138.2.10}setConfig()}{354}{subsubsection.8.138.2.10}%
-\contentsline {subsubsection}{\numberline {8.138.2.11}setFrozenLevel()}{354}{subsubsection.8.138.2.11}%
-\contentsline {subsubsection}{\numberline {8.138.2.12}train()}{355}{subsubsection.8.138.2.12}%
-\contentsline {section}{\numberline {8.139}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Product\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Quantizer Class Reference}{355}{section.8.139}%
-\contentsline {subsection}{\numberline {8.139.1}Detailed Description}{356}{subsection.8.139.1}%
-\contentsline {subsection}{\numberline {8.139.2}Member Function Documentation}{356}{subsection.8.139.2}%
-\contentsline {subsubsection}{\numberline {8.139.2.1}add()}{357}{subsubsection.8.139.2.1}%
-\contentsline {subsubsection}{\numberline {8.139.2.2}compute\_code()}{357}{subsubsection.8.139.2.2}%
-\contentsline {subsubsection}{\numberline {8.139.2.3}compute\_codes()}{357}{subsubsection.8.139.2.3}%
-\contentsline {subsubsection}{\numberline {8.139.2.4}compute\_distance\_table()}{358}{subsubsection.8.139.2.4}%
-\contentsline {subsubsection}{\numberline {8.139.2.5}compute\_distance\_tables()}{358}{subsubsection.8.139.2.5}%
-\contentsline {subsubsection}{\numberline {8.139.2.6}decode()}{358}{subsubsection.8.139.2.6}%
-\contentsline {subsubsection}{\numberline {8.139.2.7}search()}{359}{subsubsection.8.139.2.7}%
-\contentsline {subsubsection}{\numberline {8.139.2.8}setCentroidsFrom()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{359}{subsubsection.8.139.2.8}%
-\contentsline {subsubsection}{\numberline {8.139.2.9}setCentroidsFrom()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{359}{subsubsection.8.139.2.9}%
-\contentsline {subsubsection}{\numberline {8.139.2.10}train()}{360}{subsubsection.8.139.2.10}%
-\contentsline {section}{\numberline {8.140}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::FLANN\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Random\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Center\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chooser Class Reference}{360}{section.8.140}%
-\contentsline {subsection}{\numberline {8.140.1}Detailed Description}{360}{subsection.8.140.1}%
-\contentsline {section}{\numberline {8.141}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Random\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader Class Reference}{361}{section.8.141}%
-\contentsline {subsection}{\numberline {8.141.1}Detailed Description}{362}{subsection.8.141.1}%
-\contentsline {subsection}{\numberline {8.141.2}Member Function Documentation}{362}{subsection.8.141.2}%
-\contentsline {subsubsection}{\numberline {8.141.2.1}getData()}{362}{subsubsection.8.141.2.1}%
-\contentsline {subsubsection}{\numberline {8.141.2.2}getQuery()}{363}{subsubsection.8.141.2.2}%
-\contentsline {subsubsection}{\numberline {8.141.2.3}setConfig()}{363}{subsubsection.8.141.2.3}%
-\contentsline {section}{\numberline {8.142}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Rania\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Python Class Reference}{363}{section.8.142}%
-\contentsline {subsection}{\numberline {8.142.1}Detailed Description}{365}{subsection.8.142.1}%
-\contentsline {subsection}{\numberline {8.142.2}Member Function Documentation}{365}{subsection.8.142.2}%
-\contentsline {subsubsection}{\numberline {8.142.2.1}dataLoader\_create()}{365}{subsubsection.8.142.2.1}%
-\contentsline {subsubsection}{\numberline {8.142.2.2}dataLoader\_editCfgDouble()}{366}{subsubsection.8.142.2.2}%
-\contentsline {subsubsection}{\numberline {8.142.2.3}dataLoader\_editCfgFloat()}{366}{subsubsection.8.142.2.3}%
-\contentsline {subsubsection}{\numberline {8.142.2.4}dataLoader\_editCfgI64()}{367}{subsubsection.8.142.2.4}%
-\contentsline {subsubsection}{\numberline {8.142.2.5}dataLoader\_editCfgStr()}{367}{subsubsection.8.142.2.5}%
-\contentsline {subsubsection}{\numberline {8.142.2.6}dataLoader\_getData()}{368}{subsubsection.8.142.2.6}%
-\contentsline {subsubsection}{\numberline {8.142.2.7}dataLoader\_getQuery()}{368}{subsubsection.8.142.2.7}%
-\contentsline {subsubsection}{\numberline {8.142.2.8}dataLoader\_init()}{368}{subsubsection.8.142.2.8}%
-\contentsline {subsubsection}{\numberline {8.142.2.9}index\_create()}{369}{subsubsection.8.142.2.9}%
-\contentsline {subsubsection}{\numberline {8.142.2.10}index\_delete()}{369}{subsubsection.8.142.2.10}%
-\contentsline {subsubsection}{\numberline {8.142.2.11}index\_deleteString()}{369}{subsubsection.8.142.2.11}%
-\contentsline {subsubsection}{\numberline {8.142.2.12}index\_editCfgDouble()}{370}{subsubsection.8.142.2.12}%
-\contentsline {subsubsection}{\numberline {8.142.2.13}index\_editCfgI64()}{370}{subsubsection.8.142.2.13}%
-\contentsline {subsubsection}{\numberline {8.142.2.14}index\_editCfgStr()}{371}{subsubsection.8.142.2.14}%
-\contentsline {subsubsection}{\numberline {8.142.2.15}index\_endHPC()}{371}{subsubsection.8.142.2.15}%
-\contentsline {subsubsection}{\numberline {8.142.2.16}index\_init()}{371}{subsubsection.8.142.2.16}%
-\contentsline {subsubsection}{\numberline {8.142.2.17}index\_insert()}{372}{subsubsection.8.142.2.17}%
-\contentsline {subsubsection}{\numberline {8.142.2.18}index\_insertString()}{372}{subsubsection.8.142.2.18}%
-\contentsline {subsubsection}{\numberline {8.142.2.19}index\_loadCfgFromFile()}{373}{subsubsection.8.142.2.19}%
-\contentsline {subsubsection}{\numberline {8.142.2.20}index\_loadInitial()}{373}{subsubsection.8.142.2.20}%
-\contentsline {subsubsection}{\numberline {8.142.2.21}index\_loadInitialString()}{373}{subsubsection.8.142.2.21}%
-\contentsline {subsubsection}{\numberline {8.142.2.22}index\_offlineBuild()}{374}{subsubsection.8.142.2.22}%
-\contentsline {subsubsection}{\numberline {8.142.2.23}index\_rawData()}{374}{subsubsection.8.142.2.23}%
-\contentsline {subsubsection}{\numberline {8.142.2.24}index\_reset()}{375}{subsubsection.8.142.2.24}%
-\contentsline {subsubsection}{\numberline {8.142.2.25}index\_revise()}{375}{subsubsection.8.142.2.25}%
-\contentsline {subsubsection}{\numberline {8.142.2.26}index\_search()}{375}{subsubsection.8.142.2.26}%
-\contentsline {subsubsection}{\numberline {8.142.2.27}index\_searchString()}{376}{subsubsection.8.142.2.27}%
-\contentsline {subsubsection}{\numberline {8.142.2.28}index\_searchTensorAndStringList()}{376}{subsubsection.8.142.2.28}%
-\contentsline {subsubsection}{\numberline {8.142.2.29}index\_setFrozenLevel()}{377}{subsubsection.8.142.2.29}%
-\contentsline {subsubsection}{\numberline {8.142.2.30}index\_startHPC()}{377}{subsubsection.8.142.2.30}%
-\contentsline {subsubsection}{\numberline {8.142.2.31}index\_waitPending()}{377}{subsubsection.8.142.2.31}%
-\contentsline {subsubsection}{\numberline {8.142.2.32}tensorFromFile()}{378}{subsubsection.8.142.2.32}%
-\contentsline {subsubsection}{\numberline {8.142.2.33}tensorFromFVECS()}{378}{subsubsection.8.142.2.33}%
-\contentsline {subsubsection}{\numberline {8.142.2.34}tensorFromHDF5()}{378}{subsubsection.8.142.2.34}%
-\contentsline {subsubsection}{\numberline {8.142.2.35}tensorToFile()}{379}{subsubsection.8.142.2.35}%
-\contentsline {section}{\numberline {8.143}DIVERSE\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}METER\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::rapl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}power\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}unit Struct Reference}{379}{section.8.143}%
+\contentsline {section}{\numberline {8.21}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Candy\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Python Class Reference}{120}{section.8.21}%
+\contentsline {subsection}{\numberline {8.21.1}Detailed Description}{122}{subsection.8.21.1}%
+\contentsline {subsection}{\numberline {8.21.2}Member Function Documentation}{122}{subsection.8.21.2}%
+\contentsline {subsubsection}{\numberline {8.21.2.1}dataLoader\_create()}{122}{subsubsection.8.21.2.1}%
+\contentsline {subsubsection}{\numberline {8.21.2.2}dataLoader\_editCfgDouble()}{122}{subsubsection.8.21.2.2}%
+\contentsline {subsubsection}{\numberline {8.21.2.3}dataLoader\_editCfgFloat()}{123}{subsubsection.8.21.2.3}%
+\contentsline {subsubsection}{\numberline {8.21.2.4}dataLoader\_editCfgI64()}{123}{subsubsection.8.21.2.4}%
+\contentsline {subsubsection}{\numberline {8.21.2.5}dataLoader\_editCfgStr()}{124}{subsubsection.8.21.2.5}%
+\contentsline {subsubsection}{\numberline {8.21.2.6}dataLoader\_getData()}{124}{subsubsection.8.21.2.6}%
+\contentsline {subsubsection}{\numberline {8.21.2.7}dataLoader\_getQuery()}{124}{subsubsection.8.21.2.7}%
+\contentsline {subsubsection}{\numberline {8.21.2.8}dataLoader\_init()}{125}{subsubsection.8.21.2.8}%
+\contentsline {subsubsection}{\numberline {8.21.2.9}index\_create()}{125}{subsubsection.8.21.2.9}%
+\contentsline {subsubsection}{\numberline {8.21.2.10}index\_delete()}{125}{subsubsection.8.21.2.10}%
+\contentsline {subsubsection}{\numberline {8.21.2.11}index\_deleteString()}{126}{subsubsection.8.21.2.11}%
+\contentsline {subsubsection}{\numberline {8.21.2.12}index\_editCfgDouble()}{126}{subsubsection.8.21.2.12}%
+\contentsline {subsubsection}{\numberline {8.21.2.13}index\_editCfgI64()}{127}{subsubsection.8.21.2.13}%
+\contentsline {subsubsection}{\numberline {8.21.2.14}index\_editCfgStr()}{127}{subsubsection.8.21.2.14}%
+\contentsline {subsubsection}{\numberline {8.21.2.15}index\_endHPC()}{128}{subsubsection.8.21.2.15}%
+\contentsline {subsubsection}{\numberline {8.21.2.16}index\_init()}{128}{subsubsection.8.21.2.16}%
+\contentsline {subsubsection}{\numberline {8.21.2.17}index\_insert()}{128}{subsubsection.8.21.2.17}%
+\contentsline {subsubsection}{\numberline {8.21.2.18}index\_insertString()}{129}{subsubsection.8.21.2.18}%
+\contentsline {subsubsection}{\numberline {8.21.2.19}index\_loadCfgFromFile()}{129}{subsubsection.8.21.2.19}%
+\contentsline {subsubsection}{\numberline {8.21.2.20}index\_loadInitial()}{129}{subsubsection.8.21.2.20}%
+\contentsline {subsubsection}{\numberline {8.21.2.21}index\_loadInitialString()}{130}{subsubsection.8.21.2.21}%
+\contentsline {subsubsection}{\numberline {8.21.2.22}index\_offlineBuild()}{130}{subsubsection.8.21.2.22}%
+\contentsline {subsubsection}{\numberline {8.21.2.23}index\_rawData()}{131}{subsubsection.8.21.2.23}%
+\contentsline {subsubsection}{\numberline {8.21.2.24}index\_reset()}{131}{subsubsection.8.21.2.24}%
+\contentsline {subsubsection}{\numberline {8.21.2.25}index\_revise()}{131}{subsubsection.8.21.2.25}%
+\contentsline {subsubsection}{\numberline {8.21.2.26}index\_search()}{132}{subsubsection.8.21.2.26}%
+\contentsline {subsubsection}{\numberline {8.21.2.27}index\_searchString()}{132}{subsubsection.8.21.2.27}%
+\contentsline {subsubsection}{\numberline {8.21.2.28}index\_searchTensorAndStringList()}{133}{subsubsection.8.21.2.28}%
+\contentsline {subsubsection}{\numberline {8.21.2.29}index\_setFrozenLevel()}{133}{subsubsection.8.21.2.29}%
+\contentsline {subsubsection}{\numberline {8.21.2.30}index\_startHPC()}{133}{subsubsection.8.21.2.30}%
+\contentsline {subsubsection}{\numberline {8.21.2.31}index\_waitPending()}{134}{subsubsection.8.21.2.31}%
+\contentsline {subsubsection}{\numberline {8.21.2.32}tensorFromFile()}{134}{subsubsection.8.21.2.32}%
+\contentsline {subsubsection}{\numberline {8.21.2.33}tensorFromFVECS()}{135}{subsubsection.8.21.2.33}%
+\contentsline {subsubsection}{\numberline {8.21.2.34}tensorFromHDF5()}{135}{subsubsection.8.21.2.34}%
+\contentsline {subsubsection}{\numberline {8.21.2.35}tensorToFile()}{135}{subsubsection.8.21.2.35}%
+\contentsline {section}{\numberline {8.22}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::CANDYObject Class Reference}{136}{section.8.22}%
+\contentsline {subsection}{\numberline {8.22.1}Detailed Description}{136}{subsection.8.22.1}%
+\contentsline {subsection}{\numberline {8.22.2}Member Function Documentation}{136}{subsection.8.22.2}%
+\contentsline {subsubsection}{\numberline {8.22.2.1}getStr()}{137}{subsubsection.8.22.2.1}%
+\contentsline {subsubsection}{\numberline {8.22.2.2}setStr()}{137}{subsubsection.8.22.2.2}%
+\contentsline {section}{\numberline {8.23}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}char16 Union Reference}{137}{section.8.23}%
+\contentsline {section}{\numberline {8.24}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}char2 Union Reference}{137}{section.8.24}%
+\contentsline {section}{\numberline {8.25}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}char4 Union Reference}{138}{section.8.25}%
+\contentsline {section}{\numberline {8.26}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}char8 Union Reference}{138}{section.8.26}%
+\contentsline {section}{\numberline {8.27}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}double16 Union Reference}{138}{section.8.27}%
+\contentsline {section}{\numberline {8.28}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}double2 Union Reference}{138}{section.8.28}%
+\contentsline {section}{\numberline {8.29}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}double4 Union Reference}{139}{section.8.29}%
+\contentsline {section}{\numberline {8.30}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}double8 Union Reference}{139}{section.8.30}%
+\contentsline {section}{\numberline {8.31}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}float16 Union Reference}{139}{section.8.31}%
+\contentsline {section}{\numberline {8.32}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}float2 Union Reference}{139}{section.8.32}%
+\contentsline {section}{\numberline {8.33}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}float4 Union Reference}{140}{section.8.33}%
+\contentsline {section}{\numberline {8.34}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}float8 Union Reference}{140}{section.8.34}%
+\contentsline {section}{\numberline {8.35}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}half16 Union Reference}{140}{section.8.35}%
+\contentsline {section}{\numberline {8.36}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}half2 Union Reference}{140}{section.8.36}%
+\contentsline {section}{\numberline {8.37}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}half4 Union Reference}{141}{section.8.37}%
+\contentsline {section}{\numberline {8.38}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}half8 Union Reference}{141}{section.8.38}%
+\contentsline {section}{\numberline {8.39}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}int16 Union Reference}{141}{section.8.39}%
+\contentsline {section}{\numberline {8.40}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}int2 Union Reference}{141}{section.8.40}%
+\contentsline {section}{\numberline {8.41}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}int4 Union Reference}{142}{section.8.41}%
+\contentsline {section}{\numberline {8.42}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}int8 Union Reference}{142}{section.8.42}%
+\contentsline {section}{\numberline {8.43}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}long16 Union Reference}{142}{section.8.43}%
+\contentsline {section}{\numberline {8.44}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}long2 Union Reference}{142}{section.8.44}%
+\contentsline {section}{\numberline {8.45}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}long4 Union Reference}{143}{section.8.45}%
+\contentsline {section}{\numberline {8.46}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}long8 Union Reference}{143}{section.8.46}%
+\contentsline {section}{\numberline {8.47}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}short16 Union Reference}{143}{section.8.47}%
+\contentsline {section}{\numberline {8.48}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}short2 Union Reference}{143}{section.8.48}%
+\contentsline {section}{\numberline {8.49}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}short4 Union Reference}{144}{section.8.49}%
+\contentsline {section}{\numberline {8.50}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}short8 Union Reference}{144}{section.8.50}%
+\contentsline {section}{\numberline {8.51}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uchar16 Union Reference}{144}{section.8.51}%
+\contentsline {section}{\numberline {8.52}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uchar2 Union Reference}{144}{section.8.52}%
+\contentsline {section}{\numberline {8.53}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uchar4 Union Reference}{145}{section.8.53}%
+\contentsline {section}{\numberline {8.54}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uchar8 Union Reference}{145}{section.8.54}%
+\contentsline {section}{\numberline {8.55}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uint16 Union Reference}{145}{section.8.55}%
+\contentsline {section}{\numberline {8.56}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uint2 Union Reference}{145}{section.8.56}%
+\contentsline {section}{\numberline {8.57}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uint4 Union Reference}{146}{section.8.57}%
+\contentsline {section}{\numberline {8.58}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}uint8 Union Reference}{146}{section.8.58}%
+\contentsline {section}{\numberline {8.59}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ulong16 Union Reference}{146}{section.8.59}%
+\contentsline {section}{\numberline {8.60}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ulong2 Union Reference}{146}{section.8.60}%
+\contentsline {section}{\numberline {8.61}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ulong4 Union Reference}{147}{section.8.61}%
+\contentsline {section}{\numberline {8.62}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ulong8 Union Reference}{147}{section.8.62}%
+\contentsline {section}{\numberline {8.63}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ushort16 Union Reference}{147}{section.8.63}%
+\contentsline {section}{\numberline {8.64}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ushort2 Union Reference}{147}{section.8.64}%
+\contentsline {section}{\numberline {8.65}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ushort4 Union Reference}{148}{section.8.65}%
+\contentsline {section}{\numberline {8.66}cl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ushort8 Union Reference}{148}{section.8.66}%
+\contentsline {section}{\numberline {8.67}TONY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}CL\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}HOST\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::CLContainer Class Reference}{148}{section.8.67}%
+\contentsline {section}{\numberline {8.68}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Clustering Class Reference}{149}{section.8.68}%
+\contentsline {subsection}{\numberline {8.68.1}Detailed Description}{151}{subsection.8.68.1}%
+\contentsline {subsection}{\numberline {8.68.2}Member Function Documentation}{151}{subsection.8.68.2}%
+\contentsline {subsubsection}{\numberline {8.68.2.1}computeCentroids()}{151}{subsubsection.8.68.2.1}%
+\contentsline {subsubsection}{\numberline {8.68.2.2}imbalance\_factor()}{151}{subsubsection.8.68.2.2}%
+\contentsline {subsubsection}{\numberline {8.68.2.3}splitClusters()}{152}{subsubsection.8.68.2.3}%
+\contentsline {subsubsection}{\numberline {8.68.2.4}train()}{152}{subsubsection.8.68.2.4}%
+\contentsline {section}{\numberline {8.69}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Clustering\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Iteration\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stats Class Reference}{153}{section.8.69}%
+\contentsline {subsection}{\numberline {8.69.1}Detailed Description}{153}{subsection.8.69.1}%
+\contentsline {section}{\numberline {8.70}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Clustering\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Parameters Class Reference}{154}{section.8.70}%
+\contentsline {subsection}{\numberline {8.70.1}Detailed Description}{155}{subsection.8.70.1}%
+\contentsline {section}{\numberline {8.71}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Config\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Map Class Reference}{155}{section.8.71}%
+\contentsline {subsection}{\numberline {8.71.1}Detailed Description}{157}{subsection.8.71.1}%
+\contentsline {section}{\numberline {8.72}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Congestion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drop\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{157}{section.8.72}%
+\contentsline {subsection}{\numberline {8.72.1}Detailed Description}{159}{subsection.8.72.1}%
+\contentsline {subsection}{\numberline {8.72.2}Member Function Documentation}{160}{subsection.8.72.2}%
+\contentsline {subsubsection}{\numberline {8.72.2.1}deleteStringObject()}{160}{subsubsection.8.72.2.1}%
+\contentsline {subsubsection}{\numberline {8.72.2.2}deleteTensor()}{161}{subsubsection.8.72.2.2}%
+\contentsline {subsubsection}{\numberline {8.72.2.3}endHPC()}{161}{subsubsection.8.72.2.3}%
+\contentsline {subsubsection}{\numberline {8.72.2.4}getTensorByIndex()}{161}{subsubsection.8.72.2.4}%
+\contentsline {subsubsection}{\numberline {8.72.2.5}insertStringObject()}{162}{subsubsection.8.72.2.5}%
+\contentsline {subsubsection}{\numberline {8.72.2.6}insertTensor()}{162}{subsubsection.8.72.2.6}%
+\contentsline {subsubsection}{\numberline {8.72.2.7}loadInitialStringObject()}{163}{subsubsection.8.72.2.7}%
+\contentsline {subsubsection}{\numberline {8.72.2.8}loadInitialTensor()}{163}{subsubsection.8.72.2.8}%
+\contentsline {subsubsection}{\numberline {8.72.2.9}offlineBuild()}{164}{subsubsection.8.72.2.9}%
+\contentsline {subsubsection}{\numberline {8.72.2.10}rawData()}{164}{subsubsection.8.72.2.10}%
+\contentsline {subsubsection}{\numberline {8.72.2.11}reviseTensor()}{164}{subsubsection.8.72.2.11}%
+\contentsline {subsubsection}{\numberline {8.72.2.12}searchStringObject()}{165}{subsubsection.8.72.2.12}%
+\contentsline {subsubsection}{\numberline {8.72.2.13}searchTensor()}{165}{subsubsection.8.72.2.13}%
+\contentsline {subsubsection}{\numberline {8.72.2.14}searchTensorAndStringObject()}{166}{subsubsection.8.72.2.14}%
+\contentsline {subsubsection}{\numberline {8.72.2.15}setConfig()}{166}{subsubsection.8.72.2.15}%
+\contentsline {subsubsection}{\numberline {8.72.2.16}setFrozenLevel()}{167}{subsubsection.8.72.2.16}%
+\contentsline {subsubsection}{\numberline {8.72.2.17}startHPC()}{167}{subsubsection.8.72.2.17}%
+\contentsline {subsubsection}{\numberline {8.72.2.18}waitPendingOperations()}{168}{subsubsection.8.72.2.18}%
+\contentsline {section}{\numberline {8.73}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Congestion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drop\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Worker Class Reference}{168}{section.8.73}%
+\contentsline {subsection}{\numberline {8.73.1}Detailed Description}{169}{subsection.8.73.1}%
+\contentsline {section}{\numberline {8.74}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Table Class Reference}{170}{section.8.74}%
+\contentsline {subsection}{\numberline {8.74.1}Detailed Description}{171}{subsection.8.74.1}%
+\contentsline {subsection}{\numberline {8.74.2}Constructor \& Destructor Documentation}{171}{subsection.8.74.2}%
+\contentsline {subsubsection}{\numberline {8.74.2.1}DataLoaderTable()}{171}{subsubsection.8.74.2.1}%
+\contentsline {subsection}{\numberline {8.74.3}Member Function Documentation}{171}{subsection.8.74.3}%
+\contentsline {subsubsection}{\numberline {8.74.3.1}findDataLoader()}{171}{subsubsection.8.74.3.1}%
+\contentsline {subsubsection}{\numberline {8.74.3.2}registerNewDataLoader()}{172}{subsubsection.8.74.3.2}%
+\contentsline {section}{\numberline {8.75}default\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}attrs Struct Reference}{172}{section.8.75}%
+\contentsline {subsection}{\numberline {8.75.1}Detailed Description}{172}{subsection.8.75.1}%
+\contentsline {section}{\numberline {8.76}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::FLANN\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Distance\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{173}{section.8.76}%
+\contentsline {subsection}{\numberline {8.76.1}Detailed Description}{173}{subsection.8.76.1}%
+\contentsline {section}{\numberline {8.77}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Distance\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Queryer Class Reference}{173}{section.8.77}%
+\contentsline {subsection}{\numberline {8.77.1}Member Function Documentation}{174}{subsection.8.77.1}%
+\contentsline {subsubsection}{\numberline {8.77.1.1}operator()()}{174}{subsubsection.8.77.1.1}%
+\contentsline {section}{\numberline {8.78}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Distributed\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Worker Class Reference}{175}{section.8.78}%
+\contentsline {subsection}{\numberline {8.78.1}Detailed Description}{176}{subsection.8.78.1}%
+\contentsline {subsection}{\numberline {8.78.2}Member Function Documentation}{177}{subsection.8.78.2}%
+\contentsline {subsubsection}{\numberline {8.78.2.1}deleteTensor()}{177}{subsubsection.8.78.2.1}%
+\contentsline {subsubsection}{\numberline {8.78.2.2}endHPC()}{177}{subsubsection.8.78.2.2}%
+\contentsline {subsubsection}{\numberline {8.78.2.3}getUnblockQueryResult()}{177}{subsubsection.8.78.2.3}%
+\contentsline {subsubsection}{\numberline {8.78.2.4}insertTensor()}{178}{subsubsection.8.78.2.4}%
+\contentsline {subsubsection}{\numberline {8.78.2.5}loadInitialTensor()}{178}{subsubsection.8.78.2.5}%
+\contentsline {subsubsection}{\numberline {8.78.2.6}loadInitialTensorUnblocked()}{178}{subsubsection.8.78.2.6}%
+\contentsline {subsubsection}{\numberline {8.78.2.7}offlineBuild()}{179}{subsubsection.8.78.2.7}%
+\contentsline {subsubsection}{\numberline {8.78.2.8}offlineBuildUnblocked()}{179}{subsubsection.8.78.2.8}%
+\contentsline {subsubsection}{\numberline {8.78.2.9}searchTensor()}{179}{subsubsection.8.78.2.9}%
+\contentsline {subsubsection}{\numberline {8.78.2.10}searchTensorUnblock()}{180}{subsubsection.8.78.2.10}%
+\contentsline {subsubsection}{\numberline {8.78.2.11}setConfig()}{180}{subsubsection.8.78.2.11}%
+\contentsline {subsubsection}{\numberline {8.78.2.12}setFrozenLevel()}{180}{subsubsection.8.78.2.12}%
+\contentsline {subsubsection}{\numberline {8.78.2.13}startHPC()}{181}{subsubsection.8.78.2.13}%
+\contentsline {subsubsection}{\numberline {8.78.2.14}waitPendingOperations()}{181}{subsubsection.8.78.2.14}%
+\contentsline {section}{\numberline {8.79}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Distributed\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Partition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{182}{section.8.79}%
+\contentsline {subsection}{\numberline {8.79.1}Detailed Description}{183}{subsection.8.79.1}%
+\contentsline {subsection}{\numberline {8.79.2}Member Function Documentation}{184}{subsection.8.79.2}%
+\contentsline {subsubsection}{\numberline {8.79.2.1}deleteTensor()}{184}{subsubsection.8.79.2.1}%
+\contentsline {subsubsection}{\numberline {8.79.2.2}endHPC()}{184}{subsubsection.8.79.2.2}%
+\contentsline {subsubsection}{\numberline {8.79.2.3}getTensorByIndex()}{185}{subsubsection.8.79.2.3}%
+\contentsline {subsubsection}{\numberline {8.79.2.4}insertTensor()}{185}{subsubsection.8.79.2.4}%
+\contentsline {subsubsection}{\numberline {8.79.2.5}loadInitialTensor()}{186}{subsubsection.8.79.2.5}%
+\contentsline {subsubsection}{\numberline {8.79.2.6}offlineBuild()}{186}{subsubsection.8.79.2.6}%
+\contentsline {subsubsection}{\numberline {8.79.2.7}rawData()}{186}{subsubsection.8.79.2.7}%
+\contentsline {subsubsection}{\numberline {8.79.2.8}reviseTensor()}{187}{subsubsection.8.79.2.8}%
+\contentsline {subsubsection}{\numberline {8.79.2.9}searchTensor()}{187}{subsubsection.8.79.2.9}%
+\contentsline {subsubsection}{\numberline {8.79.2.10}setConfig()}{188}{subsubsection.8.79.2.10}%
+\contentsline {subsubsection}{\numberline {8.79.2.11}setFrozenLevel()}{188}{subsubsection.8.79.2.11}%
+\contentsline {subsubsection}{\numberline {8.79.2.12}startHPC()}{188}{subsubsection.8.79.2.12}%
+\contentsline {subsubsection}{\numberline {8.79.2.13}waitPendingOperations()}{189}{subsubsection.8.79.2.13}%
+\contentsline {section}{\numberline {8.80}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DIW\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Ray\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Wrapper Class Reference}{189}{section.8.80}%
+\contentsline {subsection}{\numberline {8.80.1}Detailed Description}{190}{subsection.8.80.1}%
+\contentsline {subsection}{\numberline {8.80.2}Member Function Documentation}{190}{subsection.8.80.2}%
+\contentsline {subsubsection}{\numberline {8.80.2.1}deleteTensor()}{190}{subsubsection.8.80.2.1}%
+\contentsline {subsubsection}{\numberline {8.80.2.2}endHPC()}{191}{subsubsection.8.80.2.2}%
+\contentsline {subsubsection}{\numberline {8.80.2.3}insertTensor()}{191}{subsubsection.8.80.2.3}%
+\contentsline {subsubsection}{\numberline {8.80.2.4}loadInitialTensor()}{191}{subsubsection.8.80.2.4}%
+\contentsline {subsubsection}{\numberline {8.80.2.5}offlineBuild()}{192}{subsubsection.8.80.2.5}%
+\contentsline {subsubsection}{\numberline {8.80.2.6}searchTensor()}{192}{subsubsection.8.80.2.6}%
+\contentsline {subsubsection}{\numberline {8.80.2.7}setConfig()}{193}{subsubsection.8.80.2.7}%
+\contentsline {subsubsection}{\numberline {8.80.2.8}setFrozenLevel()}{193}{subsubsection.8.80.2.8}%
+\contentsline {subsubsection}{\numberline {8.80.2.9}startHPC()}{193}{subsubsection.8.80.2.9}%
+\contentsline {subsubsection}{\numberline {8.80.2.10}waitPendingOperations()}{194}{subsubsection.8.80.2.10}%
+\contentsline {section}{\numberline {8.81}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DPGIndex Class Reference}{194}{section.8.81}%
+\contentsline {subsection}{\numberline {8.81.1}Detailed Description}{196}{subsection.8.81.1}%
+\contentsline {subsection}{\numberline {8.81.2}Member Function Documentation}{197}{subsection.8.81.2}%
+\contentsline {subsubsection}{\numberline {8.81.2.1}deleteTensor()}{197}{subsubsection.8.81.2.1}%
+\contentsline {subsubsection}{\numberline {8.81.2.2}endHPC()}{197}{subsubsection.8.81.2.2}%
+\contentsline {subsubsection}{\numberline {8.81.2.3}getTensorByIndex()}{197}{subsubsection.8.81.2.3}%
+\contentsline {subsubsection}{\numberline {8.81.2.4}insertTensor()}{198}{subsubsection.8.81.2.4}%
+\contentsline {subsubsection}{\numberline {8.81.2.5}loadInitialTensor()}{198}{subsubsection.8.81.2.5}%
+\contentsline {subsubsection}{\numberline {8.81.2.6}offlineBuild()}{199}{subsubsection.8.81.2.6}%
+\contentsline {subsubsection}{\numberline {8.81.2.7}rawData()}{199}{subsubsection.8.81.2.7}%
+\contentsline {subsubsection}{\numberline {8.81.2.8}reviseTensor()}{199}{subsubsection.8.81.2.8}%
+\contentsline {subsubsection}{\numberline {8.81.2.9}searchTensor()}{200}{subsubsection.8.81.2.9}%
+\contentsline {subsubsection}{\numberline {8.81.2.10}setConfig()}{200}{subsubsection.8.81.2.10}%
+\contentsline {subsubsection}{\numberline {8.81.2.11}setFrozenLevel()}{201}{subsubsection.8.81.2.11}%
+\contentsline {subsubsection}{\numberline {8.81.2.12}startHPC()}{201}{subsubsection.8.81.2.12}%
+\contentsline {section}{\numberline {8.82}DIVERSE\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}METER\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Esp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Meter\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Uart Class Reference}{202}{section.8.82}%
+\contentsline {subsection}{\numberline {8.82.1}Detailed Description}{203}{subsection.8.82.1}%
+\contentsline {subsection}{\numberline {8.82.2}Member Function Documentation}{203}{subsection.8.82.2}%
+\contentsline {subsubsection}{\numberline {8.82.2.1}setConfig()}{203}{subsubsection.8.82.2.1}%
+\contentsline {section}{\numberline {8.83}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Exp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Family\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader Class Reference}{203}{section.8.83}%
+\contentsline {subsection}{\numberline {8.83.1}Detailed Description}{205}{subsection.8.83.1}%
+\contentsline {subsection}{\numberline {8.83.2}Member Function Documentation}{206}{subsection.8.83.2}%
+\contentsline {subsubsection}{\numberline {8.83.2.1}getData()}{206}{subsubsection.8.83.2.1}%
+\contentsline {subsubsection}{\numberline {8.83.2.2}getQuery()}{206}{subsubsection.8.83.2.2}%
+\contentsline {subsubsection}{\numberline {8.83.2.3}hijackConfig()}{206}{subsubsection.8.83.2.3}%
+\contentsline {subsubsection}{\numberline {8.83.2.4}setConfig()}{207}{subsubsection.8.83.2.4}%
+\contentsline {section}{\numberline {8.84}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Faiss\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{207}{section.8.84}%
+\contentsline {subsection}{\numberline {8.84.1}Detailed Description}{209}{subsection.8.84.1}%
+\contentsline {subsection}{\numberline {8.84.2}Member Function Documentation}{209}{subsection.8.84.2}%
+\contentsline {subsubsection}{\numberline {8.84.2.1}getTensorByIndex()}{209}{subsubsection.8.84.2.1}%
+\contentsline {subsubsection}{\numberline {8.84.2.2}insertTensor()}{210}{subsubsection.8.84.2.2}%
+\contentsline {subsubsection}{\numberline {8.84.2.3}loadInitialTensor()}{210}{subsubsection.8.84.2.3}%
+\contentsline {subsubsection}{\numberline {8.84.2.4}searchIndex()}{211}{subsubsection.8.84.2.4}%
+\contentsline {subsubsection}{\numberline {8.84.2.5}searchTensor()}{211}{subsubsection.8.84.2.5}%
+\contentsline {subsubsection}{\numberline {8.84.2.6}setConfig()}{212}{subsubsection.8.84.2.6}%
+\contentsline {section}{\numberline {8.85}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flann\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Component Class Reference}{212}{section.8.85}%
+\contentsline {subsection}{\numberline {8.85.1}Member Function Documentation}{213}{subsection.8.85.1}%
+\contentsline {subsubsection}{\numberline {8.85.1.1}setParams()}{213}{subsubsection.8.85.1.1}%
+\contentsline {section}{\numberline {8.86}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flann\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{214}{section.8.86}%
+\contentsline {subsection}{\numberline {8.86.1}Member Function Documentation}{215}{subsection.8.86.1}%
+\contentsline {subsubsection}{\numberline {8.86.1.1}getTensorByIndex()}{215}{subsubsection.8.86.1.1}%
+\contentsline {subsubsection}{\numberline {8.86.1.2}insertTensor()}{215}{subsubsection.8.86.1.2}%
+\contentsline {subsubsection}{\numberline {8.86.1.3}loadInitialTensor()}{216}{subsubsection.8.86.1.3}%
+\contentsline {subsubsection}{\numberline {8.86.1.4}searchIndex()}{216}{subsubsection.8.86.1.4}%
+\contentsline {subsubsection}{\numberline {8.86.1.5}searchTensor()}{216}{subsubsection.8.86.1.5}%
+\contentsline {subsubsection}{\numberline {8.86.1.6}setConfig()}{217}{subsubsection.8.86.1.6}%
+\contentsline {section}{\numberline {8.87}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flann\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Param Struct Reference}{218}{section.8.87}%
+\contentsline {section}{\numberline {8.88}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}AMMIPIndex Class Reference}{218}{section.8.88}%
+\contentsline {subsection}{\numberline {8.88.1}Detailed Description}{220}{subsection.8.88.1}%
+\contentsline {subsection}{\numberline {8.88.2}Member Function Documentation}{221}{subsection.8.88.2}%
+\contentsline {subsubsection}{\numberline {8.88.2.1}deleteTensor()}{221}{subsubsection.8.88.2.1}%
+\contentsline {subsubsection}{\numberline {8.88.2.2}getTensorByIndex()}{221}{subsubsection.8.88.2.2}%
+\contentsline {subsubsection}{\numberline {8.88.2.3}insertTensor()}{222}{subsubsection.8.88.2.3}%
+\contentsline {subsubsection}{\numberline {8.88.2.4}rawData()}{223}{subsubsection.8.88.2.4}%
+\contentsline {subsubsection}{\numberline {8.88.2.5}reviseTensor()}{223}{subsubsection.8.88.2.5}%
+\contentsline {subsubsection}{\numberline {8.88.2.6}searchIndex()}{224}{subsubsection.8.88.2.6}%
+\contentsline {subsubsection}{\numberline {8.88.2.7}searchTensor()}{224}{subsubsection.8.88.2.7}%
+\contentsline {subsubsection}{\numberline {8.88.2.8}setConfig()}{224}{subsubsection.8.88.2.8}%
+\contentsline {subsubsection}{\numberline {8.88.2.9}size()}{225}{subsubsection.8.88.2.9}%
+\contentsline {section}{\numberline {8.89}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}AMMIPObj\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{225}{section.8.89}%
+\contentsline {subsection}{\numberline {8.89.1}Detailed Description}{227}{subsection.8.89.1}%
+\contentsline {subsection}{\numberline {8.89.2}Member Function Documentation}{227}{subsection.8.89.2}%
+\contentsline {subsubsection}{\numberline {8.89.2.1}deleteStringObject()}{227}{subsubsection.8.89.2.1}%
+\contentsline {subsubsection}{\numberline {8.89.2.2}deleteTensor()}{228}{subsubsection.8.89.2.2}%
+\contentsline {subsubsection}{\numberline {8.89.2.3}getTensorByIndex()}{228}{subsubsection.8.89.2.3}%
+\contentsline {subsubsection}{\numberline {8.89.2.4}insertStringObject()}{229}{subsubsection.8.89.2.4}%
+\contentsline {subsubsection}{\numberline {8.89.2.5}insertTensor()}{229}{subsubsection.8.89.2.5}%
+\contentsline {subsubsection}{\numberline {8.89.2.6}rawData()}{230}{subsubsection.8.89.2.6}%
+\contentsline {subsubsection}{\numberline {8.89.2.7}reviseTensor()}{230}{subsubsection.8.89.2.7}%
+\contentsline {subsubsection}{\numberline {8.89.2.8}searchIndex()}{230}{subsubsection.8.89.2.8}%
+\contentsline {subsubsection}{\numberline {8.89.2.9}searchStringObject()}{231}{subsubsection.8.89.2.9}%
+\contentsline {subsubsection}{\numberline {8.89.2.10}searchTensor()}{231}{subsubsection.8.89.2.10}%
+\contentsline {subsubsection}{\numberline {8.89.2.11}setConfig()}{232}{subsubsection.8.89.2.11}%
+\contentsline {subsubsection}{\numberline {8.89.2.12}size()}{232}{subsubsection.8.89.2.12}%
+\contentsline {section}{\numberline {8.90}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Flat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{232}{section.8.90}%
+\contentsline {subsection}{\numberline {8.90.1}Detailed Description}{234}{subsection.8.90.1}%
+\contentsline {subsection}{\numberline {8.90.2}Member Function Documentation}{234}{subsection.8.90.2}%
+\contentsline {subsubsection}{\numberline {8.90.2.1}deleteTensor()}{234}{subsubsection.8.90.2.1}%
+\contentsline {subsubsection}{\numberline {8.90.2.2}getTensorByIndex()}{234}{subsubsection.8.90.2.2}%
+\contentsline {subsubsection}{\numberline {8.90.2.3}insertTensor()}{235}{subsubsection.8.90.2.3}%
+\contentsline {subsubsection}{\numberline {8.90.2.4}rawData()}{235}{subsubsection.8.90.2.4}%
+\contentsline {subsubsection}{\numberline {8.90.2.5}reviseTensor()}{235}{subsubsection.8.90.2.5}%
+\contentsline {subsubsection}{\numberline {8.90.2.6}searchIndex()}{236}{subsubsection.8.90.2.6}%
+\contentsline {subsubsection}{\numberline {8.90.2.7}searchTensor()}{236}{subsubsection.8.90.2.7}%
+\contentsline {subsubsection}{\numberline {8.90.2.8}setConfig()}{237}{subsubsection.8.90.2.8}%
+\contentsline {subsubsection}{\numberline {8.90.2.9}size()}{237}{subsubsection.8.90.2.9}%
+\contentsline {section}{\numberline {8.91}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::FVECSData\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader Class Reference}{238}{section.8.91}%
+\contentsline {subsection}{\numberline {8.91.1}Detailed Description}{239}{subsection.8.91.1}%
+\contentsline {subsection}{\numberline {8.91.2}Member Function Documentation}{240}{subsection.8.91.2}%
+\contentsline {subsubsection}{\numberline {8.91.2.1}getData()}{240}{subsubsection.8.91.2.1}%
+\contentsline {subsubsection}{\numberline {8.91.2.2}getQuery()}{240}{subsubsection.8.91.2.2}%
+\contentsline {subsubsection}{\numberline {8.91.2.3}setConfig()}{240}{subsubsection.8.91.2.3}%
+\contentsline {subsubsection}{\numberline {8.91.2.4}tensorFromFVECS()}{241}{subsubsection.8.91.2.4}%
+\contentsline {section}{\numberline {8.92}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HDF5\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader Class Reference}{241}{section.8.92}%
+\contentsline {subsection}{\numberline {8.92.1}Detailed Description}{243}{subsection.8.92.1}%
+\contentsline {subsection}{\numberline {8.92.2}Member Function Documentation}{243}{subsection.8.92.2}%
+\contentsline {subsubsection}{\numberline {8.92.2.1}getData()}{243}{subsubsection.8.92.2.1}%
+\contentsline {subsubsection}{\numberline {8.92.2.2}getQuery()}{244}{subsubsection.8.92.2.2}%
+\contentsline {subsubsection}{\numberline {8.92.2.3}setConfig()}{244}{subsubsection.8.92.2.3}%
+\contentsline {subsubsection}{\numberline {8.92.2.4}tensorFromHDF5()}{244}{subsubsection.8.92.2.4}%
+\contentsline {section}{\numberline {8.93}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::FLANN\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Heap$<$ T $>$ Class Template Reference}{245}{section.8.93}%
+\contentsline {subsection}{\numberline {8.93.1}Detailed Description}{245}{subsection.8.93.1}%
+\contentsline {section}{\numberline {8.94}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSW Class Reference}{246}{section.8.94}%
+\contentsline {subsection}{\numberline {8.94.1}Detailed Description}{248}{subsection.8.94.1}%
+\contentsline {subsection}{\numberline {8.94.2}Member Function Documentation}{248}{subsection.8.94.2}%
+\contentsline {subsubsection}{\numberline {8.94.2.1}add\_links\_starting\_from()}{248}{subsubsection.8.94.2.1}%
+\contentsline {subsubsection}{\numberline {8.94.2.2}add\_without\_lock()}{248}{subsubsection.8.94.2.2}%
+\contentsline {subsubsection}{\numberline {8.94.2.3}cum\_nb\_neighbors()}{249}{subsubsection.8.94.2.3}%
+\contentsline {subsubsection}{\numberline {8.94.2.4}nb\_neighbors()}{249}{subsubsection.8.94.2.4}%
+\contentsline {subsubsection}{\numberline {8.94.2.5}neighbor\_range()}{250}{subsubsection.8.94.2.5}%
+\contentsline {subsubsection}{\numberline {8.94.2.6}prepare\_level\_tab()}{250}{subsubsection.8.94.2.6}%
+\contentsline {subsubsection}{\numberline {8.94.2.7}random\_level()}{250}{subsubsection.8.94.2.7}%
+\contentsline {subsubsection}{\numberline {8.94.2.8}search()}{251}{subsubsection.8.94.2.8}%
+\contentsline {subsubsection}{\numberline {8.94.2.9}set\_nb\_neighbors()}{251}{subsubsection.8.94.2.9}%
+\contentsline {subsubsection}{\numberline {8.94.2.10}set\_probs()}{251}{subsubsection.8.94.2.10}%
+\contentsline {subsection}{\numberline {8.94.3}Member Data Documentation}{252}{subsection.8.94.3}%
+\contentsline {subsubsection}{\numberline {8.94.3.1}cum\_nneighbor\_per\_level\_}{252}{subsubsection.8.94.3.1}%
+\contentsline {subsubsection}{\numberline {8.94.3.2}search\_bounded\_queue}{252}{subsubsection.8.94.3.2}%
+\contentsline {section}{\numberline {8.95}HNSWAlter Class Reference}{252}{section.8.95}%
+\contentsline {section}{\numberline {8.96}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSWNaive\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{252}{section.8.96}%
+\contentsline {subsection}{\numberline {8.96.1}Detailed Description}{254}{subsection.8.96.1}%
+\contentsline {subsection}{\numberline {8.96.2}Member Function Documentation}{254}{subsection.8.96.2}%
+\contentsline {subsubsection}{\numberline {8.96.2.1}deleteTensor()}{254}{subsubsection.8.96.2.1}%
+\contentsline {subsubsection}{\numberline {8.96.2.2}insertTensor()}{255}{subsubsection.8.96.2.2}%
+\contentsline {subsubsection}{\numberline {8.96.2.3}reviseTensor()}{255}{subsubsection.8.96.2.3}%
+\contentsline {subsubsection}{\numberline {8.96.2.4}searchTensor()}{255}{subsubsection.8.96.2.4}%
+\contentsline {subsubsection}{\numberline {8.96.2.5}setConfig()}{256}{subsubsection.8.96.2.5}%
+\contentsline {section}{\numberline {8.97}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSWVertex Class Reference}{256}{section.8.97}%
+\contentsline {subsection}{\numberline {8.97.1}Detailed Description}{257}{subsection.8.97.1}%
+\contentsline {section}{\numberline {8.98}Host\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Para Class Reference}{258}{section.8.98}%
+\contentsline {section}{\numberline {8.99}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Table Class Reference}{258}{section.8.99}%
+\contentsline {subsection}{\numberline {8.99.1}Detailed Description}{259}{subsection.8.99.1}%
+\contentsline {subsection}{\numberline {8.99.2}Member Function Documentation}{259}{subsection.8.99.2}%
+\contentsline {subsubsection}{\numberline {8.99.2.1}addIndex()}{259}{subsubsection.8.99.2.1}%
+\contentsline {subsubsection}{\numberline {8.99.2.2}getIndex()}{260}{subsubsection.8.99.2.2}%
+\contentsline {section}{\numberline {8.100}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Log Class Reference}{260}{section.8.100}%
+\contentsline {subsection}{\numberline {8.100.1}Detailed Description}{260}{subsection.8.100.1}%
+\contentsline {section}{\numberline {8.101}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Log\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}File\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Protector Class Reference}{261}{section.8.101}%
+\contentsline {subsection}{\numberline {8.101.1}Detailed Description}{261}{subsection.8.101.1}%
+\contentsline {section}{\numberline {8.102}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}OP Class Reference}{261}{section.8.102}%
+\contentsline {subsection}{\numberline {8.102.1}Member Function Documentation}{262}{subsection.8.102.1}%
+\contentsline {subsubsection}{\numberline {8.102.1.1}appendRows()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{262}{subsubsection.8.102.1.1}%
+\contentsline {subsubsection}{\numberline {8.102.1.2}appendRows()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{263}{subsubsection.8.102.1.2}%
+\contentsline {subsubsection}{\numberline {8.102.1.3}appendRowsBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{263}{subsubsection.8.102.1.3}%
+\contentsline {subsubsection}{\numberline {8.102.1.4}appendRowsBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{264}{subsubsection.8.102.1.4}%
+\contentsline {subsubsection}{\numberline {8.102.1.5}deleteRow()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{264}{subsubsection.8.102.1.5}%
+\contentsline {subsubsection}{\numberline {8.102.1.6}deleteRow()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{265}{subsubsection.8.102.1.6}%
+\contentsline {subsubsection}{\numberline {8.102.1.7}deleteRowBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{265}{subsubsection.8.102.1.7}%
+\contentsline {subsubsection}{\numberline {8.102.1.8}deleteRowBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{265}{subsubsection.8.102.1.8}%
+\contentsline {subsubsection}{\numberline {8.102.1.9}deleteRows()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{266}{subsubsection.8.102.1.9}%
+\contentsline {subsubsection}{\numberline {8.102.1.10}deleteRows()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{266}{subsubsection.8.102.1.10}%
+\contentsline {subsubsection}{\numberline {8.102.1.11}deleteRowsBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{267}{subsubsection.8.102.1.11}%
+\contentsline {subsubsection}{\numberline {8.102.1.12}deleteRowsBufferMode()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{267}{subsubsection.8.102.1.12}%
+\contentsline {subsubsection}{\numberline {8.102.1.13}editRows()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{268}{subsubsection.8.102.1.13}%
+\contentsline {subsubsection}{\numberline {8.102.1.14}editRows()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{268}{subsubsection.8.102.1.14}%
+\contentsline {subsubsection}{\numberline {8.102.1.15}insertRows()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{269}{subsubsection.8.102.1.15}%
+\contentsline {subsubsection}{\numberline {8.102.1.16}insertRows()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{270}{subsubsection.8.102.1.16}%
+\contentsline {subsubsection}{\numberline {8.102.1.17}l2Normalize()}{270}{subsubsection.8.102.1.17}%
+\contentsline {subsubsection}{\numberline {8.102.1.18}rowSampling()}{271}{subsubsection.8.102.1.18}%
+\contentsline {subsubsection}{\numberline {8.102.1.19}tensorFromFile()}{271}{subsubsection.8.102.1.19}%
+\contentsline {subsubsection}{\numberline {8.102.1.20}tensorFromFlatBin()}{271}{subsubsection.8.102.1.20}%
+\contentsline {subsubsection}{\numberline {8.102.1.21}tensorToFile()}{272}{subsubsection.8.102.1.21}%
+\contentsline {subsubsection}{\numberline {8.102.1.22}tensorToFlatBin()}{272}{subsubsection.8.102.1.22}%
+\contentsline {section}{\numberline {8.103}INTELLITensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}OP Class Reference}{273}{section.8.103}%
+\contentsline {subsection}{\numberline {8.103.1}Detailed Description}{273}{subsection.8.103.1}%
+\contentsline {section}{\numberline {8.104}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Time\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stamp Class Reference}{273}{section.8.104}%
+\contentsline {subsection}{\numberline {8.104.1}Detailed Description}{274}{subsection.8.104.1}%
+\contentsline {section}{\numberline {8.105}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intelli\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Time\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stamp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Generator Class Reference}{274}{section.8.105}%
+\contentsline {subsection}{\numberline {8.105.1}Detailed Description}{275}{subsection.8.105.1}%
+\contentsline {subsection}{\numberline {8.105.2}Member Function Documentation}{276}{subsection.8.105.2}%
+\contentsline {subsubsection}{\numberline {8.105.2.1}generateArrival()}{276}{subsubsection.8.105.2.1}%
+\contentsline {subsubsection}{\numberline {8.105.2.2}getTimeStamps()}{276}{subsubsection.8.105.2.2}%
+\contentsline {subsubsection}{\numberline {8.105.2.3}setConfig()}{276}{subsubsection.8.105.2.3}%
+\contentsline {section}{\numberline {8.106}DIVERSE\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}METER\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Intel\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Meter Class Reference}{277}{section.8.106}%
+\contentsline {subsection}{\numberline {8.106.1}Detailed Description}{278}{subsection.8.106.1}%
+\contentsline {subsection}{\numberline {8.106.2}Member Function Documentation}{278}{subsection.8.106.2}%
+\contentsline {subsubsection}{\numberline {8.106.2.1}setConfig()}{278}{subsubsection.8.106.2.1}%
+\contentsline {section}{\numberline {8.107}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::IVFList\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Bucket Class Reference}{279}{section.8.107}%
+\contentsline {subsection}{\numberline {8.107.1}Detailed Description}{280}{subsection.8.107.1}%
+\contentsline {subsection}{\numberline {8.107.2}Member Function Documentation}{280}{subsection.8.107.2}%
+\contentsline {subsubsection}{\numberline {8.107.2.1}deleteTensor()}{280}{subsubsection.8.107.2.1}%
+\contentsline {subsubsection}{\numberline {8.107.2.2}deleteTensorWithEncode()}{280}{subsubsection.8.107.2.2}%
+\contentsline {subsubsection}{\numberline {8.107.2.3}getAllTensors()}{281}{subsubsection.8.107.2.3}%
+\contentsline {subsubsection}{\numberline {8.107.2.4}getAllTensorsWithEncode()}{281}{subsubsection.8.107.2.4}%
+\contentsline {subsubsection}{\numberline {8.107.2.5}getMinimumTensorsUnderHamming()}{281}{subsubsection.8.107.2.5}%
+\contentsline {subsubsection}{\numberline {8.107.2.6}insertTensorWithEncode()}{282}{subsubsection.8.107.2.6}%
+\contentsline {subsubsection}{\numberline {8.107.2.7}sizeWithEncode()}{282}{subsubsection.8.107.2.7}%
+\contentsline {section}{\numberline {8.108}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::IVFList\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Cell Class Reference}{283}{section.8.108}%
+\contentsline {subsection}{\numberline {8.108.1}Detailed Description}{283}{subsection.8.108.1}%
+\contentsline {subsection}{\numberline {8.108.2}Member Function Documentation}{284}{subsection.8.108.2}%
+\contentsline {subsubsection}{\numberline {8.108.2.1}deleteTensor()}{284}{subsubsection.8.108.2.1}%
+\contentsline {subsubsection}{\numberline {8.108.2.2}deleteTensorPtr()}{284}{subsubsection.8.108.2.2}%
+\contentsline {subsubsection}{\numberline {8.108.2.3}getAllTensors()}{284}{subsubsection.8.108.2.3}%
+\contentsline {subsubsection}{\numberline {8.108.2.4}insertTensor()}{285}{subsubsection.8.108.2.4}%
+\contentsline {subsubsection}{\numberline {8.108.2.5}insertTensorPtr()}{285}{subsubsection.8.108.2.5}%
+\contentsline {section}{\numberline {8.109}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::IVFTensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encoding\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}List Class Reference}{285}{section.8.109}%
+\contentsline {subsection}{\numberline {8.109.1}Detailed Description}{286}{subsection.8.109.1}%
+\contentsline {subsection}{\numberline {8.109.2}Member Function Documentation}{286}{subsection.8.109.2}%
+\contentsline {subsubsection}{\numberline {8.109.2.1}deleteTensorWithEncode()}{286}{subsubsection.8.109.2.1}%
+\contentsline {subsubsection}{\numberline {8.109.2.2}getMinimumNumOfTensors()}{287}{subsubsection.8.109.2.2}%
+\contentsline {subsubsection}{\numberline {8.109.2.3}getMinimumNumOfTensorsHamming()}{287}{subsubsection.8.109.2.3}%
+\contentsline {subsubsection}{\numberline {8.109.2.4}getMinimumNumOfTensorsInsideBucket()}{288}{subsubsection.8.109.2.4}%
+\contentsline {subsubsection}{\numberline {8.109.2.5}getMinimumNumOfTensorsInsideBucketHamming()}{289}{subsubsection.8.109.2.5}%
+\contentsline {subsubsection}{\numberline {8.109.2.6}init()}{289}{subsubsection.8.109.2.6}%
+\contentsline {subsubsection}{\numberline {8.109.2.7}insertTensorWithEncode()}{289}{subsubsection.8.109.2.7}%
+\contentsline {section}{\numberline {8.110}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kd\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree Class Reference}{290}{section.8.110}%
+\contentsline {subsection}{\numberline {8.110.1}Member Function Documentation}{291}{subsection.8.110.1}%
+\contentsline {subsubsection}{\numberline {8.110.1.1}addPoints()}{291}{subsubsection.8.110.1.1}%
+\contentsline {subsubsection}{\numberline {8.110.1.2}addPointToTree()}{292}{subsubsection.8.110.1.2}%
+\contentsline {subsubsection}{\numberline {8.110.1.3}divideTree()}{292}{subsubsection.8.110.1.3}%
+\contentsline {subsubsection}{\numberline {8.110.1.4}getNeighbors()}{292}{subsubsection.8.110.1.4}%
+\contentsline {subsubsection}{\numberline {8.110.1.5}knnSearch()}{293}{subsubsection.8.110.1.5}%
+\contentsline {subsubsection}{\numberline {8.110.1.6}meanSplit()}{293}{subsubsection.8.110.1.6}%
+\contentsline {subsubsection}{\numberline {8.110.1.7}planeSplit()}{294}{subsubsection.8.110.1.7}%
+\contentsline {subsubsection}{\numberline {8.110.1.8}searchLevel()}{294}{subsubsection.8.110.1.8}%
+\contentsline {subsubsection}{\numberline {8.110.1.9}selectDivision()}{295}{subsubsection.8.110.1.9}%
+\contentsline {subsubsection}{\numberline {8.110.1.10}setConfig()}{295}{subsubsection.8.110.1.10}%
+\contentsline {subsubsection}{\numberline {8.110.1.11}setParams()}{295}{subsubsection.8.110.1.11}%
+\contentsline {section}{\numberline {8.111}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kmeans\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree Class Reference}{296}{section.8.111}%
+\contentsline {subsection}{\numberline {8.111.1}Detailed Description}{298}{subsection.8.111.1}%
+\contentsline {subsection}{\numberline {8.111.2}Member Function Documentation}{298}{subsection.8.111.2}%
+\contentsline {subsubsection}{\numberline {8.111.2.1}addPoints()}{298}{subsubsection.8.111.2.1}%
+\contentsline {subsubsection}{\numberline {8.111.2.2}addPointToTree()}{298}{subsubsection.8.111.2.2}%
+\contentsline {subsubsection}{\numberline {8.111.2.3}computeClustering()}{298}{subsubsection.8.111.2.3}%
+\contentsline {subsubsection}{\numberline {8.111.2.4}computeNodeStat()}{299}{subsubsection.8.111.2.4}%
+\contentsline {subsubsection}{\numberline {8.111.2.5}explore()}{299}{subsubsection.8.111.2.5}%
+\contentsline {subsubsection}{\numberline {8.111.2.6}findNN()}{299}{subsubsection.8.111.2.6}%
+\contentsline {subsubsection}{\numberline {8.111.2.7}getNeighbors()}{300}{subsubsection.8.111.2.7}%
+\contentsline {subsubsection}{\numberline {8.111.2.8}knnSearch()}{300}{subsubsection.8.111.2.8}%
+\contentsline {subsubsection}{\numberline {8.111.2.9}setConfig()}{301}{subsubsection.8.111.2.9}%
+\contentsline {subsubsection}{\numberline {8.111.2.10}setParams()}{301}{subsubsection.8.111.2.10}%
+\contentsline {section}{\numberline {8.112}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Memory\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tracker Class Reference}{302}{section.8.112}%
+\contentsline {subsection}{\numberline {8.112.1}Detailed Description}{302}{subsection.8.112.1}%
+\contentsline {subsection}{\numberline {8.112.2}Member Function Documentation}{303}{subsection.8.112.2}%
+\contentsline {subsubsection}{\numberline {8.112.2.1}getAvgCpu()}{303}{subsubsection.8.112.2.1}%
+\contentsline {subsubsection}{\numberline {8.112.2.2}getAvgMem()}{303}{subsubsection.8.112.2.2}%
+\contentsline {subsubsection}{\numberline {8.112.2.3}getCurMem()}{303}{subsubsection.8.112.2.3}%
+\contentsline {subsubsection}{\numberline {8.112.2.4}getMaxCpu()}{303}{subsubsection.8.112.2.4}%
+\contentsline {subsubsection}{\numberline {8.112.2.5}getMaxMem()}{304}{subsubsection.8.112.2.5}%
+\contentsline {subsubsection}{\numberline {8.112.2.6}start()}{304}{subsubsection.8.112.2.6}%
+\contentsline {section}{\numberline {8.113}DIVERSE\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}METER\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Meter\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Table Class Reference}{304}{section.8.113}%
+\contentsline {subsection}{\numberline {8.113.1}Detailed Description}{305}{subsection.8.113.1}%
+\contentsline {subsection}{\numberline {8.113.2}Constructor \& Destructor Documentation}{306}{subsection.8.113.2}%
+\contentsline {subsubsection}{\numberline {8.113.2.1}MeterTable()}{306}{subsubsection.8.113.2.1}%
+\contentsline {subsection}{\numberline {8.113.3}Member Function Documentation}{306}{subsection.8.113.3}%
+\contentsline {subsubsection}{\numberline {8.113.3.1}findMeter()}{306}{subsubsection.8.113.3.1}%
+\contentsline {subsubsection}{\numberline {8.113.3.2}registerNewMeter()}{306}{subsubsection.8.113.3.2}%
+\contentsline {section}{\numberline {8.114}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Micro\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Set Class Reference}{307}{section.8.114}%
+\contentsline {subsection}{\numberline {8.114.1}Detailed Description}{307}{subsection.8.114.1}%
+\contentsline {section}{\numberline {8.115}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSW\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Minimax\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Heap Struct Reference}{308}{section.8.115}%
+\contentsline {subsection}{\numberline {8.115.1}Detailed Description}{308}{subsection.8.115.1}%
+\contentsline {section}{\numberline {8.116}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::MLPBucket\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Idx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Model Class Reference}{309}{section.8.116}%
+\contentsline {subsection}{\numberline {8.116.1}Member Function Documentation}{309}{subsection.8.116.1}%
+\contentsline {subsubsection}{\numberline {8.116.1.1}hash()}{309}{subsubsection.8.116.1.1}%
+\contentsline {subsubsection}{\numberline {8.116.1.2}init()}{309}{subsubsection.8.116.1.2}%
+\contentsline {subsubsection}{\numberline {8.116.1.3}trainModel()}{310}{subsubsection.8.116.1.3}%
+\contentsline {section}{\numberline {8.117}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::MLPHashing\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Model Class Reference}{310}{section.8.117}%
+\contentsline {subsection}{\numberline {8.117.1}Member Function Documentation}{311}{subsection.8.117.1}%
+\contentsline {subsubsection}{\numberline {8.117.1.1}fineTuneModel()}{311}{subsubsection.8.117.1.1}%
+\contentsline {subsubsection}{\numberline {8.117.1.2}hash()}{311}{subsubsection.8.117.1.2}%
+\contentsline {subsubsection}{\numberline {8.117.1.3}init()}{311}{subsubsection.8.117.1.3}%
+\contentsline {subsubsection}{\numberline {8.117.1.4}trainModel()}{312}{subsubsection.8.117.1.4}%
+\contentsline {section}{\numberline {8.118}BS\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::multi\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}future$<$ T $>$ Class Template Reference}{312}{section.8.118}%
+\contentsline {subsection}{\numberline {8.118.1}Detailed Description}{313}{subsection.8.118.1}%
+\contentsline {subsection}{\numberline {8.118.2}Constructor \& Destructor Documentation}{313}{subsection.8.118.2}%
+\contentsline {subsubsection}{\numberline {8.118.2.1}multi\_future()}{313}{subsubsection.8.118.2.1}%
+\contentsline {subsection}{\numberline {8.118.3}Member Function Documentation}{313}{subsection.8.118.3}%
+\contentsline {subsubsection}{\numberline {8.118.3.1}get()}{314}{subsubsection.8.118.3.1}%
+\contentsline {subsubsection}{\numberline {8.118.3.2}operator[]()}{314}{subsubsection.8.118.3.2}%
+\contentsline {subsubsection}{\numberline {8.118.3.3}push\_back()}{314}{subsubsection.8.118.3.3}%
+\contentsline {subsubsection}{\numberline {8.118.3.4}size()}{314}{subsubsection.8.118.3.4}%
+\contentsline {section}{\numberline {8.119}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DPGIndex\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Neighbor Struct Reference}{315}{section.8.119}%
+\contentsline {section}{\numberline {8.120}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::NNDescent\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Neighbor Struct Reference}{316}{section.8.120}%
+\contentsline {section}{\numberline {8.121}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::NNDescent\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Nhood Struct Reference}{316}{section.8.121}%
+\contentsline {section}{\numberline {8.122}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DPGIndex\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Nhood\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Layer0 Struct Reference}{317}{section.8.122}%
+\contentsline {section}{\numberline {8.123}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::DPGIndex\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Nhood\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Layer1 Struct Reference}{318}{section.8.123}%
+\contentsline {section}{\numberline {8.124}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::NNDescent\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{319}{section.8.124}%
+\contentsline {subsection}{\numberline {8.124.1}Detailed Description}{321}{subsection.8.124.1}%
+\contentsline {subsection}{\numberline {8.124.2}Member Function Documentation}{321}{subsection.8.124.2}%
+\contentsline {subsubsection}{\numberline {8.124.2.1}deleteTensor()}{321}{subsubsection.8.124.2.1}%
+\contentsline {subsubsection}{\numberline {8.124.2.2}endHPC()}{321}{subsubsection.8.124.2.2}%
+\contentsline {subsubsection}{\numberline {8.124.2.3}getTensorByIndex()}{322}{subsubsection.8.124.2.3}%
+\contentsline {subsubsection}{\numberline {8.124.2.4}insertTensor()}{322}{subsubsection.8.124.2.4}%
+\contentsline {subsubsection}{\numberline {8.124.2.5}loadInitialTensor()}{323}{subsubsection.8.124.2.5}%
+\contentsline {subsubsection}{\numberline {8.124.2.6}offlineBuild()}{323}{subsubsection.8.124.2.6}%
+\contentsline {subsubsection}{\numberline {8.124.2.7}rawData()}{323}{subsubsection.8.124.2.7}%
+\contentsline {subsubsection}{\numberline {8.124.2.8}reviseTensor()}{324}{subsubsection.8.124.2.8}%
+\contentsline {subsubsection}{\numberline {8.124.2.9}searchTensor()}{324}{subsubsection.8.124.2.9}%
+\contentsline {subsubsection}{\numberline {8.124.2.10}setConfig()}{324}{subsubsection.8.124.2.10}%
+\contentsline {subsubsection}{\numberline {8.124.2.11}setFrozenLevel()}{325}{subsubsection.8.124.2.11}%
+\contentsline {subsubsection}{\numberline {8.124.2.12}startHPC()}{325}{subsubsection.8.124.2.12}%
+\contentsline {section}{\numberline {8.125}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kd\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node Struct Reference}{326}{section.8.125}%
+\contentsline {section}{\numberline {8.126}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kmeans\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node Struct Reference}{326}{section.8.126}%
+\contentsline {section}{\numberline {8.127}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSW\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Dist\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Closer Struct Reference}{327}{section.8.127}%
+\contentsline {subsection}{\numberline {8.127.1}Detailed Description}{328}{subsection.8.127.1}%
+\contentsline {section}{\numberline {8.128}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::HNSW\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Dist\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Farther Struct Reference}{328}{section.8.128}%
+\contentsline {subsection}{\numberline {8.128.1}Detailed Description}{328}{subsection.8.128.1}%
+\contentsline {section}{\numberline {8.129}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Kmeans\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tree\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Node\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Info Struct Reference}{329}{section.8.129}%
+\contentsline {section}{\numberline {8.130}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Online\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IVFL2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}HIndex Class Reference}{329}{section.8.130}%
+\contentsline {subsection}{\numberline {8.130.1}Detailed Description}{331}{subsection.8.130.1}%
+\contentsline {subsection}{\numberline {8.130.2}Member Function Documentation}{331}{subsection.8.130.2}%
+\contentsline {subsubsection}{\numberline {8.130.2.1}loadInitialTensor()}{331}{subsubsection.8.130.2.1}%
+\contentsline {subsubsection}{\numberline {8.130.2.2}loadInitialTensorAndQueryDistribution()}{332}{subsubsection.8.130.2.2}%
+\contentsline {subsubsection}{\numberline {8.130.2.3}setConfig()}{332}{subsubsection.8.130.2.3}%
+\contentsline {subsubsection}{\numberline {8.130.2.4}trainModelWithData()}{333}{subsubsection.8.130.2.4}%
+\contentsline {section}{\numberline {8.131}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Online\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}IVFLSHIndex Class Reference}{333}{section.8.131}%
+\contentsline {subsection}{\numberline {8.131.1}Detailed Description}{335}{subsection.8.131.1}%
+\contentsline {subsection}{\numberline {8.131.2}Member Function Documentation}{335}{subsection.8.131.2}%
+\contentsline {subsubsection}{\numberline {8.131.2.1}crsAmm()}{335}{subsubsection.8.131.2.1}%
+\contentsline {subsubsection}{\numberline {8.131.2.2}deleteRowsInline()}{336}{subsubsection.8.131.2.2}%
+\contentsline {subsubsection}{\numberline {8.131.2.3}deleteTensor()}{336}{subsubsection.8.131.2.3}%
+\contentsline {subsubsection}{\numberline {8.131.2.4}insertTensor()}{337}{subsubsection.8.131.2.4}%
+\contentsline {subsubsection}{\numberline {8.131.2.5}reviseTensor()}{337}{subsubsection.8.131.2.5}%
+\contentsline {subsubsection}{\numberline {8.131.2.6}searchTensor()}{337}{subsubsection.8.131.2.6}%
+\contentsline {subsubsection}{\numberline {8.131.2.7}setConfig()}{338}{subsubsection.8.131.2.7}%
+\contentsline {section}{\numberline {8.132}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Online\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}PQIndex Class Reference}{338}{section.8.132}%
+\contentsline {subsection}{\numberline {8.132.1}Detailed Description}{340}{subsection.8.132.1}%
+\contentsline {subsection}{\numberline {8.132.2}Member Function Documentation}{341}{subsection.8.132.2}%
+\contentsline {subsubsection}{\numberline {8.132.2.1}deleteRowsInline()}{341}{subsubsection.8.132.2.1}%
+\contentsline {subsubsection}{\numberline {8.132.2.2}deleteTensor()}{341}{subsubsection.8.132.2.2}%
+\contentsline {subsubsection}{\numberline {8.132.2.3}fineGrainedEncode()}{342}{subsubsection.8.132.2.3}%
+\contentsline {subsubsection}{\numberline {8.132.2.4}insertTensor()}{342}{subsubsection.8.132.2.4}%
+\contentsline {subsubsection}{\numberline {8.132.2.5}loadInitialTensor()}{342}{subsubsection.8.132.2.5}%
+\contentsline {subsubsection}{\numberline {8.132.2.6}offlineBuild()}{343}{subsubsection.8.132.2.6}%
+\contentsline {subsubsection}{\numberline {8.132.2.7}reviseTensor()}{344}{subsubsection.8.132.2.7}%
+\contentsline {subsubsection}{\numberline {8.132.2.8}searchTensor()}{344}{subsubsection.8.132.2.8}%
+\contentsline {subsubsection}{\numberline {8.132.2.9}setConfig()}{344}{subsubsection.8.132.2.9}%
+\contentsline {subsubsection}{\numberline {8.132.2.10}setFrozenLevel()}{345}{subsubsection.8.132.2.10}%
+\contentsline {section}{\numberline {8.133}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Parallel\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Worker Class Reference}{346}{section.8.133}%
+\contentsline {subsection}{\numberline {8.133.1}Detailed Description}{348}{subsection.8.133.1}%
+\contentsline {section}{\numberline {8.134}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Parallel\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Partition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Index Class Reference}{349}{section.8.134}%
+\contentsline {subsection}{\numberline {8.134.1}Detailed Description}{351}{subsection.8.134.1}%
+\contentsline {subsection}{\numberline {8.134.2}Member Function Documentation}{351}{subsection.8.134.2}%
+\contentsline {subsubsection}{\numberline {8.134.2.1}deleteStringObject()}{351}{subsubsection.8.134.2.1}%
+\contentsline {subsubsection}{\numberline {8.134.2.2}deleteTensor()}{352}{subsubsection.8.134.2.2}%
+\contentsline {subsubsection}{\numberline {8.134.2.3}endHPC()}{352}{subsubsection.8.134.2.3}%
+\contentsline {subsubsection}{\numberline {8.134.2.4}getTensorByIndex()}{353}{subsubsection.8.134.2.4}%
+\contentsline {subsubsection}{\numberline {8.134.2.5}insertStringObject()}{353}{subsubsection.8.134.2.5}%
+\contentsline {subsubsection}{\numberline {8.134.2.6}insertTensor()}{353}{subsubsection.8.134.2.6}%
+\contentsline {subsubsection}{\numberline {8.134.2.7}loadInitialStringObject()}{354}{subsubsection.8.134.2.7}%
+\contentsline {subsubsection}{\numberline {8.134.2.8}loadInitialTensor()}{354}{subsubsection.8.134.2.8}%
+\contentsline {subsubsection}{\numberline {8.134.2.9}offlineBuild()}{355}{subsubsection.8.134.2.9}%
+\contentsline {subsubsection}{\numberline {8.134.2.10}rawData()}{355}{subsubsection.8.134.2.10}%
+\contentsline {subsubsection}{\numberline {8.134.2.11}reviseTensor()}{355}{subsubsection.8.134.2.11}%
+\contentsline {subsubsection}{\numberline {8.134.2.12}searchStringObject()}{356}{subsubsection.8.134.2.12}%
+\contentsline {subsubsection}{\numberline {8.134.2.13}searchTensor()}{356}{subsubsection.8.134.2.13}%
+\contentsline {subsubsection}{\numberline {8.134.2.14}searchTensorAndStringObject()}{357}{subsubsection.8.134.2.14}%
+\contentsline {subsubsection}{\numberline {8.134.2.15}setConfig()}{357}{subsubsection.8.134.2.15}%
+\contentsline {subsubsection}{\numberline {8.134.2.16}setFrozenLevel()}{358}{subsubsection.8.134.2.16}%
+\contentsline {subsubsection}{\numberline {8.134.2.17}startHPC()}{358}{subsubsection.8.134.2.17}%
+\contentsline {subsubsection}{\numberline {8.134.2.18}waitPendingOperations()}{359}{subsubsection.8.134.2.18}%
+\contentsline {section}{\numberline {8.135}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Thread\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Perf\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Perf\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pair Class Reference}{359}{section.8.135}%
+\contentsline {subsection}{\numberline {8.135.1}Detailed Description}{360}{subsection.8.135.1}%
+\contentsline {section}{\numberline {8.136}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Thread\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Perf\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Perf\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tool Class Reference}{360}{section.8.136}%
+\contentsline {section}{\numberline {8.137}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::PQDecoder Class Reference}{360}{section.8.137}%
+\contentsline {subsection}{\numberline {8.137.1}Detailed Description}{361}{subsection.8.137.1}%
+\contentsline {subsection}{\numberline {8.137.2}Member Function Documentation}{361}{subsection.8.137.2}%
+\contentsline {subsubsection}{\numberline {8.137.2.1}decode()}{361}{subsubsection.8.137.2.1}%
+\contentsline {section}{\numberline {8.138}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::PQEncoder Class Reference}{362}{section.8.138}%
+\contentsline {subsection}{\numberline {8.138.1}Detailed Description}{362}{subsection.8.138.1}%
+\contentsline {subsection}{\numberline {8.138.2}Member Function Documentation}{362}{subsection.8.138.2}%
+\contentsline {subsubsection}{\numberline {8.138.2.1}encode()}{362}{subsubsection.8.138.2.1}%
+\contentsline {section}{\numberline {8.139}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::PQIndex Class Reference}{363}{section.8.139}%
+\contentsline {subsection}{\numberline {8.139.1}Detailed Description}{365}{subsection.8.139.1}%
+\contentsline {subsection}{\numberline {8.139.2}Member Function Documentation}{365}{subsection.8.139.2}%
+\contentsline {subsubsection}{\numberline {8.139.2.1}add()}{365}{subsubsection.8.139.2.1}%
+\contentsline {subsubsection}{\numberline {8.139.2.2}deleteTensor()}{365}{subsubsection.8.139.2.2}%
+\contentsline {subsubsection}{\numberline {8.139.2.3}getTensorByIndex()}{367}{subsubsection.8.139.2.3}%
+\contentsline {subsubsection}{\numberline {8.139.2.4}insertTensor()}{367}{subsubsection.8.139.2.4}%
+\contentsline {subsubsection}{\numberline {8.139.2.5}loadInitialTensor()}{368}{subsubsection.8.139.2.5}%
+\contentsline {subsubsection}{\numberline {8.139.2.6}rawData()}{368}{subsubsection.8.139.2.6}%
+\contentsline {subsubsection}{\numberline {8.139.2.7}reviseTensor()}{368}{subsubsection.8.139.2.7}%
+\contentsline {subsubsection}{\numberline {8.139.2.8}searchIndex()}{369}{subsubsection.8.139.2.8}%
+\contentsline {subsubsection}{\numberline {8.139.2.9}searchTensor()}{369}{subsubsection.8.139.2.9}%
+\contentsline {subsubsection}{\numberline {8.139.2.10}setConfig()}{370}{subsubsection.8.139.2.10}%
+\contentsline {subsubsection}{\numberline {8.139.2.11}setFrozenLevel()}{370}{subsubsection.8.139.2.11}%
+\contentsline {subsubsection}{\numberline {8.139.2.12}train()}{371}{subsubsection.8.139.2.12}%
+\contentsline {section}{\numberline {8.140}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Product\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Quantizer Class Reference}{371}{section.8.140}%
+\contentsline {subsection}{\numberline {8.140.1}Detailed Description}{372}{subsection.8.140.1}%
+\contentsline {subsection}{\numberline {8.140.2}Member Function Documentation}{372}{subsection.8.140.2}%
+\contentsline {subsubsection}{\numberline {8.140.2.1}add()}{373}{subsubsection.8.140.2.1}%
+\contentsline {subsubsection}{\numberline {8.140.2.2}compute\_code()}{373}{subsubsection.8.140.2.2}%
+\contentsline {subsubsection}{\numberline {8.140.2.3}compute\_codes()}{373}{subsubsection.8.140.2.3}%
+\contentsline {subsubsection}{\numberline {8.140.2.4}compute\_distance\_table()}{374}{subsubsection.8.140.2.4}%
+\contentsline {subsubsection}{\numberline {8.140.2.5}compute\_distance\_tables()}{374}{subsubsection.8.140.2.5}%
+\contentsline {subsubsection}{\numberline {8.140.2.6}decode()}{374}{subsubsection.8.140.2.6}%
+\contentsline {subsubsection}{\numberline {8.140.2.7}search()}{375}{subsubsection.8.140.2.7}%
+\contentsline {subsubsection}{\numberline {8.140.2.8}setCentroidsFrom()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{375}{subsubsection.8.140.2.8}%
+\contentsline {subsubsection}{\numberline {8.140.2.9}setCentroidsFrom()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{375}{subsubsection.8.140.2.9}%
+\contentsline {subsubsection}{\numberline {8.140.2.10}train()}{376}{subsubsection.8.140.2.10}%
+\contentsline {section}{\numberline {8.141}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::FLANN\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Random\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Center\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chooser Class Reference}{376}{section.8.141}%
+\contentsline {subsection}{\numberline {8.141.1}Detailed Description}{376}{subsection.8.141.1}%
+\contentsline {section}{\numberline {8.142}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Random\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loader Class Reference}{377}{section.8.142}%
+\contentsline {subsection}{\numberline {8.142.1}Detailed Description}{378}{subsection.8.142.1}%
+\contentsline {subsection}{\numberline {8.142.2}Member Function Documentation}{378}{subsection.8.142.2}%
+\contentsline {subsubsection}{\numberline {8.142.2.1}getData()}{378}{subsubsection.8.142.2.1}%
+\contentsline {subsubsection}{\numberline {8.142.2.2}getQuery()}{379}{subsubsection.8.142.2.2}%
+\contentsline {subsubsection}{\numberline {8.142.2.3}setConfig()}{379}{subsubsection.8.142.2.3}%
+\contentsline {section}{\numberline {8.143}DIVERSE\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}METER\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::rapl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}power\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}unit Struct Reference}{380}{section.8.143}%
 \contentsline {section}{\numberline {8.144}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::FLANN\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Result\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Set Class Reference}{380}{section.8.144}%
-\contentsline {subsection}{\numberline {8.144.1}Detailed Description}{380}{subsection.8.144.1}%
-\contentsline {section}{\numberline {8.145}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Simple\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Clustering Class Reference}{380}{section.8.145}%
+\contentsline {subsection}{\numberline {8.144.1}Detailed Description}{381}{subsection.8.144.1}%
+\contentsline {section}{\numberline {8.145}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Simple\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Clustering Class Reference}{381}{section.8.145}%
 \contentsline {subsection}{\numberline {8.145.1}Detailed Description}{382}{subsection.8.145.1}%
 \contentsline {subsection}{\numberline {8.145.2}Member Function Documentation}{382}{subsection.8.145.2}%
 \contentsline {subsubsection}{\numberline {8.145.2.1}addSingleRow()}{382}{subsubsection.8.145.2.1}%
-\contentsline {subsubsection}{\numberline {8.145.2.2}addSingleRowWithIdx()}{382}{subsubsection.8.145.2.2}%
+\contentsline {subsubsection}{\numberline {8.145.2.2}addSingleRowWithIdx()}{383}{subsubsection.8.145.2.2}%
 \contentsline {subsubsection}{\numberline {8.145.2.3}buildCentroids()}{383}{subsubsection.8.145.2.3}%
-\contentsline {subsubsection}{\numberline {8.145.2.4}classifyMultiRow()}{383}{subsubsection.8.145.2.4}%
+\contentsline {subsubsection}{\numberline {8.145.2.4}classifyMultiRow()}{384}{subsubsection.8.145.2.4}%
 \contentsline {subsubsection}{\numberline {8.145.2.5}classifySingleRow()}{384}{subsubsection.8.145.2.5}%
-\contentsline {subsubsection}{\numberline {8.145.2.6}deleteSingleRow()}{384}{subsubsection.8.145.2.6}%
+\contentsline {subsubsection}{\numberline {8.145.2.6}deleteSingleRow()}{385}{subsubsection.8.145.2.6}%
 \contentsline {subsubsection}{\numberline {8.145.2.7}deleteSingleRowWithIdx()}{385}{subsubsection.8.145.2.7}%
-\contentsline {subsubsection}{\numberline {8.145.2.8}euclideanDelete()}{385}{subsubsection.8.145.2.8}%
-\contentsline {subsubsection}{\numberline {8.145.2.9}euclideanDistance()}{385}{subsubsection.8.145.2.9}%
+\contentsline {subsubsection}{\numberline {8.145.2.8}euclideanDelete()}{386}{subsubsection.8.145.2.8}%
+\contentsline {subsubsection}{\numberline {8.145.2.9}euclideanDistance()}{386}{subsubsection.8.145.2.9}%
 \contentsline {subsubsection}{\numberline {8.145.2.10}euclideanInsert()}{386}{subsubsection.8.145.2.10}%
-\contentsline {subsubsection}{\numberline {8.145.2.11}exportCentroids()}{386}{subsubsection.8.145.2.11}%
-\contentsline {subsubsection}{\numberline {8.145.2.12}loadCentroids()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{386}{subsubsection.8.145.2.12}%
-\contentsline {subsubsection}{\numberline {8.145.2.13}loadCentroids()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{387}{subsubsection.8.145.2.13}%
-\contentsline {subsubsection}{\numberline {8.145.2.14}saveCentroidsToFile()}{387}{subsubsection.8.145.2.14}%
+\contentsline {subsubsection}{\numberline {8.145.2.11}exportCentroids()}{387}{subsubsection.8.145.2.11}%
+\contentsline {subsubsection}{\numberline {8.145.2.12}loadCentroids()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{387}{subsubsection.8.145.2.12}%
+\contentsline {subsubsection}{\numberline {8.145.2.13}loadCentroids()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{388}{subsubsection.8.145.2.13}%
+\contentsline {subsubsection}{\numberline {8.145.2.14}saveCentroidsToFile()}{388}{subsubsection.8.145.2.14}%
 \contentsline {section}{\numberline {8.146}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::SPSCQueue$<$ T, Allocator $>$ Class Template Reference}{388}{section.8.146}%
 \contentsline {section}{\numberline {8.147}BS\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::synced\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}stream Class Reference}{389}{section.8.147}%
-\contentsline {subsection}{\numberline {8.147.1}Detailed Description}{389}{subsection.8.147.1}%
+\contentsline {subsection}{\numberline {8.147.1}Detailed Description}{390}{subsection.8.147.1}%
 \contentsline {subsection}{\numberline {8.147.2}Constructor \& Destructor Documentation}{390}{subsection.8.147.2}%
 \contentsline {subsubsection}{\numberline {8.147.2.1}synced\_stream()}{390}{subsubsection.8.147.2.1}%
 \contentsline {subsection}{\numberline {8.147.3}Member Function Documentation}{390}{subsection.8.147.3}%
-\contentsline {subsubsection}{\numberline {8.147.3.1}print()}{390}{subsubsection.8.147.3.1}%
-\contentsline {subsubsection}{\numberline {8.147.3.2}println()}{390}{subsubsection.8.147.3.2}%
+\contentsline {subsubsection}{\numberline {8.147.3.1}print()}{391}{subsubsection.8.147.3.1}%
+\contentsline {subsubsection}{\numberline {8.147.3.2}println()}{391}{subsubsection.8.147.3.2}%
 \contentsline {subsection}{\numberline {8.147.4}Member Data Documentation}{391}{subsection.8.147.4}%
 \contentsline {subsubsection}{\numberline {8.147.4.1}endl}{391}{subsubsection.8.147.4.1}%
-\contentsline {subsubsection}{\numberline {8.147.4.2}flush}{391}{subsubsection.8.147.4.2}%
+\contentsline {subsubsection}{\numberline {8.147.4.2}flush}{392}{subsubsection.8.147.4.2}%
 \contentsline {section}{\numberline {8.148}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Tensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Idx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pair Class Reference}{392}{section.8.148}%
-\contentsline {subsection}{\numberline {8.148.1}Detailed Description}{392}{subsection.8.148.1}%
+\contentsline {subsection}{\numberline {8.148.1}Detailed Description}{393}{subsection.8.148.1}%
 \contentsline {section}{\numberline {8.149}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Tensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}List\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Idx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pair Class Reference}{393}{section.8.149}%
-\contentsline {section}{\numberline {8.150}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Tensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Str\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pair Class Reference}{393}{section.8.150}%
+\contentsline {section}{\numberline {8.150}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Tensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Str\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pair Class Reference}{394}{section.8.150}%
 \contentsline {section}{\numberline {8.151}CANDY\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Tensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Str\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Vec\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pair Class Reference}{394}{section.8.151}%
 \contentsline {section}{\numberline {8.152}BS\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::thread\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pool Class Reference}{395}{section.8.152}%
 \contentsline {subsection}{\numberline {8.152.1}Detailed Description}{396}{subsection.8.152.1}%
 \contentsline {subsection}{\numberline {8.152.2}Constructor \& Destructor Documentation}{396}{subsection.8.152.2}%
 \contentsline {subsubsection}{\numberline {8.152.2.1}thread\_pool()}{396}{subsubsection.8.152.2.1}%
-\contentsline {subsection}{\numberline {8.152.3}Member Function Documentation}{396}{subsection.8.152.3}%
-\contentsline {subsubsection}{\numberline {8.152.3.1}get\_tasks\_queued()}{396}{subsubsection.8.152.3.1}%
+\contentsline {subsection}{\numberline {8.152.3}Member Function Documentation}{397}{subsection.8.152.3}%
+\contentsline {subsubsection}{\numberline {8.152.3.1}get\_tasks\_queued()}{397}{subsubsection.8.152.3.1}%
 \contentsline {subsubsection}{\numberline {8.152.3.2}get\_tasks\_running()}{397}{subsubsection.8.152.3.2}%
 \contentsline {subsubsection}{\numberline {8.152.3.3}get\_tasks\_total()}{397}{subsubsection.8.152.3.3}%
-\contentsline {subsubsection}{\numberline {8.152.3.4}get\_thread\_count()}{397}{subsubsection.8.152.3.4}%
-\contentsline {subsubsection}{\numberline {8.152.3.5}is\_paused()}{397}{subsubsection.8.152.3.5}%
+\contentsline {subsubsection}{\numberline {8.152.3.4}get\_thread\_count()}{398}{subsubsection.8.152.3.4}%
+\contentsline {subsubsection}{\numberline {8.152.3.5}is\_paused()}{398}{subsubsection.8.152.3.5}%
 \contentsline {subsubsection}{\numberline {8.152.3.6}parallelize\_loop()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{398}{subsubsection.8.152.3.6}%
-\contentsline {subsubsection}{\numberline {8.152.3.7}parallelize\_loop()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{398}{subsubsection.8.152.3.7}%
-\contentsline {subsubsection}{\numberline {8.152.3.8}push\_loop()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{399}{subsubsection.8.152.3.8}%
+\contentsline {subsubsection}{\numberline {8.152.3.7}parallelize\_loop()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{399}{subsubsection.8.152.3.7}%
+\contentsline {subsubsection}{\numberline {8.152.3.8}push\_loop()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{400}{subsubsection.8.152.3.8}%
 \contentsline {subsubsection}{\numberline {8.152.3.9}push\_loop()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{400}{subsubsection.8.152.3.9}%
-\contentsline {subsubsection}{\numberline {8.152.3.10}push\_task()}{400}{subsubsection.8.152.3.10}%
+\contentsline {subsubsection}{\numberline {8.152.3.10}push\_task()}{401}{subsubsection.8.152.3.10}%
 \contentsline {subsubsection}{\numberline {8.152.3.11}reset()}{401}{subsubsection.8.152.3.11}%
-\contentsline {subsubsection}{\numberline {8.152.3.12}submit()}{401}{subsubsection.8.152.3.12}%
+\contentsline {subsubsection}{\numberline {8.152.3.12}submit()}{402}{subsubsection.8.152.3.12}%
 \contentsline {section}{\numberline {8.153}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Thread\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Perf Class Reference}{402}{section.8.153}%
 \contentsline {subsection}{\numberline {8.153.1}Detailed Description}{404}{subsection.8.153.1}%
-\contentsline {subsection}{\numberline {8.153.2}Constructor \& Destructor Documentation}{404}{subsection.8.153.2}%
-\contentsline {subsubsection}{\numberline {8.153.2.1}ThreadPerf()}{404}{subsubsection.8.153.2.1}%
+\contentsline {subsection}{\numberline {8.153.2}Constructor \& Destructor Documentation}{405}{subsection.8.153.2}%
+\contentsline {subsubsection}{\numberline {8.153.2.1}ThreadPerf()}{405}{subsubsection.8.153.2.1}%
 \contentsline {subsection}{\numberline {8.153.3}Member Function Documentation}{405}{subsection.8.153.3}%
 \contentsline {subsubsection}{\numberline {8.153.3.1}getResultById()}{405}{subsubsection.8.153.3.1}%
 \contentsline {subsubsection}{\numberline {8.153.3.2}getResultByName()}{405}{subsubsection.8.153.3.2}%
 \contentsline {subsubsection}{\numberline {8.153.3.3}initEventsByCfg()}{406}{subsubsection.8.153.3.3}%
 \contentsline {subsubsection}{\numberline {8.153.3.4}resultToConfigMap()}{406}{subsubsection.8.153.3.4}%
-\contentsline {subsubsection}{\numberline {8.153.3.5}start()}{406}{subsubsection.8.153.3.5}%
+\contentsline {subsubsection}{\numberline {8.153.3.5}start()}{407}{subsubsection.8.153.3.5}%
 \contentsline {section}{\numberline {8.154}INTELLI\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Thread\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Perf\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}PAPI Class Reference}{407}{section.8.154}%
 \contentsline {subsection}{\numberline {8.154.1}Detailed Description}{408}{subsection.8.154.1}%
 \contentsline {subsection}{\numberline {8.154.2}Constructor \& Destructor Documentation}{409}{subsection.8.154.2}%

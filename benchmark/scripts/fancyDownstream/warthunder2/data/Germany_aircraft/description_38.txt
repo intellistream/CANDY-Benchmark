@@ -1,3 +1,0 @@
-Description of Bf_109_F-1: 
-The Bf 109 F-1 is a rank II German fighter 
-with a battle rating of 3.0 (AB), 2.7 (RB), and 3.3 (SB). It was introduced in Update 1.37. Setting the basis for the definitive version of the Bf 109, the F-4, the Bf 109 F-1 saw substantial improvement over the earlier Emil.

@@ -1,2 +1,0 @@
-Usage of AMX-13-90: 
-The AMX-13-90 is a light tank with good firepower. Its 90 mm cannon equipped with HEAT-FS rounds is enough to destroy any tank at its BR (still be aware of uptiers mostly because of the T-55AMD-1 and T-55AM-1 which have composite armour). The lack of stabilizer makes it bad for close and urban engagements, it should be used in open areas. With its fast reload you can snipe multiple enemies easily. Be aware of the bad post-penetration damage: on heavier tanks you should aim for critical components.

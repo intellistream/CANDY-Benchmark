@@ -1,3 +1,0 @@
-Description of Sd.Kfz.222: 
-The le.Pz.Sp.Wg. (2 cm) Ausf.B 5.Serie is a rank I German SPAA 
-with a battle rating of 1.7 (AB) and 2.0 (RB/SB). It was introduced in Update "Sky Guardians".

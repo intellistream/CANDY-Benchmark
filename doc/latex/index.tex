@@ -1,4 +1,4 @@
-This project is an index library for online vector management, our key idea is Ranging Augmented Navigation Indexing Approach, while some typical state-\/or-\/art is also included \hypertarget{index_supported}{}\doxysection{data format}\label{index_supported}
+This project is an index library and benchmark kit for online vector management, covering various AKNN algos, datasets, online insert benchmark, and examples for more fancy downstream tasks. \hypertarget{index_supported}{}\doxysection{data format}\label{index_supported}
 The api interface is torch\+::\+Tensor for both c++ and python, and we also include support for loading the following data formats from file
 \begin{DoxyItemize}
 \item $\ast$.fvecs, (\href{http://corpus-texmex.irisa.fr/}{\texttt{ http\+://corpus-\/texmex.\+irisa.\+fr/}}) using FVECSData\+Loader, a static public class function tensor\+From\+FVECS is also provided
@@ -16,7 +16,10 @@ The api interface is torch\+::\+Tensor for both c++ and python, and we also incl
 \item online\+PQ Online\+PQIndex
 \item online\+IVFLSH Online\+IVFLSHIndex
 \item HNSWNaive HNSWNaive\+Index
-\item faiss Faiss\+Index 
+\item faiss Faiss\+Index
+\item congestion\+Drop Congestion\+Drop\+Index
+\item buffered\+Congestion\+Drop Buffered\+Congestion\+Drop\+Index
+\item flat\+AMMIP Flat\+AMMIPIndex 
 \end{DoxyItemize}\hypertarget{index_subsec_tag_loader}{}\doxysubsection{Of data loaders (\+Please go to class @ref Data\+Loader\+Table for more details)}\label{index_subsec_tag_loader}
 
 \begin{DoxyItemize}
@@ -83,4 +86,8 @@ This copy-\/and-\/replace policy will also prevent from wrong parameter types of
 \item register A.\+cpp to test/\+CMake\+Lists.\+txt, please follow how we deal with the Sketch\+Test.\+cpp
 \item assuming you have made A.\+cpp into a\+\_\+test, append ./a\+\_\+test \char`\"{}-\/-\/success\char`\"{} to the last row of .github/workflows/cmake.\+yml
 \end{DoxyItemize}\hypertarget{index_python_doc}{}\doxysection{Python Documents}\label{index_python_doc}
-Please find the class named Rania\+\_\+\+Python for python APIs 
+
+\begin{DoxyItemize}
+\item Please find the class named Candy\+\_\+\+Python for python APIs (old style)
+\item Please enable pybind build and install the $\ast$.so to system path, you can import Py\+CANDY, see benchmark/scripts/\+Py\+CANDY for details 
+\end{DoxyItemize}

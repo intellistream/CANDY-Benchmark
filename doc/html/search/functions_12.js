@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['tensorfromfile_1154',['tensorFromFile',['../classINTELLI_1_1IntelliTensorOP.html#aa59d10741d6b9195c4b61f326666aa6a',1,'INTELLI::IntelliTensorOP::tensorFromFile()'],['../classCANDY_1_1Rania__Python.html#ad2fa9941f25d2c80887205e06b886123',1,'CANDY::Candy_Python::tensorFromFile()']]],
+  ['tensorfromfile_1154',['tensorFromFile',['../classINTELLI_1_1IntelliTensorOP.html#aa59d10741d6b9195c4b61f326666aa6a',1,'INTELLI::IntelliTensorOP::tensorFromFile()'],['../classCANDY_1_1Candy__Python.html#aef626a6cbdb9bea890bb209313915f42',1,'CANDY::Candy_Python::tensorFromFile()']]],
   ['tensorfromflatbin_1155',['tensorFromFlatBin',['../classINTELLI_1_1IntelliTensorOP.html#accdf70e85ea9997f18841496ff3d584a',1,'INTELLI::IntelliTensorOP']]],
-  ['tensorfromfvecs_1156',['tensorFromFVECS',['../classCANDY_1_1Rania__Python.html#a7f1dae37f12f459c9ce73828a8b516b5',1,'CANDY::Candy_Python::tensorFromFVECS()'],['../classCANDY_1_1FVECSDataLoader.html#a9255d104bca43f7f7168ae6ed1b74ee0',1,'CANDY::FVECSDataLoader::tensorFromFVECS()']]],
-  ['tensorfromhdf5_1157',['tensorFromHDF5',['../classCANDY_1_1Rania__Python.html#acee6d2c42845be5988140f1412869851',1,'CANDY::Candy_Python::tensorFromHDF5()'],['../classCANDY_1_1HDF5DataLoader.html#a3e48e50ca81c71df58271ae43e5115ab',1,'CANDY::HDF5DataLoader::tensorFromHDF5()']]],
+  ['tensorfromfvecs_1156',['tensorFromFVECS',['../classCANDY_1_1Candy__Python.html#aea8774ba07616e02732805149b18e0da',1,'CANDY::Candy_Python::tensorFromFVECS()'],['../classCANDY_1_1FVECSDataLoader.html#a9255d104bca43f7f7168ae6ed1b74ee0',1,'CANDY::FVECSDataLoader::tensorFromFVECS()']]],
+  ['tensorfromhdf5_1157',['tensorFromHDF5',['../classCANDY_1_1Candy__Python.html#ac4fa92acb45efb51223c51b00921b294',1,'CANDY::Candy_Python::tensorFromHDF5()'],['../classCANDY_1_1HDF5DataLoader.html#a3e48e50ca81c71df58271ae43e5115ab',1,'CANDY::HDF5DataLoader::tensorFromHDF5()']]],
   ['tensorlistfromfile_1158',['tensorListFromFile',['../classINTELLI_1_1UtilityFunctions.html#a11b63550ac9d236aee0c1a29e201a6c8',1,'INTELLI::UtilityFunctions']]],
   ['tensorlisttofile_1159',['tensorListToFile',['../classINTELLI_1_1UtilityFunctions.html#a900844711612e87ebd8d8e84852e0ded',1,'INTELLI::UtilityFunctions']]],
-  ['tensortofile_1160',['tensorToFile',['../classCANDY_1_1Rania__Python.html#a529a9084eda05c6838fa28fae928d384',1,'CANDY::Candy_Python::tensorToFile()'],['../classINTELLI_1_1IntelliTensorOP.html#a99e8f3df87282e811fe63ca68729c54e',1,'INTELLI::IntelliTensorOP::tensorToFile(torch::Tensor *A, std::string fname)']]],
+  ['tensortofile_1160',['tensorToFile',['../classCANDY_1_1Candy__Python.html#ac79d1566097d3373116ca2602393ba49',1,'CANDY::Candy_Python::tensorToFile()'],['../classINTELLI_1_1IntelliTensorOP.html#a99e8f3df87282e811fe63ca68729c54e',1,'INTELLI::IntelliTensorOP::tensorToFile(torch::Tensor *A, std::string fname)']]],
   ['tensortoflatbin_1161',['tensorToFlatBin',['../classINTELLI_1_1IntelliTensorOP.html#a56dd4e8a7d0ea67fe5c7811114b2d159',1,'INTELLI::IntelliTensorOP']]],
   ['teststaticpower_1162',['testStaticPower',['../classDIVERSE__METER_1_1AbstractMeter.html#a2dac7c7167003ff6fcd2e8661d0d8463',1,'DIVERSE_METER::AbstractMeter']]],
   ['thread_5fpool_1163',['thread_pool',['../classBS_1_1thread__pool.html#af0705b5edcf3809e4f133272e8070d12',1,'BS::thread_pool']]],

@@ -1,2 +1,0 @@
-Usage of CL-13_Mk.4: 
-The CL-13 Mk.4 is held back by its poor engine performance and is not as good at energy fighting as the MiG-15, for example, but going all-in on close quarters turnfighting may not end well either. It is rather contradictory; it turns well but bleeds energy while doing so, and it accelerates poorly but holds onto speed quite well outside of wild manoeuvring or hard vertical manoeuvres.

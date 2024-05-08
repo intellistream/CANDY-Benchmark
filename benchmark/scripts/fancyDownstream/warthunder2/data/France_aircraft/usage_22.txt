@@ -1,2 +1,0 @@
-Usage of D.520: 
-This fighter is the classic "jack of all trades, master of none". It can be an energy fighter, bomber hunter, or even a turn-fighter. It depends on your playstyle, and the kinds of enemy aircraft that are encountered. During the battle you have to keep in mind your best climb speed is 220 km/h (IAS) allowing you to reach a good 18 m/s. Your engine power will always increase due to the linear compressor giving you your best flight performance at 4000 m.

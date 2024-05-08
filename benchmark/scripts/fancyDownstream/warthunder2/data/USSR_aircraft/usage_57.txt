@@ -1,2 +1,0 @@
-Usage of Pe-2-83: 
-Most versatile and useful payload variant is the 2 x 250 kg + 4 x 100 kg option. Those dual outside mounted 250 kg bombs do not drop in pairs as usual (RB/SB effect). The same applies to 2 x 500 kg payload. Each one drops single upon pressing the release button. Beware though: The unlockable payload options take a big toll on climb rate, acceleration and speed. For quick and speedy mission, the stock six times 100 kg bombs all mounted inside remains a very good choice.

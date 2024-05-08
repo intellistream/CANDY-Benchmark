@@ -1,2 +1,0 @@
-Description of Spitfire_Mk.IX_(CW)_(Israel): 
-The clipped wing configuration for the Spitfire Mk IX was introduced in the mid-late 1940s to increase manoeuvrability and improve roll rate at lower altitudes, at the cost of less lift. This was due to a shorter surface area, that generated less lift but was also more aerodynamic and less air was travelling around the fuselage
