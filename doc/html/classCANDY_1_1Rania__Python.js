@@ -1,7 +1,7 @@
 var classCANDY_1_1Rania__Python =
 [
-    [ "Rania_Python", "classCANDY_1_1Rania__Python.html#a9823743746326839ff487b866d5373aa", null ],
-    [ "~Rania_Python", "classCANDY_1_1Rania__Python.html#abf78fbd8063470e1bff03e58e48c98fc", null ],
+    [ "Candy_Python", "classCANDY_1_1Rania__Python.html#a9823743746326839ff487b866d5373aa", null ],
+    [ "~Candy_Python", "classCANDY_1_1Rania__Python.html#abf78fbd8063470e1bff03e58e48c98fc", null ],
     [ "dataLoader_create", "classCANDY_1_1Rania__Python.html#a4d6f140902f834140308d20bb4703775", null ],
     [ "dataLoader_editCfgDouble", "classCANDY_1_1Rania__Python.html#ad592150501b5d61cc6cc98a0007521d1", null ],
     [ "dataLoader_editCfgFloat", "classCANDY_1_1Rania__Python.html#a96815ab63d4d113d98e4b0a7bd341c7e", null ],

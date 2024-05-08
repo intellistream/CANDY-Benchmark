@@ -17,7 +17,7 @@ namespace CANDY {
  * @{
  **/
 
-/** @class Rania_Python CANDYPYTHON.h
+/** @class Candy_Python CANDYPYTHON.h
 * @brief  The python bounding functions
  * @ingroup
 * @note
@@ -25,10 +25,10 @@ namespace CANDY {
 * - In this simple bounding, we just access CANDY index class and its configuration by name tag, there is some c++ hash table in the backend to do this
 * - Please add the prefix "torch.ops.CANDY." when calling the following fucntions, see also benchmark/pythonTest.py
 */
-class Rania_Python {
+class Candy_Python {
  public:
-  Rania_Python() {}
-  ~Rania_Python() {}
+  Candy_Python() {}
+  ~Candy_Python() {}
 /**
 * @brief The c++ bindings to creat an index at backend
 * @param name the name of this index

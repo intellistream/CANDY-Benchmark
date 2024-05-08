@@ -654,8 +654,8 @@ thirdparty/pybind11/clean:
 # Target rules for target CMakeFiles/CANDY.dir
 
 # All Build rule for target.
-CMakeFiles/CANDY.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 CMakeFiles/CANDY.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+CMakeFiles/CANDY.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CANDY.dir/build.make CMakeFiles/CANDY.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CANDY.dir/build.make CMakeFiles/CANDY.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num=1,2,3,4 "Built target CANDY"
@@ -681,9 +681,9 @@ CMakeFiles/CANDY.dir/clean:
 # Target rules for target CMakeFiles/PyCANDY.dir
 
 # All Build rule for target.
-CMakeFiles/PyCANDY.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 CMakeFiles/PyCANDY.dir/all: CMakeFiles/CANDY.dir/all
 CMakeFiles/PyCANDY.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+CMakeFiles/PyCANDY.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PyCANDY.dir/build.make CMakeFiles/PyCANDY.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PyCANDY.dir/build.make CMakeFiles/PyCANDY.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target PyCANDY"
@@ -1855,9 +1855,9 @@ thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-shared.dir/clean:
 # Target rules for target benchmark/CMakeFiles/benchmark.dir
 
 # All Build rule for target.
-benchmark/CMakeFiles/benchmark.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 benchmark/CMakeFiles/benchmark.dir/all: CMakeFiles/CANDY.dir/all
 benchmark/CMakeFiles/benchmark.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+benchmark/CMakeFiles/benchmark.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/benchmark.dir/build.make benchmark/CMakeFiles/benchmark.dir/depend
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/benchmark.dir/build.make benchmark/CMakeFiles/benchmark.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num=5 "Built target benchmark"
@@ -1883,9 +1883,9 @@ benchmark/CMakeFiles/benchmark.dir/clean:
 # Target rules for target benchmark/CMakeFiles/ft.dir
 
 # All Build rule for target.
-benchmark/CMakeFiles/ft.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 benchmark/CMakeFiles/ft.dir/all: CMakeFiles/CANDY.dir/all
 benchmark/CMakeFiles/ft.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+benchmark/CMakeFiles/ft.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/ft.dir/build.make benchmark/CMakeFiles/ft.dir/depend
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/ft.dir/build.make benchmark/CMakeFiles/ft.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target ft"
@@ -1911,9 +1911,9 @@ benchmark/CMakeFiles/ft.dir/clean:
 # Target rules for target benchmark/CMakeFiles/tt.dir
 
 # All Build rule for target.
-benchmark/CMakeFiles/tt.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 benchmark/CMakeFiles/tt.dir/all: CMakeFiles/CANDY.dir/all
 benchmark/CMakeFiles/tt.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+benchmark/CMakeFiles/tt.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/tt.dir/build.make benchmark/CMakeFiles/tt.dir/depend
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/tt.dir/build.make benchmark/CMakeFiles/tt.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target tt"
@@ -1939,9 +1939,9 @@ benchmark/CMakeFiles/tt.dir/clean:
 # Target rules for target benchmark/CMakeFiles/onlineInsert.dir
 
 # All Build rule for target.
-benchmark/CMakeFiles/onlineInsert.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 benchmark/CMakeFiles/onlineInsert.dir/all: CMakeFiles/CANDY.dir/all
 benchmark/CMakeFiles/onlineInsert.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+benchmark/CMakeFiles/onlineInsert.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/onlineInsert.dir/build.make benchmark/CMakeFiles/onlineInsert.dir/depend
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/onlineInsert.dir/build.make benchmark/CMakeFiles/onlineInsert.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target onlineInsert"
@@ -1967,9 +1967,9 @@ benchmark/CMakeFiles/onlineInsert.dir/clean:
 # Target rules for target benchmark/CMakeFiles/offlineBuild.dir
 
 # All Build rule for target.
-benchmark/CMakeFiles/offlineBuild.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 benchmark/CMakeFiles/offlineBuild.dir/all: CMakeFiles/CANDY.dir/all
 benchmark/CMakeFiles/offlineBuild.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+benchmark/CMakeFiles/offlineBuild.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/offlineBuild.dir/build.make benchmark/CMakeFiles/offlineBuild.dir/depend
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/offlineBuild.dir/build.make benchmark/CMakeFiles/offlineBuild.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target offlineBuild"
@@ -1995,9 +1995,9 @@ benchmark/CMakeFiles/offlineBuild.dir/clean:
 # Target rules for target benchmark/CMakeFiles/multiRW.dir
 
 # All Build rule for target.
-benchmark/CMakeFiles/multiRW.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 benchmark/CMakeFiles/multiRW.dir/all: CMakeFiles/CANDY.dir/all
 benchmark/CMakeFiles/multiRW.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+benchmark/CMakeFiles/multiRW.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/multiRW.dir/build.make benchmark/CMakeFiles/multiRW.dir/depend
 	$(MAKE) $(MAKESILENT) -f benchmark/CMakeFiles/multiRW.dir/build.make benchmark/CMakeFiles/multiRW.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num=98 "Built target multiRW"
@@ -2023,9 +2023,9 @@ benchmark/CMakeFiles/multiRW.dir/clean:
 # Target rules for target test/CMakeFiles/hnsw_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/hnsw_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/hnsw_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/hnsw_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/hnsw_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/hnsw_test.dir/build.make test/CMakeFiles/hnsw_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/hnsw_test.dir/build.make test/CMakeFiles/hnsw_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target hnsw_test"
@@ -2051,9 +2051,9 @@ test/CMakeFiles/hnsw_test.dir/clean:
 # Target rules for target test/CMakeFiles/cpp_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/cpp_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/cpp_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/cpp_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/cpp_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/cpp_test.dir/build.make test/CMakeFiles/cpp_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/cpp_test.dir/build.make test/CMakeFiles/cpp_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target cpp_test"
@@ -2079,9 +2079,9 @@ test/CMakeFiles/cpp_test.dir/clean:
 # Target rules for target test/CMakeFiles/flatIndex_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/flatIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/flatIndex_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/flatIndex_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/flatIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/flatIndex_test.dir/build.make test/CMakeFiles/flatIndex_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/flatIndex_test.dir/build.make test/CMakeFiles/flatIndex_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target flatIndex_test"
@@ -2107,9 +2107,9 @@ test/CMakeFiles/flatIndex_test.dir/clean:
 # Target rules for target test/CMakeFiles/flatAMMIPIndex_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/flatAMMIPIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/flatAMMIPIndex_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/flatAMMIPIndex_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/flatAMMIPIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/flatAMMIPIndex_test.dir/build.make test/CMakeFiles/flatAMMIPIndex_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/flatAMMIPIndex_test.dir/build.make test/CMakeFiles/flatAMMIPIndex_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target flatAMMIPIndex_test"
@@ -2135,9 +2135,9 @@ test/CMakeFiles/flatAMMIPIndex_test.dir/clean:
 # Target rules for target test/CMakeFiles/flatAMMIPObjIndex_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/flatAMMIPObjIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/flatAMMIPObjIndex_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/flatAMMIPObjIndex_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/flatAMMIPObjIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/flatAMMIPObjIndex_test.dir/build.make test/CMakeFiles/flatAMMIPObjIndex_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/flatAMMIPObjIndex_test.dir/build.make test/CMakeFiles/flatAMMIPObjIndex_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num=34 "Built target flatAMMIPObjIndex_test"
@@ -2163,9 +2163,9 @@ test/CMakeFiles/flatAMMIPObjIndex_test.dir/clean:
 # Target rules for target test/CMakeFiles/ppIndex_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/ppIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/ppIndex_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/ppIndex_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/ppIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/ppIndex_test.dir/build.make test/CMakeFiles/ppIndex_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/ppIndex_test.dir/build.make test/CMakeFiles/ppIndex_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target ppIndex_test"
@@ -2191,9 +2191,9 @@ test/CMakeFiles/ppIndex_test.dir/clean:
 # Target rules for target test/CMakeFiles/pqIndex_Test.dir
 
 # All Build rule for target.
-test/CMakeFiles/pqIndex_Test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/pqIndex_Test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/pqIndex_Test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/pqIndex_Test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/pqIndex_Test.dir/build.make test/CMakeFiles/pqIndex_Test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/pqIndex_Test.dir/build.make test/CMakeFiles/pqIndex_Test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target pqIndex_Test"
@@ -2219,9 +2219,9 @@ test/CMakeFiles/pqIndex_Test.dir/clean:
 # Target rules for target test/CMakeFiles/onlinePQ_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/onlinePQ_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/onlinePQ_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/onlinePQ_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/onlinePQ_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/onlinePQ_test.dir/build.make test/CMakeFiles/onlinePQ_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/onlinePQ_test.dir/build.make test/CMakeFiles/onlinePQ_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num=99 "Built target onlinePQ_test"
@@ -2247,9 +2247,9 @@ test/CMakeFiles/onlinePQ_test.dir/clean:
 # Target rules for target test/CMakeFiles/onlineIVFLSH_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/onlineIVFLSH_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/onlineIVFLSH_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/onlineIVFLSH_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/onlineIVFLSH_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/onlineIVFLSH_test.dir/build.make test/CMakeFiles/onlineIVFLSH_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/onlineIVFLSH_test.dir/build.make test/CMakeFiles/onlineIVFLSH_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target onlineIVFLSH_test"
@@ -2275,9 +2275,9 @@ test/CMakeFiles/onlineIVFLSH_test.dir/clean:
 # Target rules for target test/CMakeFiles/yinYang_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/yinYang_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/yinYang_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/yinYang_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/yinYang_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/yinYang_test.dir/build.make test/CMakeFiles/yinYang_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/yinYang_test.dir/build.make test/CMakeFiles/yinYang_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num=100 "Built target yinYang_test"
@@ -2303,9 +2303,9 @@ test/CMakeFiles/yinYang_test.dir/clean:
 # Target rules for target test/CMakeFiles/yinYangSimple_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/yinYangSimple_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/yinYangSimple_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/yinYangSimple_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/yinYangSimple_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/yinYangSimple_test.dir/build.make test/CMakeFiles/yinYangSimple_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/yinYangSimple_test.dir/build.make test/CMakeFiles/yinYangSimple_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target yinYangSimple_test"
@@ -2331,9 +2331,9 @@ test/CMakeFiles/yinYangSimple_test.dir/clean:
 # Target rules for target test/CMakeFiles/nnDescent_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/nnDescent_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/nnDescent_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/nnDescent_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/nnDescent_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/nnDescent_test.dir/build.make test/CMakeFiles/nnDescent_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/nnDescent_test.dir/build.make test/CMakeFiles/nnDescent_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target nnDescent_test"
@@ -2359,9 +2359,9 @@ test/CMakeFiles/nnDescent_test.dir/clean:
 # Target rules for target test/CMakeFiles/kdTree_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/kdTree_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/kdTree_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/kdTree_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/kdTree_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/kdTree_test.dir/build.make test/CMakeFiles/kdTree_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/kdTree_test.dir/build.make test/CMakeFiles/kdTree_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target kdTree_test"
@@ -2387,9 +2387,9 @@ test/CMakeFiles/kdTree_test.dir/clean:
 # Target rules for target test/CMakeFiles/dpgIndex_test.dir
 
 # All Build rule for target.
-test/CMakeFiles/dpgIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 test/CMakeFiles/dpgIndex_test.dir/all: CMakeFiles/CANDY.dir/all
 test/CMakeFiles/dpgIndex_test.dir/all: thirdparty/faiss/faiss/CMakeFiles/faiss.dir/all
+test/CMakeFiles/dpgIndex_test.dir/all: thirdparty/hdf5-1.14.3/src/CMakeFiles/hdf5-static.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/dpgIndex_test.dir/build.make test/CMakeFiles/dpgIndex_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/dpgIndex_test.dir/build.make test/CMakeFiles/dpgIndex_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tony/projects/CANDY/build/CMakeFiles --progress-num= "Built target dpgIndex_test"

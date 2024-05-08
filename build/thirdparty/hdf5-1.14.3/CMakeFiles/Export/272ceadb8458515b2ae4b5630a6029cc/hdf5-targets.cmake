@@ -48,6 +48,15 @@ unset(_cmake_expected_targets)
 
 # Compute the installation prefix relative to this file.
 get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_FILE}" PATH)
+# Use original install prefix when loaded through a
+# cross-prefix symbolic link such as /lib -> /usr/lib.
+get_filename_component(_realCurr "${_IMPORT_PREFIX}" REALPATH)
+get_filename_component(_realOrig "/usr/lib/cmake" REALPATH)
+if(_realCurr STREQUAL _realOrig)
+  set(_IMPORT_PREFIX "/usr/lib/cmake")
+endif()
+unset(_realOrig)
+unset(_realCurr)
 get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
 if(_IMPORT_PREFIX STREQUAL "/")
   set(_IMPORT_PREFIX "")

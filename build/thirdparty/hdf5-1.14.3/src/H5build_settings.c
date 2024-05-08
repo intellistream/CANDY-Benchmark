@@ -27,7 +27,7 @@ const char H5build_settings[]=
     "                    Host system: Linux-5.19.0-1010-nvidia-lowlatency\n"
     "              Uname information: Linux\n"
     "                       Byte sex: \n"
-    "             Installation point: /usr/local/HDF_Group/HDF5/1.14.3\n"
+    "             Installation point: /usr/lib\n"
     "\n"
     "Compiling Options:\n"
     "------------------\n"

@@ -1,4 +1,4 @@
-prefix=/usr/local/HDF_Group/HDF5/1.14.3
+prefix=/usr/lib
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

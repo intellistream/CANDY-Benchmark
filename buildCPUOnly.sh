@@ -10,7 +10,7 @@ pip install matplotlib pandas==2.0.0
 pip install torch==1.13.0 --index-url https://download.pytorch.org/whl/cpu
 echo "Build CANDY and PyRania"
 # Step 1: Configure the project
-cmake -S . -B build -DCMAKE_PREFIX_PATH=`python3 -c 'import torch;print(torch.utils.cmake_prefix_path)'` -DENABLE_HDF5=ON -DENABLE_PYBIND=ON
+cmake -S . -B build -DCMAKE_PREFIX_PATH=`python3 -c 'import torch;print(torch.utils.cmake_prefix_path)'` -DENABLE_HDF5=ON -DENABLE_PYBIND=ON -DCMAKE_INSTALL_PREFIX=/usr/local/lib
 
 # Step 2: Determine the maximum number of threads
 max_threads=$(nproc)

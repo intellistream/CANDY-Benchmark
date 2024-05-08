@@ -9,7 +9,7 @@ General Information:
                     Host system: Linux-5.19.0-1010-nvidia-lowlatency
               Uname information: Linux
                        Byte sex: little-endian
-             Installation point: /usr/local/HDF_Group/HDF5/1.14.3
+             Installation point: /usr/lib
 
 Compiling Options:
 ------------------

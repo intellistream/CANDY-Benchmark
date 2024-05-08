@@ -52,7 +52,7 @@ To test the installation with the examples;
     Copy HDF5_Examples_options.cmake to this directory.
     The default source folder is defined as "HDF5Examples". It can be changed
         with the CTEST_SOURCE_NAME script option.
-    The default installation folder is defined as "/usr/local/HDF_Group/HDF5/1.14.3".
+    The default installation folder is defined as "/usr/lib".
         It can be changed with the INSTALLDIR script option.
     The default ctest configuration is defined as "Release". It can be changed
         with the CTEST_CONFIGURATION_TYPE script option. Note that this must

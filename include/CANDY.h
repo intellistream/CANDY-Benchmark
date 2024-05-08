@@ -13,7 +13,7 @@
 #include <memory>
 /**
 * @mainpage Introduction
-* This project is an index library for online vector management, our key idea is Ranging Augmented Navigation Indexing Approach, while some typical state-or-art is also included
+* This project is an index library and benchmark kit for online vector management, covering various AKNN algos, datasets, online insert benchmark, and examples for more fancy downstream tasks.
 * @section supported data format
 * The api interface is torch::Tensor for both c++ and python, and we also include support for loading the following data formats from file
 * - *.fvecs, (http://corpus-texmex.irisa.fr/) using @ref FVECSDataLoader, a static public class function @ref tensorFromFVECS is also provided
@@ -22,12 +22,15 @@
     * - not support compression yet
 * @section sec_name_index Built-in name tags
 * @subsection subsec_tag_index Of index approaches (Please go to class @ref IndexTable for more details)
-* - flat @ref FlatIndex
-* - parallelPartition @ref ParallelPartitionIndex
-* - onlinePQ @ref OnlinePQIndex
-* - onlineIVFLSH @ref OnlineIVFLSHIndex
-* - HNSWNaive @ref HNSWNaiveIndex
-* - faiss @ref FaissIndex
+ * - flat @ref FlatIndex
+ * - parallelPartition @ref ParallelPartitionIndex
+ * - onlinePQ @ref OnlinePQIndex
+ * - onlineIVFLSH @ref OnlineIVFLSHIndex
+ * - HNSWNaive @ref HNSWNaiveIndex
+ * - faiss @ref FaissIndex
+ * - congestionDrop @ref CongestionDropIndex
+ * - bufferedCongestionDrop @ref BufferedCongestionDropIndex
+ * - flatAMMIP @ref FlatAMMIPIndex
 * @subsection subsec_tag_loader Of data loaders (Please go to class @ref DataLoaderTable for more details)
 * - random @ref RandomDataLoader
 * - fvecs @ref FVECSDataLoader
@@ -80,7 +83,8 @@
 * - assuming you have made A.cpp into a_test, append  ./a_test "--success" to the last row of .github/workflows/cmake.yml
 *
 * @section python_doc Python Documents
-* Please find the class named @ref Rania_Python for python APIs
+* - Please find the class named @ref Candy_Python for python APIs (old style)
+* - Please enable pybind build and install the *.so to system path, you can import 
 **/
 /**
 *

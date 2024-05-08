@@ -152,7 +152,7 @@ var hierarchy =
     [ "CANDY::PQEncoder", "classCANDY_1_1PQEncoder.html", null ],
     [ "CANDY::ProductQuantizer", "classCANDY_1_1ProductQuantizer.html", null ],
     [ "CANDY::FLANN::RandomCenterChooser", "classCANDY_1_1FLANN_1_1RandomCenterChooser.html", null ],
-    [ "CANDY::Rania_Python", "classCANDY_1_1Rania__Python.html", null ],
+    [ "CANDY::Candy_Python", "classCANDY_1_1Rania__Python.html", null ],
     [ "DIVERSE_METER::rapl_power_unit", "structDIVERSE__METER_1_1rapl__power__unit.html", null ],
     [ "CANDY::FLANN::ResultSet", "classCANDY_1_1FLANN_1_1ResultSet.html", null ],
     [ "CANDY::SimpleStreamClustering", "classCANDY_1_1SimpleStreamClustering.html", null ],
