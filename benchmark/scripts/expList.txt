@@ -1,15 +1,16 @@
 downloadDataSet
-downloadOpenImageDrift
 DPRDataset
 scanIPEndToEnd
 scanL2EndToEnd
 scanIPEndToEndNoDropping
+scanIPConceptDriftTopic
+scanIPConceptDriftHotSpot
+scanL2EndToEndDistance
+scanIPEndToEndML
 scanIPDimensions
 scanIPVecVolume
 scanIPFeedMode
 scanIPEventRate
-scanIPConceptDriftTopic
-scanIPConceptDriftHotSpot
-scanIPConceptDriftTopicNoDropping
+
 
 

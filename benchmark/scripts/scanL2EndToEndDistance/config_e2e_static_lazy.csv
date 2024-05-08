@@ -46,3 +46,4 @@ learningRate,0.1,Double
 MLTrainMargin,0.75,Double
 MLTrainEpochs,30,I64
 opt_mode,0,I64
+ads_epsilon,2.1,Double

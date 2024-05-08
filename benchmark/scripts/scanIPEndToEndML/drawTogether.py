@@ -60,7 +60,7 @@ dataset_vecDim_mapping = {
     'Msong': 420
 }
 dataset_dataPath_mapping = {
-    'WTE': 'datasets/DPR/data_50000.fvecs',
+    'WTE': 'results/scanIPConceptDriftTopic/driftData/data_50000.fvecs',
     'DPR': 'datasets/DPR/DPR100KC4.fvecs',
     'SIFT': 'datasets/fvecs/sift1M/sift/sift_base.fvecs',
     'Enron': 'datasets/hdf5/enron/enron.hdf5',
@@ -70,8 +70,7 @@ dataset_dataPath_mapping = {
     'Msong': 'datasets/hdf5/msong/msong.hdf5',
 }
 dataset_queryPath_mapping = {
-    'DPR': 'datasets/DPR/DPR10KC4Q.fvecs',
-    'WTE': 'datasets/DPR/query_50000.fvecs',
+    'WTE': 'results/scanIPConceptDriftTopic/driftData/query_50000.fvecs',
     'SIFT': 'datasets/fvecs/sift1M/sift/sift_query.fvecs',
     'Enron': 'datasets/hdf5/enron/enron.hdf5',
     'Sun': 'datasets/hdf5/sun/sun.hdf5',
