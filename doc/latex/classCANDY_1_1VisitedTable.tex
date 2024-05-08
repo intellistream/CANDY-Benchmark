@@ -1,0 +1,51 @@
+\hypertarget{classCANDY_1_1VisitedTable}{}\doxysection{CANDY\+::Visited\+Table Class Reference}
+\label{classCANDY_1_1VisitedTable}\index{CANDY::VisitedTable@{CANDY::VisitedTable}}
+
+
+{\ttfamily \#include $<$HNSW.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::Visited\+Table\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{classCANDY_1_1VisitedTable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1VisitedTable_a5648184565ed40d8f8c0982b50d631bf}\label{classCANDY_1_1VisitedTable_a5648184565ed40d8f8c0982b50d631bf}} 
+void {\bfseries set} (Vertex\+Ptr idx)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1VisitedTable_a0d9d5970433038caa80521386ba1f496}\label{classCANDY_1_1VisitedTable_a0d9d5970433038caa80521386ba1f496}} 
+bool {\bfseries get} (Vertex\+Ptr idx)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1VisitedTable_a3bc1ae8bf02ec541b96005f8e1c9a6aa}\label{classCANDY_1_1VisitedTable_a3bc1ae8bf02ec541b96005f8e1c9a6aa}} 
+void {\bfseries set} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} idx)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1VisitedTable_aca8fe7187bac7e421d771b0579010d23}\label{classCANDY_1_1VisitedTable_aca8fe7187bac7e421d771b0579010d23}} 
+bool {\bfseries get} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} idx)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1VisitedTable_ae875d9750a23028c1475d98a4856b0eb}\label{classCANDY_1_1VisitedTable_ae875d9750a23028c1475d98a4856b0eb}} 
+void {\bfseries advance} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1VisitedTable_a003fb22413fd5129d63c12739714a994}\label{classCANDY_1_1VisitedTable_a003fb22413fd5129d63c12739714a994}} 
+std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}}, uint8\+\_\+t $>$ \mbox{\hyperlink{classCANDY_1_1VisitedTable_a003fb22413fd5129d63c12739714a994}{visited\+\_\+}}
+\begin{DoxyCompactList}\small\item\em For Tensor t, use visited\mbox{[}Tensor\+Ptr\mbox{]} to define if its visited;. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1VisitedTable_aa3744810679968bb31c35bc0a638d85a}\label{classCANDY_1_1VisitedTable_aa3744810679968bb31c35bc0a638d85a}} 
+int {\bfseries visno}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Table to store visited iteration number during search and insert; Now only update the number and store nothing 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+HNSWNaive/HNSW.\+h\end{DoxyCompactItemize}

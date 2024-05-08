@@ -1,0 +1,22 @@
+<map id="CANDY::AbstractIndex" name="CANDY::AbstractIndex">
+<area shape="rect" id="node1" title="The abstract class of an index approach." alt="" coords="5,468,169,495"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1BucketedFlatIndex.html" title="The class of splitting similar vectors into fixed number of buckets, each bucket is managed by FlatIn..." alt="" coords="227,5,422,32"/>
+<area shape="rect" id="node3" href="$classCANDY_1_1BufferedCongestionDropIndex.html" title="Similar to CongestionDropIndex, but will try to place some of the online data into an ingestion&#45;effic..." alt="" coords="223,57,426,98"/>
+<area shape="rect" id="node4" href="$classCANDY_1_1CongestionDropIndex.html" title="A container index to evaluate other bottom index, will just drop the data if congestion occurs,..." alt="" coords="217,123,432,149"/>
+<area shape="rect" id="node5" href="$classCANDY_1_1DPGIndex.html" title="A hierarchical algorithm based on a data structure consistent with NNDescentIndex,..." alt="" coords="255,173,394,200"/>
+<area shape="rect" id="node6" href="$classCANDY_1_1DistributedPartitionIndex.html" title="A basic distributed index, works under generic data partition, allow configurable index of threads,..." alt="" coords="225,225,425,266"/>
+<area shape="rect" id="node7" href="$classCANDY_1_1FaissIndex.html" title="The class of converting faiss index api into rania index style." alt="" coords="253,291,396,317"/>
+<area shape="rect" id="node8" href="$classCANDY_1_1FlannIndex.html" title=" " alt="" coords="251,341,398,368"/>
+<area shape="rect" id="node9" href="$classCANDY_1_1FlatAMMIPIndex.html" title="The class of a flat index approach, using brutal force management for data, but approximate matrix mu..." alt="" coords="235,392,415,419"/>
+<area shape="rect" id="node10" href="$classCANDY_1_1FlatAMMIPObjIndex.html" title="Similar to FlatAMMIPIndex, but additionally has object storage (currently only string)" alt="" coords="223,443,426,469"/>
+<area shape="rect" id="node11" href="$classCANDY_1_1FlatIndex.html" title="The class of a flat index approach, using brutal force management." alt="" coords="257,493,392,520"/>
+<area shape="rect" id="node12" href="$classCANDY_1_1HNSWNaiveIndex.html" title="The class of a HNSW index approach, store the data in each vertex." alt="" coords="230,544,419,571"/>
+<area shape="rect" id="node13" href="$classCANDY_1_1NNDescentIndex.html" title="An index whose core algorithm is only used for offline construction, but based on its main data struc..." alt="" coords="233,595,416,621"/>
+<area shape="rect" id="node14" href="$classCANDY_1_1OnlineIVFLSHIndex.html" title="A LSH indexing, using 2&#45;tier IVF List to manage buckets. The base tier is hamming encoding,..." alt="" coords="225,645,424,672"/>
+<area shape="rect" id="node16" href="$classCANDY_1_1OnlinePQIndex.html" title="The class of online PQ approach, using IVF&#45;style coarse&#45;grained + fine&#45;grained quantizers." alt="" coords="239,696,410,723"/>
+<area shape="rect" id="node17" href="$classCANDY_1_1PQIndex.html" title="class for indexing vectors using product quantizations, this is a raw implementation without hierachi..." alt="" coords="261,747,389,773"/>
+<area shape="rect" id="node18" href="$classCANDY_1_1ParallelPartitionIndex.html" title="A basic parallel index, works under generic data partition, allow configurable index of threads,..." alt="" coords="237,798,413,839"/>
+<area shape="rect" id="node19" href="$classCANDY_1_1YinYangGraphIndex.html" title="The class of indexing using a yinyang graph, first use LSH to roughly locate the range of a tensor,..." alt="" coords="225,864,424,891"/>
+<area shape="rect" id="node20" href="$classCANDY_1_1YinYangGraphSimpleIndex.html" title="The class of indexing using a simpe yinyang graph,there is no LSH search is only within the linked yi..." alt="" coords="221,915,429,957"/>
+<area shape="rect" id="node15" href="$classCANDY_1_1OnlineIVFL2HIndex.html" title="A L2H (learning 2 hash) indexing, using 2&#45;tier IVF List to manage buckets. The base tier is hamming e..." alt="" coords="480,645,679,672"/>
+</map>

@@ -1,0 +1,183 @@
+\hypertarget{classCANDY_1_1ZipfDataLoader}{}\doxysection{CANDY\+::Zipf\+Data\+Loader Class Reference}
+\label{classCANDY_1_1ZipfDataLoader}\index{CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}}
+
+
+The class to load zipf data.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Loader/\+Zipf\+Data\+Loader.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Zipf\+Data\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classCANDY_1_1ZipfDataLoader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Zipf\+Data\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1ZipfDataLoader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1ZipfDataLoader_ab46e5be2d5b3068027c9fbb7250ae2f2}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em Set the GLOBAL config map related to this loader. \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1ZipfDataLoader_a4df081f7d1b0efcd75153ec228ee3451}{get\+Data}} ()
+\begin{DoxyCompactList}\small\item\em get the data tensor \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1ZipfDataLoader_a43117858967fbb5921eee16325240ca5}{get\+Query}} ()
+\begin{DoxyCompactList}\small\item\em get the query tensor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_a9569b21a81d7a040516690b57998f68d}\label{classCANDY_1_1ZipfDataLoader_a9569b21a81d7a040516690b57998f68d}} 
+torch\+::\+Tensor {\bfseries generate\+Zipf\+Distribution} (int64\+\_\+t n, int64\+\_\+t m, double alpha)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_a5ba1bf14a2ab1853de637cf7758b1896}\label{classCANDY_1_1ZipfDataLoader_a5ba1bf14a2ab1853de637cf7758b1896}} 
+torch\+::\+Tensor {\bfseries A}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_a9e7061e5711fa3bd952a2707e1c53743}\label{classCANDY_1_1ZipfDataLoader_a9e7061e5711fa3bd952a2707e1c53743}} 
+torch\+::\+Tensor {\bfseries B}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_a8321722a3c663c4e15bb2bf4765f50bf}\label{classCANDY_1_1ZipfDataLoader_a8321722a3c663c4e15bb2bf4765f50bf}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_abd289d6f4cca545246ceb07a572448e0}\label{classCANDY_1_1ZipfDataLoader_abd289d6f4cca545246ceb07a572448e0}} 
+int64\+\_\+t {\bfseries vec\+Volume}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_a90581b47b682b8ecd12d430553db6dd5}\label{classCANDY_1_1ZipfDataLoader_a90581b47b682b8ecd12d430553db6dd5}} 
+int64\+\_\+t {\bfseries query\+Size}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_a4399a0d16e07fe55b35111cdab9bebe5}\label{classCANDY_1_1ZipfDataLoader_a4399a0d16e07fe55b35111cdab9bebe5}} 
+int64\+\_\+t {\bfseries seed}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_add1c886f3cb5e64c66f961af09f34714}\label{classCANDY_1_1ZipfDataLoader_add1c886f3cb5e64c66f961af09f34714}} 
+int64\+\_\+t {\bfseries drift\+Position}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_abb88132a3e0c31917327cd8216b21f2d}\label{classCANDY_1_1ZipfDataLoader_abb88132a3e0c31917327cd8216b21f2d}} 
+double {\bfseries drift\+Offset}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_a78ef8728a97a768dcffd356fc4e168df}\label{classCANDY_1_1ZipfDataLoader_a78ef8728a97a768dcffd356fc4e168df}} 
+double {\bfseries query\+Noise\+Fraction}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_aab789e7381aaed27b20dd5b48bdff335}\label{classCANDY_1_1ZipfDataLoader_aab789e7381aaed27b20dd5b48bdff335}} 
+double {\bfseries zipf\+Alpha}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class to load zipf data. 
+
+\begin{DoxyNote}{Note}
+\+:
+\begin{DoxyItemize}
+\item Must have a global config by \mbox{\hyperlink{classCANDY_1_1ZipfDataLoader_ab46e5be2d5b3068027c9fbb7250ae2f2}{set\+Config}} 
+\end{DoxyItemize}
+
+Default behavior
+\begin{DoxyItemize}
+\item create
+\item call \mbox{\hyperlink{classCANDY_1_1ZipfDataLoader_ab46e5be2d5b3068027c9fbb7250ae2f2}{set\+Config}}, this function will also generate the tensor A and B correspondingly
+\item call \mbox{\hyperlink{classCANDY_1_1ZipfDataLoader_a4df081f7d1b0efcd75153ec228ee3451}{get\+Data}} to get the raw data
+\item call \mbox{\hyperlink{classCANDY_1_1ZipfDataLoader_a43117858967fbb5921eee16325240ca5}{get\+Query}} to get the query 
+\end{DoxyItemize}
+
+parameters of config
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item vec\+Volume, the volume of vectors, default 1000, I64
+\item normalize\+Tensor, whether or not normalize the tensors in L2, 1 (yes), I64
+\item \char`\"{}zipf\+Alpha\char`\"{} The zipf factor for, Double, 0-\/highly skewed value. 1-\/ uniform dist.
+\item drift\+Position, the position of starting some \textquotesingle{}concept drift\textquotesingle{}, default 0 (no drift), I64
+\begin{DoxyItemize}
+\item drift\+Offset, the offset value of concept drift, default 0.\+5, Double
+\item query\+Noise\+Fraction, the fraction of noise in query, default 0, allow 0$\sim$1, Double
+\end{DoxyItemize}
+\item query\+Size, the size of query, default 10, I64
+\item seed, the Zipf seed, default 7758258, I64 
+\end{DoxyItemize}
+
+\+: default name tags \char`\"{}\+Zipf\char`\"{}\+: \mbox{\hyperlink{classCANDY_1_1ZipfDataLoader}{Zipf\+Data\+Loader}} 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_a4df081f7d1b0efcd75153ec228ee3451}\label{classCANDY_1_1ZipfDataLoader_a4df081f7d1b0efcd75153ec228ee3451}} 
+\index{CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}!getData@{getData}}
+\index{getData@{getData}!CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}}
+\doxysubsubsection{\texorpdfstring{getData()}{getData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Zipf\+Data\+Loader\+::get\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get the data tensor 
+
+\begin{DoxyReturn}{Returns}
+the generated data tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a4d66a082e74fd3bf413dd9dcb6ffa809}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_a43117858967fbb5921eee16325240ca5}\label{classCANDY_1_1ZipfDataLoader_a43117858967fbb5921eee16325240ca5}} 
+\index{CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}!getQuery@{getQuery}}
+\index{getQuery@{getQuery}!CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}}
+\doxysubsubsection{\texorpdfstring{getQuery()}{getQuery()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Zipf\+Data\+Loader\+::get\+Query (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get the query tensor 
+
+\begin{DoxyReturn}{Returns}
+the generated query tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a812faba5e0da35c15880eeb7f62dc504}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1ZipfDataLoader_ab46e5be2d5b3068027c9fbb7250ae2f2}\label{classCANDY_1_1ZipfDataLoader_ab46e5be2d5b3068027c9fbb7250ae2f2}} 
+\index{CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Zipf\+Data\+Loader\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the GLOBAL config map related to this loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & The config map \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the config is successfully set 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a7352d8538a9bc448bc36c01f2bf8de6e}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Data\+Loader/\mbox{\hyperlink{ZipfDataLoader_8h}{Zipf\+Data\+Loader.\+h}}\item 
+src/\+Data\+Loader/Zipf\+Data\+Loader.\+cpp\end{DoxyCompactItemize}

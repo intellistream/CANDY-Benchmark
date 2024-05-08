@@ -1,0 +1,93 @@
+\hypertarget{classCANDY_1_1FlannComponent}{}\doxysection{CANDY\+::Flann\+Component Class Reference}
+\label{classCANDY_1_1FlannComponent}\index{CANDY::FlannComponent@{CANDY::FlannComponent}}
+
+
+Inheritance diagram for CANDY\+::Flann\+Component\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{classCANDY_1_1FlannComponent__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Flann\+Component\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1FlannComponent__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_a4741b3a3407b23ecfa7d844a2b7eb2fe}\label{classCANDY_1_1FlannComponent_a4741b3a3407b23ecfa7d844a2b7eb2fe}} 
+virtual void {\bfseries add\+Points} (torch\+::\+Tensor \&t)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_a83755b53a66550b538830768b64e80dd}\label{classCANDY_1_1FlannComponent_a83755b53a66550b538830768b64e80dd}} 
+virtual int {\bfseries knn\+Search} (torch\+::\+Tensor \&q, int64\+\_\+t $\ast$idx, float $\ast$distances, int64\+\_\+t aknn)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_ac9ac70fc93ecc28128173c11eb0ad6cb}\label{classCANDY_1_1FlannComponent_ac9ac70fc93ecc28128173c11eb0ad6cb}} 
+virtual bool {\bfseries set\+Config} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlannComponent_af42eea58d92c48b72ebc3d2709c4f258}{set\+Params}} (\mbox{\hyperlink{structCANDY_1_1FlannParam}{Flann\+Param}} param)
+\begin{DoxyCompactList}\small\item\em set the params from auto-\/tuning \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_ad484bea0df1fd0ba607643f28fd34ba2}\label{classCANDY_1_1FlannComponent_ad484bea0df1fd0ba607643f28fd34ba2}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_a7b8852e37fdc0fada6972c9b3872addb}\label{classCANDY_1_1FlannComponent_a7b8852e37fdc0fada6972c9b3872addb}} 
+uint64\+\_\+t {\bfseries ntotal}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_a3c1ef8ae39b5c3614e493dda68a5d1db}\label{classCANDY_1_1FlannComponent_a3c1ef8ae39b5c3614e493dda68a5d1db}} 
+int {\bfseries checks} = 32
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_a6a3c77451babe999a945b17506481c19}\label{classCANDY_1_1FlannComponent_a6a3c77451babe999a945b17506481c19}} 
+float {\bfseries eps} = 0.\+0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_a30daa44d2432382d46eb3e31105e140d}\label{classCANDY_1_1FlannComponent_a30daa44d2432382d46eb3e31105e140d}} 
+int64\+\_\+t {\bfseries last\+NNZ}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_abf3bea6d797dac5b39a1b9c6ddda5dfd}\label{classCANDY_1_1FlannComponent_abf3bea6d797dac5b39a1b9c6ddda5dfd}} 
+int64\+\_\+t {\bfseries expand\+Step}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_a2adf2d178e4d78e08adb5c6a7fa509c9}\label{classCANDY_1_1FlannComponent_a2adf2d178e4d78e08adb5c6a7fa509c9}} 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1FlannComponent_a2adf2d178e4d78e08adb5c6a7fa509c9}{db\+Tensor}}
+\begin{DoxyCompactList}\small\item\em Pointer dataset. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_a455bdb1bcbee59519e3deb7d3e25eddd}\label{classCANDY_1_1FlannComponent_a455bdb1bcbee59519e3deb7d3e25eddd}} 
+faiss\+::\+Metric\+Type {\bfseries faiss\+Metric} = faiss\+::\+METRIC\+\_\+\+L2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1FlannComponent_af42eea58d92c48b72ebc3d2709c4f258}\label{classCANDY_1_1FlannComponent_af42eea58d92c48b72ebc3d2709c4f258}} 
+\index{CANDY::FlannComponent@{CANDY::FlannComponent}!setParams@{setParams}}
+\index{setParams@{setParams}!CANDY::FlannComponent@{CANDY::FlannComponent}}
+\doxysubsubsection{\texorpdfstring{setParams()}{setParams()}}
+{\footnotesize\ttfamily virtual bool CANDY\+::\+Flann\+Component\+::set\+Params (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCANDY_1_1FlannParam}{Flann\+Param}}}]{param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+set the params from auto-\/tuning 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & best param \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if success 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1KmeansTree_a317a6c3ce41ab36dd3597e82c803cfe4}{CANDY\+::\+Kmeans\+Tree}}, and \mbox{\hyperlink{classCANDY_1_1KdTree_a68a29c4b0c7f05033334722d384858aa}{CANDY\+::\+Kd\+Tree}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Flann\+Index/Flann\+Component.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,59 @@
+
+\begin{DoxyRefList}
+\item[Class \mbox{\hyperlink{classCANDY_1_1CANDYObject}{CANDY\+::CANDYObject}} ]\label{todo__todo000001}%
+\Hypertarget{todo__todo000001}%
+to finish the functions of setting void $\ast$ pointers  
+\item[Class \mbox{\hyperlink{classCANDY_1_1Clustering}{CANDY\+::Clustering}} ]\label{todo__todo000007}%
+\Hypertarget{todo__todo000007}%
+current build of centroids still depends on Index\+Flat\+L2, perhaps re-\/implemented in a total tensor manner
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classCANDY_1_1Clustering_a2e374f652394037161ed31e6b848e03a}{train}}  
+\end{DoxyItemize}
+\item[Class \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex}{CANDY\+::Distributed\+Partition\+Index}} ]\label{todo__todo000002}%
+\Hypertarget{todo__todo000002}%
+consider an unblocked, optimized version of \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_aa232b9bce9ecc57c13efd748a246fb3d}{insert\+Tensor}}, as we did in \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ab6db191148f7496633210a064ec1ea9c}{load\+Initial\+Tensor}} ?  
+\item[Class \mbox{\hyperlink{classCANDY_1_1FaissIndex}{CANDY\+::Faiss\+Index}} ]\label{todo__todo000003}%
+\Hypertarget{todo__todo000003}%
+more explanation on IVFPQ, NNDecent, LSH, NSG  
+\item[Member \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList_a79005e2c50aed1cd435cef0bc6df2846}{CANDY\+::IVFTensor\+Encoding\+List\+::get\+Minimum\+Num\+Of\+Tensors\+Inside\+Bucket}} (torch\+::\+Tensor \&t, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, uint64\+\_\+t bkt\+Idx, int64\+\_\+t minimum\+Num)]\label{todo__todo000004}%
+\Hypertarget{todo__todo000004}%
+improve the efficiency of this function in travsing lists!  
+\item[Member \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList_a4188159290de792c601da026d6256f99}{CANDY\+::IVFTensor\+Encoding\+List\+::get\+Minimum\+Num\+Of\+Tensors\+Inside\+Bucket\+Hamming}} (torch\+::\+Tensor \&t, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, uint64\+\_\+t bkt\+Idx, int64\+\_\+t minimum\+Num)]\label{todo__todo000005}%
+\Hypertarget{todo__todo000005}%
+improve the efficiency of this function in travsing lists!  
+\item[Class \mbox{\hyperlink{classCANDY_1_1PQIndex}{CANDY\+::PQIndex}} ]\label{todo__todo000008}%
+\Hypertarget{todo__todo000008}%
+delete and revise a tensor may not be feasible for \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}}
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classCANDY_1_1PQIndex_ae459a19ecb3e94508f48e2c06d82b515}{delete\+Tensor}}
+\item \mbox{\hyperlink{classCANDY_1_1PQIndex_a15d86a6b4b873b28ce693f088aa5a8bd}{revise\+Tensor}} 
+\end{DoxyItemize}
+
+encode and decode may be verbose for both code tensor and code pointers
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classCANDY_1_1PQIndex_a497ffde8db74ea3fb13efe62146dd154}{search\+Tensor}}
+\item \mbox{\hyperlink{classCANDY_1_1PQIndex_a44bac43c454b1b28151cb696ab48acbd}{insert\+Tensor}}  
+\end{DoxyItemize}
+\item[Class \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering}{CANDY\+::Simple\+Stream\+Clustering}} ]\label{todo__todo000006}%
+\Hypertarget{todo__todo000006}%
+two functions are extremely slow and costly, needs to be re-\/implemented
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a37a18894af9925a11bad920de3c3f53c}{build\+Centroids}}
+\item \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_ad7776c54cc5804ab6edc870e48cf07da}{classify\+Multi\+Row}}  
+\end{DoxyItemize}
+\item[Class \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex}{CANDY\+::Yin\+Yang\+Graph\+Index}} ]\label{todo__todo000012}%
+\Hypertarget{todo__todo000012}%
+implement the delete and revise later  
+\item[Class \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex}{CANDY\+::Yin\+Yang\+Graph\+Simple\+Index}} ]\label{todo__todo000013}%
+\Hypertarget{todo__todo000013}%
+implement the delete and revise later  
+\item[Member \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a08b3ed71f86ea8c0a48b16ef0821fd17}{CANDY\+::Yin\+Yang\+Vertex\+::greedy\+Search\+For\+KNearest\+Tensor}} (torch\+::\+Tensor \&src, Yin\+Yang\+Vertex\+Ptr entry\+Point, int64\+\_\+t k, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)]\label{todo__todo000009}%
+\Hypertarget{todo__todo000009}%
+This one is just NNDecent greedy policy, perhaps can be better  
+\item[Member \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a724d2ff950f050b0bc1a4d02b2152794}{CANDY\+::Yin\+Yang\+Vertex\+::greedy\+Search\+For\+KNearest\+Vertex}} (Yin\+Yang\+Vertex\+Ptr src, Yin\+Yang\+Vertex\+Ptr entry\+Point, int64\+\_\+t k, bool ignore\+Yin, bool force\+The\+Same\+Level, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)]\label{todo__todo000010}%
+\Hypertarget{todo__todo000010}%
+This one is just NNDecent greedy policy, perhaps can be better  
+\item[Member \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a3e11e6d843ce762a8803bd3d85586740}{CANDY\+::Yin\+Yang\+Vertex\+::greedy\+Search\+For\+KNearest\+Vertex}} (torch\+::\+Tensor \&src, Yin\+Yang\+Vertex\+Ptr entry\+Point, int64\+\_\+t k, bool ignore\+Yin, bool force\+The\+Same\+Level, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)]\label{todo__todo000011}%
+\Hypertarget{todo__todo000011}%
+This one is just NNDecent greedy policy, perhaps can be better 
+\end{DoxyRefList}

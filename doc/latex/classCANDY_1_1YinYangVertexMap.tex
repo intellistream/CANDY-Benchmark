@@ -1,0 +1,182 @@
+\hypertarget{classCANDY_1_1YinYangVertexMap}{}\doxysection{CANDY\+::Yin\+Yang\+Vertex\+Map Class Reference}
+\label{classCANDY_1_1YinYangVertexMap}\index{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}}
+
+
+Collaboration diagram for CANDY\+::Yin\+Yang\+Vertex\+Map\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{classCANDY_1_1YinYangVertexMap__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_ac7f5845a4ee24b8b5edad3a4b0865e93}\label{classCANDY_1_1YinYangVertexMap_ac7f5845a4ee24b8b5edad3a4b0865e93}} 
+{\bfseries Yin\+Yang\+Vertex\+Map} (const \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} \&other)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_a984df113fdcedda118626de90e3a0c66}\label{classCANDY_1_1YinYangVertexMap_a984df113fdcedda118626de90e3a0c66}} 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap_a984df113fdcedda118626de90e3a0c66}{lock}} ()
+\begin{DoxyCompactList}\small\item\em lock this map \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_a19c509ae5c924c5d8474acbc2fa108cd}\label{classCANDY_1_1YinYangVertexMap_a19c509ae5c924c5d8474acbc2fa108cd}} 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap_a19c509ae5c924c5d8474acbc2fa108cd}{unlock}} ()
+\begin{DoxyCompactList}\small\item\em unlock this map \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap_a387b8790c0f6e23ac4d406d98fd08420}{exist}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}} key)
+\begin{DoxyCompactList}\small\item\em To detect whether a vertex existis in the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap_afa3e277ebf4e1bcc865c09cfbb41dd03}{edit}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}} kv)
+\begin{DoxyCompactList}\small\item\em To edit, i.\+e., mark the existence of a vertex. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap_a22fecb6054623f1dfa3b8f7d707e7e8b}{erase}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}} kv)
+\begin{DoxyCompactList}\small\item\em To erase, i.\+e., mark the absence of a vertex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap_a2fccce56c66325bc1f6ab219b4287b9f}{nearest\+Vertex\+Within\+Me}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} src)
+\begin{DoxyCompactList}\small\item\em to get the nearest vertex of src, from the map of this class \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap_a41fae3a36fa0af705da4e8a74f39456e}{nearest\+Vertex\+Within\+Map}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} src, \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} \&vmap, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)
+\begin{DoxyCompactList}\small\item\em to get the nearest vertex of src, from a map \end{DoxyCompactList}\item 
+static std\+::vector$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} $>$ \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap_a0a164399a75e0772f8aa3df68fd63b63}{nearest\+KVertex\+Within\+Map}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} src, \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} \&vmap, int64\+\_\+t k, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)
+\begin{DoxyCompactList}\small\item\em to get the nearest vertex k of src, from a map \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_a52092c4a87d28d3144b696a5309071c8}\label{classCANDY_1_1YinYangVertexMap_a52092c4a87d28d3144b696a5309071c8}} 
+std\+::map$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}, \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}} $>$ {\bfseries vertex\+Map}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_a60c06caa13246fbd7fb432e64eb4e825}\label{classCANDY_1_1YinYangVertexMap_a60c06caa13246fbd7fb432e64eb4e825}} 
+std\+::mutex {\bfseries m\+\_\+mut}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_afa3e277ebf4e1bcc865c09cfbb41dd03}\label{classCANDY_1_1YinYangVertexMap_afa3e277ebf4e1bcc865c09cfbb41dd03}} 
+\index{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!edit@{edit}}
+\index{edit@{edit}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily void CANDY\+::\+Yin\+Yang\+Vertex\+Map\+::edit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}}]{kv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To edit, i.\+e., mark the existence of a vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kv} & the vertex pointer as key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool for the result 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_a22fecb6054623f1dfa3b8f7d707e7e8b}\label{classCANDY_1_1YinYangVertexMap_a22fecb6054623f1dfa3b8f7d707e7e8b}} 
+\index{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!erase@{erase}}
+\index{erase@{erase}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily void CANDY\+::\+Yin\+Yang\+Vertex\+Map\+::erase (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}}]{kv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To erase, i.\+e., mark the absence of a vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kv} & the vertex pointer as key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool for the result 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_a387b8790c0f6e23ac4d406d98fd08420}\label{classCANDY_1_1YinYangVertexMap_a387b8790c0f6e23ac4d406d98fd08420}} 
+\index{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!exist@{exist}}
+\index{exist@{exist}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}}
+\doxysubsubsection{\texorpdfstring{exist()}{exist()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Vertex\+Map\+::exist (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To detect whether a vertex existis in the map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & the vertex pointer as key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool for the result 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_a0a164399a75e0772f8aa3df68fd63b63}\label{classCANDY_1_1YinYangVertexMap_a0a164399a75e0772f8aa3df68fd63b63}} 
+\index{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!nearestKVertexWithinMap@{nearestKVertexWithinMap}}
+\index{nearestKVertexWithinMap@{nearestKVertexWithinMap}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}}
+\doxysubsubsection{\texorpdfstring{nearestKVertexWithinMap()}{nearestKVertexWithinMap()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}} $>$ CANDY\+::\+Yin\+Yang\+Vertex\+Map\+::nearest\+KVertex\+Within\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}}]{src,  }\item[{\mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{CANDY\+::\+Yin\+Yang\+Vertex\+Map}} \&}]{vmap,  }\item[{int64\+\_\+t}]{k,  }\item[{CANDY\+::float\+Distance\+Function\+\_\+t}]{df = {\ttfamily YinYangGraph\+\_\+DistanceFunctions\+:\+:L2Distance} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to get the nearest vertex k of src, from a map 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & the source vertex to be used as reference \\
+\hline
+{\em vmap,the} & vertex map \\
+\hline
+{\em k,the} & number of nearest vertex to be found \\
+\hline
+{\em df} & the distance function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the nearest vertex 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item traverse
+\item sort
+\end{DoxyEnumerate}\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_a41fae3a36fa0af705da4e8a74f39456e}\label{classCANDY_1_1YinYangVertexMap_a41fae3a36fa0af705da4e8a74f39456e}} 
+\index{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!nearestVertexWithinMap@{nearestVertexWithinMap}}
+\index{nearestVertexWithinMap@{nearestVertexWithinMap}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}}
+\doxysubsubsection{\texorpdfstring{nearestVertexWithinMap()}{nearestVertexWithinMap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}} CANDY\+::\+Yin\+Yang\+Vertex\+Map\+::nearest\+Vertex\+Within\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}}]{src,  }\item[{\mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{CANDY\+::\+Yin\+Yang\+Vertex\+Map}} \&}]{vmap,  }\item[{float\+Distance\+Function\+\_\+t}]{df = {\ttfamily YinYangGraph\+\_\+DistanceFunctions\+:\+:L2Distance} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to get the nearest vertex of src, from a map 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & the source vertex to be used as reference \\
+\hline
+{\em vmap,the} & vertex map \\
+\hline
+{\em df,the} & distance function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the nearest vertex 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertexMap_a2fccce56c66325bc1f6ab219b4287b9f}\label{classCANDY_1_1YinYangVertexMap_a2fccce56c66325bc1f6ab219b4287b9f}} 
+\index{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!nearestVertexWithinMe@{nearestVertexWithinMe}}
+\index{nearestVertexWithinMe@{nearestVertexWithinMe}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}}
+\doxysubsubsection{\texorpdfstring{nearestVertexWithinMe()}{nearestVertexWithinMe()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} CANDY\+::\+Yin\+Yang\+Vertex\+Map\+::nearest\+Vertex\+Within\+Me (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}}}]{src }\end{DoxyParamCaption})}
+
+
+
+to get the nearest vertex of src, from the map of this class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & the source vertex to be used as reference \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the nearest vertex 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Yin\+Yang\+Graph\+Index/\mbox{\hyperlink{YinYangGraph_8h}{Yin\+Yang\+Graph.\+h}}\item 
+src/\+CANDY/\+Yin\+Yang\+Graph\+Index/Yin\+Yang\+Graph.\+cpp\end{DoxyCompactItemize}

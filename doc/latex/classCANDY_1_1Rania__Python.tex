@@ -1,0 +1,810 @@
+\hypertarget{classCANDY_1_1Rania__Python}{}\doxysection{CANDY\+::Rania\+\_\+\+Python Class Reference}
+\label{classCANDY_1_1Rania__Python}\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+
+
+The python bounding functions.  
+
+
+
+
+{\ttfamily \#include $<$CANDYPYTHON.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a048c31e2a2a3ebe5793bef5625967c1d}{index\+\_\+create}} (string name, string type)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to creat an index at backend. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a0dcecebdd8cadc2dbf8eab15711ab338}{index\+\_\+load\+Cfg\+From\+File}} (string name, string fname)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to load the config map related to a specific index from file. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a29de8bdca0454c5c9b69181584a67f82}{index\+\_\+edit\+Cfg\+Double}} (string name, string key, double value)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to change the config map related to a specific index. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a1bd4808f1b6c19a7def7ba182aa1c712}{index\+\_\+edit\+Cfg\+Str}} (string name, string key, string value)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to change the config map related to a specific index. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_acf2ee59735edb9f346c3e7c2c6e5b3f9}{index\+\_\+edit\+Cfg\+I64}} (string name, string key, int64\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to change the config map related to a specific index. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_aa008a934d3b30b1e325895242ba42bba}{index\+\_\+init}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to init an index with its bounded config. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a8cbbee229026a6a5f46cd1d600201cba}{index\+\_\+insert}} (string name, torch\+::\+Tensor t)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to insert tensor to an index. \end{DoxyCompactList}\item 
+std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1Rania__Python_a4eec7646ea43740ec5456695c79f6080}{index\+\_\+search}} (string name, torch\+::\+Tensor t, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to search tensor. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_ab3ec6b498c91f24191ace5fb748a7661}{index\+\_\+delete}} (string name, torch\+::\+Tensor t, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to delete tensor to an index. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a2865271a23a684eba8a033c6c8efa0f4}{index\+\_\+revise}} (string name, torch\+::\+Tensor t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to revise tensor to an index. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a14f2036696ce86f67e7c99763b989d54}{index\+\_\+raw\+Data}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to return raw\+Data. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a2b6700370053871dc0441e0933146c09}{index\+\_\+reset}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to creat an index at backend. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a51184b17abb5e051f1d1174f1ce8e043}{index\+\_\+start\+HPC}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to start HPC features. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a80b01f5e7ae6a190d5c1aa0797691d0f}{index\+\_\+end\+HPC}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to end HPC features. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a529a9084eda05c6838fa28fae928d384}{tensor\+To\+File}} (torch\+::\+Tensor A, std\+::string fname)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to save a tensor into file. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_ad2fa9941f25d2c80887205e06b886123}{tensor\+From\+File}} (std\+::string fname)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to load a tensor from file. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_aae8ec83d819fd5708ca67f2598b8fe8c}{index\+\_\+set\+Frozen\+Level}} (string name, int64\+\_\+t frozen\+LV)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to set the frozen level of online updating internal state. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a752755b49c76e5a0e51c91eccd96d177}{index\+\_\+offline\+Build}} (string name, torch\+::\+Tensor t)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to offline\+Build. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_af7184eed79a18e44ce0bb9aa73dd55ec}{index\+\_\+load\+Initial}} (string name, torch\+::\+Tensor t)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to load initial tensor. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a0aa4a00007f2e298cfeb801f14826797}{index\+\_\+wait\+Pending}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to wait pending operations features. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a4d6f140902f834140308d20bb4703775}{data\+Loader\+\_\+create}} (string name, string type)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to creat an data\+Loader at backend. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_ad592150501b5d61cc6cc98a0007521d1}{data\+Loader\+\_\+edit\+Cfg\+Double}} (string name, string key, double value)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to change the config map related to a specific data\+Loader. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a96815ab63d4d113d98e4b0a7bd341c7e}{data\+Loader\+\_\+edit\+Cfg\+Float}} (string name, string key, float value)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to change the config map related to a specific data\+Loader. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_ab89f7ff7ef9b59195400db63fd98c0ea}{data\+Loader\+\_\+edit\+Cfg\+Str}} (string name, string key, string value)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to change the config map related to a specific data\+Loader. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a18258f57085eb8c4f5b79deff9158400}{data\+Loader\+\_\+edit\+Cfg\+I64}} (string name, string key, int64\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to change the config map related to a specific data\+Loader. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a92dda8cef0f762e2ffe8b32f95e6632c}{data\+Loader\+\_\+init}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to init an data\+Loader with its bounded config. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a9bd2bf4127094dc5414acbba730eb1f3}{data\+Loader\+\_\+get\+Data}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to get data tensor from the specified data loader. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_ae28e43762ed8b9d19c752eb901cd6677}{data\+Loader\+\_\+get\+Query}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to get query tensor from the specified data loader. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_a7f1dae37f12f459c9ce73828a8b516b5}{tensor\+From\+FVECS}} (string name)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to load tensor from fvecs file. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_acee6d2c42845be5988140f1412869851}{tensor\+From\+HDF5}} (string name, string attr)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to load tensor from HDF5 file. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_ab1b78e15dc0b3260870970c05bf1c3f5}{index\+\_\+load\+Initial\+String}} (string name, torch\+::\+Tensor t, std\+::vector$<$ std\+::string $>$ s)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to load initial tensor along with string objects. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_ada543644842ec1487f9d0fa24788da64}{index\+\_\+insert\+String}} (string name, torch\+::\+Tensor t, std\+::vector$<$ std\+::string $>$ s)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to insert tensor to an index with its binded strings. \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Rania__Python_ae70384e8beb568fe197a445db874f522}{index\+\_\+delete\+String}} (string name, torch\+::\+Tensor t, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to delete tensor to an index and its string object. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{classCANDY_1_1Rania__Python_af9cde26cf0f1a5798dd851360e5f176f}{index\+\_\+search\+String}} (string name, torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to search binded string of given tensor. \end{DoxyCompactList}\item 
+std\+::tuple$<$ std\+::vector$<$ torch\+::\+Tensor $>$, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \mbox{\hyperlink{classCANDY_1_1Rania__Python_ae76b697b2d93aa345c8e4514a53750a7}{index\+\_\+search\+Tensor\+And\+String\+List}} (string name, torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em The c++ bindings to search tensor and binded string of given tensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The python bounding functions. 
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item Please first run torch.\+ops.\+load\+\_\+library(\char`\"{}$<$the path of CANDY\textquotesingle{}s library$>$\char`\"{})
+\item In this simple bounding, we just access CANDY index class and its configuration by name tag, there is some c++ hash table in the backend to do this
+\item Please add the prefix \char`\"{}torch.\+ops.\+CANDY.\char`\"{} when calling the following fucntions, see also benchmark/python\+Test.\+py 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a4d6f140902f834140308d20bb4703775}\label{classCANDY_1_1Rania__Python_a4d6f140902f834140308d20bb4703775}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_create@{dataLoader\_create}}
+\index{dataLoader\_create@{dataLoader\_create}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{dataLoader\_create()}{dataLoader\_create()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::data\+Loader\+\_\+create (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to creat an data\+Loader at backend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of this data\+Loader \\
+\hline
+{\em type} & the type of this data\+Loader, keep the same as that in \mbox{\hyperlink{classCANDY_1_1IndexTable}{CANDY\+::\+Index\+Table}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_ad592150501b5d61cc6cc98a0007521d1}\label{classCANDY_1_1Rania__Python_ad592150501b5d61cc6cc98a0007521d1}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_editCfgDouble@{dataLoader\_editCfgDouble}}
+\index{dataLoader\_editCfgDouble@{dataLoader\_editCfgDouble}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{dataLoader\_editCfgDouble()}{dataLoader\_editCfgDouble()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::data\+Loader\+\_\+edit\+Cfg\+Double (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{key,  }\item[{double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to change the config map related to a specific data\+Loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the data\+Loader \\
+\hline
+{\em key} & the key in the cfg \\
+\hline
+{\em value} & the double value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a96815ab63d4d113d98e4b0a7bd341c7e}\label{classCANDY_1_1Rania__Python_a96815ab63d4d113d98e4b0a7bd341c7e}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_editCfgFloat@{dataLoader\_editCfgFloat}}
+\index{dataLoader\_editCfgFloat@{dataLoader\_editCfgFloat}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{dataLoader\_editCfgFloat()}{dataLoader\_editCfgFloat()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::data\+Loader\+\_\+edit\+Cfg\+Float (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{key,  }\item[{float}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to change the config map related to a specific data\+Loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the data\+Loader \\
+\hline
+{\em key} & the key in the cfg \\
+\hline
+{\em value} & the float value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a18258f57085eb8c4f5b79deff9158400}\label{classCANDY_1_1Rania__Python_a18258f57085eb8c4f5b79deff9158400}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_editCfgI64@{dataLoader\_editCfgI64}}
+\index{dataLoader\_editCfgI64@{dataLoader\_editCfgI64}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{dataLoader\_editCfgI64()}{dataLoader\_editCfgI64()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::data\+Loader\+\_\+edit\+Cfg\+I64 (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{key,  }\item[{int64\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to change the config map related to a specific data\+Loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the data\+Loader \\
+\hline
+{\em key} & the key in the cfg \\
+\hline
+{\em value} & the I64 value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_ab89f7ff7ef9b59195400db63fd98c0ea}\label{classCANDY_1_1Rania__Python_ab89f7ff7ef9b59195400db63fd98c0ea}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_editCfgStr@{dataLoader\_editCfgStr}}
+\index{dataLoader\_editCfgStr@{dataLoader\_editCfgStr}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{dataLoader\_editCfgStr()}{dataLoader\_editCfgStr()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::data\+Loader\+\_\+edit\+Cfg\+Str (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{key,  }\item[{string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to change the config map related to a specific data\+Loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the data\+Loader \\
+\hline
+{\em key} & the key in the cfg \\
+\hline
+{\em value} & the string value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a9bd2bf4127094dc5414acbba730eb1f3}\label{classCANDY_1_1Rania__Python_a9bd2bf4127094dc5414acbba730eb1f3}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_getData@{dataLoader\_getData}}
+\index{dataLoader\_getData@{dataLoader\_getData}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{dataLoader\_getData()}{dataLoader\_getData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::data\+Loader\+\_\+get\+Data (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to get data tensor from the specified data loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the data\+Loader \\
+\hline
+{\em t} & the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_ae28e43762ed8b9d19c752eb901cd6677}\label{classCANDY_1_1Rania__Python_ae28e43762ed8b9d19c752eb901cd6677}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_getQuery@{dataLoader\_getQuery}}
+\index{dataLoader\_getQuery@{dataLoader\_getQuery}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{dataLoader\_getQuery()}{dataLoader\_getQuery()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::data\+Loader\+\_\+get\+Query (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to get query tensor from the specified data loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the data\+Loader \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the first result tensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a92dda8cef0f762e2ffe8b32f95e6632c}\label{classCANDY_1_1Rania__Python_a92dda8cef0f762e2ffe8b32f95e6632c}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_init@{dataLoader\_init}}
+\index{dataLoader\_init@{dataLoader\_init}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{dataLoader\_init()}{dataLoader\_init()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::data\+Loader\+\_\+init (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to init an data\+Loader with its bounded config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the data\+Loader \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a048c31e2a2a3ebe5793bef5625967c1d}\label{classCANDY_1_1Rania__Python_a048c31e2a2a3ebe5793bef5625967c1d}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_create@{index\_create}}
+\index{index\_create@{index\_create}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_create()}{index\_create()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+create (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to creat an index at backend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of this index \\
+\hline
+{\em type} & the type of this index, keep the same as that in \mbox{\hyperlink{classCANDY_1_1IndexTable}{CANDY\+::\+Index\+Table}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_ab3ec6b498c91f24191ace5fb748a7661}\label{classCANDY_1_1Rania__Python_ab3ec6b498c91f24191ace5fb748a7661}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_delete@{index\_delete}}
+\index{index\_delete@{index\_delete}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_delete()}{index\_delete()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+delete (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor}]{t,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to delete tensor to an index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+{\em k} & the NNS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_ae70384e8beb568fe197a445db874f522}\label{classCANDY_1_1Rania__Python_ae70384e8beb568fe197a445db874f522}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_deleteString@{index\_deleteString}}
+\index{index\_deleteString@{index\_deleteString}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_deleteString()}{index\_deleteString()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+delete\+String (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor}]{t,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to delete tensor to an index and its string object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+{\em k} & the NNS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a29de8bdca0454c5c9b69181584a67f82}\label{classCANDY_1_1Rania__Python_a29de8bdca0454c5c9b69181584a67f82}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_editCfgDouble@{index\_editCfgDouble}}
+\index{index\_editCfgDouble@{index\_editCfgDouble}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_editCfgDouble()}{index\_editCfgDouble()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+edit\+Cfg\+Double (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{key,  }\item[{double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to change the config map related to a specific index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em key} & the key in the cfg \\
+\hline
+{\em value} & the double value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_acf2ee59735edb9f346c3e7c2c6e5b3f9}\label{classCANDY_1_1Rania__Python_acf2ee59735edb9f346c3e7c2c6e5b3f9}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_editCfgI64@{index\_editCfgI64}}
+\index{index\_editCfgI64@{index\_editCfgI64}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_editCfgI64()}{index\_editCfgI64()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+edit\+Cfg\+I64 (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{key,  }\item[{int64\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to change the config map related to a specific index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em key} & the key in the cfg \\
+\hline
+{\em value} & the I64 value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a1bd4808f1b6c19a7def7ba182aa1c712}\label{classCANDY_1_1Rania__Python_a1bd4808f1b6c19a7def7ba182aa1c712}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_editCfgStr@{index\_editCfgStr}}
+\index{index\_editCfgStr@{index\_editCfgStr}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_editCfgStr()}{index\_editCfgStr()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+edit\+Cfg\+Str (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{key,  }\item[{string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to change the config map related to a specific index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em key} & the key in the cfg \\
+\hline
+{\em value} & the string value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a80b01f5e7ae6a190d5c1aa0797691d0f}\label{classCANDY_1_1Rania__Python_a80b01f5e7ae6a190d5c1aa0797691d0f}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_endHPC@{index\_endHPC}}
+\index{index\_endHPC@{index\_endHPC}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_endHPC()}{index\_endHPC()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+end\+HPC (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to end HPC features. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_aa008a934d3b30b1e325895242ba42bba}\label{classCANDY_1_1Rania__Python_aa008a934d3b30b1e325895242ba42bba}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_init@{index\_init}}
+\index{index\_init@{index\_init}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_init()}{index\_init()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+init (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to init an index with its bounded config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a8cbbee229026a6a5f46cd1d600201cba}\label{classCANDY_1_1Rania__Python_a8cbbee229026a6a5f46cd1d600201cba}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_insert@{index\_insert}}
+\index{index\_insert@{index\_insert}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_insert()}{index\_insert()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+insert (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to insert tensor to an index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_ada543644842ec1487f9d0fa24788da64}\label{classCANDY_1_1Rania__Python_ada543644842ec1487f9d0fa24788da64}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_insertString@{index\_insertString}}
+\index{index\_insertString@{index\_insertString}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_insertString()}{index\_insertString()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+insert\+String (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor}]{t,  }\item[{std\+::vector$<$ std\+::string $>$}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to insert tensor to an index with its binded strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+{\em s} & the vector of string, List\mbox{[}str\mbox{]} in python \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a0dcecebdd8cadc2dbf8eab15711ab338}\label{classCANDY_1_1Rania__Python_a0dcecebdd8cadc2dbf8eab15711ab338}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_loadCfgFromFile@{index\_loadCfgFromFile}}
+\index{index\_loadCfgFromFile@{index\_loadCfgFromFile}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_loadCfgFromFile()}{index\_loadCfgFromFile()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+load\+Cfg\+From\+File (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{fname }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to load the config map related to a specific index from file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em fname} & the name of file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_af7184eed79a18e44ce0bb9aa73dd55ec}\label{classCANDY_1_1Rania__Python_af7184eed79a18e44ce0bb9aa73dd55ec}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_loadInitial@{index\_loadInitial}}
+\index{index\_loadInitial@{index\_loadInitial}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_loadInitial()}{index\_loadInitial()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+load\+Initial (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to load initial tensor. 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1Rania__Python_a8cbbee229026a6a5f46cd1d600201cba}{index\+\_\+insert}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_ab1b78e15dc0b3260870970c05bf1c3f5}\label{classCANDY_1_1Rania__Python_ab1b78e15dc0b3260870970c05bf1c3f5}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_loadInitialString@{index\_loadInitialString}}
+\index{index\_loadInitialString@{index\_loadInitialString}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_loadInitialString()}{index\_loadInitialString()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+load\+Initial\+String (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor}]{t,  }\item[{std\+::vector$<$ std\+::string $>$}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to load initial tensor along with string objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a752755b49c76e5a0e51c91eccd96d177}\label{classCANDY_1_1Rania__Python_a752755b49c76e5a0e51c91eccd96d177}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_offlineBuild@{index\_offlineBuild}}
+\index{index\_offlineBuild@{index\_offlineBuild}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_offlineBuild()}{index\_offlineBuild()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+offline\+Build (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to offline\+Build. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a14f2036696ce86f67e7c99763b989d54}\label{classCANDY_1_1Rania__Python_a14f2036696ce86f67e7c99763b989d54}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_rawData@{index\_rawData}}
+\index{index\_rawData@{index\_rawData}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_rawData()}{index\_rawData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+raw\+Data (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to return raw\+Data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor of raw\+Data 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a2b6700370053871dc0441e0933146c09}\label{classCANDY_1_1Rania__Python_a2b6700370053871dc0441e0933146c09}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_reset@{index\_reset}}
+\index{index\_reset@{index\_reset}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_reset()}{index\_reset()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+reset (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to creat an index at backend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a2865271a23a684eba8a033c6c8efa0f4}\label{classCANDY_1_1Rania__Python_a2865271a23a684eba8a033c6c8efa0f4}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_revise@{index\_revise}}
+\index{index\_revise@{index\_revise}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_revise()}{index\_revise()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+revise (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to revise tensor to an index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor to be revised \\
+\hline
+{\em w} & the revison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a4eec7646ea43740ec5456695c79f6080}\label{classCANDY_1_1Rania__Python_a4eec7646ea43740ec5456695c79f6080}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_search@{index\_search}}
+\index{index\_search@{index\_search}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_search()}{index\_search()}}
+{\footnotesize\ttfamily std\+::vector$<$torch\+::\+Tensor$>$ CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+search (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor}]{t,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to search tensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+{\em k} & the NNS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the list of result tensors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_af9cde26cf0f1a5798dd851360e5f176f}\label{classCANDY_1_1Rania__Python_af9cde26cf0f1a5798dd851360e5f176f}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_searchString@{index\_searchString}}
+\index{index\_searchString@{index\_searchString}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_searchString()}{index\_searchString()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$std\+::string$>$ $>$ CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+search\+String (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to search binded string of given tensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+{\em k} & the NNS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List\mbox{[}List\mbox{[}str\mbox{]}\mbox{]}, for each rows 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_ae76b697b2d93aa345c8e4514a53750a7}\label{classCANDY_1_1Rania__Python_ae76b697b2d93aa345c8e4514a53750a7}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_searchTensorAndStringList@{index\_searchTensorAndStringList}}
+\index{index\_searchTensorAndStringList@{index\_searchTensorAndStringList}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_searchTensorAndStringList()}{index\_searchTensorAndStringList()}}
+{\footnotesize\ttfamily std\+::tuple$<$std\+::vector$<$torch\+::\+Tensor$>$, std\+::vector$<$std\+::vector$<$std\+::string$>$ $>$ $>$ CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+search\+Tensor\+And\+String\+List (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to search tensor and binded string of given tensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em t} & the tensor \\
+\hline
+{\em k} & the NNS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{[}List\mbox{[}Tensor\mbox{]},List\mbox{[}List\mbox{[}str\mbox{]}\mbox{]}\mbox{]}, for each rows 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_aae8ec83d819fd5708ca67f2598b8fe8c}\label{classCANDY_1_1Rania__Python_aae8ec83d819fd5708ca67f2598b8fe8c}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_setFrozenLevel@{index\_setFrozenLevel}}
+\index{index\_setFrozenLevel@{index\_setFrozenLevel}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_setFrozenLevel()}{index\_setFrozenLevel()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{int64\+\_\+t}]{frozen\+LV }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to set the frozen level of online updating internal state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a51184b17abb5e051f1d1174f1ce8e043}\label{classCANDY_1_1Rania__Python_a51184b17abb5e051f1d1174f1ce8e043}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_startHPC@{index\_startHPC}}
+\index{index\_startHPC@{index\_startHPC}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_startHPC()}{index\_startHPC()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+start\+HPC (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to start HPC features. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a0aa4a00007f2e298cfeb801f14826797}\label{classCANDY_1_1Rania__Python_a0aa4a00007f2e298cfeb801f14826797}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_waitPending@{index\_waitPending}}
+\index{index\_waitPending@{index\_waitPending}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{index\_waitPending()}{index\_waitPending()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::index\+\_\+wait\+Pending (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to wait pending operations features. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_ad2fa9941f25d2c80887205e06b886123}\label{classCANDY_1_1Rania__Python_ad2fa9941f25d2c80887205e06b886123}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!tensorFromFile@{tensorFromFile}}
+\index{tensorFromFile@{tensorFromFile}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{tensorFromFile()}{tensorFromFile()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::tensor\+From\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{fname }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to load a tensor from file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of the index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the tensor result 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a7f1dae37f12f459c9ce73828a8b516b5}\label{classCANDY_1_1Rania__Python_a7f1dae37f12f459c9ce73828a8b516b5}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!tensorFromFVECS@{tensorFromFVECS}}
+\index{tensorFromFVECS@{tensorFromFVECS}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{tensorFromFVECS()}{tensorFromFVECS()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::tensor\+From\+FVECS (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to load tensor from fvecs file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of file return the result tensor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_acee6d2c42845be5988140f1412869851}\label{classCANDY_1_1Rania__Python_acee6d2c42845be5988140f1412869851}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!tensorFromHDF5@{tensorFromHDF5}}
+\index{tensorFromHDF5@{tensorFromHDF5}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{tensorFromHDF5()}{tensorFromHDF5()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::tensor\+From\+HDF5 (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{attr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to load tensor from HDF5 file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & the name of file \\
+\hline
+{\em attr} & the attribute return the result tensor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1Rania__Python_a529a9084eda05c6838fa28fae928d384}\label{classCANDY_1_1Rania__Python_a529a9084eda05c6838fa28fae928d384}} 
+\index{CANDY::Rania\_Python@{CANDY::Rania\_Python}!tensorToFile@{tensorToFile}}
+\index{tensorToFile@{tensorToFile}!CANDY::Rania\_Python@{CANDY::Rania\_Python}}
+\doxysubsubsection{\texorpdfstring{tensorToFile()}{tensorToFile()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Rania\+\_\+\+Python\+::tensor\+To\+File (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{A,  }\item[{std\+::string}]{fname }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The c++ bindings to save a tensor into file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & the tensor \\
+\hline
+{\em name} & the name of the index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tensor 1x1, \mbox{[}1\mbox{]} for success 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{CANDYPYTHON_8h}{CANDYPYTHON.\+h}}\end{DoxyCompactItemize}

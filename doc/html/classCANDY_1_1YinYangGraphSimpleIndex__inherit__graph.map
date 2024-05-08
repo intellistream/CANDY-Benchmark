@@ -1,0 +1,4 @@
+<map id="CANDY::YinYangGraphSimpleIndex" name="CANDY::YinYangGraphSimpleIndex">
+<area shape="rect" id="node1" title="The class of indexing using a simpe yinyang graph,there is no LSH search is only within the linked yi..." alt="" coords="5,80,213,121"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractIndex.html" title="The abstract class of an index approach." alt="" coords="27,5,191,32"/>
+</map>

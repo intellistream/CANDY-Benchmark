@@ -1,0 +1,144 @@
+\hypertarget{group__MICRO__GENERIC}{}\doxysection{generic}
+\label{group__MICRO__GENERIC}\index{generic@{generic}}
+Collaboration diagram for generic\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{group__MICRO__GENERIC}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class d\+Type  = uint32\+\_\+t$>$ }\\vector$<$ d\+Type $>$ \mbox{\hyperlink{group__MICRO__GENERIC_gaebdd2dd7dba56fc9ea05680a74f1ed60}{INTELLI\+::\+Micro\+Data\+Set\+::gen\+Incremental\+Alphabet}} (size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em To generate incremental alphabet, starting from 0 and end at len. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ts\+Type  = size\+\_\+t$>$ }\\vector$<$ ts\+Type $>$ \mbox{\hyperlink{group__MICRO__GENERIC_ga655634e729cd01d5b4d2c996fe6a0e03}{INTELLI\+::\+Micro\+Data\+Set\+::gen\+Zipf\+Int}} (size\+\_\+t len, ts\+Type maxV, double fac)
+\begin{DoxyCompactList}\small\item\em The function to generate a vector of integers which has zipf distribution. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ts\+Type  = uint32\+\_\+t, class gen\+Type  = std\+::mt19937$>$ }\\vector$<$ ts\+Type $>$ \mbox{\hyperlink{group__MICRO__GENERIC_gacf71a910ff30505d08bc060923e48b0f}{INTELLI\+::\+Micro\+Data\+Set\+::gen\+Rand\+Int}} (size\+\_\+t len, ts\+Type maxV, ts\+Type minV=0)
+\begin{DoxyCompactList}\small\item\em generate the vector of random integer \end{DoxyCompactList}\item 
+{\footnotesize template$<$class d\+Type  = double$>$ }\\vector$<$ d\+Type $>$ \mbox{\hyperlink{group__MICRO__GENERIC_gad5ab4de190974dcbaa2faca72fc34e90}{INTELLI\+::\+Micro\+Data\+Set\+::gen\+Zipf\+Lut}} (size\+\_\+t len, d\+Type fac)
+\begin{DoxyCompactList}\small\item\em To generate the zipf Lut. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The functions for general generation of Micro 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__MICRO__GENERIC_gaebdd2dd7dba56fc9ea05680a74f1ed60}\label{group__MICRO__GENERIC_gaebdd2dd7dba56fc9ea05680a74f1ed60}} 
+\index{generic@{generic}!genIncrementalAlphabet@{genIncrementalAlphabet}}
+\index{genIncrementalAlphabet@{genIncrementalAlphabet}!generic@{generic}}
+\doxysubsubsection{\texorpdfstring{genIncrementalAlphabet()}{genIncrementalAlphabet()}}
+{\footnotesize\ttfamily template$<$class d\+Type  = uint32\+\_\+t$>$ \\
+vector$<$d\+Type$>$ INTELLI\+::\+Micro\+Data\+Set\+::gen\+Incremental\+Alphabet (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To generate incremental alphabet, starting from 0 and end at len. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em d\+Type} & The data type in the alphabet, default uint32\+\_\+t \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of alphabet \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output vector alphabet 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__MICRO__GENERIC_gacf71a910ff30505d08bc060923e48b0f}\label{group__MICRO__GENERIC_gacf71a910ff30505d08bc060923e48b0f}} 
+\index{generic@{generic}!genRandInt@{genRandInt}}
+\index{genRandInt@{genRandInt}!generic@{generic}}
+\doxysubsubsection{\texorpdfstring{genRandInt()}{genRandInt()}}
+{\footnotesize\ttfamily template$<$class ts\+Type  = uint32\+\_\+t, class gen\+Type  = std\+::mt19937$>$ \\
+vector$<$ts\+Type$>$ INTELLI\+::\+Micro\+Data\+Set\+::gen\+Rand\+Int (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{len,  }\item[{ts\+Type}]{maxV,  }\item[{ts\+Type}]{minV = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+generate the vector of random integer 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em ts\+Type} & The data type, default uint32\+\_\+t \\
+\hline
+{\em gen\+Type} & The generator type, default mt19937 (32 bit rand) \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of output vector \\
+\hline
+{\em maxV} & The maximum value of output \\
+\hline
+{\em minV} & The minimum value of output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output vector 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Both signed and unsigned int are support, just make sure you have right ts\+Type 
+
+Other options for gen\+Type\+: \begin{DoxyItemize}
+\item mt19937\+\_\+64\+: 64 bit rand \item ranlux24\+: 24 bit \item ranlux48\+: 48 bit \end{DoxyItemize}
+
+\end{DoxyNote}
+\mbox{\Hypertarget{group__MICRO__GENERIC_ga655634e729cd01d5b4d2c996fe6a0e03}\label{group__MICRO__GENERIC_ga655634e729cd01d5b4d2c996fe6a0e03}} 
+\index{generic@{generic}!genZipfInt@{genZipfInt}}
+\index{genZipfInt@{genZipfInt}!generic@{generic}}
+\doxysubsubsection{\texorpdfstring{genZipfInt()}{genZipfInt()}}
+{\footnotesize\ttfamily template$<$class ts\+Type  = size\+\_\+t$>$ \\
+vector$<$ts\+Type$>$ INTELLI\+::\+Micro\+Data\+Set\+::gen\+Zipf\+Int (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{len,  }\item[{ts\+Type}]{maxV,  }\item[{double}]{fac }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The function to generate a vector of integers which has zipf distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ts\+Type} & The data type of int, default is size\+\_\+t \\
+\hline
+{\em len} & The length of output vector \\
+\hline
+{\em maxV} & The maximum value of integer \\
+\hline
+{\em fac} & The zipf factor, in \mbox{[}0,1\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__MICRO__GENERIC_gad5ab4de190974dcbaa2faca72fc34e90}\label{group__MICRO__GENERIC_gad5ab4de190974dcbaa2faca72fc34e90}} 
+\index{generic@{generic}!genZipfLut@{genZipfLut}}
+\index{genZipfLut@{genZipfLut}!generic@{generic}}
+\doxysubsubsection{\texorpdfstring{genZipfLut()}{genZipfLut()}}
+{\footnotesize\ttfamily template$<$class d\+Type  = double$>$ \\
+vector$<$d\+Type$>$ INTELLI\+::\+Micro\+Data\+Set\+::gen\+Zipf\+Lut (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{len,  }\item[{d\+Type}]{fac }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To generate the zipf Lut. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em d\+Type} & The data type in the alphabet, default double \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of alphabet \\
+\hline
+{\em fac} & The zipf factor, in \mbox{[}0,1\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output vector lut 
+\end{DoxyReturn}
+Compute scaling factor such that
+
+sum (lut\mbox{[}i\mbox{]}, i=1..alphabet\+\_\+size) = 1.\+0
+
+Generate the lookup table

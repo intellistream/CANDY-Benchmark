@@ -1,0 +1,203 @@
+\hypertarget{classCANDY_1_1FlannIndex}{}\doxysection{CANDY\+::Flann\+Index Class Reference}
+\label{classCANDY_1_1FlannIndex}\index{CANDY::FlannIndex@{CANDY::FlannIndex}}
+
+
+Inheritance diagram for CANDY\+::Flann\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{classCANDY_1_1FlannIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Flann\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1FlannIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlannIndex_ab803bdd6c42a9ab5cd0de1084fa3521e}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlannIndex_a807cac57b6f8532cc702e5bc0b5d3089}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1FlannIndex_adce332c12ed6eac48f14fd63bf308c3a}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlannIndex_adce332c12ed6eac48f14fd63bf308c3a}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \mbox{\hyperlink{classCANDY_1_1FlannIndex_a45e4d208f0f5f5b65ff2b32fe0ac43da}{search\+Index}} (torch\+::\+Tensor q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return their index \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1FlannIndex_a07a6c40cfafd71ee9ad95766072dea62}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1FlannIndex_abfccc696aed9b150afa70fe3bc518bac}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_a9f942bf5b7af279da4886f98f7127207}\label{classCANDY_1_1FlannIndex_a9f942bf5b7af279da4886f98f7127207}} 
+flann\+\_\+index\+\_\+t {\bfseries flann\+\_\+index} = FLANN\+\_\+\+KMEANS
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_a6daa0f720f3f0754c0850caeeb25493a}\label{classCANDY_1_1FlannIndex_a6daa0f720f3f0754c0850caeeb25493a}} 
+\mbox{\hyperlink{classCANDY_1_1FlannComponent}{Flann\+Component}} $\ast$ {\bfseries index}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_aeb11941e0a13f60ad8d9cc32b4be8b62}\label{classCANDY_1_1FlannIndex_aeb11941e0a13f60ad8d9cc32b4be8b62}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_adbe552af5fa92a23271ef449362d4ee4}\label{classCANDY_1_1FlannIndex_adbe552af5fa92a23271ef449362d4ee4}} 
+int64\+\_\+t {\bfseries all\+Auto} = 0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_abfccc696aed9b150afa70fe3bc518bac}\label{classCANDY_1_1FlannIndex_abfccc696aed9b150afa70fe3bc518bac}} 
+\index{CANDY::FlannIndex@{CANDY::FlannIndex}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::FlannIndex@{CANDY::FlannIndex}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Flann\+Index\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_adce332c12ed6eac48f14fd63bf308c3a}\label{classCANDY_1_1FlannIndex_adce332c12ed6eac48f14fd63bf308c3a}} 
+\index{CANDY::FlannIndex@{CANDY::FlannIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::FlannIndex@{CANDY::FlannIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Flann\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, accept multiple rows \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_a807cac57b6f8532cc702e5bc0b5d3089}\label{classCANDY_1_1FlannIndex_a807cac57b6f8532cc702e5bc0b5d3089}} 
+\index{CANDY::FlannIndex@{CANDY::FlannIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::FlannIndex@{CANDY::FlannIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Flann\+Index\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1FlannIndex_adce332c12ed6eac48f14fd63bf308c3a}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1FlannIndex_adce332c12ed6eac48f14fd63bf308c3a}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_a45e4d208f0f5f5b65ff2b32fe0ac43da}\label{classCANDY_1_1FlannIndex_a45e4d208f0f5f5b65ff2b32fe0ac43da}} 
+\index{CANDY::FlannIndex@{CANDY::FlannIndex}!searchIndex@{searchIndex}}
+\index{searchIndex@{searchIndex}!CANDY::FlannIndex@{CANDY::FlannIndex}}
+\doxysubsubsection{\texorpdfstring{searchIndex()}{searchIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ faiss\+::idx\+\_\+t $>$ CANDY\+::\+Flann\+Index\+::search\+Index (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return their index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$faiss\+::idx\+\_\+t$>$ the index, follow faiss\textquotesingle{}s order 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a60e0f58c72ffbf47342b4c4b4091a573}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_a07a6c40cfafd71ee9ad95766072dea62}\label{classCANDY_1_1FlannIndex_a07a6c40cfafd71ee9ad95766072dea62}} 
+\index{CANDY::FlannIndex@{CANDY::FlannIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::FlannIndex@{CANDY::FlannIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Flann\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlannIndex_ab803bdd6c42a9ab5cd0de1084fa3521e}\label{classCANDY_1_1FlannIndex_ab803bdd6c42a9ab5cd0de1084fa3521e}} 
+\index{CANDY::FlannIndex@{CANDY::FlannIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::FlannIndex@{CANDY::FlannIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Flann\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/Flann\+Index.\+h\item 
+src/\+CANDY/Flann\+Index.\+cpp\end{DoxyCompactItemize}

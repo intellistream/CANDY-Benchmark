@@ -1,0 +1,39 @@
+\hypertarget{AbstractC20Thread_8hpp}{}\doxysection{include/\+Utils/\+Abstract\+C20\+Thread.hpp File Reference}
+\label{AbstractC20Thread_8hpp}\index{include/Utils/AbstractC20Thread.hpp@{include/Utils/AbstractC20Thread.hpp}}
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$barrier$>$}\newline
+Include dependency graph for Abstract\+C20\+Thread.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{AbstractC20Thread_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{AbstractC20Thread_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread}{INTELLI\+::\+Abstract\+C20\+Thread}}
+\begin{DoxyCompactList}\small\item\em The base class and abstraction of C++20 thread, and it can be derived into other threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga55652c588fa020f613034778ddd6b3e4}{new\+Abstract\+C20\+Thread}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread}{INTELLI\+::\+Abstract\+C20\+Thread}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga55652c588fa020f613034778ddd6b3e4}{new\+Abstract\+C20\+Thread}} under shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ Abstract\+C20\+Thread $>$ \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga2fce1874a8e9e545c3fb798a919585fc}{INTELLI\+::\+Abstract\+C20\+Thread\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread}{Abstract\+C20\+Thread}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{AbstractC20Thread_8hpp_a9370b2e09eeeec9419a207c190f4992f}\label{AbstractC20Thread_8hpp_a9370b2e09eeeec9419a207c190f4992f}} 
+typedef std\+::shared\+\_\+ptr$<$ std\+::barrier$<$$>$ $>$ {\bfseries INTELLI\+::\+Barrier\+Ptr}
+\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="DIVERSE_METER::AbstractMeter" name="DIVERSE_METER::AbstractMeter">
+<area shape="rect" id="node1" title="The abstract class for all meters." alt="" coords="123,5,354,32"/>
+<area shape="rect" id="node2" href="$classDIVERSE__METER_1_1EspMeterUart.html" title="the entity of an esp32s2&#45;based power meter, connected by uart 115200" alt="" coords="5,80,232,107"/>
+<area shape="rect" id="node3" href="$classDIVERSE__METER_1_1IntelMeter.html" title="the entity of intel msr&#45;based power meter, may be not support for some newer architectures" alt="" coords="256,80,461,107"/>
+</map>

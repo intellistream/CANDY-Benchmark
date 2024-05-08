@@ -1,0 +1,15 @@
+<map id="CANDY::CongestionDropIndexWorker" name="CANDY::CongestionDropIndexWorker">
+<area shape="rect" id="node1" title="A worker class to container bottom indexings, will just drop new element if congestion occurs." alt="" coords="923,527,1137,569"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1ParallelIndexWorker.html" title="A worker class of parallel index thread." alt="" coords="671,341,873,368"/>
+<area shape="rect" id="node3" href="$classINTELLI_1_1AbstractC20Thread.html" title="The base class and abstraction of C++20 thread, and it can be derived into other threads." alt="" coords="309,168,512,195"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,168,196,195"/>
+<area shape="rect" id="node5" title=" " alt="" coords="313,219,508,261"/>
+<area shape="rect" id="node6" title=" " alt="" coords="316,285,505,326"/>
+<area shape="rect" id="node7" title=" " alt="" coords="325,351,497,407"/>
+<area shape="rect" id="node8" title=" " alt="" coords="325,511,497,567"/>
+<area shape="rect" id="node9" title=" " alt="" coords="330,431,491,487"/>
+<area shape="rect" id="node10" title=" " alt="" coords="377,695,444,721"/>
+<area shape="rect" id="node11" title=" " alt="" coords="379,591,443,617"/>
+<area shape="rect" id="node12" title=" " alt="" coords="325,8,497,64"/>
+<area shape="rect" id="node13" title=" " alt="" coords="325,88,497,144"/>
+</map>

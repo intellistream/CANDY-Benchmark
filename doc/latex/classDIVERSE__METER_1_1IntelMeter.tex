@@ -1,0 +1,93 @@
+\hypertarget{classDIVERSE__METER_1_1IntelMeter}{}\doxysection{DIVERSE\+\_\+\+METER\+::Intel\+Meter Class Reference}
+\label{classDIVERSE__METER_1_1IntelMeter}\index{DIVERSE\_METER::IntelMeter@{DIVERSE\_METER::IntelMeter}}
+
+
+the entity of intel msr-\/based power meter, may be not support for some newer architectures  
+
+
+
+
+Inheritance diagram for DIVERSE\+\_\+\+METER\+::Intel\+Meter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classDIVERSE__METER_1_1IntelMeter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for DIVERSE\+\_\+\+METER\+::Intel\+Meter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{classDIVERSE__METER_1_1IntelMeter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter_ae79b4c60e5f1eff46a49aa7927a8d90d}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} \+\_\+cfg)
+\begin{DoxyCompactList}\small\item\em to set the configmap \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1IntelMeter_a8860ff00c810637089d1dd2e3b763dbe}\label{classDIVERSE__METER_1_1IntelMeter_a8860ff00c810637089d1dd2e3b763dbe}} 
+void \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter_a8860ff00c810637089d1dd2e3b763dbe}{start\+Meter}} ()
+\begin{DoxyCompactList}\small\item\em to start the meter into some measuring tasks \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1IntelMeter_ae5545d8f2fd52892559e536640513439}\label{classDIVERSE__METER_1_1IntelMeter_ae5545d8f2fd52892559e536640513439}} 
+void \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter_ae5545d8f2fd52892559e536640513439}{stop\+Meter}} ()
+\begin{DoxyCompactList}\small\item\em to stop the meter into some measuring tasks \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1IntelMeter_ae8545392ca7b7e129156eb0af769b73b}\label{classDIVERSE__METER_1_1IntelMeter_ae8545392ca7b7e129156eb0af769b73b}} 
+double \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter_ae8545392ca7b7e129156eb0af769b73b}{getE}} ()
+\begin{DoxyCompactList}\small\item\em to get the energy in J, including static energy consumption of system \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1IntelMeter_aa89e07d419a8df0e397924e0d8c7405e}\label{classDIVERSE__METER_1_1IntelMeter_aa89e07d419a8df0e397924e0d8c7405e}} 
+bool {\bfseries is\+Valid} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+the entity of intel msr-\/based power meter, may be not support for some newer architectures 
+
+
+\begin{DoxyItemize}
+\item create
+\item call \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter_ae79b4c60e5f1eff46a49aa7927a8d90d}{set\+Config()}} to config this meter
+\item (optional) call \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_a2dac7c7167003ff6fcd2e8661d0d8463}{test\+Static\+Power()}} to test the static power of a device, if you want to exclude it
+\item call \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter_a8860ff00c810637089d1dd2e3b763dbe}{start\+Meter()}} to start measurement
+\item (run your program)
+\item call \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter_ae5545d8f2fd52892559e536640513439}{stop\+Meter()}} to stop measurement
+\item call \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter_ae8545392ca7b7e129156eb0af769b73b}{get\+E()}}, \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_adb52ca60dfd43c83f0f7ba60ac977357}{get\+Peak()}}, etc to get the measurement resluts \begin{DoxyWarning}{Warning}
+\+: only works for some x64 machines 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+\+: no peak power support, tag is \char`\"{}intel\+Msr\char`\"{} 
+\end{DoxyNote}
+
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDIVERSE__METER_1_1IntelMeter_ae79b4c60e5f1eff46a49aa7927a8d90d}\label{classDIVERSE__METER_1_1IntelMeter_ae79b4c60e5f1eff46a49aa7927a8d90d}} 
+\index{DIVERSE\_METER::IntelMeter@{DIVERSE\_METER::IntelMeter}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!DIVERSE\_METER::IntelMeter@{DIVERSE\_METER::IntelMeter}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily void Intel\+Meter\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{\+\_\+cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+to set the configmap 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config map \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_af0f2d9ecca1d329f41f5fa7e0b757a0b}{DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\+Meters/\+Intel\+Meter/Intel\+Meter.\+hpp\item 
+src/\+Utils/\+Meters/\+Intel\+Meter/Intel\+Meter.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,8 @@
+<map id="CANDY::DistributedPartitionIndex" name="CANDY::DistributedPartitionIndex">
+<area shape="rect" id="node1" title="A basic distributed index, works under generic data partition, allow configurable index of threads,..." alt="" coords="198,231,398,272"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractIndex.html" title="The abstract class of an index approach." alt="" coords="216,118,380,145"/>
+<area shape="rect" id="node3" title=" " alt="" coords="55,5,122,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="212,5,263,32"/>
+<area shape="rect" id="node5" title=" " alt="" coords="311,5,404,32"/>
+<area shape="rect" id="node6" title=" " alt="" coords="404,111,591,152"/>
+</map>

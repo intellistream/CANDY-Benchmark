@@ -1,0 +1,4 @@
+<map id="INTELLI::ThreadPerf" name="INTELLI::ThreadPerf">
+<area shape="rect" id="node1" title="The top entity to provide perf traces, please use this class only UNLESS you know what you are doing." alt="" coords="19,5,169,32"/>
+<area shape="rect" id="node2" href="$classINTELLI_1_1ThreadPerfPAPI.html" title="The top entity to provide perf traces by using PAPI lib." alt="" coords="5,80,183,107"/>
+</map>

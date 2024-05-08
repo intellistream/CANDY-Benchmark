@@ -1,0 +1,333 @@
+\hypertarget{classCANDY_1_1KdTree}{}\doxysection{CANDY\+::Kd\+Tree Class Reference}
+\label{classCANDY_1_1KdTree}\index{CANDY::KdTree@{CANDY::KdTree}}
+
+
+Inheritance diagram for CANDY\+::Kd\+Tree\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classCANDY_1_1KdTree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Kd\+Tree\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1KdTree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{Node}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KdTree_acc62e805a61b26f5fb042ce34fe47b33}\label{classCANDY_1_1KdTree_acc62e805a61b26f5fb042ce34fe47b33}} 
+typedef \mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{Node}} $\ast$ {\bfseries Node\+Ptr}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KdTree_ac47069a05a2582a0b53c31806a358959}\label{classCANDY_1_1KdTree_ac47069a05a2582a0b53c31806a358959}} 
+typedef \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{FLANN\+::\+Branch\+Struct}}$<$ \mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{Node\+Ptr}} $>$ {\bfseries Branch\+St}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KdTree_ac31272daebc786e120cfd1f90cd60303}\label{classCANDY_1_1KdTree_ac31272daebc786e120cfd1f90cd60303}} 
+typedef \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{Branch\+St}} $\ast$ {\bfseries Branch}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1KdTree_a46d76b958470f65fd1a09005a662501d}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg) override
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1KdTree_ad05092b582f905246b6e7939cb9fb8de}{add\+Point\+To\+Tree}} (\mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{Node\+Ptr}} node, int64\+\_\+t idx)
+\begin{DoxyCompactList}\small\item\em add db\+Tensor\mbox{[}idx\mbox{]} to tree with root as node \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1KdTree_a531e4289a94fb118212c57a0ab07709c}{add\+Points}} (torch\+::\+Tensor \&t) override
+\begin{DoxyCompactList}\small\item\em add data into the tree either by reconstruction or appending \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{classCANDY_1_1KdTree_a4dbd292bc5bdc85e7e5d56a6e0c0dd2b}{knn\+Search}} (torch\+::\+Tensor \&q, int64\+\_\+t $\ast$idx, float $\ast$distances, int64\+\_\+t aknn) override
+\begin{DoxyCompactList}\small\item\em perform knn-\/search on the kd\+Tree structure \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1KdTree_a68a29c4b0c7f05033334722d384858aa}{set\+Params}} (\mbox{\hyperlink{structCANDY_1_1FlannParam}{Flann\+Param}} param) override
+\begin{DoxyCompactList}\small\item\em set the params from auto-\/tuning \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1KdTree_a6357d628fc0a4dd93896868d0f1a33b5}{get\+Neighbors}} (\mbox{\hyperlink{classCANDY_1_1FLANN_1_1ResultSet}{FLANN\+::\+Result\+Set}} \&result, const float $\ast$vec, int max\+Check, float eps\+Error)
+\item 
+void \mbox{\hyperlink{classCANDY_1_1KdTree_a2d9b585cae0b24a23481e5db9ee63f93}{search\+Level}} (\mbox{\hyperlink{classCANDY_1_1FLANN_1_1ResultSet}{FLANN\+::\+Result\+Set}} \&result, const float $\ast$vec, \mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{Node\+Ptr}} node, float mindist, int \&check\+Count, int max\+Check, float eps\+Error, \mbox{\hyperlink{classCANDY_1_1FLANN_1_1Heap}{FLANN\+::\+Heap}}$<$ \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{Branch\+St}} $>$ $\ast$heap, \mbox{\hyperlink{classCANDY_1_1FLANN_1_1VisitBitset}{FLANN\+::\+Visit\+Bitset}} \&checked)
+\begin{DoxyCompactList}\small\item\em search from a given node of the tree \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1KdTree_a5764a1b8002113d1647baa8bbd9f7bf1}\label{classCANDY_1_1KdTree_a5764a1b8002113d1647baa8bbd9f7bf1}} 
+void \mbox{\hyperlink{classCANDY_1_1KdTree_a5764a1b8002113d1647baa8bbd9f7bf1}{build\+Tree}} ()
+\begin{DoxyCompactList}\small\item\em build the tree from scratch \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{Node\+Ptr}} \mbox{\hyperlink{classCANDY_1_1KdTree_ad9fc080e823cab85fe3ed0df90740266}{divide\+Tree}} (int64\+\_\+t $\ast$idx, int count)
+\begin{DoxyCompactList}\small\item\em create a node that subdivides vectors from data\mbox{[}first\mbox{]} to data\mbox{[}last\mbox{]}. Called recursively on each subset \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1KdTree_aff8a42bdb47e164a648eb6fef6e8016e}{mean\+Split}} (int64\+\_\+t $\ast$ind, int count, int64\+\_\+t \&index, int64\+\_\+t \&cutfeat, float \&cutval)
+\begin{DoxyCompactList}\small\item\em choose which feature to use to subdivide this subset of vectors by randomly choosing those with highest variance \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCANDY_1_1KdTree_abb9edda0a4b364281d22cd58401f21f6}{select\+Division}} (float $\ast$v)
+\begin{DoxyCompactList}\small\item\em select top RAND\+\_\+\+DIM largest values from vector and return index of one of them at random \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1KdTree_adcb0f2981395f04c8457a23b5381c523}{plane\+Split}} (int64\+\_\+t $\ast$ind, int count, int64\+\_\+t cutfeat, float cutval, int \&lim1, int \&lim2)
+\begin{DoxyCompactList}\small\item\em subdivide the lists by a plane perpendicular on axe corresponding to the cutfeat dimension at cutval position \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KdTree_a1b0ae2747203f58059067ca527352791}\label{classCANDY_1_1KdTree_a1b0ae2747203f58059067ca527352791}} 
+uint64\+\_\+t \mbox{\hyperlink{classCANDY_1_1KdTree_a1b0ae2747203f58059067ca527352791}{num\+\_\+trees}}
+\begin{DoxyCompactList}\small\item\em Number of randomized trees that are used in forest. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1KdTree_acb1b671069e9b351aada21cbfbabcd10}\label{classCANDY_1_1KdTree_acb1b671069e9b351aada21cbfbabcd10}} 
+float $\ast$ {\bfseries mean}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KdTree_a7c0960ae831737bc467f7c41d96c9ab3}\label{classCANDY_1_1KdTree_a7c0960ae831737bc467f7c41d96c9ab3}} 
+float $\ast$ {\bfseries var}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KdTree_ae2f90fbe03a5f13111f72c30677e0896}\label{classCANDY_1_1KdTree_ae2f90fbe03a5f13111f72c30677e0896}} 
+std\+::vector$<$ \mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{Node\+Ptr}} $>$ \mbox{\hyperlink{classCANDY_1_1KdTree_ae2f90fbe03a5f13111f72c30677e0896}{tree\+\_\+roots}}
+\begin{DoxyCompactList}\small\item\em array of num\+\_\+trees to specify roots \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1KdTree_a531e4289a94fb118212c57a0ab07709c}\label{classCANDY_1_1KdTree_a531e4289a94fb118212c57a0ab07709c}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!addPoints@{addPoints}}
+\index{addPoints@{addPoints}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{addPoints()}{addPoints()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kd\+Tree\+::add\+Points (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+add data into the tree either by reconstruction or appending 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & new data \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1FlannComponent}{CANDY\+::\+Flann\+Component}}.
+
+\mbox{\Hypertarget{classCANDY_1_1KdTree_ad05092b582f905246b6e7939cb9fb8de}\label{classCANDY_1_1KdTree_ad05092b582f905246b6e7939cb9fb8de}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!addPointToTree@{addPointToTree}}
+\index{addPointToTree@{addPointToTree}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{addPointToTree()}{addPointToTree()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kd\+Tree\+::add\+Point\+To\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{Node\+Ptr}}}]{node,  }\item[{int64\+\_\+t}]{idx }\end{DoxyParamCaption})}
+
+
+
+add db\+Tensor\mbox{[}idx\mbox{]} to tree with root as node 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & typically a tree root \\
+\hline
+{\em idx} & index in db\+Tensor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1KdTree_ad9fc080e823cab85fe3ed0df90740266}\label{classCANDY_1_1KdTree_ad9fc080e823cab85fe3ed0df90740266}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!divideTree@{divideTree}}
+\index{divideTree@{divideTree}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{divideTree()}{divideTree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{CANDY\+::\+Kd\+Tree\+::\+Node\+Ptr}} CANDY\+::\+Kd\+Tree\+::divide\+Tree (\begin{DoxyParamCaption}\item[{int64\+\_\+t $\ast$}]{idx,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+create a node that subdivides vectors from data\mbox{[}first\mbox{]} to data\mbox{[}last\mbox{]}. Called recursively on each subset 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & index of this vector \\
+\hline
+{\em count} & number of vectors in this sublist \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1KdTree_a6357d628fc0a4dd93896868d0f1a33b5}\label{classCANDY_1_1KdTree_a6357d628fc0a4dd93896868d0f1a33b5}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!getNeighbors@{getNeighbors}}
+\index{getNeighbors@{getNeighbors}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{getNeighbors()}{getNeighbors()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kd\+Tree\+::get\+Neighbors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCANDY_1_1FLANN_1_1ResultSet}{FLANN\+::\+Result\+Set}} \&}]{result,  }\item[{const float $\ast$}]{vec,  }\item[{int}]{max\+Check,  }\item[{float}]{eps\+Error }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & \\
+\hline
+{\em vec} & \\
+\hline
+{\em max\+Check} & \\
+\hline
+{\em eps\+Error} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1KdTree_a4dbd292bc5bdc85e7e5d56a6e0c0dd2b}\label{classCANDY_1_1KdTree_a4dbd292bc5bdc85e7e5d56a6e0c0dd2b}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!knnSearch@{knnSearch}}
+\index{knnSearch@{knnSearch}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{knnSearch()}{knnSearch()}}
+{\footnotesize\ttfamily int CANDY\+::\+Kd\+Tree\+::knn\+Search (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t $\ast$}]{idx,  }\item[{float $\ast$}]{distances,  }\item[{int64\+\_\+t}]{aknn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+perform knn-\/search on the kd\+Tree structure 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & query data to be searched \\
+\hline
+{\em idx} & result vectors indices \\
+\hline
+{\em distances} & result vectors\textquotesingle{} distances with query \\
+\hline
+{\em aknn} & number of approximate neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of results obtained 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1FlannComponent}{CANDY\+::\+Flann\+Component}}.
+
+\mbox{\Hypertarget{classCANDY_1_1KdTree_aff8a42bdb47e164a648eb6fef6e8016e}\label{classCANDY_1_1KdTree_aff8a42bdb47e164a648eb6fef6e8016e}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!meanSplit@{meanSplit}}
+\index{meanSplit@{meanSplit}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{meanSplit()}{meanSplit()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kd\+Tree\+::mean\+Split (\begin{DoxyParamCaption}\item[{int64\+\_\+t $\ast$}]{ind,  }\item[{int}]{count,  }\item[{int64\+\_\+t \&}]{index,  }\item[{int64\+\_\+t \&}]{cutfeat,  }\item[{float \&}]{cutval }\end{DoxyParamCaption})}
+
+
+
+choose which feature to use to subdivide this subset of vectors by randomly choosing those with highest variance 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ind} & index of this vector \\
+\hline
+{\em count} & number of vectors in this sublist \\
+\hline
+{\em index} & index where the sublist split \\
+\hline
+{\em cutfeat} & index of highest variance as cut feature \\
+\hline
+{\em cutval} & value of highest variance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1KdTree_adcb0f2981395f04c8457a23b5381c523}\label{classCANDY_1_1KdTree_adcb0f2981395f04c8457a23b5381c523}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!planeSplit@{planeSplit}}
+\index{planeSplit@{planeSplit}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{planeSplit()}{planeSplit()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kd\+Tree\+::plane\+Split (\begin{DoxyParamCaption}\item[{int64\+\_\+t $\ast$}]{ind,  }\item[{int}]{count,  }\item[{int64\+\_\+t}]{cutfeat,  }\item[{float}]{cutval,  }\item[{int \&}]{lim1,  }\item[{int \&}]{lim2 }\end{DoxyParamCaption})}
+
+
+
+subdivide the lists by a plane perpendicular on axe corresponding to the cutfeat dimension at cutval position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ind} & index of the list \\
+\hline
+{\em count} & count of the list \\
+\hline
+{\em cutfeat} & the chosen feature \\
+\hline
+{\em cutval} & the threshold value to be compared \\
+\hline
+{\em lim1} & split index candidate for meansplit \\
+\hline
+{\em lim2} & split index candidate for meansplit \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1KdTree_a2d9b585cae0b24a23481e5db9ee63f93}\label{classCANDY_1_1KdTree_a2d9b585cae0b24a23481e5db9ee63f93}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!searchLevel@{searchLevel}}
+\index{searchLevel@{searchLevel}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{searchLevel()}{searchLevel()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kd\+Tree\+::search\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCANDY_1_1FLANN_1_1ResultSet}{FLANN\+::\+Result\+Set}} \&}]{result,  }\item[{const float $\ast$}]{vec,  }\item[{\mbox{\hyperlink{structCANDY_1_1KdTree_1_1Node}{Node\+Ptr}}}]{node,  }\item[{float}]{mindist,  }\item[{int \&}]{check\+Count,  }\item[{int}]{max\+Check,  }\item[{float}]{eps\+Error,  }\item[{\mbox{\hyperlink{classCANDY_1_1FLANN_1_1Heap}{FLANN\+::\+Heap}}$<$ \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{Branch\+St}} $>$ $\ast$}]{heap,  }\item[{\mbox{\hyperlink{classCANDY_1_1FLANN_1_1VisitBitset}{FLANN\+::\+Visit\+Bitset}} \&}]{checked }\end{DoxyParamCaption})}
+
+
+
+search from a given node of the tree 
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & priority queue to store results \\
+\hline
+{\em vec} & vector to be searched \\
+\hline
+{\em node} & current node to be traversed \\
+\hline
+{\em mindist} & current minimum distance obtained \\
+\hline
+{\em check\+Count} & count of checks on multiple trees \\
+\hline
+{\em max\+Check} & max check on multiple trees \\
+\hline
+{\em eps\+Error} & error to be compared with worst distance \\
+\hline
+{\em heap} & heap structure to store branches \\
+\hline
+{\em checked} & visited bitmap \\
+\hline
+\end{DoxyParams}
+TODO\+:not sure + IP\mbox{\Hypertarget{classCANDY_1_1KdTree_abb9edda0a4b364281d22cd58401f21f6}\label{classCANDY_1_1KdTree_abb9edda0a4b364281d22cd58401f21f6}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!selectDivision@{selectDivision}}
+\index{selectDivision@{selectDivision}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{selectDivision()}{selectDivision()}}
+{\footnotesize\ttfamily int CANDY\+::\+Kd\+Tree\+::select\+Division (\begin{DoxyParamCaption}\item[{float $\ast$}]{v }\end{DoxyParamCaption})}
+
+
+
+select top RAND\+\_\+\+DIM largest values from vector and return index of one of them at random 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & values of variance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of randomly chosen highest variance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1KdTree_a46d76b958470f65fd1a09005a662501d}\label{classCANDY_1_1KdTree_a46d76b958470f65fd1a09005a662501d}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Kd\+Tree\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1FlannComponent}{CANDY\+::\+Flann\+Component}}.
+
+\mbox{\Hypertarget{classCANDY_1_1KdTree_a68a29c4b0c7f05033334722d384858aa}\label{classCANDY_1_1KdTree_a68a29c4b0c7f05033334722d384858aa}} 
+\index{CANDY::KdTree@{CANDY::KdTree}!setParams@{setParams}}
+\index{setParams@{setParams}!CANDY::KdTree@{CANDY::KdTree}}
+\doxysubsubsection{\texorpdfstring{setParams()}{setParams()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Kd\+Tree\+::set\+Params (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCANDY_1_1FlannParam}{Flann\+Param}}}]{param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+set the params from auto-\/tuning 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & best param \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if success 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1FlannComponent_af42eea58d92c48b72ebc3d2709c4f258}{CANDY\+::\+Flann\+Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Flann\+Index/Kd\+Tree.\+h\item 
+src/\+CANDY/\+Flann\+Index/Kd\+Tree.\+cpp\end{DoxyCompactItemize}

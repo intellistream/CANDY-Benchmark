@@ -1,0 +1,413 @@
+\hypertarget{classCANDY_1_1FlatAMMIPObjIndex}{}\doxysection{CANDY\+::Flat\+AMMIPObj\+Index Class Reference}
+\label{classCANDY_1_1FlatAMMIPObjIndex}\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+
+
+Similar to \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex}{Flat\+AMMIPIndex}}, but additionally has object storage (currently only string)  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Flat\+AMMIPObj\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Flat\+AMMIPObj\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classCANDY_1_1FlatAMMIPObjIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Flat\+AMMIPObj\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1FlatAMMIPObjIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a2a4cbbb2590b8557dff88487e00d91d9}\label{classCANDY_1_1FlatAMMIPObjIndex_a2a4cbbb2590b8557dff88487e00d91d9}} 
+virtual void \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a2a4cbbb2590b8557dff88487e00d91d9}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a5e7b1a1647299048f5f813bac6b893b6}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a7dc5fcb82339e3cb2075f1807997dcc7}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a9f2cb2d5a59df9f0a8c64a7062595b3a}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a88ff25881850b136cea8e54bbb96029b}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a63ebe7f51049bc176b7d982c64fd38c0}{search\+Index}} (torch\+::\+Tensor q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return their index \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a26d241a9209e8b9e29890e885bbd1ce7}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a315b2d8d542663b472b891f11da8075b}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a8fe44b97278037219985701957060495}{raw\+Data}} ()
+\begin{DoxyCompactList}\small\item\em return the raw\+Data of tensor \end{DoxyCompactList}\item 
+virtual int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_ae1845a0af873fb2623aa21f931935a16}{size}} ()
+\begin{DoxyCompactList}\small\item\em return the size of ingested tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_acbfd163b1ce1c2e84acbe2124233e526}{insert\+String\+Object}} (torch\+::\+Tensor \&t, std\+::vector$<$ std\+::string $>$ \&strs)
+\begin{DoxyCompactList}\small\item\em insert a string object \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_ab19832382f5332c815e4594b323bf370}{delete\+String\+Object}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete tensor along with its corresponding string object \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a9e76fac40aad4632d7774510402fd9be}{search\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a0da8b6909230ab8f5ac7190932d25a30}\label{classCANDY_1_1FlatAMMIPObjIndex_a0da8b6909230ab8f5ac7190932d25a30}} 
+torch\+::\+Tensor {\bfseries my\+MMInline} (torch\+::\+Tensor \&a, torch\+::\+Tensor \&b, int64\+\_\+t ss=10)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_ad93ea1a83c5160a6e9b1f8b5db69ce4e}\label{classCANDY_1_1FlatAMMIPObjIndex_ad93ea1a83c5160a6e9b1f8b5db69ce4e}} 
+std\+::vector$<$ faiss\+::idx\+\_\+t $>$ {\bfseries knn\+Inline} (torch\+::\+Tensor \&query, int64\+\_\+t k, int64\+\_\+t distance\+Batch=-\/1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a26b798c7c0b42fb4cd8d38b098af494c}\label{classCANDY_1_1FlatAMMIPObjIndex_a26b798c7c0b42fb4cd8d38b098af494c}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} {\bfseries my\+Cfg} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_adc9149598feb6b401d019a2eef5e9888}\label{classCANDY_1_1FlatAMMIPObjIndex_adc9149598feb6b401d019a2eef5e9888}} 
+torch\+::\+Tensor {\bfseries db\+Tensor}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a1a33a0dedd0103e79d0370f45afd8590}\label{classCANDY_1_1FlatAMMIPObjIndex_a1a33a0dedd0103e79d0370f45afd8590}} 
+torch\+::\+Tensor {\bfseries obj\+Tensor}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a8871c36dbf4bcc12d99c1500f2fd1e78}\label{classCANDY_1_1FlatAMMIPObjIndex_a8871c36dbf4bcc12d99c1500f2fd1e78}} 
+int64\+\_\+t {\bfseries last\+NNZ} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_aaed25f20add76c35c1d8abd8b0412566}\label{classCANDY_1_1FlatAMMIPObjIndex_aaed25f20add76c35c1d8abd8b0412566}} 
+int64\+\_\+t {\bfseries last\+NNZObj} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_afa51d74f738fda5f497fedaa7741d4a1}\label{classCANDY_1_1FlatAMMIPObjIndex_afa51d74f738fda5f497fedaa7741d4a1}} 
+int64\+\_\+t {\bfseries vec\+Dim} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a63ca4cf4e2516f0926c61d824aeac847}\label{classCANDY_1_1FlatAMMIPObjIndex_a63ca4cf4e2516f0926c61d824aeac847}} 
+int64\+\_\+t {\bfseries initial\+Volume} = 1000
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a50bb65a83010668a01e9fdfd1615d23f}\label{classCANDY_1_1FlatAMMIPObjIndex_a50bb65a83010668a01e9fdfd1615d23f}} 
+int64\+\_\+t {\bfseries expand\+Step} = 100
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_abfc52abdb9336b5b60836acee70a72df}\label{classCANDY_1_1FlatAMMIPObjIndex_abfc52abdb9336b5b60836acee70a72df}} 
+int64\+\_\+t {\bfseries amm\+Type} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_adb960a86c6ce3d725b7a07f083624760}\label{classCANDY_1_1FlatAMMIPObjIndex_adb960a86c6ce3d725b7a07f083624760}} 
+int64\+\_\+t {\bfseries sketch\+Size} = 10
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a5f0a8fe54967af5440c93a74c893c963}\label{classCANDY_1_1FlatAMMIPObjIndex_a5f0a8fe54967af5440c93a74c893c963}} 
+int64\+\_\+t {\bfseries DCOBatch\+Size} = -\/1
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Similar to \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex}{Flat\+AMMIPIndex}}, but additionally has object storage (currently only string) 
+
+\begin{DoxyNote}{Note}
+Only support inner product distance 
+
+currently single thread 
+
+config parameters
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item initial\+Volume, the initial volume of inline database tensor, default 1000, I64
+\item expand\+Step, the step of expanding inline database, default 100, I64
+\item sketch\+Size, the sketch size of amm, default 10, I64
+\item DCOBatch\+Size, the batch size of internal distance comparison operation (DCO), default -\/1 (full data once), I64
+\item amm\+Algo, the amm algorithm used for compute distance, default mm, String, can be the following
+\begin{DoxyItemize}
+\item mm the original torch\+::matmul
+\item crs column row sampling
+\item smp-\/pca the smp-\/pca algorithm 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_ab19832382f5332c815e4594b323bf370}\label{classCANDY_1_1FlatAMMIPObjIndex_ab19832382f5332c815e4594b323bf370}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!deleteStringObject@{deleteStringObject}}
+\index{deleteStringObject@{deleteStringObject}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{deleteStringObject()}{deleteStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Flat\+AMMIPObj\+Index\+::delete\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete tensor along with its corresponding string object 
+
+\begin{DoxyNote}{Note}
+This is majorly an online function 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the delet is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a409739ea60c38ce4a68f0aa04c44f38d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a9f2cb2d5a59df9f0a8c64a7062595b3a}\label{classCANDY_1_1FlatAMMIPObjIndex_a9f2cb2d5a59df9f0a8c64a7062595b3a}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Flat\+AMMIPObj\+Index\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, recommend single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a315b2d8d542663b472b891f11da8075b}\label{classCANDY_1_1FlatAMMIPObjIndex_a315b2d8d542663b472b891f11da8075b}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Flat\+AMMIPObj\+Index\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_acbfd163b1ce1c2e84acbe2124233e526}\label{classCANDY_1_1FlatAMMIPObjIndex_acbfd163b1ce1c2e84acbe2124233e526}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!insertStringObject@{insertStringObject}}
+\index{insertStringObject@{insertStringObject}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{insertStringObject()}{insertStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Flat\+AMMIPObj\+Index\+::insert\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{strs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a string object 
+
+\begin{DoxyNote}{Note}
+This is majorly an online function 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+{\em strs} & the corresponding list of strings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a9946053cdb6b0a6c8723b7404d63499d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a7dc5fcb82339e3cb2075f1807997dcc7}\label{classCANDY_1_1FlatAMMIPObjIndex_a7dc5fcb82339e3cb2075f1807997dcc7}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Flat\+AMMIPObj\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, accept multiple rows \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a8fe44b97278037219985701957060495}\label{classCANDY_1_1FlatAMMIPObjIndex_a8fe44b97278037219985701957060495}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!rawData@{rawData}}
+\index{rawData@{rawData}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{rawData()}{rawData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Flat\+AMMIPObj\+Index\+::raw\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return the raw\+Data of tensor 
+
+\begin{DoxyReturn}{Returns}
+The raw data stored in tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a88ff25881850b136cea8e54bbb96029b}\label{classCANDY_1_1FlatAMMIPObjIndex_a88ff25881850b136cea8e54bbb96029b}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Flat\+AMMIPObj\+Index\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised, recommend single row \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a63ebe7f51049bc176b7d982c64fd38c0}\label{classCANDY_1_1FlatAMMIPObjIndex_a63ebe7f51049bc176b7d982c64fd38c0}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!searchIndex@{searchIndex}}
+\index{searchIndex@{searchIndex}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{searchIndex()}{searchIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ faiss\+::idx\+\_\+t $>$ CANDY\+::\+Flat\+AMMIPObj\+Index\+::search\+Index (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return their index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$faiss\+::idx\+\_\+t$>$ the index, follow faiss\textquotesingle{}s order 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a60e0f58c72ffbf47342b4c4b4091a573}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a9e76fac40aad4632d7774510402fd9be}\label{classCANDY_1_1FlatAMMIPObjIndex_a9e76fac40aad4632d7774510402fd9be}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!searchStringObject@{searchStringObject}}
+\index{searchStringObject@{searchStringObject}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{searchStringObject()}{searchStringObject()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ CANDY\+::\+Flat\+AMMIPObj\+Index\+::search\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the linked string objects 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$std\+::string$>$$>$ the result object for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2d641c1ab983db0c3def862d6045ca6b}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a26d241a9209e8b9e29890e885bbd1ce7}\label{classCANDY_1_1FlatAMMIPObjIndex_a26d241a9209e8b9e29890e885bbd1ce7}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Flat\+AMMIPObj\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_a5e7b1a1647299048f5f813bac6b893b6}\label{classCANDY_1_1FlatAMMIPObjIndex_a5e7b1a1647299048f5f813bac6b893b6}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Flat\+AMMIPObj\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FlatAMMIPObjIndex_ae1845a0af873fb2623aa21f931935a16}\label{classCANDY_1_1FlatAMMIPObjIndex_ae1845a0af873fb2623aa21f931935a16}} 
+\index{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!size@{size}}
+\index{size@{size}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily virtual int64\+\_\+t CANDY\+::\+Flat\+AMMIPObj\+Index\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+return the size of ingested tensors 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{FlatAMMIPObjIndex_8h}{Flat\+AMMIPObj\+Index.\+h}}\item 
+src/\+CANDY/\mbox{\hyperlink{FlatAMMIPObjIndex_8cpp}{Flat\+AMMIPObj\+Index.\+cpp}}\end{DoxyCompactItemize}

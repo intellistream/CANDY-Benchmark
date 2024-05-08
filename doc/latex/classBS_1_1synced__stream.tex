@@ -1,0 +1,145 @@
+\hypertarget{classBS_1_1synced__stream}{}\doxysection{BS\+::synced\+\_\+stream Class Reference}
+\label{classBS_1_1synced__stream}\index{BS::synced\_stream@{BS::synced\_stream}}
+
+
+A helper class to synchronize printing to an output stream by different threads.  
+
+
+
+
+{\ttfamily \#include $<$BS\+\_\+thread\+\_\+pool.\+hpp$>$}
+
+
+
+Collaboration diagram for BS\+::synced\+\_\+stream\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{classBS_1_1synced__stream__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBS_1_1synced__stream_aa66339189e666fb9aec5759401dc6dfc}{synced\+\_\+stream}} (std\+::ostream \&out\+\_\+stream\+\_\+=std\+::cout)
+\begin{DoxyCompactList}\small\item\em Construct a new synced stream. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... T$>$ }\\void \mbox{\hyperlink{classBS_1_1synced__stream_ab2f582fc2788f139bd3c99c4cb1cb302}{print}} (T \&\&...items)
+\begin{DoxyCompactList}\small\item\em Print any number of items into the output stream. Ensures that no other threads print to this stream simultaneously, as long as they all exclusively use the same \mbox{\hyperlink{classBS_1_1synced__stream}{synced\+\_\+stream}} object to print. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... T$>$ }\\void \mbox{\hyperlink{classBS_1_1synced__stream_a1540a1e302a4b76378e627f46d075bc6}{println}} (T \&\&...items)
+\begin{DoxyCompactList}\small\item\em Print any number of items into the output stream, followed by a newline character. Ensures that no other threads print to this stream simultaneously, as long as they all exclusively use the same \mbox{\hyperlink{classBS_1_1synced__stream}{synced\+\_\+stream}} object to print. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::ostream \&(\&) \mbox{\hyperlink{classBS_1_1synced__stream_aecb26211e0170537b99c96880582cde0}{endl}} (std\+::ostream \&)
+\begin{DoxyCompactList}\small\item\em A stream manipulator to pass to a \mbox{\hyperlink{classBS_1_1synced__stream}{synced\+\_\+stream}} (an explicit cast of std\+::endl). Prints a newline character to the stream, and then flushes it. Should only be used if flushing is desired, otherwise \textquotesingle{}~\newline
+\textquotesingle{} should be used instead. \end{DoxyCompactList}\item 
+static std\+::ostream \&(\&) \mbox{\hyperlink{classBS_1_1synced__stream_a33cdf7cd5e56d2ddc047613838da1e6d}{flush}} (std\+::ostream \&)
+\begin{DoxyCompactList}\small\item\em A stream manipulator to pass to a \mbox{\hyperlink{classBS_1_1synced__stream}{synced\+\_\+stream}} (an explicit cast of std\+::flush). Used to flush the stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A helper class to synchronize printing to an output stream by different threads. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBS_1_1synced__stream_aa66339189e666fb9aec5759401dc6dfc}\label{classBS_1_1synced__stream_aa66339189e666fb9aec5759401dc6dfc}} 
+\index{BS::synced\_stream@{BS::synced\_stream}!synced\_stream@{synced\_stream}}
+\index{synced\_stream@{synced\_stream}!BS::synced\_stream@{BS::synced\_stream}}
+\doxysubsubsection{\texorpdfstring{synced\_stream()}{synced\_stream()}}
+{\footnotesize\ttfamily BS\+::synced\+\_\+stream\+::synced\+\_\+stream (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out\+\_\+stream\+\_\+ = {\ttfamily std\+:\+:cout} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new synced stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out\+\_\+stream\+\_\+} & The output stream to print to. The default value is std\+::cout. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBS_1_1synced__stream_ab2f582fc2788f139bd3c99c4cb1cb302}\label{classBS_1_1synced__stream_ab2f582fc2788f139bd3c99c4cb1cb302}} 
+\index{BS::synced\_stream@{BS::synced\_stream}!print@{print}}
+\index{print@{print}!BS::synced\_stream@{BS::synced\_stream}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$typename... T$>$ \\
+void BS\+::synced\+\_\+stream\+::print (\begin{DoxyParamCaption}\item[{T \&\&...}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Print any number of items into the output stream. Ensures that no other threads print to this stream simultaneously, as long as they all exclusively use the same \mbox{\hyperlink{classBS_1_1synced__stream}{synced\+\_\+stream}} object to print. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The types of the items \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em items} & The items to print. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBS_1_1synced__stream_a1540a1e302a4b76378e627f46d075bc6}\label{classBS_1_1synced__stream_a1540a1e302a4b76378e627f46d075bc6}} 
+\index{BS::synced\_stream@{BS::synced\_stream}!println@{println}}
+\index{println@{println}!BS::synced\_stream@{BS::synced\_stream}}
+\doxysubsubsection{\texorpdfstring{println()}{println()}}
+{\footnotesize\ttfamily template$<$typename... T$>$ \\
+void BS\+::synced\+\_\+stream\+::println (\begin{DoxyParamCaption}\item[{T \&\&...}]{items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Print any number of items into the output stream, followed by a newline character. Ensures that no other threads print to this stream simultaneously, as long as they all exclusively use the same \mbox{\hyperlink{classBS_1_1synced__stream}{synced\+\_\+stream}} object to print. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The types of the items \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em items} & The items to print. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classBS_1_1synced__stream_aecb26211e0170537b99c96880582cde0}\label{classBS_1_1synced__stream_aecb26211e0170537b99c96880582cde0}} 
+\index{BS::synced\_stream@{BS::synced\_stream}!endl@{endl}}
+\index{endl@{endl}!BS::synced\_stream@{BS::synced\_stream}}
+\doxysubsubsection{\texorpdfstring{endl}{endl}}
+{\footnotesize\ttfamily std\+::ostream\&(\&) BS\+::synced\+\_\+stream\+::endl(std\+::ostream \&)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{  \textcolor{keyword}{static\_cast<}std::ostream \&(\&)(std::ostream \&)\textcolor{keyword}{>}(std::endl)}
+
+\end{DoxyCode}
+
+
+A stream manipulator to pass to a \mbox{\hyperlink{classBS_1_1synced__stream}{synced\+\_\+stream}} (an explicit cast of std\+::endl). Prints a newline character to the stream, and then flushes it. Should only be used if flushing is desired, otherwise \textquotesingle{}~\newline
+\textquotesingle{} should be used instead. 
+
+\mbox{\Hypertarget{classBS_1_1synced__stream_a33cdf7cd5e56d2ddc047613838da1e6d}\label{classBS_1_1synced__stream_a33cdf7cd5e56d2ddc047613838da1e6d}} 
+\index{BS::synced\_stream@{BS::synced\_stream}!flush@{flush}}
+\index{flush@{flush}!BS::synced\_stream@{BS::synced\_stream}}
+\doxysubsubsection{\texorpdfstring{flush}{flush}}
+{\footnotesize\ttfamily std\+::ostream\&(\&) BS\+::synced\+\_\+stream\+::flush(std\+::ostream \&)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{  \textcolor{keyword}{static\_cast<}std::ostream \&(\&)(std::ostream \&)\textcolor{keyword}{>}(std::flush)}
+
+\end{DoxyCode}
+
+
+A stream manipulator to pass to a \mbox{\hyperlink{classBS_1_1synced__stream}{synced\+\_\+stream}} (an explicit cast of std\+::flush). Used to flush the stream. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\mbox{\hyperlink{BS__thread__pool_8hpp}{BS\+\_\+thread\+\_\+pool.\+hpp}}\end{DoxyCompactItemize}

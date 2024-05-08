@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['tensorfromfile_1154',['tensorFromFile',['../classINTELLI_1_1IntelliTensorOP.html#aa59d10741d6b9195c4b61f326666aa6a',1,'INTELLI::IntelliTensorOP::tensorFromFile()'],['../classCANDY_1_1Rania__Python.html#ad2fa9941f25d2c80887205e06b886123',1,'CANDY::Candy_Python::tensorFromFile()']]],
+  ['tensorfromflatbin_1155',['tensorFromFlatBin',['../classINTELLI_1_1IntelliTensorOP.html#accdf70e85ea9997f18841496ff3d584a',1,'INTELLI::IntelliTensorOP']]],
+  ['tensorfromfvecs_1156',['tensorFromFVECS',['../classCANDY_1_1Rania__Python.html#a7f1dae37f12f459c9ce73828a8b516b5',1,'CANDY::Candy_Python::tensorFromFVECS()'],['../classCANDY_1_1FVECSDataLoader.html#a9255d104bca43f7f7168ae6ed1b74ee0',1,'CANDY::FVECSDataLoader::tensorFromFVECS()']]],
+  ['tensorfromhdf5_1157',['tensorFromHDF5',['../classCANDY_1_1Rania__Python.html#acee6d2c42845be5988140f1412869851',1,'CANDY::Candy_Python::tensorFromHDF5()'],['../classCANDY_1_1HDF5DataLoader.html#a3e48e50ca81c71df58271ae43e5115ab',1,'CANDY::HDF5DataLoader::tensorFromHDF5()']]],
+  ['tensorlistfromfile_1158',['tensorListFromFile',['../classINTELLI_1_1UtilityFunctions.html#a11b63550ac9d236aee0c1a29e201a6c8',1,'INTELLI::UtilityFunctions']]],
+  ['tensorlisttofile_1159',['tensorListToFile',['../classINTELLI_1_1UtilityFunctions.html#a900844711612e87ebd8d8e84852e0ded',1,'INTELLI::UtilityFunctions']]],
+  ['tensortofile_1160',['tensorToFile',['../classCANDY_1_1Rania__Python.html#a529a9084eda05c6838fa28fae928d384',1,'CANDY::Candy_Python::tensorToFile()'],['../classINTELLI_1_1IntelliTensorOP.html#a99e8f3df87282e811fe63ca68729c54e',1,'INTELLI::IntelliTensorOP::tensorToFile(torch::Tensor *A, std::string fname)']]],
+  ['tensortoflatbin_1161',['tensorToFlatBin',['../classINTELLI_1_1IntelliTensorOP.html#a56dd4e8a7d0ea67fe5c7811114b2d159',1,'INTELLI::IntelliTensorOP']]],
+  ['teststaticpower_1162',['testStaticPower',['../classDIVERSE__METER_1_1AbstractMeter.html#a2dac7c7167003ff6fcd2e8661d0d8463',1,'DIVERSE_METER::AbstractMeter']]],
+  ['thread_5fpool_1163',['thread_pool',['../classBS_1_1thread__pool.html#af0705b5edcf3809e4f133272e8070d12',1,'BS::thread_pool']]],
+  ['threadperf_1164',['ThreadPerf',['../classINTELLI_1_1ThreadPerf.html#a944735b1c69db27336a1cb2e5d6d59f9',1,'INTELLI::ThreadPerf']]],
+  ['threadperfpapi_1165',['ThreadPerfPAPI',['../classINTELLI_1_1ThreadPerfPAPI.html#a60f92e8ebf8ad274092884d568c6582a',1,'INTELLI::ThreadPerfPAPI']]],
+  ['tofile_1166',['toFile',['../group__INTELLI__UTIL.html#ga678649e21e256512a6b3ccfa28a658bc',1,'INTELLI::ConfigMap']]],
+  ['tostring_1167',['toString',['../classCANDY_1_1YinYangVertex.html#ac13ed3fda9c7e795e3b86543f72beb2c',1,'CANDY::YinYangVertex::toString()'],['../group__INTELLI__UTIL.html#gaa4c8469afc27ed0e86622897c68c45df',1,'INTELLI::ConfigMap::toString()']]],
+  ['train_1168',['train',['../classCANDY_1_1Clustering.html#a2e374f652394037161ed31e6b848e03a',1,'CANDY::Clustering::train()'],['../classCANDY_1_1ProductQuantizer.html#a4099dbbb2851544b1263d6a80ec5663d',1,'CANDY::ProductQuantizer::train()'],['../classCANDY_1_1PQIndex.html#ab85fa9214769ad1d62b40f49c9f34989',1,'CANDY::PQIndex::train()']]],
+  ['trainmodel_1169',['trainModel',['../classCANDY_1_1MLPBucketIdxModel.html#a51cc09da551e249dc1c3c99af96c3241',1,'CANDY::MLPBucketIdxModel::trainModel()'],['../classCANDY_1_1MLPHashingModel.html#ae37b536a60d2a8e54a633dc1f3f05f82',1,'CANDY::MLPHashingModel::trainModel()']]],
+  ['trainmodelwithdata_1170',['trainModelWithData',['../classCANDY_1_1OnlineIVFL2HIndex.html#ad559cbb013803dcccb2da202c1766ad9',1,'CANDY::OnlineIVFL2HIndex']]],
+  ['trydouble_1171',['tryDouble',['../group__INTELLI__UTIL.html#ga735cfb465c3369fdfbcbd6c7e5337139',1,'INTELLI::ConfigMap']]],
+  ['tryi64_1172',['tryI64',['../group__INTELLI__UTIL.html#ga84943449063ec5bcea0dc808e2d36e99',1,'INTELLI::ConfigMap']]],
+  ['trystring_1173',['tryString',['../group__INTELLI__UTIL.html#ga154a51d727d725c84e17bf836f278de2',1,'INTELLI::ConfigMap']]],
+  ['trytoconnect_1174',['tryToConnect',['../classCANDY_1_1YinYangVertex.html#a3fc59c660b42db439b409455d2059adb',1,'CANDY::YinYangVertex']]],
+  ['tryu64_1175',['tryU64',['../group__INTELLI__UTIL.html#ga3073b6b7d400cabfefe2b74b461df801',1,'INTELLI::ConfigMap']]]
+];

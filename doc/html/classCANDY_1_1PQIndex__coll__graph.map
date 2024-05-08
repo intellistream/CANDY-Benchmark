@@ -1,0 +1,12 @@
+<map id="CANDY::PQIndex" name="CANDY::PQIndex">
+<area shape="rect" id="node1" title="class for indexing vectors using product quantizations, this is a raw implementation without hierachi..." alt="" coords="537,275,665,301"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractIndex.html" title="The abstract class of an index approach." alt="" coords="614,177,778,203"/>
+<area shape="rect" id="node3" title=" " alt="" coords="475,5,541,32"/>
+<area shape="rect" id="node6" href="$classCANDY_1_1ProductQuantizer.html" title="class for basic product quantization operations on input of tensors" alt="" coords="179,177,365,203"/>
+<area shape="rect" id="node4" title=" " alt="" coords="811,5,861,32"/>
+<area shape="rect" id="node5" title=" " alt="" coords="627,5,720,32"/>
+<area shape="rect" id="node7" title=" " alt="" coords="237,5,307,32"/>
+<area shape="rect" id="node8" title=" " alt="" coords="113,5,213,32"/>
+<area shape="rect" id="node9" title=" " alt="" coords="5,5,69,32"/>
+<area shape="rect" id="node10" title=" " alt="" coords="984,177,1123,203"/>
+</map>

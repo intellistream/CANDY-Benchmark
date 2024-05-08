@@ -1,0 +1,66 @@
+\hypertarget{classCANDY_1_1CongestionDropIndexWorker}{}\doxysection{CANDY\+::Congestion\+Drop\+Index\+Worker Class Reference}
+\label{classCANDY_1_1CongestionDropIndexWorker}\index{CANDY::CongestionDropIndexWorker@{CANDY::CongestionDropIndexWorker}}
+
+
+A worker class to container bottom indexings, will just drop new element if congestion occurs.  
+
+
+
+
+Inheritance diagram for CANDY\+::Congestion\+Drop\+Index\+Worker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classCANDY_1_1CongestionDropIndexWorker__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Congestion\+Drop\+Index\+Worker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1CongestionDropIndexWorker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae4a7024f5b4d1b3c6cbf8b5aa78b8ccd}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae32fab6713f0cf575c175c0cb6263967}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga292279e7b8692e572c4fe3aaad569bb3}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Tensor\+List\+Idx\+Queue\+Ptr {\bfseries reduce\+Queue}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int64\+\_\+t {\bfseries force\+Drop} = 1
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A worker class to container bottom indexings, will just drop new element if congestion occurs. 
+
+\begin{DoxyNote}{Note}
+special parameters
+\begin{DoxyItemize}
+\item congestion\+Drop\+Worker\+\_\+algo\+Tag The algo tag of this worker, String, default flat
+\item congestion\+Drop\+Worker\+\_\+queue\+Size The input queue size of this worker, I64, default 10
+\item congestion\+Drop, whether or not drop the data when congestion occurs, I64, default 1 -\/vec\+Dim the dimension of vectors, I674, default 768 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Congestion\+Drop\+Index/\mbox{\hyperlink{CongestionDropIndexWorker_8h}{Congestion\+Drop\+Index\+Worker.\+h}}\item 
+src/\+CANDY/\+Congestion\+Drop\+Index/\mbox{\hyperlink{CongestionDropIndexWorker_8cpp}{Congestion\+Drop\+Index\+Worker.\+cpp}}\end{DoxyCompactItemize}

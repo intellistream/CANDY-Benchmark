@@ -1,0 +1,8 @@
+<map id="CANDY::AbstractDataLoader" name="CANDY::AbstractDataLoader">
+<area shape="rect" id="node1" title="The abstract class of data loader, parent for all loaders." alt="" coords="5,107,208,133"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1ExpFamilyDataLoader.html" title="The class to load data from exponential family, i.e., poisson, gaussian, exponential and beta." alt="" coords="256,5,472,32"/>
+<area shape="rect" id="node3" href="$classCANDY_1_1FVECSDataLoader.html" title="The class for loading *.fvecs data." alt="" coords="269,56,459,83"/>
+<area shape="rect" id="node4" href="$classCANDY_1_1HDF5DataLoader.html" title="The class for loading *.hdf5 or *.h5 file, as specified in https://github.com/HDFGroup/hdf5." alt="" coords="271,107,457,133"/>
+<area shape="rect" id="node5" href="$classCANDY_1_1RandomDataLoader.html" title="The class of ranom data loader,." alt="" coords="263,157,465,184"/>
+<area shape="rect" id="node6" href="$classCANDY_1_1ZipfDataLoader.html" title="The class to load zipf data." alt="" coords="277,208,451,235"/>
+</map>

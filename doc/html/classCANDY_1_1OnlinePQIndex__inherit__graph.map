@@ -1,0 +1,4 @@
+<map id="CANDY::OnlinePQIndex" name="CANDY::OnlinePQIndex">
+<area shape="rect" id="node1" title="The class of online PQ approach, using IVF&#45;style coarse&#45;grained + fine&#45;grained quantizers." alt="" coords="5,80,176,107"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractIndex.html" title="The abstract class of an index approach." alt="" coords="9,5,173,32"/>
+</map>

@@ -1,0 +1,11 @@
+key,value,type
+slideLenMs,123,U64
+timeStepUs,50,U64
+windowLenMs,10,U64
+watermarkTimeMs,10,U64
+maxArrivalSkewMs,5,U64
+eventRateKTps,100,U64
+keyRange,10,U64
+threads,4,U64
+Energy,12.3,Double
+algo,NPJSingle,String

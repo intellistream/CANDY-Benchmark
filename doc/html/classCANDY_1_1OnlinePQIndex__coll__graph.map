@@ -1,0 +1,15 @@
+<map id="CANDY::OnlinePQIndex" name="CANDY::OnlinePQIndex">
+<area shape="rect" id="node1" title="The class of online PQ approach, using IVF&#45;style coarse&#45;grained + fine&#45;grained quantizers." alt="" coords="804,463,975,489"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractIndex.html" title="The abstract class of an index approach." alt="" coords="399,252,563,279"/>
+<area shape="rect" id="node3" title=" " alt="" coords="81,173,148,200"/>
+<area shape="rect" id="node4" title=" " alt="" coords="89,328,140,355"/>
+<area shape="rect" id="node8" href="$classCANDY_1_1IVFTensorEncodingList.html" title="The inverted file (IVF) list to organize tensor and its encodings." alt="" coords="371,521,590,548"/>
+<area shape="rect" id="node5" title=" " alt="" coords="68,239,161,265"/>
+<area shape="rect" id="node6" title=" " alt="" coords="363,390,599,431"/>
+<area shape="rect" id="node7" title=" " alt="" coords="383,455,578,497"/>
+<area shape="rect" id="node9" title=" " alt="" coords="85,492,145,519"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,543,224,585"/>
+<area shape="rect" id="node11" title=" " alt="" coords="385,572,576,599"/>
+<area shape="rect" id="node12" title=" " alt="" coords="451,623,510,649"/>
+<area shape="rect" id="node13" title=" " alt="" coords="411,683,550,709"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="CANDY::KmeansTree" name="CANDY::KmeansTree">
+<area shape="rect" id="node1" title="The structure representing hierarchical k&#45;means tree used in FLANN." alt="" coords="716,469,871,496"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1FlannComponent.html" title=" " alt="" coords="365,401,550,428"/>
+<area shape="rect" id="node3" title=" " alt="" coords="73,351,148,377"/>
+<area shape="rect" id="node4" title=" " alt="" coords="85,275,136,301"/>
+<area shape="rect" id="node10" href="$structCANDY_1_1KmeansTree_1_1Node.html" title=" " alt="" coords="359,191,555,217"/>
+<area shape="rect" id="node5" title=" " alt="" coords="77,25,144,52"/>
+<area shape="rect" id="node6" title=" " alt="" coords="91,452,130,479"/>
+<area shape="rect" id="node7" title=" " alt="" coords="79,401,143,428"/>
+<area shape="rect" id="node8" title=" " alt="" coords="64,519,157,545"/>
+<area shape="rect" id="node9" title=" " alt="" coords="424,597,491,624"/>
+<area shape="rect" id="node11" title=" " alt="" coords="5,129,216,170"/>
+<area shape="rect" id="node12" title=" " alt="" coords="5,194,216,235"/>
+<area shape="rect" id="node13" href="$classCANDY_1_1FLANN_1_1RandomCenterChooser.html" title="The class used in hierarchical kmeans tree to choose center." alt="" coords="345,649,569,690"/>
+</map>

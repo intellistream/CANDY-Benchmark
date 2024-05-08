@@ -1,0 +1,193 @@
+\hypertarget{classCANDY_1_1Clustering}{}\doxysection{CANDY\+::Clustering Class Reference}
+\label{classCANDY_1_1Clustering}\index{CANDY::Clustering@{CANDY::Clustering}}
+
+
+class for naive K-\/means clustering  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+PQIndex/\+Clustering.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Clustering\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classCANDY_1_1Clustering__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Clustering\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1Clustering__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1Clustering_a1d05334aab2a489ca7bb03783bc8e9d3}\label{classCANDY_1_1Clustering_a1d05334aab2a489ca7bb03783bc8e9d3}} 
+{\bfseries Clustering} (int64\+\_\+t vec\+Dim, int64\+\_\+t k)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1Clustering_aa1c704f6ed1622a288f575d088f7b3f4}\label{classCANDY_1_1Clustering_aa1c704f6ed1622a288f575d088f7b3f4}} 
+void {\bfseries reset} ()
+\item 
+\mbox{\Hypertarget{classCANDY_1_1Clustering_a314b442e8b7d32f121377a1371f30068}\label{classCANDY_1_1Clustering_a314b442e8b7d32f121377a1371f30068}} 
+auto {\bfseries get\+Centroids} () -\/$>$ torch\+::\+Tensor
+\item 
+void \mbox{\hyperlink{classCANDY_1_1Clustering_a2e374f652394037161ed31e6b848e03a}{train}} (size\+\_\+t nx, const torch\+::\+Tensor x\+\_\+in, faiss\+::\+Index\+Flat\+L2 $\ast$index, const torch\+::\+Tensor $\ast$weights)
+\begin{DoxyCompactList}\small\item\em train the clustering using tensor based on Index\+Flat\+L2 with weights \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classCANDY_1_1Clustering_a6768c28463837fc2adabf8aecb7c41de}{imbalance\+\_\+factor}} (size\+\_\+t n, int64\+\_\+t k, int64\+\_\+t $\ast$assign)
+\begin{DoxyCompactList}\small\item\em compute the imbalance factor of an assignment \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1Clustering_a09753e8ae8c5b114e56701a7d077e199}{compute\+Centroids}} (int64\+\_\+t d, int64\+\_\+t k, size\+\_\+t n, int64\+\_\+t k\+\_\+frozen, const torch\+::\+Tensor x\+\_\+in, const int64\+\_\+t $\ast$assign, const torch\+::\+Tensor $\ast$weights, torch\+::\+Tensor $\ast$hassign, torch\+::\+Tensor $\ast$centroids)
+\begin{DoxyCompactList}\small\item\em compute the centroids of input vectors \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCANDY_1_1Clustering_abebb27d365c17e850ac848410da0e0e6}{split\+Clusters}} (int64\+\_\+t d, int64\+\_\+t k, size\+\_\+t n, int64\+\_\+t k\+\_\+frozen, torch\+::\+Tensor $\ast$hassign, torch\+::\+Tensor $\ast$centroids)
+\begin{DoxyCompactList}\small\item\em balance the assignment by averaging between a big cluster and a null cluster \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1Clustering_aa1f4820cefedde496c32d1dd35e15434}\label{classCANDY_1_1Clustering_aa1f4820cefedde496c32d1dd35e15434}} 
+std\+::vector$<$ \mbox{\hyperlink{structCANDY_1_1ClusteringIterationStats}{Clustering\+Iteration\+Stats}} $>$ {\bfseries iteration\+\_\+stats\+\_\+}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1Clustering_aa1956c0dd2a945ebd43a7c3ac76a26f6}\label{classCANDY_1_1Clustering_aa1956c0dd2a945ebd43a7c3ac76a26f6}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} {\bfseries my\+Cfg\+\_\+} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1Clustering_a967fb53ac899a8fd14d6e8b66612c3bd}\label{classCANDY_1_1Clustering_a967fb53ac899a8fd14d6e8b66612c3bd}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1Clustering_a967fb53ac899a8fd14d6e8b66612c3bd}{vec\+Dim\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em dimension of vectors \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1Clustering_ac0e66cfcff2ecfd690eb0bd3e018d7a5}\label{classCANDY_1_1Clustering_ac0e66cfcff2ecfd690eb0bd3e018d7a5}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1Clustering_ac0e66cfcff2ecfd690eb0bd3e018d7a5}{k\+\_\+}} = 256
+\begin{DoxyCompactList}\small\item\em number of centroids \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1Clustering_af3c8fad97ed971741f6e092ae4921599}\label{classCANDY_1_1Clustering_af3c8fad97ed971741f6e092ae4921599}} 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1Clustering_af3c8fad97ed971741f6e092ae4921599}{centroids\+\_\+}}
+\begin{DoxyCompactList}\small\item\em centroids vector size \+: (k $\ast$ d) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class for naive K-\/means clustering 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000007}{Todo}}]current build of centroids still depends on Index\+Flat\+L2, perhaps re-\/implemented in a total tensor manner
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classCANDY_1_1Clustering_a2e374f652394037161ed31e6b848e03a}{train}} 
+\end{DoxyItemize}\end{DoxyRefDesc}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1Clustering_a09753e8ae8c5b114e56701a7d077e199}\label{classCANDY_1_1Clustering_a09753e8ae8c5b114e56701a7d077e199}} 
+\index{CANDY::Clustering@{CANDY::Clustering}!computeCentroids@{computeCentroids}}
+\index{computeCentroids@{computeCentroids}!CANDY::Clustering@{CANDY::Clustering}}
+\doxysubsubsection{\texorpdfstring{computeCentroids()}{computeCentroids()}}
+{\footnotesize\ttfamily void CANDY\+::\+Clustering\+::compute\+Centroids (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{d,  }\item[{int64\+\_\+t}]{k,  }\item[{size\+\_\+t}]{n,  }\item[{int64\+\_\+t}]{k\+\_\+frozen,  }\item[{const torch\+::\+Tensor}]{x\+\_\+in,  }\item[{const int64\+\_\+t $\ast$}]{assign,  }\item[{const torch\+::\+Tensor $\ast$}]{weights,  }\item[{torch\+::\+Tensor $\ast$}]{hassign,  }\item[{torch\+::\+Tensor $\ast$}]{centroids }\end{DoxyParamCaption})}
+
+
+
+compute the centroids of input vectors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & dim of vectors \\
+\hline
+{\em k} & number of centroids \\
+\hline
+{\em n} & number of input vectors \\
+\hline
+{\em k\+\_\+frozen} & number of frozen centroids which remain intact in this computation \\
+\hline
+{\em x\+\_\+in} & input vectors as Tensor \\
+\hline
+{\em assign} & assignment array for n vectors \\
+\hline
+{\em weights} & weights to compute centroids \\
+\hline
+{\em hassign} & histogram of k centroids \\
+\hline
+{\em centroids} & centroids after computation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1Clustering_a6768c28463837fc2adabf8aecb7c41de}\label{classCANDY_1_1Clustering_a6768c28463837fc2adabf8aecb7c41de}} 
+\index{CANDY::Clustering@{CANDY::Clustering}!imbalance\_factor@{imbalance\_factor}}
+\index{imbalance\_factor@{imbalance\_factor}!CANDY::Clustering@{CANDY::Clustering}}
+\doxysubsubsection{\texorpdfstring{imbalance\_factor()}{imbalance\_factor()}}
+{\footnotesize\ttfamily double CANDY\+::\+Clustering\+::imbalance\+\_\+factor (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n,  }\item[{int64\+\_\+t}]{k,  }\item[{int64\+\_\+t $\ast$}]{assign }\end{DoxyParamCaption})}
+
+
+
+compute the imbalance factor of an assignment 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & number of input vectors \\
+\hline
+{\em k} & number of centroids \\
+\hline
+{\em assign} & assignment of centroid clustering \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+imbalance factor of the assignment 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Clustering_abebb27d365c17e850ac848410da0e0e6}\label{classCANDY_1_1Clustering_abebb27d365c17e850ac848410da0e0e6}} 
+\index{CANDY::Clustering@{CANDY::Clustering}!splitClusters@{splitClusters}}
+\index{splitClusters@{splitClusters}!CANDY::Clustering@{CANDY::Clustering}}
+\doxysubsubsection{\texorpdfstring{splitClusters()}{splitClusters()}}
+{\footnotesize\ttfamily int CANDY\+::\+Clustering\+::split\+Clusters (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{d,  }\item[{int64\+\_\+t}]{k,  }\item[{size\+\_\+t}]{n,  }\item[{int64\+\_\+t}]{k\+\_\+frozen,  }\item[{torch\+::\+Tensor $\ast$}]{hassign,  }\item[{torch\+::\+Tensor $\ast$}]{centroids }\end{DoxyParamCaption})}
+
+
+
+balance the assignment by averaging between a big cluster and a null cluster 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & dim of vectors \\
+\hline
+{\em k} & number of centroids \\
+\hline
+{\em n} & number of input vectors \\
+\hline
+{\em k\+\_\+frozen} & number of frozen centroids which remain intact \\
+\hline
+{\em hassign} & histogram of k centroids \\
+\hline
+{\em centroids} & centroids after computation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1Clustering_a2e374f652394037161ed31e6b848e03a}\label{classCANDY_1_1Clustering_a2e374f652394037161ed31e6b848e03a}} 
+\index{CANDY::Clustering@{CANDY::Clustering}!train@{train}}
+\index{train@{train}!CANDY::Clustering@{CANDY::Clustering}}
+\doxysubsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily void CANDY\+::\+Clustering\+::train (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{nx,  }\item[{const torch\+::\+Tensor}]{x\+\_\+in,  }\item[{faiss\+::\+Index\+Flat\+L2 $\ast$}]{index,  }\item[{const torch\+::\+Tensor $\ast$}]{weights }\end{DoxyParamCaption})}
+
+
+
+train the clustering using tensor based on Index\+Flat\+L2 with weights 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & number of input vectors \\
+\hline
+{\em x\+\_\+in} & input vectors as Tensor \\
+\hline
+{\em index} & index upon which to search and evaluate during clustering \\
+\hline
+{\em weights} & weights to compute centroids after assignment \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+PQIndex/Clustering.\+h\item 
+src/\+CANDY/\+PQIndex/Clustering.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,36 @@
+\hypertarget{ParallelPartitionIndex_8h}{}\doxysection{include/\+CANDY/\+Parallel\+Partition\+Index.h File Reference}
+\label{ParallelPartitionIndex_8h}\index{include/CANDY/ParallelPartitionIndex.h@{include/CANDY/ParallelPartitionIndex.h}}
+{\ttfamily \#include $<$Utils/\+Abstract\+C20\+Thread.\+hpp$>$}\newline
+{\ttfamily \#include $<$Utils/\+Config\+Map.\+hpp$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$Utils/\+Intelli\+Tensor\+OP.\+hpp$>$}\newline
+{\ttfamily \#include $<$CANDY/\+Abstract\+Index.\+h$>$}\newline
+{\ttfamily \#include $<$CANDY/\+Parallel\+Partition\+Index/\+Parallel\+Index\+Worker.\+h$>$}\newline
+Include dependency graph for Parallel\+Partition\+Index.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParallelPartitionIndex_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParallelPartitionIndex_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{CANDY\+::\+Parallel\+Partition\+Index}}
+\begin{DoxyCompactList}\small\item\em A basic parallel index, works under generic data partition, allow configurable index of threads, following round-\/robin insert and map-\/reduce query, have an optional congestion-\/and-\/drop feature. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_gad9c07cfae7c995ffb91b2dc5af817d91}{new\+Parallel\+Partition\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{CANDY\+::\+Parallel\+Partition\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Parallel\+Partition\+Index shared pointer. \end{DoxyCompactList}\item 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{CANDY\+::\+Parallel\+Partition\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_gacd10e783bb511300d870affc2d594dd3}{CANDY\+::\+Parallel\+Partition\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{Parallel\+Partition\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}

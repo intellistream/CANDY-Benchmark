@@ -1,0 +1,29 @@
+<map id="include/CANDY" name="include/CANDY">
+<area shape="rect" id="node1" href="dir_2d1d991c66e7a032b2ab80c11328e79c.html" title="Utils" alt="" coords="640,351,712,399"/>
+<area shape="rect" id="edge9-headlabel" href="dir_000001_000013.html" title="63" alt="" coords="709,336,726,350"/>
+<area shape="rect" id="node3" href="dir_588b355435e79af888a14ee240496be4.html" title="CongestionDropIndex" alt="" coords="64,159,227,207"/>
+<area shape="rect" id="edge13-headlabel" href="dir_000001_000002.html" title="1" alt="" coords="177,142,187,157"/>
+<area shape="rect" id="node4" href="dir_2f1b2d617d67141e21f3d0efc4e938ae.html" title="DistributedPartitionIndex" alt="" coords="251,159,435,207"/>
+<area shape="rect" id="edge10-headlabel" href="dir_000001_000003.html" title="1" alt="" coords="299,133,308,148"/>
+<area shape="rect" id="node8" href="dir_381d5fce047912b1d49ff682278e1854.html" title="OnlinePQIndex" alt="" coords="459,159,578,207"/>
+<area shape="rect" id="edge12-headlabel" href="dir_000001_000007.html" title="4" alt="" coords="439,142,449,157"/>
+<area shape="rect" id="node9" href="dir_81d4aa2633f44d83ab07f2ebec9c1d39.html" title="ParallelPartitionIndex" alt="" coords="65,255,225,303"/>
+<area shape="rect" id="edge14-headlabel" href="dir_000001_000008.html" title="2" alt="" coords="84,230,94,245"/>
+<area shape="rect" id="node11" href="dir_30df8559d578911b5df8cf90ee0dbd2d.html" title="YinYangGraphIndex" alt="" coords="603,159,749,207"/>
+<area shape="rect" id="edge11-headlabel" href="dir_000001_000010.html" title="2" alt="" coords="582,142,591,157"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000002_000013.html" title="3" alt="" coords="620,344,629,359"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000002_000008.html" title="1" alt="" coords="149,229,158,244"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000003_000013.html" title="3" alt="" coords="623,329,633,344"/>
+<area shape="rect" id="node5" href="dir_3659ba27275b6369a939ad21c88b4eba.html" title="FlannIndex" alt="" coords="554,63,649,111"/>
+<area shape="rect" id="node6" href="dir_55a14a6577944cff6f9205bc13cc259b.html" title="HashingModels" alt="" coords="281,63,404,111"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000005_000013.html" title="2" alt="" coords="727,357,737,372"/>
+<area shape="rect" id="node7" href="dir_e3984887bd1e041dadccf7ddc637bacf.html" title="HNSWNaive" alt="" coords="428,63,529,111"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000006_000013.html" title="2" alt="" coords="727,364,736,379"/>
+<area shape="rect" id="edge7-headlabel" href="dir_000007_000013.html" title="2" alt="" coords="647,324,657,338"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000008_000013.html" title="3" alt="" coords="617,354,627,369"/>
+<area shape="rect" id="node10" href="dir_5c64ace0856ffc022a7158be13b1cdbf.html" title="PQIndex" alt="" coords="673,63,749,111"/>
+<area shape="rect" id="edge8-headlabel" href="dir_000009_000013.html" title="3" alt="" coords="727,370,736,384"/>
+<area shape="rect" id="edge15-headlabel" href="dir_000010_000013.html" title="1" alt="" coords="680,325,689,340"/>
+<area shape="rect" id="clust2" href="dir_7aba4d6288dd26b6f48f5b4566787f52.html" alt="" coords="27,52,760,313"/>
+<area shape="rect" id="clust1" href="dir_d44c64559bbebec7f509842c48db8b23.html" title="include" alt="" coords="16,16,867,409"/>
+</map>

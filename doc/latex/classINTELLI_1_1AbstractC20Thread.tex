@@ -1,0 +1,79 @@
+\hypertarget{classINTELLI_1_1AbstractC20Thread}{}\doxysection{INTELLI\+::Abstract\+C20\+Thread Class Reference}
+\label{classINTELLI_1_1AbstractC20Thread}\index{INTELLI::AbstractC20Thread@{INTELLI::AbstractC20Thread}}
+
+
+The base class and abstraction of C++20 thread, and it can be derived into other threads.  
+
+
+
+
+{\ttfamily \#include $<$Utils/\+Abstract\+C20\+Thread.\+hpp$>$}
+
+
+
+Inheritance diagram for INTELLI\+::Abstract\+C20\+Thread\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classINTELLI_1_1AbstractC20Thread__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for INTELLI\+::Abstract\+C20\+Thread\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classINTELLI_1_1AbstractC20Thread__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1AbstractC20Thread_a37df714f21a13ce2f5b6879adf6e002a}\label{classINTELLI_1_1AbstractC20Thread_a37df714f21a13ce2f5b6879adf6e002a}} 
+void \mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread_a37df714f21a13ce2f5b6879adf6e002a}{start\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em to start this thread \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classINTELLI_1_1AbstractC20Thread_aaee52a094251c8a4160cdefd661de099}\label{classINTELLI_1_1AbstractC20Thread_aaee52a094251c8a4160cdefd661de099}} 
+void \mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread_aaee52a094251c8a4160cdefd661de099}{join\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em the thread join function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread_a01a2c2b58a19777dc8814076efdb2552}{inline\+Main}} ()
+\begin{DoxyCompactList}\small\item\em The inline \textquotesingle{}main"{} function of thread, as an interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1AbstractC20Thread_a7f1a0ff57df718f809ca74935f4c9e2b}\label{classINTELLI_1_1AbstractC20Thread_a7f1a0ff57df718f809ca74935f4c9e2b}} 
+std\+::shared\+\_\+ptr$<$ std\+::thread $>$ {\bfseries thread\+Ptr}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The base class and abstraction of C++20 thread, and it can be derived into other threads. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classINTELLI_1_1AbstractC20Thread_a01a2c2b58a19777dc8814076efdb2552}\label{classINTELLI_1_1AbstractC20Thread_a01a2c2b58a19777dc8814076efdb2552}} 
+\index{INTELLI::AbstractC20Thread@{INTELLI::AbstractC20Thread}!inlineMain@{inlineMain}}
+\index{inlineMain@{inlineMain}!INTELLI::AbstractC20Thread@{INTELLI::AbstractC20Thread}}
+\doxysubsubsection{\texorpdfstring{inlineMain()}{inlineMain()}}
+{\footnotesize\ttfamily virtual void INTELLI\+::\+Abstract\+C20\+Thread\+::inline\+Main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+The inline \textquotesingle{}main"{} function of thread, as an interface. 
+
+\begin{DoxyNote}{Note}
+Normally re-\/write this in derived classes 
+\end{DoxyNote}
+
+
+Reimplemented in \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7e29b5c156942b906c91cad583f269f0}{CANDY\+::\+Parallel\+Index\+Worker}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\mbox{\hyperlink{AbstractC20Thread_8hpp}{Abstract\+C20\+Thread.\+hpp}}\end{DoxyCompactItemize}

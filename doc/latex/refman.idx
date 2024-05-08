@@ -1,0 +1,1393 @@
+\indexentry{The support classes for index approaches@{The support classes for index approaches}|hyperpage}{23}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!deleteStringObject@{deleteStringObject}|hyperpage}{26}
+\indexentry{deleteStringObject@{deleteStringObject}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{26}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!deleteTensor@{deleteTensor}|hyperpage}{27}
+\indexentry{deleteTensor@{deleteTensor}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{27}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!endHPC@{endHPC}|hyperpage}{27}
+\indexentry{endHPC@{endHPC}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{27}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!getTensorByIndex@{getTensorByIndex}|hyperpage}{27}
+\indexentry{getTensorByIndex@{getTensorByIndex}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{27}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!inlineMain@{inlineMain}|hyperpage}{28}
+\indexentry{inlineMain@{inlineMain}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{28}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!insertStringObject@{insertStringObject}|hyperpage}{28}
+\indexentry{insertStringObject@{insertStringObject}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{28}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!insertTensor@{insertTensor}|hyperpage}{29}
+\indexentry{insertTensor@{insertTensor}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{29}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!insertTensor@{insertTensor}|hyperpage}{29}
+\indexentry{insertTensor@{insertTensor}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{29}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!loadInitialStringObject@{loadInitialStringObject}|hyperpage}{29}
+\indexentry{loadInitialStringObject@{loadInitialStringObject}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{29}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!loadInitialTensor@{loadInitialTensor}|hyperpage}{30}
+\indexentry{loadInitialTensor@{loadInitialTensor}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{30}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!offlineBuild@{offlineBuild}|hyperpage}{30}
+\indexentry{offlineBuild@{offlineBuild}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{30}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!rawData@{rawData}|hyperpage}{31}
+\indexentry{rawData@{rawData}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{31}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!reviseTensor@{reviseTensor}|hyperpage}{31}
+\indexentry{reviseTensor@{reviseTensor}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{31}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!searchIndex@{searchIndex}|hyperpage}{31}
+\indexentry{searchIndex@{searchIndex}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{31}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!searchStringObject@{searchStringObject}|hyperpage}{32}
+\indexentry{searchStringObject@{searchStringObject}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{32}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!searchTensor@{searchTensor}|hyperpage}{32}
+\indexentry{searchTensor@{searchTensor}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{32}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!searchTensor@{searchTensor}|hyperpage}{32}
+\indexentry{searchTensor@{searchTensor}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{32}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!searchTensorAndStringObject@{searchTensorAndStringObject}|hyperpage}{33}
+\indexentry{searchTensorAndStringObject@{searchTensorAndStringObject}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{33}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!setConfig@{setConfig}|hyperpage}{33}
+\indexentry{setConfig@{setConfig}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{33}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!setConfig@{setConfig}|hyperpage}{34}
+\indexentry{setConfig@{setConfig}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{34}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!setFrozenLevel@{setFrozenLevel}|hyperpage}{34}
+\indexentry{setFrozenLevel@{setFrozenLevel}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{34}
+\indexentry{The support classes for index approaches@{The support classes for index approaches}!startHPC@{startHPC}|hyperpage}{35}
+\indexentry{startHPC@{startHPC}!The support classes for index approaches@{The support classes for index approaches}|hyperpage}{35}
+\indexentry{The data loaders of CANDY@{The data loaders of CANDY}|hyperpage}{35}
+\indexentry{The main body of CANDY\textquotesingle{}s indexing approaches@{The main body of CANDY\textquotesingle{}s indexing approaches}|hyperpage}{36}
+\indexentry{The bottom tier of indexing alorithms@{The bottom tier of indexing alorithms}|hyperpage}{36}
+\indexentry{The bottom tier of indexing alorithms@{The bottom tier of indexing alorithms}!newAbstractIndex@{newAbstractIndex}|hyperpage}{39}
+\indexentry{newAbstractIndex@{newAbstractIndex}!The bottom tier of indexing alorithms@{The bottom tier of indexing alorithms}|hyperpage}{39}
+\indexentry{The upper tier of indexing alorithms, can be container of other indexing ways@{The upper tier of indexing alorithms, can be container of other indexing ways}|hyperpage}{39}
+\indexentry{Shared Utils@{Shared Utils}|hyperpage}{41}
+\indexentry{Shared Utils@{Shared Utils}!cloneInto@{cloneInto}|hyperpage}{43}
+\indexentry{cloneInto@{cloneInto}!Shared Utils@{Shared Utils}|hyperpage}{43}
+\indexentry{Shared Utils@{Shared Utils}!edit@{edit}|hyperpage}{44}
+\indexentry{edit@{edit}!Shared Utils@{Shared Utils}|hyperpage}{44}
+\indexentry{Shared Utils@{Shared Utils}!edit@{edit}|hyperpage}{44}
+\indexentry{edit@{edit}!Shared Utils@{Shared Utils}|hyperpage}{44}
+\indexentry{Shared Utils@{Shared Utils}!edit@{edit}|hyperpage}{44}
+\indexentry{edit@{edit}!Shared Utils@{Shared Utils}|hyperpage}{44}
+\indexentry{Shared Utils@{Shared Utils}!edit@{edit}|hyperpage}{44}
+\indexentry{edit@{edit}!Shared Utils@{Shared Utils}|hyperpage}{44}
+\indexentry{Shared Utils@{Shared Utils}!exist@{exist}|hyperpage}{45}
+\indexentry{exist@{exist}!Shared Utils@{Shared Utils}|hyperpage}{45}
+\indexentry{Shared Utils@{Shared Utils}!existDouble@{existDouble}|hyperpage}{45}
+\indexentry{existDouble@{existDouble}!Shared Utils@{Shared Utils}|hyperpage}{45}
+\indexentry{Shared Utils@{Shared Utils}!existI64@{existI64}|hyperpage}{45}
+\indexentry{existI64@{existI64}!Shared Utils@{Shared Utils}|hyperpage}{45}
+\indexentry{Shared Utils@{Shared Utils}!existString@{existString}|hyperpage}{46}
+\indexentry{existString@{existString}!Shared Utils@{Shared Utils}|hyperpage}{46}
+\indexentry{Shared Utils@{Shared Utils}!existU64@{existU64}|hyperpage}{46}
+\indexentry{existU64@{existU64}!Shared Utils@{Shared Utils}|hyperpage}{46}
+\indexentry{Shared Utils@{Shared Utils}!fromCArg@{fromCArg}|hyperpage}{47}
+\indexentry{fromCArg@{fromCArg}!Shared Utils@{Shared Utils}|hyperpage}{47}
+\indexentry{Shared Utils@{Shared Utils}!fromFile@{fromFile}|hyperpage}{47}
+\indexentry{fromFile@{fromFile}!Shared Utils@{Shared Utils}|hyperpage}{47}
+\indexentry{Shared Utils@{Shared Utils}!fromString@{fromString}|hyperpage}{47}
+\indexentry{fromString@{fromString}!Shared Utils@{Shared Utils}|hyperpage}{47}
+\indexentry{Shared Utils@{Shared Utils}!getDouble@{getDouble}|hyperpage}{48}
+\indexentry{getDouble@{getDouble}!Shared Utils@{Shared Utils}|hyperpage}{48}
+\indexentry{Shared Utils@{Shared Utils}!getDoubleMap@{getDoubleMap}|hyperpage}{48}
+\indexentry{getDoubleMap@{getDoubleMap}!Shared Utils@{Shared Utils}|hyperpage}{48}
+\indexentry{Shared Utils@{Shared Utils}!getI64@{getI64}|hyperpage}{48}
+\indexentry{getI64@{getI64}!Shared Utils@{Shared Utils}|hyperpage}{48}
+\indexentry{Shared Utils@{Shared Utils}!getI64Map@{getI64Map}|hyperpage}{49}
+\indexentry{getI64Map@{getI64Map}!Shared Utils@{Shared Utils}|hyperpage}{49}
+\indexentry{Shared Utils@{Shared Utils}!getString@{getString}|hyperpage}{49}
+\indexentry{getString@{getString}!Shared Utils@{Shared Utils}|hyperpage}{49}
+\indexentry{Shared Utils@{Shared Utils}!getStrMap@{getStrMap}|hyperpage}{50}
+\indexentry{getStrMap@{getStrMap}!Shared Utils@{Shared Utils}|hyperpage}{50}
+\indexentry{Shared Utils@{Shared Utils}!getU64@{getU64}|hyperpage}{50}
+\indexentry{getU64@{getU64}!Shared Utils@{Shared Utils}|hyperpage}{50}
+\indexentry{Shared Utils@{Shared Utils}!loadFrom@{loadFrom}|hyperpage}{50}
+\indexentry{loadFrom@{loadFrom}!Shared Utils@{Shared Utils}|hyperpage}{50}
+\indexentry{Shared Utils@{Shared Utils}!toFile@{toFile}|hyperpage}{51}
+\indexentry{toFile@{toFile}!Shared Utils@{Shared Utils}|hyperpage}{51}
+\indexentry{Shared Utils@{Shared Utils}!toString@{toString}|hyperpage}{51}
+\indexentry{toString@{toString}!Shared Utils@{Shared Utils}|hyperpage}{51}
+\indexentry{Shared Utils@{Shared Utils}!tryDouble@{tryDouble}|hyperpage}{51}
+\indexentry{tryDouble@{tryDouble}!Shared Utils@{Shared Utils}|hyperpage}{51}
+\indexentry{Shared Utils@{Shared Utils}!tryI64@{tryI64}|hyperpage}{52}
+\indexentry{tryI64@{tryI64}!Shared Utils@{Shared Utils}|hyperpage}{52}
+\indexentry{Shared Utils@{Shared Utils}!tryString@{tryString}|hyperpage}{52}
+\indexentry{tryString@{tryString}!Shared Utils@{Shared Utils}|hyperpage}{52}
+\indexentry{Shared Utils@{Shared Utils}!tryU64@{tryU64}|hyperpage}{53}
+\indexentry{tryU64@{tryU64}!Shared Utils@{Shared Utils}|hyperpage}{53}
+\indexentry{Other common class or package under C++20 standard@{Other common class or package under C++20 standard}|hyperpage}{53}
+\indexentry{Configurations@{Configurations}|hyperpage}{54}
+\indexentry{Log utils@{Log utils}|hyperpage}{55}
+\indexentry{Log utils@{Log utils}!appendLogFile@{appendLogFile}|hyperpage}{56}
+\indexentry{appendLogFile@{appendLogFile}!Log utils@{Log utils}|hyperpage}{56}
+\indexentry{Log utils@{Log utils}!log@{log}|hyperpage}{56}
+\indexentry{log@{log}!Log utils@{Log utils}|hyperpage}{56}
+\indexentry{Log utils@{Log utils}!openLogFile@{openLogFile}|hyperpage}{57}
+\indexentry{openLogFile@{openLogFile}!Log utils@{Log utils}|hyperpage}{57}
+\indexentry{Log utils@{Log utils}!setupLoggingFile@{setupLoggingFile}|hyperpage}{57}
+\indexentry{setupLoggingFile@{setupLoggingFile}!Log utils@{Log utils}|hyperpage}{57}
+\indexentry{tensor operations@{tensor operations}|hyperpage}{58}
+\indexentry{time stamps@{time stamps}|hyperpage}{58}
+\indexentry{Energy Meter packs@{Energy Meter packs}|hyperpage}{59}
+\indexentry{The Micro dataset@{The Micro dataset}|hyperpage}{60}
+\indexentry{The Micro dataset@{The Micro dataset}!MicroDataSet@{MicroDataSet}|hyperpage}{61}
+\indexentry{MicroDataSet@{MicroDataSet}!The Micro dataset@{The Micro dataset}|hyperpage}{61}
+\indexentry{The Micro dataset@{The Micro dataset}!setSeed@{setSeed}|hyperpage}{61}
+\indexentry{setSeed@{setSeed}!The Micro dataset@{The Micro dataset}|hyperpage}{61}
+\indexentry{generic@{generic}|hyperpage}{62}
+\indexentry{generic@{generic}!genIncrementalAlphabet@{genIncrementalAlphabet}|hyperpage}{62}
+\indexentry{genIncrementalAlphabet@{genIncrementalAlphabet}!generic@{generic}|hyperpage}{62}
+\indexentry{generic@{generic}!genRandInt@{genRandInt}|hyperpage}{63}
+\indexentry{genRandInt@{genRandInt}!generic@{generic}|hyperpage}{63}
+\indexentry{generic@{generic}!genZipfInt@{genZipfInt}|hyperpage}{63}
+\indexentry{genZipfInt@{genZipfInt}!generic@{generic}|hyperpage}{63}
+\indexentry{generic@{generic}!genZipfLut@{genZipfLut}|hyperpage}{64}
+\indexentry{genZipfLut@{genZipfLut}!generic@{generic}|hyperpage}{64}
+\indexentry{time stamp@{time stamp}|hyperpage}{65}
+\indexentry{time stamp@{time stamp}!genSmoothTimeStamp@{genSmoothTimeStamp}|hyperpage}{65}
+\indexentry{genSmoothTimeStamp@{genSmoothTimeStamp}!time stamp@{time stamp}|hyperpage}{65}
+\indexentry{time stamp@{time stamp}!genZipfTimeStamp@{genZipfTimeStamp}|hyperpage}{66}
+\indexentry{genZipfTimeStamp@{genZipfTimeStamp}!time stamp@{time stamp}|hyperpage}{66}
+\indexentry{\_cl\_device\_integer\_dot\_product\_acceleration\_properties\_khr@{\_cl\_device\_integer\_dot\_product\_acceleration\_properties\_khr}|hyperpage}{67}
+\indexentry{\_cl\_device\_pci\_bus\_info\_khr@{\_cl\_device\_pci\_bus\_info\_khr}|hyperpage}{68}
+\indexentry{\_cl\_icd\_dispatch@{\_cl\_icd\_dispatch}|hyperpage}{68}
+\indexentry{\_cl\_image\_format@{\_cl\_image\_format}|hyperpage}{72}
+\indexentry{\_cl\_mem\_android\_native\_buffer\_host\_ptr@{\_cl\_mem\_android\_native\_buffer\_host\_ptr}|hyperpage}{72}
+\indexentry{\_cl\_mem\_ext\_host\_ptr@{\_cl\_mem\_ext\_host\_ptr}|hyperpage}{73}
+\indexentry{\_cl\_mem\_ion\_host\_ptr@{\_cl\_mem\_ion\_host\_ptr}|hyperpage}{74}
+\indexentry{\_cl\_motion\_estimation\_desc\_intel@{\_cl\_motion\_estimation\_desc\_intel}|hyperpage}{75}
+\indexentry{\_cl\_name\_version\_khr@{\_cl\_name\_version\_khr}|hyperpage}{75}
+\indexentry{\_cl\_queue\_family\_properties\_intel@{\_cl\_queue\_family\_properties\_intel}|hyperpage}{76}
+\indexentry{INTELLI::AbstractC20Thread@{INTELLI::AbstractC20Thread}|hyperpage}{77}
+\indexentry{INTELLI::AbstractC20Thread@{INTELLI::AbstractC20Thread}!inlineMain@{inlineMain}|hyperpage}{78}
+\indexentry{inlineMain@{inlineMain}!INTELLI::AbstractC20Thread@{INTELLI::AbstractC20Thread}|hyperpage}{78}
+\indexentry{CANDY::AbstractDataLoader@{CANDY::AbstractDataLoader}|hyperpage}{78}
+\indexentry{CANDY::AbstractDataLoader@{CANDY::AbstractDataLoader}!getData@{getData}|hyperpage}{79}
+\indexentry{getData@{getData}!CANDY::AbstractDataLoader@{CANDY::AbstractDataLoader}|hyperpage}{79}
+\indexentry{CANDY::AbstractDataLoader@{CANDY::AbstractDataLoader}!getQuery@{getQuery}|hyperpage}{79}
+\indexentry{getQuery@{getQuery}!CANDY::AbstractDataLoader@{CANDY::AbstractDataLoader}|hyperpage}{79}
+\indexentry{CANDY::AbstractDataLoader@{CANDY::AbstractDataLoader}!hijackConfig@{hijackConfig}|hyperpage}{80}
+\indexentry{hijackConfig@{hijackConfig}!CANDY::AbstractDataLoader@{CANDY::AbstractDataLoader}|hyperpage}{80}
+\indexentry{CANDY::AbstractDataLoader@{CANDY::AbstractDataLoader}!setConfig@{setConfig}|hyperpage}{80}
+\indexentry{setConfig@{setConfig}!CANDY::AbstractDataLoader@{CANDY::AbstractDataLoader}|hyperpage}{80}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{81}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!deleteStringObject@{deleteStringObject}|hyperpage}{84}
+\indexentry{deleteStringObject@{deleteStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{84}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!deleteTensor@{deleteTensor}|hyperpage}{85}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{85}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!endHPC@{endHPC}|hyperpage}{85}
+\indexentry{endHPC@{endHPC}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{85}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{85}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{85}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!insertStringObject@{insertStringObject}|hyperpage}{86}
+\indexentry{insertStringObject@{insertStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{86}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!insertTensor@{insertTensor}|hyperpage}{86}
+\indexentry{insertTensor@{insertTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{86}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!loadInitialStringObject@{loadInitialStringObject}|hyperpage}{87}
+\indexentry{loadInitialStringObject@{loadInitialStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{87}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{88}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{88}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!loadInitialTensorAndQueryDistribution@{loadInitialTensorAndQueryDistribution}|hyperpage}{88}
+\indexentry{loadInitialTensorAndQueryDistribution@{loadInitialTensorAndQueryDistribution}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{88}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!offlineBuild@{offlineBuild}|hyperpage}{89}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{89}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!rawData@{rawData}|hyperpage}{89}
+\indexentry{rawData@{rawData}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{89}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!reviseTensor@{reviseTensor}|hyperpage}{89}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{89}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!searchIndex@{searchIndex}|hyperpage}{90}
+\indexentry{searchIndex@{searchIndex}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{90}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!searchStringObject@{searchStringObject}|hyperpage}{90}
+\indexentry{searchStringObject@{searchStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{90}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!searchTensor@{searchTensor}|hyperpage}{91}
+\indexentry{searchTensor@{searchTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{91}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!searchTensorAndStringObject@{searchTensorAndStringObject}|hyperpage}{91}
+\indexentry{searchTensorAndStringObject@{searchTensorAndStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{91}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!setConfig@{setConfig}|hyperpage}{92}
+\indexentry{setConfig@{setConfig}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{92}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!setConfigClass@{setConfigClass}|hyperpage}{92}
+\indexentry{setConfigClass@{setConfigClass}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{92}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!setFrozenLevel@{setFrozenLevel}|hyperpage}{93}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{93}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!setTier@{setTier}|hyperpage}{93}
+\indexentry{setTier@{setTier}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{93}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!startHPC@{startHPC}|hyperpage}{93}
+\indexentry{startHPC@{startHPC}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{93}
+\indexentry{CANDY::AbstractIndex@{CANDY::AbstractIndex}!waitPendingOperations@{waitPendingOperations}|hyperpage}{94}
+\indexentry{waitPendingOperations@{waitPendingOperations}!CANDY::AbstractIndex@{CANDY::AbstractIndex}|hyperpage}{94}
+\indexentry{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}|hyperpage}{94}
+\indexentry{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}!getStaicEnergyConsumption@{getStaicEnergyConsumption}|hyperpage}{96}
+\indexentry{getStaicEnergyConsumption@{getStaicEnergyConsumption}!DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}|hyperpage}{96}
+\indexentry{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}!setConfig@{setConfig}|hyperpage}{96}
+\indexentry{setConfig@{setConfig}!DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}|hyperpage}{96}
+\indexentry{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}!setStaticPower@{setStaticPower}|hyperpage}{96}
+\indexentry{setStaticPower@{setStaticPower}!DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}|hyperpage}{96}
+\indexentry{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}!testStaticPower@{testStaticPower}|hyperpage}{97}
+\indexentry{testStaticPower@{testStaticPower}!DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}|hyperpage}{97}
+\indexentry{CANDY::AdSampling@{CANDY::AdSampling}|hyperpage}{97}
+\indexentry{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}|hyperpage}{98}
+\indexentry{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!blocks@{blocks}|hyperpage}{98}
+\indexentry{blocks@{blocks}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}|hyperpage}{98}
+\indexentry{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!end@{end}|hyperpage}{99}
+\indexentry{end@{end}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}|hyperpage}{99}
+\indexentry{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!get\_num\_blocks@{get\_num\_blocks}|hyperpage}{99}
+\indexentry{get\_num\_blocks@{get\_num\_blocks}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}|hyperpage}{99}
+\indexentry{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!get\_total\_size@{get\_total\_size}|hyperpage}{99}
+\indexentry{get\_total\_size@{get\_total\_size}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}|hyperpage}{99}
+\indexentry{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!start@{start}|hyperpage}{100}
+\indexentry{start@{start}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}|hyperpage}{100}
+\indexentry{CANDY::FLANN::BranchStruct$<$ T $>$@{CANDY::FLANN::BranchStruct$<$ T $>$}|hyperpage}{100}
+\indexentry{CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}|hyperpage}{101}
+\indexentry{CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}!deleteTensor@{deleteTensor}|hyperpage}{104}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}|hyperpage}{104}
+\indexentry{CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}!encodeMultiRows@{encodeMultiRows}|hyperpage}{104}
+\indexentry{encodeMultiRows@{encodeMultiRows}!CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}|hyperpage}{104}
+\indexentry{CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}!insertTensor@{insertTensor}|hyperpage}{104}
+\indexentry{insertTensor@{insertTensor}!CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}|hyperpage}{104}
+\indexentry{CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{105}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}|hyperpage}{105}
+\indexentry{CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}!reviseTensor@{reviseTensor}|hyperpage}{105}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}|hyperpage}{105}
+\indexentry{CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}!searchSingleRow@{searchSingleRow}|hyperpage}{106}
+\indexentry{searchSingleRow@{searchSingleRow}!CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}|hyperpage}{106}
+\indexentry{CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}!searchTensor@{searchTensor}|hyperpage}{106}
+\indexentry{searchTensor@{searchTensor}!CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}|hyperpage}{106}
+\indexentry{CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}!setConfig@{setConfig}|hyperpage}{107}
+\indexentry{setConfig@{setConfig}!CANDY::BucketedFlatIndex@{CANDY::BucketedFlatIndex}|hyperpage}{107}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{107}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!deleteTensor@{deleteTensor}|hyperpage}{111}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{111}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!endHPC@{endHPC}|hyperpage}{111}
+\indexentry{endHPC@{endHPC}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{111}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!generateBucketedFlatIndexConfig@{generateBucketedFlatIndexConfig}|hyperpage}{112}
+\indexentry{generateBucketedFlatIndexConfig@{generateBucketedFlatIndexConfig}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{112}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!insertTensor@{insertTensor}|hyperpage}{112}
+\indexentry{insertTensor@{insertTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{112}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!insertTensorInline@{insertTensorInline}|hyperpage}{112}
+\indexentry{insertTensorInline@{insertTensorInline}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{112}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{113}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{113}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!offlineBuild@{offlineBuild}|hyperpage}{113}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{113}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!reviseTensor@{reviseTensor}|hyperpage}{114}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{114}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!searchTensor@{searchTensor}|hyperpage}{114}
+\indexentry{searchTensor@{searchTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{114}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!setConfig@{setConfig}|hyperpage}{115}
+\indexentry{setConfig@{setConfig}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{115}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!setFrozenLevel@{setFrozenLevel}|hyperpage}{115}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{115}
+\indexentry{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!startHPC@{startHPC}|hyperpage}{115}
+\indexentry{startHPC@{startHPC}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}|hyperpage}{115}
+\indexentry{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}|hyperpage}{116}
+\indexentry{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!C20Buffer@{C20Buffer}|hyperpage}{117}
+\indexentry{C20Buffer@{C20Buffer}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}|hyperpage}{117}
+\indexentry{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!append@{append}|hyperpage}{117}
+\indexentry{append@{append}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}|hyperpage}{117}
+\indexentry{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!append@{append}|hyperpage}{118}
+\indexentry{append@{append}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}|hyperpage}{118}
+\indexentry{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!bufferSize@{bufferSize}|hyperpage}{118}
+\indexentry{bufferSize@{bufferSize}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}|hyperpage}{118}
+\indexentry{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!data@{data}|hyperpage}{119}
+\indexentry{data@{data}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}|hyperpage}{119}
+\indexentry{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!data@{data}|hyperpage}{119}
+\indexentry{data@{data}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}|hyperpage}{119}
+\indexentry{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!size@{size}|hyperpage}{119}
+\indexentry{size@{size}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}|hyperpage}{119}
+\indexentry{CANDY::CANDYObject@{CANDY::CANDYObject}|hyperpage}{120}
+\indexentry{CANDY::CANDYObject@{CANDY::CANDYObject}!getStr@{getStr}|hyperpage}{121}
+\indexentry{getStr@{getStr}!CANDY::CANDYObject@{CANDY::CANDYObject}|hyperpage}{121}
+\indexentry{CANDY::CANDYObject@{CANDY::CANDYObject}!setStr@{setStr}|hyperpage}{121}
+\indexentry{setStr@{setStr}!CANDY::CANDYObject@{CANDY::CANDYObject}|hyperpage}{121}
+\indexentry{cl\_char16@{cl\_char16}|hyperpage}{121}
+\indexentry{cl\_char2@{cl\_char2}|hyperpage}{122}
+\indexentry{cl\_char4@{cl\_char4}|hyperpage}{122}
+\indexentry{cl\_char8@{cl\_char8}|hyperpage}{122}
+\indexentry{cl\_double16@{cl\_double16}|hyperpage}{122}
+\indexentry{cl\_double2@{cl\_double2}|hyperpage}{123}
+\indexentry{cl\_double4@{cl\_double4}|hyperpage}{123}
+\indexentry{cl\_double8@{cl\_double8}|hyperpage}{123}
+\indexentry{cl\_float16@{cl\_float16}|hyperpage}{123}
+\indexentry{cl\_float2@{cl\_float2}|hyperpage}{124}
+\indexentry{cl\_float4@{cl\_float4}|hyperpage}{124}
+\indexentry{cl\_float8@{cl\_float8}|hyperpage}{124}
+\indexentry{cl\_half16@{cl\_half16}|hyperpage}{124}
+\indexentry{cl\_half2@{cl\_half2}|hyperpage}{125}
+\indexentry{cl\_half4@{cl\_half4}|hyperpage}{125}
+\indexentry{cl\_half8@{cl\_half8}|hyperpage}{125}
+\indexentry{cl\_int16@{cl\_int16}|hyperpage}{125}
+\indexentry{cl\_int2@{cl\_int2}|hyperpage}{126}
+\indexentry{cl\_int4@{cl\_int4}|hyperpage}{126}
+\indexentry{cl\_int8@{cl\_int8}|hyperpage}{126}
+\indexentry{cl\_long16@{cl\_long16}|hyperpage}{126}
+\indexentry{cl\_long2@{cl\_long2}|hyperpage}{127}
+\indexentry{cl\_long4@{cl\_long4}|hyperpage}{127}
+\indexentry{cl\_long8@{cl\_long8}|hyperpage}{127}
+\indexentry{cl\_short16@{cl\_short16}|hyperpage}{127}
+\indexentry{cl\_short2@{cl\_short2}|hyperpage}{128}
+\indexentry{cl\_short4@{cl\_short4}|hyperpage}{128}
+\indexentry{cl\_short8@{cl\_short8}|hyperpage}{128}
+\indexentry{cl\_uchar16@{cl\_uchar16}|hyperpage}{128}
+\indexentry{cl\_uchar2@{cl\_uchar2}|hyperpage}{129}
+\indexentry{cl\_uchar4@{cl\_uchar4}|hyperpage}{129}
+\indexentry{cl\_uchar8@{cl\_uchar8}|hyperpage}{129}
+\indexentry{cl\_uint16@{cl\_uint16}|hyperpage}{129}
+\indexentry{cl\_uint2@{cl\_uint2}|hyperpage}{130}
+\indexentry{cl\_uint4@{cl\_uint4}|hyperpage}{130}
+\indexentry{cl\_uint8@{cl\_uint8}|hyperpage}{130}
+\indexentry{cl\_ulong16@{cl\_ulong16}|hyperpage}{130}
+\indexentry{cl\_ulong2@{cl\_ulong2}|hyperpage}{131}
+\indexentry{cl\_ulong4@{cl\_ulong4}|hyperpage}{131}
+\indexentry{cl\_ulong8@{cl\_ulong8}|hyperpage}{131}
+\indexentry{cl\_ushort16@{cl\_ushort16}|hyperpage}{131}
+\indexentry{cl\_ushort2@{cl\_ushort2}|hyperpage}{132}
+\indexentry{cl\_ushort4@{cl\_ushort4}|hyperpage}{132}
+\indexentry{cl\_ushort8@{cl\_ushort8}|hyperpage}{132}
+\indexentry{TONY\_CL\_HOST::CLContainer@{TONY\_CL\_HOST::CLContainer}|hyperpage}{132}
+\indexentry{CANDY::Clustering@{CANDY::Clustering}|hyperpage}{133}
+\indexentry{CANDY::Clustering@{CANDY::Clustering}!computeCentroids@{computeCentroids}|hyperpage}{135}
+\indexentry{computeCentroids@{computeCentroids}!CANDY::Clustering@{CANDY::Clustering}|hyperpage}{135}
+\indexentry{CANDY::Clustering@{CANDY::Clustering}!imbalance\_factor@{imbalance\_factor}|hyperpage}{135}
+\indexentry{imbalance\_factor@{imbalance\_factor}!CANDY::Clustering@{CANDY::Clustering}|hyperpage}{135}
+\indexentry{CANDY::Clustering@{CANDY::Clustering}!splitClusters@{splitClusters}|hyperpage}{136}
+\indexentry{splitClusters@{splitClusters}!CANDY::Clustering@{CANDY::Clustering}|hyperpage}{136}
+\indexentry{CANDY::Clustering@{CANDY::Clustering}!train@{train}|hyperpage}{136}
+\indexentry{train@{train}!CANDY::Clustering@{CANDY::Clustering}|hyperpage}{136}
+\indexentry{CANDY::ClusteringIterationStats@{CANDY::ClusteringIterationStats}|hyperpage}{137}
+\indexentry{CANDY::ClusteringParameters@{CANDY::ClusteringParameters}|hyperpage}{138}
+\indexentry{INTELLI::ConfigMap@{INTELLI::ConfigMap}|hyperpage}{139}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{141}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!deleteStringObject@{deleteStringObject}|hyperpage}{144}
+\indexentry{deleteStringObject@{deleteStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{144}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!deleteTensor@{deleteTensor}|hyperpage}{144}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{144}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!endHPC@{endHPC}|hyperpage}{145}
+\indexentry{endHPC@{endHPC}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{145}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{145}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{145}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!insertStringObject@{insertStringObject}|hyperpage}{146}
+\indexentry{insertStringObject@{insertStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{146}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!insertTensor@{insertTensor}|hyperpage}{146}
+\indexentry{insertTensor@{insertTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{146}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!loadInitialStringObject@{loadInitialStringObject}|hyperpage}{147}
+\indexentry{loadInitialStringObject@{loadInitialStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{147}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{147}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{147}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!offlineBuild@{offlineBuild}|hyperpage}{148}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{148}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!rawData@{rawData}|hyperpage}{148}
+\indexentry{rawData@{rawData}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{148}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!reviseTensor@{reviseTensor}|hyperpage}{148}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{148}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!searchStringObject@{searchStringObject}|hyperpage}{149}
+\indexentry{searchStringObject@{searchStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{149}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!searchTensor@{searchTensor}|hyperpage}{149}
+\indexentry{searchTensor@{searchTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{149}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!searchTensorAndStringObject@{searchTensorAndStringObject}|hyperpage}{150}
+\indexentry{searchTensorAndStringObject@{searchTensorAndStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{150}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!setConfig@{setConfig}|hyperpage}{150}
+\indexentry{setConfig@{setConfig}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{150}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!setFrozenLevel@{setFrozenLevel}|hyperpage}{151}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{151}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!startHPC@{startHPC}|hyperpage}{151}
+\indexentry{startHPC@{startHPC}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{151}
+\indexentry{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!waitPendingOperations@{waitPendingOperations}|hyperpage}{151}
+\indexentry{waitPendingOperations@{waitPendingOperations}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}|hyperpage}{151}
+\indexentry{CANDY::CongestionDropIndexWorker@{CANDY::CongestionDropIndexWorker}|hyperpage}{152}
+\indexentry{CANDY::DataLoaderTable@{CANDY::DataLoaderTable}|hyperpage}{154}
+\indexentry{CANDY::DataLoaderTable@{CANDY::DataLoaderTable}!DataLoaderTable@{DataLoaderTable}|hyperpage}{155}
+\indexentry{DataLoaderTable@{DataLoaderTable}!CANDY::DataLoaderTable@{CANDY::DataLoaderTable}|hyperpage}{155}
+\indexentry{CANDY::DataLoaderTable@{CANDY::DataLoaderTable}!findDataLoader@{findDataLoader}|hyperpage}{155}
+\indexentry{findDataLoader@{findDataLoader}!CANDY::DataLoaderTable@{CANDY::DataLoaderTable}|hyperpage}{155}
+\indexentry{CANDY::DataLoaderTable@{CANDY::DataLoaderTable}!registerNewDataLoader@{registerNewDataLoader}|hyperpage}{156}
+\indexentry{registerNewDataLoader@{registerNewDataLoader}!CANDY::DataLoaderTable@{CANDY::DataLoaderTable}|hyperpage}{156}
+\indexentry{default\_attrs@{default\_attrs}|hyperpage}{156}
+\indexentry{CANDY::FLANN::DistanceIndex@{CANDY::FLANN::DistanceIndex}|hyperpage}{157}
+\indexentry{CANDY::DistanceQueryer@{CANDY::DistanceQueryer}|hyperpage}{157}
+\indexentry{CANDY::DistanceQueryer@{CANDY::DistanceQueryer}!operator()@{operator()}|hyperpage}{158}
+\indexentry{operator()@{operator()}!CANDY::DistanceQueryer@{CANDY::DistanceQueryer}|hyperpage}{158}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{159}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!deleteTensor@{deleteTensor}|hyperpage}{161}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{161}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!endHPC@{endHPC}|hyperpage}{161}
+\indexentry{endHPC@{endHPC}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{161}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!getUnblockQueryResult@{getUnblockQueryResult}|hyperpage}{161}
+\indexentry{getUnblockQueryResult@{getUnblockQueryResult}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{161}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!insertTensor@{insertTensor}|hyperpage}{162}
+\indexentry{insertTensor@{insertTensor}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{162}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!loadInitialTensor@{loadInitialTensor}|hyperpage}{162}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{162}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!loadInitialTensorUnblocked@{loadInitialTensorUnblocked}|hyperpage}{162}
+\indexentry{loadInitialTensorUnblocked@{loadInitialTensorUnblocked}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{162}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!offlineBuild@{offlineBuild}|hyperpage}{163}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{163}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!offlineBuildUnblocked@{offlineBuildUnblocked}|hyperpage}{163}
+\indexentry{offlineBuildUnblocked@{offlineBuildUnblocked}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{163}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!searchTensor@{searchTensor}|hyperpage}{163}
+\indexentry{searchTensor@{searchTensor}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{163}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!searchTensorUnblock@{searchTensorUnblock}|hyperpage}{164}
+\indexentry{searchTensorUnblock@{searchTensorUnblock}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{164}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!setConfig@{setConfig}|hyperpage}{164}
+\indexentry{setConfig@{setConfig}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{164}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!setFrozenLevel@{setFrozenLevel}|hyperpage}{164}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{164}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!startHPC@{startHPC}|hyperpage}{165}
+\indexentry{startHPC@{startHPC}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{165}
+\indexentry{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!waitPendingOperations@{waitPendingOperations}|hyperpage}{165}
+\indexentry{waitPendingOperations@{waitPendingOperations}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}|hyperpage}{165}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{166}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!deleteTensor@{deleteTensor}|hyperpage}{168}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{168}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!endHPC@{endHPC}|hyperpage}{168}
+\indexentry{endHPC@{endHPC}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{168}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{169}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{169}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!insertTensor@{insertTensor}|hyperpage}{169}
+\indexentry{insertTensor@{insertTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{169}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{169}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{169}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!offlineBuild@{offlineBuild}|hyperpage}{170}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{170}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!rawData@{rawData}|hyperpage}{170}
+\indexentry{rawData@{rawData}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{170}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!reviseTensor@{reviseTensor}|hyperpage}{170}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{170}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!searchTensor@{searchTensor}|hyperpage}{171}
+\indexentry{searchTensor@{searchTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{171}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!setConfig@{setConfig}|hyperpage}{171}
+\indexentry{setConfig@{setConfig}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{171}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!setFrozenLevel@{setFrozenLevel}|hyperpage}{172}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{172}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!startHPC@{startHPC}|hyperpage}{172}
+\indexentry{startHPC@{startHPC}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{172}
+\indexentry{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!waitPendingOperations@{waitPendingOperations}|hyperpage}{172}
+\indexentry{waitPendingOperations@{waitPendingOperations}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}|hyperpage}{172}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{173}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!deleteTensor@{deleteTensor}|hyperpage}{174}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{174}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!endHPC@{endHPC}|hyperpage}{175}
+\indexentry{endHPC@{endHPC}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{175}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!insertTensor@{insertTensor}|hyperpage}{175}
+\indexentry{insertTensor@{insertTensor}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{175}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!loadInitialTensor@{loadInitialTensor}|hyperpage}{175}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{175}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!offlineBuild@{offlineBuild}|hyperpage}{176}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{176}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!searchTensor@{searchTensor}|hyperpage}{176}
+\indexentry{searchTensor@{searchTensor}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{176}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!setConfig@{setConfig}|hyperpage}{176}
+\indexentry{setConfig@{setConfig}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{176}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!setFrozenLevel@{setFrozenLevel}|hyperpage}{177}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{177}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!startHPC@{startHPC}|hyperpage}{177}
+\indexentry{startHPC@{startHPC}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{177}
+\indexentry{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!waitPendingOperations@{waitPendingOperations}|hyperpage}{177}
+\indexentry{waitPendingOperations@{waitPendingOperations}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}|hyperpage}{177}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{178}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!deleteTensor@{deleteTensor}|hyperpage}{181}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{181}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!endHPC@{endHPC}|hyperpage}{181}
+\indexentry{endHPC@{endHPC}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{181}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{181}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{181}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!insertTensor@{insertTensor}|hyperpage}{182}
+\indexentry{insertTensor@{insertTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{182}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{182}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{182}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!offlineBuild@{offlineBuild}|hyperpage}{183}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{183}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!rawData@{rawData}|hyperpage}{183}
+\indexentry{rawData@{rawData}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{183}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!reviseTensor@{reviseTensor}|hyperpage}{183}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{183}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!searchTensor@{searchTensor}|hyperpage}{184}
+\indexentry{searchTensor@{searchTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{184}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!setConfig@{setConfig}|hyperpage}{184}
+\indexentry{setConfig@{setConfig}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{184}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!setFrozenLevel@{setFrozenLevel}|hyperpage}{185}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{185}
+\indexentry{CANDY::DPGIndex@{CANDY::DPGIndex}!startHPC@{startHPC}|hyperpage}{185}
+\indexentry{startHPC@{startHPC}!CANDY::DPGIndex@{CANDY::DPGIndex}|hyperpage}{185}
+\indexentry{DIVERSE\_METER::EspMeterUart@{DIVERSE\_METER::EspMeterUart}|hyperpage}{186}
+\indexentry{DIVERSE\_METER::EspMeterUart@{DIVERSE\_METER::EspMeterUart}!setConfig@{setConfig}|hyperpage}{187}
+\indexentry{setConfig@{setConfig}!DIVERSE\_METER::EspMeterUart@{DIVERSE\_METER::EspMeterUart}|hyperpage}{187}
+\indexentry{CANDY::ExpFamilyDataLoader@{CANDY::ExpFamilyDataLoader}|hyperpage}{187}
+\indexentry{CANDY::ExpFamilyDataLoader@{CANDY::ExpFamilyDataLoader}!getData@{getData}|hyperpage}{190}
+\indexentry{getData@{getData}!CANDY::ExpFamilyDataLoader@{CANDY::ExpFamilyDataLoader}|hyperpage}{190}
+\indexentry{CANDY::ExpFamilyDataLoader@{CANDY::ExpFamilyDataLoader}!getQuery@{getQuery}|hyperpage}{190}
+\indexentry{getQuery@{getQuery}!CANDY::ExpFamilyDataLoader@{CANDY::ExpFamilyDataLoader}|hyperpage}{190}
+\indexentry{CANDY::ExpFamilyDataLoader@{CANDY::ExpFamilyDataLoader}!hijackConfig@{hijackConfig}|hyperpage}{190}
+\indexentry{hijackConfig@{hijackConfig}!CANDY::ExpFamilyDataLoader@{CANDY::ExpFamilyDataLoader}|hyperpage}{190}
+\indexentry{CANDY::ExpFamilyDataLoader@{CANDY::ExpFamilyDataLoader}!setConfig@{setConfig}|hyperpage}{191}
+\indexentry{setConfig@{setConfig}!CANDY::ExpFamilyDataLoader@{CANDY::ExpFamilyDataLoader}|hyperpage}{191}
+\indexentry{CANDY::FaissIndex@{CANDY::FaissIndex}|hyperpage}{191}
+\indexentry{CANDY::FaissIndex@{CANDY::FaissIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{193}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::FaissIndex@{CANDY::FaissIndex}|hyperpage}{193}
+\indexentry{CANDY::FaissIndex@{CANDY::FaissIndex}!insertTensor@{insertTensor}|hyperpage}{194}
+\indexentry{insertTensor@{insertTensor}!CANDY::FaissIndex@{CANDY::FaissIndex}|hyperpage}{194}
+\indexentry{CANDY::FaissIndex@{CANDY::FaissIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{194}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::FaissIndex@{CANDY::FaissIndex}|hyperpage}{194}
+\indexentry{CANDY::FaissIndex@{CANDY::FaissIndex}!searchIndex@{searchIndex}|hyperpage}{195}
+\indexentry{searchIndex@{searchIndex}!CANDY::FaissIndex@{CANDY::FaissIndex}|hyperpage}{195}
+\indexentry{CANDY::FaissIndex@{CANDY::FaissIndex}!searchTensor@{searchTensor}|hyperpage}{195}
+\indexentry{searchTensor@{searchTensor}!CANDY::FaissIndex@{CANDY::FaissIndex}|hyperpage}{195}
+\indexentry{CANDY::FaissIndex@{CANDY::FaissIndex}!setConfig@{setConfig}|hyperpage}{195}
+\indexentry{setConfig@{setConfig}!CANDY::FaissIndex@{CANDY::FaissIndex}|hyperpage}{195}
+\indexentry{CANDY::FlannComponent@{CANDY::FlannComponent}|hyperpage}{196}
+\indexentry{CANDY::FlannComponent@{CANDY::FlannComponent}!setParams@{setParams}|hyperpage}{197}
+\indexentry{setParams@{setParams}!CANDY::FlannComponent@{CANDY::FlannComponent}|hyperpage}{197}
+\indexentry{CANDY::FlannIndex@{CANDY::FlannIndex}|hyperpage}{198}
+\indexentry{CANDY::FlannIndex@{CANDY::FlannIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{199}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::FlannIndex@{CANDY::FlannIndex}|hyperpage}{199}
+\indexentry{CANDY::FlannIndex@{CANDY::FlannIndex}!insertTensor@{insertTensor}|hyperpage}{199}
+\indexentry{insertTensor@{insertTensor}!CANDY::FlannIndex@{CANDY::FlannIndex}|hyperpage}{199}
+\indexentry{CANDY::FlannIndex@{CANDY::FlannIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{199}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::FlannIndex@{CANDY::FlannIndex}|hyperpage}{199}
+\indexentry{CANDY::FlannIndex@{CANDY::FlannIndex}!searchIndex@{searchIndex}|hyperpage}{200}
+\indexentry{searchIndex@{searchIndex}!CANDY::FlannIndex@{CANDY::FlannIndex}|hyperpage}{200}
+\indexentry{CANDY::FlannIndex@{CANDY::FlannIndex}!searchTensor@{searchTensor}|hyperpage}{200}
+\indexentry{searchTensor@{searchTensor}!CANDY::FlannIndex@{CANDY::FlannIndex}|hyperpage}{200}
+\indexentry{CANDY::FlannIndex@{CANDY::FlannIndex}!setConfig@{setConfig}|hyperpage}{201}
+\indexentry{setConfig@{setConfig}!CANDY::FlannIndex@{CANDY::FlannIndex}|hyperpage}{201}
+\indexentry{CANDY::FlannParam@{CANDY::FlannParam}|hyperpage}{202}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{202}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}!deleteTensor@{deleteTensor}|hyperpage}{205}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{205}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{205}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{205}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}!insertTensor@{insertTensor}|hyperpage}{205}
+\indexentry{insertTensor@{insertTensor}!CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{205}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}!rawData@{rawData}|hyperpage}{207}
+\indexentry{rawData@{rawData}!CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{207}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}!reviseTensor@{reviseTensor}|hyperpage}{207}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{207}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}!searchIndex@{searchIndex}|hyperpage}{207}
+\indexentry{searchIndex@{searchIndex}!CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{207}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}!searchTensor@{searchTensor}|hyperpage}{208}
+\indexentry{searchTensor@{searchTensor}!CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{208}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}!setConfig@{setConfig}|hyperpage}{208}
+\indexentry{setConfig@{setConfig}!CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{208}
+\indexentry{CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}!size@{size}|hyperpage}{209}
+\indexentry{size@{size}!CANDY::FlatAMMIPIndex@{CANDY::FlatAMMIPIndex}|hyperpage}{209}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{209}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!deleteStringObject@{deleteStringObject}|hyperpage}{211}
+\indexentry{deleteStringObject@{deleteStringObject}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{211}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!deleteTensor@{deleteTensor}|hyperpage}{212}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{212}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{212}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{212}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!insertStringObject@{insertStringObject}|hyperpage}{213}
+\indexentry{insertStringObject@{insertStringObject}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{213}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!insertTensor@{insertTensor}|hyperpage}{213}
+\indexentry{insertTensor@{insertTensor}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{213}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!rawData@{rawData}|hyperpage}{213}
+\indexentry{rawData@{rawData}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{213}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!reviseTensor@{reviseTensor}|hyperpage}{214}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{214}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!searchIndex@{searchIndex}|hyperpage}{214}
+\indexentry{searchIndex@{searchIndex}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{214}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!searchStringObject@{searchStringObject}|hyperpage}{215}
+\indexentry{searchStringObject@{searchStringObject}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{215}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!searchTensor@{searchTensor}|hyperpage}{215}
+\indexentry{searchTensor@{searchTensor}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{215}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!setConfig@{setConfig}|hyperpage}{215}
+\indexentry{setConfig@{setConfig}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{215}
+\indexentry{CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}!size@{size}|hyperpage}{216}
+\indexentry{size@{size}!CANDY::FlatAMMIPObjIndex@{CANDY::FlatAMMIPObjIndex}|hyperpage}{216}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{216}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}!deleteTensor@{deleteTensor}|hyperpage}{218}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{218}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{218}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{218}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}!insertTensor@{insertTensor}|hyperpage}{219}
+\indexentry{insertTensor@{insertTensor}!CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{219}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}!rawData@{rawData}|hyperpage}{219}
+\indexentry{rawData@{rawData}!CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{219}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}!reviseTensor@{reviseTensor}|hyperpage}{219}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{219}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}!searchIndex@{searchIndex}|hyperpage}{220}
+\indexentry{searchIndex@{searchIndex}!CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{220}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}!searchTensor@{searchTensor}|hyperpage}{220}
+\indexentry{searchTensor@{searchTensor}!CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{220}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}!setConfig@{setConfig}|hyperpage}{221}
+\indexentry{setConfig@{setConfig}!CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{221}
+\indexentry{CANDY::FlatIndex@{CANDY::FlatIndex}!size@{size}|hyperpage}{221}
+\indexentry{size@{size}!CANDY::FlatIndex@{CANDY::FlatIndex}|hyperpage}{221}
+\indexentry{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}|hyperpage}{222}
+\indexentry{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}!getData@{getData}|hyperpage}{224}
+\indexentry{getData@{getData}!CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}|hyperpage}{224}
+\indexentry{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}!getQuery@{getQuery}|hyperpage}{224}
+\indexentry{getQuery@{getQuery}!CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}|hyperpage}{224}
+\indexentry{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}!setConfig@{setConfig}|hyperpage}{224}
+\indexentry{setConfig@{setConfig}!CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}|hyperpage}{224}
+\indexentry{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}!tensorFromFVECS@{tensorFromFVECS}|hyperpage}{225}
+\indexentry{tensorFromFVECS@{tensorFromFVECS}!CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}|hyperpage}{225}
+\indexentry{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}|hyperpage}{225}
+\indexentry{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}!getData@{getData}|hyperpage}{227}
+\indexentry{getData@{getData}!CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}|hyperpage}{227}
+\indexentry{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}!getQuery@{getQuery}|hyperpage}{227}
+\indexentry{getQuery@{getQuery}!CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}|hyperpage}{227}
+\indexentry{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}!setConfig@{setConfig}|hyperpage}{228}
+\indexentry{setConfig@{setConfig}!CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}|hyperpage}{228}
+\indexentry{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}!tensorFromHDF5@{tensorFromHDF5}|hyperpage}{228}
+\indexentry{tensorFromHDF5@{tensorFromHDF5}!CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}|hyperpage}{228}
+\indexentry{CANDY::FLANN::Heap$<$ T $>$@{CANDY::FLANN::Heap$<$ T $>$}|hyperpage}{229}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}|hyperpage}{230}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!add\_links\_starting\_from@{add\_links\_starting\_from}|hyperpage}{232}
+\indexentry{add\_links\_starting\_from@{add\_links\_starting\_from}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{232}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!add\_without\_lock@{add\_without\_lock}|hyperpage}{232}
+\indexentry{add\_without\_lock@{add\_without\_lock}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{232}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!cum\_nb\_neighbors@{cum\_nb\_neighbors}|hyperpage}{233}
+\indexentry{cum\_nb\_neighbors@{cum\_nb\_neighbors}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{233}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!nb\_neighbors@{nb\_neighbors}|hyperpage}{233}
+\indexentry{nb\_neighbors@{nb\_neighbors}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{233}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!neighbor\_range@{neighbor\_range}|hyperpage}{233}
+\indexentry{neighbor\_range@{neighbor\_range}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{233}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!prepare\_level\_tab@{prepare\_level\_tab}|hyperpage}{234}
+\indexentry{prepare\_level\_tab@{prepare\_level\_tab}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{234}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!random\_level@{random\_level}|hyperpage}{234}
+\indexentry{random\_level@{random\_level}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{234}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!search@{search}|hyperpage}{234}
+\indexentry{search@{search}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{234}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!set\_nb\_neighbors@{set\_nb\_neighbors}|hyperpage}{235}
+\indexentry{set\_nb\_neighbors@{set\_nb\_neighbors}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{235}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!set\_probs@{set\_probs}|hyperpage}{235}
+\indexentry{set\_probs@{set\_probs}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{235}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!cum\_nneighbor\_per\_level\_@{cum\_nneighbor\_per\_level\_}|hyperpage}{236}
+\indexentry{cum\_nneighbor\_per\_level\_@{cum\_nneighbor\_per\_level\_}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{236}
+\indexentry{CANDY::HNSW@{CANDY::HNSW}!search\_bounded\_queue@{search\_bounded\_queue}|hyperpage}{236}
+\indexentry{search\_bounded\_queue@{search\_bounded\_queue}!CANDY::HNSW@{CANDY::HNSW}|hyperpage}{236}
+\indexentry{HNSWAlter@{HNSWAlter}|hyperpage}{236}
+\indexentry{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}|hyperpage}{236}
+\indexentry{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!deleteTensor@{deleteTensor}|hyperpage}{238}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}|hyperpage}{238}
+\indexentry{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!insertTensor@{insertTensor}|hyperpage}{238}
+\indexentry{insertTensor@{insertTensor}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}|hyperpage}{238}
+\indexentry{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!reviseTensor@{reviseTensor}|hyperpage}{239}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}|hyperpage}{239}
+\indexentry{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!searchTensor@{searchTensor}|hyperpage}{239}
+\indexentry{searchTensor@{searchTensor}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}|hyperpage}{239}
+\indexentry{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!setConfig@{setConfig}|hyperpage}{240}
+\indexentry{setConfig@{setConfig}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}|hyperpage}{240}
+\indexentry{CANDY::HNSWVertex@{CANDY::HNSWVertex}|hyperpage}{240}
+\indexentry{HostPara@{HostPara}|hyperpage}{242}
+\indexentry{CANDY::IndexTable@{CANDY::IndexTable}|hyperpage}{242}
+\indexentry{CANDY::IndexTable@{CANDY::IndexTable}!addIndex@{addIndex}|hyperpage}{243}
+\indexentry{addIndex@{addIndex}!CANDY::IndexTable@{CANDY::IndexTable}|hyperpage}{243}
+\indexentry{CANDY::IndexTable@{CANDY::IndexTable}!getIndex@{getIndex}|hyperpage}{244}
+\indexentry{getIndex@{getIndex}!CANDY::IndexTable@{CANDY::IndexTable}|hyperpage}{244}
+\indexentry{INTELLI::IntelliLog@{INTELLI::IntelliLog}|hyperpage}{244}
+\indexentry{INTELLI::IntelliLog\_FileProtector@{INTELLI::IntelliLog\_FileProtector}|hyperpage}{245}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{245}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!appendRows@{appendRows}|hyperpage}{246}
+\indexentry{appendRows@{appendRows}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{246}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!appendRows@{appendRows}|hyperpage}{247}
+\indexentry{appendRows@{appendRows}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{247}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!appendRowsBufferMode@{appendRowsBufferMode}|hyperpage}{247}
+\indexentry{appendRowsBufferMode@{appendRowsBufferMode}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{247}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!appendRowsBufferMode@{appendRowsBufferMode}|hyperpage}{248}
+\indexentry{appendRowsBufferMode@{appendRowsBufferMode}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{248}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!deleteRow@{deleteRow}|hyperpage}{248}
+\indexentry{deleteRow@{deleteRow}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{248}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!deleteRow@{deleteRow}|hyperpage}{249}
+\indexentry{deleteRow@{deleteRow}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{249}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!deleteRowBufferMode@{deleteRowBufferMode}|hyperpage}{249}
+\indexentry{deleteRowBufferMode@{deleteRowBufferMode}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{249}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!deleteRowBufferMode@{deleteRowBufferMode}|hyperpage}{249}
+\indexentry{deleteRowBufferMode@{deleteRowBufferMode}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{249}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!deleteRows@{deleteRows}|hyperpage}{250}
+\indexentry{deleteRows@{deleteRows}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{250}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!deleteRows@{deleteRows}|hyperpage}{250}
+\indexentry{deleteRows@{deleteRows}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{250}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!deleteRowsBufferMode@{deleteRowsBufferMode}|hyperpage}{251}
+\indexentry{deleteRowsBufferMode@{deleteRowsBufferMode}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{251}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!deleteRowsBufferMode@{deleteRowsBufferMode}|hyperpage}{251}
+\indexentry{deleteRowsBufferMode@{deleteRowsBufferMode}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{251}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!editRows@{editRows}|hyperpage}{251}
+\indexentry{editRows@{editRows}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{251}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!editRows@{editRows}|hyperpage}{252}
+\indexentry{editRows@{editRows}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{252}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!insertRows@{insertRows}|hyperpage}{252}
+\indexentry{insertRows@{insertRows}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{252}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!insertRows@{insertRows}|hyperpage}{254}
+\indexentry{insertRows@{insertRows}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{254}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!l2Normalize@{l2Normalize}|hyperpage}{254}
+\indexentry{l2Normalize@{l2Normalize}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{254}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!rowSampling@{rowSampling}|hyperpage}{255}
+\indexentry{rowSampling@{rowSampling}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{255}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!tensorFromFile@{tensorFromFile}|hyperpage}{255}
+\indexentry{tensorFromFile@{tensorFromFile}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{255}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!tensorFromFlatBin@{tensorFromFlatBin}|hyperpage}{255}
+\indexentry{tensorFromFlatBin@{tensorFromFlatBin}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{255}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!tensorToFile@{tensorToFile}|hyperpage}{256}
+\indexentry{tensorToFile@{tensorToFile}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{256}
+\indexentry{INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}!tensorToFlatBin@{tensorToFlatBin}|hyperpage}{256}
+\indexentry{tensorToFlatBin@{tensorToFlatBin}!INTELLI::IntelliTensorOP@{INTELLI::IntelliTensorOP}|hyperpage}{256}
+\indexentry{INTELLITensorOP@{INTELLITensorOP}|hyperpage}{257}
+\indexentry{INTELLI::IntelliTimeStamp@{INTELLI::IntelliTimeStamp}|hyperpage}{257}
+\indexentry{INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}|hyperpage}{258}
+\indexentry{INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}!generateArrival@{generateArrival}|hyperpage}{260}
+\indexentry{generateArrival@{generateArrival}!INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}|hyperpage}{260}
+\indexentry{INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}!getTimeStamps@{getTimeStamps}|hyperpage}{260}
+\indexentry{getTimeStamps@{getTimeStamps}!INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}|hyperpage}{260}
+\indexentry{INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}!setConfig@{setConfig}|hyperpage}{260}
+\indexentry{setConfig@{setConfig}!INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}|hyperpage}{260}
+\indexentry{DIVERSE\_METER::IntelMeter@{DIVERSE\_METER::IntelMeter}|hyperpage}{261}
+\indexentry{DIVERSE\_METER::IntelMeter@{DIVERSE\_METER::IntelMeter}!setConfig@{setConfig}|hyperpage}{262}
+\indexentry{setConfig@{setConfig}!DIVERSE\_METER::IntelMeter@{DIVERSE\_METER::IntelMeter}|hyperpage}{262}
+\indexentry{CANDY::IVFListBucket@{CANDY::IVFListBucket}|hyperpage}{263}
+\indexentry{CANDY::IVFListBucket@{CANDY::IVFListBucket}!deleteTensor@{deleteTensor}|hyperpage}{264}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::IVFListBucket@{CANDY::IVFListBucket}|hyperpage}{264}
+\indexentry{CANDY::IVFListBucket@{CANDY::IVFListBucket}!deleteTensorWithEncode@{deleteTensorWithEncode}|hyperpage}{264}
+\indexentry{deleteTensorWithEncode@{deleteTensorWithEncode}!CANDY::IVFListBucket@{CANDY::IVFListBucket}|hyperpage}{264}
+\indexentry{CANDY::IVFListBucket@{CANDY::IVFListBucket}!getAllTensors@{getAllTensors}|hyperpage}{265}
+\indexentry{getAllTensors@{getAllTensors}!CANDY::IVFListBucket@{CANDY::IVFListBucket}|hyperpage}{265}
+\indexentry{CANDY::IVFListBucket@{CANDY::IVFListBucket}!getAllTensorsWithEncode@{getAllTensorsWithEncode}|hyperpage}{265}
+\indexentry{getAllTensorsWithEncode@{getAllTensorsWithEncode}!CANDY::IVFListBucket@{CANDY::IVFListBucket}|hyperpage}{265}
+\indexentry{CANDY::IVFListBucket@{CANDY::IVFListBucket}!getMinimumTensorsUnderHamming@{getMinimumTensorsUnderHamming}|hyperpage}{265}
+\indexentry{getMinimumTensorsUnderHamming@{getMinimumTensorsUnderHamming}!CANDY::IVFListBucket@{CANDY::IVFListBucket}|hyperpage}{265}
+\indexentry{CANDY::IVFListBucket@{CANDY::IVFListBucket}!insertTensorWithEncode@{insertTensorWithEncode}|hyperpage}{266}
+\indexentry{insertTensorWithEncode@{insertTensorWithEncode}!CANDY::IVFListBucket@{CANDY::IVFListBucket}|hyperpage}{266}
+\indexentry{CANDY::IVFListBucket@{CANDY::IVFListBucket}!sizeWithEncode@{sizeWithEncode}|hyperpage}{266}
+\indexentry{sizeWithEncode@{sizeWithEncode}!CANDY::IVFListBucket@{CANDY::IVFListBucket}|hyperpage}{266}
+\indexentry{CANDY::IVFListCell@{CANDY::IVFListCell}|hyperpage}{267}
+\indexentry{CANDY::IVFListCell@{CANDY::IVFListCell}!deleteTensor@{deleteTensor}|hyperpage}{268}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::IVFListCell@{CANDY::IVFListCell}|hyperpage}{268}
+\indexentry{CANDY::IVFListCell@{CANDY::IVFListCell}!deleteTensorPtr@{deleteTensorPtr}|hyperpage}{268}
+\indexentry{deleteTensorPtr@{deleteTensorPtr}!CANDY::IVFListCell@{CANDY::IVFListCell}|hyperpage}{268}
+\indexentry{CANDY::IVFListCell@{CANDY::IVFListCell}!getAllTensors@{getAllTensors}|hyperpage}{268}
+\indexentry{getAllTensors@{getAllTensors}!CANDY::IVFListCell@{CANDY::IVFListCell}|hyperpage}{268}
+\indexentry{CANDY::IVFListCell@{CANDY::IVFListCell}!insertTensor@{insertTensor}|hyperpage}{268}
+\indexentry{insertTensor@{insertTensor}!CANDY::IVFListCell@{CANDY::IVFListCell}|hyperpage}{268}
+\indexentry{CANDY::IVFListCell@{CANDY::IVFListCell}!insertTensorPtr@{insertTensorPtr}|hyperpage}{269}
+\indexentry{insertTensorPtr@{insertTensorPtr}!CANDY::IVFListCell@{CANDY::IVFListCell}|hyperpage}{269}
+\indexentry{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}|hyperpage}{269}
+\indexentry{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!deleteTensorWithEncode@{deleteTensorWithEncode}|hyperpage}{270}
+\indexentry{deleteTensorWithEncode@{deleteTensorWithEncode}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}|hyperpage}{270}
+\indexentry{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!getMinimumNumOfTensors@{getMinimumNumOfTensors}|hyperpage}{271}
+\indexentry{getMinimumNumOfTensors@{getMinimumNumOfTensors}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}|hyperpage}{271}
+\indexentry{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!getMinimumNumOfTensorsHamming@{getMinimumNumOfTensorsHamming}|hyperpage}{271}
+\indexentry{getMinimumNumOfTensorsHamming@{getMinimumNumOfTensorsHamming}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}|hyperpage}{271}
+\indexentry{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!getMinimumNumOfTensorsInsideBucket@{getMinimumNumOfTensorsInsideBucket}|hyperpage}{272}
+\indexentry{getMinimumNumOfTensorsInsideBucket@{getMinimumNumOfTensorsInsideBucket}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}|hyperpage}{272}
+\indexentry{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!getMinimumNumOfTensorsInsideBucketHamming@{getMinimumNumOfTensorsInsideBucketHamming}|hyperpage}{272}
+\indexentry{getMinimumNumOfTensorsInsideBucketHamming@{getMinimumNumOfTensorsInsideBucketHamming}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}|hyperpage}{272}
+\indexentry{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!init@{init}|hyperpage}{273}
+\indexentry{init@{init}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}|hyperpage}{273}
+\indexentry{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!insertTensorWithEncode@{insertTensorWithEncode}|hyperpage}{273}
+\indexentry{insertTensorWithEncode@{insertTensorWithEncode}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}|hyperpage}{273}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}|hyperpage}{274}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!addPoints@{addPoints}|hyperpage}{275}
+\indexentry{addPoints@{addPoints}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{275}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!addPointToTree@{addPointToTree}|hyperpage}{276}
+\indexentry{addPointToTree@{addPointToTree}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{276}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!divideTree@{divideTree}|hyperpage}{276}
+\indexentry{divideTree@{divideTree}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{276}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!getNeighbors@{getNeighbors}|hyperpage}{276}
+\indexentry{getNeighbors@{getNeighbors}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{276}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!knnSearch@{knnSearch}|hyperpage}{277}
+\indexentry{knnSearch@{knnSearch}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{277}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!meanSplit@{meanSplit}|hyperpage}{277}
+\indexentry{meanSplit@{meanSplit}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{277}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!planeSplit@{planeSplit}|hyperpage}{278}
+\indexentry{planeSplit@{planeSplit}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{278}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!searchLevel@{searchLevel}|hyperpage}{278}
+\indexentry{searchLevel@{searchLevel}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{278}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!selectDivision@{selectDivision}|hyperpage}{279}
+\indexentry{selectDivision@{selectDivision}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{279}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!setConfig@{setConfig}|hyperpage}{279}
+\indexentry{setConfig@{setConfig}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{279}
+\indexentry{CANDY::KdTree@{CANDY::KdTree}!setParams@{setParams}|hyperpage}{279}
+\indexentry{setParams@{setParams}!CANDY::KdTree@{CANDY::KdTree}|hyperpage}{279}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{280}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!addPoints@{addPoints}|hyperpage}{282}
+\indexentry{addPoints@{addPoints}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{282}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!addPointToTree@{addPointToTree}|hyperpage}{282}
+\indexentry{addPointToTree@{addPointToTree}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{282}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!computeClustering@{computeClustering}|hyperpage}{282}
+\indexentry{computeClustering@{computeClustering}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{282}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!computeNodeStat@{computeNodeStat}|hyperpage}{283}
+\indexentry{computeNodeStat@{computeNodeStat}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{283}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!explore@{explore}|hyperpage}{283}
+\indexentry{explore@{explore}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{283}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!findNN@{findNN}|hyperpage}{283}
+\indexentry{findNN@{findNN}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{283}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!getNeighbors@{getNeighbors}|hyperpage}{284}
+\indexentry{getNeighbors@{getNeighbors}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{284}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!knnSearch@{knnSearch}|hyperpage}{284}
+\indexentry{knnSearch@{knnSearch}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{284}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!setConfig@{setConfig}|hyperpage}{285}
+\indexentry{setConfig@{setConfig}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{285}
+\indexentry{CANDY::KmeansTree@{CANDY::KmeansTree}!setParams@{setParams}|hyperpage}{285}
+\indexentry{setParams@{setParams}!CANDY::KmeansTree@{CANDY::KmeansTree}|hyperpage}{285}
+\indexentry{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}|hyperpage}{286}
+\indexentry{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getAvgCpu@{getAvgCpu}|hyperpage}{287}
+\indexentry{getAvgCpu@{getAvgCpu}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}|hyperpage}{287}
+\indexentry{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getAvgMem@{getAvgMem}|hyperpage}{287}
+\indexentry{getAvgMem@{getAvgMem}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}|hyperpage}{287}
+\indexentry{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getCurMem@{getCurMem}|hyperpage}{287}
+\indexentry{getCurMem@{getCurMem}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}|hyperpage}{287}
+\indexentry{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getMaxCpu@{getMaxCpu}|hyperpage}{287}
+\indexentry{getMaxCpu@{getMaxCpu}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}|hyperpage}{287}
+\indexentry{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getMaxMem@{getMaxMem}|hyperpage}{287}
+\indexentry{getMaxMem@{getMaxMem}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}|hyperpage}{287}
+\indexentry{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!start@{start}|hyperpage}{288}
+\indexentry{start@{start}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}|hyperpage}{288}
+\indexentry{DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}|hyperpage}{288}
+\indexentry{DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}!MeterTable@{MeterTable}|hyperpage}{290}
+\indexentry{MeterTable@{MeterTable}!DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}|hyperpage}{290}
+\indexentry{DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}!findMeter@{findMeter}|hyperpage}{290}
+\indexentry{findMeter@{findMeter}!DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}|hyperpage}{290}
+\indexentry{DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}!registerNewMeter@{registerNewMeter}|hyperpage}{290}
+\indexentry{registerNewMeter@{registerNewMeter}!DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}|hyperpage}{290}
+\indexentry{INTELLI::MicroDataSet@{INTELLI::MicroDataSet}|hyperpage}{291}
+\indexentry{CANDY::HNSW::MinimaxHeap@{CANDY::HNSW::MinimaxHeap}|hyperpage}{292}
+\indexentry{CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}|hyperpage}{293}
+\indexentry{CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}!hash@{hash}|hyperpage}{293}
+\indexentry{hash@{hash}!CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}|hyperpage}{293}
+\indexentry{CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}!init@{init}|hyperpage}{293}
+\indexentry{init@{init}!CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}|hyperpage}{293}
+\indexentry{CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}!trainModel@{trainModel}|hyperpage}{294}
+\indexentry{trainModel@{trainModel}!CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}|hyperpage}{294}
+\indexentry{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}|hyperpage}{294}
+\indexentry{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}!fineTuneModel@{fineTuneModel}|hyperpage}{295}
+\indexentry{fineTuneModel@{fineTuneModel}!CANDY::MLPHashingModel@{CANDY::MLPHashingModel}|hyperpage}{295}
+\indexentry{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}!hash@{hash}|hyperpage}{295}
+\indexentry{hash@{hash}!CANDY::MLPHashingModel@{CANDY::MLPHashingModel}|hyperpage}{295}
+\indexentry{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}!init@{init}|hyperpage}{295}
+\indexentry{init@{init}!CANDY::MLPHashingModel@{CANDY::MLPHashingModel}|hyperpage}{295}
+\indexentry{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}!trainModel@{trainModel}|hyperpage}{296}
+\indexentry{trainModel@{trainModel}!CANDY::MLPHashingModel@{CANDY::MLPHashingModel}|hyperpage}{296}
+\indexentry{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}|hyperpage}{296}
+\indexentry{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!multi\_future@{multi\_future}|hyperpage}{297}
+\indexentry{multi\_future@{multi\_future}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}|hyperpage}{297}
+\indexentry{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!get@{get}|hyperpage}{297}
+\indexentry{get@{get}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}|hyperpage}{297}
+\indexentry{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!operator\mbox{[}\mbox{]}@{operator[]}|hyperpage}{298}
+\indexentry{operator\mbox{[}\mbox{]}@{operator[]}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}|hyperpage}{298}
+\indexentry{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!push\_back@{push\_back}|hyperpage}{298}
+\indexentry{push\_back@{push\_back}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}|hyperpage}{298}
+\indexentry{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!size@{size}|hyperpage}{298}
+\indexentry{size@{size}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}|hyperpage}{298}
+\indexentry{CANDY::DPGIndex::Neighbor@{CANDY::DPGIndex::Neighbor}|hyperpage}{299}
+\indexentry{CANDY::NNDescentIndex::Neighbor@{CANDY::NNDescentIndex::Neighbor}|hyperpage}{300}
+\indexentry{CANDY::NNDescentIndex::Nhood@{CANDY::NNDescentIndex::Nhood}|hyperpage}{300}
+\indexentry{CANDY::DPGIndex::NhoodLayer0@{CANDY::DPGIndex::NhoodLayer0}|hyperpage}{301}
+\indexentry{CANDY::DPGIndex::NhoodLayer1@{CANDY::DPGIndex::NhoodLayer1}|hyperpage}{302}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{303}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!deleteTensor@{deleteTensor}|hyperpage}{305}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{305}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!endHPC@{endHPC}|hyperpage}{305}
+\indexentry{endHPC@{endHPC}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{305}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{306}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{306}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!insertTensor@{insertTensor}|hyperpage}{306}
+\indexentry{insertTensor@{insertTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{306}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{306}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{306}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!offlineBuild@{offlineBuild}|hyperpage}{307}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{307}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!rawData@{rawData}|hyperpage}{307}
+\indexentry{rawData@{rawData}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{307}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!reviseTensor@{reviseTensor}|hyperpage}{307}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{307}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!searchTensor@{searchTensor}|hyperpage}{308}
+\indexentry{searchTensor@{searchTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{308}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!setConfig@{setConfig}|hyperpage}{308}
+\indexentry{setConfig@{setConfig}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{308}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!setFrozenLevel@{setFrozenLevel}|hyperpage}{309}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{309}
+\indexentry{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!startHPC@{startHPC}|hyperpage}{309}
+\indexentry{startHPC@{startHPC}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}|hyperpage}{309}
+\indexentry{CANDY::KdTree::Node@{CANDY::KdTree::Node}|hyperpage}{310}
+\indexentry{CANDY::KmeansTree::Node@{CANDY::KmeansTree::Node}|hyperpage}{310}
+\indexentry{CANDY::HNSW::NodeDistCloser@{CANDY::HNSW::NodeDistCloser}|hyperpage}{311}
+\indexentry{CANDY::HNSW::NodeDistFarther@{CANDY::HNSW::NodeDistFarther}|hyperpage}{312}
+\indexentry{CANDY::KmeansTree::NodeInfo@{CANDY::KmeansTree::NodeInfo}|hyperpage}{313}
+\indexentry{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}|hyperpage}{313}
+\indexentry{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{315}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}|hyperpage}{315}
+\indexentry{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}!loadInitialTensorAndQueryDistribution@{loadInitialTensorAndQueryDistribution}|hyperpage}{316}
+\indexentry{loadInitialTensorAndQueryDistribution@{loadInitialTensorAndQueryDistribution}!CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}|hyperpage}{316}
+\indexentry{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}!setConfig@{setConfig}|hyperpage}{316}
+\indexentry{setConfig@{setConfig}!CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}|hyperpage}{316}
+\indexentry{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}!trainModelWithData@{trainModelWithData}|hyperpage}{317}
+\indexentry{trainModelWithData@{trainModelWithData}!CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}|hyperpage}{317}
+\indexentry{CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}|hyperpage}{317}
+\indexentry{CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}!crsAmm@{crsAmm}|hyperpage}{319}
+\indexentry{crsAmm@{crsAmm}!CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}|hyperpage}{319}
+\indexentry{CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}!deleteRowsInline@{deleteRowsInline}|hyperpage}{320}
+\indexentry{deleteRowsInline@{deleteRowsInline}!CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}|hyperpage}{320}
+\indexentry{CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}!deleteTensor@{deleteTensor}|hyperpage}{320}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}|hyperpage}{320}
+\indexentry{CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}!insertTensor@{insertTensor}|hyperpage}{320}
+\indexentry{insertTensor@{insertTensor}!CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}|hyperpage}{320}
+\indexentry{CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}!reviseTensor@{reviseTensor}|hyperpage}{321}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}|hyperpage}{321}
+\indexentry{CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}!searchTensor@{searchTensor}|hyperpage}{321}
+\indexentry{searchTensor@{searchTensor}!CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}|hyperpage}{321}
+\indexentry{CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}!setConfig@{setConfig}|hyperpage}{322}
+\indexentry{setConfig@{setConfig}!CANDY::OnlineIVFLSHIndex@{CANDY::OnlineIVFLSHIndex}|hyperpage}{322}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{322}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!deleteRowsInline@{deleteRowsInline}|hyperpage}{325}
+\indexentry{deleteRowsInline@{deleteRowsInline}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{325}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!deleteTensor@{deleteTensor}|hyperpage}{325}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{325}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!fineGrainedEncode@{fineGrainedEncode}|hyperpage}{326}
+\indexentry{fineGrainedEncode@{fineGrainedEncode}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{326}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!insertTensor@{insertTensor}|hyperpage}{326}
+\indexentry{insertTensor@{insertTensor}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{326}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{326}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{326}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!offlineBuild@{offlineBuild}|hyperpage}{327}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{327}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!reviseTensor@{reviseTensor}|hyperpage}{327}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{327}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!searchTensor@{searchTensor}|hyperpage}{328}
+\indexentry{searchTensor@{searchTensor}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{328}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!setConfig@{setConfig}|hyperpage}{328}
+\indexentry{setConfig@{setConfig}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{328}
+\indexentry{CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}!setFrozenLevel@{setFrozenLevel}|hyperpage}{329}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::OnlinePQIndex@{CANDY::OnlinePQIndex}|hyperpage}{329}
+\indexentry{CANDY::ParallelIndexWorker@{CANDY::ParallelIndexWorker}|hyperpage}{330}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{333}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!deleteStringObject@{deleteStringObject}|hyperpage}{335}
+\indexentry{deleteStringObject@{deleteStringObject}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{335}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!deleteTensor@{deleteTensor}|hyperpage}{336}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{336}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!endHPC@{endHPC}|hyperpage}{336}
+\indexentry{endHPC@{endHPC}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{336}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{336}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{336}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!insertStringObject@{insertStringObject}|hyperpage}{337}
+\indexentry{insertStringObject@{insertStringObject}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{337}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!insertTensor@{insertTensor}|hyperpage}{337}
+\indexentry{insertTensor@{insertTensor}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{337}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!loadInitialStringObject@{loadInitialStringObject}|hyperpage}{338}
+\indexentry{loadInitialStringObject@{loadInitialStringObject}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{338}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{338}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{338}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!offlineBuild@{offlineBuild}|hyperpage}{339}
+\indexentry{offlineBuild@{offlineBuild}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{339}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!rawData@{rawData}|hyperpage}{339}
+\indexentry{rawData@{rawData}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{339}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!reviseTensor@{reviseTensor}|hyperpage}{339}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{339}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!searchStringObject@{searchStringObject}|hyperpage}{340}
+\indexentry{searchStringObject@{searchStringObject}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{340}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!searchTensor@{searchTensor}|hyperpage}{340}
+\indexentry{searchTensor@{searchTensor}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{340}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!searchTensorAndStringObject@{searchTensorAndStringObject}|hyperpage}{341}
+\indexentry{searchTensorAndStringObject@{searchTensorAndStringObject}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{341}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!setConfig@{setConfig}|hyperpage}{341}
+\indexentry{setConfig@{setConfig}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{341}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!setFrozenLevel@{setFrozenLevel}|hyperpage}{342}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{342}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!startHPC@{startHPC}|hyperpage}{342}
+\indexentry{startHPC@{startHPC}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{342}
+\indexentry{CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}!waitPendingOperations@{waitPendingOperations}|hyperpage}{342}
+\indexentry{waitPendingOperations@{waitPendingOperations}!CANDY::ParallelPartitionIndex@{CANDY::ParallelPartitionIndex}|hyperpage}{342}
+\indexentry{INTELLI::ThreadPerf::PerfPair@{INTELLI::ThreadPerf::PerfPair}|hyperpage}{343}
+\indexentry{INTELLI::ThreadPerf::PerfTool@{INTELLI::ThreadPerf::PerfTool}|hyperpage}{344}
+\indexentry{CANDY::PQDecoder@{CANDY::PQDecoder}|hyperpage}{344}
+\indexentry{CANDY::PQDecoder@{CANDY::PQDecoder}!decode@{decode}|hyperpage}{345}
+\indexentry{decode@{decode}!CANDY::PQDecoder@{CANDY::PQDecoder}|hyperpage}{345}
+\indexentry{CANDY::PQEncoder@{CANDY::PQEncoder}|hyperpage}{346}
+\indexentry{CANDY::PQEncoder@{CANDY::PQEncoder}!encode@{encode}|hyperpage}{346}
+\indexentry{encode@{encode}!CANDY::PQEncoder@{CANDY::PQEncoder}|hyperpage}{346}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{347}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!add@{add}|hyperpage}{349}
+\indexentry{add@{add}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{349}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!deleteTensor@{deleteTensor}|hyperpage}{349}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{349}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!getTensorByIndex@{getTensorByIndex}|hyperpage}{351}
+\indexentry{getTensorByIndex@{getTensorByIndex}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{351}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!insertTensor@{insertTensor}|hyperpage}{351}
+\indexentry{insertTensor@{insertTensor}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{351}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!loadInitialTensor@{loadInitialTensor}|hyperpage}{352}
+\indexentry{loadInitialTensor@{loadInitialTensor}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{352}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!rawData@{rawData}|hyperpage}{352}
+\indexentry{rawData@{rawData}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{352}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!reviseTensor@{reviseTensor}|hyperpage}{352}
+\indexentry{reviseTensor@{reviseTensor}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{352}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!searchIndex@{searchIndex}|hyperpage}{353}
+\indexentry{searchIndex@{searchIndex}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{353}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!searchTensor@{searchTensor}|hyperpage}{353}
+\indexentry{searchTensor@{searchTensor}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{353}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!setConfig@{setConfig}|hyperpage}{354}
+\indexentry{setConfig@{setConfig}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{354}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!setFrozenLevel@{setFrozenLevel}|hyperpage}{354}
+\indexentry{setFrozenLevel@{setFrozenLevel}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{354}
+\indexentry{CANDY::PQIndex@{CANDY::PQIndex}!train@{train}|hyperpage}{354}
+\indexentry{train@{train}!CANDY::PQIndex@{CANDY::PQIndex}|hyperpage}{354}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{355}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!add@{add}|hyperpage}{356}
+\indexentry{add@{add}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{356}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!compute\_code@{compute\_code}|hyperpage}{357}
+\indexentry{compute\_code@{compute\_code}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{357}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!compute\_codes@{compute\_codes}|hyperpage}{357}
+\indexentry{compute\_codes@{compute\_codes}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{357}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!compute\_distance\_table@{compute\_distance\_table}|hyperpage}{357}
+\indexentry{compute\_distance\_table@{compute\_distance\_table}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{357}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!compute\_distance\_tables@{compute\_distance\_tables}|hyperpage}{358}
+\indexentry{compute\_distance\_tables@{compute\_distance\_tables}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{358}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!decode@{decode}|hyperpage}{358}
+\indexentry{decode@{decode}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{358}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!search@{search}|hyperpage}{359}
+\indexentry{search@{search}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{359}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!setCentroidsFrom@{setCentroidsFrom}|hyperpage}{359}
+\indexentry{setCentroidsFrom@{setCentroidsFrom}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{359}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!setCentroidsFrom@{setCentroidsFrom}|hyperpage}{359}
+\indexentry{setCentroidsFrom@{setCentroidsFrom}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{359}
+\indexentry{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!train@{train}|hyperpage}{360}
+\indexentry{train@{train}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}|hyperpage}{360}
+\indexentry{CANDY::FLANN::RandomCenterChooser@{CANDY::FLANN::RandomCenterChooser}|hyperpage}{360}
+\indexentry{CANDY::RandomDataLoader@{CANDY::RandomDataLoader}|hyperpage}{361}
+\indexentry{CANDY::RandomDataLoader@{CANDY::RandomDataLoader}!getData@{getData}|hyperpage}{362}
+\indexentry{getData@{getData}!CANDY::RandomDataLoader@{CANDY::RandomDataLoader}|hyperpage}{362}
+\indexentry{CANDY::RandomDataLoader@{CANDY::RandomDataLoader}!getQuery@{getQuery}|hyperpage}{362}
+\indexentry{getQuery@{getQuery}!CANDY::RandomDataLoader@{CANDY::RandomDataLoader}|hyperpage}{362}
+\indexentry{CANDY::RandomDataLoader@{CANDY::RandomDataLoader}!setConfig@{setConfig}|hyperpage}{363}
+\indexentry{setConfig@{setConfig}!CANDY::RandomDataLoader@{CANDY::RandomDataLoader}|hyperpage}{363}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{363}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_create@{dataLoader\_create}|hyperpage}{365}
+\indexentry{dataLoader\_create@{dataLoader\_create}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{365}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_editCfgDouble@{dataLoader\_editCfgDouble}|hyperpage}{366}
+\indexentry{dataLoader\_editCfgDouble@{dataLoader\_editCfgDouble}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{366}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_editCfgFloat@{dataLoader\_editCfgFloat}|hyperpage}{366}
+\indexentry{dataLoader\_editCfgFloat@{dataLoader\_editCfgFloat}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{366}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_editCfgI64@{dataLoader\_editCfgI64}|hyperpage}{367}
+\indexentry{dataLoader\_editCfgI64@{dataLoader\_editCfgI64}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{367}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_editCfgStr@{dataLoader\_editCfgStr}|hyperpage}{367}
+\indexentry{dataLoader\_editCfgStr@{dataLoader\_editCfgStr}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{367}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_getData@{dataLoader\_getData}|hyperpage}{367}
+\indexentry{dataLoader\_getData@{dataLoader\_getData}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{367}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_getQuery@{dataLoader\_getQuery}|hyperpage}{368}
+\indexentry{dataLoader\_getQuery@{dataLoader\_getQuery}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{368}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!dataLoader\_init@{dataLoader\_init}|hyperpage}{368}
+\indexentry{dataLoader\_init@{dataLoader\_init}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{368}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_create@{index\_create}|hyperpage}{369}
+\indexentry{index\_create@{index\_create}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{369}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_delete@{index\_delete}|hyperpage}{369}
+\indexentry{index\_delete@{index\_delete}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{369}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_deleteString@{index\_deleteString}|hyperpage}{369}
+\indexentry{index\_deleteString@{index\_deleteString}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{369}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_editCfgDouble@{index\_editCfgDouble}|hyperpage}{370}
+\indexentry{index\_editCfgDouble@{index\_editCfgDouble}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{370}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_editCfgI64@{index\_editCfgI64}|hyperpage}{370}
+\indexentry{index\_editCfgI64@{index\_editCfgI64}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{370}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_editCfgStr@{index\_editCfgStr}|hyperpage}{371}
+\indexentry{index\_editCfgStr@{index\_editCfgStr}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{371}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_endHPC@{index\_endHPC}|hyperpage}{371}
+\indexentry{index\_endHPC@{index\_endHPC}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{371}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_init@{index\_init}|hyperpage}{371}
+\indexentry{index\_init@{index\_init}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{371}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_insert@{index\_insert}|hyperpage}{372}
+\indexentry{index\_insert@{index\_insert}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{372}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_insertString@{index\_insertString}|hyperpage}{372}
+\indexentry{index\_insertString@{index\_insertString}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{372}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_loadCfgFromFile@{index\_loadCfgFromFile}|hyperpage}{372}
+\indexentry{index\_loadCfgFromFile@{index\_loadCfgFromFile}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{372}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_loadInitial@{index\_loadInitial}|hyperpage}{373}
+\indexentry{index\_loadInitial@{index\_loadInitial}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{373}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_loadInitialString@{index\_loadInitialString}|hyperpage}{373}
+\indexentry{index\_loadInitialString@{index\_loadInitialString}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{373}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_offlineBuild@{index\_offlineBuild}|hyperpage}{374}
+\indexentry{index\_offlineBuild@{index\_offlineBuild}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{374}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_rawData@{index\_rawData}|hyperpage}{374}
+\indexentry{index\_rawData@{index\_rawData}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{374}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_reset@{index\_reset}|hyperpage}{374}
+\indexentry{index\_reset@{index\_reset}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{374}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_revise@{index\_revise}|hyperpage}{375}
+\indexentry{index\_revise@{index\_revise}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{375}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_search@{index\_search}|hyperpage}{375}
+\indexentry{index\_search@{index\_search}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{375}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_searchString@{index\_searchString}|hyperpage}{376}
+\indexentry{index\_searchString@{index\_searchString}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{376}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_searchTensorAndStringList@{index\_searchTensorAndStringList}|hyperpage}{376}
+\indexentry{index\_searchTensorAndStringList@{index\_searchTensorAndStringList}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{376}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_setFrozenLevel@{index\_setFrozenLevel}|hyperpage}{376}
+\indexentry{index\_setFrozenLevel@{index\_setFrozenLevel}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{376}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_startHPC@{index\_startHPC}|hyperpage}{377}
+\indexentry{index\_startHPC@{index\_startHPC}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{377}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!index\_waitPending@{index\_waitPending}|hyperpage}{377}
+\indexentry{index\_waitPending@{index\_waitPending}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{377}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!tensorFromFile@{tensorFromFile}|hyperpage}{378}
+\indexentry{tensorFromFile@{tensorFromFile}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{378}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!tensorFromFVECS@{tensorFromFVECS}|hyperpage}{378}
+\indexentry{tensorFromFVECS@{tensorFromFVECS}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{378}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!tensorFromHDF5@{tensorFromHDF5}|hyperpage}{378}
+\indexentry{tensorFromHDF5@{tensorFromHDF5}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{378}
+\indexentry{CANDY::Rania\_Python@{CANDY::Rania\_Python}!tensorToFile@{tensorToFile}|hyperpage}{379}
+\indexentry{tensorToFile@{tensorToFile}!CANDY::Rania\_Python@{CANDY::Rania\_Python}|hyperpage}{379}
+\indexentry{DIVERSE\_METER::rapl\_power\_unit@{DIVERSE\_METER::rapl\_power\_unit}|hyperpage}{379}
+\indexentry{CANDY::FLANN::ResultSet@{CANDY::FLANN::ResultSet}|hyperpage}{380}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{380}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!addSingleRow@{addSingleRow}|hyperpage}{382}
+\indexentry{addSingleRow@{addSingleRow}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{382}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!addSingleRowWithIdx@{addSingleRowWithIdx}|hyperpage}{382}
+\indexentry{addSingleRowWithIdx@{addSingleRowWithIdx}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{382}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!buildCentroids@{buildCentroids}|hyperpage}{383}
+\indexentry{buildCentroids@{buildCentroids}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{383}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!classifyMultiRow@{classifyMultiRow}|hyperpage}{383}
+\indexentry{classifyMultiRow@{classifyMultiRow}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{383}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!classifySingleRow@{classifySingleRow}|hyperpage}{384}
+\indexentry{classifySingleRow@{classifySingleRow}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{384}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!deleteSingleRow@{deleteSingleRow}|hyperpage}{384}
+\indexentry{deleteSingleRow@{deleteSingleRow}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{384}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!deleteSingleRowWithIdx@{deleteSingleRowWithIdx}|hyperpage}{384}
+\indexentry{deleteSingleRowWithIdx@{deleteSingleRowWithIdx}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{384}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!euclideanDelete@{euclideanDelete}|hyperpage}{385}
+\indexentry{euclideanDelete@{euclideanDelete}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{385}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!euclideanDistance@{euclideanDistance}|hyperpage}{385}
+\indexentry{euclideanDistance@{euclideanDistance}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{385}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!euclideanInsert@{euclideanInsert}|hyperpage}{386}
+\indexentry{euclideanInsert@{euclideanInsert}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{386}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!exportCentroids@{exportCentroids}|hyperpage}{386}
+\indexentry{exportCentroids@{exportCentroids}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{386}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!loadCentroids@{loadCentroids}|hyperpage}{386}
+\indexentry{loadCentroids@{loadCentroids}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{386}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!loadCentroids@{loadCentroids}|hyperpage}{387}
+\indexentry{loadCentroids@{loadCentroids}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{387}
+\indexentry{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!saveCentroidsToFile@{saveCentroidsToFile}|hyperpage}{387}
+\indexentry{saveCentroidsToFile@{saveCentroidsToFile}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}|hyperpage}{387}
+\indexentry{INTELLI::SPSCQueue$<$ T, Allocator $>$@{INTELLI::SPSCQueue$<$ T, Allocator $>$}|hyperpage}{388}
+\indexentry{BS::synced\_stream@{BS::synced\_stream}|hyperpage}{389}
+\indexentry{BS::synced\_stream@{BS::synced\_stream}!synced\_stream@{synced\_stream}|hyperpage}{390}
+\indexentry{synced\_stream@{synced\_stream}!BS::synced\_stream@{BS::synced\_stream}|hyperpage}{390}
+\indexentry{BS::synced\_stream@{BS::synced\_stream}!print@{print}|hyperpage}{390}
+\indexentry{print@{print}!BS::synced\_stream@{BS::synced\_stream}|hyperpage}{390}
+\indexentry{BS::synced\_stream@{BS::synced\_stream}!println@{println}|hyperpage}{390}
+\indexentry{println@{println}!BS::synced\_stream@{BS::synced\_stream}|hyperpage}{390}
+\indexentry{BS::synced\_stream@{BS::synced\_stream}!endl@{endl}|hyperpage}{391}
+\indexentry{endl@{endl}!BS::synced\_stream@{BS::synced\_stream}|hyperpage}{391}
+\indexentry{BS::synced\_stream@{BS::synced\_stream}!flush@{flush}|hyperpage}{391}
+\indexentry{flush@{flush}!BS::synced\_stream@{BS::synced\_stream}|hyperpage}{391}
+\indexentry{CANDY::TensorIdxPair@{CANDY::TensorIdxPair}|hyperpage}{392}
+\indexentry{CANDY::TensorListIdxPair@{CANDY::TensorListIdxPair}|hyperpage}{393}
+\indexentry{CANDY::TensorStrPair@{CANDY::TensorStrPair}|hyperpage}{393}
+\indexentry{CANDY::TensorStrVecPair@{CANDY::TensorStrVecPair}|hyperpage}{394}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}|hyperpage}{395}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!thread\_pool@{thread\_pool}|hyperpage}{396}
+\indexentry{thread\_pool@{thread\_pool}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{396}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!get\_tasks\_queued@{get\_tasks\_queued}|hyperpage}{396}
+\indexentry{get\_tasks\_queued@{get\_tasks\_queued}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{396}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!get\_tasks\_running@{get\_tasks\_running}|hyperpage}{397}
+\indexentry{get\_tasks\_running@{get\_tasks\_running}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{397}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!get\_tasks\_total@{get\_tasks\_total}|hyperpage}{397}
+\indexentry{get\_tasks\_total@{get\_tasks\_total}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{397}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!get\_thread\_count@{get\_thread\_count}|hyperpage}{397}
+\indexentry{get\_thread\_count@{get\_thread\_count}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{397}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!is\_paused@{is\_paused}|hyperpage}{397}
+\indexentry{is\_paused@{is\_paused}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{397}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!parallelize\_loop@{parallelize\_loop}|hyperpage}{397}
+\indexentry{parallelize\_loop@{parallelize\_loop}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{397}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!parallelize\_loop@{parallelize\_loop}|hyperpage}{398}
+\indexentry{parallelize\_loop@{parallelize\_loop}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{398}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!push\_loop@{push\_loop}|hyperpage}{399}
+\indexentry{push\_loop@{push\_loop}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{399}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!push\_loop@{push\_loop}|hyperpage}{400}
+\indexentry{push\_loop@{push\_loop}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{400}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!push\_task@{push\_task}|hyperpage}{400}
+\indexentry{push\_task@{push\_task}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{400}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!reset@{reset}|hyperpage}{401}
+\indexentry{reset@{reset}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{401}
+\indexentry{BS::thread\_pool@{BS::thread\_pool}!submit@{submit}|hyperpage}{401}
+\indexentry{submit@{submit}!BS::thread\_pool@{BS::thread\_pool}|hyperpage}{401}
+\indexentry{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}|hyperpage}{402}
+\indexentry{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!ThreadPerf@{ThreadPerf}|hyperpage}{404}
+\indexentry{ThreadPerf@{ThreadPerf}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}|hyperpage}{404}
+\indexentry{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!getResultById@{getResultById}|hyperpage}{405}
+\indexentry{getResultById@{getResultById}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}|hyperpage}{405}
+\indexentry{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!getResultByName@{getResultByName}|hyperpage}{405}
+\indexentry{getResultByName@{getResultByName}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}|hyperpage}{405}
+\indexentry{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!initEventsByCfg@{initEventsByCfg}|hyperpage}{405}
+\indexentry{initEventsByCfg@{initEventsByCfg}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}|hyperpage}{405}
+\indexentry{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!resultToConfigMap@{resultToConfigMap}|hyperpage}{406}
+\indexentry{resultToConfigMap@{resultToConfigMap}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}|hyperpage}{406}
+\indexentry{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!start@{start}|hyperpage}{406}
+\indexentry{start@{start}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}|hyperpage}{406}
+\indexentry{INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}|hyperpage}{407}
+\indexentry{INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}!ThreadPerfPAPI@{ThreadPerfPAPI}|hyperpage}{409}
+\indexentry{ThreadPerfPAPI@{ThreadPerfPAPI}!INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}|hyperpage}{409}
+\indexentry{INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}!addPapiTag@{addPapiTag}|hyperpage}{409}
+\indexentry{addPapiTag@{addPapiTag}!INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}|hyperpage}{409}
+\indexentry{INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}!addPapiTag@{addPapiTag}|hyperpage}{410}
+\indexentry{addPapiTag@{addPapiTag}!INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}|hyperpage}{410}
+\indexentry{INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}!getResultById@{getResultById}|hyperpage}{410}
+\indexentry{getResultById@{getResultById}!INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}|hyperpage}{410}
+\indexentry{INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}!getResultByName@{getResultByName}|hyperpage}{410}
+\indexentry{getResultByName@{getResultByName}!INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}|hyperpage}{410}
+\indexentry{INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}!initEventsByCfg@{initEventsByCfg}|hyperpage}{411}
+\indexentry{initEventsByCfg@{initEventsByCfg}!INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}|hyperpage}{411}
+\indexentry{INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}!resultToConfigMap@{resultToConfigMap}|hyperpage}{411}
+\indexentry{resultToConfigMap@{resultToConfigMap}!INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}|hyperpage}{411}
+\indexentry{INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}!start@{start}|hyperpage}{411}
+\indexentry{start@{start}!INTELLI::ThreadPerfPAPI@{INTELLI::ThreadPerfPAPI}|hyperpage}{411}
+\indexentry{BS::timer@{BS::timer}|hyperpage}{412}
+\indexentry{BS::timer@{BS::timer}!ms@{ms}|hyperpage}{412}
+\indexentry{ms@{ms}!BS::timer@{BS::timer}|hyperpage}{412}
+\indexentry{CANDY::FLANN::UniqueRandom@{CANDY::FLANN::UniqueRandom}|hyperpage}{413}
+\indexentry{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}|hyperpage}{413}
+\indexentry{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!bind2Core@{bind2Core}|hyperpage}{413}
+\indexentry{bind2Core@{bind2Core}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}|hyperpage}{413}
+\indexentry{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!calculateRecall@{calculateRecall}|hyperpage}{414}
+\indexentry{calculateRecall@{calculateRecall}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}|hyperpage}{414}
+\indexentry{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!getLatencyPercentage@{getLatencyPercentage}|hyperpage}{414}
+\indexentry{getLatencyPercentage@{getLatencyPercentage}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}|hyperpage}{414}
+\indexentry{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!saveTimeStampToFile@{saveTimeStampToFile}|hyperpage}{414}
+\indexentry{saveTimeStampToFile@{saveTimeStampToFile}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}|hyperpage}{414}
+\indexentry{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!tensorListFromFile@{tensorListFromFile}|hyperpage}{415}
+\indexentry{tensorListFromFile@{tensorListFromFile}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}|hyperpage}{415}
+\indexentry{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!tensorListToFile@{tensorListToFile}|hyperpage}{415}
+\indexentry{tensorListToFile@{tensorListToFile}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}|hyperpage}{415}
+\indexentry{VertexComparison@{VertexComparison}|hyperpage}{416}
+\indexentry{CANDY::FLANN::VisitBitset@{CANDY::FLANN::VisitBitset}|hyperpage}{416}
+\indexentry{VisitedBitset@{VisitedBitset}|hyperpage}{417}
+\indexentry{CANDY::VisitedTable@{CANDY::VisitedTable}|hyperpage}{417}
+\indexentry{CANDY::YinYangGraph@{CANDY::YinYangGraph}|hyperpage}{418}
+\indexentry{CANDY::YinYangGraph@{CANDY::YinYangGraph}!deleteTensorWithEncode@{deleteTensorWithEncode}|hyperpage}{419}
+\indexentry{deleteTensorWithEncode@{deleteTensorWithEncode}!CANDY::YinYangGraph@{CANDY::YinYangGraph}|hyperpage}{419}
+\indexentry{CANDY::YinYangGraph@{CANDY::YinYangGraph}!getMinimumNumOfTensors@{getMinimumNumOfTensors}|hyperpage}{419}
+\indexentry{getMinimumNumOfTensors@{getMinimumNumOfTensors}!CANDY::YinYangGraph@{CANDY::YinYangGraph}|hyperpage}{419}
+\indexentry{CANDY::YinYangGraph@{CANDY::YinYangGraph}!init@{init}|hyperpage}{420}
+\indexentry{init@{init}!CANDY::YinYangGraph@{CANDY::YinYangGraph}|hyperpage}{420}
+\indexentry{CANDY::YinYangGraph@{CANDY::YinYangGraph}!insertTensorWithEncode@{insertTensorWithEncode}|hyperpage}{420}
+\indexentry{insertTensorWithEncode@{insertTensorWithEncode}!CANDY::YinYangGraph@{CANDY::YinYangGraph}|hyperpage}{420}
+\indexentry{CANDY::YinYangGraph\_DistanceFunctions@{CANDY::YinYangGraph\_DistanceFunctions}|hyperpage}{421}
+\indexentry{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}|hyperpage}{421}
+\indexentry{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}!deleteTensor@{deleteTensor}|hyperpage}{422}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}|hyperpage}{422}
+\indexentry{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}!deleteTensorWithEncode@{deleteTensorWithEncode}|hyperpage}{423}
+\indexentry{deleteTensorWithEncode@{deleteTensorWithEncode}!CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}|hyperpage}{423}
+\indexentry{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}!getVertexWithEncode@{getVertexWithEncode}|hyperpage}{423}
+\indexentry{getVertexWithEncode@{getVertexWithEncode}!CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}|hyperpage}{423}
+\indexentry{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}!insertTensorWithEncode@{insertTensorWithEncode}|hyperpage}{423}
+\indexentry{insertTensorWithEncode@{insertTensorWithEncode}!CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}|hyperpage}{423}
+\indexentry{CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}|hyperpage}{424}
+\indexentry{CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}!deleteTensor@{deleteTensor}|hyperpage}{425}
+\indexentry{deleteTensor@{deleteTensor}!CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}|hyperpage}{425}
+\indexentry{CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}!getVertex@{getVertex}|hyperpage}{425}
+\indexentry{getVertex@{getVertex}!CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}|hyperpage}{425}
+\indexentry{CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}!insertTensor@{insertTensor}|hyperpage}{425}
+\indexentry{insertTensor@{insertTensor}!CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}|hyperpage}{425}
+\indexentry{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}|hyperpage}{426}
+\indexentry{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}!crsAmm@{crsAmm}|hyperpage}{428}
+\indexentry{crsAmm@{crsAmm}!CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}|hyperpage}{428}
+\indexentry{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}!insertTensor@{insertTensor}|hyperpage}{429}
+\indexentry{insertTensor@{insertTensor}!CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}|hyperpage}{429}
+\indexentry{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}!searchTensor@{searchTensor}|hyperpage}{429}
+\indexentry{searchTensor@{searchTensor}!CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}|hyperpage}{429}
+\indexentry{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}!setConfig@{setConfig}|hyperpage}{429}
+\indexentry{setConfig@{setConfig}!CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}|hyperpage}{429}
+\indexentry{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}|hyperpage}{430}
+\indexentry{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}!insertSingleRowTensor@{insertSingleRowTensor}|hyperpage}{431}
+\indexentry{insertSingleRowTensor@{insertSingleRowTensor}!CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}|hyperpage}{431}
+\indexentry{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}!insertTensor@{insertTensor}|hyperpage}{432}
+\indexentry{insertTensor@{insertTensor}!CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}|hyperpage}{432}
+\indexentry{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}!searchTensor@{searchTensor}|hyperpage}{432}
+\indexentry{searchTensor@{searchTensor}!CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}|hyperpage}{432}
+\indexentry{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}!setConfig@{setConfig}|hyperpage}{432}
+\indexentry{setConfig@{setConfig}!CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}|hyperpage}{432}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{433}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!attachTensor@{attachTensor}|hyperpage}{435}
+\indexentry{attachTensor@{attachTensor}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{435}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!detachTensor@{detachTensor}|hyperpage}{435}
+\indexentry{detachTensor@{detachTensor}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{435}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForKNearestTensor@{greedySearchForKNearestTensor}|hyperpage}{436}
+\indexentry{greedySearchForKNearestTensor@{greedySearchForKNearestTensor}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{436}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForKNearestVertex@{greedySearchForKNearestVertex}|hyperpage}{436}
+\indexentry{greedySearchForKNearestVertex@{greedySearchForKNearestVertex}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{436}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForKNearestVertex@{greedySearchForKNearestVertex}|hyperpage}{437}
+\indexentry{greedySearchForKNearestVertex@{greedySearchForKNearestVertex}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{437}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForNearestVertex@{greedySearchForNearestVertex}|hyperpage}{437}
+\indexentry{greedySearchForNearestVertex@{greedySearchForNearestVertex}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{437}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForNearestVertex@{greedySearchForNearestVertex}|hyperpage}{438}
+\indexentry{greedySearchForNearestVertex@{greedySearchForNearestVertex}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{438}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!init@{init}|hyperpage}{438}
+\indexentry{init@{init}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{438}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!setUperLayer@{setUperLayer}|hyperpage}{439}
+\indexentry{setUperLayer@{setUperLayer}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{439}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!toString@{toString}|hyperpage}{439}
+\indexentry{toString@{toString}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{439}
+\indexentry{CANDY::YinYangVertex@{CANDY::YinYangVertex}!tryToConnect@{tryToConnect}|hyperpage}{439}
+\indexentry{tryToConnect@{tryToConnect}!CANDY::YinYangVertex@{CANDY::YinYangVertex}|hyperpage}{439}
+\indexentry{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}|hyperpage}{440}
+\indexentry{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!edit@{edit}|hyperpage}{441}
+\indexentry{edit@{edit}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}|hyperpage}{441}
+\indexentry{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!erase@{erase}|hyperpage}{442}
+\indexentry{erase@{erase}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}|hyperpage}{442}
+\indexentry{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!exist@{exist}|hyperpage}{442}
+\indexentry{exist@{exist}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}|hyperpage}{442}
+\indexentry{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!nearestKVertexWithinMap@{nearestKVertexWithinMap}|hyperpage}{442}
+\indexentry{nearestKVertexWithinMap@{nearestKVertexWithinMap}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}|hyperpage}{442}
+\indexentry{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!nearestVertexWithinMap@{nearestVertexWithinMap}|hyperpage}{443}
+\indexentry{nearestVertexWithinMap@{nearestVertexWithinMap}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}|hyperpage}{443}
+\indexentry{CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}!nearestVertexWithinMe@{nearestVertexWithinMe}|hyperpage}{443}
+\indexentry{nearestVertexWithinMe@{nearestVertexWithinMe}!CANDY::YinYangVertexMap@{CANDY::YinYangVertexMap}|hyperpage}{443}
+\indexentry{CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}|hyperpage}{444}
+\indexentry{CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}!getData@{getData}|hyperpage}{445}
+\indexentry{getData@{getData}!CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}|hyperpage}{445}
+\indexentry{CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}!getQuery@{getQuery}|hyperpage}{446}
+\indexentry{getQuery@{getQuery}!CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}|hyperpage}{446}
+\indexentry{CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}!setConfig@{setConfig}|hyperpage}{446}
+\indexentry{setConfig@{setConfig}!CANDY::ZipfDataLoader@{CANDY::ZipfDataLoader}|hyperpage}{446}
+\indexentry{include/CANDY.h@{include/CANDY.h}|hyperpage}{449}
+\indexentry{include/CANDY/AbstractIndex.h@{include/CANDY/AbstractIndex.h}|hyperpage}{450}
+\indexentry{include/CANDY/BucketedFlatIndex.h@{include/CANDY/BucketedFlatIndex.h}|hyperpage}{451}
+\indexentry{include/CANDY/BufferedCongestionDropIndex.h@{include/CANDY/BufferedCongestionDropIndex.h}|hyperpage}{452}
+\indexentry{include/CANDY/CANDYObject.h@{include/CANDY/CANDYObject.h}|hyperpage}{453}
+\indexentry{include/CANDY/CongestionDropIndex.h@{include/CANDY/CongestionDropIndex.h}|hyperpage}{454}
+\indexentry{include/CANDY/CongestionDropIndex/CongestionDropIndexWorker.h@{include/CANDY/CongestionDropIndex/CongestionDropIndexWorker.h}|hyperpage}{455}
+\indexentry{include/CANDY/DistributedPartitionIndex.h@{include/CANDY/DistributedPartitionIndex.h}|hyperpage}{456}
+\indexentry{include/CANDY/DistributedPartitionIndex/DistributedIndexWorker.h@{include/CANDY/DistributedPartitionIndex/DistributedIndexWorker.h}|hyperpage}{457}
+\indexentry{include/CANDY/DPGIndex.h@{include/CANDY/DPGIndex.h}|hyperpage}{458}
+\indexentry{include/CANDY/FaissIndex.h@{include/CANDY/FaissIndex.h}|hyperpage}{459}
+\indexentry{include/CANDY/FlatAMMIPIndex.h@{include/CANDY/FlatAMMIPIndex.h}|hyperpage}{459}
+\indexentry{include/CANDY/FlatAMMIPObjIndex.h@{include/CANDY/FlatAMMIPObjIndex.h}|hyperpage}{460}
+\indexentry{include/CANDY/FlatIndex.h@{include/CANDY/FlatIndex.h}|hyperpage}{461}
+\indexentry{include/CANDY/HNSWNaiveIndex.h@{include/CANDY/HNSWNaiveIndex.h}|hyperpage}{462}
+\indexentry{include/CANDY/IndexTable.h@{include/CANDY/IndexTable.h}|hyperpage}{463}
+\indexentry{include/CANDY/NNDescentIndex.h@{include/CANDY/NNDescentIndex.h}|hyperpage}{464}
+\indexentry{include/CANDY/OnlinePQIndex.h@{include/CANDY/OnlinePQIndex.h}|hyperpage}{465}
+\indexentry{include/CANDY/OnlinePQIndex/IVFTensorEncodingList.h@{include/CANDY/OnlinePQIndex/IVFTensorEncodingList.h}|hyperpage}{466}
+\indexentry{include/CANDY/OnlinePQIndex/SimpleStreamClustering.h@{include/CANDY/OnlinePQIndex/SimpleStreamClustering.h}|hyperpage}{467}
+\indexentry{include/CANDY/ParallelPartitionIndex.h@{include/CANDY/ParallelPartitionIndex.h}|hyperpage}{468}
+\indexentry{include/CANDY/ParallelPartitionIndex/ParallelIndexWorker.h@{include/CANDY/ParallelPartitionIndex/ParallelIndexWorker.h}|hyperpage}{469}
+\indexentry{include/CANDY/YinYangGraphIndex.h@{include/CANDY/YinYangGraphIndex.h}|hyperpage}{471}
+\indexentry{include/CANDY/YinYangGraphIndex/YinYangGraph.h@{include/CANDY/YinYangGraphIndex/YinYangGraph.h}|hyperpage}{472}
+\indexentry{include/CANDY/YinYangGraphSimpleIndex.h@{include/CANDY/YinYangGraphSimpleIndex.h}|hyperpage}{473}
+\indexentry{include/CANDYPYTHON.h@{include/CANDYPYTHON.h}|hyperpage}{474}
+\indexentry{include/DataLoader/AbstractDataLoader.h@{include/DataLoader/AbstractDataLoader.h}|hyperpage}{475}
+\indexentry{include/DataLoader/DataLoaderTable.h@{include/DataLoader/DataLoaderTable.h}|hyperpage}{475}
+\indexentry{include/DataLoader/ExpFamilyDataLoader.h@{include/DataLoader/ExpFamilyDataLoader.h}|hyperpage}{477}
+\indexentry{include/DataLoader/FVECSDataLoader.h@{include/DataLoader/FVECSDataLoader.h}|hyperpage}{478}
+\indexentry{include/DataLoader/HDF5DataLoader.h@{include/DataLoader/HDF5DataLoader.h}|hyperpage}{479}
+\indexentry{include/DataLoader/RandomDataLoader.h@{include/DataLoader/RandomDataLoader.h}|hyperpage}{480}
+\indexentry{include/DataLoader/ZipfDataLoader.h@{include/DataLoader/ZipfDataLoader.h}|hyperpage}{481}
+\indexentry{include/Utils/AbstractC20Thread.hpp@{include/Utils/AbstractC20Thread.hpp}|hyperpage}{482}
+\indexentry{include/Utils/BS\_thread\_pool.hpp@{include/Utils/BS\_thread\_pool.hpp}|hyperpage}{483}
+\indexentry{include/Utils/C20Buffers.hpp@{include/Utils/C20Buffers.hpp}|hyperpage}{484}
+\indexentry{include/Utils/ConfigMap.hpp@{include/Utils/ConfigMap.hpp}|hyperpage}{485}
+\indexentry{include/Utils/IntelliTensorOP.hpp@{include/Utils/IntelliTensorOP.hpp}|hyperpage}{486}
+\indexentry{include/Utils/IntelliTimeStampGenerator.h@{include/Utils/IntelliTimeStampGenerator.h}|hyperpage}{487}
+\indexentry{include/Utils/Meters/AbstractMeter.hpp@{include/Utils/Meters/AbstractMeter.hpp}|hyperpage}{488}
+\indexentry{include/Utils/Meters/EspMeterUart/EspMeterUart.hpp@{include/Utils/Meters/EspMeterUart/EspMeterUart.hpp}|hyperpage}{489}
+\indexentry{include/Utils/ThreadPerf.hpp@{include/Utils/ThreadPerf.hpp}|hyperpage}{490}
+\indexentry{include/Utils/ThreadPerfPAPI.hpp@{include/Utils/ThreadPerfPAPI.hpp}|hyperpage}{492}
+\indexentry{src/CANDY/AbstractIndex.cpp@{src/CANDY/AbstractIndex.cpp}|hyperpage}{493}
+\indexentry{src/CANDY/BucketedFlatIndex.cpp@{src/CANDY/BucketedFlatIndex.cpp}|hyperpage}{493}
+\indexentry{BucketedFlatIndex.cpp@{BucketedFlatIndex.cpp}!BF\_NEXT\_POW\_2@{BF\_NEXT\_POW\_2}|hyperpage}{493}
+\indexentry{BF\_NEXT\_POW\_2@{BF\_NEXT\_POW\_2}!BucketedFlatIndex.cpp@{BucketedFlatIndex.cpp}|hyperpage}{493}
+\indexentry{src/CANDY/BufferedCongestionDropIndex.cpp@{src/CANDY/BufferedCongestionDropIndex.cpp}|hyperpage}{494}
+\indexentry{src/CANDY/CongestionDropIndex.cpp@{src/CANDY/CongestionDropIndex.cpp}|hyperpage}{494}
+\indexentry{src/CANDY/CongestionDropIndex/CongestionDropIndexWorker.cpp@{src/CANDY/CongestionDropIndex/CongestionDropIndexWorker.cpp}|hyperpage}{495}
+\indexentry{src/CANDY/DistributedPartitionIndex.cpp@{src/CANDY/DistributedPartitionIndex.cpp}|hyperpage}{495}
+\indexentry{src/CANDY/DistributedPartitionIndex/DistributedIndexWorker.cpp@{src/CANDY/DistributedPartitionIndex/DistributedIndexWorker.cpp}|hyperpage}{495}
+\indexentry{src/CANDY/DPGIndex.cpp@{src/CANDY/DPGIndex.cpp}|hyperpage}{496}
+\indexentry{src/CANDY/FlatAMMIPIndex.cpp@{src/CANDY/FlatAMMIPIndex.cpp}|hyperpage}{496}
+\indexentry{src/CANDY/FlatAMMIPObjIndex.cpp@{src/CANDY/FlatAMMIPObjIndex.cpp}|hyperpage}{496}
+\indexentry{src/CANDY/FlatIndex.cpp@{src/CANDY/FlatIndex.cpp}|hyperpage}{497}
+\indexentry{src/CANDY/NNDescentIndex.cpp@{src/CANDY/NNDescentIndex.cpp}|hyperpage}{497}
+\indexentry{src/CANDY/OnlineIVFL2HIndex.cpp@{src/CANDY/OnlineIVFL2HIndex.cpp}|hyperpage}{498}
+\indexentry{OnlineIVFL2HIndex.cpp@{OnlineIVFL2HIndex.cpp}!ONLINEIVFL2H\_NEXT\_POW\_2@{ONLINEIVFL2H\_NEXT\_POW\_2}|hyperpage}{498}
+\indexentry{ONLINEIVFL2H\_NEXT\_POW\_2@{ONLINEIVFL2H\_NEXT\_POW\_2}!OnlineIVFL2HIndex.cpp@{OnlineIVFL2HIndex.cpp}|hyperpage}{498}
+\indexentry{src/CANDY/OnlineIVFLSHIndex.cpp@{src/CANDY/OnlineIVFLSHIndex.cpp}|hyperpage}{498}
+\indexentry{OnlineIVFLSHIndex.cpp@{OnlineIVFLSHIndex.cpp}!ONLINEIVF\_NEXT\_POW\_2@{ONLINEIVF\_NEXT\_POW\_2}|hyperpage}{499}
+\indexentry{ONLINEIVF\_NEXT\_POW\_2@{ONLINEIVF\_NEXT\_POW\_2}!OnlineIVFLSHIndex.cpp@{OnlineIVFLSHIndex.cpp}|hyperpage}{499}
+\indexentry{src/CANDY/OnlinePQIndex.cpp@{src/CANDY/OnlinePQIndex.cpp}|hyperpage}{499}
+\indexentry{src/CANDY/ParallelPartitionIndex.cpp@{src/CANDY/ParallelPartitionIndex.cpp}|hyperpage}{500}
+\indexentry{src/CANDY/ParallelPartitionIndex/ParallelIndexWorker.cpp@{src/CANDY/ParallelPartitionIndex/ParallelIndexWorker.cpp}|hyperpage}{500}
+\indexentry{src/CANDY/YinYangGraphIndex.cpp@{src/CANDY/YinYangGraphIndex.cpp}|hyperpage}{500}
+\indexentry{YinYangGraphIndex.cpp@{YinYangGraphIndex.cpp}!ONLINEIVF\_NEXT\_POW\_2@{ONLINEIVF\_NEXT\_POW\_2}|hyperpage}{501}
+\indexentry{ONLINEIVF\_NEXT\_POW\_2@{ONLINEIVF\_NEXT\_POW\_2}!YinYangGraphIndex.cpp@{YinYangGraphIndex.cpp}|hyperpage}{501}
+\indexentry{src/CANDY/YinYangGraphSimpleIndex.cpp@{src/CANDY/YinYangGraphSimpleIndex.cpp}|hyperpage}{501}

@@ -1,0 +1,5 @@
+<map id="CANDY::HNSW::NodeDistCloser" name="CANDY::HNSW::NodeDistCloser">
+<area shape="rect" id="node1" title="sort pairs from nearest to farthest by distance" alt="" coords="5,95,228,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="15,5,66,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="91,5,295,32"/>
+</map>

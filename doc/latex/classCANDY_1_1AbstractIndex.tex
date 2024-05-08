@@ -1,0 +1,622 @@
+\hypertarget{classCANDY_1_1AbstractIndex}{}\doxysection{CANDY\+::Abstract\+Index Class Reference}
+\label{classCANDY_1_1AbstractIndex}\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+
+
+The abstract class of an index approach.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Abstract\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Abstract\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1AbstractIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Abstract\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{classCANDY_1_1AbstractIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1AbstractIndex_adb877802c4123c92ada3731717e0910c}{set\+Tier}} (int64\+\_\+t tie)
+\begin{DoxyCompactList}\small\item\em set the tier of this indexing, 0 refers the entry indexing \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_aa24411599f92368430d26c31ae7e4f43}\label{classCANDY_1_1AbstractIndex_aa24411599f92368430d26c31ae7e4f43}} 
+virtual void \mbox{\hyperlink{classCANDY_1_1AbstractIndex_aa24411599f92368430d26c31ae7e4f43}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a7a9b926f9d966e20bc4eec6db41f400f}{set\+Config\+Class}} (\mbox{\hyperlink{classINTELLI_1_1ConfigMap}{INTELLI\+::\+Config\+Map}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abb4333a11499fc6c88d1d78bc77138f4}{start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor, also online function \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a60e0f58c72ffbf47342b4c4b4091a573}{search\+Index}} (torch\+::\+Tensor q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return their index \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}{raw\+Data}} ()
+\begin{DoxyCompactList}\small\item\em return the raw\+Data of tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a3c4cdf616320ab7208fc7025b37b9a08}{end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC features \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a637e0a15f3753c2188da92f8b787061d}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_aca873d66824f385feac1a7cb49abdfac}{offline\+Build}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a06bf1c698d6c4fa8ac899e69b83837f1}{wait\+Pending\+Operations}} ()
+\begin{DoxyCompactList}\small\item\em a busy waiting for all pending operations to be done \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2184c1380f1d9f6516b174beec06eda9}{load\+Initial\+String\+Object}} (torch\+::\+Tensor \&t, std\+::vector$<$ std\+::string $>$ \&strs)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base along with its string objects, use this BEFORE \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a9946053cdb6b0a6c8723b7404d63499d}{insert\+String\+Object}} (torch\+::\+Tensor \&t, std\+::vector$<$ std\+::string $>$ \&strs)
+\begin{DoxyCompactList}\small\item\em insert a string object \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a409739ea60c38ce4a68f0aa04c44f38d}{delete\+String\+Object}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete tensor along with its corresponding string object \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2d641c1ab983db0c3def862d6045ca6b}{search\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects \end{DoxyCompactList}\item 
+virtual std\+::tuple$<$ std\+::vector$<$ torch\+::\+Tensor $>$, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af9c6596f497da56d887fec3ab4daa5f7}{search\+Tensor\+And\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects and original tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a7b33be0f70010fdb579f47cac3f59f95}{load\+Initial\+Tensor\+And\+Query\+Distribution}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&query)
+\begin{DoxyCompactList}\small\item\em load the initial tensors and query distributions of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_ad9332395f6d88afe7fefdf6b5ba62fe6}\label{classCANDY_1_1AbstractIndex_ad9332395f6d88afe7fefdf6b5ba62fe6}} 
+bool {\bfseries is\+HPCStarted} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_ae91435880ee4b1247e2d3a05e27c8963}\label{classCANDY_1_1AbstractIndex_ae91435880ee4b1247e2d3a05e27c8963}} 
+faiss\+::\+Metric\+Type {\bfseries faiss\+Metric} = faiss\+::\+METRIC\+\_\+\+L2
+\item 
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a0f85983b76c8c0edf5e580b0add54147}\label{classCANDY_1_1AbstractIndex_a0f85983b76c8c0edf5e580b0add54147}} 
+int64\+\_\+t {\bfseries container\+Tier} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The abstract class of an index approach. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a409739ea60c38ce4a68f0aa04c44f38d}\label{classCANDY_1_1AbstractIndex_a409739ea60c38ce4a68f0aa04c44f38d}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!deleteStringObject@{deleteStringObject}}
+\index{deleteStringObject@{deleteStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{deleteStringObject()}{deleteStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::delete\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete tensor along with its corresponding string object 
+
+\begin{DoxyNote}{Note}
+This is majorly an online function 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the delet is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a59076d1629c2f5fa9770167868cd1a0a}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_ab19832382f5332c815e4594b323bf370}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a080c3c09e9dfd85e0adadf317f5777d9}{CANDY\+::\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}\label{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor, also online function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index needs to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1PQIndex_ae459a19ecb3e94508f48e2c06d82b515}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_afbeb98090cd0b350f88f9c3dbca1b530}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex_a192374ae2c6b1fae306c6866fa06658e}{CANDY\+::\+Online\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a1db25199e5ff66fadf61ee644b5e4f0e}{CANDY\+::\+Online\+IVFLSHIndex}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a79d49962fa9ed97dc1784f03cca520b8}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_a207097f85e75a0da3f5b6744fe997c39}{CANDY\+::\+HNSWNaive\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatIndex_a5302cde90e75103b7402033596fabe08}{CANDY\+::\+Flat\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a9f2cb2d5a59df9f0a8c64a7062595b3a}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex_a869e7692763ec3f660f439204443c1c1}{CANDY\+::\+Flat\+AMMIPIndex}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_a162c3345f30e536a72ad3766fbade5b1}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a496e444140f44b7bbe24509e48df1c37}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a987acc08b0a1eedb453abb67c19b81e8}{CANDY\+::\+Congestion\+Drop\+Index}}, \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a009f182d19234991949a30304ae7a7c8}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex_aa19e0c4764d32e0151e48ab2c5bb0be7}{CANDY\+::\+Bucketed\+Flat\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a3c4cdf616320ab7208fc7025b37b9a08}\label{classCANDY_1_1AbstractIndex_a3c4cdf616320ab7208fc7025b37b9a08}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!endHPC@{endHPC}}
+\index{endHPC@{endHPC}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{endHPC()}{endHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::end\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra termination if the index has HPC features 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC termination is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a53c9ed029555a10ab0a4fa586d10590b}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_abc2abeb38ba54e5e65f1ec913bba4514}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_aebed4bc748d8d81ee1b5a1f9b7e94dc4}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a8a4f37420d66aa6bda69f197ba994a27}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ae7ca848f836f3be011325b93a74a5b39}{CANDY\+::\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a99d2e92ca9ba47ad0968748b3fbb1691}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}\label{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Abstract\+Index\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1PQIndex_a8ec69816f95c2633841256d378f3cb67}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a6a6510e6bdf71f8aac457f447426e325}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_adc61daabcb72fdec83e82ff836c39f12}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatIndex_ac43417e20eb7653d7f74c91295274e36}{CANDY\+::\+Flat\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a315b2d8d542663b472b891f11da8075b}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex_a217cd6eb9fb0a542e410cda5542376f9}{CANDY\+::\+Flat\+AMMIPIndex}}, \mbox{\hyperlink{classCANDY_1_1FlannIndex_abfccc696aed9b150afa70fe3bc518bac}{CANDY\+::\+Flann\+Index}}, \mbox{\hyperlink{classCANDY_1_1FaissIndex_a56e01aa8ce43231d5891eaf9963e4ccc}{CANDY\+::\+Faiss\+Index}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_ac5925c0c54ff3eef28ad06a8b193bdb6}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ac5052caef9cb611bc73092c451a44fbe}{CANDY\+::\+Distributed\+Partition\+Index}}, and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ac478a52f73fb2eba12c585146730d390}{CANDY\+::\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a9946053cdb6b0a6c8723b7404d63499d}\label{classCANDY_1_1AbstractIndex_a9946053cdb6b0a6c8723b7404d63499d}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!insertStringObject@{insertStringObject}}
+\index{insertStringObject@{insertStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{insertStringObject()}{insertStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::insert\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{strs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a string object 
+
+\begin{DoxyNote}{Note}
+This is majorly an online function 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+{\em strs} & the corresponding list of strings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_ada6be35ed91e568fc26c7f0d9079483b}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_acbfd163b1ce1c2e84acbe2124233e526}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a81448ba748aba7e80d39e6dec55b7c15}{CANDY\+::\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}\label{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+\begin{DoxyNote}{Note}
+This is majorly an online function 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex_ab7c2e433699f9000b4b4f66b83a92885}{CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index}}, \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex_a43322bc9a8ebce913c5ea6ec0f40941b}{CANDY\+::\+Yin\+Yang\+Graph\+Index}}, \mbox{\hyperlink{classCANDY_1_1PQIndex_a44bac43c454b1b28151cb696ab48acbd}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a75c5a4f6b2c7c060e79226d28f687bb4}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex_acfd9ce8a70d7d5c5c43fbb900b652974}{CANDY\+::\+Online\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a70846ac08b2e410fdd87026d251aff16}{CANDY\+::\+Online\+IVFLSHIndex}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a468a7a8c1b5be3295940feaeae7d7da7}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_ad52db419597c48cd5aeb78a419bd0506}{CANDY\+::\+HNSWNaive\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatIndex_a80608780f9aac45e9298a90731056fcf}{CANDY\+::\+Flat\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a7dc5fcb82339e3cb2075f1807997dcc7}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex_a453abc262f3b3334d6b74ca2755844c7}{CANDY\+::\+Flat\+AMMIPIndex}}, \mbox{\hyperlink{classCANDY_1_1FlannIndex_adce332c12ed6eac48f14fd63bf308c3a}{CANDY\+::\+Flann\+Index}}, \mbox{\hyperlink{classCANDY_1_1FaissIndex_a203ceaafd5118eea2d9eb8614ccee4e6}{CANDY\+::\+Faiss\+Index}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_ae11b068932f5620e797e26c5f0ea857e}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_aa232b9bce9ecc57c13efd748a246fb3d}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}{CANDY\+::\+Congestion\+Drop\+Index}}, \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a03c97915c56006caa22423292ae92899}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex_af1ea55e4cab3616ae392436de867629e}{CANDY\+::\+Bucketed\+Flat\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a2184c1380f1d9f6516b174beec06eda9}\label{classCANDY_1_1AbstractIndex_a2184c1380f1d9f6516b174beec06eda9}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!loadInitialStringObject@{loadInitialStringObject}}
+\index{loadInitialStringObject@{loadInitialStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialStringObject()}{loadInitialStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::load\+Initial\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{strs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base along with its string objects, use this BEFORE \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\\
+\hline
+{\em strs} & the corresponding list of strings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_aabfd3bc203e3650a4b248d05eaa61209}{CANDY\+::\+Parallel\+Partition\+Index}}, and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_af86a5c226c6579102776fd8a54695ab9}{CANDY\+::\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}\label{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1PQIndex_a072c3fa03fbb0e7e6064bdbf61912bc1}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_aad813d4f3f76a59f808ed836c7b627b9}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex_aea3c807d9ea89fdd9265dc5bfea5f70e}{CANDY\+::\+Online\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex_ab24cba33125e368200449cfa4090019c}{CANDY\+::\+Online\+IVFL2\+HIndex}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a8fba5ab506cf61886789d6741526b65b}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlannIndex_a807cac57b6f8532cc702e5bc0b5d3089}{CANDY\+::\+Flann\+Index}}, \mbox{\hyperlink{classCANDY_1_1FaissIndex_a4d13d4568e01f2be07a267d2c8de49ea}{CANDY\+::\+Faiss\+Index}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_a8766dc410054270ef009a1a952b37409}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ab6db191148f7496633210a064ec1ea9c}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a6e261e2b46865c52602d78b24b7bd364}{CANDY\+::\+Congestion\+Drop\+Index}}, \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a0f68fff93c46afe50f409c67653c6621}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex_a74ee793a66820721218930e07b61a36b}{CANDY\+::\+Bucketed\+Flat\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a7b33be0f70010fdb579f47cac3f59f95}\label{classCANDY_1_1AbstractIndex_a7b33be0f70010fdb579f47cac3f59f95}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!loadInitialTensorAndQueryDistribution@{loadInitialTensorAndQueryDistribution}}
+\index{loadInitialTensorAndQueryDistribution@{loadInitialTensorAndQueryDistribution}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensorAndQueryDistribution()}{loadInitialTensorAndQueryDistribution()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::load\+Initial\+Tensor\+And\+Query\+Distribution (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{query }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors and query distributions of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the data tensor \\
+\hline
+{\em query} & the example query tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex_acde59c6130fd8544e0d6d42beca47eec}{CANDY\+::\+Online\+IVFL2\+HIndex}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_aca873d66824f385feac1a7cb49abdfac}\label{classCANDY_1_1AbstractIndex_aca873d66824f385feac1a7cb49abdfac}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!offlineBuild@{offlineBuild}}
+\index{offlineBuild@{offlineBuild}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{offlineBuild()}{offlineBuild()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::offline\+Build (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This is to generate some offline data structures, NOT load offline tensors 
+
+Please use \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{load\+Initial\+Tensor}} for loading initial tensors 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a6f60a58ad4079df030288484c001162b}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex_aef597a9e5d1bd1aec85845c93f066609}{CANDY\+::\+Online\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a5ed7b7e90d321011772399ba445e2bfa}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_a7cb7b1be42c46e82a9161afe89937f9c}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_afe77de052c7bc371810b9b61376a7cb3}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a05136b636ed16a602fefebe884019f70}{CANDY\+::\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_aea6915c6966d4b0d1b7dcc361d50cf21}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}\label{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!rawData@{rawData}}
+\index{rawData@{rawData}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{rawData()}{rawData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Abstract\+Index\+::raw\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return the raw\+Data of tensor 
+
+\begin{DoxyReturn}{Returns}
+The raw data stored in tensor 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1PQIndex_a936ea33dbc764dbeb81dd241c5555791}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a748632b1ee4dfb4103984879a1f9b0e0}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_ae5d623bf91459db2d3359852c36cd749}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatIndex_a44c1a243c76f7a54b5c01c57aba83ff2}{CANDY\+::\+Flat\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a8fe44b97278037219985701957060495}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex_a834361168ee0c8940b21405f47a2f51e}{CANDY\+::\+Flat\+AMMIPIndex}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_a17f789dbfd1be6ab6ae01b3395804f64}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_abb6b9e46862c924952050b51b7f6a250}{CANDY\+::\+Distributed\+Partition\+Index}}, and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a521b668ea05085c1174acc1af35ed5e3}{CANDY\+::\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}\label{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1PQIndex_a15d86a6b4b873b28ce693f088aa5a8bd}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a02338950a960a583fc6f64f3bb8fc2f8}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex_a731683831efe8a75a15868dfc052c20b}{CANDY\+::\+Online\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a7d07faa760fd9c66f09db8bd1f57b332}{CANDY\+::\+Online\+IVFLSHIndex}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a2ce7b92a75071023c44a1c5faf711c6c}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_a94ab66578e61b3d5bf97c34bbce59b6a}{CANDY\+::\+HNSWNaive\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatIndex_a503565d2118cc8e5c70bb9356a9ffcb7}{CANDY\+::\+Flat\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a88ff25881850b136cea8e54bbb96029b}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex_a824258a88b722422ea1d9b2aaab94580}{CANDY\+::\+Flat\+AMMIPIndex}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_a68b1b2990adf2ddc9e44609c4106af94}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a963a0a92427743696d50e558b5ca8ae3}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a600b3d34473d349d28797291b7d81603}{CANDY\+::\+Congestion\+Drop\+Index}}, \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a171d63e92d035080c88d73cd3e61efc1}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex_a408a8ac22861d1aa88153a677442543b}{CANDY\+::\+Bucketed\+Flat\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a60e0f58c72ffbf47342b4c4b4091a573}\label{classCANDY_1_1AbstractIndex_a60e0f58c72ffbf47342b4c4b4091a573}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!searchIndex@{searchIndex}}
+\index{searchIndex@{searchIndex}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{searchIndex()}{searchIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ faiss\+::idx\+\_\+t $>$ CANDY\+::\+Abstract\+Index\+::search\+Index (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return their index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$faiss\+::idx\+\_\+t$>$ the index, follow faiss\textquotesingle{}s order 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1PQIndex_a8b03154636917ddc1df4f29e2e2bd0a4}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1FlatIndex_a1b1113af83b973be31c34994a5e87f11}{CANDY\+::\+Flat\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a63ebe7f51049bc176b7d982c64fd38c0}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex_aacf4cec964952205cf805cbb17c1dc1d}{CANDY\+::\+Flat\+AMMIPIndex}}, \mbox{\hyperlink{classCANDY_1_1FlannIndex_a45e4d208f0f5f5b65ff2b32fe0ac43da}{CANDY\+::\+Flann\+Index}}, and \mbox{\hyperlink{classCANDY_1_1FaissIndex_a1b9cbe8c2d2a238c0f16bb4674ce3ca1}{CANDY\+::\+Faiss\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a2d641c1ab983db0c3def862d6045ca6b}\label{classCANDY_1_1AbstractIndex_a2d641c1ab983db0c3def862d6045ca6b}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!searchStringObject@{searchStringObject}}
+\index{searchStringObject@{searchStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{searchStringObject()}{searchStringObject()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ CANDY\+::\+Abstract\+Index\+::search\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the linked string objects 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$std\+::string$>$$>$ the result object for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a013cd612a665dd6c91e86590ea5ca986}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a9e76fac40aad4632d7774510402fd9be}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ab687f26e792e5c35499cb2de2b563863}{CANDY\+::\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}\label{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Abstract\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex_a042edc4b6808fb7b57cdfcfcacdc7825}{CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index}}, \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex_a830735037ee125f2ec6895322e517d76}{CANDY\+::\+Yin\+Yang\+Graph\+Index}}, \mbox{\hyperlink{classCANDY_1_1PQIndex_a497ffde8db74ea3fb13efe62146dd154}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_ae2ce22bf1157fd1df2f5c4eb6d90eae5}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex_a7d3ccc9d9bfb6366e6c790917be6de03}{CANDY\+::\+Online\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a0064fa7ee822fde2aa19abda7257a067}{CANDY\+::\+Online\+IVFLSHIndex}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_af61aaf70a2757bc6b2fa17ca0fcdc57a}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_a45ae9145af990d53065a2701f7bbcae5}{CANDY\+::\+HNSWNaive\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatIndex_ac9ab4989ff2215d81fb1dc7c7d22ed6c}{CANDY\+::\+Flat\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a26d241a9209e8b9e29890e885bbd1ce7}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex_aa7ca0920e5f68d5c9026f3fcd5d1208a}{CANDY\+::\+Flat\+AMMIPIndex}}, \mbox{\hyperlink{classCANDY_1_1FlannIndex_a07a6c40cfafd71ee9ad95766072dea62}{CANDY\+::\+Flann\+Index}}, \mbox{\hyperlink{classCANDY_1_1FaissIndex_ac73e27e6acbaab35df05efd2d9deda97}{CANDY\+::\+Faiss\+Index}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_a4419cf5d60e25a6006b6ae114d18500b}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a6508a7b08ebef9b75eb13b03d18f3d82}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a2b3683b0eada580bca787d95c7f94ddb}{CANDY\+::\+Congestion\+Drop\+Index}}, \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a0ecd376ef8d4dba6d4a53356606551c7}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex_acc762170417aa9bbdaf05dff4c46cba4}{CANDY\+::\+Bucketed\+Flat\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_af9c6596f497da56d887fec3ab4daa5f7}\label{classCANDY_1_1AbstractIndex_af9c6596f497da56d887fec3ab4daa5f7}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!searchTensorAndStringObject@{searchTensorAndStringObject}}
+\index{searchTensorAndStringObject@{searchTensorAndStringObject}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensorAndStringObject()}{searchTensorAndStringObject()}}
+{\footnotesize\ttfamily std\+::tuple$<$ std\+::vector$<$ torch\+::\+Tensor $>$, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ CANDY\+::\+Abstract\+Index\+::search\+Tensor\+And\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the linked string objects and original tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::tuple$<$std\+::vector$<$torch\+::\+Tensor$>$,std\+::vector$<$std\+::vector$<$std\+::string$>$$>$$>$ 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a03db8b8c2e0430d771c070db4cd5ce25}{CANDY\+::\+Parallel\+Partition\+Index}}, and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a4e146ffbb5c32512e85fb61d980a173a}{CANDY\+::\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}\label{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specfic config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If there is any pre-\/built data structures, please load it in implementing this 
+
+If there is any initial tensors to be stored, please load it after this by \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{load\+Initial\+Tensor}} 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex_a5d5a2bc72e0125f9d76c1b560209ec9f}{CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index}}, \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex_a519c0b86e1adba967826a73dea950aea}{CANDY\+::\+Yin\+Yang\+Graph\+Index}}, \mbox{\hyperlink{classCANDY_1_1PQIndex_a6eed9de267c4773a3d15f1df9fb94d57}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_aeab084deb363745ce62519ba0afd01d8}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex_a1823178439f62386371dfa219a0a9836}{CANDY\+::\+Online\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_ae72ef6def73d5cc1177c4e2ea09ba1b8}{CANDY\+::\+Online\+IVFLSHIndex}}, \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex_a1ad72dd1c11c05f254ec7ac6198c2852}{CANDY\+::\+Online\+IVFL2\+HIndex}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_ac823a9b547e2b5d55733064a1f250840}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_a5c5570dab02dc91c4f3cd67a628e4d37}{CANDY\+::\+HNSWNaive\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatIndex_a67e201cac16e382a9735fc671a04ff26}{CANDY\+::\+Flat\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a5e7b1a1647299048f5f813bac6b893b6}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex_acecf691f5609a7277d6bd4ed07733a34}{CANDY\+::\+Flat\+AMMIPIndex}}, \mbox{\hyperlink{classCANDY_1_1FlannIndex_ab803bdd6c42a9ab5cd0de1084fa3521e}{CANDY\+::\+Flann\+Index}}, \mbox{\hyperlink{classCANDY_1_1FaissIndex_a2dfbef3e81c7119da3800832432088f4}{CANDY\+::\+Faiss\+Index}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_aa089de0ae6e391a85d1e198717b337cb}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ac6f6b52ee4617d0c90dbd33b9a173a60}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ac5ff19d4cfd3be329bf799f17a67187d}{CANDY\+::\+Congestion\+Drop\+Index}}, \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a74ec9cca80736bd02d6cedeae5e3d6c6}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex_ac4b3aba170f23ed43fe71e1f8dc043fe}{CANDY\+::\+Bucketed\+Flat\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a7a9b926f9d966e20bc4eec6db41f400f}\label{classCANDY_1_1AbstractIndex_a7a9b926f9d966e20bc4eec6db41f400f}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!setConfigClass@{setConfigClass}}
+\index{setConfigClass@{setConfigClass}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{setConfigClass()}{setConfigClass()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::set\+Config\+Class (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classINTELLI_1_1ConfigMap}{INTELLI\+::\+Config\+Map}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class, using raw class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If there is any pre-\/built data structures, please load it in implementing this 
+
+If there is any initial tensors to be stored, please load it after this by \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{load\+Initial\+Tensor}} 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a637e0a15f3753c2188da92f8b787061d}\label{classCANDY_1_1AbstractIndex_a637e0a15f3753c2188da92f8b787061d}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1PQIndex_a98718e6dc3ccd1fad01f36145fde0b98}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_aa0c91b108beb0e52f928925c280d76aa}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex_a2be3eb37e51dbbb4b5a153389b0b408a}{CANDY\+::\+Online\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a98928b24a22c28dc2a64eee5be71a4ad}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_a52f4b2299ccb9f24015635abeaba01c3}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_abd103d77138e03c3295a56180f579a62}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a7dd210f8ed7f10b8a877d0470d0a914f}{CANDY\+::\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a529042cd9b06f2448a20feee7592b2b5}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_adb877802c4123c92ada3731717e0910c}\label{classCANDY_1_1AbstractIndex_adb877802c4123c92ada3731717e0910c}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!setTier@{setTier}}
+\index{setTier@{setTier}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{setTier()}{setTier()}}
+{\footnotesize\ttfamily virtual void CANDY\+::\+Abstract\+Index\+::set\+Tier (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{tie }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+set the tier of this indexing, 0 refers the entry indexing 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tie} & the setting of tier number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The parameter of tier idx affects nothing now, but will do something later 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_abb4333a11499fc6c88d1d78bc77138f4}\label{classCANDY_1_1AbstractIndex_abb4333a11499fc6c88d1d78bc77138f4}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!startHPC@{startHPC}}
+\index{startHPC@{startHPC}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{startHPC()}{startHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::start\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra set-\/ups if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC set-\/up is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_af32d13d2b41277c07fd451178fc24988}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a63d26516efb42384b49e4cb85450faad}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_add25332ff97a0969aafc0188d636fc7c}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ac77f8c981ff6899cc3d3403fd61fc6fb}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a4209f7398ea5fd9ffc5553e187a3d4a6}{CANDY\+::\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a6e12a7d25abb65d33422963a92879ee4}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a06bf1c698d6c4fa8ac899e69b83837f1}\label{classCANDY_1_1AbstractIndex_a06bf1c698d6c4fa8ac899e69b83837f1}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!waitPendingOperations@{waitPendingOperations}}
+\index{waitPendingOperations@{waitPendingOperations}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{waitPendingOperations()}{waitPendingOperations()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::wait\+Pending\+Operations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+a busy waiting for all pending operations to be done 
+
+\begin{DoxyReturn}{Returns}
+bool, whether the waiting is actually done; 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_af0cb5d35d361f77fccb804dbada191e9}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a083380c87b5414fc19d128951a12d621}{CANDY\+::\+Distributed\+Partition\+Index}}, and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a86536f0e1c825079d564ec0949b50c2a}{CANDY\+::\+Congestion\+Drop\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{AbstractIndex_8h}{Abstract\+Index.\+h}}\item 
+src/\+CANDY/\mbox{\hyperlink{AbstractIndex_8cpp}{Abstract\+Index.\+cpp}}\end{DoxyCompactItemize}

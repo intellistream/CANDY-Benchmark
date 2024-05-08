@@ -1,0 +1,159 @@
+\hypertarget{classDIVERSE__METER_1_1AbstractMeter}{}\doxysection{DIVERSE\+\_\+\+METER\+::Abstract\+Meter Class Reference}
+\label{classDIVERSE__METER_1_1AbstractMeter}\index{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}}
+
+
+The abstract class for all meters.  
+
+
+
+
+{\ttfamily \#include $<$Utils/\+Meters/\+Abstract\+Meter.\+hpp$>$}
+
+
+
+Inheritance diagram for DIVERSE\+\_\+\+METER\+::Abstract\+Meter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDIVERSE__METER_1_1AbstractMeter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for DIVERSE\+\_\+\+METER\+::Abstract\+Meter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{classDIVERSE__METER_1_1AbstractMeter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_af0f2d9ecca1d329f41f5fa7e0b757a0b}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} \+\_\+cfg)
+\begin{DoxyCompactList}\small\item\em to set the configmap \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_a6591be89d8c5c7cf4a93226aa14cff71}{set\+Static\+Power}} (double \+\_\+sp)
+\begin{DoxyCompactList}\small\item\em to manually set the static power \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_a2dac7c7167003ff6fcd2e8661d0d8463}{test\+Static\+Power}} (uint64\+\_\+t sleeping\+Second)
+\begin{DoxyCompactList}\small\item\em to test the static power of a system by sleeping \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_ae53837779e53a83ca4767d9472935a4a}\label{classDIVERSE__METER_1_1AbstractMeter_ae53837779e53a83ca4767d9472935a4a}} 
+virtual void \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_ae53837779e53a83ca4767d9472935a4a}{start\+Meter}} ()
+\begin{DoxyCompactList}\small\item\em to start the meter into some measuring tasks \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_aaa9a1688e3a9850a425079309e7ee15b}\label{classDIVERSE__METER_1_1AbstractMeter_aaa9a1688e3a9850a425079309e7ee15b}} 
+virtual void \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_aaa9a1688e3a9850a425079309e7ee15b}{stop\+Meter}} ()
+\begin{DoxyCompactList}\small\item\em to stop the meter into some measuring tasks \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_a510602e0efac1cff564dff6db556b58a}\label{classDIVERSE__METER_1_1AbstractMeter_a510602e0efac1cff564dff6db556b58a}} 
+virtual double \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_a510602e0efac1cff564dff6db556b58a}{getE}} ()
+\begin{DoxyCompactList}\small\item\em to get the energy in J, including static energy consumption of system \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_adb52ca60dfd43c83f0f7ba60ac977357}\label{classDIVERSE__METER_1_1AbstractMeter_adb52ca60dfd43c83f0f7ba60ac977357}} 
+virtual double \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_adb52ca60dfd43c83f0f7ba60ac977357}{get\+Peak}} ()
+\begin{DoxyCompactList}\small\item\em to get the peak power in W, including static power of system \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_ae0288eb1ea528fbc578ee8c847d07fc2}\label{classDIVERSE__METER_1_1AbstractMeter_ae0288eb1ea528fbc578ee8c847d07fc2}} 
+virtual bool {\bfseries is\+Valid} ()
+\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_a6133961c501e04c1d3557ac8164cd7df}\label{classDIVERSE__METER_1_1AbstractMeter_a6133961c501e04c1d3557ac8164cd7df}} 
+double \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_a6133961c501e04c1d3557ac8164cd7df}{get\+Static\+Power}} ()
+\begin{DoxyCompactList}\small\item\em to return the tested static power return the \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_acaf29976082c411251579890e6330726}{static\+Power}} \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_a15637f3cf88143ac29c977fbcac9fea8}{get\+Staic\+Energy\+Consumption}} (uint64\+\_\+t running\+Us)
+\begin{DoxyCompactList}\small\item\em to return the static energy consumption of a system under several us \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_acaf29976082c411251579890e6330726}\label{classDIVERSE__METER_1_1AbstractMeter_acaf29976082c411251579890e6330726}} 
+double \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_acaf29976082c411251579890e6330726}{static\+Power}} = 0
+\begin{DoxyCompactList}\small\item\em static power of a system in W \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_a3a4e85334533ede6c0c905c44b7fcd6f}\label{classDIVERSE__METER_1_1AbstractMeter_a3a4e85334533ede6c0c905c44b7fcd6f}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} {\bfseries cfg} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The abstract class for all meters. 
+
+\begin{DoxyNote}{Note}
+default behaviors\+:
+\begin{DoxyItemize}
+\item create
+\item call \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_af0f2d9ecca1d329f41f5fa7e0b757a0b}{set\+Config()}} to config this meter
+\item (optional) call \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_a2dac7c7167003ff6fcd2e8661d0d8463}{test\+Static\+Power()}} to automatically test the static power of a device or \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_a6591be89d8c5c7cf4a93226aa14cff71}{set\+Static\+Power}} to manually set the static power, if you want to exclude it
+\item call \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_ae53837779e53a83ca4767d9472935a4a}{start\+Meter()}} to start measurement
+\item (run your program)
+\item call \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_aaa9a1688e3a9850a425079309e7ee15b}{stop\+Meter()}} to stop measurement
+\item call \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_a510602e0efac1cff564dff6db556b58a}{get\+E()}}, \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_adb52ca60dfd43c83f0f7ba60ac977357}{get\+Peak()}}, etc to get the measurement resluts 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_a15637f3cf88143ac29c977fbcac9fea8}\label{classDIVERSE__METER_1_1AbstractMeter_a15637f3cf88143ac29c977fbcac9fea8}} 
+\index{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}!getStaicEnergyConsumption@{getStaicEnergyConsumption}}
+\index{getStaicEnergyConsumption@{getStaicEnergyConsumption}!DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}}
+\doxysubsubsection{\texorpdfstring{getStaicEnergyConsumption()}{getStaicEnergyConsumption()}}
+{\footnotesize\ttfamily double DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+::get\+Staic\+Energy\+Consumption (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{running\+Us }\end{DoxyParamCaption})}
+
+
+
+to return the static energy consumption of a system under several us 
+
+
+\begin{DoxyParams}{Parameters}
+{\em running\+Us} & The time in us of a running return the \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter_acaf29976082c411251579890e6330726}{static\+Power}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_af0f2d9ecca1d329f41f5fa7e0b757a0b}\label{classDIVERSE__METER_1_1AbstractMeter_af0f2d9ecca1d329f41f5fa7e0b757a0b}} 
+\index{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily virtual void DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{\+\_\+cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+to set the configmap 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config map \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter_ae79b4c60e5f1eff46a49aa7927a8d90d}{DIVERSE\+\_\+\+METER\+::\+Intel\+Meter}}, and \mbox{\hyperlink{classDIVERSE__METER_1_1EspMeterUart_ac7040f445b1ffa05667e7f0910c9293b}{DIVERSE\+\_\+\+METER\+::\+Esp\+Meter\+Uart}}.
+
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_a6591be89d8c5c7cf4a93226aa14cff71}\label{classDIVERSE__METER_1_1AbstractMeter_a6591be89d8c5c7cf4a93226aa14cff71}} 
+\index{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}!setStaticPower@{setStaticPower}}
+\index{setStaticPower@{setStaticPower}!DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}}
+\doxysubsubsection{\texorpdfstring{setStaticPower()}{setStaticPower()}}
+{\footnotesize\ttfamily void DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+::set\+Static\+Power (\begin{DoxyParamCaption}\item[{double}]{\+\_\+sp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+to manually set the static power 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+sp} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDIVERSE__METER_1_1AbstractMeter_a2dac7c7167003ff6fcd2e8661d0d8463}\label{classDIVERSE__METER_1_1AbstractMeter_a2dac7c7167003ff6fcd2e8661d0d8463}} 
+\index{DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}!testStaticPower@{testStaticPower}}
+\index{testStaticPower@{testStaticPower}!DIVERSE\_METER::AbstractMeter@{DIVERSE\_METER::AbstractMeter}}
+\doxysubsubsection{\texorpdfstring{testStaticPower()}{testStaticPower()}}
+{\footnotesize\ttfamily void DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+::test\+Static\+Power (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{sleeping\+Second }\end{DoxyParamCaption})}
+
+
+
+to test the static power of a system by sleeping 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sleeping\+Second} & The seconds for sleep \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\+Meters/\mbox{\hyperlink{AbstractMeter_8hpp}{Abstract\+Meter.\+hpp}}\item 
+src/\+Utils/\+Meters/Abstract\+Meter.\+cpp\end{DoxyCompactItemize}

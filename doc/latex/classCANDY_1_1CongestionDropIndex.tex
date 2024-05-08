@@ -1,0 +1,594 @@
+\hypertarget{classCANDY_1_1CongestionDropIndex}{}\doxysection{CANDY\+::Congestion\+Drop\+Index Class Reference}
+\label{classCANDY_1_1CongestionDropIndex}\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+
+
+A container index to evaluate other bottom index, will just drop the data if congestion occurs, also support the data sharding parallelism.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Congestion\+Drop\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Congestion\+Drop\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classCANDY_1_1CongestionDropIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Congestion\+Drop\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1CongestionDropIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a6e261e2b46865c52602d78b24b7bd364}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}{insert\+Tensor}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_ad2fc9612af824a0c601b3f094e256f3f}\label{classCANDY_1_1CongestionDropIndex_ad2fc9612af824a0c601b3f094e256f3f}} 
+virtual void \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ad2fc9612af824a0c601b3f094e256f3f}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ac5ff19d4cfd3be329bf799f17a67187d}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a987acc08b0a1eedb453abb67c19b81e8}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a600b3d34473d349d28797291b7d81603}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ac478a52f73fb2eba12c585146730d390}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a521b668ea05085c1174acc1af35ed5e3}{raw\+Data}} ()
+\begin{DoxyCompactList}\small\item\em return the raw\+Data of tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a2b3683b0eada580bca787d95c7f94ddb}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a4209f7398ea5fd9ffc5553e187a3d4a6}{start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ae7ca848f836f3be011325b93a74a5b39}{end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a7dd210f8ed7f10b8a877d0470d0a914f}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a05136b636ed16a602fefebe884019f70}{offline\+Build}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a86536f0e1c825079d564ec0949b50c2a}{wait\+Pending\+Operations}} ()
+\begin{DoxyCompactList}\small\item\em a busy waiting for all pending operations to be done \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_af86a5c226c6579102776fd8a54695ab9}{load\+Initial\+String\+Object}} (torch\+::\+Tensor \&t, std\+::vector$<$ std\+::string $>$ \&strs)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base along with its string objects, use this BEFORE \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a81448ba748aba7e80d39e6dec55b7c15}{insert\+String\+Object}} (torch\+::\+Tensor \&t, std\+::vector$<$ std\+::string $>$ \&strs)
+\begin{DoxyCompactList}\small\item\em insert a string object \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a080c3c09e9dfd85e0adadf317f5777d9}{delete\+String\+Object}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete tensor along with its corresponding string object \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ab687f26e792e5c35499cb2de2b563863}{search\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects \end{DoxyCompactList}\item 
+virtual std\+::tuple$<$ std\+::vector$<$ torch\+::\+Tensor $>$, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a4e146ffbb5c32512e85fb61d980a173a}{search\+Tensor\+And\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects and original tensors \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a748f1f9e5c65bf226381e85d85d4899e}\label{classCANDY_1_1CongestionDropIndex_a748f1f9e5c65bf226381e85d85d4899e}} 
+std\+::vector$<$ Tensor\+List\+Idx\+Queue\+Ptr $>$ {\bfseries reduce\+Queue}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_aed87f7b39ec178c8470795c80d873c35}\label{classCANDY_1_1CongestionDropIndex_aed87f7b39ec178c8470795c80d873c35}} 
+std\+::vector$<$ Tensor\+Str\+Vec\+Queue\+Ptr $>$ {\bfseries reduce\+Str\+Queue}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a44626db71215ec90687f031c1483c6e4}\label{classCANDY_1_1CongestionDropIndex_a44626db71215ec90687f031c1483c6e4}} 
+void {\bfseries insert\+Tensor\+Inline} (torch\+::\+Tensor \&t)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a9bf9364cb4c51172aa9f2bb03d9b0a25}\label{classCANDY_1_1CongestionDropIndex_a9bf9364cb4c51172aa9f2bb03d9b0a25}} 
+void {\bfseries partition\+Build\+In\+Line} (torch\+::\+Tensor \&t)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a30878afd21fd9b94d4649edec0fd1743}\label{classCANDY_1_1CongestionDropIndex_a30878afd21fd9b94d4649edec0fd1743}} 
+void {\bfseries partition\+Load\+In\+Line} (torch\+::\+Tensor \&t)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_ab99bc3b6ebb29340f953e868766c92bd}\label{classCANDY_1_1CongestionDropIndex_ab99bc3b6ebb29340f953e868766c92bd}} 
+void {\bfseries insert\+String\+Inline} (torch\+::\+Tensor \&t, std\+::vector$<$ string $>$ \&s)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a88b6618bd2ce48cd8914c022f9545b16}\label{classCANDY_1_1CongestionDropIndex_a88b6618bd2ce48cd8914c022f9545b16}} 
+void {\bfseries partition\+Load\+String\+In\+Line} (torch\+::\+Tensor \&t, std\+::vector$<$ string $>$ \&s)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a0a293dfb109a1a11b87412fc84b1c92e}\label{classCANDY_1_1CongestionDropIndex_a0a293dfb109a1a11b87412fc84b1c92e}} 
+int64\+\_\+t {\bfseries parallel\+Workers}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a65e57f57841efc51c11bfdcef9620128}\label{classCANDY_1_1CongestionDropIndex_a65e57f57841efc51c11bfdcef9620128}} 
+int64\+\_\+t {\bfseries insert\+Idx}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_adee5b1703f8ac49ac5d4a2d137a58661}\label{classCANDY_1_1CongestionDropIndex_adee5b1703f8ac49ac5d4a2d137a58661}} 
+std\+::vector$<$ \mbox{\hyperlink{group__CANDY__lib__container_gac7a0fbf9d0912a1261b36b8dfee2e4d6}{Congestion\+Drop\+Index\+Worker\+Ptr}} $>$ {\bfseries workers}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a745f861cb2b66d258042dd0b534ad715}\label{classCANDY_1_1CongestionDropIndex_a745f861cb2b66d258042dd0b534ad715}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_aa9d020f9e64c0c80d7e4f7675fd621a3}\label{classCANDY_1_1CongestionDropIndex_aa9d020f9e64c0c80d7e4f7675fd621a3}} 
+int64\+\_\+t {\bfseries fine\+Grained\+Parallel\+Insert}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_ae0a36a65e528e28874cb6cb8df3b3e40}\label{classCANDY_1_1CongestionDropIndex_ae0a36a65e528e28874cb6cb8df3b3e40}} 
+int64\+\_\+t {\bfseries shared\+Build}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a2a1d9e77cd47122fff6ae02c23121fc9}\label{classCANDY_1_1CongestionDropIndex_a2a1d9e77cd47122fff6ae02c23121fc9}} 
+int64\+\_\+t {\bfseries single\+Worker\+Opt}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A container index to evaluate other bottom index, will just drop the data if congestion occurs, also support the data sharding parallelism. 
+
+\begin{DoxyNote}{Note}
+When there is only one worker, will only R/W lock for concurrency control, no sequential guarantee, different from \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{Parallel\+Partition\+Index}} 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Don\textquotesingle{}t mix the usage of tensor-\/only I/O and tensor-\/string hybrid I/O in one indexing class 
+
+remember to call star\+HPC and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ae7ca848f836f3be011325b93a74a5b39}{end\+HPC}} 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+special parameters
+\begin{DoxyItemize}
+\item congestion\+Drop\+Worker\+\_\+algo\+Tag The algo tag of this worker, String, default flat
+\item congestion\+Drop\+Worker\+\_\+queue\+Size The input queue size of this worker, I64, default 10
+\item parallel\+Works The number of paraller workers, I64, default 1 (set this to less than 0 will use max hardware\+\_\+concurrency);
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item fine\+Grained\+Parallel\+Insert, whether or not conduct the insert in an extremely fine-\/grained way, i.\+e., per-\/row, I64, default 0
+\item congestion\+Drop, whether or not drop the data when congestion occurs, I64, default 1
+\item shared\+Build whether let all sharding using shared build, 1, I64
+\item single\+Worker\+Opt whether optimize the searching under single worker, 1 I64 @warnning Make sure you are using 2D tensors! 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a080c3c09e9dfd85e0adadf317f5777d9}\label{classCANDY_1_1CongestionDropIndex_a080c3c09e9dfd85e0adadf317f5777d9}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!deleteStringObject@{deleteStringObject}}
+\index{deleteStringObject@{deleteStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{deleteStringObject()}{deleteStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::delete\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete tensor along with its corresponding string object 
+
+\begin{DoxyNote}{Note}
+This is majorly an online function 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the delet is successful 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item broadcast the query
+\item prepare to collect
+\item reduce
+\end{DoxyEnumerate}
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a409739ea60c38ce4a68f0aa04c44f38d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a987acc08b0a1eedb453abb67c19b81e8}\label{classCANDY_1_1CongestionDropIndex_a987acc08b0a1eedb453abb67c19b81e8}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index needs to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item broadcast the query
+\item prepare to collect
+\item reduce
+\end{DoxyEnumerate}
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_ae7ca848f836f3be011325b93a74a5b39}\label{classCANDY_1_1CongestionDropIndex_ae7ca848f836f3be011325b93a74a5b39}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!endHPC@{endHPC}}
+\index{endHPC@{endHPC}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{endHPC()}{endHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::end\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra termination if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC termination is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a3c4cdf616320ab7208fc7025b37b9a08}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_ac478a52f73fb2eba12c585146730d390}\label{classCANDY_1_1CongestionDropIndex_ac478a52f73fb2eba12c585146730d390}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Congestion\+Drop\+Index\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a81448ba748aba7e80d39e6dec55b7c15}\label{classCANDY_1_1CongestionDropIndex_a81448ba748aba7e80d39e6dec55b7c15}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!insertStringObject@{insertStringObject}}
+\index{insertStringObject@{insertStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{insertStringObject()}{insertStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::insert\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{strs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a string object 
+
+\begin{DoxyNote}{Note}
+This is majorly an online function 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+{\em strs} & the corresponding list of strings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a9946053cdb6b0a6c8723b7404d63499d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}\label{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_af86a5c226c6579102776fd8a54695ab9}\label{classCANDY_1_1CongestionDropIndex_af86a5c226c6579102776fd8a54695ab9}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!loadInitialStringObject@{loadInitialStringObject}}
+\index{loadInitialStringObject@{loadInitialStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialStringObject()}{loadInitialStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::load\+Initial\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{strs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base along with its string objects, use this BEFORE \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\\
+\hline
+{\em strs} & the corresponding list of strings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2184c1380f1d9f6516b174beec06eda9}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a6e261e2b46865c52602d78b24b7bd364}\label{classCANDY_1_1CongestionDropIndex_a6e261e2b46865c52602d78b24b7bd364}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a5d3666628c7fe47bba4de5687674ab65}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a05136b636ed16a602fefebe884019f70}\label{classCANDY_1_1CongestionDropIndex_a05136b636ed16a602fefebe884019f70}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!offlineBuild@{offlineBuild}}
+\index{offlineBuild@{offlineBuild}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{offlineBuild()}{offlineBuild()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::offline\+Build (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_aca873d66824f385feac1a7cb49abdfac}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a521b668ea05085c1174acc1af35ed5e3}\label{classCANDY_1_1CongestionDropIndex_a521b668ea05085c1174acc1af35ed5e3}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!rawData@{rawData}}
+\index{rawData@{rawData}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{rawData()}{rawData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Congestion\+Drop\+Index\+::raw\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return the raw\+Data of tensor 
+
+\begin{DoxyReturn}{Returns}
+The raw data stored in tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a600b3d34473d349d28797291b7d81603}\label{classCANDY_1_1CongestionDropIndex_a600b3d34473d349d28797291b7d81603}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+only support to delete and insert, no straightforward revision 
+\end{DoxyNote}
+only allow to delete and insert, no straightforward revision
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_ab687f26e792e5c35499cb2de2b563863}\label{classCANDY_1_1CongestionDropIndex_ab687f26e792e5c35499cb2de2b563863}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!searchStringObject@{searchStringObject}}
+\index{searchStringObject@{searchStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{searchStringObject()}{searchStringObject()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ CANDY\+::\+Congestion\+Drop\+Index\+::search\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the linked string objects 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$std\+::string$>$$>$ the result object for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2d641c1ab983db0c3def862d6045ca6b}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a2b3683b0eada580bca787d95c7f94ddb}\label{classCANDY_1_1CongestionDropIndex_a2b3683b0eada580bca787d95c7f94ddb}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Congestion\+Drop\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item broadcast the query
+\item prepare to collect
+\item reduce
+\end{DoxyEnumerate}
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a4e146ffbb5c32512e85fb61d980a173a}\label{classCANDY_1_1CongestionDropIndex_a4e146ffbb5c32512e85fb61d980a173a}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!searchTensorAndStringObject@{searchTensorAndStringObject}}
+\index{searchTensorAndStringObject@{searchTensorAndStringObject}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensorAndStringObject()}{searchTensorAndStringObject()}}
+{\footnotesize\ttfamily std\+::tuple$<$ std\+::vector$<$ torch\+::\+Tensor $>$, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ CANDY\+::\+Congestion\+Drop\+Index\+::search\+Tensor\+And\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the linked string objects and original tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::tuple$<$std\+::vector$<$torch\+::\+Tensor$>$,std\+::vector$<$std\+::vector$<$std\+::string$>$$>$$>$ 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item broadcast the query
+\item prepare to collect
+\item reduce
+\end{DoxyEnumerate}
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af9c6596f497da56d887fec3ab4daa5f7}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_ac5ff19d4cfd3be329bf799f17a67187d}\label{classCANDY_1_1CongestionDropIndex_ac5ff19d4cfd3be329bf799f17a67187d}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specfic config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a7dd210f8ed7f10b8a877d0470d0a914f}\label{classCANDY_1_1CongestionDropIndex_a7dd210f8ed7f10b8a877d0470d0a914f}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a637e0a15f3753c2188da92f8b787061d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a4209f7398ea5fd9ffc5553e187a3d4a6}\label{classCANDY_1_1CongestionDropIndex_a4209f7398ea5fd9ffc5553e187a3d4a6}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!startHPC@{startHPC}}
+\index{startHPC@{startHPC}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{startHPC()}{startHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::start\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra set-\/ups if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC set-\/up is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abb4333a11499fc6c88d1d78bc77138f4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1CongestionDropIndex_a86536f0e1c825079d564ec0949b50c2a}\label{classCANDY_1_1CongestionDropIndex_a86536f0e1c825079d564ec0949b50c2a}} 
+\index{CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}!waitPendingOperations@{waitPendingOperations}}
+\index{waitPendingOperations@{waitPendingOperations}!CANDY::CongestionDropIndex@{CANDY::CongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{waitPendingOperations()}{waitPendingOperations()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+::wait\+Pending\+Operations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+a busy waiting for all pending operations to be done 
+
+\begin{DoxyNote}{Note}
+in this index, there are may be some un-\/commited write due to the parallel queues 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+bool, whether the waiting is actually done; 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a06bf1c698d6c4fa8ac899e69b83837f1}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{CongestionDropIndex_8h}{Congestion\+Drop\+Index.\+h}}\item 
+src/\+CANDY/\mbox{\hyperlink{CongestionDropIndex_8cpp}{Congestion\+Drop\+Index.\+cpp}}\end{DoxyCompactItemize}

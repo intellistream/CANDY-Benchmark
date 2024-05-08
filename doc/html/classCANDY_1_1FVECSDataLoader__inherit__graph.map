@@ -1,0 +1,4 @@
+<map id="CANDY::FVECSDataLoader" name="CANDY::FVECSDataLoader">
+<area shape="rect" id="node1" title="The class for loading *.fvecs data." alt="" coords="11,80,202,107"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractDataLoader.html" title="The abstract class of data loader, parent for all loaders." alt="" coords="5,5,208,32"/>
+</map>

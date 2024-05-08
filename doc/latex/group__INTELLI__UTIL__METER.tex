@@ -1,0 +1,42 @@
+\hypertarget{group__INTELLI__UTIL__METER}{}\doxysection{Energy Meter packs}
+\label{group__INTELLI__UTIL__METER}\index{Energy Meter packs@{Energy Meter packs}}
+Collaboration diagram for Energy Meter packs\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{group__INTELLI__UTIL__METER}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter}{DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter}}
+\begin{DoxyCompactList}\small\item\em The abstract class for all meters. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDIVERSE__METER_1_1EspMeterUart}{DIVERSE\+\_\+\+METER\+::\+Esp\+Meter\+Uart}}
+\begin{DoxyCompactList}\small\item\em the entity of an esp32s2-\/based power meter, connected by uart 115200 \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter}{DIVERSE\+\_\+\+METER\+::\+Intel\+Meter}}
+\begin{DoxyCompactList}\small\item\em the entity of intel msr-\/based power meter, may be not support for some newer architectures \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable}{DIVERSE\+\_\+\+METER\+::\+Meter\+Table}}
+\begin{DoxyCompactList}\small\item\em The table class to index all meters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__METER_gaf3420cb0a62b9e4c20cb7f9d1b86bb01}\label{group__INTELLI__UTIL__METER_gaf3420cb0a62b9e4c20cb7f9d1b86bb01}} 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__METER_gaf3420cb0a62b9e4c20cb7f9d1b86bb01}{new\+Meter\+Table}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable}{DIVERSE\+\_\+\+METER\+::\+Meter\+Table}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Meter\+Table under shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__METER_gab755b6426c81c42c1434a30109c731d5}\label{group__INTELLI__UTIL__METER_gab755b6426c81c42c1434a30109c731d5}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable}{DIVERSE\+\_\+\+METER\+::\+Meter\+Table}} $>$ \mbox{\hyperlink{group__INTELLI__UTIL__METER_gab755b6426c81c42c1434a30109c731d5}{DIVERSE\+\_\+\+METER\+::\+Meter\+Table\+::\+Meter\+Table\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable}{Meter\+Table}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__METER_gaf19c97265c99e81158598c661af9e68f}\label{group__INTELLI__UTIL__METER_gaf19c97265c99e81158598c661af9e68f}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDIVERSE__METER_1_1AbstractMeter}{DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter}} $>$ {\bfseries DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+Ptr}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This package is used for energy meter 

@@ -1,0 +1,71 @@
+\hypertarget{classCANDY_1_1PQDecoder}{}\doxysection{CANDY\+::PQDecoder Class Reference}
+\label{classCANDY_1_1PQDecoder}\index{CANDY::PQDecoder@{CANDY::PQDecoder}}
+
+
+class for decoding from codes, approximated assignment of centroids, to centroids indices  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+PQIndex.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::PQDecoder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{classCANDY_1_1PQDecoder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQDecoder_aaacf09f2b31b3e490f86e1a28a179124}\label{classCANDY_1_1PQDecoder_aaacf09f2b31b3e490f86e1a28a179124}} 
+{\bfseries PQDecoder} (const uint8\+\_\+t $\ast$code, int64\+\_\+t nbits)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{classCANDY_1_1PQDecoder_a66affa4f6ceb7a811b9bdddc4e2429c5}{decode}} ()
+\begin{DoxyCompactList}\small\item\em decode from codes to the actual index of a centroid in sub-\/vector \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQDecoder_aeccfe1b95ffd20e18e70997fef646817}\label{classCANDY_1_1PQDecoder_aeccfe1b95ffd20e18e70997fef646817}} 
+const uint8\+\_\+t $\ast$ {\bfseries code\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQDecoder_aebba9b71afe5d84d86bf6b2d60271990}\label{classCANDY_1_1PQDecoder_aebba9b71afe5d84d86bf6b2d60271990}} 
+uint8\+\_\+t {\bfseries offset\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQDecoder_ae40efa2438834be0806b398a1add5e07}\label{classCANDY_1_1PQDecoder_ae40efa2438834be0806b398a1add5e07}} 
+const int64\+\_\+t {\bfseries nbits\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQDecoder_ae8d642b7a4d9bd9944e52ae5398618d8}\label{classCANDY_1_1PQDecoder_ae8d642b7a4d9bd9944e52ae5398618d8}} 
+const uint64\+\_\+t {\bfseries mask\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQDecoder_ab4e37d439d8b168b5601d1d87a9577ea}\label{classCANDY_1_1PQDecoder_ab4e37d439d8b168b5601d1d87a9577ea}} 
+uint8\+\_\+t {\bfseries reg\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class for decoding from codes, approximated assignment of centroids, to centroids indices 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1PQDecoder_a66affa4f6ceb7a811b9bdddc4e2429c5}\label{classCANDY_1_1PQDecoder_a66affa4f6ceb7a811b9bdddc4e2429c5}} 
+\index{CANDY::PQDecoder@{CANDY::PQDecoder}!decode@{decode}}
+\index{decode@{decode}!CANDY::PQDecoder@{CANDY::PQDecoder}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily uint64\+\_\+t CANDY\+::\+PQDecoder\+::decode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+decode from codes to the actual index of a centroid in sub-\/vector 
+
+\begin{DoxyReturn}{Returns}
+the centroid assignment 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/PQIndex.\+h\end{DoxyCompactItemize}

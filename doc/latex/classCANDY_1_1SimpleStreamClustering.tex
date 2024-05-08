@@ -1,0 +1,373 @@
+\hypertarget{classCANDY_1_1SimpleStreamClustering}{}\doxysection{CANDY\+::Simple\+Stream\+Clustering Class Reference}
+\label{classCANDY_1_1SimpleStreamClustering}\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+
+
+a simple class for stream clustering, following online PQ style and using simple linear equations  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Online\+PQIndex/\+Simple\+Stream\+Clustering.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::Simple\+Stream\+Clustering\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{classCANDY_1_1SimpleStreamClustering__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a37a18894af9925a11bad920de3c3f53c}{build\+Centroids}} (torch\+::\+Tensor \&train\+Set, int64\+\_\+t k, int64\+\_\+t max\+Iterations, Distance\+Function\+\_\+t distance\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}}, bool using\+Cuda=true)
+\begin{DoxyCompactList}\small\item\em to build the centroids from trainset \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_ac9c6d10bbbadfd365d951a8508fa4b72}{export\+Centroids}} (void)
+\begin{DoxyCompactList}\small\item\em export the inside tensor of centroids to outside \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_ad9310aefa7f578ea713f1faa73e10c42}{save\+Centroids\+To\+File}} (std\+::string fname)
+\begin{DoxyCompactList}\small\item\em save the centroids to file \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_af0dfb86c5eb255c376d4926b64421dc0}{load\+Centroids}} (torch\+::\+Tensor \&extern\+Centroid)
+\begin{DoxyCompactList}\small\item\em to load centroids from external tensor \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a991c3e7aecd34b961ae18b1cb6f720d4}{load\+Centroids}} (std\+::string fname)
+\begin{DoxyCompactList}\small\item\em to load centroids from external file \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a4cb8e2186792a238696daa8b67e553f3}{classify\+Single\+Row}} (torch\+::\+Tensor \&row\+Tensor, Distance\+Function\+\_\+t distance\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}})
+\begin{DoxyCompactList}\small\item\em classify a single row of tensor \end{DoxyCompactList}\item 
+std\+::vector$<$ int64\+\_\+t $>$ \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_ad7776c54cc5804ab6edc870e48cf07da}{classify\+Multi\+Row}} (torch\+::\+Tensor \&row\+Tensor, Distance\+Function\+\_\+t distance\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}})
+\begin{DoxyCompactList}\small\item\em classify multi rows of tensor \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a0776c10728d0936808f8b20ca5306193}{add\+Single\+Row}} (torch\+::\+Tensor \&row\+Tensor, int64\+\_\+t frozen\+Level=0, Update\+Function\+\_\+t insert\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_aa9583167ea59a002a24aecb52560f0ad}{Simple\+Stream\+Clustering\+::euclidean\+Insert}}, Distance\+Function\+\_\+t distance\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}})
+\begin{DoxyCompactList}\small\item\em add a single row of tensor \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a2e69fdc38fe274c8b74ddfa9ea0605a5}{add\+Single\+Row\+With\+Idx}} (torch\+::\+Tensor \&row\+Tensor, int64\+\_\+t cluster\+Idx, int64\+\_\+t frozen\+Level=0, Update\+Function\+\_\+t insert\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_aa9583167ea59a002a24aecb52560f0ad}{Simple\+Stream\+Clustering\+::euclidean\+Insert}}, Distance\+Function\+\_\+t distance\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}})
+\begin{DoxyCompactList}\small\item\em add a single row of tensor, with specifying its cluster index \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_ae678a209f9dabd4a10230687c8a0fa9e}{delete\+Single\+Row}} (torch\+::\+Tensor \&row\+Tensor, int64\+\_\+t frozen\+Level=0, Update\+Function\+\_\+t delete\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a22da18ca0685335dab04234e09d9af69}{Simple\+Stream\+Clustering\+::euclidean\+Delete}}, Distance\+Function\+\_\+t distance\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}})
+\begin{DoxyCompactList}\small\item\em delete a single row of tensor \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a790895b662e0ec2debb46d28a9df60f4}{delete\+Single\+Row\+With\+Idx}} (torch\+::\+Tensor \&row\+Tensor, int64\+\_\+t cluster\+Idx, int64\+\_\+t frozen\+Level=0, Update\+Function\+\_\+t delete\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_aa9583167ea59a002a24aecb52560f0ad}{Simple\+Stream\+Clustering\+::euclidean\+Insert}}, Distance\+Function\+\_\+t distance\+Func=\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}})
+\begin{DoxyCompactList}\small\item\em delete a single row of tensor, with specifying its cluster index \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{euclidean\+Distance}} (const torch\+::\+Tensor \&a, const torch\+::\+Tensor \&b)
+\begin{DoxyCompactList}\small\item\em the default euclidean distance function \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_aa9583167ea59a002a24aecb52560f0ad}{euclidean\+Insert}} (const torch\+::\+Tensor $\ast$a, torch\+::\+Tensor $\ast$b, const int64\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em the default euclidean insert function \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a22da18ca0685335dab04234e09d9af69}{euclidean\+Delete}} (const torch\+::\+Tensor $\ast$a, torch\+::\+Tensor $\ast$b, const int64\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em the default euclidean delete function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_ad19868613fe427c35325595d9e7dfff5}\label{classCANDY_1_1SimpleStreamClustering_ad19868613fe427c35325595d9e7dfff5}} 
+torch\+::\+Tensor {\bfseries my\+Centroids}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_a09afa06043dfa41cf753cce1d112123d}\label{classCANDY_1_1SimpleStreamClustering_a09afa06043dfa41cf753cce1d112123d}} 
+std\+::vector$<$ int64\+\_\+t $>$ {\bfseries my\+Data\+Cnt\+In\+Centroid}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+a simple class for stream clustering, following online PQ style and using simple linear equations 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000006}{Todo}}]two functions are extremely slow and costly, needs to be re-\/implemented
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a37a18894af9925a11bad920de3c3f53c}{build\+Centroids}}
+\item \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_ad7776c54cc5804ab6edc870e48cf07da}{classify\+Multi\+Row}} 
+\end{DoxyItemize}\end{DoxyRefDesc}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_a0776c10728d0936808f8b20ca5306193}\label{classCANDY_1_1SimpleStreamClustering_a0776c10728d0936808f8b20ca5306193}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!addSingleRow@{addSingleRow}}
+\index{addSingleRow@{addSingleRow}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{addSingleRow()}{addSingleRow()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Simple\+Stream\+Clustering\+::add\+Single\+Row (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{row\+Tensor,  }\item[{int64\+\_\+t}]{frozen\+Level = {\ttfamily 0},  }\item[{CANDY\+::\+Update\+Function\+\_\+t}]{insert\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_aa9583167ea59a002a24aecb52560f0ad}{Simple\+Stream\+Clustering\+::euclidean\+Insert}}},  }\item[{Distance\+Function\+\_\+t}]{distance\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}}} }\end{DoxyParamCaption})}
+
+
+
+add a single row of tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+Tensor} & the 1$\ast$D row tensor \\
+\hline
+{\em insert\+Func} & the insert function \\
+\hline
+{\em frozen\+Level} & the level of frozen, 0 means freeze any online update in internal state @ param distance\+Func the distance function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the add is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_a2e69fdc38fe274c8b74ddfa9ea0605a5}\label{classCANDY_1_1SimpleStreamClustering_a2e69fdc38fe274c8b74ddfa9ea0605a5}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!addSingleRowWithIdx@{addSingleRowWithIdx}}
+\index{addSingleRowWithIdx@{addSingleRowWithIdx}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{addSingleRowWithIdx()}{addSingleRowWithIdx()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Simple\+Stream\+Clustering\+::add\+Single\+Row\+With\+Idx (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{row\+Tensor,  }\item[{int64\+\_\+t}]{cluster\+Idx,  }\item[{int64\+\_\+t}]{frozen\+Level = {\ttfamily 0},  }\item[{CANDY\+::\+Update\+Function\+\_\+t}]{insert\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_aa9583167ea59a002a24aecb52560f0ad}{Simple\+Stream\+Clustering\+::euclidean\+Insert}}},  }\item[{CANDY\+::\+Distance\+Function\+\_\+t}]{distance\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}}} }\end{DoxyParamCaption})}
+
+
+
+add a single row of tensor, with specifying its cluster index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+Tensor} & the 1$\ast$D row tensor \\
+\hline
+{\em cluster\+Idx} & the cluster index \\
+\hline
+{\em insert\+Func} & the insert function \\
+\hline
+{\em frozen\+Level} & the level of frozen, 0 means freeze any online update in internal state @ param distance\+Func the distance function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the add is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_a37a18894af9925a11bad920de3c3f53c}\label{classCANDY_1_1SimpleStreamClustering_a37a18894af9925a11bad920de3c3f53c}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!buildCentroids@{buildCentroids}}
+\index{buildCentroids@{buildCentroids}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{buildCentroids()}{buildCentroids()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Simple\+Stream\+Clustering\+::build\+Centroids (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{train\+Set,  }\item[{int64\+\_\+t}]{k,  }\item[{int64\+\_\+t}]{max\+Iterations,  }\item[{Distance\+Function\+\_\+t}]{distance\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}}},  }\item[{bool}]{using\+Cuda = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+to build the centroids from trainset 
+
+
+\begin{DoxyParams}{Parameters}
+{\em train\+Set} & the trainset, N$\ast$D \\
+\hline
+{\em k} & the number of centroids \\
+\hline
+{\em max\+Iterations} & the max iteratiosn for setting up cluesters \\
+\hline
+{\em distance\+Func} & the distance function \\
+\hline
+{\em using\+Cuda} & whether or not using cuda \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the build is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_ad7776c54cc5804ab6edc870e48cf07da}\label{classCANDY_1_1SimpleStreamClustering_ad7776c54cc5804ab6edc870e48cf07da}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!classifyMultiRow@{classifyMultiRow}}
+\index{classifyMultiRow@{classifyMultiRow}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{classifyMultiRow()}{classifyMultiRow()}}
+{\footnotesize\ttfamily std\+::vector$<$ int64\+\_\+t $>$ CANDY\+::\+Simple\+Stream\+Clustering\+::classify\+Multi\+Row (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{row\+Tensor,  }\item[{Distance\+Function\+\_\+t}]{distance\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}}} }\end{DoxyParamCaption})}
+
+
+
+classify multi rows of tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows\+Tensor} & the N$\ast$D row tensor \\
+\hline
+{\em distance\+Func} & the distance function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the idx of cluster it belongs to 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_a4cb8e2186792a238696daa8b67e553f3}\label{classCANDY_1_1SimpleStreamClustering_a4cb8e2186792a238696daa8b67e553f3}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!classifySingleRow@{classifySingleRow}}
+\index{classifySingleRow@{classifySingleRow}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{classifySingleRow()}{classifySingleRow()}}
+{\footnotesize\ttfamily int64\+\_\+t CANDY\+::\+Simple\+Stream\+Clustering\+::classify\+Single\+Row (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{row\+Tensor,  }\item[{Distance\+Function\+\_\+t}]{distance\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}}} }\end{DoxyParamCaption})}
+
+
+
+classify a single row of tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+Tensor} & the 1$\ast$D row tensor \\
+\hline
+{\em distance\+Func} & the distance function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the idx of cluster it belongs to 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_ae678a209f9dabd4a10230687c8a0fa9e}\label{classCANDY_1_1SimpleStreamClustering_ae678a209f9dabd4a10230687c8a0fa9e}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!deleteSingleRow@{deleteSingleRow}}
+\index{deleteSingleRow@{deleteSingleRow}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{deleteSingleRow()}{deleteSingleRow()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Simple\+Stream\+Clustering\+::delete\+Single\+Row (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{row\+Tensor,  }\item[{int64\+\_\+t}]{frozen\+Level = {\ttfamily 0},  }\item[{CANDY\+::\+Update\+Function\+\_\+t}]{delete\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a22da18ca0685335dab04234e09d9af69}{Simple\+Stream\+Clustering\+::euclidean\+Delete}}},  }\item[{Distance\+Function\+\_\+t}]{distance\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}}} }\end{DoxyParamCaption})}
+
+
+
+delete a single row of tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+Tensor} & the 1$\ast$D row tensor \\
+\hline
+{\em delete\+Func} & the delete function \\
+\hline
+{\em frozen\+Level} & the level of frozen, 0 means freeze any online update in internal state @ param distance\+Func the distance function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the delete is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_a790895b662e0ec2debb46d28a9df60f4}\label{classCANDY_1_1SimpleStreamClustering_a790895b662e0ec2debb46d28a9df60f4}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!deleteSingleRowWithIdx@{deleteSingleRowWithIdx}}
+\index{deleteSingleRowWithIdx@{deleteSingleRowWithIdx}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{deleteSingleRowWithIdx()}{deleteSingleRowWithIdx()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Simple\+Stream\+Clustering\+::delete\+Single\+Row\+With\+Idx (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{row\+Tensor,  }\item[{int64\+\_\+t}]{cluster\+Idx,  }\item[{int64\+\_\+t}]{frozen\+Level = {\ttfamily 0},  }\item[{CANDY\+::\+Update\+Function\+\_\+t}]{delete\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_aa9583167ea59a002a24aecb52560f0ad}{Simple\+Stream\+Clustering\+::euclidean\+Insert}}},  }\item[{CANDY\+::\+Distance\+Function\+\_\+t}]{distance\+Func = {\ttfamily \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}{Simple\+Stream\+Clustering\+::euclidean\+Distance}}} }\end{DoxyParamCaption})}
+
+
+
+delete a single row of tensor, with specifying its cluster index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+Tensor} & the 1$\ast$D row tensor \\
+\hline
+{\em cluster\+Idx} & the cluster index \\
+\hline
+{\em delete\+Func} & the delete function \\
+\hline
+{\em frozen\+Level} & the level of frozen, 0 means freeze any online update in internal state @ param distance\+Func the distance function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the deletion is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_a22da18ca0685335dab04234e09d9af69}\label{classCANDY_1_1SimpleStreamClustering_a22da18ca0685335dab04234e09d9af69}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!euclideanDelete@{euclideanDelete}}
+\index{euclideanDelete@{euclideanDelete}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{euclideanDelete()}{euclideanDelete()}}
+{\footnotesize\ttfamily static void CANDY\+::\+Simple\+Stream\+Clustering\+::euclidean\+Delete (\begin{DoxyParamCaption}\item[{const torch\+::\+Tensor $\ast$}]{a,  }\item[{torch\+::\+Tensor $\ast$}]{b,  }\item[{const int64\+\_\+t}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+the default euclidean delete function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the data tensor \\
+\hline
+{\em b} & the centroids \\
+\hline
+{\em c} & the number of points in this centroid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the aligned distance tensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}\label{classCANDY_1_1SimpleStreamClustering_a15c6f2c2b7cb32a99de05db6b2c88921}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!euclideanDistance@{euclideanDistance}}
+\index{euclideanDistance@{euclideanDistance}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{euclideanDistance()}{euclideanDistance()}}
+{\footnotesize\ttfamily static torch\+::\+Tensor CANDY\+::\+Simple\+Stream\+Clustering\+::euclidean\+Distance (\begin{DoxyParamCaption}\item[{const torch\+::\+Tensor \&}]{a,  }\item[{const torch\+::\+Tensor \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+the default euclidean distance function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the data tensor \\
+\hline
+{\em b} & the centroids \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the aligned distance tensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_aa9583167ea59a002a24aecb52560f0ad}\label{classCANDY_1_1SimpleStreamClustering_aa9583167ea59a002a24aecb52560f0ad}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!euclideanInsert@{euclideanInsert}}
+\index{euclideanInsert@{euclideanInsert}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{euclideanInsert()}{euclideanInsert()}}
+{\footnotesize\ttfamily static void CANDY\+::\+Simple\+Stream\+Clustering\+::euclidean\+Insert (\begin{DoxyParamCaption}\item[{const torch\+::\+Tensor $\ast$}]{a,  }\item[{torch\+::\+Tensor $\ast$}]{b,  }\item[{const int64\+\_\+t}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+the default euclidean insert function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the data tensor \\
+\hline
+{\em b} & the centroids \\
+\hline
+{\em c} & the number of points in this centroid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the aligned distance tensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_ac9c6d10bbbadfd365d951a8508fa4b72}\label{classCANDY_1_1SimpleStreamClustering_ac9c6d10bbbadfd365d951a8508fa4b72}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!exportCentroids@{exportCentroids}}
+\index{exportCentroids@{exportCentroids}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{exportCentroids()}{exportCentroids()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Simple\+Stream\+Clustering\+::export\+Centroids (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+export the inside tensor of centroids to outside 
+
+\begin{DoxyReturn}{Returns}
+the my\+Centroids tensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_a991c3e7aecd34b961ae18b1cb6f720d4}\label{classCANDY_1_1SimpleStreamClustering_a991c3e7aecd34b961ae18b1cb6f720d4}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!loadCentroids@{loadCentroids}}
+\index{loadCentroids@{loadCentroids}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{loadCentroids()}{loadCentroids()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool CANDY\+::\+Simple\+Stream\+Clustering\+::load\+Centroids (\begin{DoxyParamCaption}\item[{std\+::string}]{fname }\end{DoxyParamCaption})}
+
+
+
+to load centroids from external file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & the file name of external tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the load is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_af0dfb86c5eb255c376d4926b64421dc0}\label{classCANDY_1_1SimpleStreamClustering_af0dfb86c5eb255c376d4926b64421dc0}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!loadCentroids@{loadCentroids}}
+\index{loadCentroids@{loadCentroids}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{loadCentroids()}{loadCentroids()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool CANDY\+::\+Simple\+Stream\+Clustering\+::load\+Centroids (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{extern\+Centroid }\end{DoxyParamCaption})}
+
+
+
+to load centroids from external tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em extern\+Centroid} & the external tensor of centroid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the load is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1SimpleStreamClustering_ad9310aefa7f578ea713f1faa73e10c42}\label{classCANDY_1_1SimpleStreamClustering_ad9310aefa7f578ea713f1faa73e10c42}} 
+\index{CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}!saveCentroidsToFile@{saveCentroidsToFile}}
+\index{saveCentroidsToFile@{saveCentroidsToFile}!CANDY::SimpleStreamClustering@{CANDY::SimpleStreamClustering}}
+\doxysubsubsection{\texorpdfstring{saveCentroidsToFile()}{saveCentroidsToFile()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Simple\+Stream\+Clustering\+::save\+Centroids\+To\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{fname }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+save the centroids to file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & the name of file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the saving is successful 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Online\+PQIndex/\mbox{\hyperlink{SimpleStreamClustering_8h}{Simple\+Stream\+Clustering.\+h}}\item 
+src/\+CANDY/\+Online\+PQIndex/Simple\+Stream\+Clustering.\+cpp\end{DoxyCompactItemize}

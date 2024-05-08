@@ -1,0 +1,74 @@
+\hypertarget{BS__thread__pool_8hpp}{}\doxysection{include/\+Utils/\+BS\+\_\+thread\+\_\+pool.hpp File Reference}
+\label{BS__thread__pool_8hpp}\index{include/Utils/BS\_thread\_pool.hpp@{include/Utils/BS\_thread\_pool.hpp}}
+
+
+\mbox{\hyperlink{classBS_1_1thread__pool}{BS\+::thread\+\_\+pool}}\+: a fast, lightweight, and easy-\/to-\/use C++17 thread pool library. This header file contains the entire library, including the main \mbox{\hyperlink{classBS_1_1thread__pool}{BS\+::thread\+\_\+pool}} class and the helper classes \mbox{\hyperlink{classBS_1_1multi__future}{BS\+::multi\+\_\+future}}, \mbox{\hyperlink{classBS_1_1blocks}{BS\+::blocks}}, BS\+:synced\+\_\+stream, and \mbox{\hyperlink{classBS_1_1timer}{BS\+::timer}}.  
+
+
+{\ttfamily \#include $<$atomic$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+{\ttfamily \#include $<$exception$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$future$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for BS\+\_\+thread\+\_\+pool.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{BS__thread__pool_8hpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classBS_1_1multi__future}{BS\+::multi\+\_\+future$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em A helper class to facilitate waiting for and/or getting the results of multiple futures at once. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classBS_1_1blocks}{BS\+::blocks$<$ T1, T2, T $>$}}
+\begin{DoxyCompactList}\small\item\em A helper class to divide a range into blocks. Used by parallelize\+\_\+loop() and push\+\_\+loop(). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classBS_1_1thread__pool}{BS\+::thread\+\_\+pool}}
+\begin{DoxyCompactList}\small\item\em A fast, lightweight, and easy-\/to-\/use C++17 thread pool class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classBS_1_1synced__stream}{BS\+::synced\+\_\+stream}}
+\begin{DoxyCompactList}\small\item\em A helper class to synchronize printing to an output stream by different threads. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classBS_1_1timer}{BS\+::timer}}
+\begin{DoxyCompactList}\small\item\em A helper class to measure execution time for benchmarking purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{BS__thread__pool_8hpp_a1149cbbef0b0be59576a0787b2606af4}\label{BS__thread__pool_8hpp_a1149cbbef0b0be59576a0787b2606af4}} 
+\#define {\bfseries BS\+\_\+\+THREAD\+\_\+\+POOL\+\_\+\+VERSION}~\char`\"{}v3.\+3.\+0 (2022-\/08-\/03)\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{BS__thread__pool_8hpp_a7bb1747ef283bd1349183c445ee89aaa}\label{BS__thread__pool_8hpp_a7bb1747ef283bd1349183c445ee89aaa}} 
+using \mbox{\hyperlink{BS__thread__pool_8hpp_a7bb1747ef283bd1349183c445ee89aaa}{BS\+::concurrency\+\_\+t}} = std\+::invoke\+\_\+result\+\_\+t$<$ decltype(std\+::thread\+::hardware\+\_\+concurrency)$>$
+\begin{DoxyCompactList}\small\item\em A convenient shorthand for the type of std\+::thread\+::hardware\+\_\+concurrency(). Should evaluate to unsigned int. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{BS__thread__pool_8hpp_ad8b490d8561a932e1ccfbd9b26895a07}\label{BS__thread__pool_8hpp_ad8b490d8561a932e1ccfbd9b26895a07}} 
+typedef std\+::shared\+\_\+ptr$<$ thread\+\_\+pool $>$ {\bfseries BS\+::thread\+\_\+pool\+\_\+ptr}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classBS_1_1thread__pool}{BS\+::thread\+\_\+pool}}\+: a fast, lightweight, and easy-\/to-\/use C++17 thread pool library. This header file contains the entire library, including the main \mbox{\hyperlink{classBS_1_1thread__pool}{BS\+::thread\+\_\+pool}} class and the helper classes \mbox{\hyperlink{classBS_1_1multi__future}{BS\+::multi\+\_\+future}}, \mbox{\hyperlink{classBS_1_1blocks}{BS\+::blocks}}, BS\+:synced\+\_\+stream, and \mbox{\hyperlink{classBS_1_1timer}{BS\+::timer}}. 
+
+\begin{DoxyAuthor}{Author}
+Barak Shoshany (\href{mailto:baraksh@gmail.com}{\texttt{ baraksh@gmail.\+com}}) (\href{http://baraksh.com}{\texttt{ http\+://baraksh.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+3.\+3.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/08-\/03 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 Barak Shoshany. Licensed under the MIT license. If you found this project useful, please consider starring it on Git\+Hub! If you use this library in software of any kind, please provide a link to the Git\+Hub repository \href{https://github.com/bshoshany/thread-pool}{\texttt{ https\+://github.\+com/bshoshany/thread-\/pool}} in the source code and documentation. If you use this library in published research, please cite it as follows\+: Barak Shoshany, \char`\"{}\+A C++17 Thread Pool for High-\/\+Performance \+Scientific Computing\char`\"{}, doi\+:10.\+5281/zenodo.4742687, ar\+Xiv\+:2105.\+00613 (May 2021) 
+\end{DoxyCopyright}

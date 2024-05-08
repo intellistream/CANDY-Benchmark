@@ -1,0 +1,4 @@
+<map id="CANDY::NNDescentIndex" name="CANDY::NNDescentIndex">
+<area shape="rect" id="node1" title="An index whose core algorithm is only used for offline construction, but based on its main data struc..." alt="" coords="5,80,188,107"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractIndex.html" title="The abstract class of an index approach." alt="" coords="15,5,179,32"/>
+</map>

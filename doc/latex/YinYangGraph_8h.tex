@@ -1,0 +1,61 @@
+\hypertarget{YinYangGraph_8h}{}\doxysection{include/\+CANDY/\+Yin\+Yang\+Graph\+Index/\+Yin\+Yang\+Graph.h File Reference}
+\label{YinYangGraph_8h}\index{include/CANDY/YinYangGraphIndex/YinYangGraph.h@{include/CANDY/YinYangGraphIndex/YinYangGraph.h}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$Utils/\+Intelli\+Tensor\+OP.\+hpp$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+Include dependency graph for Yin\+Yang\+Graph.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{YinYangGraph_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{YinYangGraph_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1YinYangGraph__DistanceFunctions}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+Distance\+Functions}}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{CANDY\+::\+Yin\+Yang\+Vertex}}
+\begin{DoxyCompactList}\small\item\em The class of a \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{Yin\+Yang\+Vertex}}, storing the data in each vertex. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{CANDY\+::\+Yin\+Yang\+Vertex\+Map}}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell}}
+\begin{DoxyCompactList}\small\item\em a cell of an ending \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{Yin\+Yang\+Vertex}} \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket}}
+\begin{DoxyCompactList}\small\item\em a bucket of multiple \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{Yin\+Yang\+Graph\+\_\+\+List\+Cell}} \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1YinYangGraph}{CANDY\+::\+Yin\+Yang\+Graph}}
+\begin{DoxyCompactList}\small\item\em The top class of yinyang graph, containing ivf list and critical graph information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaea6a38dd8ddd8e8baec723d4dc462119}{new\+Yin\+Yang\+Vertex}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1YinYangVertex}{CANDY\+::\+Yin\+Yang\+Vertex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Yin\+Yang\+Vertex under shared pointer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga766c327b8a0ac3c7c65d0fb42639a627}{new\+Yin\+Yang\+Graph\+\_\+\+List\+Cell}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga766c327b8a0ac3c7c65d0fb42639a627}{new\+Yin\+Yang\+Graph\+\_\+\+List\+Cell}} under shared pointer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gabfc75631c9c4db52ecf1a20814500a2b}{new\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Yin\+Yang\+Graph\+\_\+\+List\+Bucket under shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{YinYangGraph_8h_af6f13c0c1d177cfa2a1ce6f6f025ace7}\label{YinYangGraph_8h_af6f13c0c1d177cfa2a1ce6f6f025ace7}} 
+using {\bfseries CANDY\+::float\+Distance\+Function\+\_\+t} = float($\ast$)(const torch\+::\+Tensor \&, const torch\+::\+Tensor \&)
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{CANDY\+::\+Yin\+Yang\+Vertex}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{Yin\+Yang\+Vertex}}. \end{DoxyCompactList}\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga1716fbfff4ef4ea65641d1c1a22c11a5}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{Yin\+Yang\+Graph\+\_\+\+List\+Cell}}. \end{DoxyCompactList}\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga9213c27354699d85b17d8d0d4601c3e2}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket}{Yin\+Yang\+Graph\+\_\+\+List\+Bucket}}. \end{DoxyCompactList}\end{DoxyCompactItemize}

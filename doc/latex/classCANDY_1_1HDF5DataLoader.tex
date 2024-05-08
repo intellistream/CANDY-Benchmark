@@ -1,0 +1,211 @@
+\hypertarget{classCANDY_1_1HDF5DataLoader}{}\doxysection{CANDY\+::HDF5\+Data\+Loader Class Reference}
+\label{classCANDY_1_1HDF5DataLoader}\index{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}}
+
+
+The class for loading $\ast$.hdf5 or $\ast$.h5 file, as specified in \href{https://github.com/HDFGroup/hdf5}{\texttt{ https\+://github.\+com/\+HDFGroup/hdf5}}.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Loader/\+HDF5\+Data\+Loader.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::HDF5\+Data\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classCANDY_1_1HDF5DataLoader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::HDF5\+Data\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1HDF5DataLoader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader_a9ad7f9c7b19840e09fb89c0d124c844d}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em Set the GLOBAL config map related to this loader. \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader_ad4b0d9baa02c4937d4539a53c3c98867}{get\+Data}} ()
+\begin{DoxyCompactList}\small\item\em get the data tensor \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader_abbd3cd4efc5d0d4fcc65dd8c38185546}{get\+Query}} ()
+\begin{DoxyCompactList}\small\item\em get the query tensor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader_a3e48e50ca81c71df58271ae43e5115ab}{tensor\+From\+HDF5}} (std\+::string fname, std\+::string attr)
+\begin{DoxyCompactList}\small\item\em the inline function to load tensor from $\ast$h5 or $\ast$.hdf5 file \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_af0bb442658a81f1807f99ed301ebb13d}\label{classCANDY_1_1HDF5DataLoader_af0bb442658a81f1807f99ed301ebb13d}} 
+bool {\bfseries generate\+Data} (std\+::string fname)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_abbe0223b4a8cec84d30dc9aed900e004}\label{classCANDY_1_1HDF5DataLoader_abbe0223b4a8cec84d30dc9aed900e004}} 
+bool {\bfseries generate\+Query} (std\+::string fname)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_a90874c89f9d48848c2a6a1a7a287b97c}\label{classCANDY_1_1HDF5DataLoader_a90874c89f9d48848c2a6a1a7a287b97c}} 
+torch\+::\+Tensor {\bfseries A}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_a6e5b32bf853062b621cfd3480f4cb62f}\label{classCANDY_1_1HDF5DataLoader_a6e5b32bf853062b621cfd3480f4cb62f}} 
+torch\+::\+Tensor {\bfseries B}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_a6bdc2f0c2b4c88a86f0d14dc92849143}\label{classCANDY_1_1HDF5DataLoader_a6bdc2f0c2b4c88a86f0d14dc92849143}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_a2e6b5cd823fd940a531e183d60b7a7c5}\label{classCANDY_1_1HDF5DataLoader_a2e6b5cd823fd940a531e183d60b7a7c5}} 
+int64\+\_\+t {\bfseries vec\+Volume}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_ae4bcb47abec48c3c8473b79d63830943}\label{classCANDY_1_1HDF5DataLoader_ae4bcb47abec48c3c8473b79d63830943}} 
+int64\+\_\+t {\bfseries query\+Size}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_abd009ef8f73186b7b16ca74b72c82a0f}\label{classCANDY_1_1HDF5DataLoader_abd009ef8f73186b7b16ca74b72c82a0f}} 
+int64\+\_\+t {\bfseries seed}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_a7ae3cccf2eb7e0475cfdf9a2767e373b}\label{classCANDY_1_1HDF5DataLoader_a7ae3cccf2eb7e0475cfdf9a2767e373b}} 
+int64\+\_\+t {\bfseries normalize\+Tensor}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_a967d595a7cb0589e789bee79fbaa177a}\label{classCANDY_1_1HDF5DataLoader_a967d595a7cb0589e789bee79fbaa177a}} 
+double {\bfseries query\+Noise\+Fraction}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_aa669a3c3eb9645ab5312e8c7b6c24e33}\label{classCANDY_1_1HDF5DataLoader_aa669a3c3eb9645ab5312e8c7b6c24e33}} 
+int64\+\_\+t {\bfseries use\+Separate\+Query}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class for loading $\ast$.hdf5 or $\ast$.h5 file, as specified in \href{https://github.com/HDFGroup/hdf5}{\texttt{ https\+://github.\+com/\+HDFGroup/hdf5}}. 
+
+\begin{DoxyNote}{Note}
+\+:
+\begin{DoxyItemize}
+\item Must have a global config by \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader_a9ad7f9c7b19840e09fb89c0d124c844d}{set\+Config}} 
+\end{DoxyItemize}
+
+Default behavior
+\begin{DoxyItemize}
+\item create
+\item call \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader_a9ad7f9c7b19840e09fb89c0d124c844d}{set\+Config}}, this function will also generate the tensor A and B correspondingly
+\item call \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader_ad4b0d9baa02c4937d4539a53c3c98867}{get\+Data}} to get the raw data
+\item call \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader_abbd3cd4efc5d0d4fcc65dd8c38185546}{get\+Query}} to get the query 
+\end{DoxyItemize}
+
+parameters of config
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 512 (for sun dataset), I64
+\item vec\+Volume, the volume of vectors, default 10000, I64
+\item normalize\+Tensor, whether or not normalize the tensors in L2, 1 (yes), I64
+\item data\+Path, the path to the data file, datasets/hdf5/sun/sun.\+hdf5, String
+\item use\+Separate\+Query, whether or not load query separately, 1, I64
+\item query\+Noise\+Fraction, the fraction of noise in query, default 0, allow 0$\sim$1, Double
+\begin{DoxyItemize}
+\item no effect when query is loaded from separate file
+\end{DoxyItemize}
+\item query\+Size, the size of query, default 10, I64
+\item seed, the random seed, default 7758258, I64 
+\end{DoxyItemize}
+
+\+: default name tags
+\begin{DoxyItemize}
+\item hdf5\+: \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader}{HDF5\+Data\+Loader}} 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_ad4b0d9baa02c4937d4539a53c3c98867}\label{classCANDY_1_1HDF5DataLoader_ad4b0d9baa02c4937d4539a53c3c98867}} 
+\index{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}!getData@{getData}}
+\index{getData@{getData}!CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}}
+\doxysubsubsection{\texorpdfstring{getData()}{getData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+HDF5\+Data\+Loader\+::get\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get the data tensor 
+
+\begin{DoxyReturn}{Returns}
+the generated data tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a4d66a082e74fd3bf413dd9dcb6ffa809}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_abbd3cd4efc5d0d4fcc65dd8c38185546}\label{classCANDY_1_1HDF5DataLoader_abbd3cd4efc5d0d4fcc65dd8c38185546}} 
+\index{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}!getQuery@{getQuery}}
+\index{getQuery@{getQuery}!CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}}
+\doxysubsubsection{\texorpdfstring{getQuery()}{getQuery()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+HDF5\+Data\+Loader\+::get\+Query (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get the query tensor 
+
+\begin{DoxyReturn}{Returns}
+the generated query tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a812faba5e0da35c15880eeb7f62dc504}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_a9ad7f9c7b19840e09fb89c0d124c844d}\label{classCANDY_1_1HDF5DataLoader_a9ad7f9c7b19840e09fb89c0d124c844d}} 
+\index{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+HDF5\+Data\+Loader\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the GLOBAL config map related to this loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & The config map \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the config is successfully set 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a7352d8538a9bc448bc36c01f2bf8de6e}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1HDF5DataLoader_a3e48e50ca81c71df58271ae43e5115ab}\label{classCANDY_1_1HDF5DataLoader_a3e48e50ca81c71df58271ae43e5115ab}} 
+\index{CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}!tensorFromHDF5@{tensorFromHDF5}}
+\index{tensorFromHDF5@{tensorFromHDF5}!CANDY::HDF5DataLoader@{CANDY::HDF5DataLoader}}
+\doxysubsubsection{\texorpdfstring{tensorFromHDF5()}{tensorFromHDF5()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+HDF5\+Data\+Loader\+::tensor\+From\+HDF5 (\begin{DoxyParamCaption}\item[{std\+::string}]{fname,  }\item[{std\+::string}]{attr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+the inline function to load tensor from $\ast$h5 or $\ast$.hdf5 file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & the name of file \\
+\hline
+{\em attr} & the attribute in hdf5 file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the genearetd tensor 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Data\+Loader/\mbox{\hyperlink{HDF5DataLoader_8h}{HDF5\+Data\+Loader.\+h}}\item 
+src/\+Data\+Loader/HDF5\+Data\+Loader.\+cpp\end{DoxyCompactItemize}

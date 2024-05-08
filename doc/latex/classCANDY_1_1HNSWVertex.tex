@@ -1,0 +1,57 @@
+\hypertarget{classCANDY_1_1HNSWVertex}{}\doxysection{CANDY\+::HNSWVertex Class Reference}
+\label{classCANDY_1_1HNSWVertex}\index{CANDY::HNSWVertex@{CANDY::HNSWVertex}}
+
+
+The class of a \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} vertex, storing the data in each vertex.  
+
+
+
+
+Collaboration diagram for CANDY\+::HNSWVertex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1HNSWVertex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWVertex_ab9d4e4823b77a6d48644c84605d8f1ef}\label{classCANDY_1_1HNSWVertex_ab9d4e4823b77a6d48644c84605d8f1ef}} 
+{\bfseries HNSWVertex} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} id, int level, int num\+\_\+neighbors)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWVertex_a1a57aff8a39ff942d4da1ca3feb395a2}\label{classCANDY_1_1HNSWVertex_a1a57aff8a39ff942d4da1ca3feb395a2}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} {\bfseries id}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWVertex_aa520430b5306a57c82480afb69938184}\label{classCANDY_1_1HNSWVertex_aa520430b5306a57c82480afb69938184}} 
+int8\+\_\+t $\ast$ \mbox{\hyperlink{classCANDY_1_1HNSWVertex_aa520430b5306a57c82480afb69938184}{code\+\_\+final\+\_\+}} = nullptr
+\begin{DoxyCompactList}\small\item\em used for LVQ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWVertex_aceb1fe67529f8b96b5e36ae53ad44b82}\label{classCANDY_1_1HNSWVertex_aceb1fe67529f8b96b5e36ae53ad44b82}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} \mbox{\hyperlink{classCANDY_1_1HNSWVertex_aceb1fe67529f8b96b5e36ae53ad44b82}{transformed}} = nullptr
+\begin{DoxyCompactList}\small\item\em used for adsampling \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWVertex_a049f6acac95b88f1e091ca71056baeb1}\label{classCANDY_1_1HNSWVertex_a049f6acac95b88f1e091ca71056baeb1}} 
+int {\bfseries level}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWVertex_a68856a27f653b01bd8822129cdbc8577}\label{classCANDY_1_1HNSWVertex_a68856a27f653b01bd8822129cdbc8577}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1HNSWVertex}{HNSWVertex}} $>$ $>$ {\bfseries neighbors}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWVertex_a032b8cef902f07c5ff3febe8f154c185}\label{classCANDY_1_1HNSWVertex_a032b8cef902f07c5ff3febe8f154c185}} 
+uint8\+\_\+t {\bfseries visno}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class of a \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} vertex, storing the data in each vertex. 
+
+\begin{DoxyNote}{Note}
+now storing each vertex\textquotesingle{}s neighbors, visited number and level, with a pointer to the vector 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+HNSWNaive/HNSW.\+h\end{DoxyCompactItemize}

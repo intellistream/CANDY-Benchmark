@@ -1,0 +1,212 @@
+\hypertarget{classCANDY_1_1FVECSDataLoader}{}\doxysection{CANDY\+::FVECSData\+Loader Class Reference}
+\label{classCANDY_1_1FVECSDataLoader}\index{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}}
+
+
+The class for loading $\ast$.fvecs data.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Loader/\+FVECSData\+Loader.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::FVECSData\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classCANDY_1_1FVECSDataLoader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::FVECSData\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1FVECSDataLoader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader_a448abc9bb7c7944a248c3540ce4f9b57}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em Set the GLOBAL config map related to this loader. \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader_a932a32e942cf54203409b344eaabc59a}{get\+Data}} ()
+\begin{DoxyCompactList}\small\item\em get the data tensor \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader_a69e339c22beb9a2a931c96a772898894}{get\+Query}} ()
+\begin{DoxyCompactList}\small\item\em get the query tensor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader_a9255d104bca43f7f7168ae6ed1b74ee0}{tensor\+From\+FVECS}} (std\+::string fname)
+\begin{DoxyCompactList}\small\item\em the inline function to load tensor from fvecs file \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a7c84424281972242e61343be5ba07a3e}\label{classCANDY_1_1FVECSDataLoader_a7c84424281972242e61343be5ba07a3e}} 
+bool {\bfseries generate\+Data} (std\+::string fname)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a69d1a7f4243d98e93e0277534c66c4fe}\label{classCANDY_1_1FVECSDataLoader_a69d1a7f4243d98e93e0277534c66c4fe}} 
+bool {\bfseries generate\+Query} (std\+::string fname)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a7dd79ad8a4990b59f35ecb220f3df933}\label{classCANDY_1_1FVECSDataLoader_a7dd79ad8a4990b59f35ecb220f3df933}} 
+torch\+::\+Tensor {\bfseries A}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a99ea110a96927165a04c408f7c191e23}\label{classCANDY_1_1FVECSDataLoader_a99ea110a96927165a04c408f7c191e23}} 
+torch\+::\+Tensor {\bfseries B}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_abb612c9447886e4438cbc33b4e778849}\label{classCANDY_1_1FVECSDataLoader_abb612c9447886e4438cbc33b4e778849}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a5f756412336f261a514392b82fa3cc7b}\label{classCANDY_1_1FVECSDataLoader_a5f756412336f261a514392b82fa3cc7b}} 
+int64\+\_\+t {\bfseries vec\+Volume}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_afd3c51305199c995edba85549f10e9e3}\label{classCANDY_1_1FVECSDataLoader_afd3c51305199c995edba85549f10e9e3}} 
+int64\+\_\+t {\bfseries query\+Size}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_ac46858aa8823c1fc26c6711489f3cb5c}\label{classCANDY_1_1FVECSDataLoader_ac46858aa8823c1fc26c6711489f3cb5c}} 
+int64\+\_\+t {\bfseries seed}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_af9004e7fa788ed270498ce6438736f9a}\label{classCANDY_1_1FVECSDataLoader_af9004e7fa788ed270498ce6438736f9a}} 
+int64\+\_\+t {\bfseries normalize\+Tensor}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_afa58e04e0690c7a194dfa19545179da1}\label{classCANDY_1_1FVECSDataLoader_afa58e04e0690c7a194dfa19545179da1}} 
+double {\bfseries query\+Noise\+Fraction}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a8b39d59c2558901f9e868485034f3327}\label{classCANDY_1_1FVECSDataLoader_a8b39d59c2558901f9e868485034f3327}} 
+int64\+\_\+t {\bfseries use\+Separate\+Query}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class for loading $\ast$.fvecs data. 
+
+$\ast$.
+
+\begin{DoxyNote}{Note}
+\+:
+\begin{DoxyItemize}
+\item Must have a global config by \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader_a448abc9bb7c7944a248c3540ce4f9b57}{set\+Config}} 
+\end{DoxyItemize}
+
+Default behavior
+\begin{DoxyItemize}
+\item create
+\item call \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader_a448abc9bb7c7944a248c3540ce4f9b57}{set\+Config}}, this function will also generate the tensor A and B correspondingly
+\item call \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader_a932a32e942cf54203409b344eaabc59a}{get\+Data}} to get the raw data
+\item call \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader_a69e339c22beb9a2a931c96a772898894}{get\+Query}} to get the query 
+\end{DoxyItemize}
+
+parameters of config
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 128, I64
+\item vec\+Volume, the volume of vectors, default 10000, I64
+\item data\+Path, the path to the data file, datasets/fvecs/sift10\+K/siftsmall\+\_\+base.\+fvecs, String
+\item normalize\+Tensor, whether or not normalize the tensors in L2, 1 (yes), I64
+\item use\+Separate\+Query, whether or not load query separately, 1, I64
+\item query\+Path, the path to query file, datasets/fvecs/sift10\+K/siftsmall\+\_\+query.\+fvecs. String
+\item query\+Noise\+Fraction, the fraction of noise in query, default 0, allow 0$\sim$1, Double
+\begin{DoxyItemize}
+\item no effect when query is loaded from separate file
+\end{DoxyItemize}
+\item query\+Size, the size of query, default 10, I64
+\item seed, the random seed, default 7758258, I64 
+\end{DoxyItemize}
+
+\+: default name tags
+\begin{DoxyItemize}
+\item \char`\"{}fvecs\char`\"{}\+: \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader}{FVECSData\+Loader}} 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a932a32e942cf54203409b344eaabc59a}\label{classCANDY_1_1FVECSDataLoader_a932a32e942cf54203409b344eaabc59a}} 
+\index{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}!getData@{getData}}
+\index{getData@{getData}!CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}}
+\doxysubsubsection{\texorpdfstring{getData()}{getData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+FVECSData\+Loader\+::get\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get the data tensor 
+
+\begin{DoxyReturn}{Returns}
+the generated data tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a4d66a082e74fd3bf413dd9dcb6ffa809}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a69e339c22beb9a2a931c96a772898894}\label{classCANDY_1_1FVECSDataLoader_a69e339c22beb9a2a931c96a772898894}} 
+\index{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}!getQuery@{getQuery}}
+\index{getQuery@{getQuery}!CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}}
+\doxysubsubsection{\texorpdfstring{getQuery()}{getQuery()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+FVECSData\+Loader\+::get\+Query (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get the query tensor 
+
+\begin{DoxyReturn}{Returns}
+the generated query tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a812faba5e0da35c15880eeb7f62dc504}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a448abc9bb7c7944a248c3540ce4f9b57}\label{classCANDY_1_1FVECSDataLoader_a448abc9bb7c7944a248c3540ce4f9b57}} 
+\index{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+FVECSData\+Loader\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the GLOBAL config map related to this loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & The config map \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the config is successfully set 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a7352d8538a9bc448bc36c01f2bf8de6e}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FVECSDataLoader_a9255d104bca43f7f7168ae6ed1b74ee0}\label{classCANDY_1_1FVECSDataLoader_a9255d104bca43f7f7168ae6ed1b74ee0}} 
+\index{CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}!tensorFromFVECS@{tensorFromFVECS}}
+\index{tensorFromFVECS@{tensorFromFVECS}!CANDY::FVECSDataLoader@{CANDY::FVECSDataLoader}}
+\doxysubsubsection{\texorpdfstring{tensorFromFVECS()}{tensorFromFVECS()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+FVECSData\+Loader\+::tensor\+From\+FVECS (\begin{DoxyParamCaption}\item[{std\+::string}]{fname }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+the inline function to load tensor from fvecs file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & the name of file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the genearetd tensor 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Data\+Loader/\mbox{\hyperlink{FVECSDataLoader_8h}{FVECSData\+Loader.\+h}}\item 
+src/\+Data\+Loader/FVECSData\+Loader.\+cpp\end{DoxyCompactItemize}

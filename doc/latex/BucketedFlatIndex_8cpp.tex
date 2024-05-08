@@ -1,0 +1,46 @@
+\hypertarget{BucketedFlatIndex_8cpp}{}\doxysection{src/\+CANDY/\+Bucketed\+Flat\+Index.cpp File Reference}
+\label{BucketedFlatIndex_8cpp}\index{src/CANDY/BucketedFlatIndex.cpp@{src/CANDY/BucketedFlatIndex.cpp}}
+{\ttfamily \#include \char`\"{}CANDY/\+Bucketed\+Flat\+Index.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Utils/\+Utility\+Functions.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+Include dependency graph for Bucketed\+Flat\+Index.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{BucketedFlatIndex_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{BucketedFlatIndex_8cpp_acf3acac05c1e7ec0cdab042b02e8adf8}{BF\+\_\+\+NEXT\+\_\+\+POW\+\_\+2}}(V)
+\item 
+\mbox{\Hypertarget{BucketedFlatIndex_8cpp_a66c866757c93b76e117b1bec930d9b5d}\label{BucketedFlatIndex_8cpp_a66c866757c93b76e117b1bec930d9b5d}} 
+\#define {\bfseries HASH}(X,  MASK,  SKIP)~(((X) \& MASK) $>$$>$ SKIP)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{BucketedFlatIndex_8cpp_acf3acac05c1e7ec0cdab042b02e8adf8}\label{BucketedFlatIndex_8cpp_acf3acac05c1e7ec0cdab042b02e8adf8}} 
+\index{BucketedFlatIndex.cpp@{BucketedFlatIndex.cpp}!BF\_NEXT\_POW\_2@{BF\_NEXT\_POW\_2}}
+\index{BF\_NEXT\_POW\_2@{BF\_NEXT\_POW\_2}!BucketedFlatIndex.cpp@{BucketedFlatIndex.cpp}}
+\doxysubsubsection{\texorpdfstring{BF\_NEXT\_POW\_2}{BF\_NEXT\_POW\_2}}
+{\footnotesize\ttfamily \#define BF\+\_\+\+NEXT\+\_\+\+POW\+\_\+2(\begin{DoxyParamCaption}\item[{}]{V }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                        \(\backslash\)}
+\DoxyCodeLine{        V-\/-\/;                                    \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 1;                            \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 2;                            \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 4;                            \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 8;                            \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 16;                           \(\backslash\)}
+\DoxyCodeLine{        V++;                                    \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+compute the next number, greater than or equal to 32-\/bit unsigned v. taken from \char`\"{}bit twiddling hacks\char`\"{}\+: \href{http://graphics.stanford.edu/~seander/bithacks.html}{\texttt{ http\+://graphics.\+stanford.\+edu/$\sim$seander/bithacks.\+html}} 

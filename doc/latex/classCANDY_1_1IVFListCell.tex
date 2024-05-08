@@ -1,0 +1,155 @@
+\hypertarget{classCANDY_1_1IVFListCell}{}\doxysection{CANDY\+::IVFList\+Cell Class Reference}
+\label{classCANDY_1_1IVFListCell}\index{CANDY::IVFListCell@{CANDY::IVFListCell}}
+
+
+a cell of row tensor pointers which have the same code  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Online\+PQIndex/\+IVFTensor\+Encoding\+List.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::IVFList\+Cell\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1IVFListCell__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a340d35080839469888b933f585e4d7f6}\label{classCANDY_1_1IVFListCell_a340d35080839469888b933f585e4d7f6}} 
+int64\+\_\+t {\bfseries size} ()
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a515b1c18d460f66d37c3833b0d0c6d41}\label{classCANDY_1_1IVFListCell_a515b1c18d460f66d37c3833b0d0c6d41}} 
+void \mbox{\hyperlink{classCANDY_1_1IVFListCell_a515b1c18d460f66d37c3833b0d0c6d41}{lock}} ()
+\begin{DoxyCompactList}\small\item\em lock this cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a85484580cf5c406b27919258c6c5fe18}\label{classCANDY_1_1IVFListCell_a85484580cf5c406b27919258c6c5fe18}} 
+void \mbox{\hyperlink{classCANDY_1_1IVFListCell_a85484580cf5c406b27919258c6c5fe18}{unlock}} ()
+\begin{DoxyCompactList}\small\item\em unlock this cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a2d8ea1dc52f00d003deeb485b17e1ae3}\label{classCANDY_1_1IVFListCell_a2d8ea1dc52f00d003deeb485b17e1ae3}} 
+void {\bfseries set\+Encode} (std\+::vector$<$ uint8\+\_\+t $>$ \+\_\+encode)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a2e991ffe07623237ebac55f18820e62b}\label{classCANDY_1_1IVFListCell_a2e991ffe07623237ebac55f18820e62b}} 
+std\+::vector$<$ uint8\+\_\+t $>$ {\bfseries get\+Encode} ()
+\item 
+void \mbox{\hyperlink{classCANDY_1_1IVFListCell_aa5eb086f0e57fee729cadeff40d5cf36}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1IVFListCell_a950e8f0f5c3fbbf5750e52908e686fcd}{insert\+Tensor\+Ptr}} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} tp)
+\begin{DoxyCompactList}\small\item\em insert a tensor pointer \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1IVFListCell_a9501093837553c0a7643f3939251107c}{delete\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1IVFListCell_a2dff82985ad2b9f84ad33218f281cf44}{delete\+Tensor\+Ptr}} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} tp)
+\begin{DoxyCompactList}\small\item\em delete a tensor pointer \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1IVFListCell_a38b737e48d34736b25e42432804229ca}{get\+All\+Tensors}} ()
+\begin{DoxyCompactList}\small\item\em get all of the tensors in list \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a3894b810c554b200042d282fa9cae044}\label{classCANDY_1_1IVFListCell_a3894b810c554b200042d282fa9cae044}} 
+int64\+\_\+t {\bfseries tensors} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a287068743c9a0662275881026b719dc0}\label{classCANDY_1_1IVFListCell_a287068743c9a0662275881026b719dc0}} 
+std\+::list$<$ \mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} $>$ {\bfseries tl}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a32525685ca5bc8f5a690d42384b2f130}\label{classCANDY_1_1IVFListCell_a32525685ca5bc8f5a690d42384b2f130}} 
+std\+::mutex {\bfseries m\+\_\+mut}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_abdf5c5f8fd15a9670327046a4d7f211a}\label{classCANDY_1_1IVFListCell_abdf5c5f8fd15a9670327046a4d7f211a}} 
+std\+::vector$<$ uint8\+\_\+t $>$ {\bfseries encode}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+a cell of row tensor pointers which have the same code 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a9501093837553c0a7643f3939251107c}\label{classCANDY_1_1IVFListCell_a9501093837553c0a7643f3939251107c}} 
+\index{CANDY::IVFListCell@{CANDY::IVFListCell}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::IVFListCell@{CANDY::IVFListCell}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+IVFList\+Cell\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})}
+
+
+
+delete a tensor 
+
+\begin{DoxyNote}{Note}
+will check the equal condition by torch\+::equal 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor @returen bool whether the tensor is really deleted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a2dff82985ad2b9f84ad33218f281cf44}\label{classCANDY_1_1IVFListCell_a2dff82985ad2b9f84ad33218f281cf44}} 
+\index{CANDY::IVFListCell@{CANDY::IVFListCell}!deleteTensorPtr@{deleteTensorPtr}}
+\index{deleteTensorPtr@{deleteTensorPtr}!CANDY::IVFListCell@{CANDY::IVFListCell}}
+\doxysubsubsection{\texorpdfstring{deleteTensorPtr()}{deleteTensorPtr()}}
+{\footnotesize\ttfamily bool CANDY\+::\+IVFList\+Cell\+::delete\+Tensor\+Ptr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}}}]{tp }\end{DoxyParamCaption})}
+
+
+
+delete a tensor pointer 
+
+\begin{DoxyNote}{Note}
+will check the equal condition by pointer == 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em tp} & the tensor pointer @returen bool whether the tensor is realy deleted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a38b737e48d34736b25e42432804229ca}\label{classCANDY_1_1IVFListCell_a38b737e48d34736b25e42432804229ca}} 
+\index{CANDY::IVFListCell@{CANDY::IVFListCell}!getAllTensors@{getAllTensors}}
+\index{getAllTensors@{getAllTensors}!CANDY::IVFListCell@{CANDY::IVFListCell}}
+\doxysubsubsection{\texorpdfstring{getAllTensors()}{getAllTensors()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+IVFList\+Cell\+::get\+All\+Tensors (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get all of the tensors in list 
+
+\begin{DoxyReturn}{Returns}
+a 2-\/D tensor contain all, torch\+::zeros(\{1,1\}) if got nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_aa5eb086f0e57fee729cadeff40d5cf36}\label{classCANDY_1_1IVFListCell_aa5eb086f0e57fee729cadeff40d5cf36}} 
+\index{CANDY::IVFListCell@{CANDY::IVFListCell}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::IVFListCell@{CANDY::IVFListCell}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily void CANDY\+::\+IVFList\+Cell\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1IVFListCell_a950e8f0f5c3fbbf5750e52908e686fcd}\label{classCANDY_1_1IVFListCell_a950e8f0f5c3fbbf5750e52908e686fcd}} 
+\index{CANDY::IVFListCell@{CANDY::IVFListCell}!insertTensorPtr@{insertTensorPtr}}
+\index{insertTensorPtr@{insertTensorPtr}!CANDY::IVFListCell@{CANDY::IVFListCell}}
+\doxysubsubsection{\texorpdfstring{insertTensorPtr()}{insertTensorPtr()}}
+{\footnotesize\ttfamily void CANDY\+::\+IVFList\+Cell\+::insert\+Tensor\+Ptr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}}}]{tp }\end{DoxyParamCaption})}
+
+
+
+insert a tensor pointer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tp} & the tensor pointer \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Online\+PQIndex/\mbox{\hyperlink{IVFTensorEncodingList_8h}{IVFTensor\+Encoding\+List.\+h}}\item 
+src/\+CANDY/\+Online\+PQIndex/IVFTensor\+Encoding\+List.\+cpp\end{DoxyCompactItemize}

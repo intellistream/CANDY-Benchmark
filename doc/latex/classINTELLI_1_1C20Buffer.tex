@@ -1,0 +1,208 @@
+\hypertarget{classINTELLI_1_1C20Buffer}{}\doxysection{INTELLI\+::C20\+Buffer$<$ data\+Type $>$ Class Template Reference}
+\label{classINTELLI_1_1C20Buffer}\index{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}}
+
+
+{\ttfamily \#include $<$Utils/\+C20\+Buffers.\+hpp$>$}
+
+
+
+Collaboration diagram for INTELLI\+::C20\+Buffer$<$ data\+Type $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{classINTELLI_1_1C20Buffer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_a8f65947545ed427886513a1879e4bc8d}\label{classINTELLI_1_1C20Buffer_a8f65947545ed427886513a1879e4bc8d}} 
+void \mbox{\hyperlink{classINTELLI_1_1C20Buffer_a8f65947545ed427886513a1879e4bc8d}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this buffer, set pos back to 0 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classINTELLI_1_1C20Buffer_a90433c6fe0375734b41dfd3beea85d32}{C20\+Buffer}} (size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Init with original length of buffer. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1C20Buffer_a15222895fb78fcbefc619dfac9eb5118}{buffer\+Size}} ()
+\begin{DoxyCompactList}\small\item\em To get how many elements are allowed in the buffer. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1C20Buffer_ab7526325e9cbbbd8b2aa529c85283566}{size}} ()
+\begin{DoxyCompactList}\small\item\em To get how many VALID elements are existed in the buffer. \end{DoxyCompactList}\item 
+data\+Type $\ast$ \mbox{\hyperlink{classINTELLI_1_1C20Buffer_ac2f2caad92bf1003a556a5d8e4044ba3}{data}} ()
+\begin{DoxyCompactList}\small\item\em To get the original memory area ponter of data. \end{DoxyCompactList}\item 
+data\+Type $\ast$ \mbox{\hyperlink{classINTELLI_1_1C20Buffer_add450143620129aa3d8f47cb1517c815}{data}} (size\+\_\+t offset)
+\begin{DoxyCompactList}\small\item\em To get the original memory area ponter of data, with offset. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1C20Buffer_aef7bc60086c2e7b4cbe65a2a37f38039}{append}} (data\+Type da)
+\begin{DoxyCompactList}\small\item\em Append the data to the buffer. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1C20Buffer_a29d6f38ed0163cbded23ed74ba9dc606}{append}} (data\+Type $\ast$da, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Append the data to the buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_a73d406f663cc09e1bc52979371156fda}\label{classINTELLI_1_1C20Buffer_a73d406f663cc09e1bc52979371156fda}} 
+std\+::vector$<$ data\+Type $>$ {\bfseries area}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_a1f121470506d2e1b2b12cae2b4f720a5}\label{classINTELLI_1_1C20Buffer_a1f121470506d2e1b2b12cae2b4f720a5}} 
+size\+\_\+t {\bfseries pos} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename data\+Type$>$\newline
+class INTELLI\+::\+C20\+Buffer$<$ data\+Type $>$}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em data\+Type} & The type of your buffering element \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_a90433c6fe0375734b41dfd3beea85d32}\label{classINTELLI_1_1C20Buffer_a90433c6fe0375734b41dfd3beea85d32}} 
+\index{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!C20Buffer@{C20Buffer}}
+\index{C20Buffer@{C20Buffer}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{C20Buffer()}{C20Buffer()}}
+{\footnotesize\ttfamily template$<$typename data\+Type $>$ \\
+\mbox{\hyperlink{classINTELLI_1_1C20Buffer}{INTELLI\+::\+C20\+Buffer}}$<$ data\+Type $>$\+::\mbox{\hyperlink{classINTELLI_1_1C20Buffer}{C20\+Buffer}} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Init with original length of buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & THe original length of buffer \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_a29d6f38ed0163cbded23ed74ba9dc606}\label{classINTELLI_1_1C20Buffer_a29d6f38ed0163cbded23ed74ba9dc606}} 
+\index{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!append@{append}}
+\index{append@{append}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename data\+Type $>$ \\
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1C20Buffer}{INTELLI\+::\+C20\+Buffer}}$<$ data\+Type $>$\+::append (\begin{DoxyParamCaption}\item[{data\+Type $\ast$}]{da,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Append the data to the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em da} & Data to be appended, a buffer \\
+\hline
+{\em len} & the length of data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Exceed length will lead to a push\+\_\+back in vector 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The valid size after this append 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_aef7bc60086c2e7b4cbe65a2a37f38039}\label{classINTELLI_1_1C20Buffer_aef7bc60086c2e7b4cbe65a2a37f38039}} 
+\index{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!append@{append}}
+\index{append@{append}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename data\+Type $>$ \\
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1C20Buffer}{INTELLI\+::\+C20\+Buffer}}$<$ data\+Type $>$\+::append (\begin{DoxyParamCaption}\item[{data\+Type}]{da }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Append the data to the buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em da} & Data to be appended \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Exceed length will lead to a push\+\_\+back in vector 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The valid size after this append 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_a15222895fb78fcbefc619dfac9eb5118}\label{classINTELLI_1_1C20Buffer_a15222895fb78fcbefc619dfac9eb5118}} 
+\index{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!bufferSize@{bufferSize}}
+\index{bufferSize@{bufferSize}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{bufferSize()}{bufferSize()}}
+{\footnotesize\ttfamily template$<$typename data\+Type $>$ \\
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1C20Buffer}{INTELLI\+::\+C20\+Buffer}}$<$ data\+Type $>$\+::buffer\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To get how many elements are allowed in the buffer. 
+
+\begin{DoxyReturn}{Returns}
+The size of buffer area, i.\+e., area.\+size() 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+\+: This is NOT the size of valid data 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classINTELLI_1_1C20Buffer_ab7526325e9cbbbd8b2aa529c85283566}{size}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_ac2f2caad92bf1003a556a5d8e4044ba3}\label{classINTELLI_1_1C20Buffer_ac2f2caad92bf1003a556a5d8e4044ba3}} 
+\index{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!data@{data}}
+\index{data@{data}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename data\+Type $>$ \\
+data\+Type$\ast$ \mbox{\hyperlink{classINTELLI_1_1C20Buffer}{INTELLI\+::\+C20\+Buffer}}$<$ data\+Type $>$\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To get the original memory area ponter of data. 
+
+\begin{DoxyReturn}{Returns}
+The memory area address (pointer) that stores the data 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_add450143620129aa3d8f47cb1517c815}\label{classINTELLI_1_1C20Buffer_add450143620129aa3d8f47cb1517c815}} 
+\index{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!data@{data}}
+\index{data@{data}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename data\+Type $>$ \\
+data\+Type$\ast$ \mbox{\hyperlink{classINTELLI_1_1C20Buffer}{INTELLI\+::\+C20\+Buffer}}$<$ data\+Type $>$\+::data (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To get the original memory area ponter of data, with offset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & Offset of data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The memory area address (pointer) that stores the data 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Please ensure the offset is NOT larger than the area.\+size()-\/1 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classINTELLI_1_1C20Buffer_ab7526325e9cbbbd8b2aa529c85283566}\label{classINTELLI_1_1C20Buffer_ab7526325e9cbbbd8b2aa529c85283566}} 
+\index{INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}!size@{size}}
+\index{size@{size}!INTELLI::C20Buffer$<$ dataType $>$@{INTELLI::C20Buffer$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename data\+Type $>$ \\
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1C20Buffer}{INTELLI\+::\+C20\+Buffer}}$<$ data\+Type $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To get how many VALID elements are existed in the buffer. 
+
+\begin{DoxyReturn}{Returns}
+The size of VALID elements 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+\+: This is NOT the size of total buffer 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classINTELLI_1_1C20Buffer_a15222895fb78fcbefc619dfac9eb5118}{buffer\+Size}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\mbox{\hyperlink{C20Buffers_8hpp}{C20\+Buffers.\+hpp}}\end{DoxyCompactItemize}

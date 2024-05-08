@@ -1,0 +1,5 @@
+<map id="INTELLI::AbstractC20Thread" name="INTELLI::AbstractC20Thread">
+<area shape="rect" id="node1" title="The base class and abstraction of C++20 thread, and it can be derived into other threads." alt="" coords="11,5,214,32"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1ParallelIndexWorker.html" title="A worker class of parallel index thread." alt="" coords="11,80,214,107"/>
+<area shape="rect" id="node3" href="$classCANDY_1_1CongestionDropIndexWorker.html" title="A worker class to container bottom indexings, will just drop new element if congestion occurs." alt="" coords="5,155,220,196"/>
+</map>

@@ -1,0 +1,83 @@
+\hypertarget{classINTELLI_1_1SPSCQueue}{}\doxysection{INTELLI\+::SPSCQueue$<$ T, Allocator $>$ Class Template Reference}
+\label{classINTELLI_1_1SPSCQueue}\index{INTELLI::SPSCQueue$<$ T, Allocator $>$@{INTELLI::SPSCQueue$<$ T, Allocator $>$}}
+
+
+Collaboration diagram for INTELLI\+::SPSCQueue$<$ T, Allocator $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classINTELLI_1_1SPSCQueue__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a277e000eef635928f1704346465ceab0}\label{classINTELLI_1_1SPSCQueue_a277e000eef635928f1704346465ceab0}} 
+{\bfseries SPSCQueue} (const size\+\_\+t capacity, const Allocator \&allocator=Allocator())
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a5e5d043ca350a6ee7dbebc4345a28fe8}\label{classINTELLI_1_1SPSCQueue_a5e5d043ca350a6ee7dbebc4345a28fe8}} 
+{\bfseries SPSCQueue} (const \mbox{\hyperlink{classINTELLI_1_1SPSCQueue}{SPSCQueue}} \&)=delete
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_ab7bd8f4bd164ef4dc0650833fa2d2a56}\label{classINTELLI_1_1SPSCQueue_ab7bd8f4bd164ef4dc0650833fa2d2a56}} 
+\mbox{\hyperlink{classINTELLI_1_1SPSCQueue}{SPSCQueue}} \& {\bfseries operator=} (const \mbox{\hyperlink{classINTELLI_1_1SPSCQueue}{SPSCQueue}} \&)=delete
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a786438a13b14e90fb4a92d567b8d742a}\label{classINTELLI_1_1SPSCQueue_a786438a13b14e90fb4a92d567b8d742a}} 
+void {\bfseries wake\+Up\+Sink} (void)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_ae6390176ff5ae6bf599fa795ae8450bb}\label{classINTELLI_1_1SPSCQueue_ae6390176ff5ae6bf599fa795ae8450bb}} 
+void {\bfseries wait\+For\+Source} (void)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a936495ba8235163c07087e612f50521b}\label{classINTELLI_1_1SPSCQueue_a936495ba8235163c07087e612f50521b}} 
+{\footnotesize template$<$typename... Args$>$ }\\void {\bfseries emplace} (Args \&\&...args) noexcept(std\+::is\+\_\+nothrow\+\_\+constructible$<$ T, Args \&\&... $>$\+::value)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_adf8a886e171f9535dba450c8aaf39033}\label{classINTELLI_1_1SPSCQueue_adf8a886e171f9535dba450c8aaf39033}} 
+{\footnotesize template$<$typename... Args$>$ }\\bool {\bfseries try\+\_\+emplace} (Args \&\&...args) noexcept(std\+::is\+\_\+nothrow\+\_\+constructible$<$ T, Args \&\&... $>$\+::value)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_aaa4333e9eda58331ccc84bc8993717d7}\label{classINTELLI_1_1SPSCQueue_aaa4333e9eda58331ccc84bc8993717d7}} 
+void {\bfseries push} (const T \&v) noexcept(std\+::is\+\_\+nothrow\+\_\+copy\+\_\+constructible$<$ T $>$\+::value)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_ab4d9aa00f0a5f35590b7797b2c1cd6cc}\label{classINTELLI_1_1SPSCQueue_ab4d9aa00f0a5f35590b7797b2c1cd6cc}} 
+{\footnotesize template$<$typename P , typename  = typename std\+::enable\+\_\+if$<$      std\+::is\+\_\+constructible$<$\+T, P \&\&$>$\+::value$>$\+::type$>$ }\\void {\bfseries push} (P \&\&v) noexcept(std\+::is\+\_\+nothrow\+\_\+constructible$<$ T, P \&\& $>$\+::value)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_acd94d19a56385193d7ef655bde389ee1}\label{classINTELLI_1_1SPSCQueue_acd94d19a56385193d7ef655bde389ee1}} 
+bool {\bfseries try\+\_\+push} (const T \&v) noexcept(std\+::is\+\_\+nothrow\+\_\+copy\+\_\+constructible$<$ T $>$\+::value)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a982943036e651ebe916b6c81b5ee1779}\label{classINTELLI_1_1SPSCQueue_a982943036e651ebe916b6c81b5ee1779}} 
+{\footnotesize template$<$typename P , typename  = typename std\+::enable\+\_\+if$<$      std\+::is\+\_\+constructible$<$\+T, P \&\&$>$\+::value$>$\+::type$>$ }\\bool {\bfseries try\+\_\+push} (P \&\&v) noexcept(std\+::is\+\_\+nothrow\+\_\+constructible$<$ T, P \&\& $>$\+::value)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a0405df5662782adc890d587122c324c1}\label{classINTELLI_1_1SPSCQueue_a0405df5662782adc890d587122c324c1}} 
+T $\ast$ {\bfseries front} () noexcept
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a257502140d1c432e863aa3d4eef930a1}\label{classINTELLI_1_1SPSCQueue_a257502140d1c432e863aa3d4eef930a1}} 
+void {\bfseries pop} () noexcept
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a3d7b5917744595b841e933cf3716ae54}\label{classINTELLI_1_1SPSCQueue_a3d7b5917744595b841e933cf3716ae54}} 
+size\+\_\+t {\bfseries size} () const noexcept
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a3375e12ddf49eef9b8b38dc4d676179e}\label{classINTELLI_1_1SPSCQueue_a3375e12ddf49eef9b8b38dc4d676179e}} 
+bool {\bfseries empty} () const noexcept
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a7c61c92dd8c9a5af64ef5d23650129fd}\label{classINTELLI_1_1SPSCQueue_a7c61c92dd8c9a5af64ef5d23650129fd}} 
+size\+\_\+t {\bfseries capacity} () const noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a40b34ddaa4cf340d1ed73f0940097906}\label{classINTELLI_1_1SPSCQueue_a40b34ddaa4cf340d1ed73f0940097906}} 
+pthread\+\_\+cond\+\_\+t {\bfseries cond}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a10b669c6aeecf656f6323c1842f60cda}\label{classINTELLI_1_1SPSCQueue_a10b669c6aeecf656f6323c1842f60cda}} 
+pthread\+\_\+mutex\+\_\+t {\bfseries mutex}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_a790250d988ed9d5ed45d2193281356a7}\label{classINTELLI_1_1SPSCQueue_a790250d988ed9d5ed45d2193281356a7}} 
+std\+::mutex {\bfseries g\+\_\+mutex}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1SPSCQueue_ada575ce5e33da847790bf375a63097ef}\label{classINTELLI_1_1SPSCQueue_ada575ce5e33da847790bf375a63097ef}} 
+condition\+\_\+variable {\bfseries g\+\_\+con}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/SPSCQueue.\+hpp\end{DoxyCompactItemize}

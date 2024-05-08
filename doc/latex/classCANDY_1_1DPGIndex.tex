@@ -1,0 +1,430 @@
+\hypertarget{classCANDY_1_1DPGIndex}{}\doxysection{CANDY\+::DPGIndex Class Reference}
+\label{classCANDY_1_1DPGIndex}\index{CANDY::DPGIndex@{CANDY::DPGIndex}}
+
+
+A hierarchical algorithm based on a data structure consistent with \mbox{\hyperlink{classCANDY_1_1NNDescentIndex}{NNDescent\+Index}}, the subgraph in the hierarchical graph will retain half of the most directional diversity of edges in the original graph, and expand the unidirectional edges into bidirectional edges. The offline construction of the basic graph still uses the NNDescent algorithm in this implementation.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+DPGIndex.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::DPGIndex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{classCANDY_1_1DPGIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::DPGIndex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1DPGIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1DPGIndex_1_1Neighbor}{Neighbor}}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1DPGIndex_1_1NhoodLayer0}{Nhood\+Layer0}}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1DPGIndex_1_1NhoodLayer1}{Nhood\+Layer1}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DPGIndex_a8766dc410054270ef009a1a952b37409}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1DPGIndex_ae11b068932f5620e797e26c5f0ea857e}{insert\+Tensor}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a42c2b6b4b7c1be0e11130026587a6c5e}\label{classCANDY_1_1DPGIndex_a42c2b6b4b7c1be0e11130026587a6c5e}} 
+virtual void \mbox{\hyperlink{classCANDY_1_1DPGIndex_a42c2b6b4b7c1be0e11130026587a6c5e}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DPGIndex_aa089de0ae6e391a85d1e198717b337cb}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DPGIndex_ae11b068932f5620e797e26c5f0ea857e}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DPGIndex_a162c3345f30e536a72ad3766fbade5b1}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DPGIndex_a68b1b2990adf2ddc9e44609c4106af94}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1DPGIndex_ac5925c0c54ff3eef28ad06a8b193bdb6}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1DPGIndex_a17f789dbfd1be6ab6ae01b3395804f64}{raw\+Data}} ()
+\begin{DoxyCompactList}\small\item\em return the raw\+Data of tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1DPGIndex_a4419cf5d60e25a6006b6ae114d18500b}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DPGIndex_add25332ff97a0969aafc0188d636fc7c}{start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DPGIndex_aebed4bc748d8d81ee1b5a1f9b7e94dc4}{end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DPGIndex_a52f4b2299ccb9f24015635abeaba01c3}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DPGIndex_a7cb7b1be42c46e82a9161afe89937f9c}{offline\+Build}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a2dc77ad4d015d1b6c6badf1b34ba9f4d}\label{classCANDY_1_1DPGIndex_a2dc77ad4d015d1b6c6badf1b34ba9f4d}} 
+void {\bfseries nn\+Descent} ()
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_ac49c2dca2dc613fbacc8db0ff2cec292}\label{classCANDY_1_1DPGIndex_ac49c2dca2dc613fbacc8db0ff2cec292}} 
+void {\bfseries random\+Sample} (std\+::mt19937 \&rng, std\+::vector$<$ size\+\_\+t $>$ \&vec, size\+\_\+t n, size\+\_\+t sampled\+Count)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_ac3ae752efb2d75020923f13bdf79b074}\label{classCANDY_1_1DPGIndex_ac3ae752efb2d75020923f13bdf79b074}} 
+bool {\bfseries update\+Layer0\+Neighbor} (size\+\_\+t i, size\+\_\+t j, double dist)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_adfb520be9bf2e664b53b1cb581962d5b}\label{classCANDY_1_1DPGIndex_adfb520be9bf2e664b53b1cb581962d5b}} 
+void {\bfseries add\+Layer1\+Neighbor} (size\+\_\+t i, size\+\_\+t j)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_aa11635e117222b60c44062f35d335f0f}\label{classCANDY_1_1DPGIndex_aa11635e117222b60c44062f35d335f0f}} 
+void {\bfseries remove\+Layer1\+Neighbor} (size\+\_\+t i, size\+\_\+t j)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a3ce41aea0e23cfeb6ab1db21817f916a}\label{classCANDY_1_1DPGIndex_a3ce41aea0e23cfeb6ab1db21817f916a}} 
+double {\bfseries calc\+Dist} (const torch\+::\+Tensor \&ta, const torch\+::\+Tensor \&tb)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a1a67caf13444506a2939429a587f41c0}\label{classCANDY_1_1DPGIndex_a1a67caf13444506a2939429a587f41c0}} 
+torch\+::\+Tensor {\bfseries search\+Once} (torch\+::\+Tensor q, int64\+\_\+t k)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a99c760379aa5596d09d4c9f18bd7ace9}\label{classCANDY_1_1DPGIndex_a99c760379aa5596d09d4c9f18bd7ace9}} 
+std\+::vector$<$ std\+::pair$<$ double, size\+\_\+t $>$ $>$ {\bfseries search\+Once\+Inner} (torch\+::\+Tensor q, int64\+\_\+t k)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_ae1001f53de1912c51431e66e5a896bc3}\label{classCANDY_1_1DPGIndex_ae1001f53de1912c51431e66e5a896bc3}} 
+bool {\bfseries insert\+Once} (vector$<$ std\+::pair$<$ double, size\+\_\+t $>$$>$ \&neighbors, torch\+::\+Tensor t)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a619976f74d62b0071092b5fe13347398}\label{classCANDY_1_1DPGIndex_a619976f74d62b0071092b5fe13347398}} 
+bool {\bfseries delete\+Once} (torch\+::\+Tensor t, int64\+\_\+t k)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a8721b2c98e2ea0229ece59dccdd7f524}\label{classCANDY_1_1DPGIndex_a8721b2c98e2ea0229ece59dccdd7f524}} 
+void {\bfseries parallel\+For} (size\+\_\+t idx\+Size, std\+::function$<$ void(size\+\_\+t)$>$ action)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_aa4da920af73b8ef307e621915b3ce97f}\label{classCANDY_1_1DPGIndex_aa4da920af73b8ef307e621915b3ce97f}} 
+void {\bfseries build\+Layer1} (size\+\_\+t i)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a7453bdd571753669c316b8372889c531}\label{classCANDY_1_1DPGIndex_a7453bdd571753669c316b8372889c531}} 
+int64\+\_\+t {\bfseries graphK}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_aef0f582eacb77eefa37561d8830244f8}\label{classCANDY_1_1DPGIndex_aef0f582eacb77eefa37561d8830244f8}} 
+int64\+\_\+t {\bfseries parallel\+Workers}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a50675c94fe58aa74a1fabb8c68f46b3d}\label{classCANDY_1_1DPGIndex_a50675c94fe58aa74a1fabb8c68f46b3d}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a287c234a89f2c8ebcbd4a3dcc6edd3a5}\label{classCANDY_1_1DPGIndex_a287c234a89f2c8ebcbd4a3dcc6edd3a5}} 
+int64\+\_\+t {\bfseries frozen\+Level}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a4da22e99084ead6d73b4ba185dc605b5}\label{classCANDY_1_1DPGIndex_a4da22e99084ead6d73b4ba185dc605b5}} 
+double {\bfseries rho}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a5445ab19260b3562674137c607c2fa53}\label{classCANDY_1_1DPGIndex_a5445ab19260b3562674137c607c2fa53}} 
+double {\bfseries delta}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_ac680600b5d40a7fcf6c0310f1d342a6a}\label{classCANDY_1_1DPGIndex_ac680600b5d40a7fcf6c0310f1d342a6a}} 
+std\+::vector$<$ \mbox{\hyperlink{structCANDY_1_1DPGIndex_1_1NhoodLayer0}{Nhood\+Layer0}} $>$ {\bfseries graph\+Layer0}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_addbe9227d5ba54d04300cc0bb5150995}\label{classCANDY_1_1DPGIndex_addbe9227d5ba54d04300cc0bb5150995}} 
+std\+::vector$<$ \mbox{\hyperlink{structCANDY_1_1DPGIndex_1_1NhoodLayer1}{Nhood\+Layer1}} $>$ {\bfseries graph\+Layer1}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_ae8c62b0ab467dc08e139f360cbc4dae5}\label{classCANDY_1_1DPGIndex_ae8c62b0ab467dc08e139f360cbc4dae5}} 
+std\+::vector$<$ torch\+::\+Tensor $>$ {\bfseries tensor}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_ab99816665dd642fa2daa93911718f454}\label{classCANDY_1_1DPGIndex_ab99816665dd642fa2daa93911718f454}} 
+std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ {\bfseries deleted\+Idx\+Set}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A hierarchical algorithm based on a data structure consistent with \mbox{\hyperlink{classCANDY_1_1NNDescentIndex}{NNDescent\+Index}}, the subgraph in the hierarchical graph will retain half of the most directional diversity of edges in the original graph, and expand the unidirectional edges into bidirectional edges. The offline construction of the basic graph still uses the NNDescent algorithm in this implementation. 
+
+\begin{DoxyNote}{Note}
+special parameters
+\begin{DoxyItemize}
+\item parallel\+Workers The number of paraller workers, I64, default 1 (set this to less than 0 will use max hardware\+\_\+concurrency);
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item graphK, the neighbors of every node in internal data struct, default 20, I64
+\item rho, sample proportion in NNDescent algorithm which takes effect in offline build only (larger is higher accuracy but lower speed), default 1.\+0, F64
+\item delta, loop termination condition in NNDescent algorithm which takes effect in offline build only (smaller is higher accuracy but lower speed), default 0.\+01, F64 @warnning Make sure you are using 2D tensors! 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a162c3345f30e536a72ad3766fbade5b1}\label{classCANDY_1_1DPGIndex_a162c3345f30e536a72ad3766fbade5b1}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DPGIndex\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index needs to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_aebed4bc748d8d81ee1b5a1f9b7e94dc4}\label{classCANDY_1_1DPGIndex_aebed4bc748d8d81ee1b5a1f9b7e94dc4}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!endHPC@{endHPC}}
+\index{endHPC@{endHPC}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{endHPC()}{endHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DPGIndex\+::end\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra termination if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC termination is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a3c4cdf616320ab7208fc7025b37b9a08}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_ac5925c0c54ff3eef28ad06a8b193bdb6}\label{classCANDY_1_1DPGIndex_ac5925c0c54ff3eef28ad06a8b193bdb6}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+DPGIndex\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_ae11b068932f5620e797e26c5f0ea857e}\label{classCANDY_1_1DPGIndex_ae11b068932f5620e797e26c5f0ea857e}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DPGIndex\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a8766dc410054270ef009a1a952b37409}\label{classCANDY_1_1DPGIndex_a8766dc410054270ef009a1a952b37409}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DPGIndex\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1DPGIndex_ae11b068932f5620e797e26c5f0ea857e}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1DPGIndex_ae11b068932f5620e797e26c5f0ea857e}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a7cb7b1be42c46e82a9161afe89937f9c}\label{classCANDY_1_1DPGIndex_a7cb7b1be42c46e82a9161afe89937f9c}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!offlineBuild@{offlineBuild}}
+\index{offlineBuild@{offlineBuild}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{offlineBuild()}{offlineBuild()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DPGIndex\+::offline\+Build (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_aca873d66824f385feac1a7cb49abdfac}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a17f789dbfd1be6ab6ae01b3395804f64}\label{classCANDY_1_1DPGIndex_a17f789dbfd1be6ab6ae01b3395804f64}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!rawData@{rawData}}
+\index{rawData@{rawData}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{rawData()}{rawData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+DPGIndex\+::raw\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return the raw\+Data of tensor 
+
+\begin{DoxyReturn}{Returns}
+The raw data stored in tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a68b1b2990adf2ddc9e44609c4106af94}\label{classCANDY_1_1DPGIndex_a68b1b2990adf2ddc9e44609c4106af94}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DPGIndex\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+only support to delete and insert, no straightforward revision 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a4419cf5d60e25a6006b6ae114d18500b}\label{classCANDY_1_1DPGIndex_a4419cf5d60e25a6006b6ae114d18500b}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+DPGIndex\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_aa089de0ae6e391a85d1e198717b337cb}\label{classCANDY_1_1DPGIndex_aa089de0ae6e391a85d1e198717b337cb}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DPGIndex\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specfic config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_a52f4b2299ccb9f24015635abeaba01c3}\label{classCANDY_1_1DPGIndex_a52f4b2299ccb9f24015635abeaba01c3}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DPGIndex\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a637e0a15f3753c2188da92f8b787061d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DPGIndex_add25332ff97a0969aafc0188d636fc7c}\label{classCANDY_1_1DPGIndex_add25332ff97a0969aafc0188d636fc7c}} 
+\index{CANDY::DPGIndex@{CANDY::DPGIndex}!startHPC@{startHPC}}
+\index{startHPC@{startHPC}!CANDY::DPGIndex@{CANDY::DPGIndex}}
+\doxysubsubsection{\texorpdfstring{startHPC()}{startHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DPGIndex\+::start\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra set-\/ups if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC set-\/up is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abb4333a11499fc6c88d1d78bc77138f4}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{DPGIndex_8h}{DPGIndex.\+h}}\item 
+src/\+CANDY/\mbox{\hyperlink{DPGIndex_8cpp}{DPGIndex.\+cpp}}\end{DoxyCompactItemize}

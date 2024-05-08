@@ -1,0 +1,118 @@
+\hypertarget{classDIVERSE__METER_1_1MeterTable}{}\doxysection{DIVERSE\+\_\+\+METER\+::Meter\+Table Class Reference}
+\label{classDIVERSE__METER_1_1MeterTable}\index{DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}}
+
+
+The table class to index all meters.  
+
+
+
+
+Collaboration diagram for DIVERSE\+\_\+\+METER\+::Meter\+Table\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classDIVERSE__METER_1_1MeterTable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable}{DIVERSE\+\_\+\+METER\+::\+Meter\+Table}} $>$ \mbox{\hyperlink{group__INTELLI__UTIL__METER_gab755b6426c81c42c1434a30109c731d5}{Meter\+Table\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable}{Meter\+Table}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable_a1224adfa14d45bfa4fb46c9348c7db92}{Meter\+Table}} ()
+\begin{DoxyCompactList}\small\item\em The constructing function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable_a13770fe08f17f11ec0c0c2e7837f958e}{register\+New\+Meter}} (DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+Ptr dnew, std\+::string tag)
+\begin{DoxyCompactList}\small\item\em To register a new meter. \end{DoxyCompactList}\item 
+DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+Ptr \mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable_a33cc87bc35fc65691cf13bb3436830f7}{find\+Meter}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em find a meter in the table according to its name \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDIVERSE__METER_1_1MeterTable_a52d132a8d5b6aef6fe4935dae00d60ec}\label{classDIVERSE__METER_1_1MeterTable_a52d132a8d5b6aef6fe4935dae00d60ec}} 
+std\+::map$<$ std\+::string, DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+Ptr $>$ {\bfseries meter\+Map}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The table class to index all meters. 
+
+\begin{DoxyNote}{Note}
+Default behavior
+\begin{DoxyItemize}
+\item create
+\item (optional) call \mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable_a13770fe08f17f11ec0c0c2e7837f958e}{register\+New\+Meter}} for new meter
+\item find a loader by \mbox{\hyperlink{classDIVERSE__METER_1_1MeterTable_a33cc87bc35fc65691cf13bb3436830f7}{find\+Meter}} using its tag 
+\end{DoxyItemize}
+
+default tags
+\begin{DoxyItemize}
+\item esp\+Uart \mbox{\hyperlink{classDIVERSE__METER_1_1EspMeterUart}{Esp\+Meter\+Uart}}
+\item intel\+Msr \mbox{\hyperlink{classDIVERSE__METER_1_1IntelMeter}{Intel\+Meter}} 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDIVERSE__METER_1_1MeterTable_a1224adfa14d45bfa4fb46c9348c7db92}\label{classDIVERSE__METER_1_1MeterTable_a1224adfa14d45bfa4fb46c9348c7db92}} 
+\index{DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}!MeterTable@{MeterTable}}
+\index{MeterTable@{MeterTable}!DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}}
+\doxysubsubsection{\texorpdfstring{MeterTable()}{MeterTable()}}
+{\footnotesize\ttfamily DIVERSE\+\_\+\+METER\+::\+Meter\+Table\+::\+Meter\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The constructing function. 
+
+\begin{DoxyNote}{Note}
+If new Matrix\+Loader wants to be included by default, please revise the following in $\ast$.cpp
+
+revise me if you need new loader 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDIVERSE__METER_1_1MeterTable_a33cc87bc35fc65691cf13bb3436830f7}\label{classDIVERSE__METER_1_1MeterTable_a33cc87bc35fc65691cf13bb3436830f7}} 
+\index{DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}!findMeter@{findMeter}}
+\index{findMeter@{findMeter}!DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}}
+\doxysubsubsection{\texorpdfstring{findMeter()}{findMeter()}}
+{\footnotesize\ttfamily DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+Ptr DIVERSE\+\_\+\+METER\+::\+Meter\+Table\+::find\+Meter (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+find a meter in the table according to its name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name\+Tag of loader \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Meter, nullptr if not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDIVERSE__METER_1_1MeterTable_a13770fe08f17f11ec0c0c2e7837f958e}\label{classDIVERSE__METER_1_1MeterTable_a13770fe08f17f11ec0c0c2e7837f958e}} 
+\index{DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}!registerNewMeter@{registerNewMeter}}
+\index{registerNewMeter@{registerNewMeter}!DIVERSE\_METER::MeterTable@{DIVERSE\_METER::MeterTable}}
+\doxysubsubsection{\texorpdfstring{registerNewMeter()}{registerNewMeter()}}
+{\footnotesize\ttfamily void DIVERSE\+\_\+\+METER\+::\+Meter\+Table\+::register\+New\+Meter (\begin{DoxyParamCaption}\item[{DIVERSE\+\_\+\+METER\+::\+Abstract\+Meter\+Ptr}]{dnew,  }\item[{std\+::string}]{tag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To register a new meter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em onew} & The new operator \\
+\hline
+{\em tag} & THe name tag \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\+Meters/Meter\+Table.\+h\item 
+src/\+Utils/\+Meters/Meter\+Table.\+cpp\end{DoxyCompactItemize}

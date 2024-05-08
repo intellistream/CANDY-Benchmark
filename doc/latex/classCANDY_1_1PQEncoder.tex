@@ -1,0 +1,70 @@
+\hypertarget{classCANDY_1_1PQEncoder}{}\doxysection{CANDY\+::PQEncoder Class Reference}
+\label{classCANDY_1_1PQEncoder}\index{CANDY::PQEncoder@{CANDY::PQEncoder}}
+
+
+class for encoding input vectors to codes, standing for approximated assignment of centroids  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+PQIndex.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::PQEncoder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{classCANDY_1_1PQEncoder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQEncoder_a7e374a9ed965aaf0f0c150ae90e54d61}\label{classCANDY_1_1PQEncoder_a7e374a9ed965aaf0f0c150ae90e54d61}} 
+{\bfseries PQEncoder} (uint8\+\_\+t $\ast$code, int64\+\_\+t nbits, uint8\+\_\+t offset)
+\item 
+void \mbox{\hyperlink{classCANDY_1_1PQEncoder_a5b6e7df8972bb688df5705e4e6874fad}{encode}} (uint64\+\_\+t x)
+\begin{DoxyCompactList}\small\item\em encode assignment x to code \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQEncoder_ab601192586daa6a8f992ef507a793862}\label{classCANDY_1_1PQEncoder_ab601192586daa6a8f992ef507a793862}} 
+uint8\+\_\+t $\ast$ {\bfseries code\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQEncoder_ae0f0e9df2940036fc5b80f98849351c7}\label{classCANDY_1_1PQEncoder_ae0f0e9df2940036fc5b80f98849351c7}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1PQEncoder_ae0f0e9df2940036fc5b80f98849351c7}{nbits\+\_\+}}
+\begin{DoxyCompactList}\small\item\em number of bits per subquantizer index \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1PQEncoder_aaa5476e6130bb220dd45c5424412a05e}\label{classCANDY_1_1PQEncoder_aaa5476e6130bb220dd45c5424412a05e}} 
+uint8\+\_\+t {\bfseries offset\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQEncoder_ac3694d980db6d2d2bfa03ffcb25d04a1}\label{classCANDY_1_1PQEncoder_ac3694d980db6d2d2bfa03ffcb25d04a1}} 
+uint8\+\_\+t {\bfseries reg\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class for encoding input vectors to codes, standing for approximated assignment of centroids 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1PQEncoder_a5b6e7df8972bb688df5705e4e6874fad}\label{classCANDY_1_1PQEncoder_a5b6e7df8972bb688df5705e4e6874fad}} 
+\index{CANDY::PQEncoder@{CANDY::PQEncoder}!encode@{encode}}
+\index{encode@{encode}!CANDY::PQEncoder@{CANDY::PQEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void CANDY\+::\+PQEncoder\+::encode (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+encode assignment x to code 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & centroids assignment of a vector for its part of sub-\/vector \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/PQIndex.\+h\end{DoxyCompactItemize}

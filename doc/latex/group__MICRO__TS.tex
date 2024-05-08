@@ -1,0 +1,82 @@
+\hypertarget{group__MICRO__TS}{}\doxysection{time stamp}
+\label{group__MICRO__TS}\index{time stamp@{time stamp}}
+Collaboration diagram for time stamp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{group__MICRO__TS}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class ts\+Type  = size\+\_\+t$>$ }\\vector$<$ ts\+Type $>$ \mbox{\hyperlink{group__MICRO__TS_ga19765940de8d14bbc533d507e62be20a}{INTELLI\+::\+Micro\+Data\+Set\+::gen\+Smooth\+Time\+Stamp}} (size\+\_\+t len, size\+\_\+t step, size\+\_\+t interval)
+\begin{DoxyCompactList}\small\item\em The function to generate a vector of timestamp which grows smoothly. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__MICRO__TS_gadbd93deecbd49a635f10f0c9b7bf787d}\label{group__MICRO__TS_gadbd93deecbd49a635f10f0c9b7bf787d}} 
+{\footnotesize template$<$class ts\+Type  = size\+\_\+t$>$ }\\vector$<$ ts\+Type $>$ {\bfseries INTELLI\+::\+Micro\+Data\+Set\+::gen\+Smooth\+Time\+Stamp} (size\+\_\+t len, size\+\_\+t max\+Time)
+\item 
+{\footnotesize template$<$class ts\+Type  = size\+\_\+t$>$ }\\vector$<$ ts\+Type $>$ \mbox{\hyperlink{group__MICRO__TS_ga2a4363c83af4c281d3a251676bdf7d2d}{INTELLI\+::\+Micro\+Data\+Set\+::gen\+Zipf\+Time\+Stamp}} (size\+\_\+t len, ts\+Type max\+Time, double fac)
+\begin{DoxyCompactList}\small\item\em The function to generate a vector of timestamp which has zipf distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This group is specialized for time stamps, as they should follow an incremental order 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__MICRO__TS_ga19765940de8d14bbc533d507e62be20a}\label{group__MICRO__TS_ga19765940de8d14bbc533d507e62be20a}} 
+\index{time stamp@{time stamp}!genSmoothTimeStamp@{genSmoothTimeStamp}}
+\index{genSmoothTimeStamp@{genSmoothTimeStamp}!time stamp@{time stamp}}
+\doxysubsubsection{\texorpdfstring{genSmoothTimeStamp()}{genSmoothTimeStamp()}}
+{\footnotesize\ttfamily template$<$class ts\+Type  = size\+\_\+t$>$ \\
+vector$<$ts\+Type$>$ INTELLI\+::\+Micro\+Data\+Set\+::gen\+Smooth\+Time\+Stamp (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{len,  }\item[{size\+\_\+t}]{step,  }\item[{size\+\_\+t}]{interval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The function to generate a vector of timestamp which grows smoothly. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em ts\+Type} & The data type of time stamp, default is size\+\_\+t \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length of output vector \\
+\hline
+{\em step} & Within the step, timestamp will remain the same \\
+\hline
+{\em interval} & The incremental value between two steps \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector of time stamp 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__MICRO__TS_ga2a4363c83af4c281d3a251676bdf7d2d}\label{group__MICRO__TS_ga2a4363c83af4c281d3a251676bdf7d2d}} 
+\index{time stamp@{time stamp}!genZipfTimeStamp@{genZipfTimeStamp}}
+\index{genZipfTimeStamp@{genZipfTimeStamp}!time stamp@{time stamp}}
+\doxysubsubsection{\texorpdfstring{genZipfTimeStamp()}{genZipfTimeStamp()}}
+{\footnotesize\ttfamily template$<$class ts\+Type  = size\+\_\+t$>$ \\
+vector$<$ts\+Type$>$ INTELLI\+::\+Micro\+Data\+Set\+::gen\+Zipf\+Time\+Stamp (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{len,  }\item[{ts\+Type}]{max\+Time,  }\item[{double}]{fac }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The function to generate a vector of timestamp which has zipf distribution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ts\+Type} & The data type of time stamp, default is size\+\_\+t \\
+\hline
+{\em len} & The length of output vector \\
+\hline
+{\em max\+Time} & The maximum value of time stamp \\
+\hline
+{\em fac} & The zipf factor, in \mbox{[}0,1\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output vector 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__MICRO__GENERIC_ga655634e729cd01d5b4d2c996fe6a0e03}{gen\+Zipf\+Int}} 
+\end{DoxySeeAlso}

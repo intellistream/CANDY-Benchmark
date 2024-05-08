@@ -1,0 +1,112 @@
+\hypertarget{classCANDY_1_1MLPHashingModel}{}\doxysection{CANDY\+::MLPHashing\+Model Class Reference}
+\label{classCANDY_1_1MLPHashingModel}\index{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1MLPHashingModel_aaace0561b1acf784d2ad4779fb67b7d1}{init}} (int64\+\_\+t input\+Dim, int64\+\_\+t output\+Dim, \mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} extra\+Config)
+\begin{DoxyCompactList}\small\item\em init the model class \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1MLPHashingModel_ae37b536a60d2a8e54a633dc1f3f05f82}{train\+Model}} (torch\+::\+Tensor \&x1, torch\+::\+Tensor \&x2, torch\+::\+Tensor \&labels)
+\begin{DoxyCompactList}\small\item\em the training function \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1MLPHashingModel_a853df4ee0545f52092dc058d964d8a5c}{fine\+Tune\+Model}} (torch\+::\+Tensor \&x1, torch\+::\+Tensor \&x2, torch\+::\+Tensor \&labels, int64\+\_\+t epochs, double lr)
+\begin{DoxyCompactList}\small\item\em the fine tune function \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1MLPHashingModel_a39329601e30604af1ca906de48175279}{hash}} (torch\+::\+Tensor input)
+\begin{DoxyCompactList}\small\item\em the forward hashing function \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1MLPHashingModel_a853df4ee0545f52092dc058d964d8a5c}\label{classCANDY_1_1MLPHashingModel_a853df4ee0545f52092dc058d964d8a5c}} 
+\index{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}!fineTuneModel@{fineTuneModel}}
+\index{fineTuneModel@{fineTuneModel}!CANDY::MLPHashingModel@{CANDY::MLPHashingModel}}
+\doxysubsubsection{\texorpdfstring{fineTuneModel()}{fineTuneModel()}}
+{\footnotesize\ttfamily void CANDY\+::\+MLPHashing\+Model\+::fine\+Tune\+Model (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{x1,  }\item[{torch\+::\+Tensor \&}]{x2,  }\item[{torch\+::\+Tensor \&}]{labels,  }\item[{int64\+\_\+t}]{epochs,  }\item[{double}]{lr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+the fine tune function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x1} & an 2D tensor sized \mbox{[}n$\ast$d\mbox{]} \\
+\hline
+{\em x2} & an 2D tensor sized \mbox{[}n$\ast$d\mbox{]} \\
+\hline
+{\em labels} & an 1D integer tensor sized n, indicating whether x1\mbox{[}i\mbox{]} is similar to x2\mbox{[}i\mbox{]} \\
+\hline
+{\em epochs} & the number of epoches \\
+\hline
+{\em lr} & the learning rate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1MLPHashingModel_a39329601e30604af1ca906de48175279}\label{classCANDY_1_1MLPHashingModel_a39329601e30604af1ca906de48175279}} 
+\index{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}!hash@{hash}}
+\index{hash@{hash}!CANDY::MLPHashingModel@{CANDY::MLPHashingModel}}
+\doxysubsubsection{\texorpdfstring{hash()}{hash()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+MLPHashing\+Model\+::hash (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+the forward hashing function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output tensor for encoding 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1MLPHashingModel_aaace0561b1acf784d2ad4779fb67b7d1}\label{classCANDY_1_1MLPHashingModel_aaace0561b1acf784d2ad4779fb67b7d1}} 
+\index{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}!init@{init}}
+\index{init@{init}!CANDY::MLPHashingModel@{CANDY::MLPHashingModel}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void CANDY\+::\+MLPHashing\+Model\+::init (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{input\+Dim,  }\item[{int64\+\_\+t}]{output\+Dim,  }\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{extra\+Config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+init the model class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Dim} & the dimension of model ending input \\
+\hline
+{\em output\+Dim} & the dimension of model ending output \\
+\hline
+{\em extra\+Config} & optional extra configs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+accepted configurations
+\begin{DoxyItemize}
+\item cuda\+Build whether or not use cuda to build model, I64, default 0
+\item learning\+Rate the learning rate for training, Double, default 0.\+01
+\item hidden\+Layer\+Dim the dimension of hidden layer, I64, default the same as output layer
+\item MLTrain\+Batch\+Size the batch size of ML training, I64, default 64
+\item MLTrain\+Margin the margin value in regulating variance used in training, Double, default 0
+\item MLTrain\+Epochs the number of epochs in training, I64, default 10 
+\end{DoxyItemize}
+\end{DoxyNote}
+\mbox{\Hypertarget{classCANDY_1_1MLPHashingModel_ae37b536a60d2a8e54a633dc1f3f05f82}\label{classCANDY_1_1MLPHashingModel_ae37b536a60d2a8e54a633dc1f3f05f82}} 
+\index{CANDY::MLPHashingModel@{CANDY::MLPHashingModel}!trainModel@{trainModel}}
+\index{trainModel@{trainModel}!CANDY::MLPHashingModel@{CANDY::MLPHashingModel}}
+\doxysubsubsection{\texorpdfstring{trainModel()}{trainModel()}}
+{\footnotesize\ttfamily void CANDY\+::\+MLPHashing\+Model\+::train\+Model (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{x1,  }\item[{torch\+::\+Tensor \&}]{x2,  }\item[{torch\+::\+Tensor \&}]{labels }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+the training function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x1} & an 2D tensor sized \mbox{[}n$\ast$d\mbox{]} \\
+\hline
+{\em x2} & an 2D tensor sized \mbox{[}n$\ast$d\mbox{]} \\
+\hline
+{\em labels} & an 1D integer tensor sized n, indicating whether x1\mbox{[}i\mbox{]} is similar to x2\mbox{[}i\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Hashing\+Models/MLPHashing\+Model.\+h\item 
+src/\+CANDY/\+Hashing\+Models/MLPHashing\+Model.\+cpp\end{DoxyCompactItemize}

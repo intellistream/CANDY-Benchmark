@@ -1,0 +1,159 @@
+\hypertarget{classCANDY_1_1ParallelIndexWorker}{}\doxysection{CANDY\+::Parallel\+Index\+Worker Class Reference}
+\label{classCANDY_1_1ParallelIndexWorker}\index{CANDY::ParallelIndexWorker@{CANDY::ParallelIndexWorker}}
+
+
+A worker class of parallel index thread.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Parallel\+Partition\+Index/\+Parallel\+Index\+Worker.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Parallel\+Index\+Worker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classCANDY_1_1ParallelIndexWorker__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Parallel\+Index\+Worker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1ParallelIndexWorker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries set\+Reduce\+Queue} (Tensor\+List\+Idx\+Queue\+Ptr rq)
+\item 
+virtual void {\bfseries set\+Reduce\+Str\+Queue} (Tensor\+Str\+Vec\+Queue\+Ptr rq)
+\item 
+virtual void {\bfseries set\+Id} (int64\+\_\+t \+\_\+id)
+\item 
+virtual bool {\bfseries wait\+Pending\+Operations} ()
+\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gab380693999415183eed87611d1c50aa1}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga8cdc9da0f4ce7dba6338e52736729ea1}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga18b8e05bf4b06be387cd1a5808889706}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga4a3953683b78e957a69eb6df64d8d121}{start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gacd38ddca9b4a74e55b352c9d9bf9dc37}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga3cab4d64f1ea52be1842cbcaad1817bf}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7a92693bfe51a3b13a5ce8703a21a8f0}{search\+Index}} (torch\+::\+Tensor q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return their index \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7249e5be900c17f858411d7aa74351c6}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gadccb2f59bda4df39db56698c46ad16f0}{raw\+Data}} ()
+\begin{DoxyCompactList}\small\item\em return the raw\+Data of tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga37e429f9a6f489bacc743275d962aff2}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga2b838efccc92668b23acda243e67184a}{end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga70ac27f9ed3ce493cd2bb4659db99e56}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga4bef7ecfd7815c823a63e91a35eba930}{offline\+Build}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\item 
+virtual void {\bfseries push\+Search} (torch\+::\+Tensor q, int64\+\_\+t k)
+\item 
+virtual void {\bfseries push\+Search\+Str} (torch\+::\+Tensor q, int64\+\_\+t k)
+\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gabbb50f3e0ed10aad186736acc037d655}{load\+Initial\+String\+Object}} (torch\+::\+Tensor \&t, std\+::vector$<$ std\+::string $>$ \&strs)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base along with its string objects, use this BEFORE \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga0ccaf1e6740a30e667f5eb1978939e57}{insert\+String\+Object}} (torch\+::\+Tensor \&t, std\+::vector$<$ std\+::string $>$ \&strs)
+\begin{DoxyCompactList}\small\item\em insert a string object \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga2f555c491d065aa248ef9f4ec1617765}{delete\+String\+Object}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete tensor along with its corresponding string object \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga8fce4f72c2a43b18f7fdac5462b887e0}{search\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects \end{DoxyCompactList}\item 
+virtual std\+::tuple$<$ std\+::vector$<$ torch\+::\+Tensor $>$, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7b4062cb8bc9af973c420e2a144308df}{search\+Tensor\+And\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects and original tensors \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Tensor\+List\+Idx\+Queue\+Ptr {\bfseries reduce\+Queue}
+\item 
+Tensor\+Str\+Vec\+Queue\+Ptr {\bfseries reduce\+Str\+Queue}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7e29b5c156942b906c91cad583f269f0}{inline\+Main}} ()
+\begin{DoxyCompactList}\small\item\em The inline \textquotesingle{}main"{} function of thread, as an interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Tensor\+Queue\+Ptr {\bfseries insert\+Queue}
+\item 
+Tensor\+Queue\+Ptr {\bfseries revise\+Queue0}
+\item 
+Tensor\+Queue\+Ptr {\bfseries revise\+Queue1}
+\item 
+Tensor\+Queue\+Ptr {\bfseries build\+Queue}
+\item 
+Tensor\+Queue\+Ptr {\bfseries initial\+Load\+Queue}
+\item 
+Tensor\+Idx\+Queue\+Ptr {\bfseries delete\+Queue}
+\item 
+Tensor\+Idx\+Queue\+Ptr {\bfseries query\+Queue}
+\item 
+Tensor\+Idx\+Queue\+Ptr {\bfseries delete\+Str\+Queue}
+\item 
+Tensor\+Str\+Queue\+Ptr {\bfseries initial\+Str\+Queue}
+\item 
+Tensor\+Str\+Queue\+Ptr {\bfseries insert\+Str\+Queue}
+\item 
+Tensor\+Idx\+Queue\+Ptr {\bfseries query\+Str\+Queue}
+\item 
+Cmd\+Queue\+Ptr {\bfseries cmd\+Queue}
+\item 
+int64\+\_\+t {\bfseries my\+Id} = 0
+\item 
+int64\+\_\+t {\bfseries vec\+Dim} = 0
+\item 
+int64\+\_\+t {\bfseries congestion\+Drop} = 1
+\item 
+int64\+\_\+t {\bfseries ingested\+Vectors} = 0
+\item 
+int64\+\_\+t {\bfseries single\+Worker\+Opt}
+\item 
+std\+::mutex {\bfseries m\+\_\+mut}
+\item 
+\mbox{\hyperlink{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}{Abstract\+Index\+Ptr}} {\bfseries my\+Index\+Algo} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A worker class of parallel index thread. 
+
+\begin{DoxyNote}{Note}
+Concurrency policy is strictly read after write 
+
+special parameters
+\begin{DoxyItemize}
+\item parallel\+Worker\+\_\+algo\+Tag The algo tag of this worker, String, default flat
+\item parallel\+Worker\+\_\+queue\+Size The input queue size of this worker, I64, default 10
+\item vec\+Dim the dimension of vectors, I674, default 768
+\item congestion\+Drop, whether or not drop the data when congestion occurs, I64, default 0 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Parallel\+Partition\+Index/\mbox{\hyperlink{ParallelIndexWorker_8h}{Parallel\+Index\+Worker.\+h}}\item 
+src/\+CANDY/\+Parallel\+Partition\+Index/\mbox{\hyperlink{ParallelIndexWorker_8cpp}{Parallel\+Index\+Worker.\+cpp}}\end{DoxyCompactItemize}

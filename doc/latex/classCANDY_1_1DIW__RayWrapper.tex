@@ -1,0 +1,261 @@
+\hypertarget{classCANDY_1_1DIW__RayWrapper}{}\doxysection{CANDY\+::DIW\+\_\+\+Ray\+Wrapper Class Reference}
+\label{classCANDY_1_1DIW__RayWrapper}\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+
+
+the ray wrapper of \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{Distributed\+Index\+Worker}}, most of its function will be ray-\/remote  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Distributed\+Partition\+Index/\+Distributed\+Index\+Worker.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::DIW\+\_\+\+Ray\+Wrapper\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1DIW__RayWrapper__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_a086ce03aadb5e65f5e3aff7e332190a8}{set\+Config}} (std\+::string cfs)
+\begin{DoxyCompactList}\small\item\em set the config by using raw string \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_adb3139ae04464268cae8165fb9e02827}{insert\+Tensor}} (std\+::vector$<$ uint8\+\_\+t $>$ t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_a9d7a3128bdab5cadf0fd0b8ebfe66cc6}{delete\+Tensor}} (std\+::vector$<$ uint8\+\_\+t $>$ t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$ $>$ \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_a2cd18ae09ee13e3656384b747b1c17b5}{search\+Tensor}} (std\+::vector$<$ uint8\+\_\+t $>$ t, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_add3d81f8d25052e7cf3a91307138eb49}\label{classCANDY_1_1DIW__RayWrapper_add3d81f8d25052e7cf3a91307138eb49}} 
+bool {\bfseries reset} ()
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_a36573f2239f525aed4ef4e0998f6f7ea}{start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_afd1af592c4f4b9d25f087f2ae516301e}{end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_add35a436b2e73e699cad76d827344413}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_a1bd9e444ec63321bf12ecaa875db016f}{offline\+Build}} (std\+::vector$<$ uint8\+\_\+t $>$ t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_a6891865e5c95f305bd77f3f194a3b1c7}{load\+Initial\+Tensor}} (std\+::vector$<$ uint8\+\_\+t $>$ t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_adb3139ae04464268cae8165fb9e02827}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_a240ec39faaff8e224a8fd0e8f8cf9f2a}{wait\+Pending\+Operations}} ()
+\begin{DoxyCompactList}\small\item\em a busy waitting for all pending operations to be done \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_a946270c58349d7f43fe7f8ddeb3f9988}\label{classCANDY_1_1DIW__RayWrapper_a946270c58349d7f43fe7f8ddeb3f9988}} 
+static \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper}{DIW\+\_\+\+Ray\+Wrapper}} $\ast$ {\bfseries Factory\+Create} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_ae93a28abbb990143ad5a5ae68590f961}\label{classCANDY_1_1DIW__RayWrapper_ae93a28abbb990143ad5a5ae68590f961}} 
+\mbox{\hyperlink{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}{Abstract\+Index\+Ptr}} {\bfseries my\+Index\+Algo} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_a7cc2a573eb1e4e75910007a9ff0df62a}\label{classCANDY_1_1DIW__RayWrapper_a7cc2a573eb1e4e75910007a9ff0df62a}} 
+std\+::string {\bfseries my\+Config\+String} = \char`\"{}\char`\"{}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_abc7beed21c19a5e995a5dee5574bdc54}\label{classCANDY_1_1DIW__RayWrapper_abc7beed21c19a5e995a5dee5574bdc54}} 
+int64\+\_\+t {\bfseries vec\+Dim} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+the ray wrapper of \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{Distributed\+Index\+Worker}}, most of its function will be ray-\/remote 
+
+
+\begin{DoxyItemize}
+\item distributed\+Worker\+\_\+algo\+Tag The algo tag of this worker, String, default flat
+\item vec\+Dim the dimension of vectors, I674, default 768 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_a9d7a3128bdab5cadf0fd0b8ebfe66cc6}\label{classCANDY_1_1DIW__RayWrapper_a9d7a3128bdab5cadf0fd0b8ebfe66cc6}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{std\+::vector$<$ uint8\+\_\+t $>$}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, packed in std\+::vector$<$uint8\+\_\+t$>$ \\
+\hline
+{\em k} & the number packed in std\+::vector$<$uint8\+\_\+t$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_afd1af592c4f4b9d25f087f2ae516301e}\label{classCANDY_1_1DIW__RayWrapper_afd1af592c4f4b9d25f087f2ae516301e}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!endHPC@{endHPC}}
+\index{endHPC@{endHPC}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{endHPC()}{endHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::end\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra termination if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC termination is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_adb3139ae04464268cae8165fb9e02827}\label{classCANDY_1_1DIW__RayWrapper_adb3139ae04464268cae8165fb9e02827}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{std\+::vector$<$ uint8\+\_\+t $>$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor packed in std\+::vector$<$uint8\+\_\+t$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_a6891865e5c95f305bd77f3f194a3b1c7}\label{classCANDY_1_1DIW__RayWrapper_a6891865e5c95f305bd77f3f194a3b1c7}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{std\+::vector$<$ uint8\+\_\+t $>$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_adb3139ae04464268cae8165fb9e02827}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper_adb3139ae04464268cae8165fb9e02827}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_a1bd9e444ec63321bf12ecaa875db016f}\label{classCANDY_1_1DIW__RayWrapper_a1bd9e444ec63321bf12ecaa875db016f}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!offlineBuild@{offlineBuild}}
+\index{offlineBuild@{offlineBuild}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{offlineBuild()}{offlineBuild()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::offline\+Build (\begin{DoxyParamCaption}\item[{std\+::vector$<$ uint8\+\_\+t $>$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_a2cd18ae09ee13e3656384b747b1c17b5}\label{classCANDY_1_1DIW__RayWrapper_a2cd18ae09ee13e3656384b747b1c17b5}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$ $>$ CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::search\+Tensor (\begin{DoxyParamCaption}\item[{std\+::vector$<$ uint8\+\_\+t $>$}]{t,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & the tensor, packed in std\+::vector$<$uint8\+\_\+t$>$ allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$uint8\+\_\+t$>$$>$ the packed result tensor for each row of query 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_a086ce03aadb5e65f5e3aff7e332190a8}\label{classCANDY_1_1DIW__RayWrapper_a086ce03aadb5e65f5e3aff7e332190a8}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::set\+Config (\begin{DoxyParamCaption}\item[{std\+::string}]{cfs }\end{DoxyParamCaption})}
+
+
+
+set the config by using raw string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfs} & the raw string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item find the index algo
+\end{DoxyEnumerate}\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_add35a436b2e73e699cad76d827344413}\label{classCANDY_1_1DIW__RayWrapper_add35a436b2e73e699cad76d827344413}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_a36573f2239f525aed4ef4e0998f6f7ea}\label{classCANDY_1_1DIW__RayWrapper_a36573f2239f525aed4ef4e0998f6f7ea}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!startHPC@{startHPC}}
+\index{startHPC@{startHPC}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{startHPC()}{startHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::start\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra set-\/ups if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC set-\/up is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DIW__RayWrapper_a240ec39faaff8e224a8fd0e8f8cf9f2a}\label{classCANDY_1_1DIW__RayWrapper_a240ec39faaff8e224a8fd0e8f8cf9f2a}} 
+\index{CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}!waitPendingOperations@{waitPendingOperations}}
+\index{waitPendingOperations@{waitPendingOperations}!CANDY::DIW\_RayWrapper@{CANDY::DIW\_RayWrapper}}
+\doxysubsubsection{\texorpdfstring{waitPendingOperations()}{waitPendingOperations()}}
+{\footnotesize\ttfamily bool CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper\+::wait\+Pending\+Operations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+a busy waitting for all pending operations to be done 
+
+\begin{DoxyNote}{Note}
+in this index, there are may be some un-\/commited write due to the parallel queues 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+bool, whether the waitting is actually done; 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Distributed\+Partition\+Index/\mbox{\hyperlink{DistributedIndexWorker_8h}{Distributed\+Index\+Worker.\+h}}\item 
+src/\+CANDY/\+Distributed\+Partition\+Index/\mbox{\hyperlink{DistributedIndexWorker_8cpp}{Distributed\+Index\+Worker.\+cpp}}\end{DoxyCompactItemize}

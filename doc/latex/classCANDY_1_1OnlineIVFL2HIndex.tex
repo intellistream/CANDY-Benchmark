@@ -1,0 +1,197 @@
+\hypertarget{classCANDY_1_1OnlineIVFL2HIndex}{}\doxysection{CANDY\+::Online\+IVFL2\+HIndex Class Reference}
+\label{classCANDY_1_1OnlineIVFL2HIndex}\index{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}}
+
+
+A L2H (learning 2 hash) indexing, using 2-\/tier IVF List to manage buckets. The base tier is hamming encoding, implemented under list, the top tier is sampled summarization of hamming encoding, implemented under vector (faster access, harder to change, but less representative). The L2H function is using ML to approximate spectral hashing principles (NIPS 2008)  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Online\+IVFL2\+HIndex.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Online\+IVFL2\+HIndex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{classCANDY_1_1OnlineIVFL2HIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Online\+IVFL2\+HIndex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1OnlineIVFL2HIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex_ab24cba33125e368200449cfa4090019c}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a70846ac08b2e410fdd87026d251aff16}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex_a1ad72dd1c11c05f254ec7ac6198c2852}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex_acde59c6130fd8544e0d6d42beca47eec}{load\+Initial\+Tensor\+And\+Query\+Distribution}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&query)
+\begin{DoxyCompactList}\small\item\em load the initial tensors and query distributions of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a70846ac08b2e410fdd87026d251aff16}{insert\+Tensor}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_a67d309f3a3c36961dd8cb84442d0b88a}\label{classCANDY_1_1OnlineIVFL2HIndex_a67d309f3a3c36961dd8cb84442d0b88a}} 
+virtual torch\+::\+Tensor {\bfseries random\+Projection} (torch\+::\+Tensor \&a)
+\item 
+void \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex_ad559cbb013803dcccb2da202c1766ad9}{train\+Model\+With\+Data}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em self-\/supervised learning on data, including automatic labeling \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_a26d26fba48ac65b3e61ebe4e1a628810}\label{classCANDY_1_1OnlineIVFL2HIndex_a26d26fba48ac65b3e61ebe4e1a628810}} 
+\mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga23606f290228bd2dd6128d494fbc5b45}{MLPHashing\+Model\+Ptr}} {\bfseries my\+MLModel} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_a32e27e0021ab06f2e40d4953046dffd1}\label{classCANDY_1_1OnlineIVFL2HIndex_a32e27e0021ab06f2e40d4953046dffd1}} 
+int64\+\_\+t {\bfseries building\+Samples} = -\/1
+\item 
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_a4ea4f455afe0e7bad8c8560594017ae6}\label{classCANDY_1_1OnlineIVFL2HIndex_a4ea4f455afe0e7bad8c8560594017ae6}} 
+int64\+\_\+t {\bfseries building\+ANNK} = 10
+\item 
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_a71a2db7ea737d7c0f09584397c763c39}\label{classCANDY_1_1OnlineIVFL2HIndex_a71a2db7ea737d7c0f09584397c763c39}} 
+\mbox{\hyperlink{classCANDY_1_1FlatIndex}{Flat\+Index}} {\bfseries train\+Index}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_a67749d8ef0f845546c8679d4e23dd63d}\label{classCANDY_1_1OnlineIVFL2HIndex_a67749d8ef0f845546c8679d4e23dd63d}} 
+double {\bfseries positive\+Sample\+Ratio} = 0.\+1
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A L2H (learning 2 hash) indexing, using 2-\/tier IVF List to manage buckets. The base tier is hamming encoding, implemented under list, the top tier is sampled summarization of hamming encoding, implemented under vector (faster access, harder to change, but less representative). The L2H function is using ML to approximate spectral hashing principles (NIPS 2008) 
+
+\begin{DoxyNote}{Note}
+currently single thread 
+
+using hamming L2H function defined in faiss 
+
+config parameters
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item candidate\+Times, the times of k to determine minimum candidates, default 1 ,I64
+\item number\+Of\+Buckets, the number of first titer buckets, default 1, I64, suggest 2$^\wedge$n
+\item encode\+Len, the length of L2H encoding, in bytes, default 1, I64
+\item metric\+Type, the type of AKNN metric, default L2, String
+\item building\+Samples, the number of samples for building internal ML model during initial loading, default -\/1, I64
+\item building\+ANNK, the ANNK for labeling data as input, default 10, I64 
+\end{DoxyItemize}
+
+machine learning extra configs
+\begin{DoxyItemize}
+\item cuda\+Build whether or not use cuda to build model, I64, default 0
+\item learning\+Rate the learning rate for training, Double, default 0.\+1
+\item hidden\+Layer\+Dim the dimension of hidden layer, I64, default the same as output layer
+\item MLTrain\+Batch\+Size the batch size of ML training, I64, default 128
+\item MLTrain\+Margin the margin value in regulating variance used in training, Double, default 2.\+0
+\item MLTrain\+Epochs the number of epochs in training, I64, default 30
+\item positive\+Sample\+Ratio the ratio of positive samples during self-\/supervised learning, Double, default 0.\+1 (should be 0$\sim$1) 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_ab24cba33125e368200449cfa4090019c}\label{classCANDY_1_1OnlineIVFL2HIndex_ab24cba33125e368200449cfa4090019c}} 
+\index{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Online\+IVFL2\+HIndex\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a70846ac08b2e410fdd87026d251aff16}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a70846ac08b2e410fdd87026d251aff16}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_acde59c6130fd8544e0d6d42beca47eec}\label{classCANDY_1_1OnlineIVFL2HIndex_acde59c6130fd8544e0d6d42beca47eec}} 
+\index{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}!loadInitialTensorAndQueryDistribution@{loadInitialTensorAndQueryDistribution}}
+\index{loadInitialTensorAndQueryDistribution@{loadInitialTensorAndQueryDistribution}!CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensorAndQueryDistribution()}{loadInitialTensorAndQueryDistribution()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Online\+IVFL2\+HIndex\+::load\+Initial\+Tensor\+And\+Query\+Distribution (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{query }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors and query distributions of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a70846ac08b2e410fdd87026d251aff16}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_a70846ac08b2e410fdd87026d251aff16}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the data tensor \\
+\hline
+{\em query} & the example query tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a7b33be0f70010fdb579f47cac3f59f95}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_a1ad72dd1c11c05f254ec7ac6198c2852}\label{classCANDY_1_1OnlineIVFL2HIndex_a1ad72dd1c11c05f254ec7ac6198c2852}} 
+\index{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Online\+IVFL2\+HIndex\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+generate the rotation matrix for random projection
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex_ae72ef6def73d5cc1177c4e2ea09ba1b8}{CANDY\+::\+Online\+IVFLSHIndex}}.
+
+\mbox{\Hypertarget{classCANDY_1_1OnlineIVFL2HIndex_ad559cbb013803dcccb2da202c1766ad9}\label{classCANDY_1_1OnlineIVFL2HIndex_ad559cbb013803dcccb2da202c1766ad9}} 
+\index{CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}!trainModelWithData@{trainModelWithData}}
+\index{trainModelWithData@{trainModelWithData}!CANDY::OnlineIVFL2HIndex@{CANDY::OnlineIVFL2HIndex}}
+\doxysubsubsection{\texorpdfstring{trainModelWithData()}{trainModelWithData()}}
+{\footnotesize\ttfamily void CANDY\+::\+Online\+IVFL2\+HIndex\+::train\+Model\+With\+Data (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+self-\/supervised learning on data, including automatic labeling 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the input tensor \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/Online\+IVFL2\+HIndex.\+h\item 
+src/\+CANDY/\mbox{\hyperlink{OnlineIVFL2HIndex_8cpp}{Online\+IVFL2\+HIndex.\+cpp}}\end{DoxyCompactItemize}

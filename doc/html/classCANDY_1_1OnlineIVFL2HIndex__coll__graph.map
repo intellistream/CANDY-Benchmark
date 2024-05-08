@@ -1,0 +1,17 @@
+<map id="CANDY::OnlineIVFL2HIndex" name="CANDY::OnlineIVFL2HIndex">
+<area shape="rect" id="node1" title="A L2H (learning 2 hash) indexing, using 2&#45;tier IVF List to manage buckets. The base tier is hamming e..." alt="" coords="1071,425,1269,452"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1OnlineIVFLSHIndex.html" title="A LSH indexing, using 2&#45;tier IVF List to manage buckets. The base tier is hamming encoding,..." alt="" coords="739,224,937,251"/>
+<area shape="rect" id="node3" href="$classCANDY_1_1AbstractIndex.html" title="The abstract class of an index approach." alt="" coords="390,165,554,192"/>
+<area shape="rect" id="node15" href="$classCANDY_1_1FlatIndex.html" title="The class of a flat index approach, using brutal force management." alt="" coords="771,425,905,452"/>
+<area shape="rect" id="node4" title=" " alt="" coords="81,424,148,451"/>
+<area shape="rect" id="node5" title=" " alt="" coords="89,136,140,163"/>
+<area shape="rect" id="node8" href="$classCANDY_1_1IVFTensorEncodingList.html" title="The inverted file (IVF) list to organize tensor and its encodings." alt="" coords="363,64,581,91"/>
+<area shape="rect" id="node6" title=" " alt="" coords="68,200,161,227"/>
+<area shape="rect" id="node7" title=" " alt="" coords="439,13,505,40"/>
+<area shape="rect" id="node9" title=" " alt="" coords="85,5,145,32"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,57,224,98"/>
+<area shape="rect" id="node11" title=" " alt="" coords="377,381,567,408"/>
+<area shape="rect" id="node12" title=" " alt="" coords="443,115,501,141"/>
+<area shape="rect" id="node13" title=" " alt="" coords="440,432,504,459"/>
+<area shape="rect" id="node14" title=" " alt="" coords="743,477,933,518"/>
+</map>

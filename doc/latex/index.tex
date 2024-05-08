@@ -1,0 +1,86 @@
+This project is an index library for online vector management, our key idea is Ranging Augmented Navigation Indexing Approach, while some typical state-\/or-\/art is also included \hypertarget{index_supported}{}\doxysection{data format}\label{index_supported}
+The api interface is torch\+::\+Tensor for both c++ and python, and we also include support for loading the following data formats from file
+\begin{DoxyItemize}
+\item $\ast$.fvecs, (\href{http://corpus-texmex.irisa.fr/}{\texttt{ http\+://corpus-\/texmex.\+irisa.\+fr/}}) using FVECSData\+Loader, a static public class function tensor\+From\+FVECS is also provided
+\item $\ast$.h5, $\ast$.hdf5 (\href{https://github.com/HDFGroup/hdf5}{\texttt{ https\+://github.\+com/\+HDFGroup/hdf5}}) using HDF5\+Data\+Loader, a static public class function tensor\+From\+HDF5 is also provided
+\begin{DoxyItemize}
+\item experimental feature, should using -\/DENABLE\+\_\+\+HDF5=ON in cmake
+\item not support compression yet 
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_sec_name_index}{}\doxysection{Built-\/in name tags}\label{index_sec_name_index}
+\hypertarget{index_subsec_tag_index}{}\doxysubsection{Of index approaches (\+Please go to class @ref Index\+Table for more details)}\label{index_subsec_tag_index}
+
+\begin{DoxyItemize}
+\item flat Flat\+Index
+\item parallel\+Partition Parallel\+Partition\+Index
+\item online\+PQ Online\+PQIndex
+\item online\+IVFLSH Online\+IVFLSHIndex
+\item HNSWNaive HNSWNaive\+Index
+\item faiss Faiss\+Index 
+\end{DoxyItemize}\hypertarget{index_subsec_tag_loader}{}\doxysubsection{Of data loaders (\+Please go to class @ref Data\+Loader\+Table for more details)}\label{index_subsec_tag_loader}
+
+\begin{DoxyItemize}
+\item random Random\+Data\+Loader
+\item fvecs FVECSData\+Loader
+\item hdf5 HDF5\+Data\+Loader
+\item zipf Zipf\+Data\+Loader
+\item exp\+Family Exp\+Family\+Data\+Loader
+\item exp, the exponential distribution in Exp\+Family\+Data\+Loader
+\item beta, the beta distribution in Exp\+Family\+Data\+Loader
+\item gaussian, the beta distribution in Exp\+Family\+Data\+Loader
+\item poisson, the poisson distribution in Exp\+Family\+Data\+Loader 
+\end{DoxyItemize}\hypertarget{index_sec_benchmark}{}\doxysection{Built-\/in benchmarks}\label{index_sec_benchmark}
+\hypertarget{index_subsec_onlineInsert}{}\doxysubsection{The online insert benchmark}\label{index_subsec_onlineInsert}
+This benchmark program evaluates the inserting latency and recall of a specified index, the usage is ./online\+Insert $<$name of config file$>$ \begin{DoxyNote}{Note}
+required parameters
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vector, I64, default 768,
+\item vec\+Volume, the volume of row tensors, I64, default value depends on the Data\+Loader
+\item event\+Rate\+Tps, the event rate of tuples, each tuple is a row, default 100
+\item query\+Size, the size of your query, I64, default value depends on the Data\+Loader
+\item cut\+Off\+Time\+Seconds, the setting time to cut off execution after given seconds, default -\/1 (no cut off), I64
+\item batch\+Size, the size of batch, I64, default equal to the vec\+Volume
+\item static\+Data\+Set, turn on this to force data to be static and make everything already arrived, I64, default 0
+\item index\+Tag, the name tag of index class, String, default flat
+\item data\+Loader\+Tag, the name tag of data loader class, String, default random
+\item initial\+Rows, the rows of initially loaded tensors, I64, default 0 (streaming at the begining)
+\item wait\+Pending\+Write, wether or not wait for pending writes before start a query, I64, default 0 (NOT) see also Data\+Loader\+Table, Index\+Table 
+\end{DoxyItemize}
+\end{DoxyNote}
+\hypertarget{index_subsec_multiRW}{}\doxysubsection{The sequential multiple Read write  benchmark}\label{index_subsec_multiRW}
+This benchmark program evaluates the inserting latency and recall of a specified index, but with multiple RW sequences ./multi\+RW $<$name of config file$>$ \begin{DoxyNote}{Note}
+additional parameters compared with \mbox{\hyperlink{index_subsec_onlineInsert}{The online insert benchmark}}
+\begin{DoxyItemize}
+\item number\+Of\+RWSeq, the number of RW sequences, will divide both data base tensor and query tensor by this factor, I64, default 1 
+\end{DoxyItemize}
+\end{DoxyNote}
+\hypertarget{index_subsec_extend_cpp_operator}{}\doxysection{How to extend a index algorithm (pure static c++ based)}\label{index_subsec_extend_cpp_operator}
+
+\begin{DoxyItemize}
+\item go to the src/\+CANDY and include/\+CANDY
+\item copy the example class, such as Flat\+Index, rename it, and implement your own index class
+\begin{DoxyItemize}
+\item copy the cpp and h
+\item rename the cpp and h
+\item automatically conduct the IDE-\/full-\/replace over the template by your own name in cpp and h
+\item define your own function
+\item \begin{DoxyNote}{Note}
+Please use this copy-\/and-\/replace policy rather than creat your own, unless you know the doxygen comment style very well and can always keep it!!!
+\end{DoxyNote}
+
+\item \begin{DoxyWarning}{Warning}
+This copy-\/and-\/replace policy will also prevent from wrong parameter types of interface functions, please DO KEEP THE INTERFACE PARAMETER UNDER THE SAME TYPE!!!!!!!!!!!
+\end{DoxyWarning}
+
+\end{DoxyItemize}
+\item register our class with a tag to src/\+CANDY/\+Index\+Table.\+cpp
+\item edit the CMakelist.\+txt at src/\+CANDY to include your new algo and recompile
+\item remember to add a test bench, you can refer to Flat\+Index\+Test.\+cpp at test/\+System\+Test for example 
+\end{DoxyItemize}\hypertarget{index_subsec_edit_test}{}\doxysection{How to add a single point test}\label{index_subsec_edit_test}
+
+\begin{DoxyItemize}
+\item follow and copy the Simple\+Test.\+cpp to create your own, say A.\+cpp
+\item register A.\+cpp to test/\+CMake\+Lists.\+txt, please follow how we deal with the Sketch\+Test.\+cpp
+\item assuming you have made A.\+cpp into a\+\_\+test, append ./a\+\_\+test \char`\"{}-\/-\/success\char`\"{} to the last row of .github/workflows/cmake.\+yml
+\end{DoxyItemize}\hypertarget{index_python_doc}{}\doxysection{Python Documents}\label{index_python_doc}
+Please find the class named Rania\+\_\+\+Python for python APIs 

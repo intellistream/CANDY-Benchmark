@@ -1,0 +1,88 @@
+\hypertarget{group__CANDY__lib__container}{}\doxysection{The upper tier of indexing alorithms, can be container of other indexing ways}
+\label{group__CANDY__lib__container}\index{The upper tier of indexing alorithms, can be container of other indexing ways@{The upper tier of indexing alorithms, can be container of other indexing ways}}
+Collaboration diagram for The upper tier of indexing alorithms, can be container of other indexing ways\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__CANDY__lib__container}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}
+\begin{DoxyCompactList}\small\item\em Similar to \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{Congestion\+Drop\+Index}}, but will try to place some of the online data into an ingestion-\/efficient buffer, the buffer is implemented under \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}} More detailed description with an image\+: \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{CANDY\+::\+Congestion\+Drop\+Index}}
+\begin{DoxyCompactList}\small\item\em A container index to evaluate other bottom index, will just drop the data if congestion occurs, also support the data sharding parallelism. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex}{CANDY\+::\+Distributed\+Partition\+Index}}
+\begin{DoxyCompactList}\small\item\em A basic distributed index, works under generic data partition, allow configurable index of threads, following round-\/robin insert and map-\/reduce query. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1DPGIndex}{CANDY\+::\+DPGIndex}}
+\begin{DoxyCompactList}\small\item\em A hierarchical algorithm based on a data structure consistent with \mbox{\hyperlink{classCANDY_1_1NNDescentIndex}{NNDescent\+Index}}, the subgraph in the hierarchical graph will retain half of the most directional diversity of edges in the original graph, and expand the unidirectional edges into bidirectional edges. The offline construction of the basic graph still uses the NNDescent algorithm in this implementation. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1NNDescentIndex}{CANDY\+::\+NNDescent\+Index}}
+\begin{DoxyCompactList}\small\item\em An index whose core algorithm is only used for offline construction, but based on its main data structure we have implemented online update operations that need to be optimized. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{CANDY\+::\+Parallel\+Partition\+Index}}
+\begin{DoxyCompactList}\small\item\em A basic parallel index, works under generic data partition, allow configurable index of threads, following round-\/robin insert and map-\/reduce query, have an optional congestion-\/and-\/drop feature. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_ga5071524419a59ce5a40112f43b1bcc5a}\label{group__CANDY__lib__container_ga5071524419a59ce5a40112f43b1bcc5a}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_ga5071524419a59ce5a40112f43b1bcc5a}{new\+Congestion\+Drop\+Index\+Worker}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1CongestionDropIndexWorker}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Congestion\+Drop\+Index\+Worker shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_gac7a0fbf9d0912a1261b36b8dfee2e4d6}\label{group__CANDY__lib__container_gac7a0fbf9d0912a1261b36b8dfee2e4d6}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1CongestionDropIndexWorker}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_gac7a0fbf9d0912a1261b36b8dfee2e4d6}{CANDY\+::\+Congestion\+Drop\+Index\+Worker\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1CongestionDropIndexWorker}{Congestion\+Drop\+Index\+Worker}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_ga2c1d4e6142377bfb228d28dfaf904e58}\label{group__CANDY__lib__container_ga2c1d4e6142377bfb228d28dfaf904e58}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_ga2c1d4e6142377bfb228d28dfaf904e58}{new\+Buffered\+Congestion\+Drop\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Buffered\+Congestion\+Drop\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_gab368927e5b1a7b8699244bfe0de8d377}\label{group__CANDY__lib__container_gab368927e5b1a7b8699244bfe0de8d377}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_gab368927e5b1a7b8699244bfe0de8d377}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex}{Buffered\+Congestion\+Drop\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_ga81ce3f5849f22bcecf9ad649501265f8}\label{group__CANDY__lib__container_ga81ce3f5849f22bcecf9ad649501265f8}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_ga81ce3f5849f22bcecf9ad649501265f8}{new\+Congestion\+Drop\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{CANDY\+::\+Congestion\+Drop\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Congestion\+Drop\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_gab6a44a498a2623c5c911c3fe6a0643a1}\label{group__CANDY__lib__container_gab6a44a498a2623c5c911c3fe6a0643a1}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{CANDY\+::\+Congestion\+Drop\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_gab6a44a498a2623c5c911c3fe6a0643a1}{CANDY\+::\+Congestion\+Drop\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{Congestion\+Drop\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_ga6fb3bc9198c80a607d37a52875caccb3}\label{group__CANDY__lib__container_ga6fb3bc9198c80a607d37a52875caccb3}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_ga6fb3bc9198c80a607d37a52875caccb3}{new\+Distributed\+Partition\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex}{CANDY\+::\+Distributed\+Partition\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Distributed\+Partition\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_gacd6d3ea5aaaec1c37ebeb96668b3fc6c}\label{group__CANDY__lib__container_gacd6d3ea5aaaec1c37ebeb96668b3fc6c}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex}{CANDY\+::\+Distributed\+Partition\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_gacd6d3ea5aaaec1c37ebeb96668b3fc6c}{CANDY\+::\+Distributed\+Partition\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex}{Distributed\+Partition\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_ga8ba1ad39e165b180fbd8c9fba4aa6829}\label{group__CANDY__lib__container_ga8ba1ad39e165b180fbd8c9fba4aa6829}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_ga8ba1ad39e165b180fbd8c9fba4aa6829}{new\+DPGIndex}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1DPGIndex}{CANDY\+::\+DPGIndex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new DPGIndex shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_gaa35d2da9e86c909c3203837e28d888ec}\label{group__CANDY__lib__container_gaa35d2da9e86c909c3203837e28d888ec}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1DPGIndex}{CANDY\+::\+DPGIndex}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_gaa35d2da9e86c909c3203837e28d888ec}{CANDY\+::\+DPGIndex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1DPGIndex}{DPGIndex}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_ga76a655dfd5107052bcd306deefdb9166}\label{group__CANDY__lib__container_ga76a655dfd5107052bcd306deefdb9166}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_ga76a655dfd5107052bcd306deefdb9166}{new\+NNDescent\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1NNDescentIndex}{CANDY\+::\+NNDescent\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new NNDescent\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_ga7a623561426419de661662fdf15db7ee}\label{group__CANDY__lib__container_ga7a623561426419de661662fdf15db7ee}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1NNDescentIndex}{CANDY\+::\+NNDescent\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_ga7a623561426419de661662fdf15db7ee}{CANDY\+::\+NNDescent\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1NNDescentIndex}{NNDescent\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_gad9c07cfae7c995ffb91b2dc5af817d91}\label{group__CANDY__lib__container_gad9c07cfae7c995ffb91b2dc5af817d91}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_gad9c07cfae7c995ffb91b2dc5af817d91}{new\+Parallel\+Partition\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{CANDY\+::\+Parallel\+Partition\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Parallel\+Partition\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__container_gacd10e783bb511300d870affc2d594dd3}\label{group__CANDY__lib__container_gacd10e783bb511300d870affc2d594dd3}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{CANDY\+::\+Parallel\+Partition\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_gacd10e783bb511300d870affc2d594dd3}{CANDY\+::\+Parallel\+Partition\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{Parallel\+Partition\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}

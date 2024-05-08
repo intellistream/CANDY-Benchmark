@@ -1,0 +1,68 @@
+\hypertarget{ParallelIndexWorker_8h}{}\doxysection{include/\+CANDY/\+Parallel\+Partition\+Index/\+Parallel\+Index\+Worker.h File Reference}
+\label{ParallelIndexWorker_8h}\index{include/CANDY/ParallelPartitionIndex/ParallelIndexWorker.h@{include/CANDY/ParallelPartitionIndex/ParallelIndexWorker.h}}
+{\ttfamily \#include $<$Utils/\+Abstract\+C20\+Thread.\+hpp$>$}\newline
+{\ttfamily \#include $<$Utils/\+Config\+Map.\+hpp$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$Utils/\+Intelli\+Tensor\+OP.\+hpp$>$}\newline
+{\ttfamily \#include $<$CANDY/\+Index\+Table.\+h$>$}\newline
+{\ttfamily \#include $<$Utils/\+SPSCQueue.\+hpp$>$}\newline
+{\ttfamily \#include $<$CANDY/\+Abstract\+Index.\+h$>$}\newline
+{\ttfamily \#include $<$faiss/\+Index\+Flat.\+h$>$}\newline
+Include dependency graph for Parallel\+Index\+Worker.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParallelIndexWorker_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ParallelIndexWorker_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1TensorIdxPair}{CANDY\+::\+Tensor\+Idx\+Pair}}
+\begin{DoxyCompactList}\small\item\em The class to define a tensor along with some idx. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1TensorListIdxPair}{CANDY\+::\+Tensor\+List\+Idx\+Pair}}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1TensorStrPair}{CANDY\+::\+Tensor\+Str\+Pair}}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1TensorStrVecPair}{CANDY\+::\+Tensor\+Str\+Vec\+Pair}}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1ParallelIndexWorker}{CANDY\+::\+Parallel\+Index\+Worker}}
+\begin{DoxyCompactList}\small\item\em A worker class of parallel index thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga57d22e320a1115455fe0099864517edf}{new\+Parallel\+Index\+Worker}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1ParallelIndexWorker}{CANDY\+::\+Parallel\+Index\+Worker}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Parallel\+Index\+Worker shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ParallelIndexWorker_8h_a53c59734440f8c5b520b3e58c66dced4}\label{ParallelIndexWorker_8h_a53c59734440f8c5b520b3e58c66dced4}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1SPSCQueue}{INTELLI\+::\+SPSCQueue}}$<$ torch\+::\+Tensor $>$ $>$ {\bfseries CANDY\+::\+Tensor\+Queue\+Ptr}
+\item 
+\mbox{\Hypertarget{ParallelIndexWorker_8h_a6bd1e17a64f4f54b2bdecc453c30a9d6}\label{ParallelIndexWorker_8h_a6bd1e17a64f4f54b2bdecc453c30a9d6}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1SPSCQueue}{INTELLI\+::\+SPSCQueue}}$<$ \mbox{\hyperlink{classCANDY_1_1TensorIdxPair}{CANDY\+::\+Tensor\+Idx\+Pair}} $>$ $>$ {\bfseries CANDY\+::\+Tensor\+Idx\+Queue\+Ptr}
+\item 
+\mbox{\Hypertarget{ParallelIndexWorker_8h_a469dd0faed2322236c1f50d2cfbf2d64}\label{ParallelIndexWorker_8h_a469dd0faed2322236c1f50d2cfbf2d64}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1SPSCQueue}{INTELLI\+::\+SPSCQueue}}$<$ \mbox{\hyperlink{classCANDY_1_1TensorListIdxPair}{CANDY\+::\+Tensor\+List\+Idx\+Pair}} $>$ $>$ {\bfseries CANDY\+::\+Tensor\+List\+Idx\+Queue\+Ptr}
+\item 
+\mbox{\Hypertarget{ParallelIndexWorker_8h_a0bcd4692d1adfe6316353fcfd6d0f267}\label{ParallelIndexWorker_8h_a0bcd4692d1adfe6316353fcfd6d0f267}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1SPSCQueue}{INTELLI\+::\+SPSCQueue}}$<$ int64\+\_\+t $>$ $>$ {\bfseries CANDY\+::\+Cmd\+Queue\+Ptr}
+\item 
+\mbox{\Hypertarget{ParallelIndexWorker_8h_ad312c040f5bddb8f298c35d339b4d3d6}\label{ParallelIndexWorker_8h_ad312c040f5bddb8f298c35d339b4d3d6}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1SPSCQueue}{INTELLI\+::\+SPSCQueue}}$<$ \mbox{\hyperlink{classCANDY_1_1TensorStrPair}{CANDY\+::\+Tensor\+Str\+Pair}} $>$ $>$ {\bfseries CANDY\+::\+Tensor\+Str\+Queue\+Ptr}
+\item 
+\mbox{\Hypertarget{ParallelIndexWorker_8h_afa7643f521deaf3085065495038e1717}\label{ParallelIndexWorker_8h_afa7643f521deaf3085065495038e1717}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1SPSCQueue}{INTELLI\+::\+SPSCQueue}}$<$ \mbox{\hyperlink{classCANDY_1_1TensorStrVecPair}{CANDY\+::\+Tensor\+Str\+Vec\+Pair}} $>$ $>$ {\bfseries CANDY\+::\+Tensor\+Str\+Vec\+Queue\+Ptr}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1ParallelIndexWorker}{CANDY\+::\+Parallel\+Index\+Worker}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga1412e02db58589ba4ea2ab27da060e4f}{CANDY\+::\+Parallel\+Index\+Worker\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1ParallelIndexWorker}{Parallel\+Index\+Worker}}. \end{DoxyCompactList}\end{DoxyCompactItemize}

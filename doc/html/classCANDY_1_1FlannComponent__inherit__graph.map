@@ -1,0 +1,5 @@
+<map id="CANDY::FlannComponent" name="CANDY::FlannComponent">
+<area shape="rect" id="node1" title=" " alt="" coords="52,5,237,32"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1KdTree.html" title=" " alt="" coords="5,80,124,107"/>
+<area shape="rect" id="node3" href="$classCANDY_1_1KmeansTree.html" title="The structure representing hierarchical k&#45;means tree used in FLANN." alt="" coords="147,80,302,107"/>
+</map>

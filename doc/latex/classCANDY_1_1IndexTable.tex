@@ -1,0 +1,106 @@
+\hypertarget{classCANDY_1_1IndexTable}{}\doxysection{CANDY\+::Index\+Table Class Reference}
+\label{classCANDY_1_1IndexTable}\index{CANDY::IndexTable@{CANDY::IndexTable}}
+
+
+The table to index index algos.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Index\+Table.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::Index\+Table\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classCANDY_1_1IndexTable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCANDY_1_1IndexTable_a64df3add5ffd19d23a54bbad1892500a}{add\+Index}} (\mbox{\hyperlink{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}{CANDY\+::\+Abstract\+Index\+Ptr}} anew, std\+::string tag)
+\begin{DoxyCompactList}\small\item\em To register a new ALGO. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}{CANDY\+::\+Abstract\+Index\+Ptr}} \mbox{\hyperlink{classCANDY_1_1IndexTable_a006ccfbb40ddfedbad0b77f129b138ef}{get\+Index}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em find a dataloader in the table according to its name \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IndexTable_af0ab581c0a22d0fb026da644057c3476}\label{classCANDY_1_1IndexTable_af0ab581c0a22d0fb026da644057c3476}} 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}{CANDY\+::\+Abstract\+Index\+Ptr}} $>$ {\bfseries index\+Map}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The table to index index algos. 
+
+ingroup CANDY\+\_\+lib
+
+\begin{DoxyNote}{Note}
+Default behavior
+\begin{DoxyItemize}
+\item create
+\item (optional) call \mbox{\hyperlink{classCANDY_1_1IndexTable_a64df3add5ffd19d23a54bbad1892500a}{add\+Index}} for new algo
+\item find a loader by \mbox{\hyperlink{classCANDY_1_1IndexTable_a006ccfbb40ddfedbad0b77f129b138ef}{get\+Index}} using its tag 
+\end{DoxyItemize}
+
+default tags (String)
+\begin{DoxyItemize}
+\item flat \mbox{\hyperlink{classCANDY_1_1FlatIndex}{Flat\+Index}}
+\item parallel\+Partition \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex}{Parallel\+Partition\+Index}}
+\item online\+PQ \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex}{Online\+PQIndex}}
+\item online\+IVFLSH \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex}{Online\+IVFLSHIndex}}
+\item HNSWNaive \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex}{HNSWNaive\+Index}}
+\item faiss \mbox{\hyperlink{classCANDY_1_1FaissIndex}{Faiss\+Index}}
+\item congestion\+Drop \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{Congestion\+Drop\+Index}}
+\item buffered\+Congestion\+Drop \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex}{Buffered\+Congestion\+Drop\+Index}}
+\item flat\+AMMIP \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex}{Flat\+AMMIPIndex}} 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1IndexTable_a64df3add5ffd19d23a54bbad1892500a}\label{classCANDY_1_1IndexTable_a64df3add5ffd19d23a54bbad1892500a}} 
+\index{CANDY::IndexTable@{CANDY::IndexTable}!addIndex@{addIndex}}
+\index{addIndex@{addIndex}!CANDY::IndexTable@{CANDY::IndexTable}}
+\doxysubsubsection{\texorpdfstring{addIndex()}{addIndex()}}
+{\footnotesize\ttfamily void CANDY\+::\+Index\+Table\+::add\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}{CANDY\+::\+Abstract\+Index\+Ptr}}}]{anew,  }\item[{std\+::string}]{tag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To register a new ALGO. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em anew} & The new algo \\
+\hline
+{\em tag} & THe name tag \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1IndexTable_a006ccfbb40ddfedbad0b77f129b138ef}\label{classCANDY_1_1IndexTable_a006ccfbb40ddfedbad0b77f129b138ef}} 
+\index{CANDY::IndexTable@{CANDY::IndexTable}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!CANDY::IndexTable@{CANDY::IndexTable}}
+\doxysubsubsection{\texorpdfstring{getIndex()}{getIndex()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}{CANDY\+::\+Abstract\+Index\+Ptr}} CANDY\+::\+Index\+Table\+::get\+Index (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+find a dataloader in the table according to its name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name\+Tag of loader \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Abstract\+Index\+Ptr, nullptr if not found 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{IndexTable_8h}{Index\+Table.\+h}}\item 
+src/\+CANDY/Index\+Table.\+cpp\end{DoxyCompactItemize}

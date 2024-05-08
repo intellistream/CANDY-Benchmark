@@ -1,0 +1,31 @@
+\hypertarget{ThreadPerfPAPI_8hpp}{}\doxysection{include/\+Utils/\+Thread\+Perf\+PAPI.hpp File Reference}
+\label{ThreadPerfPAPI_8hpp}\index{include/Utils/ThreadPerfPAPI.hpp@{include/Utils/ThreadPerfPAPI.hpp}}
+{\ttfamily \#include $<$papi.\+h$>$}\newline
+{\ttfamily \#include $<$Utils/\+Config\+Map.\+hpp$>$}\newline
+{\ttfamily \#include $<$Utils/\+Thread\+Perf.\+hpp$>$}\newline
+Include dependency graph for Thread\+Perf\+PAPI.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ThreadPerfPAPI_8hpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI}{INTELLI\+::\+Thread\+Perf\+PAPI}}
+\begin{DoxyCompactList}\small\item\em The top entity to provide perf traces by using PAPI lib. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ThreadPerfPAPI_8hpp_a66393135817d17f7e0e4de93f6b01a4f}\label{ThreadPerfPAPI_8hpp_a66393135817d17f7e0e4de93f6b01a4f}} 
+\#define {\bfseries ERROR\+\_\+\+RETURN}(retval)~\{ fprintf(stderr, \char`\"{}Error \%d \%s\+:line \%d\+: \textbackslash{}n\char`\"{}, retval,\+\_\+\+\_\+\+FILE\+\_\+\+\_\+,\+\_\+\+\_\+\+LINE\+\_\+\+\_\+);   \}
+\item 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga9e785728701a35a78305ec1bc9ce5713}{new\+Thread\+Perf\+PAPI}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI}{INTELLI\+::\+Thread\+Perf\+PAPI}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Thread\+Perf\+PAPI under shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI}{INTELLI\+::\+Thread\+Perf\+PAPI}} $>$ \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_gaf0705f5d501071cd5420a60e080bfc03}{INTELLI\+::\+Thread\+Perf\+PAPIPtr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI}{Thread\+Perf\+PAPI}}. \end{DoxyCompactList}\end{DoxyCompactItemize}

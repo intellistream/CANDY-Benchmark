@@ -1,0 +1,172 @@
+\hypertarget{classCANDY_1_1RandomDataLoader}{}\doxysection{CANDY\+::Random\+Data\+Loader Class Reference}
+\label{classCANDY_1_1RandomDataLoader}\index{CANDY::RandomDataLoader@{CANDY::RandomDataLoader}}
+
+
+The class of ranom data loader,.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Loader/\+Random\+Data\+Loader.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Random\+Data\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classCANDY_1_1RandomDataLoader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Random\+Data\+Loader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1RandomDataLoader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1RandomDataLoader_a04300ab31584bc096aeb0011ac1f44fe}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em Set the GLOBAL config map related to this loader. \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1RandomDataLoader_a9cddb70dded05202c564035456890b0d}{get\+Data}} ()
+\begin{DoxyCompactList}\small\item\em get the data tensor \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1RandomDataLoader_a2b4c9f41e32bcebc820bdd494a35d516}{get\+Query}} ()
+\begin{DoxyCompactList}\small\item\em get the query tensor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_aa33c89f7dc65bf5f26dfa135708ce9ad}\label{classCANDY_1_1RandomDataLoader_aa33c89f7dc65bf5f26dfa135708ce9ad}} 
+torch\+::\+Tensor {\bfseries A}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_a381a05ea24c6a9b53f31f27f46ffa8ac}\label{classCANDY_1_1RandomDataLoader_a381a05ea24c6a9b53f31f27f46ffa8ac}} 
+torch\+::\+Tensor {\bfseries B}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_a57550f0ab64c40c42b8000df9637e911}\label{classCANDY_1_1RandomDataLoader_a57550f0ab64c40c42b8000df9637e911}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_a7b0730f25c4db1803922ac37f5940b59}\label{classCANDY_1_1RandomDataLoader_a7b0730f25c4db1803922ac37f5940b59}} 
+int64\+\_\+t {\bfseries vec\+Volume}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_aeb97103ad6a461648bc94c626640cd30}\label{classCANDY_1_1RandomDataLoader_aeb97103ad6a461648bc94c626640cd30}} 
+int64\+\_\+t {\bfseries query\+Size}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_a57f2d03c4d37e0850ca492ebe219d349}\label{classCANDY_1_1RandomDataLoader_a57f2d03c4d37e0850ca492ebe219d349}} 
+int64\+\_\+t {\bfseries seed}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_aeb5e377d9c919e92e09f6beb0247aea2}\label{classCANDY_1_1RandomDataLoader_aeb5e377d9c919e92e09f6beb0247aea2}} 
+int64\+\_\+t {\bfseries drift\+Position}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_ad42cd4c8f190a4b68967ad2e3248c862}\label{classCANDY_1_1RandomDataLoader_ad42cd4c8f190a4b68967ad2e3248c862}} 
+double {\bfseries drift\+Offset}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_a42528f7b6453a03ddea28ba16b82c415}\label{classCANDY_1_1RandomDataLoader_a42528f7b6453a03ddea28ba16b82c415}} 
+double {\bfseries query\+Noise\+Fraction}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class of ranom data loader,. 
+
+\begin{DoxyNote}{Note}
+\+:
+\begin{DoxyItemize}
+\item Must have a global config by \mbox{\hyperlink{classCANDY_1_1RandomDataLoader_a04300ab31584bc096aeb0011ac1f44fe}{set\+Config}} 
+\end{DoxyItemize}
+
+Default behavior
+\begin{DoxyItemize}
+\item create
+\item call \mbox{\hyperlink{classCANDY_1_1RandomDataLoader_a04300ab31584bc096aeb0011ac1f44fe}{set\+Config}}, this function will also generate the tensor A and B correspondingly
+\item call \mbox{\hyperlink{classCANDY_1_1RandomDataLoader_a9cddb70dded05202c564035456890b0d}{get\+Data}} to get the raw data
+\item call \mbox{\hyperlink{classCANDY_1_1RandomDataLoader_a2b4c9f41e32bcebc820bdd494a35d516}{get\+Query}} to get the query 
+\end{DoxyItemize}
+
+parameters of config
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item vec\+Volume, the volume of vectors, default 1000, I64
+\item drift\+Position, the position of starting some \textquotesingle{}concept drift\textquotesingle{}, default 0 (no drift), I64
+\begin{DoxyItemize}
+\item drift\+Offset, the offset value of concept drift, default 0.\+5, Double
+\item query\+Noise\+Fraction, the fraction of noise in query, default 0, allow 0$\sim$1, Double
+\end{DoxyItemize}
+\item query\+Size, the size of query, default 10, I64
+\item seed, the random seed, default 7758258, I64 
+\end{DoxyItemize}
+
+\+: default name tags \char`\"{}random\char`\"{}\+: \mbox{\hyperlink{classCANDY_1_1RandomDataLoader}{Random\+Data\+Loader}} 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_a9cddb70dded05202c564035456890b0d}\label{classCANDY_1_1RandomDataLoader_a9cddb70dded05202c564035456890b0d}} 
+\index{CANDY::RandomDataLoader@{CANDY::RandomDataLoader}!getData@{getData}}
+\index{getData@{getData}!CANDY::RandomDataLoader@{CANDY::RandomDataLoader}}
+\doxysubsubsection{\texorpdfstring{getData()}{getData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Random\+Data\+Loader\+::get\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get the data tensor 
+
+\begin{DoxyReturn}{Returns}
+the generated data tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a4d66a082e74fd3bf413dd9dcb6ffa809}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_a2b4c9f41e32bcebc820bdd494a35d516}\label{classCANDY_1_1RandomDataLoader_a2b4c9f41e32bcebc820bdd494a35d516}} 
+\index{CANDY::RandomDataLoader@{CANDY::RandomDataLoader}!getQuery@{getQuery}}
+\index{getQuery@{getQuery}!CANDY::RandomDataLoader@{CANDY::RandomDataLoader}}
+\doxysubsubsection{\texorpdfstring{getQuery()}{getQuery()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Random\+Data\+Loader\+::get\+Query (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get the query tensor 
+
+\begin{DoxyReturn}{Returns}
+the generated query tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a812faba5e0da35c15880eeb7f62dc504}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+\mbox{\Hypertarget{classCANDY_1_1RandomDataLoader_a04300ab31584bc096aeb0011ac1f44fe}\label{classCANDY_1_1RandomDataLoader_a04300ab31584bc096aeb0011ac1f44fe}} 
+\index{CANDY::RandomDataLoader@{CANDY::RandomDataLoader}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::RandomDataLoader@{CANDY::RandomDataLoader}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Random\+Data\+Loader\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the GLOBAL config map related to this loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & The config map \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the config is successfully set 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractDataLoader_a7352d8538a9bc448bc36c01f2bf8de6e}{CANDY\+::\+Abstract\+Data\+Loader}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Data\+Loader/\mbox{\hyperlink{RandomDataLoader_8h}{Random\+Data\+Loader.\+h}}\item 
+src/\+Data\+Loader/Random\+Data\+Loader.\+cpp\end{DoxyCompactItemize}

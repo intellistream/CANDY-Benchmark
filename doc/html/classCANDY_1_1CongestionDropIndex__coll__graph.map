@@ -1,0 +1,10 @@
+<map id="CANDY::CongestionDropIndex" name="CANDY::CongestionDropIndex">
+<area shape="rect" id="node1" title="A container index to evaluate other bottom index, will just drop the data if congestion occurs,..." alt="" coords="613,188,828,215"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractIndex.html" title="The abstract class of an index approach." alt="" coords="265,129,429,156"/>
+<area shape="rect" id="node3" title=" " alt="" coords="19,73,85,100"/>
+<area shape="rect" id="node4" title=" " alt="" coords="27,139,77,165"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,189,99,216"/>
+<area shape="rect" id="node6" title=" " alt="" coords="245,181,448,222"/>
+<area shape="rect" id="node7" title=" " alt="" coords="237,246,456,287"/>
+<area shape="rect" id="node8" title=" " alt="" coords="244,311,449,353"/>
+</map>

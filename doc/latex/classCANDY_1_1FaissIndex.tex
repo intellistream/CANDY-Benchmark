@@ -1,0 +1,277 @@
+\hypertarget{classCANDY_1_1FaissIndex}{}\doxysection{CANDY\+::Faiss\+Index Class Reference}
+\label{classCANDY_1_1FaissIndex}\index{CANDY::FaissIndex@{CANDY::FaissIndex}}
+
+
+The class of converting faiss index api into rania index style.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Faiss\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Faiss\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{classCANDY_1_1FaissIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Faiss\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1FaissIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FaissIndex_a2dfbef3e81c7119da3800832432088f4}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FaissIndex_a4d13d4568e01f2be07a267d2c8de49ea}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1FaissIndex_a203ceaafd5118eea2d9eb8614ccee4e6}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1FaissIndex_a203ceaafd5118eea2d9eb8614ccee4e6}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \mbox{\hyperlink{classCANDY_1_1FaissIndex_a1b9cbe8c2d2a238c0f16bb4674ce3ca1}{search\+Index}} (torch\+::\+Tensor q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return their index \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1FaissIndex_ac73e27e6acbaab35df05efd2d9deda97}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1FaissIndex_a56e01aa8ce43231d5891eaf9963e4ccc}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_ad96cdb1ca8abc9352e45ae7d904889b4}\label{classCANDY_1_1FaissIndex_ad96cdb1ca8abc9352e45ae7d904889b4}} 
+typedef std\+::string {\bfseries index\+\_\+type\+\_\+t}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_ad25f526956f63f2445a136f66572a23c}\label{classCANDY_1_1FaissIndex_ad25f526956f63f2445a136f66572a23c}} 
+typedef std\+::string {\bfseries metric\+\_\+type\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_a4e78f0546a900145dbca6c94b4c8f04f}\label{classCANDY_1_1FaissIndex_a4e78f0546a900145dbca6c94b4c8f04f}} 
+bool {\bfseries is\+Faiss\+Trained} = false
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_a5dae1802acec361ff8f5ce580f9ee5d8}\label{classCANDY_1_1FaissIndex_a5dae1802acec361ff8f5ce580f9ee5d8}} 
+faiss\+::\+Index $\ast$ {\bfseries index} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_ae2a12ebcd15cf2ac86817ca91370fbc4}\label{classCANDY_1_1FaissIndex_ae2a12ebcd15cf2ac86817ca91370fbc4}} 
+index\+\_\+type\+\_\+t {\bfseries index\+\_\+type}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_ad17ea91a2207e79be9d3ab3e0bce319f}\label{classCANDY_1_1FaissIndex_ad17ea91a2207e79be9d3ab3e0bce319f}} 
+metric\+\_\+type\+\_\+t {\bfseries metric\+Type}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_a16a9074f74d5befcaf1340be30a386e8}\label{classCANDY_1_1FaissIndex_a16a9074f74d5befcaf1340be30a386e8}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_acc9a517d02a50f3e2a1367f6fe9ccc81}\label{classCANDY_1_1FaissIndex_acc9a517d02a50f3e2a1367f6fe9ccc81}} 
+torch\+::\+Tensor {\bfseries db\+Tensor}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_aa5bd9a0cfef2c7d9f7f1afa655a77714}\label{classCANDY_1_1FaissIndex_aa5bd9a0cfef2c7d9f7f1afa655a77714}} 
+int64\+\_\+t {\bfseries last\+NNZ}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_a664bafe2d85650e8fcdfbf4bd6ef110e}\label{classCANDY_1_1FaissIndex_a664bafe2d85650e8fcdfbf4bd6ef110e}} 
+int64\+\_\+t {\bfseries expand\+Step}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+The class of converting faiss index api into rania index style. 
+
+\begin{DoxyNote}{Note}
+currently single thread 
+\end{DoxyNote}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]more explanation on IVFPQ, NNDecent, LSH, NSG \end{DoxyRefDesc}
+\begin{DoxyNote}{Note}
+config parameters
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item faiss\+Index\+Tag, the internal tag of loading faiss index approaches,String can be either one of the following
+\begin{DoxyItemize}
+\item flat (default), using faiss\+::\+Index\+Flat
+\item \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}}, using faiss\+::\+Index\+HNSWFlat, additional config as follows
+\begin{DoxyItemize}
+\item max\+Connection, I64, default 32, the max number of neighbor connections in hnsw
+\end{DoxyItemize}
+\item PQ, using faiss\+::\+Index\+PQ, additional config as follows
+\begin{DoxyItemize}
+\item encode\+Len, the encoding length in bytes, I64, default 1
+\item encode\+Len\+Bits, the encoding length in bits, I64, default encode\+Len$\ast$8 (will overwrite encode\+Len if manually set)
+\item sub\+Quantizers, the number of subquantizers used, I64, default 8
+\end{DoxyItemize}
+\item IVFPQ, using faiss\+::\+Index\+IVFPQ, additional config as follows
+\begin{DoxyItemize}
+\item encode\+Len, the encoding length in bytes, I64, default 1
+\item encode\+Len\+Bits, the encoding length in bits, I64, default encode\+Len$\ast$8 (will overwrite encode\+Len if manually set)
+\item sub\+Quantizers, the number of subquantizers used, I64, default 8
+\item lists, the number of lists used, I64, default 1000
+\end{DoxyItemize}
+\item LSH, using faiss\+::\+Index\+LSH, additional config as follows
+\begin{DoxyItemize}
+\item encode\+Len, the encoding length in bytes, I64, default 1
+\item encode\+Len\+Bits, the encoding length in bits, I64, default encode\+Len$\ast$8 (will overwrite encode\+Len if manually set)
+\end{DoxyItemize}
+\item NNDescent, using faiss\+::\+Index\+NNDescent\+Flat, still some missing functions like \mbox{\hyperlink{classCANDY_1_1FaissIndex_a203ceaafd5118eea2d9eb8614ccee4e6}{insert\+Tensor}}
+\item NSG, using faiss\+::\+Index\+NSGFlat, still some missing functions like \mbox{\hyperlink{classCANDY_1_1FaissIndex_a203ceaafd5118eea2d9eb8614ccee4e6}{insert\+Tensor}} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_a56e01aa8ce43231d5891eaf9963e4ccc}\label{classCANDY_1_1FaissIndex_a56e01aa8ce43231d5891eaf9963e4ccc}} 
+\index{CANDY::FaissIndex@{CANDY::FaissIndex}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::FaissIndex@{CANDY::FaissIndex}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Faiss\+Index\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_a203ceaafd5118eea2d9eb8614ccee4e6}\label{classCANDY_1_1FaissIndex_a203ceaafd5118eea2d9eb8614ccee4e6}} 
+\index{CANDY::FaissIndex@{CANDY::FaissIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::FaissIndex@{CANDY::FaissIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Faiss\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, accept multiple rows \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_a4d13d4568e01f2be07a267d2c8de49ea}\label{classCANDY_1_1FaissIndex_a4d13d4568e01f2be07a267d2c8de49ea}} 
+\index{CANDY::FaissIndex@{CANDY::FaissIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::FaissIndex@{CANDY::FaissIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Faiss\+Index\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1FaissIndex_a203ceaafd5118eea2d9eb8614ccee4e6}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1FaissIndex_a203ceaafd5118eea2d9eb8614ccee4e6}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_a1b9cbe8c2d2a238c0f16bb4674ce3ca1}\label{classCANDY_1_1FaissIndex_a1b9cbe8c2d2a238c0f16bb4674ce3ca1}} 
+\index{CANDY::FaissIndex@{CANDY::FaissIndex}!searchIndex@{searchIndex}}
+\index{searchIndex@{searchIndex}!CANDY::FaissIndex@{CANDY::FaissIndex}}
+\doxysubsubsection{\texorpdfstring{searchIndex()}{searchIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ faiss\+::idx\+\_\+t $>$ CANDY\+::\+Faiss\+Index\+::search\+Index (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return their index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$faiss\+::idx\+\_\+t$>$ the index, follow faiss\textquotesingle{}s order 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a60e0f58c72ffbf47342b4c4b4091a573}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_ac73e27e6acbaab35df05efd2d9deda97}\label{classCANDY_1_1FaissIndex_ac73e27e6acbaab35df05efd2d9deda97}} 
+\index{CANDY::FaissIndex@{CANDY::FaissIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::FaissIndex@{CANDY::FaissIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Faiss\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1FaissIndex_a2dfbef3e81c7119da3800832432088f4}\label{classCANDY_1_1FaissIndex_a2dfbef3e81c7119da3800832432088f4}} 
+\index{CANDY::FaissIndex@{CANDY::FaissIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::FaissIndex@{CANDY::FaissIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Faiss\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{FaissIndex_8h}{Faiss\+Index.\+h}}\item 
+src/\+CANDY/Faiss\+Index.\+cpp\end{DoxyCompactItemize}

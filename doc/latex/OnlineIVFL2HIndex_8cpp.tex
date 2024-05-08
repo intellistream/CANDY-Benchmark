@@ -1,0 +1,43 @@
+\hypertarget{OnlineIVFL2HIndex_8cpp}{}\doxysection{src/\+CANDY/\+Online\+IVFL2\+HIndex.cpp File Reference}
+\label{OnlineIVFL2HIndex_8cpp}\index{src/CANDY/OnlineIVFL2HIndex.cpp@{src/CANDY/OnlineIVFL2HIndex.cpp}}
+{\ttfamily \#include $<$CANDY/\+Online\+IVFL2\+HIndex.\+h$>$}\newline
+{\ttfamily \#include $<$Utils/\+Utility\+Functions.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+Include dependency graph for Online\+IVFL2\+HIndex.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{OnlineIVFL2HIndex_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{OnlineIVFL2HIndex_8cpp_ae5d5249369721e00208334a3d368325b}{ONLINEIVFL2\+H\+\_\+\+NEXT\+\_\+\+POW\+\_\+2}}(V)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{OnlineIVFL2HIndex_8cpp_ae5d5249369721e00208334a3d368325b}\label{OnlineIVFL2HIndex_8cpp_ae5d5249369721e00208334a3d368325b}} 
+\index{OnlineIVFL2HIndex.cpp@{OnlineIVFL2HIndex.cpp}!ONLINEIVFL2H\_NEXT\_POW\_2@{ONLINEIVFL2H\_NEXT\_POW\_2}}
+\index{ONLINEIVFL2H\_NEXT\_POW\_2@{ONLINEIVFL2H\_NEXT\_POW\_2}!OnlineIVFL2HIndex.cpp@{OnlineIVFL2HIndex.cpp}}
+\doxysubsubsection{\texorpdfstring{ONLINEIVFL2H\_NEXT\_POW\_2}{ONLINEIVFL2H\_NEXT\_POW\_2}}
+{\footnotesize\ttfamily \#define ONLINEIVFL2\+H\+\_\+\+NEXT\+\_\+\+POW\+\_\+2(\begin{DoxyParamCaption}\item[{}]{V }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                        \(\backslash\)}
+\DoxyCodeLine{        V-\/-\/;                                    \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 1;                            \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 2;                            \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 4;                            \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 8;                            \(\backslash\)}
+\DoxyCodeLine{        V |= V >> 16;                           \(\backslash\)}
+\DoxyCodeLine{        V++;                                    \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+compute the next number, greater than or equal to 32-\/bit unsigned v. taken from \char`\"{}bit twiddling hacks\char`\"{}\+: \href{http://graphics.stanford.edu/~seander/bithacks.html}{\texttt{ http\+://graphics.\+stanford.\+edu/$\sim$seander/bithacks.\+html}} 
