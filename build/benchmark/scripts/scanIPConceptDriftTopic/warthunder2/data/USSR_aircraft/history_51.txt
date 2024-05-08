@@ -1,2 +1,0 @@
-History of IL-2-37: 
-Based on the two-seat Il-2, armed with Nudelman-Suranov NS-37 in conformable gun pods under the wings, instead of the 20/23 mm cannons, this version is an attempt to create an anti-tank aircraft, first used in combat during the Battle of Kursk. However, the combat effectiveness was quite low and production of the variant was limited to about 3,500. Moreover, the bomb load was decreased from 600 kg to 200 kg. It was replaced by the conventional Il-2 attackers armed with cassettes with cumulative bomblets.

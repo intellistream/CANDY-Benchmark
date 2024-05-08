@@ -1,2 +1,0 @@
-Usage of F7F-1: 
-The main armament is extremely powerful. Equipped with 4 x 20 mm cannon and M2 Brownings in the nose, expect to knock planes out of the skies frequently. Unlike many other planes that have more spread out armament, the Tigercat packs a massive punch. If one cannon shell hits, the rest will as well. It is recommended that you research "New 20 mm Cannons" and "12.7 mm Ammo Belts", as the Cannon jam quite quickly and the stealth and ground target ammo for the 12.7 mm is far more effective than the default.

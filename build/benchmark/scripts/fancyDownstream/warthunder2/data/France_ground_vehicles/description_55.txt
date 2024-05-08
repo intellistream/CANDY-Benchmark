@@ -1,3 +1,0 @@
-Description of AMX-50_(TOA100): 
-The AMX Char Moyen de 50 tonnes (TOA100) is a rank V French medium tank 
-with a battle rating of 7.0 (AB/SB) and 7.7 (RB). It was introduced in Update 1.75 "La Résistance". It features the same armament and turret as the Lorraine 40t on a more robust chassis, similar to that of the AMX M4, in sum, it is a fusion of the former's firepower and the latter's mobility and protection. It is the logical next step to the French rank IV medium tech tree.

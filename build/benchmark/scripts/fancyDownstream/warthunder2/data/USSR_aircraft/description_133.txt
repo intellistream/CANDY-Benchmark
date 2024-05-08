@@ -1,2 +1,0 @@
-Description of MiG-9_(l): 
-In 1947, two MiG-9s were taken by OKB Mikoyan and fitted with the new experimental RD-20F engine, which included a forced-reheat mode for its low-bypass compressors. Essentially a very early form of afterburner/WEP, this new engine was supposed to increase the thrust of the MiG-9, but proved unreliable instead. The two aircraft with this engine received the special prototype designation "I-307". These prototypes are represented in-game as the "MiG-9 Late".

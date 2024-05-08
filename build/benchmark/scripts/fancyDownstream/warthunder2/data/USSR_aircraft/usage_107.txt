@@ -1,2 +1,0 @@
-Usage of La-9: 
-Arcade Battles: As all planes, the La-9 has a boosted Flight Model (FM) in the Arcade mode, which allows for better overall performance, from speed and climb rate to manoeuvrability. It performs best at an altitude of 3,400 m and below. The main reason for this is the absence of War Emergency Power (WEP) at altitudes above 4,000 m. To be able to use WEP at altitudes between 3,400 m – 4,000 m it is necessary to maintain a good speed.

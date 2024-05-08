@@ -1,2 +1,0 @@
-Usage of Ozelot: 
-The Ozelot requires discipline to use efficiently. Care must be taken not to fire on enemies flying too close, otherwise the missile will not be able to turn quickly enough to hit the target. The Ozelot should be used in an open environment, as obstacles can interfere with the radar guidance of the missiles, or even get hit by the missiles themselves. Helicopters are this vehicle's main opponent.

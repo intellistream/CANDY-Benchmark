@@ -1,3 +1,0 @@
-Description of M1A2_Abrams: 
-The Tank, Combat, Full Tracked, 120-mm Gun M1A2 (shortened to M1A2 Abrams) is a rank VIII American medium tank 
-with a battle rating of 11.7 (AB/RB/SB). It was introduced in Update 1.93 "Shark Attack" as the top researchable vehicle in the US Ground Forces tech tree. The M1A2 introduces heavy depleted uranium armour and a commander's thermal sight.

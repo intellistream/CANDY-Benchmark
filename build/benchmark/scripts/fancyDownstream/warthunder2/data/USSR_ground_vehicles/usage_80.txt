@@ -1,2 +1,0 @@
-Usage of IS-2_(1944): 
-The IS-2 (1944) is a definite improvement on its predecessor, the IS-2. Most notably the frontal armour now features a slope, which can bounce or outright block some rounds, although the 0.6 Battle Rating increase seems slightly too much. This iteration of the IS-2 also features a roof-mounted machine gun that can be used to attack aircraft without moving your turret (by using weapon selection keys set in the controls). Otherwise, the IS-2 (1944) is identical to the IS-2.

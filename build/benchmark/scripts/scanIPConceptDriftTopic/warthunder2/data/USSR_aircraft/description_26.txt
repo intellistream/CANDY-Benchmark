@@ -1,3 +1,0 @@
-Description of SB_2M-103_MV-3: 
-The SB 2M-103 MV-3 is a gift rank I Soviet bomber 
-with a battle rating of 2.3 (AB/SB) and 1.7 (RB). Though initially in the game pre-1.29, this plane was removed upon Update 1.37 due to redundancy. Those players who acquired the aircraft before it was removed still have access to it.

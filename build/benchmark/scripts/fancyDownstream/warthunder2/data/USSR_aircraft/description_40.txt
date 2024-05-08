@@ -1,3 +1,0 @@
-Description of MiG-3-15_(BK): 
-The MiG-3-15 (BK) is a rank II Soviet fighter 
-with a battle rating of 2.7 (AB) and 2.3 (RB/SB). It was introduced in Update 1.37. It follows the MiG-3 in the tech tree and differs only in the additional non-synchronised suspended armament. It is armed with 2 x ShKAS 7.62 mm MGs and 3 x 12.7 mm Berezin UB MGs. It also has a Mikulin AM-35A engine sporting 1,200 hp.

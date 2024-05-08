@@ -1,2 +1,0 @@
-Usage of D3A1: 
-The D3A1 is Japan's early dive bomber, a highly manoeuvrable aircraft that is able to outturn a lot of enemies and avoid bursts of fire. Having a small turn radius gives the D3A1 a chance to defend itself by getting on the tail of enemy, but if the enemy is smart enough and doesn't try to turn with the D3A1, they can run away from the D3A1 after it has lost a bit of speed in turning around to get on the tail. But the D3A1 can still get in a couple of hits.

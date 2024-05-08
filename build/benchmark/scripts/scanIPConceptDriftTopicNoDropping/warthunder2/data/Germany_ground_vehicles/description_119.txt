@@ -1,3 +1,0 @@
-Description of M48A2_G_A2: 
-The M48A2 G A2 is a rank VI German medium tank 
-with a battle rating of 8.3 (AB/RB/SB). It was introduced in Update 1.81 "The Valkyries". It was born from the adaptation of the 105 mm L7A3 cannon on the already available M48A2 platform together with a new fire control system.

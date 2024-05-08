@@ -1,3 +1,0 @@
-Description of S.M.79_bis/N_(Germany): 
-The ▀S.M.79 Sparviero bis/N (1942) is a gift rank II German bomber 
-with a battle rating of 2.7 (AB) and 2.3 (RB/SB). Though initially in the game pre-1.27, this plane was removed upon Update 1.37 due to redundancy.

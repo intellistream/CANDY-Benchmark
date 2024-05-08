@@ -1,3 +1,0 @@
-Description of 8,8_cm_Flak_37_Sfl.: 
-The 8.8cm Flak 37 Selbstfahrlafette auf 18 ton Zugkraftwagen (Sd.Kfz. Index: Sd.Kfz. 9) is a rank III German tank destroyer 
-with a battle rating of 4.7 (AB), 4.0 (RB), and 3.7 (SB). It was introduced in Update 1.63 "Desert Hunters". It features the famous 8.8 cm FlaK 37 cannon on a half-track mount, presenting heavy firepower at the cost of armour and even mobility due to its heavy weight.

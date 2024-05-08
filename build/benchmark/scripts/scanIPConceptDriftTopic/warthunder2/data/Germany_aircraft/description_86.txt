@@ -1,3 +1,0 @@
-Description of Do_335_A-0: 
-The Do 335 A-0 is a rank III German strike aircraft 
-with a battle rating of 4.3 (AB), 4.7 (RB), and 5.0 (SB). It was introduced in Update 1.57 "Battle March". This pre-production run does not feature payload options, unlike the A-1 series. Fortunately, this difference is favourable for the A-0 as it features superior aerodynamics and henceforth better top speed, despite only running on the 50PS weaker DB603A (PS = metric horsepower).

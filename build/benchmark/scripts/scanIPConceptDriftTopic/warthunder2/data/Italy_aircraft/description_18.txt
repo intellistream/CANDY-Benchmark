@@ -1,3 +1,0 @@
-Description of S.M.79_serie_8: 
-The S.M.79 Sparviero serie 8 (1939) is a rank I Italian bomber 
-with a battle rating of 2.0 (AB/RB) and 2.3 (SB). It was introduced in Update 1.69 "Regia Aeronautica", though a variant existed in the German aircraft tech tree prior to the update. The only readily apparent difference between the serie 8 and the S.M.79 serie 1 is the ability to activate WEP, as well as an improved dorsal turret allowing for a slightly higher vertical firing arc.

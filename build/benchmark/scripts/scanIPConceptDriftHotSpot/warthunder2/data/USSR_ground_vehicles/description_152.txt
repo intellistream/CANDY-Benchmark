@@ -1,3 +1,0 @@
-Description of T-72AV_(TURMS-T): 
-The T-72AV (TURMS-T) is a premium gift rank VII Russian medium tank 
-with a battle rating of 10.0 (AB/RB/SB). It was introduced in Update "New Power". An export and improved version of T-72 MBTs, this tank comes with a TURMS fire control system, which translates in game with 2nd generation thermal sights for both the gunner and the commander, allowing this tank to be comfortable in long-range engagements.

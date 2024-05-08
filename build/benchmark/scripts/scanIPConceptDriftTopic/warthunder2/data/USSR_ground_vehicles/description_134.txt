@@ -1,3 +1,0 @@
-Description of ZSU-23-4: 
-The ZSU-23-4 "Shilka" is a rank VI Soviet anti-aircraft vehicle 
-with a battle rating of 8.0 (AB/RB/SB). It was introduced in Update 1.63 "Desert Hunters". The "Shilka" presents a much higher rate of fire than its predecessor ZSU-57-2 and allows the user to saturate the airspace to increase the chance of hitting a low-flying aircraft.

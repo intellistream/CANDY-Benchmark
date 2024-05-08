@@ -1,2 +1,0 @@
-Description of Rooikat_MTTD: 
-The Rooikat Medium Turret Technology Demonstrator (MTTD) was a prototype based on the Rooikat hull to test the possibility of an autoloading system mounted in a remote turret. The loader and commander positions were lowered into the hull, leaving a smaller turret occupied solely by the gun and autoloading bustle. A mock launcher for an active protection system was also installed on top of the turret, but not fitted with any of the equipment required to allow it to function.

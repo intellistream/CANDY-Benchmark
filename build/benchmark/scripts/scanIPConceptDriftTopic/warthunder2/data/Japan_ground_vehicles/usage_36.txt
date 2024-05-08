@@ -1,2 +1,0 @@
-Usage of Type_60_ATM: 
-The vehicle has two Type 64 ATGMs loaded at once, with four others being stored in the hull. These ATGMs can be launched from about a 30-degree horizontal arc in front of the hull, and can only be guided in about 25 degrees arc in AB. Only one missile can be controlled at a time.
