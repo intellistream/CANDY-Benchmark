@@ -1,0 +1,418 @@
+\hypertarget{classCANDY_1_1DistributedPartitionIndex}{}\doxysection{CANDY\+::Distributed\+Partition\+Index Class Reference}
+\label{classCANDY_1_1DistributedPartitionIndex}\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+
+
+A basic distributed index, works under generic data partition, allow configurable index of threads, following round-\/robin insert and map-\/reduce query.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Distributed\+Partition\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Distributed\+Partition\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{classCANDY_1_1DistributedPartitionIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Distributed\+Partition\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1DistributedPartitionIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ab6db191148f7496633210a064ec1ea9c}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_aa232b9bce9ecc57c13efd748a246fb3d}{insert\+Tensor}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_ad86104c94ebce75d6fe1d01a0ba1d732}\label{classCANDY_1_1DistributedPartitionIndex_ad86104c94ebce75d6fe1d01a0ba1d732}} 
+virtual void \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ad86104c94ebce75d6fe1d01a0ba1d732}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ac6f6b52ee4617d0c90dbd33b9a173a60}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_aa232b9bce9ecc57c13efd748a246fb3d}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a496e444140f44b7bbe24509e48df1c37}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a963a0a92427743696d50e558b5ca8ae3}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ac5052caef9cb611bc73092c451a44fbe}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_abb6b9e46862c924952050b51b7f6a250}{raw\+Data}} ()
+\begin{DoxyCompactList}\small\item\em return the raw\+Data of tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a6508a7b08ebef9b75eb13b03d18f3d82}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ac77f8c981ff6899cc3d3403fd61fc6fb}{start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a8a4f37420d66aa6bda69f197ba994a27}{end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_abd103d77138e03c3295a56180f579a62}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_afe77de052c7bc371810b9b61376a7cb3}{offline\+Build}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a083380c87b5414fc19d128951a12d621}{wait\+Pending\+Operations}} ()
+\begin{DoxyCompactList}\small\item\em a busy waitting for all pending operations to be done \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a34fb15e8de62de6a06f9d5f3ad4983d1}\label{classCANDY_1_1DistributedPartitionIndex_a34fb15e8de62de6a06f9d5f3ad4983d1}} 
+void {\bfseries insert\+Tensor\+Inline} (torch\+::\+Tensor t)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_ac080a7f89af82f20710e36726d87bfa0}\label{classCANDY_1_1DistributedPartitionIndex_ac080a7f89af82f20710e36726d87bfa0}} 
+void {\bfseries partition\+Build\+In\+Line} (torch\+::\+Tensor \&t)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_afee1fa8ce7caa161966ce247a5e0275d}\label{classCANDY_1_1DistributedPartitionIndex_afee1fa8ce7caa161966ce247a5e0275d}} 
+void {\bfseries partition\+Load\+In\+Line} (torch\+::\+Tensor \&t)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a7dca9cec8008ebb976d9c5a06cad39f3}\label{classCANDY_1_1DistributedPartitionIndex_a7dca9cec8008ebb976d9c5a06cad39f3}} 
+int64\+\_\+t {\bfseries distributed\+Workers}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a6adc32e7b1ae34a875dfad12134b2e5f}\label{classCANDY_1_1DistributedPartitionIndex_a6adc32e7b1ae34a875dfad12134b2e5f}} 
+int64\+\_\+t {\bfseries insert\+Idx}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a357be7db7ccfaf5d24b41f541460a936}\label{classCANDY_1_1DistributedPartitionIndex_a357be7db7ccfaf5d24b41f541460a936}} 
+std\+::vector$<$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga7e677925e3ba698a29771e328c51d1bd}{Distributed\+Index\+Worker\+Ptr}} $>$ {\bfseries workers}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a3b3c3dd15002b5694999a6f998d99730}\label{classCANDY_1_1DistributedPartitionIndex_a3b3c3dd15002b5694999a6f998d99730}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a2931bf8c70b65798efa7d1398e0a8f48}\label{classCANDY_1_1DistributedPartitionIndex_a2931bf8c70b65798efa7d1398e0a8f48}} 
+int64\+\_\+t {\bfseries fine\+Grained\+Distributed\+Insert}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a928b915259d06a62b579be9c41d8143c}\label{classCANDY_1_1DistributedPartitionIndex_a928b915259d06a62b579be9c41d8143c}} 
+int64\+\_\+t {\bfseries shared\+Build}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A basic distributed index, works under generic data partition, allow configurable index of threads, following round-\/robin insert and map-\/reduce query. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]consider an unblocked, optimized version of \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_aa232b9bce9ecc57c13efd748a246fb3d}{insert\+Tensor}}, as we did in \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_ab6db191148f7496633210a064ec1ea9c}{load\+Initial\+Tensor}} ? \end{DoxyRefDesc}
+\begin{DoxyNote}{Note}
+special parameters
+\begin{DoxyItemize}
+\item distributed\+Worker\+\_\+algo\+Tag The algo tag of this worker, String, default flat
+\item distributed\+Worker\+\_\+queue\+Size The input queue size of this worker, I64, default 10
+\item distributed\+Workers The number of paraller workers, I64, default 1;
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item fine\+Grained\+Distributed\+Insert, whether or not conduct the insert in an extremely fine-\/grained way, i.\+e., per-\/row, I64, default 0
+\item shared\+Build whether let all sharding using shared build, 1, I64 
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Make sure you are using 2D tensors! Not works well with python API 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a496e444140f44b7bbe24509e48df1c37}\label{classCANDY_1_1DistributedPartitionIndex_a496e444140f44b7bbe24509e48df1c37}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index needs to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item map
+\item reduce
+\end{DoxyEnumerate}
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a8a4f37420d66aa6bda69f197ba994a27}\label{classCANDY_1_1DistributedPartitionIndex_a8a4f37420d66aa6bda69f197ba994a27}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!endHPC@{endHPC}}
+\index{endHPC@{endHPC}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{endHPC()}{endHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::end\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra termination if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC termination is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a3c4cdf616320ab7208fc7025b37b9a08}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_ac5052caef9cb611bc73092c451a44fbe}\label{classCANDY_1_1DistributedPartitionIndex_ac5052caef9cb611bc73092c451a44fbe}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Distributed\+Partition\+Index\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_aa232b9bce9ecc57c13efd748a246fb3d}\label{classCANDY_1_1DistributedPartitionIndex_aa232b9bce9ecc57c13efd748a246fb3d}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_ab6db191148f7496633210a064ec1ea9c}\label{classCANDY_1_1DistributedPartitionIndex_ab6db191148f7496633210a064ec1ea9c}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_aa232b9bce9ecc57c13efd748a246fb3d}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_aa232b9bce9ecc57c13efd748a246fb3d}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_afe77de052c7bc371810b9b61376a7cb3}\label{classCANDY_1_1DistributedPartitionIndex_afe77de052c7bc371810b9b61376a7cb3}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!offlineBuild@{offlineBuild}}
+\index{offlineBuild@{offlineBuild}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{offlineBuild()}{offlineBuild()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::offline\+Build (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_aca873d66824f385feac1a7cb49abdfac}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_abb6b9e46862c924952050b51b7f6a250}\label{classCANDY_1_1DistributedPartitionIndex_abb6b9e46862c924952050b51b7f6a250}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!rawData@{rawData}}
+\index{rawData@{rawData}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{rawData()}{rawData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Distributed\+Partition\+Index\+::raw\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return the raw\+Data of tensor 
+
+\begin{DoxyReturn}{Returns}
+The raw data stored in tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a963a0a92427743696d50e558b5ca8ae3}\label{classCANDY_1_1DistributedPartitionIndex_a963a0a92427743696d50e558b5ca8ae3}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+only support to delete and insert, no straightforward revision 
+\end{DoxyNote}
+only allow to delete and insert, no straightforward revision
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a6508a7b08ebef9b75eb13b03d18f3d82}\label{classCANDY_1_1DistributedPartitionIndex_a6508a7b08ebef9b75eb13b03d18f3d82}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Distributed\+Partition\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item map
+\item reduce
+\end{DoxyEnumerate}
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_ac6f6b52ee4617d0c90dbd33b9a173a60}\label{classCANDY_1_1DistributedPartitionIndex_ac6f6b52ee4617d0c90dbd33b9a173a60}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specfic config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_abd103d77138e03c3295a56180f579a62}\label{classCANDY_1_1DistributedPartitionIndex_abd103d77138e03c3295a56180f579a62}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a637e0a15f3753c2188da92f8b787061d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_ac77f8c981ff6899cc3d3403fd61fc6fb}\label{classCANDY_1_1DistributedPartitionIndex_ac77f8c981ff6899cc3d3403fd61fc6fb}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!startHPC@{startHPC}}
+\index{startHPC@{startHPC}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{startHPC()}{startHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::start\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra set-\/ups if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC set-\/up is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abb4333a11499fc6c88d1d78bc77138f4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1DistributedPartitionIndex_a083380c87b5414fc19d128951a12d621}\label{classCANDY_1_1DistributedPartitionIndex_a083380c87b5414fc19d128951a12d621}} 
+\index{CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}!waitPendingOperations@{waitPendingOperations}}
+\index{waitPendingOperations@{waitPendingOperations}!CANDY::DistributedPartitionIndex@{CANDY::DistributedPartitionIndex}}
+\doxysubsubsection{\texorpdfstring{waitPendingOperations()}{waitPendingOperations()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Partition\+Index\+::wait\+Pending\+Operations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+a busy waitting for all pending operations to be done 
+
+\begin{DoxyNote}{Note}
+in this index, there are may be some un-\/commited write due to the parallel queues 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+bool, whether the waitting is actually done; 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a06bf1c698d6c4fa8ac899e69b83837f1}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{DistributedPartitionIndex_8h}{Distributed\+Partition\+Index.\+h}}\item 
+src/\+CANDY/\mbox{\hyperlink{DistributedPartitionIndex_8cpp}{Distributed\+Partition\+Index.\+cpp}}\end{DoxyCompactItemize}

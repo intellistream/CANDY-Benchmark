@@ -1,0 +1,39 @@
+\hypertarget{DPGIndex_8h}{}\doxysection{include/\+CANDY/\+DPGIndex.h File Reference}
+\label{DPGIndex_8h}\index{include/CANDY/DPGIndex.h@{include/CANDY/DPGIndex.h}}
+{\ttfamily \#include $<$CANDY/\+Abstract\+Index.\+h$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+Include dependency graph for DPGIndex.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{DPGIndex_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{DPGIndex_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1DPGIndex}{CANDY\+::\+DPGIndex}}
+\begin{DoxyCompactList}\small\item\em A hierarchical algorithm based on a data structure consistent with \mbox{\hyperlink{classCANDY_1_1NNDescentIndex}{NNDescent\+Index}}, the subgraph in the hierarchical graph will retain half of the most directional diversity of edges in the original graph, and expand the unidirectional edges into bidirectional edges. The offline construction of the basic graph still uses the NNDescent algorithm in this implementation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCANDY_1_1DPGIndex_1_1Neighbor}{CANDY\+::\+DPGIndex\+::\+Neighbor}}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1DPGIndex_1_1NhoodLayer0}{CANDY\+::\+DPGIndex\+::\+Nhood\+Layer0}}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1DPGIndex_1_1NhoodLayer1}{CANDY\+::\+DPGIndex\+::\+Nhood\+Layer1}}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_ga8ba1ad39e165b180fbd8c9fba4aa6829}{new\+DPGIndex}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1DPGIndex}{CANDY\+::\+DPGIndex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new DPGIndex shared pointer. \end{DoxyCompactList}\item 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1DPGIndex}{CANDY\+::\+DPGIndex}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_gaa35d2da9e86c909c3203837e28d888ec}{CANDY\+::\+DPGIndex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1DPGIndex}{DPGIndex}}. \end{DoxyCompactList}\end{DoxyCompactItemize}

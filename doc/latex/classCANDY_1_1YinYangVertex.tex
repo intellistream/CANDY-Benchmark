@@ -1,0 +1,360 @@
+\hypertarget{classCANDY_1_1YinYangVertex}{}\doxysection{CANDY\+::Yin\+Yang\+Vertex Class Reference}
+\label{classCANDY_1_1YinYangVertex}\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+
+
+The class of a \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{Yin\+Yang\+Vertex}}, storing the data in each vertex.  
+
+
+
+
+Collaboration diagram for CANDY\+::Yin\+Yang\+Vertex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1YinYangVertex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertex_ae31369c3c2b7a4afcc2db122f6656d8f}{init}} (torch\+::\+Tensor \&ts, int64\+\_\+t \+\_\+level, int64\+\_\+t max\+Num\+Of\+Neighbor, int64\+\_\+t \+\_\+contained\+Tensors, bool \+\_\+is\+Yang)
+\begin{DoxyCompactList}\small\item\em init a yinyang vertex \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a1949750b75bf570f6efe8172f9742410}\label{classCANDY_1_1YinYangVertex_a1949750b75bf570f6efe8172f9742410}} 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a1949750b75bf570f6efe8172f9742410}{lock}} ()
+\begin{DoxyCompactList}\small\item\em lock this vertex \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_ab5f36d43494efe414056a7cbf68f97dc}\label{classCANDY_1_1YinYangVertex_ab5f36d43494efe414056a7cbf68f97dc}} 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertex_ab5f36d43494efe414056a7cbf68f97dc}{unlock}} ()
+\begin{DoxyCompactList}\small\item\em unlock this vertex \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertex_add9f23921a8690854224e1bad259d1b5}{attach\+Tensor}} (torch\+::\+Tensor \&ts)
+\begin{DoxyCompactList}\small\item\em attach a tensor with this vertex \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertex_aa926869bee47582dcf1fd586a1808057}{detach\+Tensor}} (torch\+::\+Tensor \&ts)
+\begin{DoxyCompactList}\small\item\em detach a tensor with this vertex \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a20b8e7d4170aa5de37389d112f8502c2}{set\+Uper\+Layer}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} upv)
+\item 
+std\+::string \mbox{\hyperlink{classCANDY_1_1YinYangVertex_ac13ed3fda9c7e795e3b86543f72beb2c}{to\+String}} (bool short\+Info=true)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a0e56fd1e5231a537ba332485e6990fc7}{greedy\+Search\+For\+Nearest\+Vertex}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} src, \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} entry\+Point, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)
+\begin{DoxyCompactList}\small\item\em to get the nearest vertex of src, start at entry\+Point \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a29b0b545c6c259f276c0835acf035a05}{greedy\+Search\+For\+Nearest\+Vertex}} (torch\+::\+Tensor \&src, \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} entry\+Point, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)
+\begin{DoxyCompactList}\small\item\em to get the nearest vertex of src, start at entry\+Point \end{DoxyCompactList}\item 
+static torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a08b3ed71f86ea8c0a48b16ef0821fd17}{greedy\+Search\+For\+KNearest\+Tensor}} (torch\+::\+Tensor \&src, \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} entry\+Point, int64\+\_\+t k, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)
+\begin{DoxyCompactList}\small\item\em to get k nearest tesnor of src, start at entry\+Point \end{DoxyCompactList}\item 
+static std\+::vector$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} $>$ \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a724d2ff950f050b0bc1a4d02b2152794}{greedy\+Search\+For\+KNearest\+Vertex}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} src, \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} entry\+Point, int64\+\_\+t k, bool ignore\+Yin, bool force\+The\+Same\+Level, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)
+\begin{DoxyCompactList}\small\item\em to get k nearest vertex of src, start at entry\+Point \end{DoxyCompactList}\item 
+static std\+::vector$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} $>$ \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a3e11e6d843ce762a8803bd3d85586740}{greedy\+Search\+For\+KNearest\+Vertex}} (torch\+::\+Tensor \&src, \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} entry\+Point, int64\+\_\+t k, bool ignore\+Yin, bool force\+The\+Same\+Level, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)
+\begin{DoxyCompactList}\small\item\em to get k nearest vertex of src, start at entry\+Point \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classCANDY_1_1YinYangVertex_a3fc59c660b42db439b409455d2059adb}{try\+To\+Connect}} (\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} a, \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} b, std\+::vector$<$ \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} $>$ \&vertex\+Map\+Ge1\+Vec, float\+Distance\+Function\+\_\+t df=Yin\+Yang\+Graph\+\_\+\+Distance\+Functions\+::\+L2\+Distance)
+\begin{DoxyCompactList}\small\item\em try to connect vertex a and b with each other \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a5b4393b933eef54ba718ca3a153a7291}\label{classCANDY_1_1YinYangVertex_a5b4393b933eef54ba718ca3a153a7291}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} {\bfseries tensor\+Summary}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a23d0a6cefcc45636ab8c8c37447d1f94}\label{classCANDY_1_1YinYangVertex_a23d0a6cefcc45636ab8c8c37447d1f94}} 
+int64\+\_\+t {\bfseries contained\+Tensors} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_ab67f30fc58c3534885c5dff1567ad260}\label{classCANDY_1_1YinYangVertex_ab67f30fc58c3534885c5dff1567ad260}} 
+int64\+\_\+t {\bfseries level} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a441009b9ab4b7ff7b6b29e72d0790925}\label{classCANDY_1_1YinYangVertex_a441009b9ab4b7ff7b6b29e72d0790925}} 
+int64\+\_\+t {\bfseries connected\+Neighbors} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a06a457353a1e6da411a7b48752a83f05}\label{classCANDY_1_1YinYangVertex_a06a457353a1e6da411a7b48752a83f05}} 
+int64\+\_\+t {\bfseries max\+Connections} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_aad51834c4bd035384437a47bdab5e5a9}\label{classCANDY_1_1YinYangVertex_aad51834c4bd035384437a47bdab5e5a9}} 
+bool {\bfseries is\+Yang} = false
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a5f8047ff8f984e2bf143e8a8a7826e3b}\label{classCANDY_1_1YinYangVertex_a5f8047ff8f984e2bf143e8a8a7826e3b}} 
+std\+::map$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}, \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}} $>$ {\bfseries neighbor\+Map}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a4347f2a93363917fa9fd2af689c0bfa5}\label{classCANDY_1_1YinYangVertex_a4347f2a93363917fa9fd2af689c0bfa5}} 
+\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} {\bfseries upper\+Layer\+Vertex} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a6de2375e960ae6893e6cf47f81465c84}\label{classCANDY_1_1YinYangVertex_a6de2375e960ae6893e6cf47f81465c84}} 
+uint8\+\_\+t {\bfseries visno}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a041a74c45b08260891d5003d57bae499}\label{classCANDY_1_1YinYangVertex_a041a74c45b08260891d5003d57bae499}} 
+std\+::mutex {\bfseries m\+\_\+mut}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class of a \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{Yin\+Yang\+Vertex}}, storing the data in each vertex. 
+
+\begin{DoxyNote}{Note}
+now storing each vertex\textquotesingle{}s neighbors, visited number and level, with a pointer to the vector 
+
+
+\begin{DoxyItemize}
+\item yin\+: means this is a summarizing or bridge tensor, not a really data point
+\begin{DoxyItemize}
+\item yin vertex will only be used for navigation, not output to result
+\item yin vertex will be less likely to be deleted, completely changed compared with yang
+\item yin vertex can be a summary of multiple tensors
+\end{DoxyItemize}
+\item yang\+: means the real data point 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_add9f23921a8690854224e1bad259d1b5}\label{classCANDY_1_1YinYangVertex_add9f23921a8690854224e1bad259d1b5}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!attachTensor@{attachTensor}}
+\index{attachTensor@{attachTensor}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{attachTensor()}{attachTensor()}}
+{\footnotesize\ttfamily void CANDY\+::\+Yin\+Yang\+Vertex\+::attach\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{ts }\end{DoxyParamCaption})}
+
+
+
+attach a tensor with this vertex 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ts} & the tensor to be attached \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+assume ts is a single row 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_aa926869bee47582dcf1fd586a1808057}\label{classCANDY_1_1YinYangVertex_aa926869bee47582dcf1fd586a1808057}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!detachTensor@{detachTensor}}
+\index{detachTensor@{detachTensor}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{detachTensor()}{detachTensor()}}
+{\footnotesize\ttfamily void CANDY\+::\+Yin\+Yang\+Vertex\+::detach\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{ts }\end{DoxyParamCaption})}
+
+
+
+detach a tensor with this vertex 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ts} & the tensor to be detached \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+assume ts is a single row 
+\end{DoxyNote}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a08b3ed71f86ea8c0a48b16ef0821fd17}\label{classCANDY_1_1YinYangVertex_a08b3ed71f86ea8c0a48b16ef0821fd17}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForKNearestTensor@{greedySearchForKNearestTensor}}
+\index{greedySearchForKNearestTensor@{greedySearchForKNearestTensor}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{greedySearchForKNearestTensor()}{greedySearchForKNearestTensor()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Yin\+Yang\+Vertex\+::greedy\+Search\+For\+KNearest\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{src,  }\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}}]{entry\+Point,  }\item[{int64\+\_\+t}]{k,  }\item[{CANDY\+::float\+Distance\+Function\+\_\+t}]{df = {\ttfamily YinYangGraph\+\_\+DistanceFunctions\+:\+:L2Distance} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to get k nearest tesnor of src, start at entry\+Point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & the source tensor to be used as reference \\
+\hline
+{\em entry\+Point} & the entry\+Point to start gready search \\
+\hline
+{\em k} & the number @parm df the distance calculate function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000009}{Todo}}]This one is just NNDecent greedy policy, perhaps can be better \end{DoxyRefDesc}
+\begin{DoxyReturn}{Returns}
+the result tensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a3e11e6d843ce762a8803bd3d85586740}\label{classCANDY_1_1YinYangVertex_a3e11e6d843ce762a8803bd3d85586740}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForKNearestVertex@{greedySearchForKNearestVertex}}
+\index{greedySearchForKNearestVertex@{greedySearchForKNearestVertex}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{greedySearchForKNearestVertex()}{greedySearchForKNearestVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} $>$ CANDY\+::\+Yin\+Yang\+Vertex\+::greedy\+Search\+For\+KNearest\+Vertex (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{src,  }\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}}]{entry\+Point,  }\item[{int64\+\_\+t}]{k,  }\item[{bool}]{ignore\+Yin,  }\item[{bool}]{force\+The\+Same\+Level,  }\item[{CANDY\+::float\+Distance\+Function\+\_\+t}]{df = {\ttfamily YinYangGraph\+\_\+DistanceFunctions\+:\+:L2Distance} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to get k nearest vertex of src, start at entry\+Point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & the source tensor \\
+\hline
+{\em entry\+Point} & the entry\+Point to start gready search \\
+\hline
+{\em k} & the number \\
+\hline
+{\em ignore\+Yin} & whether or not ignore Yin\+Vertex \\
+\hline
+{\em force\+The\+Same\+Level} & whether or not force to find it at the same level @parm df the distance calculate function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000011}{Todo}}]This one is just NNDecent greedy policy, perhaps can be better \end{DoxyRefDesc}
+\begin{DoxyReturn}{Returns}
+the nearest vertex 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a724d2ff950f050b0bc1a4d02b2152794}\label{classCANDY_1_1YinYangVertex_a724d2ff950f050b0bc1a4d02b2152794}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForKNearestVertex@{greedySearchForKNearestVertex}}
+\index{greedySearchForKNearestVertex@{greedySearchForKNearestVertex}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{greedySearchForKNearestVertex()}{greedySearchForKNearestVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} $>$ CANDY\+::\+Yin\+Yang\+Vertex\+::greedy\+Search\+For\+KNearest\+Vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}}}]{src,  }\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}}}]{entry\+Point,  }\item[{int64\+\_\+t}]{k,  }\item[{bool}]{ignore\+Yin,  }\item[{bool}]{force\+The\+Same\+Level,  }\item[{float\+Distance\+Function\+\_\+t}]{df = {\ttfamily YinYangGraph\+\_\+DistanceFunctions\+:\+:L2Distance} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to get k nearest vertex of src, start at entry\+Point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & the source vertex to be used as reference \\
+\hline
+{\em entry\+Point} & the entry\+Point to start gready search \\
+\hline
+{\em k} & the number \\
+\hline
+{\em ignore\+Yin} & whether or not ignore Yin\+Vertex \\
+\hline
+{\em force\+The\+Same\+Level} & whether or not force to find it at the same level @parm df the distance calculate function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000010}{Todo}}]This one is just NNDecent greedy policy, perhaps can be better \end{DoxyRefDesc}
+\begin{DoxyReturn}{Returns}
+the nearest vertex 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a29b0b545c6c259f276c0835acf035a05}\label{classCANDY_1_1YinYangVertex_a29b0b545c6c259f276c0835acf035a05}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForNearestVertex@{greedySearchForNearestVertex}}
+\index{greedySearchForNearestVertex@{greedySearchForNearestVertex}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{greedySearchForNearestVertex()}{greedySearchForNearestVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}} CANDY\+::\+Yin\+Yang\+Vertex\+::greedy\+Search\+For\+Nearest\+Vertex (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{src,  }\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}}}]{entry\+Point,  }\item[{float\+Distance\+Function\+\_\+t}]{df = {\ttfamily YinYangGraph\+\_\+DistanceFunctions\+:\+:L2Distance} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to get the nearest vertex of src, start at entry\+Point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & the source tensor to be used as reference \\
+\hline
+{\em entry\+Point} & the entry\+Point to start greedy search @parm df the distance calculate function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the nearest vertex 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item scan the distance of neighbors
+\item if this one is optimal, return
+\end{DoxyEnumerate}
+
+switch into the new optimal ones\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a0e56fd1e5231a537ba332485e6990fc7}\label{classCANDY_1_1YinYangVertex_a0e56fd1e5231a537ba332485e6990fc7}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!greedySearchForNearestVertex@{greedySearchForNearestVertex}}
+\index{greedySearchForNearestVertex@{greedySearchForNearestVertex}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{greedySearchForNearestVertex()}{greedySearchForNearestVertex()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}} CANDY\+::\+Yin\+Yang\+Vertex\+::greedy\+Search\+For\+Nearest\+Vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}}}]{src,  }\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}}}]{entry\+Point,  }\item[{float\+Distance\+Function\+\_\+t}]{df = {\ttfamily YinYangGraph\+\_\+DistanceFunctions\+:\+:L2Distance} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+to get the nearest vertex of src, start at entry\+Point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & the source vertex to be used as reference \\
+\hline
+{\em entry\+Point} & the entry\+Point to start greedy search @parm df the distance calculate function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the nearest vertex 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_ae31369c3c2b7a4afcc2db122f6656d8f}\label{classCANDY_1_1YinYangVertex_ae31369c3c2b7a4afcc2db122f6656d8f}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!init@{init}}
+\index{init@{init}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void CANDY\+::\+Yin\+Yang\+Vertex\+::init (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{ts,  }\item[{int64\+\_\+t}]{\+\_\+level,  }\item[{int64\+\_\+t}]{max\+Num\+Of\+Neighbor,  }\item[{int64\+\_\+t}]{\+\_\+contained\+Tensors,  }\item[{bool}]{\+\_\+is\+Yang }\end{DoxyParamCaption})}
+
+
+
+init a yinyang vertex 
+
+handling the vertex
+
+
+\begin{DoxyParams}{Parameters}
+{\em ts} & the tensor linked to this vertex \\
+\hline
+{\em \+\_\+level} & the level of this one \\
+\hline
+{\em max\+Num\+Of\+Neighbor} & the maximum number of neighbors \\
+\hline
+{\em \+\_\+contained\+Tensors} & the number of contained tensors \\
+\hline
+{\em \+\_\+is\+Yang} & whether this is a yang vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a20b8e7d4170aa5de37389d112f8502c2}\label{classCANDY_1_1YinYangVertex_a20b8e7d4170aa5de37389d112f8502c2}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!setUperLayer@{setUperLayer}}
+\index{setUperLayer@{setUperLayer}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{setUperLayer()}{setUperLayer()}}
+{\footnotesize\ttfamily void CANDY\+::\+Yin\+Yang\+Vertex\+::set\+Uper\+Layer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}}}]{upv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+@breif to set the upper layer vertex of this one 
+\begin{DoxyParams}{Parameters}
+{\em upv} & the upper layer vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_ac13ed3fda9c7e795e3b86543f72beb2c}\label{classCANDY_1_1YinYangVertex_ac13ed3fda9c7e795e3b86543f72beb2c}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!toString@{toString}}
+\index{toString@{toString}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily std\+::string CANDY\+::\+Yin\+Yang\+Vertex\+::to\+String (\begin{DoxyParamCaption}\item[{bool}]{short\+Info = {\ttfamily true} }\end{DoxyParamCaption})}
+
+@breif convert this vertex into string 
+\begin{DoxyParams}{Parameters}
+{\em short\+Info} & whether or not shorten the information of tensor filed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the converted string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangVertex_a3fc59c660b42db439b409455d2059adb}\label{classCANDY_1_1YinYangVertex_a3fc59c660b42db439b409455d2059adb}} 
+\index{CANDY::YinYangVertex@{CANDY::YinYangVertex}!tryToConnect@{tryToConnect}}
+\index{tryToConnect@{tryToConnect}!CANDY::YinYangVertex@{CANDY::YinYangVertex}}
+\doxysubsubsection{\texorpdfstring{tryToConnect()}{tryToConnect()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Vertex\+::try\+To\+Connect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}}]{a,  }\item[{\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}}]{b,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} $>$ \&}]{vertex\+Map\+Ge1\+Vec,  }\item[{CANDY\+::float\+Distance\+Function\+\_\+t}]{df = {\ttfamily YinYangGraph\+\_\+DistanceFunctions\+:\+:L2Distance} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+try to connect vertex a and b with each other 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & the new vertex \\
+\hline
+{\em b} & some existing vertex \\
+\hline
+{\em vertex\+Map\+Ge1\+Vec} & the vector of vertex\+Map in all level greater or equal to 1 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the connection is established 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item if b is not fully connected, than just connect
+\item try to create an upper layer of b
+\end{DoxyEnumerate}
+
+2.\+1 create upper layer links
+
+
+\begin{DoxyEnumerate}
+\item shrink connection of b
+\end{DoxyEnumerate}
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Yin\+Yang\+Graph\+Index/\mbox{\hyperlink{YinYangGraph_8h}{Yin\+Yang\+Graph.\+h}}\item 
+src/\+CANDY/\+Yin\+Yang\+Graph\+Index/Yin\+Yang\+Graph.\+cpp\end{DoxyCompactItemize}

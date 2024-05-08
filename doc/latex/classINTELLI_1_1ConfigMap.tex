@@ -1,0 +1,112 @@
+\hypertarget{classINTELLI_1_1ConfigMap}{}\doxysection{INTELLI\+::Config\+Map Class Reference}
+\label{classINTELLI_1_1ConfigMap}\index{INTELLI::ConfigMap@{INTELLI::ConfigMap}}
+
+
+The unified map structure to store configurations in a key-\/value style.  
+
+
+
+
+{\ttfamily \#include $<$Utils/\+Config\+Map.\+hpp$>$}
+
+
+
+Collaboration diagram for INTELLI\+::Config\+Map\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classINTELLI_1_1ConfigMap__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__INTELLI__UTIL_ga665357b1f2837dc52d0ede2152c7d773}{edit}} (const std\+::string \&key, uint64\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Edit the config map. If not exit the config, will create new, or will overwrite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__INTELLI__UTIL_ga57d961c548422ec4f3c330d5b4140acc}{edit}} (const std\+::string \&key, int64\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Edit the config map. If not exit the config, will create new, or will overwrite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__INTELLI__UTIL_ga98d6bd10ba22d152ccf43a30dd8bed37}{edit}} (const std\+::string \&key, double value)
+\begin{DoxyCompactList}\small\item\em Edit the config map. If not exit the config, will create new, or will overwrite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__INTELLI__UTIL_gaee7e4d501f783bfa0768f29c6a7264f5}{edit}} (const std\+::string \&key, std\+::string value)
+\begin{DoxyCompactList}\small\item\em Edit the config map. If not exit the config, will create new, or will overwrite. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__INTELLI__UTIL_ga1c5637c4d8b2c87008b5bb9764155175}{exist\+U64}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em To detect whether the key exists and related to a U64. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__INTELLI__UTIL_ga9666d08f0a133dbe94184869f5e344f1}{exist\+I64}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em To detect whether the key exists and related to a I64. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__INTELLI__UTIL_ga86858276a438d0098031a17f999c45f0}{exist\+Double}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em To detect whether the key exists and related to a double. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__INTELLI__UTIL_ga8f5cbf1c485fe815ddb00aff6c768d69}{exist\+String}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em To detect whether the key exists and related to a std\+::string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__INTELLI__UTIL_ga8692f9d371510e04165c227fe0726606}{exist}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em To detect whether the key exists. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{group__INTELLI__UTIL_gac1004e99e86ab9e024d44c96b771c5cb}{get\+U64}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em To get a U64 value by key. \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{group__INTELLI__UTIL_ga7a5460c0eeabd4952f940587ae751a36}{get\+I64}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em To get a I64 value by key. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__INTELLI__UTIL_ga7e658e7ca0665826a68d867811eb1aa9}{get\+Double}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em To get a double value by key. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{group__INTELLI__UTIL_gab035d6cb8be46dad005d71b7fdf6e18a}{get\+String}} (const std\+::string \&key)
+\begin{DoxyCompactList}\small\item\em To get a std\+::string value by key. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{group__INTELLI__UTIL_gaa4c8469afc27ed0e86622897c68c45df}{to\+String}} (const std\+::string \&separator=\char`\"{}\textbackslash{}t\char`\"{}, std\+::string new\+Line=\char`\"{}\textbackslash{}n\char`\"{})
+\begin{DoxyCompactList}\small\item\em convert the whole map to std\+::string and retuen \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__INTELLI__UTIL_ga7f57fa81966d6446d0556525e30c25af}{from\+String}} (const std\+::string src, const std\+::string \&separator=\char`\"{}\textbackslash{}t\char`\"{}, std\+::string new\+Line=\char`\"{}\textbackslash{}n\char`\"{})
+\begin{DoxyCompactList}\small\item\em load the map from some external string \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__INTELLI__UTIL_ga84cc43b298d18b7e4b088b8864caee12}{clone\+Into}} (\mbox{\hyperlink{classINTELLI_1_1ConfigMap}{Config\+Map}} \&dest)
+\begin{DoxyCompactList}\small\item\em clone this config into destination \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__INTELLI__UTIL_gab756069234c27c9e4fe3a1b0ea4de82a}{load\+From}} (\mbox{\hyperlink{classINTELLI_1_1ConfigMap}{Config\+Map}} \&src)
+\begin{DoxyCompactList}\small\item\em load some information an external one \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__INTELLI__UTIL_ga678649e21e256512a6b3ccfa28a658bc}{to\+File}} (const std\+::string \&fname, const std\+::string \&separator=\char`\"{},\char`\"{}, std\+::string new\+Line=\char`\"{}\textbackslash{}n\char`\"{})
+\begin{DoxyCompactList}\small\item\em convert the whole map to file \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__INTELLI__UTIL_ga2a563b374a6aaf6739c182685b79c86e}{from\+File}} (const std\+::string \&fname, std\+::string separator=\char`\"{},\char`\"{}, std\+::string new\+Line=\char`\"{}\textbackslash{}n\char`\"{})
+\begin{DoxyCompactList}\small\item\em update the whole map from file \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__INTELLI__UTIL_ga89f4dc965d6364c783a09fd8b620ad7f}{from\+CArg}} (const int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em update the whole map from c/c++ program\textquotesingle{}s args \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{group__INTELLI__UTIL_ga84943449063ec5bcea0dc808e2d36e99}{try\+I64}} (const string \&key, int64\+\_\+t default\+Value=0, bool show\+Warning=false)
+\begin{DoxyCompactList}\small\item\em Try to get an I64 from config map, if not exist, use default value instead. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{group__INTELLI__UTIL_ga5d00bfde27ff4d9f4c9e4eb633460f49}{get\+Str\+Map}} ()
+\begin{DoxyCompactList}\small\item\em return the map of string \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, int64\+\_\+t $>$ \mbox{\hyperlink{group__INTELLI__UTIL_gadace89da67de26ccc70e34d2717305d1}{get\+I64\+Map}} ()
+\begin{DoxyCompactList}\small\item\em return the map of I64 \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, double $>$ \mbox{\hyperlink{group__INTELLI__UTIL_gafe356036fc4fecc460ec42b5079e528b}{get\+Double\+Map}} ()
+\begin{DoxyCompactList}\small\item\em return the map of I64 \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{group__INTELLI__UTIL_ga3073b6b7d400cabfefe2b74b461df801}{try\+U64}} (const string \&key, uint64\+\_\+t default\+Value=0, bool show\+Warning=false)
+\begin{DoxyCompactList}\small\item\em Try to get an U64 from config map, if not exist, use default value instead. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{group__INTELLI__UTIL_ga735cfb465c3369fdfbcbd6c7e5337139}{try\+Double}} (const string \&key, double default\+Value=0, bool show\+Warning=false)
+\begin{DoxyCompactList}\small\item\em Try to get a double from config map, if not exist, use default value instead. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{group__INTELLI__UTIL_ga154a51d727d725c84e17bf836f278de2}{try\+String}} (const string \&key, const string \&default\+Value=\char`\"{}\char`\"{}, bool show\+Warning=false)
+\begin{DoxyCompactList}\small\item\em Try to get an String from config map, if not exist, use default value instead. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries smart\+Parase} (std\+::string key, std\+::string value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries spilt} (const std\+::string s, const std\+::string \&c, vector$<$ std\+::string $>$ \&v)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, uint64\+\_\+t $>$ {\bfseries u64\+Map}
+\item 
+std\+::map$<$ std\+::string, int64\+\_\+t $>$ {\bfseries i64\+Map}
+\item 
+std\+::map$<$ std\+::string, double $>$ {\bfseries double\+Map}
+\item 
+std\+::map$<$ std\+::string, std\+::string $>$ {\bfseries str\+Map}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The unified map structure to store configurations in a key-\/value style. 
+
+\begin{DoxyNote}{Note}
+Require \mbox{\hyperlink{classINTELLI_1_1IntelliLog}{Intelli\+Log}} Util package 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\mbox{\hyperlink{ConfigMap_8hpp}{Config\+Map.\+hpp}}\end{DoxyCompactItemize}

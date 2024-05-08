@@ -1,0 +1,77 @@
+\hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap}{}\doxysection{CANDY\+::HNSW\+::Minimax\+Heap Struct Reference}
+\label{structCANDY_1_1HNSW_1_1MinimaxHeap}\index{CANDY::HNSW::MinimaxHeap@{CANDY::HNSW::MinimaxHeap}}
+
+
+a tiny heap that is used during search  
+
+
+
+
+{\ttfamily \#include $<$HNSW.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::HNSW\+::Minimax\+Heap\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structCANDY_1_1HNSW_1_1MinimaxHeap__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_ac6730b5d7c9d18c76fd4913d24ea9701}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_ac6730b5d7c9d18c76fd4913d24ea9701}} 
+typedef faiss\+::\+CMax$<$ float, Vertex\+Ptr $>$ {\bfseries HC}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_a31923291f16d5994da5c8f56996b5c38}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_a31923291f16d5994da5c8f56996b5c38}} 
+{\bfseries Minimax\+Heap} (int n)
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_a6a24ef5ff21451503c75feac6d30ce2a}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_a6a24ef5ff21451503c75feac6d30ce2a}} 
+void {\bfseries push} (Vertex\+Ptr i, float v)
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_a24b6eb804da0238cfae239c222d2f568}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_a24b6eb804da0238cfae239c222d2f568}} 
+float {\bfseries max} () const
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_ad3168123da64f88010b0b13727c09ead}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_ad3168123da64f88010b0b13727c09ead}} 
+int {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_a4dfe6c88489a4095d771cc1ee23b3c8c}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_a4dfe6c88489a4095d771cc1ee23b3c8c}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_ac4777e9404690cf0d7901f5028f8fb33}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_ac4777e9404690cf0d7901f5028f8fb33}} 
+Vertex\+Ptr {\bfseries pop\+\_\+min} (float $\ast$vmin\+\_\+out=nullptr)
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_af1529ca737f70251f108f09379919d0d}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_af1529ca737f70251f108f09379919d0d}} 
+int {\bfseries count\+\_\+below} (float thresh)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_aad4d2bbe4744f9fa4eef1a3399528069}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_aad4d2bbe4744f9fa4eef1a3399528069}} 
+int {\bfseries n}
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_ae8dd6b6ada979e039d5999aeeea08bab}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_ae8dd6b6ada979e039d5999aeeea08bab}} 
+int {\bfseries k}
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_a9e18e880dffb14b6acbc27a0cef7f9fb}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_a9e18e880dffb14b6acbc27a0cef7f9fb}} 
+int {\bfseries nvalid}
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_a2750dadc3e601527fd5b082cfa673ef8}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_a2750dadc3e601527fd5b082cfa673ef8}} 
+std\+::vector$<$ Vertex\+Ptr $>$ {\bfseries ids}
+\item 
+\mbox{\Hypertarget{structCANDY_1_1HNSW_1_1MinimaxHeap_a0616d834887107c080c6de7f93e92b2c}\label{structCANDY_1_1HNSW_1_1MinimaxHeap_a0616d834887107c080c6de7f93e92b2c}} 
+std\+::vector$<$ float $>$ {\bfseries dis}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+a tiny heap that is used during search 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+HNSWNaive/HNSW.\+h\end{DoxyCompactItemize}

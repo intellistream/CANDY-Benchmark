@@ -1,0 +1,75 @@
+\hypertarget{classTONY__CL__HOST_1_1CLContainer}{}\doxysection{TONY\+\_\+\+CL\+\_\+\+HOST\+::CLContainer Class Reference}
+\label{classTONY__CL__HOST_1_1CLContainer}\index{TONY\_CL\_HOST::CLContainer@{TONY\_CL\_HOST::CLContainer}}
+
+
+Collaboration diagram for TONY\+\_\+\+CL\+\_\+\+HOST\+::CLContainer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{classTONY__CL__HOST_1_1CLContainer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a43f20e7a326f2e91d4d882bc9db82340}\label{classTONY__CL__HOST_1_1CLContainer_a43f20e7a326f2e91d4d882bc9db82340}} 
+{\bfseries CLContainer} (cl\+\_\+uint id, cl\+\_\+device\+\_\+type type, string kernel\+Name)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a72ffcd783a0c2adfffd84367d487c30a}\label{classTONY__CL__HOST_1_1CLContainer_a72ffcd783a0c2adfffd84367d487c30a}} 
+{\bfseries CLContainer} (cl\+\_\+uint id, cl\+\_\+device\+\_\+type type, string kernel\+Name, string cl\+Name)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a43b79435f05f8ee5c67eb4090bd0b246}\label{classTONY__CL__HOST_1_1CLContainer_a43b79435f05f8ee5c67eb4090bd0b246}} 
+{\bfseries CLContainer} (cl\+\_\+uint id, cl\+\_\+device\+\_\+type type, string kernel\+Name, char $\ast$filename\+Full)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a281c1a4f7a02290e3f45f1d32cc01b9b}\label{classTONY__CL__HOST_1_1CLContainer_a281c1a4f7a02290e3f45f1d32cc01b9b}} 
+void {\bfseries set\+Work\+Dimension} (int nd)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a1a4ef29026b9d15627b455afdd4f691e}\label{classTONY__CL__HOST_1_1CLContainer_a1a4ef29026b9d15627b455afdd4f691e}} 
+void {\bfseries save\+Program} (char $\ast$out\+Name)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a293d725bbfe5d1a51eb16fbeb3042a3a}\label{classTONY__CL__HOST_1_1CLContainer_a293d725bbfe5d1a51eb16fbeb3042a3a}} 
+void {\bfseries add\+Host\+Out\+Para} (\mbox{\hyperlink{classHostPara}{Host\+Para}} par)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_ae2b5a568f5a513568f0b2b1f21cee9c6}\label{classTONY__CL__HOST_1_1CLContainer_ae2b5a568f5a513568f0b2b1f21cee9c6}} 
+void {\bfseries add\+Host\+In\+Para} (\mbox{\hyperlink{classHostPara}{Host\+Para}} par)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a2b504916c63764fd4f03de3afd7bef1a}\label{classTONY__CL__HOST_1_1CLContainer_a2b504916c63764fd4f03de3afd7bef1a}} 
+void {\bfseries reset\+Host\+In} (size\+\_\+t idx, \mbox{\hyperlink{classHostPara}{Host\+Para}} par)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a0f5713ec8733cd3b051d5c54e9b9af2d}\label{classTONY__CL__HOST_1_1CLContainer_a0f5713ec8733cd3b051d5c54e9b9af2d}} 
+void {\bfseries reset\+Host\+Out} (size\+\_\+t idx, \mbox{\hyperlink{classHostPara}{Host\+Para}} par)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a357e00120e4bdb12220467a8e1ee783d}\label{classTONY__CL__HOST_1_1CLContainer_a357e00120e4bdb12220467a8e1ee783d}} 
+void {\bfseries clear\+Par} ()
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a179c15679a495ac9782348491e64d6c0}\label{classTONY__CL__HOST_1_1CLContainer_a179c15679a495ac9782348491e64d6c0}} 
+void {\bfseries add\+Boundary\+Value} (uint64\+\_\+t bnd)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a0913a9ef717ff0c09dd4e1af8f3ebe28}\label{classTONY__CL__HOST_1_1CLContainer_a0913a9ef717ff0c09dd4e1af8f3ebe28}} 
+void {\bfseries reset\+Boundary} (size\+\_\+t idx, uint64\+\_\+t bnd)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a35fcfd6ff5b9892d77af047aedfaea3b}\label{classTONY__CL__HOST_1_1CLContainer_a35fcfd6ff5b9892d77af047aedfaea3b}} 
+void {\bfseries execute} (size\+\_\+t global\+Size, size\+\_\+t local\+Size)
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_afeea68493f181ea4da82a4a2c506352e}\label{classTONY__CL__HOST_1_1CLContainer_afeea68493f181ea4da82a4a2c506352e}} 
+void {\bfseries execute} (std\+::vector$<$ size\+\_\+t $>$ gs, std\+::vector$<$ size\+\_\+t $>$ ls)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_ad5a456c916e2336112da4a1c3c43ff97}\label{classTONY__CL__HOST_1_1CLContainer_ad5a456c916e2336112da4a1c3c43ff97}} 
+uint64\+\_\+t {\bfseries t\+In}
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_a76043b1a2db4613529c6cb7954947342}\label{classTONY__CL__HOST_1_1CLContainer_a76043b1a2db4613529c6cb7954947342}} 
+uint64\+\_\+t {\bfseries t\+Run}
+\item 
+\mbox{\Hypertarget{classTONY__CL__HOST_1_1CLContainer_ab7f0f7f772e37323af4285fa9a393d04}\label{classTONY__CL__HOST_1_1CLContainer_ab7f0f7f772e37323af4285fa9a393d04}} 
+uint64\+\_\+t {\bfseries t\+Out}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CL/CLContainer.\+hpp\item 
+src/CLContainer.\+cpp\end{DoxyCompactItemize}

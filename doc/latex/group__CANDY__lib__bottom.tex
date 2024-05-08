@@ -1,0 +1,174 @@
+\hypertarget{group__CANDY__lib__bottom}{}\doxysection{The bottom tier of indexing alorithms}
+\label{group__CANDY__lib__bottom}\index{The bottom tier of indexing alorithms@{The bottom tier of indexing alorithms}}
+Collaboration diagram for The bottom tier of indexing alorithms\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__CANDY__lib__bottom}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1AbstractIndex}{CANDY\+::\+Abstract\+Index}}
+\begin{DoxyCompactList}\small\item\em The abstract class of an index approach. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{CANDY\+::\+Bucketed\+Flat\+Index}}
+\begin{DoxyCompactList}\small\item\em The class of splitting similar vectors into fixed number of buckets, each bucket is managed by \mbox{\hyperlink{classCANDY_1_1FlatIndex}{Flat\+Index}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1CANDYObject}{CANDY\+::\+CANDYObject}}
+\begin{DoxyCompactList}\small\item\em A generic object class to link string or void $\ast$ pointers. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1FaissIndex}{CANDY\+::\+Faiss\+Index}}
+\begin{DoxyCompactList}\small\item\em The class of converting faiss index api into rania index style. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex}{CANDY\+::\+Flat\+AMMIPIndex}}
+\begin{DoxyCompactList}\small\item\em The class of a flat index approach, using brutal force management for data, but approximate matrix multiplication to compute distance. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex}{CANDY\+::\+Flat\+AMMIPObj\+Index}}
+\begin{DoxyCompactList}\small\item\em Similar to \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex}{Flat\+AMMIPIndex}}, but additionally has object storage (currently only string) \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1FlatIndex}{CANDY\+::\+Flat\+Index}}
+\begin{DoxyCompactList}\small\item\em The class of a flat index approach, using brutal force management. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex}{CANDY\+::\+Online\+IVFL2\+HIndex}}
+\begin{DoxyCompactList}\small\item\em A L2H (learning 2 hash) indexing, using 2-\/tier IVF List to manage buckets. The base tier is hamming encoding, implemented under list, the top tier is sampled summarization of hamming encoding, implemented under vector (faster access, harder to change, but less representative). The L2H function is using ML to approximate spectral hashing principles (NIPS 2008) \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex}{CANDY\+::\+Online\+IVFLSHIndex}}
+\begin{DoxyCompactList}\small\item\em A LSH indexing, using 2-\/tier IVF List to manage buckets. The base tier is hamming encoding, implemented under list, the top tier is sampled summarization of hamming encoding, implemented under vector (faster access, harder to change, but less representative). The LSH function is the vanilla random projection (gaussian or random matrix). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex}{CANDY\+::\+Online\+PQIndex}}
+\begin{DoxyCompactList}\small\item\em The class of online PQ approach, using IVF-\/style coarse-\/grained + fine-\/grained quantizers. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1PQIndex}{CANDY\+::\+PQIndex}}
+\begin{DoxyCompactList}\small\item\em class for indexing vectors using product quantizations, this is a raw implementation without hierachical \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex}{CANDY\+::\+Yin\+Yang\+Graph\+Index}}
+\begin{DoxyCompactList}\small\item\em The class of indexing using a yinyang graph, first use LSH to roughly locate the range of a tensor, then search it in the linked yinyanggraph. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex}{CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index}}
+\begin{DoxyCompactList}\small\item\em The class of indexing using a simpe yinyang graph,there is no LSH search is only within the linked yinyanggraph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga57d22e320a1115455fe0099864517edf}\label{group__CANDY__lib__bottom_ga57d22e320a1115455fe0099864517edf}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga57d22e320a1115455fe0099864517edf}{new\+Parallel\+Index\+Worker}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1ParallelIndexWorker}{CANDY\+::\+Parallel\+Index\+Worker}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Parallel\+Index\+Worker shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_gacb1e7f429b5bd83b33d5a4c9aaa54000}\label{group__CANDY__lib__bottom_gacb1e7f429b5bd83b33d5a4c9aaa54000}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_gacb1e7f429b5bd83b33d5a4c9aaa54000}{new\+PQIndex}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1PQIndex}{CANDY\+::\+PQIndex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new PQIndex shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga1412e02db58589ba4ea2ab27da060e4f}\label{group__CANDY__lib__bottom_ga1412e02db58589ba4ea2ab27da060e4f}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1ParallelIndexWorker}{CANDY\+::\+Parallel\+Index\+Worker}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga1412e02db58589ba4ea2ab27da060e4f}{CANDY\+::\+Parallel\+Index\+Worker\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1ParallelIndexWorker}{Parallel\+Index\+Worker}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga6abf8724c31d3f883b1e7f3d037273d8}\label{group__CANDY__lib__bottom_ga6abf8724c31d3f883b1e7f3d037273d8}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1PQIndex}{CANDY\+::\+PQIndex}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga6abf8724c31d3f883b1e7f3d037273d8}{CANDY\+::\+PQIndex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga32d60e9e159c56684b3e289bdbe0ceff}{new\+Abstract\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1AbstractIndex}{CANDY\+::\+Abstract\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Abstract\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga730cea4c0b5a43a22ff173ab2d9ab7a5}\label{group__CANDY__lib__bottom_ga730cea4c0b5a43a22ff173ab2d9ab7a5}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1CANDYObject}{CANDY\+::\+CANDYObject}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga730cea4c0b5a43a22ff173ab2d9ab7a5}{CANDY\+::\+CANDYObject\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1CANDYObject}{CANDYObject}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga6f64676821dfcc5d14310470ede40eb9}\label{group__CANDY__lib__bottom_ga6f64676821dfcc5d14310470ede40eb9}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga6f64676821dfcc5d14310470ede40eb9}{new\+Bucketed\+Flat\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{CANDY\+::\+Bucketed\+Flat\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Bucketed\+Flat\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga4db83483f41369577df3bc9aaf200409}\label{group__CANDY__lib__bottom_ga4db83483f41369577df3bc9aaf200409}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{CANDY\+::\+Bucketed\+Flat\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga4db83483f41369577df3bc9aaf200409}{CANDY\+::\+Bucketed\+Flat\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga8255d57716909a428103be7aa84b7ec5}\label{group__CANDY__lib__bottom_ga8255d57716909a428103be7aa84b7ec5}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga8255d57716909a428103be7aa84b7ec5}{new\+Distributed\+Index\+Worker}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{CANDY\+::\+Distributed\+Index\+Worker}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Distributed\+Index\+Worker shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga7e677925e3ba698a29771e328c51d1bd}\label{group__CANDY__lib__bottom_ga7e677925e3ba698a29771e328c51d1bd}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{CANDY\+::\+Distributed\+Index\+Worker}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga7e677925e3ba698a29771e328c51d1bd}{CANDY\+::\+Distributed\+Index\+Worker\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{Distributed\+Index\+Worker}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga30086b1cf92c359de8a99f4f508b3172}\label{group__CANDY__lib__bottom_ga30086b1cf92c359de8a99f4f508b3172}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga30086b1cf92c359de8a99f4f508b3172}{new\+Faiss\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1FaissIndex}{CANDY\+::\+Faiss\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Faiss\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga5cf428e47dd008093dd9ca56bef6f074}\label{group__CANDY__lib__bottom_ga5cf428e47dd008093dd9ca56bef6f074}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1FaissIndex}{CANDY\+::\+Faiss\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga5cf428e47dd008093dd9ca56bef6f074}{CANDY\+::\+Faiss\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to Faiss\+Index\+Ptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga399051757de64021ef6a38d0eeed5ff0}\label{group__CANDY__lib__bottom_ga399051757de64021ef6a38d0eeed5ff0}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga399051757de64021ef6a38d0eeed5ff0}{new\+Flat\+AMMIPIndex}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex}{CANDY\+::\+Flat\+AMMIPIndex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Flat\+AMMIPIndex shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_gaf717146f09947e794486821012620f98}\label{group__CANDY__lib__bottom_gaf717146f09947e794486821012620f98}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex}{CANDY\+::\+Flat\+AMMIPIndex}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_gaf717146f09947e794486821012620f98}{CANDY\+::\+Flat\+AMMIPIndex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex}{Flat\+AMMIPIndex}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga576ea3ac342403021a963460d2ff9b5e}\label{group__CANDY__lib__bottom_ga576ea3ac342403021a963460d2ff9b5e}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga576ea3ac342403021a963460d2ff9b5e}{new\+Flat\+AMMIPObj\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex}{CANDY\+::\+Flat\+AMMIPObj\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Flat\+AMMIPObj\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga4a2df47465fd944d8c6604675f833824}\label{group__CANDY__lib__bottom_ga4a2df47465fd944d8c6604675f833824}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex}{CANDY\+::\+Flat\+AMMIPObj\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga4a2df47465fd944d8c6604675f833824}{CANDY\+::\+Flat\+AMMIPObj\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex}{Flat\+AMMIPObj\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_gaeba1cacdce4f2ebea1f3c1d7a002aa92}\label{group__CANDY__lib__bottom_gaeba1cacdce4f2ebea1f3c1d7a002aa92}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_gaeba1cacdce4f2ebea1f3c1d7a002aa92}{new\+Flat\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1FlatIndex}{CANDY\+::\+Flat\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Flat\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga41a534e197cdbfaf6f4e911c2efdf876}\label{group__CANDY__lib__bottom_ga41a534e197cdbfaf6f4e911c2efdf876}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1FlatIndex}{CANDY\+::\+Flat\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga41a534e197cdbfaf6f4e911c2efdf876}{CANDY\+::\+Flat\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1FlatIndex}{Flat\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga2c6142ec795734f6a4fb5e388b310afa}\label{group__CANDY__lib__bottom_ga2c6142ec795734f6a4fb5e388b310afa}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga2c6142ec795734f6a4fb5e388b310afa}{new\+Online\+IVFL2\+HIndex}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex}{CANDY\+::\+Online\+IVFL2\+HIndex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Online\+IVFL2\+HIndex shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_gaae3adadffc6582f1e9ee60afee42f9b3}\label{group__CANDY__lib__bottom_gaae3adadffc6582f1e9ee60afee42f9b3}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex}{CANDY\+::\+Online\+IVFL2\+HIndex}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_gaae3adadffc6582f1e9ee60afee42f9b3}{CANDY\+::\+Online\+IVFL2\+HIndex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex}{Online\+IVFL2\+HIndex}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_gabe9e1fa6e6af88bf8649361de8078915}\label{group__CANDY__lib__bottom_gabe9e1fa6e6af88bf8649361de8078915}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_gabe9e1fa6e6af88bf8649361de8078915}{new\+Online\+IVFLSHIndex}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex}{CANDY\+::\+Online\+IVFLSHIndex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Online\+IVFLSHIndex shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga8770fb97b0f14b31dbe161d69906ac54}\label{group__CANDY__lib__bottom_ga8770fb97b0f14b31dbe161d69906ac54}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex}{CANDY\+::\+Online\+IVFLSHIndex}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga8770fb97b0f14b31dbe161d69906ac54}{CANDY\+::\+Online\+IVFLSHIndex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex}{Online\+IVFLSHIndex}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga22fa407b8d97c8659942e1858fc46f9f}\label{group__CANDY__lib__bottom_ga22fa407b8d97c8659942e1858fc46f9f}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga22fa407b8d97c8659942e1858fc46f9f}{new\+Online\+PQIndex}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1OnlinePQIndex}{CANDY\+::\+Online\+PQIndex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Online\+PQIndex shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga1d71e9ace0e69f261a6e37af325f261e}\label{group__CANDY__lib__bottom_ga1d71e9ace0e69f261a6e37af325f261e}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex}{CANDY\+::\+Online\+PQIndex}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga1d71e9ace0e69f261a6e37af325f261e}{CANDY\+::\+Online\+PQIndex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1OnlinePQIndex}{Online\+PQIndex}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_gad39dbff9fb5f5f538a6ee8a13a2a1198}\label{group__CANDY__lib__bottom_gad39dbff9fb5f5f538a6ee8a13a2a1198}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_gad39dbff9fb5f5f538a6ee8a13a2a1198}{new\+Yin\+Yang\+Graph\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex}{CANDY\+::\+Yin\+Yang\+Graph\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Yin\+Yang\+Graph\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_gadcb02cffbadd4a911014346bfe2a764a}\label{group__CANDY__lib__bottom_gadcb02cffbadd4a911014346bfe2a764a}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex}{CANDY\+::\+Yin\+Yang\+Graph\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_gadcb02cffbadd4a911014346bfe2a764a}{CANDY\+::\+Yin\+Yang\+Graph\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex}{Yin\+Yang\+Graph\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga0a605662e0a74c5c5831ec5851132e91}\label{group__CANDY__lib__bottom_ga0a605662e0a74c5c5831ec5851132e91}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga0a605662e0a74c5c5831ec5851132e91}{new\+Yin\+Yang\+Graph\+Simple\+Index}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex}{CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Yin\+Yang\+Graph\+Simple\+Index shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga1e08ab5706c5321dd773fef1fd42421e}\label{group__CANDY__lib__bottom_ga1e08ab5706c5321dd773fef1fd42421e}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex}{CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga1e08ab5706c5321dd773fef1fd42421e}{CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex}{Yin\+Yang\+Graph\+Simple\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}\label{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1AbstractIndex}{CANDY\+::\+Abstract\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}{CANDY\+::\+Abstract\+Index\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1AbstractIndex}{Abstract\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga32d60e9e159c56684b3e289bdbe0ceff}\label{group__CANDY__lib__bottom_ga32d60e9e159c56684b3e289bdbe0ceff}} 
+\index{The bottom tier of indexing alorithms@{The bottom tier of indexing alorithms}!newAbstractIndex@{newAbstractIndex}}
+\index{newAbstractIndex@{newAbstractIndex}!The bottom tier of indexing alorithms@{The bottom tier of indexing alorithms}}
+\doxysubsubsection{\texorpdfstring{newAbstractIndex}{newAbstractIndex}}
+{\footnotesize\ttfamily \#define new\+Abstract\+Index~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1AbstractIndex}{CANDY\+::\+Abstract\+Index}}$>$}
+
+
+
+(Macro) To creat a new Abstract\+Index shared pointer. 
+
+(Macro) To creat a new CANDYObject shared pointer. 

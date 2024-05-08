@@ -1,0 +1,415 @@
+\hypertarget{classCANDY_1_1BufferedCongestionDropIndex}{}\doxysection{CANDY\+::Buffered\+Congestion\+Drop\+Index Class Reference}
+\label{classCANDY_1_1BufferedCongestionDropIndex}\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+
+
+Similar to \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{Congestion\+Drop\+Index}}, but will try to place some of the online data into an ingestion-\/efficient buffer, the buffer is implemented under \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}} More detailed description with an image\+:  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Buffered\+Congestion\+Drop\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Buffered\+Congestion\+Drop\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classCANDY_1_1BufferedCongestionDropIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Buffered\+Congestion\+Drop\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1BufferedCongestionDropIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a0f68fff93c46afe50f409c67653c6621}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a03c97915c56006caa22423292ae92899}{insert\+Tensor}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a6a50f5548719f7458e92d082b23b031e}\label{classCANDY_1_1BufferedCongestionDropIndex_a6a50f5548719f7458e92d082b23b031e}} 
+virtual void \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a6a50f5548719f7458e92d082b23b031e}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a74ec9cca80736bd02d6cedeae5e3d6c6}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a03c97915c56006caa22423292ae92899}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a009f182d19234991949a30304ae7a7c8}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a171d63e92d035080c88d73cd3e61efc1}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a0ecd376ef8d4dba6d4a53356606551c7}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a6e12a7d25abb65d33422963a92879ee4}{start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a99d2e92ca9ba47ad0968748b3fbb1691}{end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a529042cd9b06f2448a20feee7592b2b5}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_aea6915c6966d4b0d1b7dcc361d50cf21}{offline\+Build}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_ac18720c6be9d44f03a5b349425350e3d}{generate\+Bucketed\+Flat\+Index\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em to generate the config map of inside \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}} from the top config \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a634c1f6c8a640e9f9bffc5f1a41c5b40}{insert\+Tensor\+Inline}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor to either buffer\+Part or aknn\+Part \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a366a53bd90d73199d85d307910314c45}\label{classCANDY_1_1BufferedCongestionDropIndex_a366a53bd90d73199d85d307910314c45}} 
+std\+::mt19937\+\_\+64 {\bfseries rand\+Gen}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_aff5b72356caf583973df0002592b452f}\label{classCANDY_1_1BufferedCongestionDropIndex_aff5b72356caf583973df0002592b452f}} 
+\mbox{\hyperlink{group__CANDY__lib__bottom_ga4db83483f41369577df3bc9aaf200409}{Bucketed\+Flat\+Index\+Ptr}} {\bfseries buffer\+Part} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a8d5a9bae778b1f21af20dcc6033e8bd3}\label{classCANDY_1_1BufferedCongestionDropIndex_a8d5a9bae778b1f21af20dcc6033e8bd3}} 
+\mbox{\hyperlink{group__CANDY__lib__container_gab6a44a498a2623c5c911c3fe6a0643a1}{Congestion\+Drop\+Index\+Ptr}} {\bfseries aknn\+Part} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a496118e90eec83534fa0f84c946506d5}\label{classCANDY_1_1BufferedCongestionDropIndex_a496118e90eec83534fa0f84c946506d5}} 
+std\+::uniform\+\_\+real\+\_\+distribution$<$ double $>$ {\bfseries rand\+Distribution}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_adf92bcf49c2872b3468f2522f42b839c}\label{classCANDY_1_1BufferedCongestionDropIndex_adf92bcf49c2872b3468f2522f42b839c}} 
+double {\bfseries buffer\+Probability} = 0.\+5
+\item 
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a6454894324b090b5549c29bf4b6fa69a}\label{classCANDY_1_1BufferedCongestionDropIndex_a6454894324b090b5549c29bf4b6fa69a}} 
+int64\+\_\+t {\bfseries max\+Data\+Piece} = -\/1
+\item 
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_af15bb7283822513fe6c3ae8595d1e8e7}\label{classCANDY_1_1BufferedCongestionDropIndex_af15bb7283822513fe6c3ae8595d1e8e7}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Similar to \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{Congestion\+Drop\+Index}}, but will try to place some of the online data into an ingestion-\/efficient buffer, the buffer is implemented under \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}} More detailed description with an image\+: 
+
+
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{BufferedCongestionDrop}
+\doxyfigcaption{An overview of Buffered\+Congestion\+Drop\+Index}
+\end{DoxyImage}
+ under \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}} \begin{DoxyNote}{Note}
+The current decision of where to put data is just by probability 
+
+parameters
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item buffer\+Probability, the probability of ingesting data into buffer, default 0.\+5, Double
+\item max\+Data\+Piece, the max piece of one data throwing into \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{Congestion\+Drop\+Index}} or \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}}, default -\/1 (full piece for each insert), I64 
+\end{DoxyItemize}
+
+special parameters (For configuring the inside \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex}{Congestion\+Drop\+Index}})
+\begin{DoxyItemize}
+\item congestion\+Drop\+Worker\+\_\+algo\+Tag The algo tag of this worker, String, default flat
+\item congestion\+Drop\+Worker\+\_\+queue\+Size The input queue size of this worker, I64, default 10
+\item parallel\+Works The number of parallel workers, I64, default 1 (set this to less than 0 will use max hardware\+\_\+concurrency);
+\item fine\+Grained\+Parallel\+Insert, whether or not conduct the insert in an extremely fine-\/grained way, i.\+e., per-\/row, I64, default 0
+\item congestion\+Drop, whether or not drop the data when congestion occurs, I64, default 1
+\item shared\+Build whether let all sharding using shared build, 1, I64
+\item single\+Worker\+Opt whether optimize the searching under single worker, 1 I64 
+\end{DoxyItemize}
+
+special parameters (For configuring the inside \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}})
+\begin{DoxyItemize}
+\item buffer\+\_\+initial\+Volume, the initial volume of inline database tensor, default 1000, I64
+\item buffer\+\_\+expand\+Step, the step of expanding inline database, default 100, I64
+\item buffer\+\_\+number\+Of\+Buckets, the number of titer buckets, default 1, I64, suggest 2$^\wedge$n
+\item buffer\+\_\+bucket\+Mode, the mode of assigning buckets, default \textquotesingle{}mean\textquotesingle{}, String, allow the following with its own parameters
+\begin{DoxyItemize}
+\item \textquotesingle{}mean\textquotesingle{}\+: the bucket is assigned by uniform quantization of the mean, the quantization step is assigned by number\+Of\+Buckets require following parameters
+\begin{DoxyItemize}
+\item buffer\+\_\+quantization\+Max the max value used for quantization, default 1, Double
+\item buffer\+\_\+quantization\+Min the min value used for quantization, default -\/1, Double
+\end{DoxyItemize}
+\item \textquotesingle{}LSH\textquotesingle{}\+: the bucket is assigned by LSH, and raw LSH encoding will be aggregated according to number\+Of\+Buckets
+\begin{DoxyItemize}
+\item buffer\+\_\+encode\+Len, the length of LSH encoding, in bytes, default 1, I64
+\item buffer\+\_\+metric\+Type, the type of AKNN metric, default L2, String
+\item buffer\+\_\+lsh\+Matrix\+Type, the type of lsh matrix, default gaussian, String
+\begin{DoxyItemize}
+\item gaussian means a N(0,1) LSH matrix
+\item random means a random matrix where each value ranges from -\/0.\+5$\sim$0.5 @warnning Make sure you are using 2D tensors! 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a009f182d19234991949a30304ae7a7c8}\label{classCANDY_1_1BufferedCongestionDropIndex_a009f182d19234991949a30304ae7a7c8}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index needs to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item reduce
+\end{DoxyEnumerate}
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a99d2e92ca9ba47ad0968748b3fbb1691}\label{classCANDY_1_1BufferedCongestionDropIndex_a99d2e92ca9ba47ad0968748b3fbb1691}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!endHPC@{endHPC}}
+\index{endHPC@{endHPC}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{endHPC()}{endHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::end\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra termination if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC termination is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a3c4cdf616320ab7208fc7025b37b9a08}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_ac18720c6be9d44f03a5b349425350e3d}\label{classCANDY_1_1BufferedCongestionDropIndex_ac18720c6be9d44f03a5b349425350e3d}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!generateBucketedFlatIndexConfig@{generateBucketedFlatIndexConfig}}
+\index{generateBucketedFlatIndexConfig@{generateBucketedFlatIndexConfig}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{generateBucketedFlatIndexConfig()}{generateBucketedFlatIndexConfig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::generate\+Bucketed\+Flat\+Index\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+to generate the config map of inside \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}} from the top config 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the top config of this index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the config for inside \mbox{\hyperlink{classCANDY_1_1BucketedFlatIndex}{Bucketed\+Flat\+Index}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a03c97915c56006caa22423292ae92899}\label{classCANDY_1_1BufferedCongestionDropIndex_a03c97915c56006caa22423292ae92899}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a634c1f6c8a640e9f9bffc5f1a41c5b40}\label{classCANDY_1_1BufferedCongestionDropIndex_a634c1f6c8a640e9f9bffc5f1a41c5b40}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!insertTensorInline@{insertTensorInline}}
+\index{insertTensorInline@{insertTensorInline}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensorInline()}{insertTensorInline()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::insert\+Tensor\+Inline (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+insert a tensor to either buffer\+Part or aknn\+Part 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a0f68fff93c46afe50f409c67653c6621}\label{classCANDY_1_1BufferedCongestionDropIndex_a0f68fff93c46afe50f409c67653c6621}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a03c97915c56006caa22423292ae92899}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a03c97915c56006caa22423292ae92899}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_aea6915c6966d4b0d1b7dcc361d50cf21}\label{classCANDY_1_1BufferedCongestionDropIndex_aea6915c6966d4b0d1b7dcc361d50cf21}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!offlineBuild@{offlineBuild}}
+\index{offlineBuild@{offlineBuild}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{offlineBuild()}{offlineBuild()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::offline\+Build (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_aca873d66824f385feac1a7cb49abdfac}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a171d63e92d035080c88d73cd3e61efc1}\label{classCANDY_1_1BufferedCongestionDropIndex_a171d63e92d035080c88d73cd3e61efc1}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+only support to delete and insert, no straightforward revision 
+\end{DoxyNote}
+only allow to delete and insert, no straightforward revision
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a0ecd376ef8d4dba6d4a53356606551c7}\label{classCANDY_1_1BufferedCongestionDropIndex_a0ecd376ef8d4dba6d4a53356606551c7}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a74ec9cca80736bd02d6cedeae5e3d6c6}\label{classCANDY_1_1BufferedCongestionDropIndex_a74ec9cca80736bd02d6cedeae5e3d6c6}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specfic config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a529042cd9b06f2448a20feee7592b2b5}\label{classCANDY_1_1BufferedCongestionDropIndex_a529042cd9b06f2448a20feee7592b2b5}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a637e0a15f3753c2188da92f8b787061d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1BufferedCongestionDropIndex_a6e12a7d25abb65d33422963a92879ee4}\label{classCANDY_1_1BufferedCongestionDropIndex_a6e12a7d25abb65d33422963a92879ee4}} 
+\index{CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}!startHPC@{startHPC}}
+\index{startHPC@{startHPC}!CANDY::BufferedCongestionDropIndex@{CANDY::BufferedCongestionDropIndex}}
+\doxysubsubsection{\texorpdfstring{startHPC()}{startHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Buffered\+Congestion\+Drop\+Index\+::start\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra set-\/ups if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC set-\/up is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abb4333a11499fc6c88d1d78bc77138f4}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{BufferedCongestionDropIndex_8h}{Buffered\+Congestion\+Drop\+Index.\+h}}\item 
+src/\+CANDY/\mbox{\hyperlink{BufferedCongestionDropIndex_8cpp}{Buffered\+Congestion\+Drop\+Index.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,130 @@
+\hypertarget{classBS_1_1multi__future}{}\doxysection{BS\+::multi\+\_\+future$<$ T $>$ Class Template Reference}
+\label{classBS_1_1multi__future}\index{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}}
+
+
+A helper class to facilitate waiting for and/or getting the results of multiple futures at once.  
+
+
+
+
+{\ttfamily \#include $<$BS\+\_\+thread\+\_\+pool.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBS_1_1multi__future_a320812d6a9287fa2aedf3deab6edee1a}{multi\+\_\+future}} (const size\+\_\+t num\+\_\+futures\+\_\+=0)
+\begin{DoxyCompactList}\small\item\em Construct a \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object with the given number of futures. \end{DoxyCompactList}\item 
+std\+::conditional\+\_\+t$<$ std\+::is\+\_\+void\+\_\+v$<$ T $>$, void, std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{classBS_1_1multi__future_abc4a07d29c078263b60ae785b7330880}{get}} ()
+\begin{DoxyCompactList}\small\item\em Get the results from all the futures stored in this \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object, rethrowing any stored exceptions. \end{DoxyCompactList}\item 
+std\+::future$<$ T $>$ \& \mbox{\hyperlink{classBS_1_1multi__future_abc96c3ab6b47827071f043f27b1f9501}{operator\mbox{[}$\,$\mbox{]}}} (const size\+\_\+t i)
+\begin{DoxyCompactList}\small\item\em Get a reference to one of the futures stored in this \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBS_1_1multi__future_a6af9fb74e856f779a1722d2018afebee}{push\+\_\+back}} (std\+::future$<$ T $>$ future)
+\begin{DoxyCompactList}\small\item\em Append a future to this \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classBS_1_1multi__future_abf3325699649c91f9dd88f5a252e742e}{size}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of futures stored in this \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBS_1_1multi__future_a05073ed8d37b939c9440ac8789b69ba7}\label{classBS_1_1multi__future_a05073ed8d37b939c9440ac8789b69ba7}} 
+void \mbox{\hyperlink{classBS_1_1multi__future_a05073ed8d37b939c9440ac8789b69ba7}{wait}} () const
+\begin{DoxyCompactList}\small\item\em Wait for all the futures stored in this \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class BS\+::multi\+\_\+future$<$ T $>$}
+
+A helper class to facilitate waiting for and/or getting the results of multiple futures at once. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The return type of the futures. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBS_1_1multi__future_a320812d6a9287fa2aedf3deab6edee1a}\label{classBS_1_1multi__future_a320812d6a9287fa2aedf3deab6edee1a}} 
+\index{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!multi\_future@{multi\_future}}
+\index{multi\_future@{multi\_future}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{multi\_future()}{multi\_future()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classBS_1_1multi__future}{BS\+::multi\+\_\+future}}$<$ T $>$\+::\mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{num\+\_\+futures\+\_\+ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object with the given number of futures. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+futures\+\_\+} & The desired number of futures to store. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBS_1_1multi__future_abc4a07d29c078263b60ae785b7330880}\label{classBS_1_1multi__future_abc4a07d29c078263b60ae785b7330880}} 
+\index{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!get@{get}}
+\index{get@{get}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::conditional\+\_\+t$<$std\+::is\+\_\+void\+\_\+v$<$T$>$, void, std\+::vector$<$T$>$ $>$ \mbox{\hyperlink{classBS_1_1multi__future}{BS\+::multi\+\_\+future}}$<$ T $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the results from all the futures stored in this \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object, rethrowing any stored exceptions. 
+
+\begin{DoxyReturn}{Returns}
+If the futures return void, this function returns void as well. Otherwise, it returns a vector containing the results. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBS_1_1multi__future_abc96c3ab6b47827071f043f27b1f9501}\label{classBS_1_1multi__future_abc96c3ab6b47827071f043f27b1f9501}} 
+\index{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::future$<$T$>$\& \mbox{\hyperlink{classBS_1_1multi__future}{BS\+::multi\+\_\+future}}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get a reference to one of the futures stored in this \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The index of the desired future. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The future. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBS_1_1multi__future_a6af9fb74e856f779a1722d2018afebee}\label{classBS_1_1multi__future_a6af9fb74e856f779a1722d2018afebee}} 
+\index{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classBS_1_1multi__future}{BS\+::multi\+\_\+future}}$<$ T $>$\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{std\+::future$<$ T $>$}]{future }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Append a future to this \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em future} & The future to append. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBS_1_1multi__future_abf3325699649c91f9dd88f5a252e742e}\label{classBS_1_1multi__future_abf3325699649c91f9dd88f5a252e742e}} 
+\index{BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}!size@{size}}
+\index{size@{size}!BS::multi\_future$<$ T $>$@{BS::multi\_future$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+size\+\_\+t \mbox{\hyperlink{classBS_1_1multi__future}{BS\+::multi\+\_\+future}}$<$ T $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number of futures stored in this \mbox{\hyperlink{classBS_1_1multi__future}{multi\+\_\+future}} object. 
+
+\begin{DoxyReturn}{Returns}
+The number of futures. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\mbox{\hyperlink{BS__thread__pool_8hpp}{BS\+\_\+thread\+\_\+pool.\+hpp}}\end{DoxyCompactItemize}

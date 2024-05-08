@@ -1,0 +1,42 @@
+\hypertarget{classINTELLI_1_1MicroDataSet}{}\doxysection{INTELLI\+::Micro\+Data\+Set Class Reference}
+\label{classINTELLI_1_1MicroDataSet}\index{INTELLI::MicroDataSet@{INTELLI::MicroDataSet}}
+
+
+The all-\/in-\/one class for the Micro dataset.  
+
+
+
+
+{\ttfamily \#include $<$Utils/\+Micro\+Data\+Set.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__INTELLI__UTIL__Micro_gaec5c3c65ab2aa3da0d45a0c3637dc819}{Micro\+Data\+Set}} ()=default
+\begin{DoxyCompactList}\small\item\em default construction, with auto random generator \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__INTELLI__UTIL__Micro_ga66e1e0995e47ea85cfc38ad9a646ae5c}{Micro\+Data\+Set}} (uint64\+\_\+t \+\_\+seed)
+\begin{DoxyCompactList}\small\item\em construction with seed \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__INTELLI__UTIL__Micro_ga75b1ab66670261c77747d586f6a046f0}{set\+Seed}} (uint64\+\_\+t \+\_\+seed)
+\begin{DoxyCompactList}\small\item\em construction with seed \end{DoxyCompactList}\item 
+{\footnotesize template$<$class d\+Type  = uint32\+\_\+t$>$ }\\vector$<$ d\+Type $>$ \mbox{\hyperlink{group__MICRO__GENERIC_gaebdd2dd7dba56fc9ea05680a74f1ed60}{gen\+Incremental\+Alphabet}} (size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em To generate incremental alphabet, starting from 0 and end at len. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ts\+Type  = size\+\_\+t$>$ }\\vector$<$ ts\+Type $>$ \mbox{\hyperlink{group__MICRO__GENERIC_ga655634e729cd01d5b4d2c996fe6a0e03}{gen\+Zipf\+Int}} (size\+\_\+t len, ts\+Type maxV, double fac)
+\begin{DoxyCompactList}\small\item\em The function to generate a vector of integers which has zipf distribution. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ts\+Type  = uint32\+\_\+t, class gen\+Type  = std\+::mt19937$>$ }\\vector$<$ ts\+Type $>$ \mbox{\hyperlink{group__MICRO__GENERIC_gacf71a910ff30505d08bc060923e48b0f}{gen\+Rand\+Int}} (size\+\_\+t len, ts\+Type maxV, ts\+Type minV=0)
+\begin{DoxyCompactList}\small\item\em generate the vector of random integer \end{DoxyCompactList}\item 
+{\footnotesize template$<$class d\+Type  = double$>$ }\\vector$<$ d\+Type $>$ \mbox{\hyperlink{group__MICRO__GENERIC_gad5ab4de190974dcbaa2faca72fc34e90}{gen\+Zipf\+Lut}} (size\+\_\+t len, d\+Type fac)
+\begin{DoxyCompactList}\small\item\em To generate the zipf Lut. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ts\+Type  = size\+\_\+t$>$ }\\vector$<$ ts\+Type $>$ \mbox{\hyperlink{group__MICRO__TS_ga19765940de8d14bbc533d507e62be20a}{gen\+Smooth\+Time\+Stamp}} (size\+\_\+t len, size\+\_\+t step, size\+\_\+t interval)
+\begin{DoxyCompactList}\small\item\em The function to generate a vector of timestamp which grows smoothly. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class ts\+Type  = size\+\_\+t$>$ }\\vector$<$ ts\+Type $>$ {\bfseries gen\+Smooth\+Time\+Stamp} (size\+\_\+t len, size\+\_\+t max\+Time)
+\item 
+{\footnotesize template$<$class ts\+Type  = size\+\_\+t$>$ }\\vector$<$ ts\+Type $>$ \mbox{\hyperlink{group__MICRO__TS_ga2a4363c83af4c281d3a251676bdf7d2d}{gen\+Zipf\+Time\+Stamp}} (size\+\_\+t len, ts\+Type max\+Time, double fac)
+\begin{DoxyCompactList}\small\item\em The function to generate a vector of timestamp which has zipf distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The all-\/in-\/one class for the Micro dataset. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/Micro\+Data\+Set.\+hpp\end{DoxyCompactItemize}

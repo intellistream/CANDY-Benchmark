@@ -1,0 +1,138 @@
+\hypertarget{classBS_1_1blocks}{}\doxysection{BS\+::blocks$<$ T1, T2, T $>$ Class Template Reference}
+\label{classBS_1_1blocks}\index{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}}
+
+
+A helper class to divide a range into blocks. Used by parallelize\+\_\+loop() and push\+\_\+loop().  
+
+
+
+
+{\ttfamily \#include $<$BS\+\_\+thread\+\_\+pool.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBS_1_1blocks_a2e938fc32ea845e8a0cf23025c6830c7}{blocks}} (const T1 first\+\_\+index\+\_\+, const T2 index\+\_\+after\+\_\+last\+\_\+, const size\+\_\+t num\+\_\+blocks\+\_\+)
+\begin{DoxyCompactList}\small\item\em Construct a blocks object with the given specifications. \end{DoxyCompactList}\item 
+T \mbox{\hyperlink{classBS_1_1blocks_a7d659984a82cf57e54773d9a88d863ae}{start}} (const size\+\_\+t i) const
+\begin{DoxyCompactList}\small\item\em Get the first index of a block. \end{DoxyCompactList}\item 
+T \mbox{\hyperlink{classBS_1_1blocks_a0f0e08f9eff06a0d8e3b05bf59833c7b}{end}} (const size\+\_\+t i) const
+\begin{DoxyCompactList}\small\item\em Get the index after the last index of a block. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classBS_1_1blocks_aed50be83dbe428959cb600197df32c95}{get\+\_\+num\+\_\+blocks}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of blocks. Note that this may be different than the desired number of blocks that was passed to the constructor. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classBS_1_1blocks_a5f1214e4fdf05ff4d825d08cf8c66b2b}{get\+\_\+total\+\_\+size}} () const
+\begin{DoxyCompactList}\small\item\em Get the total number of indices in the range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T1, typename T2, typename T = std\+::common\+\_\+type\+\_\+t$<$\+T1, T2$>$$>$\newline
+class BS\+::blocks$<$ T1, T2, T $>$}
+
+A helper class to divide a range into blocks. Used by parallelize\+\_\+loop() and push\+\_\+loop(). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & The type of the first index in the range. Should be a signed or unsigned integer. \\
+\hline
+{\em T2} & The type of the index after the last index in the range. Should be a signed or unsigned integer. If T1 is not the same as T2, a common type will be automatically inferred. \\
+\hline
+{\em T} & The common type of T1 and T2. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBS_1_1blocks_a2e938fc32ea845e8a0cf23025c6830c7}\label{classBS_1_1blocks_a2e938fc32ea845e8a0cf23025c6830c7}} 
+\index{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!blocks@{blocks}}
+\index{blocks@{blocks}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}}
+\doxysubsubsection{\texorpdfstring{blocks()}{blocks()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T  = std\+::common\+\_\+type\+\_\+t$<$\+T1, T2$>$$>$ \\
+\mbox{\hyperlink{classBS_1_1blocks}{BS\+::blocks}}$<$ T1, T2, T $>$\+::\mbox{\hyperlink{classBS_1_1blocks}{blocks}} (\begin{DoxyParamCaption}\item[{const T1}]{first\+\_\+index\+\_\+,  }\item[{const T2}]{index\+\_\+after\+\_\+last\+\_\+,  }\item[{const size\+\_\+t}]{num\+\_\+blocks\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a blocks object with the given specifications. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+index\+\_\+} & The first index in the range. \\
+\hline
+{\em index\+\_\+after\+\_\+last\+\_\+} & The index after the last index in the range. \\
+\hline
+{\em num\+\_\+blocks\+\_\+} & The desired number of blocks to divide the range into. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBS_1_1blocks_a0f0e08f9eff06a0d8e3b05bf59833c7b}\label{classBS_1_1blocks_a0f0e08f9eff06a0d8e3b05bf59833c7b}} 
+\index{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!end@{end}}
+\index{end@{end}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T  = std\+::common\+\_\+type\+\_\+t$<$\+T1, T2$>$$>$ \\
+T \mbox{\hyperlink{classBS_1_1blocks}{BS\+::blocks}}$<$ T1, T2, T $>$\+::end (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the index after the last index of a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The block number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index after the last index. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBS_1_1blocks_aed50be83dbe428959cb600197df32c95}\label{classBS_1_1blocks_aed50be83dbe428959cb600197df32c95}} 
+\index{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!get\_num\_blocks@{get\_num\_blocks}}
+\index{get\_num\_blocks@{get\_num\_blocks}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_num\_blocks()}{get\_num\_blocks()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T  = std\+::common\+\_\+type\+\_\+t$<$\+T1, T2$>$$>$ \\
+size\+\_\+t \mbox{\hyperlink{classBS_1_1blocks}{BS\+::blocks}}$<$ T1, T2, T $>$\+::get\+\_\+num\+\_\+blocks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number of blocks. Note that this may be different than the desired number of blocks that was passed to the constructor. 
+
+\begin{DoxyReturn}{Returns}
+The number of blocks. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBS_1_1blocks_a5f1214e4fdf05ff4d825d08cf8c66b2b}\label{classBS_1_1blocks_a5f1214e4fdf05ff4d825d08cf8c66b2b}} 
+\index{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!get\_total\_size@{get\_total\_size}}
+\index{get\_total\_size@{get\_total\_size}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_total\_size()}{get\_total\_size()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T  = std\+::common\+\_\+type\+\_\+t$<$\+T1, T2$>$$>$ \\
+size\+\_\+t \mbox{\hyperlink{classBS_1_1blocks}{BS\+::blocks}}$<$ T1, T2, T $>$\+::get\+\_\+total\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the total number of indices in the range. 
+
+\begin{DoxyReturn}{Returns}
+The total number of indices. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBS_1_1blocks_a7d659984a82cf57e54773d9a88d863ae}\label{classBS_1_1blocks_a7d659984a82cf57e54773d9a88d863ae}} 
+\index{BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}!start@{start}}
+\index{start@{start}!BS::blocks$<$ T1, T2, T $>$@{BS::blocks$<$ T1, T2, T $>$}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T  = std\+::common\+\_\+type\+\_\+t$<$\+T1, T2$>$$>$ \\
+T \mbox{\hyperlink{classBS_1_1blocks}{BS\+::blocks}}$<$ T1, T2, T $>$\+::start (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the first index of a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The block number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first index. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\mbox{\hyperlink{BS__thread__pool_8hpp}{BS\+\_\+thread\+\_\+pool.\+hpp}}\end{DoxyCompactItemize}

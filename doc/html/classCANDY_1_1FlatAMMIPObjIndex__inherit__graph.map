@@ -1,0 +1,4 @@
+<map id="CANDY::FlatAMMIPObjIndex" name="CANDY::FlatAMMIPObjIndex">
+<area shape="rect" id="node1" title="Similar to FlatAMMIPIndex, but additionally has object storage (currently only string)" alt="" coords="5,80,208,107"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractIndex.html" title="The abstract class of an index approach." alt="" coords="25,5,189,32"/>
+</map>

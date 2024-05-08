@@ -1,0 +1,395 @@
+\hypertarget{classCANDY_1_1PQIndex}{}\doxysection{CANDY\+::PQIndex Class Reference}
+\label{classCANDY_1_1PQIndex}\index{CANDY::PQIndex@{CANDY::PQIndex}}
+
+
+class for indexing vectors using product quantizations, this is a raw implementation without hierachical  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+PQIndex.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::PQIndex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{classCANDY_1_1PQIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::PQIndex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1PQIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a19cecd5f5ad5af407d05f7866c788e43}\label{classCANDY_1_1PQIndex_a19cecd5f5ad5af407d05f7866c788e43}} 
+virtual void \mbox{\hyperlink{classCANDY_1_1PQIndex_a19cecd5f5ad5af407d05f7866c788e43}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1PQIndex_a6eed9de267c4773a3d15f1df9fb94d57}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1PQIndex_a44bac43c454b1b28151cb696ab48acbd}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor. In \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} setting it requires to re-\/train on new data \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1PQIndex_a072c3fa03fbb0e7e6064bdbf61912bc1}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1PQIndex_a44bac43c454b1b28151cb696ab48acbd}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1PQIndex_ae459a19ecb3e94508f48e2c06d82b515}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor. In \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} setting it requires to re-\/train on new data \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1PQIndex_a15d86a6b4b873b28ce693f088aa5a8bd}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor. In \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} setting it requires to re-\/train on new data \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \mbox{\hyperlink{classCANDY_1_1PQIndex_a8b03154636917ddc1df4f29e2e2bd0a4}{search\+Index}} (torch\+::\+Tensor q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return their index \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1PQIndex_a497ffde8db74ea3fb13efe62146dd154}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1PQIndex_a8ec69816f95c2633841256d378f3cb67}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1PQIndex_a936ea33dbc764dbeb81dd241c5555791}{raw\+Data}} ()
+\begin{DoxyCompactList}\small\item\em return the raw\+Data of tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1PQIndex_a98718e6dc3ccd1fad01f36145fde0b98}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCANDY_1_1PQIndex_abfff7db11f90358f22b2dc425fc176d8}{add}} (int64\+\_\+t nx, torch\+::\+Tensor x)
+\begin{DoxyCompactList}\small\item\em add a batch of vectors into \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} which would serve as the base to modify \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1PQIndex_ab85fa9214769ad1d62b40f49c9f34989}{train}} (int64\+\_\+t nx, torch\+::\+Tensor x)
+\begin{DoxyCompactList}\small\item\em train the \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} upon input vectors. Should be called after \mbox{\hyperlink{classCANDY_1_1PQIndex_abfff7db11f90358f22b2dc425fc176d8}{add()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a75517971dc13eefa744fe19597be798a}\label{classCANDY_1_1PQIndex_a75517971dc13eefa744fe19597be798a}} 
+\mbox{\hyperlink{classCANDY_1_1ProductQuantizer}{Product\+Quantizer}} {\bfseries pq\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a3e9094905b9b9b4aa6f2548894f923b3}\label{classCANDY_1_1PQIndex_a3e9094905b9b9b4aa6f2548894f923b3}} 
+std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{classCANDY_1_1PQIndex_a3e9094905b9b9b4aa6f2548894f923b3}{codes\+\_\+}}
+\begin{DoxyCompactList}\small\item\em encoded dataset npoints\+\_\+ $\ast$ pq\+\_\+.\+code\+\_\+size\+\_\+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_aca9b09fd47b6d0035831962c3f3dcb4a}\label{classCANDY_1_1PQIndex_aca9b09fd47b6d0035831962c3f3dcb4a}} 
+torch\+::\+Tensor {\bfseries codes\+\_\+tensor\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a8cb706f6614fc7d2bb60eb197c948a68}\label{classCANDY_1_1PQIndex_a8cb706f6614fc7d2bb60eb197c948a68}} 
+int64\+\_\+t {\bfseries npoints\+\_\+} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a90da50f642e8b9a742ad742c30c9ef0c}\label{classCANDY_1_1PQIndex_a90da50f642e8b9a742ad742c30c9ef0c}} 
+int64\+\_\+t {\bfseries vec\+Dim\+\_\+} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_adcf634ba40b36bf6c8e93189e0981cfe}\label{classCANDY_1_1PQIndex_adcf634ba40b36bf6c8e93189e0981cfe}} 
+bool {\bfseries is\+\_\+trained} = false
+\item 
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_ae3a01ce8ab289df1d69e5a97380e3ea4}\label{classCANDY_1_1PQIndex_ae3a01ce8ab289df1d69e5a97380e3ea4}} 
+int64\+\_\+t {\bfseries frozen\+Level} = 0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+class for indexing vectors using product quantizations, this is a raw implementation without hierachical 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000008}{Todo}}]delete and revise a tensor may not be feasible for \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}}
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classCANDY_1_1PQIndex_ae459a19ecb3e94508f48e2c06d82b515}{delete\+Tensor}}
+\item \mbox{\hyperlink{classCANDY_1_1PQIndex_a15d86a6b4b873b28ce693f088aa5a8bd}{revise\+Tensor}} 
+\end{DoxyItemize}
+
+encode and decode may be verbose for both code tensor and code pointers
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classCANDY_1_1PQIndex_a497ffde8db74ea3fb13efe62146dd154}{search\+Tensor}}
+\item \mbox{\hyperlink{classCANDY_1_1PQIndex_a44bac43c454b1b28151cb696ab48acbd}{insert\+Tensor}} 
+\end{DoxyItemize}\end{DoxyRefDesc}
+\begin{DoxyNote}{Note}
+config parameters
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item sub\+Quantizers, the number of sub quantizers, default 8, I64
+\item n\+Bits, the number of bits in each sub quantizer, default 8, I64 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_abfff7db11f90358f22b2dc425fc176d8}\label{classCANDY_1_1PQIndex_abfff7db11f90358f22b2dc425fc176d8}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!add@{add}}
+\index{add@{add}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void CANDY\+::\+PQIndex\+::add (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{nx,  }\item[{torch\+::\+Tensor}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+add a batch of vectors into \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} which would serve as the base to modify 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & number of input x vectors \\
+\hline
+{\em x} & input vectors as tensors \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_ae459a19ecb3e94508f48e2c06d82b515}\label{classCANDY_1_1PQIndex_ae459a19ecb3e94508f48e2c06d82b515}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+PQIndex\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor. In \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} setting it requires to re-\/train on new data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, recommend single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a8ec69816f95c2633841256d378f3cb67}\label{classCANDY_1_1PQIndex_a8ec69816f95c2633841256d378f3cb67}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+PQIndex\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a44bac43c454b1b28151cb696ab48acbd}\label{classCANDY_1_1PQIndex_a44bac43c454b1b28151cb696ab48acbd}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+PQIndex\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor. In \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} setting it requires to re-\/train on new data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, accept multiple rows \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a072c3fa03fbb0e7e6064bdbf61912bc1}\label{classCANDY_1_1PQIndex_a072c3fa03fbb0e7e6064bdbf61912bc1}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+PQIndex\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1PQIndex_a44bac43c454b1b28151cb696ab48acbd}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and is different from \mbox{\hyperlink{classCANDY_1_1PQIndex_a44bac43c454b1b28151cb696ab48acbd}{insert\+Tensor}} for this one\+:
+\begin{DoxyItemize}
+\item Will firstly try to build clusters from scratch using t 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a936ea33dbc764dbeb81dd241c5555791}\label{classCANDY_1_1PQIndex_a936ea33dbc764dbeb81dd241c5555791}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!rawData@{rawData}}
+\index{rawData@{rawData}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{rawData()}{rawData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+PQIndex\+::raw\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return the raw\+Data of tensor 
+
+\begin{DoxyReturn}{Returns}
+The raw data stored in tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a15d86a6b4b873b28ce693f088aa5a8bd}\label{classCANDY_1_1PQIndex_a15d86a6b4b873b28ce693f088aa5a8bd}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+PQIndex\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor. In \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} setting it requires to re-\/train on new data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised, recommend single row \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a8b03154636917ddc1df4f29e2e2bd0a4}\label{classCANDY_1_1PQIndex_a8b03154636917ddc1df4f29e2e2bd0a4}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!searchIndex@{searchIndex}}
+\index{searchIndex@{searchIndex}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{searchIndex()}{searchIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ faiss\+::idx\+\_\+t $>$ CANDY\+::\+PQIndex\+::search\+Index (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return their index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$faiss\+::idx\+\_\+t$>$ the index, follow faiss\textquotesingle{}s order 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a60e0f58c72ffbf47342b4c4b4091a573}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a497ffde8db74ea3fb13efe62146dd154}\label{classCANDY_1_1PQIndex_a497ffde8db74ea3fb13efe62146dd154}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+PQIndex\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a6eed9de267c4773a3d15f1df9fb94d57}\label{classCANDY_1_1PQIndex_a6eed9de267c4773a3d15f1df9fb94d57}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+PQIndex\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_a98718e6dc3ccd1fad01f36145fde0b98}\label{classCANDY_1_1PQIndex_a98718e6dc3ccd1fad01f36145fde0b98}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+PQIndex\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+the frozen levels
+\begin{DoxyItemize}
+\item 0 frozen everything
+\item $>$=1 frozen nothing 
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a637e0a15f3753c2188da92f8b787061d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1PQIndex_ab85fa9214769ad1d62b40f49c9f34989}\label{classCANDY_1_1PQIndex_ab85fa9214769ad1d62b40f49c9f34989}} 
+\index{CANDY::PQIndex@{CANDY::PQIndex}!train@{train}}
+\index{train@{train}!CANDY::PQIndex@{CANDY::PQIndex}}
+\doxysubsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily void CANDY\+::\+PQIndex\+::train (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{nx,  }\item[{torch\+::\+Tensor}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+train the \mbox{\hyperlink{classCANDY_1_1PQIndex}{PQIndex}} upon input vectors. Should be called after \mbox{\hyperlink{classCANDY_1_1PQIndex_abfff7db11f90358f22b2dc425fc176d8}{add()}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & number of input x vectors \\
+\hline
+{\em x} & input vectors as tensors \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/PQIndex.\+h\item 
+src/\+CANDY/PQIndex.\+cpp\end{DoxyCompactItemize}

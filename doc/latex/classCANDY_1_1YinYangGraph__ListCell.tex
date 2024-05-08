@@ -1,0 +1,123 @@
+\hypertarget{classCANDY_1_1YinYangGraph__ListCell}{}\doxysection{CANDY\+::Yin\+Yang\+Graph\+\_\+\+List\+Cell Class Reference}
+\label{classCANDY_1_1YinYangGraph__ListCell}\index{CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}}
+
+
+a cell of an ending \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{Yin\+Yang\+Vertex}}  
+
+
+
+
+Collaboration diagram for CANDY\+::Yin\+Yang\+Graph\+\_\+\+List\+Cell\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1YinYangGraph__ListCell__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_a3503407a928928dd7b78dafe3a03e9c1}\label{classCANDY_1_1YinYangGraph__ListCell_a3503407a928928dd7b78dafe3a03e9c1}} 
+void \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell_a3503407a928928dd7b78dafe3a03e9c1}{lock}} ()
+\begin{DoxyCompactList}\small\item\em lock this cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_ae757cd1d950e20ea8ad61beea96f92db}\label{classCANDY_1_1YinYangGraph__ListCell_ae757cd1d950e20ea8ad61beea96f92db}} 
+void \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell_ae757cd1d950e20ea8ad61beea96f92db}{unlock}} ()
+\begin{DoxyCompactList}\small\item\em unlock this cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_abf95995bba97665d04cdd9067b147d71}\label{classCANDY_1_1YinYangGraph__ListCell_abf95995bba97665d04cdd9067b147d71}} 
+void {\bfseries set\+Encode} (std\+::vector$<$ uint8\+\_\+t $>$ \+\_\+encode)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_a777d0caa4daa82902c434fe195d9a26f}\label{classCANDY_1_1YinYangGraph__ListCell_a777d0caa4daa82902c434fe195d9a26f}} 
+std\+::vector$<$ uint8\+\_\+t $>$ {\bfseries get\+Encode} ()
+\item 
+void \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell_a4e6dfb1e0b8f5f5377ed6b84e963cd01}{insert\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t max\+Neighbor\+Cnt, \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} \&yin0\+Map, std\+::vector$<$ \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} $>$ \&vertex\+Map\+Ge1\+Vec)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell_ae0fbe543101822a0696cf6b6c3fcb8f3}{delete\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell_af0f8b5862feaaa0a79b928074ba6b757}{get\+Vertex}} ()
+\begin{DoxyCompactList}\small\item\em to get the vertex \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_a5eba9f5f25bc852f29786226796054a1}\label{classCANDY_1_1YinYangGraph__ListCell_a5eba9f5f25bc852f29786226796054a1}} 
+\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} {\bfseries vertex} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_a38550fb0d4f02a4a2bfeb23bb52d7f04}\label{classCANDY_1_1YinYangGraph__ListCell_a38550fb0d4f02a4a2bfeb23bb52d7f04}} 
+std\+::mutex {\bfseries m\+\_\+mut}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_a6bc76a22c1437d7bf9852f88bca43e7a}\label{classCANDY_1_1YinYangGraph__ListCell_a6bc76a22c1437d7bf9852f88bca43e7a}} 
+std\+::vector$<$ uint8\+\_\+t $>$ {\bfseries encode}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+a cell of an ending \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{Yin\+Yang\+Vertex}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_ae0fbe543101822a0696cf6b6c3fcb8f3}\label{classCANDY_1_1YinYangGraph__ListCell_ae0fbe543101822a0696cf6b6c3fcb8f3}} 
+\index{CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})}
+
+
+
+delete a tensor 
+
+\begin{DoxyNote}{Note}
+will check the equal condition by torch\+::equal 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor @returen bool whether the tensor is really deleted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_af0f8b5862feaaa0a79b928074ba6b757}\label{classCANDY_1_1YinYangGraph__ListCell_af0f8b5862feaaa0a79b928074ba6b757}} 
+\index{CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}!getVertex@{getVertex}}
+\index{getVertex@{getVertex}!CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}}
+\doxysubsubsection{\texorpdfstring{getVertex()}{getVertex()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell\+::get\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+to get the vertex 
+
+\begin{DoxyReturn}{Returns}
+the vertex member 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListCell_a4e6dfb1e0b8f5f5377ed6b84e963cd01}\label{classCANDY_1_1YinYangGraph__ListCell_a4e6dfb1e0b8f5f5377ed6b84e963cd01}} 
+\index{CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::YinYangGraph\_ListCell@{CANDY::YinYangGraph\_ListCell}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily void CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{max\+Neighbor\+Cnt,  }\item[{\mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} \&}]{yin0\+Map,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} $>$ \&}]{vertex\+Map\+Ge1\+Vec }\end{DoxyParamCaption})}
+
+
+
+insert a tensor 
+
+handling the listcell
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em max\+Neighbor\+Cnt} & the maximum count of neighbors \\
+\hline
+{\em yin0\+Map} & the map of yin vertex at level 0 \\
+\hline
+{\em vertex\+Map\+Ge1\+Vec} & the vector of vertex\+Map in all level greater or equal to 1 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyEnumerate}
+\item a new vertex if vertex==nullptr, create a yin vertex
+\end{DoxyEnumerate}
+
+@broef to connect it with other level 0 yin vertex
+
+to create a new yang vertex and connect it with vertex member
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Yin\+Yang\+Graph\+Index/\mbox{\hyperlink{YinYangGraph_8h}{Yin\+Yang\+Graph.\+h}}\item 
+src/\+CANDY/\+Yin\+Yang\+Graph\+Index/Yin\+Yang\+Graph.\+cpp\end{DoxyCompactItemize}

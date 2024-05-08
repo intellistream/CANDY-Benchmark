@@ -1,0 +1,180 @@
+\hypertarget{classCANDY_1_1YinYangGraphSimpleIndex}{}\doxysection{CANDY\+::Yin\+Yang\+Graph\+Simple\+Index Class Reference}
+\label{classCANDY_1_1YinYangGraphSimpleIndex}\index{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}}
+
+
+The class of indexing using a simpe yinyang graph,there is no LSH search is only within the linked yinyanggraph.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Yin\+Yang\+Graph\+Simple\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Yin\+Yang\+Graph\+Simple\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classCANDY_1_1YinYangGraphSimpleIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Yin\+Yang\+Graph\+Simple\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1YinYangGraphSimpleIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex_a5d5a2bc72e0125f9d76c1b560209ec9f}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex_ab7c2e433699f9000b4b4f66b83a92885}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex_a042edc4b6808fb7b57cdfcfcacdc7825}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1YinYangGraphSimpleIndex_a5c599aceeab3e3860624d4158c83d675}{insert\+Single\+Row\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_a305d4c3aa702e71c63713658fe6d6c05}\label{classCANDY_1_1YinYangGraphSimpleIndex_a305d4c3aa702e71c63713658fe6d6c05}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} {\bfseries my\+Cfg} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_ac8335a701382f8a8354c062b49c8d62d}\label{classCANDY_1_1YinYangGraphSimpleIndex_ac8335a701382f8a8354c062b49c8d62d}} 
+std\+::vector$<$ \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} $>$ {\bfseries vertex\+Map\+Ge1\+Vec}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_aec82e2a39981efc3fe2c9d28b0a5e577}\label{classCANDY_1_1YinYangGraphSimpleIndex_aec82e2a39981efc3fe2c9d28b0a5e577}} 
+int64\+\_\+t {\bfseries vec\+Dim} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_aa3c14ba07acd1ebeca35d6adbece6132}\label{classCANDY_1_1YinYangGraphSimpleIndex_aa3c14ba07acd1ebeca35d6adbece6132}} 
+int64\+\_\+t {\bfseries max\+Connection} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_af937317acaf8f82aa85125a9b3c40ad0}\label{classCANDY_1_1YinYangGraphSimpleIndex_af937317acaf8f82aa85125a9b3c40ad0}} 
+int64\+\_\+t {\bfseries candidate\+Times} = 1
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_aec64287489b56717428416e1e9ca8aac}\label{classCANDY_1_1YinYangGraphSimpleIndex_aec64287489b56717428416e1e9ca8aac}} 
+\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} {\bfseries start\+Point} = nullptr
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+The class of indexing using a simpe yinyang graph,there is no LSH search is only within the linked yinyanggraph. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000013}{Todo}}]implement the delete and revise later \end{DoxyRefDesc}
+\begin{DoxyNote}{Note}
+currently single thread 
+
+config parameters
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item max\+Connection, the max number of connections in the yinyang graph (for yang vertex of data), default 256, I64
+\item candidate\+Times, the times of k to determine minimum candidates, default 1 ,I64
+\item metric\+Type, the type of AKNN metric, default L2, String 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_a5c599aceeab3e3860624d4158c83d675}\label{classCANDY_1_1YinYangGraphSimpleIndex_a5c599aceeab3e3860624d4158c83d675}} 
+\index{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}!insertSingleRowTensor@{insertSingleRowTensor}}
+\index{insertSingleRowTensor@{insertSingleRowTensor}!CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}}
+\doxysubsubsection{\texorpdfstring{insertSingleRowTensor()}{insertSingleRowTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index\+::insert\+Single\+Row\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_ab7c2e433699f9000b4b4f66b83a92885}\label{classCANDY_1_1YinYangGraphSimpleIndex_ab7c2e433699f9000b4b4f66b83a92885}} 
+\index{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, accept multiple rows \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_a042edc4b6808fb7b57cdfcfcacdc7825}\label{classCANDY_1_1YinYangGraphSimpleIndex_a042edc4b6808fb7b57cdfcfcacdc7825}} 
+\index{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphSimpleIndex_a5d5a2bc72e0125f9d76c1b560209ec9f}\label{classCANDY_1_1YinYangGraphSimpleIndex_a5d5a2bc72e0125f9d76c1b560209ec9f}} 
+\index{CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::YinYangGraphSimpleIndex@{CANDY::YinYangGraphSimpleIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Graph\+Simple\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{YinYangGraphSimpleIndex_8h}{Yin\+Yang\+Graph\+Simple\+Index.\+h}}\item 
+src/\+CANDY/\mbox{\hyperlink{YinYangGraphSimpleIndex_8cpp}{Yin\+Yang\+Graph\+Simple\+Index.\+cpp}}\end{DoxyCompactItemize}

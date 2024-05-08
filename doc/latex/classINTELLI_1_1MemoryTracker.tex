@@ -1,0 +1,148 @@
+\hypertarget{classINTELLI_1_1MemoryTracker}{}\doxysection{INTELLI\+::Memory\+Tracker Class Reference}
+\label{classINTELLI_1_1MemoryTracker}\index{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}}
+
+
+The top entity to trace current, average and maximum memory foot print.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_aac84e16cfbdc70a0ecf5ad32fd878276}{start}} (uint64\+\_\+t sec, uint64\+\_\+t usec=0)
+\begin{DoxyCompactList}\small\item\em To start memory usage tracing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classINTELLI_1_1MemoryTracker_a276142508a5fabba36f282a6d3355ba2}\label{classINTELLI_1_1MemoryTracker_a276142508a5fabba36f282a6d3355ba2}} 
+void {\bfseries trigger\+Memory\+Sample} ()
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1MemoryTracker_a6a3670387988c01622123acfd2683f0e}\label{classINTELLI_1_1MemoryTracker_a6a3670387988c01622123acfd2683f0e}} 
+void \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_a6a3670387988c01622123acfd2683f0e}{stop}} ()
+\begin{DoxyCompactList}\small\item\em To end memory usage tracing. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_a028cce03f4affbaf5f7637ee3b7cb03c}{get\+Avg\+Mem}} ()
+\begin{DoxyCompactList}\small\item\em To return the average memory usage during the sampling. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_a2cb01a07468c27a76e9339e14ab6951b}{get\+Avg\+Cpu}} ()
+\begin{DoxyCompactList}\small\item\em To return the average Cpu utilization rate during the sampling. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_acf3d6f332d8cd34914f589711cc176f5}{get\+Max\+Mem}} ()
+\begin{DoxyCompactList}\small\item\em To return the max memory usage during the sampling. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_aea72427ba4a84594c06ab7a01d7e5098}{get\+Max\+Cpu}} ()
+\begin{DoxyCompactList}\small\item\em To return the max Cpu utilization rate during the sampling. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_acbc820884c8c940ad75106d27515d348}{get\+Cur\+Mem}} ()
+\begin{DoxyCompactList}\small\item\em To return the current memory usage when calling this function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1MemoryTracker_ad9c4592df88960cd9cf62740aa7ab96e}\label{classINTELLI_1_1MemoryTracker_ad9c4592df88960cd9cf62740aa7ab96e}} 
+static void {\bfseries set\+Active\+Instance} (\mbox{\hyperlink{classINTELLI_1_1MemoryTracker}{Memory\+Tracker}} $\ast$ins)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The top entity to trace current, average and maximum memory foot print. 
+
+\begin{DoxyNote}{Note}
+The default unit is KB, will use Linux timer to keep sampling memory usage 
+
+usage
+\begin{DoxyItemize}
+\item create a class
+\item call INTELLI\+::\+Memory\+Tracker\+::set\+Active\+Instance(\&xxx) to register this to linux timer
+\item call \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_aac84e16cfbdc70a0ecf5ad32fd878276}{start}} to start the sampling
+\item call end to end the sampling
+\item call \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_a028cce03f4affbaf5f7637ee3b7cb03c}{get\+Avg\+Mem}}, \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_acf3d6f332d8cd34914f589711cc176f5}{get\+Max\+Mem}}, or \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_acbc820884c8c940ad75106d27515d348}{get\+Cur\+Mem}} to get the result, \mbox{\hyperlink{classINTELLI_1_1MemoryTracker_acbc820884c8c940ad75106d27515d348}{get\+Cur\+Mem}} is a instant function rather than reporting the sampled results 
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Never use multiple instance of INTELLI\+::\+Memory\+Tracker\+::set\+Active\+Instance(\&xxx) 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classINTELLI_1_1MemoryTracker_a2cb01a07468c27a76e9339e14ab6951b}\label{classINTELLI_1_1MemoryTracker_a2cb01a07468c27a76e9339e14ab6951b}} 
+\index{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getAvgCpu@{getAvgCpu}}
+\index{getAvgCpu@{getAvgCpu}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}}
+\doxysubsubsection{\texorpdfstring{getAvgCpu()}{getAvgCpu()}}
+{\footnotesize\ttfamily double INTELLI\+::\+Memory\+Tracker\+::get\+Avg\+Cpu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To return the average Cpu utilization rate during the sampling. 
+
+\begin{DoxyReturn}{Returns}
+the fractional 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1MemoryTracker_a028cce03f4affbaf5f7637ee3b7cb03c}\label{classINTELLI_1_1MemoryTracker_a028cce03f4affbaf5f7637ee3b7cb03c}} 
+\index{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getAvgMem@{getAvgMem}}
+\index{getAvgMem@{getAvgMem}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}}
+\doxysubsubsection{\texorpdfstring{getAvgMem()}{getAvgMem()}}
+{\footnotesize\ttfamily size\+\_\+t INTELLI\+::\+Memory\+Tracker\+::get\+Avg\+Mem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To return the average memory usage during the sampling. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t the memory usage in KB 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1MemoryTracker_acbc820884c8c940ad75106d27515d348}\label{classINTELLI_1_1MemoryTracker_acbc820884c8c940ad75106d27515d348}} 
+\index{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getCurMem@{getCurMem}}
+\index{getCurMem@{getCurMem}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}}
+\doxysubsubsection{\texorpdfstring{getCurMem()}{getCurMem()}}
+{\footnotesize\ttfamily size\+\_\+t INTELLI\+::\+Memory\+Tracker\+::get\+Cur\+Mem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To return the current memory usage when calling this function. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t the memory usage in KB 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1MemoryTracker_aea72427ba4a84594c06ab7a01d7e5098}\label{classINTELLI_1_1MemoryTracker_aea72427ba4a84594c06ab7a01d7e5098}} 
+\index{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getMaxCpu@{getMaxCpu}}
+\index{getMaxCpu@{getMaxCpu}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}}
+\doxysubsubsection{\texorpdfstring{getMaxCpu()}{getMaxCpu()}}
+{\footnotesize\ttfamily double INTELLI\+::\+Memory\+Tracker\+::get\+Max\+Cpu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To return the max Cpu utilization rate during the sampling. 
+
+\begin{DoxyReturn}{Returns}
+the fractional 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1MemoryTracker_acf3d6f332d8cd34914f589711cc176f5}\label{classINTELLI_1_1MemoryTracker_acf3d6f332d8cd34914f589711cc176f5}} 
+\index{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!getMaxMem@{getMaxMem}}
+\index{getMaxMem@{getMaxMem}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}}
+\doxysubsubsection{\texorpdfstring{getMaxMem()}{getMaxMem()}}
+{\footnotesize\ttfamily size\+\_\+t INTELLI\+::\+Memory\+Tracker\+::get\+Max\+Mem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To return the max memory usage during the sampling. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t the memory usage in KB 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1MemoryTracker_aac84e16cfbdc70a0ecf5ad32fd878276}\label{classINTELLI_1_1MemoryTracker_aac84e16cfbdc70a0ecf5ad32fd878276}} 
+\index{INTELLI::MemoryTracker@{INTELLI::MemoryTracker}!start@{start}}
+\index{start@{start}!INTELLI::MemoryTracker@{INTELLI::MemoryTracker}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void INTELLI\+::\+Memory\+Tracker\+::start (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{sec,  }\item[{uint64\+\_\+t}]{usec = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To start memory usage tracing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sec} & the second of sampling \\
+\hline
+{\em usec} & the micro-\/second of sampling \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+call after set\+Perf\+List 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/Mem\+Tracker.\+h\item 
+src/\+Utils/Mem\+Tracker.\+cpp\end{DoxyCompactItemize}

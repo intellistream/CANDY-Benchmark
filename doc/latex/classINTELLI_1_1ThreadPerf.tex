@@ -1,0 +1,239 @@
+\hypertarget{classINTELLI_1_1ThreadPerf}{}\doxysection{INTELLI\+::Thread\+Perf Class Reference}
+\label{classINTELLI_1_1ThreadPerf}\index{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}}
+
+
+The top entity to provide perf traces, please use this class only UNLESS you know what you are doing.  
+
+
+
+
+{\ttfamily \#include $<$Utils/\+Thread\+Perf.\+hpp$>$}
+
+
+
+Inheritance diagram for INTELLI\+::Thread\+Perf\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{classINTELLI_1_1ThreadPerf__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for INTELLI\+::Thread\+Perf\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classINTELLI_1_1ThreadPerf__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfPair}{Perf\+Pair}}
+\begin{DoxyCompactList}\small\item\em a record pair of perf events \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfTool}{Perf\+Tool}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classINTELLI_1_1ThreadPerf_a944735b1c69db27336a1cb2e5d6d59f9}{Thread\+Perf}} (int cpu)
+\begin{DoxyCompactList}\small\item\em To setup this perf to specific cpu. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_a11347ab223dd1b0a6bd5d1971473c76a}\label{classINTELLI_1_1ThreadPerf_a11347ab223dd1b0a6bd5d1971473c76a}} 
+virtual void \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_a11347ab223dd1b0a6bd5d1971473c76a}{set\+Perf\+List}} ()
+\begin{DoxyCompactList}\small\item\em To set up all your interest perf events. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_aa5eefc6413178c6b01c133e7a3a395a5}{start}} ()
+\begin{DoxyCompactList}\small\item\em To start perf tracing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_ab511bc064b27b430ad2aa00a819ef8a1}\label{classINTELLI_1_1ThreadPerf_ab511bc064b27b430ad2aa00a819ef8a1}} 
+virtual void \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_ab511bc064b27b430ad2aa00a819ef8a1}{end}} ()
+\begin{DoxyCompactList}\small\item\em To end a perf tracing. \end{DoxyCompactList}\item 
+virtual uint64\+\_\+t \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_af1495ec91331d23108522762c60aebcc}{get\+Result\+By\+Id}} (size\+\_\+t idx)
+\begin{DoxyCompactList}\small\item\em Get the perf result by its index of \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfPair}{Perf\+Pair}}. \end{DoxyCompactList}\item 
+virtual uint64\+\_\+t \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_aac9b0548fbe674e43ea1fc12b0b223ce}{get\+Result\+By\+Name}} (string name)
+\begin{DoxyCompactList}\small\item\em Get the perf result by its name of of \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfPair}{Perf\+Pair}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_a912b81415173f1da698b64b8a66e2f11}\label{classINTELLI_1_1ThreadPerf_a912b81415173f1da698b64b8a66e2f11}} 
+size\+\_\+t {\bfseries time\+Last\+Us} (struct timeval ts, struct timeval te)
+\item 
+virtual \mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{Config\+Map\+Ptr}} \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_a81cc283af578a49b56d6c4e713b4d9f5}{result\+To\+Config\+Map}} ()
+\begin{DoxyCompactList}\small\item\em convert the perf result into a \mbox{\hyperlink{classINTELLI_1_1ConfigMap}{Config\+Map}} \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_a94a366e2f9276dade12c8985912a57f8}{init\+Events\+By\+Cfg}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em init the perf events according to configmap \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_aad95f0eff4f8cfc9af6487c919881338}\label{classINTELLI_1_1ThreadPerf_aad95f0eff4f8cfc9af6487c919881338}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfTool}{Perf\+Tool}} $>$ {\bfseries Perf\+Tool\+Ptr}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_a5fb20684a0794285d14a7465b22d4b87}\label{classINTELLI_1_1ThreadPerf_a5fb20684a0794285d14a7465b22d4b87}} 
+std\+::string {\bfseries get\+Ch\+Value\+As\+String} (size\+\_\+t idx)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_a09107c8699399372b4e18883f7d14c7b}\label{classINTELLI_1_1ThreadPerf_a09107c8699399372b4e18883f7d14c7b}} 
+Perf\+Tool\+Ptr {\bfseries my\+Tool}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_a90526297620da280f35a6530653e127a}\label{classINTELLI_1_1ThreadPerf_a90526297620da280f35a6530653e127a}} 
+std\+::vector$<$ \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfPair}{Perf\+Pair}} $>$ \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_a90526297620da280f35a6530653e127a}{pairs}}
+\begin{DoxyCompactList}\small\item\em To contain all of your interested perf events. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_adb1f278ab1ce0909ad74fc62ab19bea9}\label{classINTELLI_1_1ThreadPerf_adb1f278ab1ce0909ad74fc62ab19bea9}} 
+struct timeval tstart {\bfseries tend}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_ab986c42ba9f80d9c2efc7bd6522f9a51}\label{classINTELLI_1_1ThreadPerf_ab986c42ba9f80d9c2efc7bd6522f9a51}} 
+uint64\+\_\+t {\bfseries latency}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The top entity to provide perf traces, please use this class only UNLESS you know what you are doing. 
+
+\begin{DoxyNote}{Note}
+You may overwrite the set\+Perf\+List function for your own interested events 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+only works in Linux, and make sure you have opened perf in your kernel and have the access 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Requires the \mbox{\hyperlink{classINTELLI_1_1ConfigMap}{Config\+Map}} Util 
+
+General set up
+\begin{DoxyItemize}
+\item create the class
+\item call \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_a11347ab223dd1b0a6bd5d1971473c76a}{set\+Perf\+List}} or \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_a94a366e2f9276dade12c8985912a57f8}{init\+Events\+By\+Cfg}}, You may overwrite the set\+Perf\+List function in child classes for your own interested events
+\item call \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_aa5eefc6413178c6b01c133e7a3a395a5}{start}}
+\item run your own process
+\item call \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_ab511bc064b27b430ad2aa00a819ef8a1}{end}}
+\item get the results, by \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_af1495ec91331d23108522762c60aebcc}{get\+Result\+By\+Id}}, \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_aac9b0548fbe674e43ea1fc12b0b223ce}{get\+Result\+By\+Name}}, or \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_a81cc283af578a49b56d6c4e713b4d9f5}{result\+To\+Config\+Map}} 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_a944735b1c69db27336a1cb2e5d6d59f9}\label{classINTELLI_1_1ThreadPerf_a944735b1c69db27336a1cb2e5d6d59f9}} 
+\index{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!ThreadPerf@{ThreadPerf}}
+\index{ThreadPerf@{ThreadPerf}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}}
+\doxysubsubsection{\texorpdfstring{ThreadPerf()}{ThreadPerf()}}
+{\footnotesize\ttfamily INTELLI\+::\+Thread\+Perf\+::\+Thread\+Perf (\begin{DoxyParamCaption}\item[{int}]{cpu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To setup this perf to specific cpu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cpu} & $>$=0 for any specific cpu, =-\/1 for all cpu that may run this process \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_af1495ec91331d23108522762c60aebcc}\label{classINTELLI_1_1ThreadPerf_af1495ec91331d23108522762c60aebcc}} 
+\index{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!getResultById@{getResultById}}
+\index{getResultById@{getResultById}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}}
+\doxysubsubsection{\texorpdfstring{getResultById()}{getResultById()}}
+{\footnotesize\ttfamily virtual uint64\+\_\+t INTELLI\+::\+Thread\+Perf\+::get\+Result\+By\+Id (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Get the perf result by its index of \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfPair}{Perf\+Pair}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & The index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI_a87fac2fa35061c990442f81103f5ae9b}{INTELLI\+::\+Thread\+Perf\+PAPI}}.
+
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_aac9b0548fbe674e43ea1fc12b0b223ce}\label{classINTELLI_1_1ThreadPerf_aac9b0548fbe674e43ea1fc12b0b223ce}} 
+\index{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!getResultByName@{getResultByName}}
+\index{getResultByName@{getResultByName}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}}
+\doxysubsubsection{\texorpdfstring{getResultByName()}{getResultByName()}}
+{\footnotesize\ttfamily virtual uint64\+\_\+t INTELLI\+::\+Thread\+Perf\+::get\+Result\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Get the perf result by its name of of \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfPair}{Perf\+Pair}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & The index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI_af53a0c94a04bb3dc7ed45c4d76ce445d}{INTELLI\+::\+Thread\+Perf\+PAPI}}.
+
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_a94a366e2f9276dade12c8985912a57f8}\label{classINTELLI_1_1ThreadPerf_a94a366e2f9276dade12c8985912a57f8}} 
+\index{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!initEventsByCfg@{initEventsByCfg}}
+\index{initEventsByCfg@{initEventsByCfg}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}}
+\doxysubsubsection{\texorpdfstring{initEventsByCfg()}{initEventsByCfg()}}
+{\footnotesize\ttfamily virtual void INTELLI\+::\+Thread\+Perf\+::init\+Events\+By\+Cfg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+init the perf events according to configmap 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & tyhe configmap \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI_a61e1e1a7a502e60f8247994d46c3dc4b}{INTELLI\+::\+Thread\+Perf\+PAPI}}.
+
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_a81cc283af578a49b56d6c4e713b4d9f5}\label{classINTELLI_1_1ThreadPerf_a81cc283af578a49b56d6c4e713b4d9f5}} 
+\index{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!resultToConfigMap@{resultToConfigMap}}
+\index{resultToConfigMap@{resultToConfigMap}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}}
+\doxysubsubsection{\texorpdfstring{resultToConfigMap()}{resultToConfigMap()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{Config\+Map\+Ptr}} INTELLI\+::\+Thread\+Perf\+::result\+To\+Config\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+convert the perf result into a \mbox{\hyperlink{classINTELLI_1_1ConfigMap}{Config\+Map}} 
+
+\begin{DoxyReturn}{Returns}
+The key-\/value store of config\+Map, in shared pointer 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+must stop after calling stop 
+\end{DoxyNote}
+
+
+Reimplemented in \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI_a945f274ae74a979401a43fd42c699e79}{INTELLI\+::\+Thread\+Perf\+PAPI}}.
+
+\mbox{\Hypertarget{classINTELLI_1_1ThreadPerf_aa5eefc6413178c6b01c133e7a3a395a5}\label{classINTELLI_1_1ThreadPerf_aa5eefc6413178c6b01c133e7a3a395a5}} 
+\index{INTELLI::ThreadPerf@{INTELLI::ThreadPerf}!start@{start}}
+\index{start@{start}!INTELLI::ThreadPerf@{INTELLI::ThreadPerf}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily virtual void INTELLI\+::\+Thread\+Perf\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+To start perf tracing. 
+
+\begin{DoxyNote}{Note}
+call after \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_a11347ab223dd1b0a6bd5d1971473c76a}{set\+Perf\+List}} 
+\end{DoxyNote}
+
+
+Reimplemented in \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI_ab27c9d89af45c3e91c0e0233022e96a1}{INTELLI\+::\+Thread\+Perf\+PAPI}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\mbox{\hyperlink{ThreadPerf_8hpp}{Thread\+Perf.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,739 @@
+\hypertarget{group__CANDY__lib__bottom__sub}{}\doxysection{The support classes for index approaches}
+\label{group__CANDY__lib__bottom__sub}\index{The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1CongestionDropIndexWorker}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}}
+\begin{DoxyCompactList}\small\item\em A worker class to container bottom indexings, will just drop new element if congestion occurs. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1MLPBucketIdxModel}{CANDY\+::\+MLPBucket\+Idx\+Model}}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1MLPHashingModel}{CANDY\+::\+MLPHashing\+Model}}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1ParallelIndexWorker}{CANDY\+::\+Parallel\+Index\+Worker}}
+\begin{DoxyCompactList}\small\item\em A worker class of parallel index thread. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper}{CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper}}
+\begin{DoxyCompactList}\small\item\em the ray wrapper of \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{Distributed\+Index\+Worker}}, most of its function will be ray-\/remote \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1IVFListCell}{CANDY\+::\+IVFList\+Cell}}
+\begin{DoxyCompactList}\small\item\em a cell of row tensor pointers which have the same code \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering}{CANDY\+::\+Simple\+Stream\+Clustering}}
+\begin{DoxyCompactList}\small\item\em a simple class for stream clustering, following online PQ style and using simple linear equations \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaea6a38dd8ddd8e8baec723d4dc462119}\label{group__CANDY__lib__bottom__sub_gaea6a38dd8ddd8e8baec723d4dc462119}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaea6a38dd8ddd8e8baec723d4dc462119}{new\+Yin\+Yang\+Vertex}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1YinYangVertex}{CANDY\+::\+Yin\+Yang\+Vertex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Yin\+Yang\+Vertex under shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga766c327b8a0ac3c7c65d0fb42639a627}\label{group__CANDY__lib__bottom__sub_ga766c327b8a0ac3c7c65d0fb42639a627}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga766c327b8a0ac3c7c65d0fb42639a627}{new\+Yin\+Yang\+Graph\+\_\+\+List\+Cell}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga766c327b8a0ac3c7c65d0fb42639a627}{new\+Yin\+Yang\+Graph\+\_\+\+List\+Cell}} under shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gabfc75631c9c4db52ecf1a20814500a2b}\label{group__CANDY__lib__bottom__sub_gabfc75631c9c4db52ecf1a20814500a2b}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gabfc75631c9c4db52ecf1a20814500a2b}{new\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Yin\+Yang\+Graph\+\_\+\+List\+Bucket under shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}\label{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{CANDY\+::\+Yin\+Yang\+Vertex}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{CANDY\+::\+Yin\+Yang\+Vertex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1YinYangVertex}{Yin\+Yang\+Vertex}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga1716fbfff4ef4ea65641d1c1a22c11a5}\label{group__CANDY__lib__bottom__sub_ga1716fbfff4ef4ea65641d1c1a22c11a5}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga1716fbfff4ef4ea65641d1c1a22c11a5}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Cell\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{Yin\+Yang\+Graph\+\_\+\+List\+Cell}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga9213c27354699d85b17d8d0d4601c3e2}\label{group__CANDY__lib__bottom__sub_ga9213c27354699d85b17d8d0d4601c3e2}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga9213c27354699d85b17d8d0d4601c3e2}{CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket}{Yin\+Yang\+Graph\+\_\+\+List\+Bucket}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae4a7024f5b4d1b3c6cbf8b5aa78b8ccd}{CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae32fab6713f0cf575c175c0cb6263967}{CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga292279e7b8692e572c4fe3aaad569bb3}{CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga25261033c359b239cb9b6cfc55aafeeb}\label{group__CANDY__lib__bottom__sub_ga25261033c359b239cb9b6cfc55aafeeb}} 
+{\bfseries CANDY\+::\+Tensor\+Idx\+Pair\+::\+Tensor\+Idx\+Pair} (torch\+::\+Tensor \+\_\+t, int64\+\_\+t \+\_\+idx)
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga5c1d79edaff11362dfdcd4db6f82d692}\label{group__CANDY__lib__bottom__sub_ga5c1d79edaff11362dfdcd4db6f82d692}} 
+{\bfseries CANDY\+::\+Tensor\+List\+Idx\+Pair\+::\+Tensor\+List\+Idx\+Pair} (std\+::vector$<$ torch\+::\+Tensor $>$ \&\+\_\+t, int64\+\_\+t \+\_\+idx, int64\+\_\+t \+\_\+seq)
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga423cfa17e234ed0203780e56dee7951e}\label{group__CANDY__lib__bottom__sub_ga423cfa17e234ed0203780e56dee7951e}} 
+{\bfseries CANDY\+::\+Tensor\+Str\+Pair\+::\+Tensor\+Str\+Pair} (torch\+::\+Tensor \+\_\+t, int64\+\_\+t \+\_\+idx)
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaaf505469452a5faa04a80496088653eb}\label{group__CANDY__lib__bottom__sub_gaaf505469452a5faa04a80496088653eb}} 
+{\bfseries CANDY\+::\+Tensor\+Str\+Pair\+::\+Tensor\+Str\+Pair} (torch\+::\+Tensor \+\_\+t, int64\+\_\+t \+\_\+idx, std\+::vector$<$ std\+::string $>$ \&str)
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaf70ef7e7e63599b58a3a0771e7e61b1e}\label{group__CANDY__lib__bottom__sub_gaf70ef7e7e63599b58a3a0771e7e61b1e}} 
+{\bfseries CANDY\+::\+Tensor\+Str\+Vec\+Pair\+::\+Tensor\+Str\+Vec\+Pair} (std\+::vector$<$ torch\+::\+Tensor $>$ \&\+\_\+t, int64\+\_\+t \+\_\+idx, int64\+\_\+t \+\_\+seq, std\+::vector$<$ std\+::vector$<$ std\+::string $>$$>$ str)
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga5f52ef3129010f9f52d308661ddcf8d9}\label{group__CANDY__lib__bottom__sub_ga5f52ef3129010f9f52d308661ddcf8d9}} 
+{\bfseries CANDY\+::\+Tensor\+Str\+Vec\+Pair\+::\+Tensor\+Str\+Vec\+Pair} (std\+::vector$<$ torch\+::\+Tensor $>$ \&\+\_\+t, int64\+\_\+t \+\_\+idx, int64\+\_\+t \+\_\+seq)
+\item 
+virtual void \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7e29b5c156942b906c91cad583f269f0}{CANDY\+::\+Parallel\+Index\+Worker\+::inline\+Main}} ()
+\begin{DoxyCompactList}\small\item\em The inline \textquotesingle{}main"{} function of thread, as an interface. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaae404425efd33761af6ac43f4856f63d}\label{group__CANDY__lib__bottom__sub_gaae404425efd33761af6ac43f4856f63d}} 
+virtual void {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::set\+Reduce\+Queue} (Tensor\+List\+Idx\+Queue\+Ptr rq)
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gab920e1265fb4aa5f5964989db024e2a5}\label{group__CANDY__lib__bottom__sub_gab920e1265fb4aa5f5964989db024e2a5}} 
+virtual void {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::set\+Reduce\+Str\+Queue} (Tensor\+Str\+Vec\+Queue\+Ptr rq)
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga38ec7d2eec526f2d03f65507090c7da3}\label{group__CANDY__lib__bottom__sub_ga38ec7d2eec526f2d03f65507090c7da3}} 
+virtual void {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::set\+Id} (int64\+\_\+t \+\_\+id)
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga100a0d716ed3d2eeb02d2ed5c6dae58a}\label{group__CANDY__lib__bottom__sub_ga100a0d716ed3d2eeb02d2ed5c6dae58a}} 
+virtual bool {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::wait\+Pending\+Operations} ()
+\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gab380693999415183eed87611d1c50aa1}{CANDY\+::\+Parallel\+Index\+Worker\+::load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{insert\+Tensor}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga8cdc9da0f4ce7dba6338e52736729ea1}\label{group__CANDY__lib__bottom__sub_ga8cdc9da0f4ce7dba6338e52736729ea1}} 
+virtual void \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga8cdc9da0f4ce7dba6338e52736729ea1}{CANDY\+::\+Parallel\+Index\+Worker\+::reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga18b8e05bf4b06be387cd1a5808889706}{CANDY\+::\+Parallel\+Index\+Worker\+::set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga4a3953683b78e957a69eb6df64d8d121}{CANDY\+::\+Parallel\+Index\+Worker\+::start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{CANDY\+::\+Parallel\+Index\+Worker\+::insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gacd38ddca9b4a74e55b352c9d9bf9dc37}{CANDY\+::\+Parallel\+Index\+Worker\+::delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga3cab4d64f1ea52be1842cbcaad1817bf}{CANDY\+::\+Parallel\+Index\+Worker\+::revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7a92693bfe51a3b13a5ce8703a21a8f0}{CANDY\+::\+Parallel\+Index\+Worker\+::search\+Index}} (torch\+::\+Tensor q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return their index \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7249e5be900c17f858411d7aa74351c6}{CANDY\+::\+Parallel\+Index\+Worker\+::get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gadccb2f59bda4df39db56698c46ad16f0}{CANDY\+::\+Parallel\+Index\+Worker\+::raw\+Data}} ()
+\begin{DoxyCompactList}\small\item\em return the raw\+Data of tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga37e429f9a6f489bacc743275d962aff2}{CANDY\+::\+Parallel\+Index\+Worker\+::search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga2b838efccc92668b23acda243e67184a}{CANDY\+::\+Parallel\+Index\+Worker\+::end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga70ac27f9ed3ce493cd2bb4659db99e56}{CANDY\+::\+Parallel\+Index\+Worker\+::set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga4bef7ecfd7815c823a63e91a35eba930}{CANDY\+::\+Parallel\+Index\+Worker\+::offline\+Build}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga3641a98d7479501e51a3744e4824f76e}\label{group__CANDY__lib__bottom__sub_ga3641a98d7479501e51a3744e4824f76e}} 
+virtual void {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::push\+Search} (torch\+::\+Tensor q, int64\+\_\+t k)
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gafe5777cc38b93c2ace24482e54968117}\label{group__CANDY__lib__bottom__sub_gafe5777cc38b93c2ace24482e54968117}} 
+virtual void {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::push\+Search\+Str} (torch\+::\+Tensor q, int64\+\_\+t k)
+\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gabbb50f3e0ed10aad186736acc037d655}{CANDY\+::\+Parallel\+Index\+Worker\+::load\+Initial\+String\+Object}} (torch\+::\+Tensor \&t, std\+::vector$<$ std\+::string $>$ \&strs)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base along with its string objects, use this BEFORE \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga0ccaf1e6740a30e667f5eb1978939e57}{CANDY\+::\+Parallel\+Index\+Worker\+::insert\+String\+Object}} (torch\+::\+Tensor \&t, std\+::vector$<$ std\+::string $>$ \&strs)
+\begin{DoxyCompactList}\small\item\em insert a string object \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga2f555c491d065aa248ef9f4ec1617765}{CANDY\+::\+Parallel\+Index\+Worker\+::delete\+String\+Object}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete tensor along with its corresponding string object \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga8fce4f72c2a43b18f7fdac5462b887e0}{CANDY\+::\+Parallel\+Index\+Worker\+::search\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects \end{DoxyCompactList}\item 
+virtual std\+::tuple$<$ std\+::vector$<$ torch\+::\+Tensor $>$, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7b4062cb8bc9af973c420e2a144308df}{CANDY\+::\+Parallel\+Index\+Worker\+::search\+Tensor\+And\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects and original tensors \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga9723a1893552c2d2931ae6b23823c947}\label{group__CANDY__lib__bottom__sub_ga9723a1893552c2d2931ae6b23823c947}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::force\+Drop} = 1
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga134a26c4f5a5a9b8be841b0a75e7a607}\label{group__CANDY__lib__bottom__sub_ga134a26c4f5a5a9b8be841b0a75e7a607}} 
+Tensor\+List\+Idx\+Queue\+Ptr {\bfseries CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::reduce\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gae9a2d628596d044a06c9f8d54f387fa0}\label{group__CANDY__lib__bottom__sub_gae9a2d628596d044a06c9f8d54f387fa0}} 
+torch\+::\+Tensor {\bfseries CANDY\+::\+Tensor\+Idx\+Pair\+::t}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga489e1e9538ceb6b80880bab8c7bf6a2b}\label{group__CANDY__lib__bottom__sub_ga489e1e9538ceb6b80880bab8c7bf6a2b}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Tensor\+Idx\+Pair\+::idx}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga514adaec8ecf4d492be447310c40b009}\label{group__CANDY__lib__bottom__sub_ga514adaec8ecf4d492be447310c40b009}} 
+std\+::vector$<$ torch\+::\+Tensor $>$ {\bfseries CANDY\+::\+Tensor\+List\+Idx\+Pair\+::t}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga3b0e825ba602de94fb9b4dce412112ca}\label{group__CANDY__lib__bottom__sub_ga3b0e825ba602de94fb9b4dce412112ca}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Tensor\+List\+Idx\+Pair\+::idx}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga98ba5ed014a5f9f16ce7e208887c8806}\label{group__CANDY__lib__bottom__sub_ga98ba5ed014a5f9f16ce7e208887c8806}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Tensor\+List\+Idx\+Pair\+::query\+Seq}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaedc5bba930f9a093551f1dbf28ce35aa}\label{group__CANDY__lib__bottom__sub_gaedc5bba930f9a093551f1dbf28ce35aa}} 
+torch\+::\+Tensor {\bfseries CANDY\+::\+Tensor\+Str\+Pair\+::t}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gab50446b2a79c683010f0dd3c64c42ae2}\label{group__CANDY__lib__bottom__sub_gab50446b2a79c683010f0dd3c64c42ae2}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Tensor\+Str\+Pair\+::idx}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaa09dc2671a49905499e499dd98fe3df4}\label{group__CANDY__lib__bottom__sub_gaa09dc2671a49905499e499dd98fe3df4}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries CANDY\+::\+Tensor\+Str\+Pair\+::str\+Obj}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gafb1e0f80dc2034bab30a31d82c93d874}\label{group__CANDY__lib__bottom__sub_gafb1e0f80dc2034bab30a31d82c93d874}} 
+std\+::vector$<$ torch\+::\+Tensor $>$ {\bfseries CANDY\+::\+Tensor\+Str\+Vec\+Pair\+::t}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga87643e271b96a1a16737e31719b4f37b}\label{group__CANDY__lib__bottom__sub_ga87643e271b96a1a16737e31719b4f37b}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Tensor\+Str\+Vec\+Pair\+::idx}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaa53b65581a3cdd76a63a3a37dbbed6b6}\label{group__CANDY__lib__bottom__sub_gaa53b65581a3cdd76a63a3a37dbbed6b6}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Tensor\+Str\+Vec\+Pair\+::query\+Seq}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gac86f3838ecadc659139df3dbdfe4b132}\label{group__CANDY__lib__bottom__sub_gac86f3838ecadc659139df3dbdfe4b132}} 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ {\bfseries CANDY\+::\+Tensor\+Str\+Vec\+Pair\+::str\+Objs}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaa6ad703b3a7e3ad0d068add87e4fb3f7}\label{group__CANDY__lib__bottom__sub_gaa6ad703b3a7e3ad0d068add87e4fb3f7}} 
+Tensor\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::insert\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaea1650f04160c75b68dfa08ad5df9ec5}\label{group__CANDY__lib__bottom__sub_gaea1650f04160c75b68dfa08ad5df9ec5}} 
+Tensor\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::revise\+Queue0}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga65bc0309f7498108f457e8c848557816}\label{group__CANDY__lib__bottom__sub_ga65bc0309f7498108f457e8c848557816}} 
+Tensor\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::revise\+Queue1}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga0d39ecb2115f9a5b16c9ee779daea86b}\label{group__CANDY__lib__bottom__sub_ga0d39ecb2115f9a5b16c9ee779daea86b}} 
+Tensor\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::build\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga763bbd39297209f4284c999f479a6a05}\label{group__CANDY__lib__bottom__sub_ga763bbd39297209f4284c999f479a6a05}} 
+Tensor\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::initial\+Load\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga3ba0453fe9b3e7fc530e6397fef56e02}\label{group__CANDY__lib__bottom__sub_ga3ba0453fe9b3e7fc530e6397fef56e02}} 
+Tensor\+Idx\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::delete\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gadfb95b60c987e74a62fccd5ef9b292bd}\label{group__CANDY__lib__bottom__sub_gadfb95b60c987e74a62fccd5ef9b292bd}} 
+Tensor\+Idx\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::query\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaaf03ebed7ce5f2bb3db37cf6ccb1483b}\label{group__CANDY__lib__bottom__sub_gaaf03ebed7ce5f2bb3db37cf6ccb1483b}} 
+Tensor\+Idx\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::delete\+Str\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga2d33618e14565ff08c65ccda0796064c}\label{group__CANDY__lib__bottom__sub_ga2d33618e14565ff08c65ccda0796064c}} 
+Tensor\+Str\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::initial\+Str\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gad40b49ac312d8946107b09480dc2a7da}\label{group__CANDY__lib__bottom__sub_gad40b49ac312d8946107b09480dc2a7da}} 
+Tensor\+Str\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::insert\+Str\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga0aa544e6cc6a2d6f0e9c4a8b08298e15}\label{group__CANDY__lib__bottom__sub_ga0aa544e6cc6a2d6f0e9c4a8b08298e15}} 
+Tensor\+Idx\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::query\+Str\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaf16359b42f78f78d94f310fe7fdd64ef}\label{group__CANDY__lib__bottom__sub_gaf16359b42f78f78d94f310fe7fdd64ef}} 
+Cmd\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::cmd\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga0f375227dc3aa60b6524b55026bb0782}\label{group__CANDY__lib__bottom__sub_ga0f375227dc3aa60b6524b55026bb0782}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::my\+Id} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga53c3afeffaada19b0b98842ee5e57852}\label{group__CANDY__lib__bottom__sub_ga53c3afeffaada19b0b98842ee5e57852}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::vec\+Dim} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga56dfb619ff15b0161997123a76a0bb86}\label{group__CANDY__lib__bottom__sub_ga56dfb619ff15b0161997123a76a0bb86}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::congestion\+Drop} = 1
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga6b97dd2b4dda22f57a0d16caaaf1d455}\label{group__CANDY__lib__bottom__sub_ga6b97dd2b4dda22f57a0d16caaaf1d455}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::ingested\+Vectors} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7524e9e699ff7a5caac0ba5e2c42c855}\label{group__CANDY__lib__bottom__sub_ga7524e9e699ff7a5caac0ba5e2c42c855}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::single\+Worker\+Opt}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga54cb338f27a95c77c5430f4888d12641}\label{group__CANDY__lib__bottom__sub_ga54cb338f27a95c77c5430f4888d12641}} 
+std\+::mutex {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::m\+\_\+mut}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaa7fdcdd6111f80cdf7e352ff33f7c4f2}\label{group__CANDY__lib__bottom__sub_gaa7fdcdd6111f80cdf7e352ff33f7c4f2}} 
+\mbox{\hyperlink{group__CANDY__lib__bottom_ga65bc41450aa45d9622181f68bff140d0}{Abstract\+Index\+Ptr}} {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::my\+Index\+Algo} = nullptr
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gadf18e2603458bb5b9fc9b6862f085aa8}\label{group__CANDY__lib__bottom__sub_gadf18e2603458bb5b9fc9b6862f085aa8}} 
+Tensor\+List\+Idx\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::reduce\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga86a960259edaaefbdc50c3ffcb1c6de8}\label{group__CANDY__lib__bottom__sub_ga86a960259edaaefbdc50c3ffcb1c6de8}} 
+Tensor\+Str\+Vec\+Queue\+Ptr {\bfseries CANDY\+::\+Parallel\+Index\+Worker\+::reduce\+Str\+Queue}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gad2e7dc49f1a14453cb9c21e1b369793c}\label{group__CANDY__lib__bottom__sub_gad2e7dc49f1a14453cb9c21e1b369793c}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1MLPBucketIdxModel}{CANDY\+::\+MLPBucket\+Idx\+Model}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gad2e7dc49f1a14453cb9c21e1b369793c}{CANDY\+::\+MLPBucket\+Idx\+Model\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1MLPBucketIdxModel}{MLPBucket\+Idx\+Model}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga59c6090f8acdafb1d6e2e3dcf6396fa8}\label{group__CANDY__lib__bottom__sub_ga59c6090f8acdafb1d6e2e3dcf6396fa8}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga59c6090f8acdafb1d6e2e3dcf6396fa8}{new\+MLPBucket\+Idx\+Model}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1MLPBucketIdxModel}{CANDY\+::\+MLPBucket\+Idx\+Model}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new MLPBucket\+Idx\+Model shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga23606f290228bd2dd6128d494fbc5b45}\label{group__CANDY__lib__bottom__sub_ga23606f290228bd2dd6128d494fbc5b45}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1MLPHashingModel}{CANDY\+::\+MLPHashing\+Model}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga23606f290228bd2dd6128d494fbc5b45}{CANDY\+::\+MLPHashing\+Model\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1MLPHashingModel}{MLPHashing\+Model}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga4bab2b195a55a7b4ebf6a47077e13651}\label{group__CANDY__lib__bottom__sub_ga4bab2b195a55a7b4ebf6a47077e13651}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga4bab2b195a55a7b4ebf6a47077e13651}{new\+MLPHashing\+Model}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1MLPHashingModel}{CANDY\+::\+MLPHashing\+Model}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new MLPHashing\+Model shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga90430f3ec39f1edccc8eb240c79107b0}\label{group__CANDY__lib__bottom__sub_ga90430f3ec39f1edccc8eb240c79107b0}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1IVFListCell}{CANDY\+::\+IVFList\+Cell}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga90430f3ec39f1edccc8eb240c79107b0}{CANDY\+::\+IVFList\+Cell\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1IVFListCell}{IVFList\+Cell}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga95185c71cb0ade1bb1c97e062992680c}\label{group__CANDY__lib__bottom__sub_ga95185c71cb0ade1bb1c97e062992680c}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1IVFListBucket}{CANDY\+::\+IVFList\+Bucket}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga95185c71cb0ade1bb1c97e062992680c}{CANDY\+::\+IVFList\+Bucket\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1IVFListBucket}{IVFList\+Bucket}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaea54997a7f49164bc5eebe1885b4e286}\label{group__CANDY__lib__bottom__sub_gaea54997a7f49164bc5eebe1885b4e286}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaea54997a7f49164bc5eebe1885b4e286}{new\+IVFList\+Cell}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1IVFListCell}{CANDY\+::\+IVFList\+Cell}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaea54997a7f49164bc5eebe1885b4e286}{new\+IVFList\+Cell}} under shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga118d2c47d5262970dca475d72b579376}\label{group__CANDY__lib__bottom__sub_ga118d2c47d5262970dca475d72b579376}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga118d2c47d5262970dca475d72b579376}{new\+IVFList\+Bucket}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1IVFListBucket}{CANDY\+::\+IVFList\+Bucket}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new IVFList\+Bucket under shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gae2a9b99940c085c2f3bd12cfd4741320}\label{group__CANDY__lib__bottom__sub_gae2a9b99940c085c2f3bd12cfd4741320}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering}{CANDY\+::\+Simple\+Stream\+Clustering}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae2a9b99940c085c2f3bd12cfd4741320}{CANDY\+::\+Simple\+Stream\+Clustering\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering}{Simple\+Stream\+Clustering}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga54e884c5c0bc89f9846e8e61cc791b2c}\label{group__CANDY__lib__bottom__sub_ga54e884c5c0bc89f9846e8e61cc791b2c}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga54e884c5c0bc89f9846e8e61cc791b2c}{new\+Simple\+Stream\+Clustering}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering}{CANDY\+::\+Simple\+Stream\+Clustering}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Simple\+Stream\+Clustering under shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga2f555c491d065aa248ef9f4ec1617765}\label{group__CANDY__lib__bottom__sub_ga2f555c491d065aa248ef9f4ec1617765}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!deleteStringObject@{deleteStringObject}}
+\index{deleteStringObject@{deleteStringObject}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{deleteStringObject()}{deleteStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::delete\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete tensor along with its corresponding string object 
+
+\begin{DoxyNote}{Note}
+This is majorly an online function 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the delet is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gacd38ddca9b4a74e55b352c9d9bf9dc37}\label{group__CANDY__lib__bottom__sub_gacd38ddca9b4a74e55b352c9d9bf9dc37}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index needs to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga2b838efccc92668b23acda243e67184a}\label{group__CANDY__lib__bottom__sub_ga2b838efccc92668b23acda243e67184a}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!endHPC@{endHPC}}
+\index{endHPC@{endHPC}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{endHPC()}{endHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::end\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra termination if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC termination is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7249e5be900c17f858411d7aa74351c6}\label{group__CANDY__lib__bottom__sub_ga7249e5be900c17f858411d7aa74351c6}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Parallel\+Index\+Worker\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7e29b5c156942b906c91cad583f269f0}\label{group__CANDY__lib__bottom__sub_ga7e29b5c156942b906c91cad583f269f0}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!inlineMain@{inlineMain}}
+\index{inlineMain@{inlineMain}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{inlineMain()}{inlineMain()}}
+{\footnotesize\ttfamily void CANDY\+::\+Parallel\+Index\+Worker\+::inline\+Main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+The inline \textquotesingle{}main"{} function of thread, as an interface. 
+
+\begin{DoxyNote}{Note}
+Normally re-\/write this in derived classes 
+\end{DoxyNote}
+0. offline stages
+
+
+\begin{DoxyEnumerate}
+\item insert first
+\item revise
+\item delete first
+\item query
+\item terminate
+\end{DoxyEnumerate}
+
+Reimplemented from \mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread_a01a2c2b58a19777dc8814076efdb2552}{INTELLI\+::\+Abstract\+C20\+Thread}}.
+
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga0ccaf1e6740a30e667f5eb1978939e57}\label{group__CANDY__lib__bottom__sub_ga0ccaf1e6740a30e667f5eb1978939e57}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!insertStringObject@{insertStringObject}}
+\index{insertStringObject@{insertStringObject}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{insertStringObject()}{insertStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::insert\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{strs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a string object 
+
+\begin{DoxyNote}{Note}
+This is majorly an online function 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+{\em strs} & the corresponding list of strings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gae4a7024f5b4d1b3c6cbf8b5aa78b8ccd}\label{group__CANDY__lib__bottom__sub_gae4a7024f5b4d1b3c6cbf8b5aa78b8ccd}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{CANDY\+::\+Parallel\+Index\+Worker}}.
+
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}\label{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae4a7024f5b4d1b3c6cbf8b5aa78b8ccd}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}}.
+
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gabbb50f3e0ed10aad186736acc037d655}\label{group__CANDY__lib__bottom__sub_gabbb50f3e0ed10aad186736acc037d655}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!loadInitialStringObject@{loadInitialStringObject}}
+\index{loadInitialStringObject@{loadInitialStringObject}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{loadInitialStringObject()}{loadInitialStringObject()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::load\+Initial\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{strs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base along with its string objects, use this BEFORE \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\\
+\hline
+{\em strs} & the corresponding list of strings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gab380693999415183eed87611d1c50aa1}\label{group__CANDY__lib__bottom__sub_gab380693999415183eed87611d1c50aa1}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaf3bb7ee9dec820d91ee876526e32f463}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga4bef7ecfd7815c823a63e91a35eba930}\label{group__CANDY__lib__bottom__sub_ga4bef7ecfd7815c823a63e91a35eba930}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!offlineBuild@{offlineBuild}}
+\index{offlineBuild@{offlineBuild}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{offlineBuild()}{offlineBuild()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::offline\+Build (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gadccb2f59bda4df39db56698c46ad16f0}\label{group__CANDY__lib__bottom__sub_gadccb2f59bda4df39db56698c46ad16f0}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!rawData@{rawData}}
+\index{rawData@{rawData}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{rawData()}{rawData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Parallel\+Index\+Worker\+::raw\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return the raw\+Data of tensor 
+
+\begin{DoxyReturn}{Returns}
+The raw data stored in tensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga3cab4d64f1ea52be1842cbcaad1817bf}\label{group__CANDY__lib__bottom__sub_ga3cab4d64f1ea52be1842cbcaad1817bf}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7a92693bfe51a3b13a5ce8703a21a8f0}\label{group__CANDY__lib__bottom__sub_ga7a92693bfe51a3b13a5ce8703a21a8f0}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!searchIndex@{searchIndex}}
+\index{searchIndex@{searchIndex}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{searchIndex()}{searchIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ faiss\+::idx\+\_\+t $>$ CANDY\+::\+Parallel\+Index\+Worker\+::search\+Index (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return their index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$faiss\+::idx\+\_\+t$>$ the index, follow faiss\textquotesingle{}s order 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga8fce4f72c2a43b18f7fdac5462b887e0}\label{group__CANDY__lib__bottom__sub_ga8fce4f72c2a43b18f7fdac5462b887e0}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!searchStringObject@{searchStringObject}}
+\index{searchStringObject@{searchStringObject}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{searchStringObject()}{searchStringObject()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ CANDY\+::\+Parallel\+Index\+Worker\+::search\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the linked string objects 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$std\+::string$>$$>$ the result object for each row of query 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga292279e7b8692e572c4fe3aaad569bb3}\label{group__CANDY__lib__bottom__sub_ga292279e7b8692e572c4fe3aaad569bb3}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga37e429f9a6f489bacc743275d962aff2}{CANDY\+::\+Parallel\+Index\+Worker}}.
+
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga37e429f9a6f489bacc743275d962aff2}\label{group__CANDY__lib__bottom__sub_ga37e429f9a6f489bacc743275d962aff2}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Parallel\+Index\+Worker\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga292279e7b8692e572c4fe3aaad569bb3}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}}.
+
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7b4062cb8bc9af973c420e2a144308df}\label{group__CANDY__lib__bottom__sub_ga7b4062cb8bc9af973c420e2a144308df}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!searchTensorAndStringObject@{searchTensorAndStringObject}}
+\index{searchTensorAndStringObject@{searchTensorAndStringObject}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{searchTensorAndStringObject()}{searchTensorAndStringObject()}}
+{\footnotesize\ttfamily std\+::tuple$<$ std\+::vector$<$ torch\+::\+Tensor $>$, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ CANDY\+::\+Parallel\+Index\+Worker\+::search\+Tensor\+And\+String\+Object (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the linked string objects and original tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::tuple$<$std\+::vector$<$torch\+::\+Tensor$>$,std\+::vector$<$std\+::vector$<$std\+::string$>$$>$$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gae32fab6713f0cf575c175c0cb6263967}\label{group__CANDY__lib__bottom__sub_gae32fab6713f0cf575c175c0cb6263967}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specfic config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item find the index algo
+\item set up the queues
+\end{DoxyEnumerate}
+
+Reimplemented from \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga18b8e05bf4b06be387cd1a5808889706}{CANDY\+::\+Parallel\+Index\+Worker}}.
+
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga18b8e05bf4b06be387cd1a5808889706}\label{group__CANDY__lib__bottom__sub_ga18b8e05bf4b06be387cd1a5808889706}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specfic config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+\begin{DoxyEnumerate}
+\item find the index algo
+\item set up the queues
+\end{DoxyEnumerate}
+
+Reimplemented in \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae32fab6713f0cf575c175c0cb6263967}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}}.
+
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga70ac27f9ed3ce493cd2bb4659db99e56}\label{group__CANDY__lib__bottom__sub_ga70ac27f9ed3ce493cd2bb4659db99e56}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga4a3953683b78e957a69eb6df64d8d121}\label{group__CANDY__lib__bottom__sub_ga4a3953683b78e957a69eb6df64d8d121}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!startHPC@{startHPC}}
+\index{startHPC@{startHPC}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{startHPC()}{startHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::start\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra set-\/ups if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC set-\/up is successful 
+\end{DoxyReturn}

@@ -1,0 +1,168 @@
+\hypertarget{classINTELLI_1_1UtilityFunctions}{}\doxysection{INTELLI\+::Utility\+Functions Class Reference}
+\label{classINTELLI_1_1UtilityFunctions}\index{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_acd68e18e5b816a56dd1d4883891d37cf}\label{classINTELLI_1_1UtilityFunctions_acd68e18e5b816a56dd1d4883891d37cf}} 
+static size\+\_\+t {\bfseries time\+Last} (struct timeval past, struct timeval now)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_a2adc76a95c898940c23ffd803f231de5}\label{classINTELLI_1_1UtilityFunctions_a2adc76a95c898940c23ffd803f231de5}} 
+static size\+\_\+t {\bfseries time\+Last\+Us} (struct timeval past)
+\item 
+static int \mbox{\hyperlink{classINTELLI_1_1UtilityFunctions_acf03f7fcd6f116c7dc068794dd8cb042}{bind2\+Core}} (int id)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_a4623e9ba8b1dc5e6fba2636ce3145717}\label{classINTELLI_1_1UtilityFunctions_a4623e9ba8b1dc5e6fba2636ce3145717}} 
+static std\+::vector$<$ size\+\_\+t $>$ {\bfseries avg\+Partition\+Size\+Final} (size\+\_\+t inS, std\+::vector$<$ size\+\_\+t $>$ partition\+Weight)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_a607e8facf737b383c4a03708f2d736b0}\label{classINTELLI_1_1UtilityFunctions_a607e8facf737b383c4a03708f2d736b0}} 
+static std\+::vector$<$ size\+\_\+t $>$ {\bfseries weighted\+Partition\+Size\+Final} (size\+\_\+t inS, std\+::vector$<$ size\+\_\+t $>$ partition\+Weight)
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_a9d98009fb984b070149fe0baddf17e6d}\label{classINTELLI_1_1UtilityFunctions_a9d98009fb984b070149fe0baddf17e6d}} 
+static size\+\_\+t {\bfseries to\+\_\+periodical} (size\+\_\+t val, size\+\_\+t period)
+\item 
+static double \mbox{\hyperlink{classINTELLI_1_1UtilityFunctions_aed515dcb1fb099befd77837a5843a89d}{get\+Latency\+Percentage}} (double fraction, std\+::vector$<$ \mbox{\hyperlink{group__INTELLI__UTIL__TIMESTAMP_ga080ddad4d3d659fb9dfea7c76435f34c}{INTELLI\+::\+Intelli\+Time\+Stamp\+Ptr}} $>$ \&my\+Ts)
+\begin{DoxyCompactList}\small\item\em get the latency percentile from a time stamp vector \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classINTELLI_1_1UtilityFunctions_ab16afa750e09aaaf623fefdd0ddc7bf3}{save\+Time\+Stamp\+To\+File}} (std\+::string fname, std\+::vector$<$ \mbox{\hyperlink{group__INTELLI__UTIL__TIMESTAMP_ga080ddad4d3d659fb9dfea7c76435f34c}{INTELLI\+::\+Intelli\+Time\+Stamp\+Ptr}} $>$ \&my\+Ts, bool skip\+Zero=true)
+\begin{DoxyCompactList}\small\item\em save the time stamps to csv file \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_a07f67bb0de590da2575ef311240c94d1}\label{classINTELLI_1_1UtilityFunctions_a07f67bb0de590da2575ef311240c94d1}} 
+static bool {\bfseries exist\+Row} (torch\+::\+Tensor base, torch\+::\+Tensor row)
+\item 
+static double \mbox{\hyperlink{classINTELLI_1_1UtilityFunctions_a7dc9072cee30267f8bc5540cd4673da7}{calculate\+Recall}} (std\+::vector$<$ torch\+::\+Tensor $>$ ground\+Truth, std\+::vector$<$ torch\+::\+Tensor $>$ prob)
+\begin{DoxyCompactList}\small\item\em calculate the recall by comparing with ground truth \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classINTELLI_1_1UtilityFunctions_a900844711612e87ebd8d8e84852e0ded}{tensor\+List\+To\+File}} (std\+::vector$<$ torch\+::\+Tensor $>$ \&tensor\+Vec, std\+::string folder\+Name)
+\begin{DoxyCompactList}\small\item\em convert a list of tensors to a folder with multiple flat binary form files, i.\+e., $<$rows$>$ $<$cols$>$ $<$flat data$>$ for each \end{DoxyCompactList}\item 
+static std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classINTELLI_1_1UtilityFunctions_a11b63550ac9d236aee0c1a29e201a6c8}{tensor\+List\+From\+File}} (std\+::string folder\+Name, uint64\+\_\+t tensors)
+\begin{DoxyCompactList}\small\item\em convert a list of tensors to a folder with multiple flat binary form files, i.\+e., $<$rows$>$ $<$cols$>$ $<$flat data$>$ for each \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_acf03f7fcd6f116c7dc068794dd8cb042}\label{classINTELLI_1_1UtilityFunctions_acf03f7fcd6f116c7dc068794dd8cb042}} 
+\index{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!bind2Core@{bind2Core}}
+\index{bind2Core@{bind2Core}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}}
+\doxysubsubsection{\texorpdfstring{bind2Core()}{bind2Core()}}
+{\footnotesize\ttfamily int INTELLI\+::\+Utility\+Functions\+::bind2\+Core (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+bind to CPU \begin{DoxyItemize}
+\item bind the thread to core according to id 
+\begin{DoxyParams}{Parameters}
+{\em id} & the core you plan to bind, -\/1 means let os decide \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cpu\+Id, the real core that bind to 
+\end{DoxyReturn}
+\end{DoxyItemize}
+fixed some core bind bugs\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_a7dc9072cee30267f8bc5540cd4673da7}\label{classINTELLI_1_1UtilityFunctions_a7dc9072cee30267f8bc5540cd4673da7}} 
+\index{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!calculateRecall@{calculateRecall}}
+\index{calculateRecall@{calculateRecall}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}}
+\doxysubsubsection{\texorpdfstring{calculateRecall()}{calculateRecall()}}
+{\footnotesize\ttfamily static double INTELLI\+::\+Utility\+Functions\+::calculate\+Recall (\begin{DoxyParamCaption}\item[{std\+::vector$<$ torch\+::\+Tensor $>$}]{ground\+Truth,  }\item[{std\+::vector$<$ torch\+::\+Tensor $>$}]{prob }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+calculate the recall by comparing with ground truth 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ground\+Truth} & The ground truth \\
+\hline
+{\em prob} & The tensor result to be validated \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the recall in 0$\sim$1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_aed515dcb1fb099befd77837a5843a89d}\label{classINTELLI_1_1UtilityFunctions_aed515dcb1fb099befd77837a5843a89d}} 
+\index{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!getLatencyPercentage@{getLatencyPercentage}}
+\index{getLatencyPercentage@{getLatencyPercentage}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}}
+\doxysubsubsection{\texorpdfstring{getLatencyPercentage()}{getLatencyPercentage()}}
+{\footnotesize\ttfamily static double INTELLI\+::\+Utility\+Functions\+::get\+Latency\+Percentage (\begin{DoxyParamCaption}\item[{double}]{fraction,  }\item[{std\+::vector$<$ \mbox{\hyperlink{group__INTELLI__UTIL__TIMESTAMP_ga080ddad4d3d659fb9dfea7c76435f34c}{INTELLI\+::\+Intelli\+Time\+Stamp\+Ptr}} $>$ \&}]{my\+Ts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+get the latency percentile from a time stamp vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fraction} & the percentile in 0$\sim$1 \\
+\hline
+{\em my\+Ts} & the time stamp vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the latency value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_ab16afa750e09aaaf623fefdd0ddc7bf3}\label{classINTELLI_1_1UtilityFunctions_ab16afa750e09aaaf623fefdd0ddc7bf3}} 
+\index{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!saveTimeStampToFile@{saveTimeStampToFile}}
+\index{saveTimeStampToFile@{saveTimeStampToFile}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}}
+\doxysubsubsection{\texorpdfstring{saveTimeStampToFile()}{saveTimeStampToFile()}}
+{\footnotesize\ttfamily static bool INTELLI\+::\+Utility\+Functions\+::save\+Time\+Stamp\+To\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{fname,  }\item[{std\+::vector$<$ \mbox{\hyperlink{group__INTELLI__UTIL__TIMESTAMP_ga080ddad4d3d659fb9dfea7c76435f34c}{INTELLI\+::\+Intelli\+Time\+Stamp\+Ptr}} $>$ \&}]{my\+Ts,  }\item[{bool}]{skip\+Zero = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+save the time stamps to csv file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & the name of output file \\
+\hline
+{\em my\+Ts} & the time stamp vector \\
+\hline
+{\em skip\+Zero} & whether skip zero time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the output is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_a11b63550ac9d236aee0c1a29e201a6c8}\label{classINTELLI_1_1UtilityFunctions_a11b63550ac9d236aee0c1a29e201a6c8}} 
+\index{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!tensorListFromFile@{tensorListFromFile}}
+\index{tensorListFromFile@{tensorListFromFile}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}}
+\doxysubsubsection{\texorpdfstring{tensorListFromFile()}{tensorListFromFile()}}
+{\footnotesize\ttfamily static std\+::vector$<$torch\+::\+Tensor$>$ INTELLI\+::\+Utility\+Functions\+::tensor\+List\+From\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{folder\+Name,  }\item[{uint64\+\_\+t}]{tensors }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+convert a list of tensors to a folder with multiple flat binary form files, i.\+e., $<$rows$>$ $<$cols$>$ $<$flat data$>$ for each 
+
+
+\begin{DoxyParams}{Parameters}
+{\em folder\+Name} & the name of folder \\
+\hline
+{\em tensors} & the number of tensors to be loaded \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+this will overwrite the whole folder! 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+the vector of tensors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1UtilityFunctions_a900844711612e87ebd8d8e84852e0ded}\label{classINTELLI_1_1UtilityFunctions_a900844711612e87ebd8d8e84852e0ded}} 
+\index{INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}!tensorListToFile@{tensorListToFile}}
+\index{tensorListToFile@{tensorListToFile}!INTELLI::UtilityFunctions@{INTELLI::UtilityFunctions}}
+\doxysubsubsection{\texorpdfstring{tensorListToFile()}{tensorListToFile()}}
+{\footnotesize\ttfamily static bool INTELLI\+::\+Utility\+Functions\+::tensor\+List\+To\+File (\begin{DoxyParamCaption}\item[{std\+::vector$<$ torch\+::\+Tensor $>$ \&}]{tensor\+Vec,  }\item[{std\+::string}]{folder\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+convert a list of tensors to a folder with multiple flat binary form files, i.\+e., $<$rows$>$ $<$cols$>$ $<$flat data$>$ for each 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & the list of tensors \\
+\hline
+{\em folder\+Name} & the name of folder \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+this will overwrite the whole folder! 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+bool, the output is successful or not 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/Utility\+Functions.\+h\item 
+src/\+Utils/Utility\+Functions.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,113 @@
+\hypertarget{ThreadPerf_8hpp}{}\doxysection{include/\+Utils/\+Thread\+Perf.hpp File Reference}
+\label{ThreadPerf_8hpp}\index{include/Utils/ThreadPerf.hpp@{include/Utils/ThreadPerf.hpp}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/syscall.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$linux/perf\+\_\+event.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$memory.\+h$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$Utils/\+Config\+Map.\+hpp$>$}\newline
+Include dependency graph for Thread\+Perf.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ThreadPerf_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ThreadPerf_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classINTELLI_1_1ThreadPerf}{INTELLI\+::\+Thread\+Perf}}
+\begin{DoxyCompactList}\small\item\em The top entity to provide perf traces, please use this class only UNLESS you know what you are doing. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfPair}{INTELLI\+::\+Thread\+Perf\+::\+Perf\+Pair}}
+\begin{DoxyCompactList}\small\item\em a record pair of perf events \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classINTELLI_1_1ThreadPerf_1_1PerfTool}{INTELLI\+::\+Thread\+Perf\+::\+Perf\+Tool}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ThreadPerf_8hpp_a38637d0f135a82a4f6952c145c21106e}\label{ThreadPerf_8hpp_a38637d0f135a82a4f6952c145c21106e}} 
+\#define {\bfseries PERF\+\_\+\+ERROR}(n)~printf(n)
+\item 
+\mbox{\Hypertarget{ThreadPerf_8hpp_a306f40a3a51f5921f56d8cf100c92368}\label{ThreadPerf_8hpp_a306f40a3a51f5921f56d8cf100c92368}} 
+\#define {\bfseries LIBPERF\+\_\+\+ARRAY\+\_\+\+SIZE}(x)~(sizeof(x)/sizeof(x\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga1a3a0cb66143730c7ebd8daeb96cb0a7}{new\+Thread\+Perf}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classINTELLI_1_1ThreadPerf}{INTELLI\+::\+Thread\+Perf}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Thread\+Perf under shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1ThreadPerf}{INTELLI\+::\+Thread\+Perf}} $>$ \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga14eade4ba067ff9e597662b70136f66a}{INTELLI\+::\+Thread\+Perf\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classINTELLI_1_1ThreadPerf}{Thread\+Perf}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ThreadPerf_8hpp_afccddef8d5d359b79a8000e6aa2ebcfb}\label{ThreadPerf_8hpp_afccddef8d5d359b79a8000e6aa2ebcfb}} 
+enum \mbox{\hyperlink{ThreadPerf_8hpp_afccddef8d5d359b79a8000e6aa2ebcfb}{INTELLI\+::perf\+Trace}} \{ \newline
+{\bfseries COUNT\+\_\+\+SW\+\_\+\+CPU\+\_\+\+CLOCK} = 0
+, {\bfseries COUNT\+\_\+\+SW\+\_\+\+TASK\+\_\+\+CLOCK} = 1
+, {\bfseries COUNT\+\_\+\+SW\+\_\+\+CONTEXT\+\_\+\+SWITCHES} = 2
+, {\bfseries COUNT\+\_\+\+SW\+\_\+\+CPU\+\_\+\+MIGRATIONS} = 3
+, \newline
+{\bfseries COUNT\+\_\+\+SW\+\_\+\+PAGE\+\_\+\+FAULTS} = 4
+, {\bfseries COUNT\+\_\+\+SW\+\_\+\+PAGE\+\_\+\+FAULTS\+\_\+\+MIN} = 5
+, {\bfseries COUNT\+\_\+\+SW\+\_\+\+PAGE\+\_\+\+FAULTS\+\_\+\+MAJ} = 6
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CPU\+\_\+\+CYCLES} = 7
+, \newline
+{\bfseries COUNT\+\_\+\+HW\+\_\+\+INSTRUCTIONS} = 8
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+REFERENCES} = 9
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+MISSES} = 10
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+BRANCH\+\_\+\+INSTRUCTIONS} = 11
+, \newline
+{\bfseries COUNT\+\_\+\+HW\+\_\+\+BRANCH\+\_\+\+MISSES} = 12
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+BUS\+\_\+\+CYCLES} = 13
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+L1\+D\+\_\+\+LOADS} = 14
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+L1\+D\+\_\+\+LOADS\+\_\+\+MISSES} = 15
+, \newline
+{\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+L1\+D\+\_\+\+STORES} = 16
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+L1\+D\+\_\+\+STORES\+\_\+\+MISSES} = 17
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+L1\+D\+\_\+\+PREFETCHES} = 18
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+L1\+I\+\_\+\+LOADS} = 19
+, \newline
+{\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+L1\+I\+\_\+\+LOADS\+\_\+\+MISSES} = 20
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+LL\+\_\+\+LOADS} = 21
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+LL\+\_\+\+LOADS\+\_\+\+MISSES} = 22
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+LL\+\_\+\+STORES} = 23
+, \newline
+{\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+LL\+\_\+\+STORES\+\_\+\+MISSES} = 24
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+DTLB\+\_\+\+LOADS} = 25
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+DTLB\+\_\+\+LOADS\+\_\+\+MISSES} = 26
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+DTLB\+\_\+\+STORES} = 27
+, \newline
+{\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+DTLB\+\_\+\+STORES\+\_\+\+MISSES} = 28
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+ITLB\+\_\+\+LOADS} = 29
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+ITLB\+\_\+\+LOADS\+\_\+\+MISSES} = 30
+, {\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+BPU\+\_\+\+LOADS} = 31
+, \newline
+{\bfseries COUNT\+\_\+\+HW\+\_\+\+CACHE\+\_\+\+BPU\+\_\+\+LOADS\+\_\+\+MISSES} = 32
+ \}
+\begin{DoxyCompactList}\small\item\em The low level description of perf events, used inside, don\textquotesingle{}t touch me UNLESS you know what you are doing. \end{DoxyCompactList}\end{DoxyCompactItemize}

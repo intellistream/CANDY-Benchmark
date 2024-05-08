@@ -1,0 +1,41 @@
+\hypertarget{IVFTensorEncodingList_8h}{}\doxysection{include/\+CANDY/\+Online\+PQIndex/\+IVFTensor\+Encoding\+List.h File Reference}
+\label{IVFTensorEncodingList_8h}\index{include/CANDY/OnlinePQIndex/IVFTensorEncodingList.h@{include/CANDY/OnlinePQIndex/IVFTensorEncodingList.h}}
+{\ttfamily \#include $<$Utils/\+Intelli\+Tensor\+OP.\+hpp$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+Include dependency graph for IVFTensor\+Encoding\+List.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{IVFTensorEncodingList_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{IVFTensorEncodingList_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1IVFListCell}{CANDY\+::\+IVFList\+Cell}}
+\begin{DoxyCompactList}\small\item\em a cell of row tensor pointers which have the same code \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1IVFListBucket}{CANDY\+::\+IVFList\+Bucket}}
+\begin{DoxyCompactList}\small\item\em a bucket of multiple \mbox{\hyperlink{classCANDY_1_1IVFListCell}{IVFList\+Cell}} \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList}{CANDY\+::\+IVFTensor\+Encoding\+List}}
+\begin{DoxyCompactList}\small\item\em The inverted file (IVF) list to organize tensor and its encodings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaea54997a7f49164bc5eebe1885b4e286}{new\+IVFList\+Cell}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1IVFListCell}{CANDY\+::\+IVFList\+Cell}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaea54997a7f49164bc5eebe1885b4e286}{new\+IVFList\+Cell}} under shared pointer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga118d2c47d5262970dca475d72b579376}{new\+IVFList\+Bucket}}~make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1IVFListBucket}{CANDY\+::\+IVFList\+Bucket}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new IVFList\+Bucket under shared pointer. \end{DoxyCompactList}\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1IVFListCell}{CANDY\+::\+IVFList\+Cell}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga90430f3ec39f1edccc8eb240c79107b0}{CANDY\+::\+IVFList\+Cell\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1IVFListCell}{IVFList\+Cell}}. \end{DoxyCompactList}\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1IVFListBucket}{CANDY\+::\+IVFList\+Bucket}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga95185c71cb0ade1bb1c97e062992680c}{CANDY\+::\+IVFList\+Bucket\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1IVFListBucket}{IVFList\+Bucket}}. \end{DoxyCompactList}\end{DoxyCompactItemize}

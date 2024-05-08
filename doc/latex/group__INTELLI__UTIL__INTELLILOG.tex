@@ -1,0 +1,122 @@
+\hypertarget{group__INTELLI__UTIL__INTELLILOG}{}\doxysection{Log utils}
+\label{group__INTELLI__UTIL__INTELLILOG}\index{Log utils@{Log utils}}
+Collaboration diagram for Log utils\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{group__INTELLI__UTIL__INTELLILOG}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classINTELLI_1_1IntelliLog}{INTELLI\+::\+Intelli\+Log}}
+\begin{DoxyCompactList}\small\item\em The log functions packed in class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classINTELLI_1_1IntelliLog__FileProtector}{INTELLI\+::\+Intelli\+Log\+\_\+\+File\+Protector}}
+\begin{DoxyCompactList}\small\item\em The protector for concurrent log on a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_gabf2a4e42bcb0ff1463f85b6ca0bdbe82}\label{group__INTELLI__UTIL__INTELLILOG_gabf2a4e42bcb0ff1463f85b6ca0bdbe82}} 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_gabf2a4e42bcb0ff1463f85b6ca0bdbe82}{INTELLI\+\_\+\+INFO}}(n)~\mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_ga13f6244e11d8436735ac79f33f75a81b}{INTELLI\+::\+Intelli\+Log\+::log}}(\char`\"{}INFO\char`\"{},n)
+\begin{DoxyCompactList}\small\item\em (Macro) To log something as information \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_ga88128ee4c523ec89e4fb6f1da6dea2e4}\label{group__INTELLI__UTIL__INTELLILOG_ga88128ee4c523ec89e4fb6f1da6dea2e4}} 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_ga88128ee4c523ec89e4fb6f1da6dea2e4}{INTELLI\+\_\+\+ERROR}}(n)~\mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_ga13f6244e11d8436735ac79f33f75a81b}{INTELLI\+::\+Intelli\+Log\+::log}}(\char`\"{}ERROR\char`\"{},n)
+\begin{DoxyCompactList}\small\item\em (Macro) To log something as error \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_gad2f3ec0ead948db932d5e4454f4e7fa0}\label{group__INTELLI__UTIL__INTELLILOG_gad2f3ec0ead948db932d5e4454f4e7fa0}} 
+\#define {\bfseries INTELLI\+\_\+\+WARNING}(n)~\mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_ga13f6244e11d8436735ac79f33f75a81b}{INTELLI\+::\+Intelli\+Log\+::log}}(\char`\"{}WARNING\char`\"{},n)
+\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_ga9eafb76a51f4f4571ed36664308a09dd}\label{group__INTELLI__UTIL__INTELLILOG_ga9eafb76a51f4f4571ed36664308a09dd}} 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_ga9eafb76a51f4f4571ed36664308a09dd}{INTELLI\+\_\+\+DEBUG}}(n)~Intelli\+Log\+::log(\char`\"{}DEBUG\char`\"{},n)
+\begin{DoxyCompactList}\small\item\em (Macro) To log something as debug \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_ga13f6244e11d8436735ac79f33f75a81b}{INTELLI\+::\+Intelli\+Log\+::log}} (std\+::string level, std\+::string\+\_\+view message, std\+::source\+\_\+location const source=std\+::source\+\_\+location\+::current())
+\begin{DoxyCompactList}\small\item\em Produce a log. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_gacfa882ab784952de503d901da29bdcae}{INTELLI\+::\+Intelli\+Log\+::setup\+Logging\+File}} (string fname)
+\begin{DoxyCompactList}\small\item\em set up the logging file by its name \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_gac1df05ceb65fa61165a054fd04cbbb41}\label{group__INTELLI__UTIL__INTELLILOG_gac1df05ceb65fa61165a054fd04cbbb41}} 
+void \mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_gac1df05ceb65fa61165a054fd04cbbb41}{INTELLI\+::\+Intelli\+Log\+\_\+\+File\+Protector\+::lock}} ()
+\begin{DoxyCompactList}\small\item\em lock this protector \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_gaabefaa8014daa0ebb163767f4ebaad63}\label{group__INTELLI__UTIL__INTELLILOG_gaabefaa8014daa0ebb163767f4ebaad63}} 
+void \mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_gaabefaa8014daa0ebb163767f4ebaad63}{INTELLI\+::\+Intelli\+Log\+\_\+\+File\+Protector\+::unlock}} ()
+\begin{DoxyCompactList}\small\item\em unlock this protector \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_gac648aec36768fd746a2b56cfcc7e7f97}{INTELLI\+::\+Intelli\+Log\+\_\+\+File\+Protector\+::open\+Log\+File}} (const string \&fname)
+\begin{DoxyCompactList}\small\item\em try to open a file \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__INTELLI__UTIL__INTELLILOG_gaf41719446638b036da2b419ac2b70742}{INTELLI\+::\+Intelli\+Log\+\_\+\+File\+Protector\+::append\+Log\+File}} (const string \&msg)
+\begin{DoxyCompactList}\small\item\em try to appened something to the file, if it\textquotesingle{}s opened \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This package is used for logging 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_gaf41719446638b036da2b419ac2b70742}\label{group__INTELLI__UTIL__INTELLILOG_gaf41719446638b036da2b419ac2b70742}} 
+\index{Log utils@{Log utils}!appendLogFile@{appendLogFile}}
+\index{appendLogFile@{appendLogFile}!Log utils@{Log utils}}
+\doxysubsubsection{\texorpdfstring{appendLogFile()}{appendLogFile()}}
+{\footnotesize\ttfamily void INTELLI\+::\+Intelli\+Log\+\_\+\+File\+Protector\+::append\+Log\+File (\begin{DoxyParamCaption}\item[{const string \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+try to appened something to the file, if it\textquotesingle{}s opened 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message to appened \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_ga13f6244e11d8436735ac79f33f75a81b}\label{group__INTELLI__UTIL__INTELLILOG_ga13f6244e11d8436735ac79f33f75a81b}} 
+\index{Log utils@{Log utils}!log@{log}}
+\index{log@{log}!Log utils@{Log utils}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily void INTELLI\+::\+Intelli\+Log\+::log (\begin{DoxyParamCaption}\item[{std\+::string}]{level,  }\item[{std\+::string\+\_\+view}]{message,  }\item[{std\+::source\+\_\+location const}]{source = {\ttfamily std\+:\+:source\+\_\+location\+:\+:current()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Produce a log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The log level you want to indicate \\
+\hline
+{\em message} & The log message you want to indicate \\
+\hline
+{\em source} & reserved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+message is automatically appended with a \char`\"{}\textbackslash{}n\char`\"{} 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_gac648aec36768fd746a2b56cfcc7e7f97}\label{group__INTELLI__UTIL__INTELLILOG_gac648aec36768fd746a2b56cfcc7e7f97}} 
+\index{Log utils@{Log utils}!openLogFile@{openLogFile}}
+\index{openLogFile@{openLogFile}!Log utils@{Log utils}}
+\doxysubsubsection{\texorpdfstring{openLogFile()}{openLogFile()}}
+{\footnotesize\ttfamily void INTELLI\+::\+Intelli\+Log\+\_\+\+File\+Protector\+::open\+Log\+File (\begin{DoxyParamCaption}\item[{const string \&}]{fname }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+try to open a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & The name of file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__INTELLI__UTIL__INTELLILOG_gacfa882ab784952de503d901da29bdcae}\label{group__INTELLI__UTIL__INTELLILOG_gacfa882ab784952de503d901da29bdcae}} 
+\index{Log utils@{Log utils}!setupLoggingFile@{setupLoggingFile}}
+\index{setupLoggingFile@{setupLoggingFile}!Log utils@{Log utils}}
+\doxysubsubsection{\texorpdfstring{setupLoggingFile()}{setupLoggingFile()}}
+{\footnotesize\ttfamily void INTELLI\+::\+Intelli\+Log\+::setup\+Logging\+File (\begin{DoxyParamCaption}\item[{string}]{fname }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+set up the logging file by its name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & the name of file \\
+\hline
+\end{DoxyParams}

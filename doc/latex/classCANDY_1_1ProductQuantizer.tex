@@ -1,0 +1,274 @@
+\hypertarget{classCANDY_1_1ProductQuantizer}{}\doxysection{CANDY\+::Product\+Quantizer Class Reference}
+\label{classCANDY_1_1ProductQuantizer}\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+
+
+class for basic product quantization operations on input of tensors  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+PQIndex.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::Product\+Quantizer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1ProductQuantizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_ae12777a6edbfbb4d6799cf25db0bd58f}\label{classCANDY_1_1ProductQuantizer_ae12777a6edbfbb4d6799cf25db0bd58f}} 
+enum {\bfseries train\+\_\+type\+\_\+t} \{ {\bfseries Train\+\_\+default}
+, {\bfseries Train\+\_\+shared}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a302f7f6acc8b5be19345f300713662b7}{set\+Centroids\+From}} (\mbox{\hyperlink{classCANDY_1_1Clustering}{Clustering}} cls) const
+\begin{DoxyCompactList}\small\item\em Set centroids from trained clustering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a60c02879057bbd4ccdefdf52f3ce683f}{set\+Centroids\+From}} (\mbox{\hyperlink{classCANDY_1_1Clustering}{Clustering}} cls, int64\+\_\+t M) const
+\begin{DoxyCompactList}\small\item\em Set centroids\mbox{[}M\mbox{]} for the Mth subquantizer from trained clustering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a4099dbbb2851544b1263d6a80ec5663d}{train}} (int64\+\_\+t n, torch\+::\+Tensor t)
+\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_ad06d2ef5b5a2d5da9291345fee3fbc34}{search}} (const torch\+::\+Tensor x, int64\+\_\+t nx, const uint8\+\_\+t $\ast$codes, const int64\+\_\+t ncodes, faiss\+::float\+\_\+maxheap\+\_\+array\+\_\+t $\ast$res, bool init\+\_\+finalize\+\_\+heap)
+\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a6e154a43ff138c705b9ecf4ef7d0603c}{add}} (int64\+\_\+t nx, const torch\+::\+Tensor x)
+\begin{DoxyCompactList}\small\item\em add vectors to current PQ Index, which would append codes and drift the centroids according to input \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a5e00f5326fc75212f28b9a0b55e2f6b0}{compute\+\_\+code}} (const float $\ast$x, uint8\+\_\+t $\ast$code) const
+\begin{DoxyCompactList}\small\item\em compute a single vector to codes \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_acd71628576ceaccb911e4ba1246b5693}{compute\+\_\+codes}} (const float $\ast$x, uint8\+\_\+t $\ast$codes, int64\+\_\+t n) const
+\begin{DoxyCompactList}\small\item\em compute vectors to codes \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a718405ec79e4e73d114992305c82eec9}{decode}} (const torch\+::\+Tensor code, torch\+::\+Tensor $\ast$x) const
+\begin{DoxyCompactList}\small\item\em decode from codes \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_afcf22608aa94033805fe30b7adb21110}{compute\+\_\+distance\+\_\+table}} (const torch\+::\+Tensor x, torch\+::\+Tensor $\ast$dis\+\_\+table, int64\+\_\+t nx) const
+\begin{DoxyCompactList}\small\item\em Compute the distance between single x vector and M$\ast$subK centroids. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_af91f582a5a3a2c2f8fd2932f5b0438bb}{compute\+\_\+distance\+\_\+tables}} (const torch\+::\+Tensor x, torch\+::\+Tensor $\ast$dis\+\_\+table, int64\+\_\+t nx) const
+\begin{DoxyCompactList}\small\item\em Compute the distance between nx vectors and M$\ast$subK centroids. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_ab15e49ce33a68760e652b815b165df9a}\label{classCANDY_1_1ProductQuantizer_ab15e49ce33a68760e652b815b165df9a}} 
+{\bfseries Product\+Quantizer} (int64\+\_\+t d, int64\+\_\+t M, int64\+\_\+t nbits)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a8ce37608942c430a5bf4817a7da23821}\label{classCANDY_1_1ProductQuantizer_a8ce37608942c430a5bf4817a7da23821}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a8ce37608942c430a5bf4817a7da23821}{d\+\_\+}}
+\begin{DoxyCompactList}\small\item\em total dim; \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a301a0bfccb90afb5ce57e9b60a4eccf4}\label{classCANDY_1_1ProductQuantizer_a301a0bfccb90afb5ce57e9b60a4eccf4}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a301a0bfccb90afb5ce57e9b60a4eccf4}{M\+\_\+}}
+\begin{DoxyCompactList}\small\item\em number of subquantizers \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a8d29bd1c89d22c92ad1b5888b0c9c0ed}\label{classCANDY_1_1ProductQuantizer_a8d29bd1c89d22c92ad1b5888b0c9c0ed}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a8d29bd1c89d22c92ad1b5888b0c9c0ed}{nbits\+\_\+}}
+\begin{DoxyCompactList}\small\item\em number of bits per quantization index \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_abb81afc1401c87766630ec654b9a66f4}\label{classCANDY_1_1ProductQuantizer_abb81afc1401c87766630ec654b9a66f4}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_abb81afc1401c87766630ec654b9a66f4}{subvec\+Dims\+\_\+}}
+\begin{DoxyCompactList}\small\item\em dimensionality of each subvector \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a58ee63f43039c44f098bc320fc29d37b}\label{classCANDY_1_1ProductQuantizer_a58ee63f43039c44f098bc320fc29d37b}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_a58ee63f43039c44f098bc320fc29d37b}{sub\+K\+\_\+}}
+\begin{DoxyCompactList}\small\item\em number of centroids of each subquantizer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_ad6e917292ff617f0ceb469f46f7e5a4c}\label{classCANDY_1_1ProductQuantizer_ad6e917292ff617f0ceb469f46f7e5a4c}} 
+int64\+\_\+t {\bfseries code\+\_\+size\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a0000b52b8104403bd39b8d27ddd58143}\label{classCANDY_1_1ProductQuantizer_a0000b52b8104403bd39b8d27ddd58143}} 
+train\+\_\+type\+\_\+t {\bfseries train\+\_\+type\+\_\+} = Train\+\_\+default
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_af2ee282c0695d8b55c3ae479a47900e4}\label{classCANDY_1_1ProductQuantizer_af2ee282c0695d8b55c3ae479a47900e4}} 
+faiss\+::\+Index $\ast$ {\bfseries assign\+\_\+index\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_ab6e790d115057fd8caaf9321ff94fdcb}\label{classCANDY_1_1ProductQuantizer_ab6e790d115057fd8caaf9321ff94fdcb}} 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1ProductQuantizer_ab6e790d115057fd8caaf9321ff94fdcb}{centroids\+\_\+}}
+\begin{DoxyCompactList}\small\item\em (M, sub\+K\+\_\+, subvec\+Dims\+\_\+) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class for basic product quantization operations on input of tensors 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a6e154a43ff138c705b9ecf4ef7d0603c}\label{classCANDY_1_1ProductQuantizer_a6e154a43ff138c705b9ecf4ef7d0603c}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!add@{add}}
+\index{add@{add}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::add (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{nx,  }\item[{const torch\+::\+Tensor}]{x }\end{DoxyParamCaption})}
+
+
+
+add vectors to current PQ Index, which would append codes and drift the centroids according to input 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & number of input vectors \\
+\hline
+{\em x} & input vectors to be added \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a5e00f5326fc75212f28b9a0b55e2f6b0}\label{classCANDY_1_1ProductQuantizer_a5e00f5326fc75212f28b9a0b55e2f6b0}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!compute\_code@{compute\_code}}
+\index{compute\_code@{compute\_code}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{compute\_code()}{compute\_code()}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::compute\+\_\+code (\begin{DoxyParamCaption}\item[{const float $\ast$}]{x,  }\item[{uint8\+\_\+t $\ast$}]{code }\end{DoxyParamCaption}) const}
+
+
+
+compute a single vector to codes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & vectors to be encoded \\
+\hline
+{\em codes} & destination codes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_acd71628576ceaccb911e4ba1246b5693}\label{classCANDY_1_1ProductQuantizer_acd71628576ceaccb911e4ba1246b5693}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!compute\_codes@{compute\_codes}}
+\index{compute\_codes@{compute\_codes}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{compute\_codes()}{compute\_codes()}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::compute\+\_\+codes (\begin{DoxyParamCaption}\item[{const float $\ast$}]{x,  }\item[{uint8\+\_\+t $\ast$}]{codes,  }\item[{int64\+\_\+t}]{n }\end{DoxyParamCaption}) const}
+
+
+
+compute vectors to codes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & input vectors \\
+\hline
+{\em codes} & store computation results from x, pointer target is a torch\+::\+Tensor size of (nx, code\+\_\+size\+\_\+); \\
+\hline
+{\em nx} & number of input vectors \\
+\hline
+{\em start} & pointers denoting where it starts \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_afcf22608aa94033805fe30b7adb21110}\label{classCANDY_1_1ProductQuantizer_afcf22608aa94033805fe30b7adb21110}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!compute\_distance\_table@{compute\_distance\_table}}
+\index{compute\_distance\_table@{compute\_distance\_table}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{compute\_distance\_table()}{compute\_distance\_table()}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::compute\+\_\+distance\+\_\+table (\begin{DoxyParamCaption}\item[{const torch\+::\+Tensor}]{x,  }\item[{torch\+::\+Tensor $\ast$}]{dis\+\_\+table,  }\item[{int64\+\_\+t}]{nx }\end{DoxyParamCaption}) const}
+
+
+
+Compute the distance between single x vector and M$\ast$subK centroids. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em dis\+\_\+table} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+distance table tensor size of M$\ast$subK 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_af91f582a5a3a2c2f8fd2932f5b0438bb}\label{classCANDY_1_1ProductQuantizer_af91f582a5a3a2c2f8fd2932f5b0438bb}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!compute\_distance\_tables@{compute\_distance\_tables}}
+\index{compute\_distance\_tables@{compute\_distance\_tables}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{compute\_distance\_tables()}{compute\_distance\_tables()}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::compute\+\_\+distance\+\_\+tables (\begin{DoxyParamCaption}\item[{const torch\+::\+Tensor}]{x,  }\item[{torch\+::\+Tensor $\ast$}]{dis\+\_\+table,  }\item[{int64\+\_\+t}]{nx }\end{DoxyParamCaption}) const}
+
+
+
+Compute the distance between nx vectors and M$\ast$subK centroids. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & tensor of nx $\ast$ d \\
+\hline
+{\em dis\+\_\+table} & output table sizeof nx$\ast$\+M$\ast$subK \\
+\hline
+{\em nx} & number of vectors \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a718405ec79e4e73d114992305c82eec9}\label{classCANDY_1_1ProductQuantizer_a718405ec79e4e73d114992305c82eec9}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!decode@{decode}}
+\index{decode@{decode}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::decode (\begin{DoxyParamCaption}\item[{const torch\+::\+Tensor}]{code,  }\item[{torch\+::\+Tensor $\ast$}]{x }\end{DoxyParamCaption}) const}
+
+
+
+decode from codes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & codes to be decoded \\
+\hline
+{\em x} & destination vectors \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_ad06d2ef5b5a2d5da9291345fee3fbc34}\label{classCANDY_1_1ProductQuantizer_ad06d2ef5b5a2d5da9291345fee3fbc34}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!search@{search}}
+\index{search@{search}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::search (\begin{DoxyParamCaption}\item[{const torch\+::\+Tensor}]{x,  }\item[{int64\+\_\+t}]{nx,  }\item[{const uint8\+\_\+t $\ast$}]{codes,  }\item[{const int64\+\_\+t}]{ncodes,  }\item[{faiss\+::float\+\_\+maxheap\+\_\+array\+\_\+t $\ast$}]{res,  }\item[{bool}]{init\+\_\+finalize\+\_\+heap }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & vectors to be searched \\
+\hline
+{\em nx} & number of input vectors \\
+\hline
+{\em codes} & codes to be consulted during search \\
+\hline
+{\em ncodes} & number of codes \\
+\hline
+{\em res} & result heap \\
+\hline
+{\em init\+\_\+finalize\+\_\+heap} & whether at the end of searching each vector to reorder the heap \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a302f7f6acc8b5be19345f300713662b7}\label{classCANDY_1_1ProductQuantizer_a302f7f6acc8b5be19345f300713662b7}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!setCentroidsFrom@{setCentroidsFrom}}
+\index{setCentroidsFrom@{setCentroidsFrom}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{setCentroidsFrom()}{setCentroidsFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::set\+Centroids\+From (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCANDY_1_1Clustering}{Clustering}}}]{cls }\end{DoxyParamCaption}) const}
+
+
+
+Set centroids from trained clustering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cls} & \mbox{\hyperlink{classCANDY_1_1Clustering}{Clustering}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a60c02879057bbd4ccdefdf52f3ce683f}\label{classCANDY_1_1ProductQuantizer_a60c02879057bbd4ccdefdf52f3ce683f}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!setCentroidsFrom@{setCentroidsFrom}}
+\index{setCentroidsFrom@{setCentroidsFrom}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{setCentroidsFrom()}{setCentroidsFrom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::set\+Centroids\+From (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCANDY_1_1Clustering}{Clustering}}}]{cls,  }\item[{int64\+\_\+t}]{M }\end{DoxyParamCaption}) const}
+
+
+
+Set centroids\mbox{[}M\mbox{]} for the Mth subquantizer from trained clustering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cls} & \mbox{\hyperlink{classCANDY_1_1Clustering}{Clustering}} \\
+\hline
+{\em M} & subquantizer identifier \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1ProductQuantizer_a4099dbbb2851544b1263d6a80ec5663d}\label{classCANDY_1_1ProductQuantizer_a4099dbbb2851544b1263d6a80ec5663d}} 
+\index{CANDY::ProductQuantizer@{CANDY::ProductQuantizer}!train@{train}}
+\index{train@{train}!CANDY::ProductQuantizer@{CANDY::ProductQuantizer}}
+\doxysubsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily void CANDY\+::\+Product\+Quantizer\+::train (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{n,  }\item[{torch\+::\+Tensor}]{t }\end{DoxyParamCaption})}
+
+train PQ with given tensor 
+\begin{DoxyParams}{Parameters}
+{\em n} & number of inputs \\
+\hline
+{\em t} & input vectors as tensor \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/PQIndex.\+h\item 
+src/\+CANDY/PQIndex.\+cpp\end{DoxyCompactItemize}

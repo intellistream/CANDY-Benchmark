@@ -1,0 +1,42 @@
+\hypertarget{DistributedIndexWorker_8h}{}\doxysection{include/\+CANDY/\+Distributed\+Partition\+Index/\+Distributed\+Index\+Worker.h File Reference}
+\label{DistributedIndexWorker_8h}\index{include/CANDY/DistributedPartitionIndex/DistributedIndexWorker.h@{include/CANDY/DistributedPartitionIndex/DistributedIndexWorker.h}}
+{\ttfamily \#include $<$Utils/\+Abstract\+C20\+Thread.\+hpp$>$}\newline
+{\ttfamily \#include $<$Utils/\+Config\+Map.\+hpp$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$Utils/\+Intelli\+Tensor\+OP.\+hpp$>$}\newline
+{\ttfamily \#include $<$CANDY/\+Index\+Table.\+h$>$}\newline
+{\ttfamily \#include $<$Utils/\+SPSCQueue.\+hpp$>$}\newline
+{\ttfamily \#include $<$CANDY/\+Abstract\+Index.\+h$>$}\newline
+{\ttfamily \#include $<$faiss/\+Index\+Flat.\+h$>$}\newline
+{\ttfamily \#include $<$ray/api.\+h$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+Include dependency graph for Distributed\+Index\+Worker.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{DistributedIndexWorker_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{DistributedIndexWorker_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper}{CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper}}
+\begin{DoxyCompactList}\small\item\em the ray wrapper of \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{Distributed\+Index\+Worker}}, most of its function will be ray-\/remote \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{CANDY\+::\+Distributed\+Index\+Worker}}
+\begin{DoxyCompactList}\small\item\em A worker class of parallel index thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_ga8255d57716909a428103be7aa84b7ec5}{new\+Distributed\+Index\+Worker}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{CANDY\+::\+Distributed\+Index\+Worker}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Distributed\+Index\+Worker shared pointer. \end{DoxyCompactList}\item 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{CANDY\+::\+Distributed\+Index\+Worker}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga7e677925e3ba698a29771e328c51d1bd}{CANDY\+::\+Distributed\+Index\+Worker\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{Distributed\+Index\+Worker}}. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,87 @@
+\hypertarget{classCANDY_1_1MLPBucketIdxModel}{}\doxysection{CANDY\+::MLPBucket\+Idx\+Model Class Reference}
+\label{classCANDY_1_1MLPBucketIdxModel}\index{CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1MLPBucketIdxModel_ab4bafa430a6eb1454ea98e379588b601}{init}} (int64\+\_\+t input\+Dim, int64\+\_\+t idx\+Max, \mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} extra\+Config)
+\begin{DoxyCompactList}\small\item\em init the model class \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1MLPBucketIdxModel_a51cc09da551e249dc1c3c99af96c3241}{train\+Model}} (torch\+::\+Tensor \&x1, torch\+::\+Tensor \&x2, torch\+::\+Tensor \&labels)
+\begin{DoxyCompactList}\small\item\em the training function \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1MLPBucketIdxModel_adac06aedaeb0338e878828bbd0675d32}{hash}} (torch\+::\+Tensor input)
+\begin{DoxyCompactList}\small\item\em the forward hashing function \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1MLPBucketIdxModel_adac06aedaeb0338e878828bbd0675d32}\label{classCANDY_1_1MLPBucketIdxModel_adac06aedaeb0338e878828bbd0675d32}} 
+\index{CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}!hash@{hash}}
+\index{hash@{hash}!CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}}
+\doxysubsubsection{\texorpdfstring{hash()}{hash()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+MLPBucket\+Idx\+Model\+::hash (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+the forward hashing function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output tensor for encoding 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1MLPBucketIdxModel_ab4bafa430a6eb1454ea98e379588b601}\label{classCANDY_1_1MLPBucketIdxModel_ab4bafa430a6eb1454ea98e379588b601}} 
+\index{CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}!init@{init}}
+\index{init@{init}!CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void CANDY\+::\+MLPBucket\+Idx\+Model\+::init (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{input\+Dim,  }\item[{int64\+\_\+t}]{idx\+Max,  }\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{extra\+Config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+init the model class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Dim} & the dimension of model ending input \\
+\hline
+{\em output\+Dim} & the dimension of model ending output \\
+\hline
+{\em extra\+Config} & optional extra configs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+accepted configurations
+\begin{DoxyItemize}
+\item cuda\+Build whether or not use cuda to build model, I64, default 0
+\item learning\+Rate the learning rate for training, Double, default 0.\+01
+\item hidden\+Layer\+Dim the dimension of hidden layer, I64, default the same as output layer
+\item MLTrain\+Batch\+Size the batch size of ML training, I64, default 64
+\item MLTrain\+Margin the margin value used in training, Double, default 2$\ast$0.1
+\item MLTrain\+Epochs the number of epochs in training, I64, default 10 
+\end{DoxyItemize}
+\end{DoxyNote}
+\mbox{\Hypertarget{classCANDY_1_1MLPBucketIdxModel_a51cc09da551e249dc1c3c99af96c3241}\label{classCANDY_1_1MLPBucketIdxModel_a51cc09da551e249dc1c3c99af96c3241}} 
+\index{CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}!trainModel@{trainModel}}
+\index{trainModel@{trainModel}!CANDY::MLPBucketIdxModel@{CANDY::MLPBucketIdxModel}}
+\doxysubsubsection{\texorpdfstring{trainModel()}{trainModel()}}
+{\footnotesize\ttfamily void CANDY\+::\+MLPBucket\+Idx\+Model\+::train\+Model (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{x1,  }\item[{torch\+::\+Tensor \&}]{x2,  }\item[{torch\+::\+Tensor \&}]{labels }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+the training function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x1} & an 2D tensor sized \mbox{[}n$\ast$d\mbox{]} \\
+\hline
+{\em x2} & an 2D tensor sized \mbox{[}n$\ast$d\mbox{]} \\
+\hline
+{\em labels} & an 1D integer tensor sized n, indicating whether x1\mbox{[}i\mbox{]} is similar to x2\mbox{[}i\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Hashing\+Models/MLPBucket\+Idx\+Model.\+h\item 
+src/\+CANDY/\+Hashing\+Models/MLPBucket\+Idx\+Model.\+cpp\end{DoxyCompactItemize}

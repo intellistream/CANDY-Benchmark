@@ -1,0 +1,354 @@
+\hypertarget{classCANDY_1_1DistributedIndexWorker}{}\doxysection{CANDY\+::Distributed\+Index\+Worker Class Reference}
+\label{classCANDY_1_1DistributedIndexWorker}\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+
+
+A worker class of parallel index thread.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Distributed\+Partition\+Index/\+Distributed\+Index\+Worker.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::Distributed\+Index\+Worker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1DistributedIndexWorker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a2ad4ae1c2776cf4c5dd4a69e11fa27ed}\label{classCANDY_1_1DistributedIndexWorker_a2ad4ae1c2776cf4c5dd4a69e11fa27ed}} 
+virtual void \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a2ad4ae1c2776cf4c5dd4a69e11fa27ed}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a5adb86985a661325f534e4e60d109b22}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a965f8895e844b60ee0a09f1b11cce711}{start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_aed8e9766a855441435795d7cd5991b3f}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_afe5f37d25a8ace4ed3d7311f9c14c153}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a2e123a24263ffb15d6b28cc85ed84a93}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a44dc06d087842a373bd4bf49ad525fc6}{search\+Tensor\+Unblock}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, without blocking the reset process \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_ae6b36883ad21bb65a8ebcf0f6cd3fa11}{get\+Unblock\+Query\+Result}} (void)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_abd7107403a7bb6f145bedd9934701a9d}{end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a7ba9a101db9e048a33756d2b270d6c41}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a6c1db335bd6d36c0fba453e514023a65}{offline\+Build}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_ae769e96b27c8319b0fea5f7d57478c8f}{offline\+Build\+Unblocked}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase in unblocked model \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_ad3dbc85cf848606e4152b4d66dd50f0c}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_aed8e9766a855441435795d7cd5991b3f}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a869e12478838e429ca3592d5e413da88}{load\+Initial\+Tensor\+Unblocked}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load initial tensor in unblocked model \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_ad941271e27c1859e3ed46605afee5053}{wait\+Pending\+Operations}} ()
+\begin{DoxyCompactList}\small\item\em a busy waitting for all pending operations to be done \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_ab722442a9e2d1924209db912a2c5ff7d}\label{classCANDY_1_1DistributedIndexWorker_ab722442a9e2d1924209db912a2c5ff7d}} 
+bool \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_ab722442a9e2d1924209db912a2c5ff7d}{wait\+Pending\+Bool}} (void)
+\begin{DoxyCompactList}\small\item\em wait for the pending bool results, which are previously launched by unblocked manner \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a1eb4c0f5a7789f9a03795ac3d3abb2ab}\label{classCANDY_1_1DistributedIndexWorker_a1eb4c0f5a7789f9a03795ac3d3abb2ab}} 
+void \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a1eb4c0f5a7789f9a03795ac3d3abb2ab}{lock}} ()
+\begin{DoxyCompactList}\small\item\em lock this worker \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a7b6627ec95ea45e27ef40394dce3075c}\label{classCANDY_1_1DistributedIndexWorker_a7b6627ec95ea45e27ef40394dce3075c}} 
+void \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_a7b6627ec95ea45e27ef40394dce3075c}{unlock}} ()
+\begin{DoxyCompactList}\small\item\em unlock this worker \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_ad01c58f03d3f17df78e8b5d158914f0e}\label{classCANDY_1_1DistributedIndexWorker_ad01c58f03d3f17df78e8b5d158914f0e}} 
+ray\+::\+Actor\+Handle$<$ \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper}{DIW\+\_\+\+Ray\+Wrapper}} $>$ {\bfseries worker\+Handle}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_ad0163ec470f4c07919aaa53fed86c37e}\label{classCANDY_1_1DistributedIndexWorker_ad0163ec470f4c07919aaa53fed86c37e}} 
+std\+::string {\bfseries cfg\+String}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_acf43f2d670f562cdd9d3450838b2af68}\label{classCANDY_1_1DistributedIndexWorker_acf43f2d670f562cdd9d3450838b2af68}} 
+std\+::mutex {\bfseries m\+\_\+mut}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_af4e8172d8ae97bbcfbabfbeaec8ff224}\label{classCANDY_1_1DistributedIndexWorker_af4e8172d8ae97bbcfbabfbeaec8ff224}} 
+ray\+::\+Object\+Ref$<$ std\+::vector$<$ std\+::vector$<$ uint8\+\_\+t $>$ $>$ $>$ {\bfseries obj\+Ref\+Unblocked\+Query}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a6a64087b571f6c651988c0d9849ef6c8}\label{classCANDY_1_1DistributedIndexWorker_a6a64087b571f6c651988c0d9849ef6c8}} 
+ray\+::\+Object\+Ref$<$ bool $>$ {\bfseries obj\+Ref\+Unblocked\+Bool}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a0bd06cdeb1b401cc3e0b3dbda4b77c8f}\label{classCANDY_1_1DistributedIndexWorker_a0bd06cdeb1b401cc3e0b3dbda4b77c8f}} 
+int64\+\_\+t {\bfseries pending\+Tensors} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A worker class of parallel index thread. 
+
+\begin{DoxyNote}{Note}
+special parameters
+\begin{DoxyItemize}
+\item parallel\+Worker\+\_\+algo\+Tag The algo tag of this worker, String, default flat
+\item parallel\+Worker\+\_\+queue\+Size The input queue size of this worker, I64, default 10 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_afe5f37d25a8ace4ed3d7311f9c14c153}\label{classCANDY_1_1DistributedIndexWorker_afe5f37d25a8ace4ed3d7311f9c14c153}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Index\+Worker\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index needs to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_abd7107403a7bb6f145bedd9934701a9d}\label{classCANDY_1_1DistributedIndexWorker_abd7107403a7bb6f145bedd9934701a9d}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!endHPC@{endHPC}}
+\index{endHPC@{endHPC}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{endHPC()}{endHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Index\+Worker\+::end\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra termination if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC termination is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_ae6b36883ad21bb65a8ebcf0f6cd3fa11}\label{classCANDY_1_1DistributedIndexWorker_ae6b36883ad21bb65a8ebcf0f6cd3fa11}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!getUnblockQueryResult@{getUnblockQueryResult}}
+\index{getUnblockQueryResult@{getUnblockQueryResult}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{getUnblockQueryResult()}{getUnblockQueryResult()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Distributed\+Index\+Worker\+::get\+Unblock\+Query\+Result (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & the tensor, packed in std\+::vector$<$uint8\+\_\+t$>$ allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$uint8\+\_\+t$>$$>$ the packed result tensor for each row of query 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_aed8e9766a855441435795d7cd5991b3f}\label{classCANDY_1_1DistributedIndexWorker_aed8e9766a855441435795d7cd5991b3f}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Index\+Worker\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_ad3dbc85cf848606e4152b4d66dd50f0c}\label{classCANDY_1_1DistributedIndexWorker_ad3dbc85cf848606e4152b4d66dd50f0c}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Index\+Worker\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_aed8e9766a855441435795d7cd5991b3f}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker_aed8e9766a855441435795d7cd5991b3f}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a869e12478838e429ca3592d5e413da88}\label{classCANDY_1_1DistributedIndexWorker_a869e12478838e429ca3592d5e413da88}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!loadInitialTensorUnblocked@{loadInitialTensorUnblocked}}
+\index{loadInitialTensorUnblocked@{loadInitialTensorUnblocked}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensorUnblocked()}{loadInitialTensorUnblocked()}}
+{\footnotesize\ttfamily void CANDY\+::\+Distributed\+Index\+Worker\+::load\+Initial\+Tensor\+Unblocked (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load initial tensor in unblocked model 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a6c1db335bd6d36c0fba453e514023a65}\label{classCANDY_1_1DistributedIndexWorker_a6c1db335bd6d36c0fba453e514023a65}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!offlineBuild@{offlineBuild}}
+\index{offlineBuild@{offlineBuild}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{offlineBuild()}{offlineBuild()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Index\+Worker\+::offline\+Build (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_ae769e96b27c8319b0fea5f7d57478c8f}\label{classCANDY_1_1DistributedIndexWorker_ae769e96b27c8319b0fea5f7d57478c8f}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!offlineBuildUnblocked@{offlineBuildUnblocked}}
+\index{offlineBuildUnblocked@{offlineBuildUnblocked}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{offlineBuildUnblocked()}{offlineBuildUnblocked()}}
+{\footnotesize\ttfamily void CANDY\+::\+Distributed\+Index\+Worker\+::offline\+Build\+Unblocked (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase in unblocked model 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a2e123a24263ffb15d6b28cc85ed84a93}\label{classCANDY_1_1DistributedIndexWorker_a2e123a24263ffb15d6b28cc85ed84a93}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Distributed\+Index\+Worker\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a44dc06d087842a373bd4bf49ad525fc6}\label{classCANDY_1_1DistributedIndexWorker_a44dc06d087842a373bd4bf49ad525fc6}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!searchTensorUnblock@{searchTensorUnblock}}
+\index{searchTensorUnblock@{searchTensorUnblock}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{searchTensorUnblock()}{searchTensorUnblock()}}
+{\footnotesize\ttfamily void CANDY\+::\+Distributed\+Index\+Worker\+::search\+Tensor\+Unblock (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, without blocking the reset process 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & the tensor, packed in std\+::vector$<$uint8\+\_\+t$>$ allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$uint8\+\_\+t$>$$>$ the packed result tensor for each row of query 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a5adb86985a661325f534e4e60d109b22}\label{classCANDY_1_1DistributedIndexWorker_a5adb86985a661325f534e4e60d109b22}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Index\+Worker\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specfic config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a7ba9a101db9e048a33756d2b270d6c41}\label{classCANDY_1_1DistributedIndexWorker_a7ba9a101db9e048a33756d2b270d6c41}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Index\+Worker\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_a965f8895e844b60ee0a09f1b11cce711}\label{classCANDY_1_1DistributedIndexWorker_a965f8895e844b60ee0a09f1b11cce711}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!startHPC@{startHPC}}
+\index{startHPC@{startHPC}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{startHPC()}{startHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Index\+Worker\+::start\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra set-\/ups if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC set-\/up is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DistributedIndexWorker_ad941271e27c1859e3ed46605afee5053}\label{classCANDY_1_1DistributedIndexWorker_ad941271e27c1859e3ed46605afee5053}} 
+\index{CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}!waitPendingOperations@{waitPendingOperations}}
+\index{waitPendingOperations@{waitPendingOperations}!CANDY::DistributedIndexWorker@{CANDY::DistributedIndexWorker}}
+\doxysubsubsection{\texorpdfstring{waitPendingOperations()}{waitPendingOperations()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Distributed\+Index\+Worker\+::wait\+Pending\+Operations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+a busy waitting for all pending operations to be done 
+
+\begin{DoxyNote}{Note}
+in this index, there are may be some un-\/commited write due to the parallel queues 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+bool, whether the waitting is actually done; 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Distributed\+Partition\+Index/\mbox{\hyperlink{DistributedIndexWorker_8h}{Distributed\+Index\+Worker.\+h}}\item 
+src/\+CANDY/\+Distributed\+Partition\+Index/\mbox{\hyperlink{DistributedIndexWorker_8cpp}{Distributed\+Index\+Worker.\+cpp}}\end{DoxyCompactItemize}

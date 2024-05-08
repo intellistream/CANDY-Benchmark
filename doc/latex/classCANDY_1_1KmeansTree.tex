@@ -1,0 +1,312 @@
+\hypertarget{classCANDY_1_1KmeansTree}{}\doxysection{CANDY\+::Kmeans\+Tree Class Reference}
+\label{classCANDY_1_1KmeansTree}\index{CANDY::KmeansTree@{CANDY::KmeansTree}}
+
+
+The structure representing hierarchical k-\/means tree used in FLANN.  
+
+
+
+
+Inheritance diagram for CANDY\+::Kmeans\+Tree\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{classCANDY_1_1KmeansTree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Kmeans\+Tree\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1KmeansTree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node}}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1NodeInfo}{Node\+Info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_ae97b0b0104ecc8f57ac6bc91bc48d7d2}\label{classCANDY_1_1KmeansTree_ae97b0b0104ecc8f57ac6bc91bc48d7d2}} 
+typedef \mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node}} $\ast$ {\bfseries Node\+Ptr}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a9cdfee9d300ed9c28acfd2f7c857215b}\label{classCANDY_1_1KmeansTree_a9cdfee9d300ed9c28acfd2f7c857215b}} 
+typedef \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{FLANN\+::\+Branch\+Struct}}$<$ \mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}} $>$ {\bfseries Branch\+St}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a640a35d5fe49e93ddafc582c0ef0ec9b}\label{classCANDY_1_1KmeansTree_a640a35d5fe49e93ddafc582c0ef0ec9b}} 
+typedef \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{Branch\+St}} $\ast$ {\bfseries Branch}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1KmeansTree_a39613ae140336e12086581bcf51cfbe3}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg) override
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1KmeansTree_a8f0ef3f5e4bf4c5ba428c4c8bdc92d3c}{add\+Point\+To\+Tree}} (\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}} node, int64\+\_\+t idx, float dist)
+\begin{DoxyCompactList}\small\item\em add db\+Tensor\mbox{[}idx\mbox{]} to tree with root as node \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classCANDY_1_1KmeansTree_aca1d13ea73f8b99a1b1f75dc0d3760a2}{add\+Points}} (torch\+::\+Tensor \&t) override
+\begin{DoxyCompactList}\small\item\em add data into the tree either by reconstruction or appending \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1KmeansTree_a3d8c7207ba0178f39a4a1074ac615462}{compute\+Node\+Stat}} (\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}} node, std\+::vector$<$ int64\+\_\+t $>$ \&indices)
+\begin{DoxyCompactList}\small\item\em compute the radius, variance and mean for this cluster \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1KmeansTree_aaf860395df363513dfb398a1e5061860}{compute\+Clustering}} (\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}} node, int64\+\_\+t $\ast$indices, int64\+\_\+t indices\+\_\+length, int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1KmeansTree_a9b59db28c13d496aa6931b815554921a}{branching}})
+\item 
+virtual int \mbox{\hyperlink{classCANDY_1_1KmeansTree_a91e8d58564907a7bffa616d7e4fff44c}{knn\+Search}} (torch\+::\+Tensor \&q, int64\+\_\+t $\ast$idx, float $\ast$distances, int64\+\_\+t aknn) override
+\begin{DoxyCompactList}\small\item\em perform knn-\/search on the kd\+Tree structure \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1KmeansTree_a317a6c3ce41ab36dd3597e82c803cfe4}{set\+Params}} (\mbox{\hyperlink{structCANDY_1_1FlannParam}{Flann\+Param}} param) override
+\begin{DoxyCompactList}\small\item\em set the params from auto-\/tuning \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1KmeansTree_a9b441f4a10413e58fd6acf2890b52b68}{get\+Neighbors}} (\mbox{\hyperlink{classCANDY_1_1FLANN_1_1ResultSet}{FLANN\+::\+Result\+Set}} \&result, float $\ast$vec, int max\+Check)
+\begin{DoxyCompactList}\small\item\em called by knn\+Search, to search the vec within the true \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1KmeansTree_a0e5330e6b52d731be423fc42d921d42c}{explore}} (\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}} node, float $\ast$q, \mbox{\hyperlink{classCANDY_1_1FLANN_1_1Heap}{FLANN\+::\+Heap}}$<$ \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{Branch\+St}} $>$ $\ast$heap)
+\begin{DoxyCompactList}\small\item\em explore from the node for the closest center \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1KmeansTree_a2ee1badcdab9e4f6b11eb2918a2ffa2e}{find\+NN}} (\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}} node, \mbox{\hyperlink{classCANDY_1_1FLANN_1_1ResultSet}{FLANN\+::\+Result\+Set}} \&result, float $\ast$vec, int \&check, int max\+Check, \mbox{\hyperlink{classCANDY_1_1FLANN_1_1Heap}{FLANN\+::\+Heap}}$<$ \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{Branch\+St}} $>$ $\ast$heap)
+\begin{DoxyCompactList}\small\item\em practice KNN search \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a9b59db28c13d496aa6931b815554921a}\label{classCANDY_1_1KmeansTree_a9b59db28c13d496aa6931b815554921a}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1KmeansTree_a9b59db28c13d496aa6931b815554921a}{branching}}
+\begin{DoxyCompactList}\small\item\em branching factor used in clustering \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a44d2a2d2243ce52f9d2127081a4678b0}\label{classCANDY_1_1KmeansTree_a44d2a2d2243ce52f9d2127081a4678b0}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1KmeansTree_a44d2a2d2243ce52f9d2127081a4678b0}{iterations}}
+\begin{DoxyCompactList}\small\item\em number of max iterations when clustering \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a3a3159ebaa571ef7e69167f7c069412d}\label{classCANDY_1_1KmeansTree_a3a3159ebaa571ef7e69167f7c069412d}} 
+double \mbox{\hyperlink{classCANDY_1_1KmeansTree_a3a3159ebaa571ef7e69167f7c069412d}{cb\+\_\+index}} = 0.\+4
+\begin{DoxyCompactList}\small\item\em Cluster border index used in tree search when choosing the closest cluster to search next;. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a0964cb8c6e96aa909ff8482b5167fda5}\label{classCANDY_1_1KmeansTree_a0964cb8c6e96aa909ff8482b5167fda5}} 
+\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}} \mbox{\hyperlink{classCANDY_1_1KmeansTree_a0964cb8c6e96aa909ff8482b5167fda5}{root}}
+\begin{DoxyCompactList}\small\item\em root of tree \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_ad24eb5754e3fe86c5c3cbcb97f61df43}\label{classCANDY_1_1KmeansTree_ad24eb5754e3fe86c5c3cbcb97f61df43}} 
+\mbox{\hyperlink{classCANDY_1_1FLANN_1_1RandomCenterChooser}{FLANN\+::\+Random\+Center\+Chooser}} $\ast$ \mbox{\hyperlink{classCANDY_1_1KmeansTree_ad24eb5754e3fe86c5c3cbcb97f61df43}{center\+Chooser}}
+\begin{DoxyCompactList}\small\item\em the center chooser in clustering; currently only implemented random\+Chooser \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a9c5f323e06d3d22dfa44ef477816a29b}\label{classCANDY_1_1KmeansTree_a9c5f323e06d3d22dfa44ef477816a29b}} 
+faiss\+::\+Metric\+Type {\bfseries faiss\+Metric} = faiss\+::\+METRIC\+\_\+\+L2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The structure representing hierarchical k-\/means tree used in FLANN. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_aca1d13ea73f8b99a1b1f75dc0d3760a2}\label{classCANDY_1_1KmeansTree_aca1d13ea73f8b99a1b1f75dc0d3760a2}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!addPoints@{addPoints}}
+\index{addPoints@{addPoints}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{addPoints()}{addPoints()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kmeans\+Tree\+::add\+Points (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+add data into the tree either by reconstruction or appending 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & new data \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1FlannComponent}{CANDY\+::\+Flann\+Component}}.
+
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a8f0ef3f5e4bf4c5ba428c4c8bdc92d3c}\label{classCANDY_1_1KmeansTree_a8f0ef3f5e4bf4c5ba428c4c8bdc92d3c}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!addPointToTree@{addPointToTree}}
+\index{addPointToTree@{addPointToTree}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{addPointToTree()}{addPointToTree()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kmeans\+Tree\+::add\+Point\+To\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}}}]{node,  }\item[{int64\+\_\+t}]{idx,  }\item[{float}]{dist }\end{DoxyParamCaption})}
+
+
+
+add db\+Tensor\mbox{[}idx\mbox{]} to tree with root as node 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & typically a tree root \\
+\hline
+{\em idx} & index in db\+Tensor \\
+\hline
+{\em dist} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_aaf860395df363513dfb398a1e5061860}\label{classCANDY_1_1KmeansTree_aaf860395df363513dfb398a1e5061860}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!computeClustering@{computeClustering}}
+\index{computeClustering@{computeClustering}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{computeClustering()}{computeClustering()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kmeans\+Tree\+::compute\+Clustering (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}}}]{node,  }\item[{int64\+\_\+t $\ast$}]{indices,  }\item[{int64\+\_\+t}]{indices\+\_\+length,  }\item[{int64\+\_\+t}]{branching }\end{DoxyParamCaption})}
+
+\#brief compute the cluster iteratively 
+\begin{DoxyParams}{Parameters}
+{\em node} & the node where the cluster starts \\
+\hline
+{\em indices} & indexes to be involved \\
+\hline
+{\em indices\+\_\+length} & length of indexes to be involved \\
+\hline
+{\em branching} & number of branching in tree \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a3d8c7207ba0178f39a4a1074ac615462}\label{classCANDY_1_1KmeansTree_a3d8c7207ba0178f39a4a1074ac615462}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!computeNodeStat@{computeNodeStat}}
+\index{computeNodeStat@{computeNodeStat}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{computeNodeStat()}{computeNodeStat()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kmeans\+Tree\+::compute\+Node\+Stat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}}}]{node,  }\item[{std\+::vector$<$ int64\+\_\+t $>$ \&}]{indices }\end{DoxyParamCaption})}
+
+
+
+compute the radius, variance and mean for this cluster 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & the node representing the cluster \\
+\hline
+{\em indices} & the indexes within the cluster \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a0e5330e6b52d731be423fc42d921d42c}\label{classCANDY_1_1KmeansTree_a0e5330e6b52d731be423fc42d921d42c}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!explore@{explore}}
+\index{explore@{explore}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{explore()}{explore()}}
+{\footnotesize\ttfamily int64\+\_\+t CANDY\+::\+Kmeans\+Tree\+::explore (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}}}]{node,  }\item[{float $\ast$}]{q,  }\item[{\mbox{\hyperlink{classCANDY_1_1FLANN_1_1Heap}{FLANN\+::\+Heap}}$<$ \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{Branch\+St}} $>$ $\ast$}]{heap }\end{DoxyParamCaption})}
+
+
+
+explore from the node for the closest center 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node to be explored \\
+\hline
+{\em q} & query vector \\
+\hline
+{\em heap} & heap set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of center 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a2ee1badcdab9e4f6b11eb2918a2ffa2e}\label{classCANDY_1_1KmeansTree_a2ee1badcdab9e4f6b11eb2918a2ffa2e}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!findNN@{findNN}}
+\index{findNN@{findNN}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{findNN()}{findNN()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kmeans\+Tree\+::find\+NN (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCANDY_1_1KmeansTree_1_1Node}{Node\+Ptr}}}]{node,  }\item[{\mbox{\hyperlink{classCANDY_1_1FLANN_1_1ResultSet}{FLANN\+::\+Result\+Set}} \&}]{result,  }\item[{float $\ast$}]{vec,  }\item[{int \&}]{check,  }\item[{int}]{max\+Check,  }\item[{\mbox{\hyperlink{classCANDY_1_1FLANN_1_1Heap}{FLANN\+::\+Heap}}$<$ \mbox{\hyperlink{structCANDY_1_1FLANN_1_1BranchStruct}{Branch\+St}} $>$ $\ast$}]{heap }\end{DoxyParamCaption})}
+
+
+
+practice KNN search 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & starting node \\
+\hline
+{\em result} & result set \\
+\hline
+{\em vec} & query vector \\
+\hline
+{\em check} & current check time \\
+\hline
+{\em max\+Check} & max check times \\
+\hline
+{\em heap} & heap set \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a9b441f4a10413e58fd6acf2890b52b68}\label{classCANDY_1_1KmeansTree_a9b441f4a10413e58fd6acf2890b52b68}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!getNeighbors@{getNeighbors}}
+\index{getNeighbors@{getNeighbors}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{getNeighbors()}{getNeighbors()}}
+{\footnotesize\ttfamily void CANDY\+::\+Kmeans\+Tree\+::get\+Neighbors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCANDY_1_1FLANN_1_1ResultSet}{FLANN\+::\+Result\+Set}} \&}]{result,  }\item[{float $\ast$}]{vec,  }\item[{int}]{max\+Check }\end{DoxyParamCaption})}
+
+
+
+called by knn\+Search, to search the vec within the true 
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & result set \\
+\hline
+{\em vec} & vector to be searched \\
+\hline
+{\em max\+Check} & max times to check \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a91e8d58564907a7bffa616d7e4fff44c}\label{classCANDY_1_1KmeansTree_a91e8d58564907a7bffa616d7e4fff44c}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!knnSearch@{knnSearch}}
+\index{knnSearch@{knnSearch}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{knnSearch()}{knnSearch()}}
+{\footnotesize\ttfamily int CANDY\+::\+Kmeans\+Tree\+::knn\+Search (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t $\ast$}]{idx,  }\item[{float $\ast$}]{distances,  }\item[{int64\+\_\+t}]{aknn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+perform knn-\/search on the kd\+Tree structure 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & query data to be searched \\
+\hline
+{\em idx} & result vectors indices \\
+\hline
+{\em distances} & result vectors\textquotesingle{} distances with query \\
+\hline
+{\em aknn} & number of approximate neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of results obtained 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1FlannComponent}{CANDY\+::\+Flann\+Component}}.
+
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a39613ae140336e12086581bcf51cfbe3}\label{classCANDY_1_1KmeansTree_a39613ae140336e12086581bcf51cfbe3}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Kmeans\+Tree\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1FlannComponent}{CANDY\+::\+Flann\+Component}}.
+
+\mbox{\Hypertarget{classCANDY_1_1KmeansTree_a317a6c3ce41ab36dd3597e82c803cfe4}\label{classCANDY_1_1KmeansTree_a317a6c3ce41ab36dd3597e82c803cfe4}} 
+\index{CANDY::KmeansTree@{CANDY::KmeansTree}!setParams@{setParams}}
+\index{setParams@{setParams}!CANDY::KmeansTree@{CANDY::KmeansTree}}
+\doxysubsubsection{\texorpdfstring{setParams()}{setParams()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Kmeans\+Tree\+::set\+Params (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCANDY_1_1FlannParam}{Flann\+Param}}}]{param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+set the params from auto-\/tuning 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & best param \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if success 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1FlannComponent_af42eea58d92c48b72ebc3d2709c4f258}{CANDY\+::\+Flann\+Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Flann\+Index/Kmeans.\+h\item 
+src/\+CANDY/\+Flann\+Index/Kmeans.\+cpp\end{DoxyCompactItemize}

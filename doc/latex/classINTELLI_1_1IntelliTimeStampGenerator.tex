@@ -1,0 +1,159 @@
+\hypertarget{classINTELLI_1_1IntelliTimeStampGenerator}{}\doxysection{INTELLI\+::Intelli\+Time\+Stamp\+Generator Class Reference}
+\label{classINTELLI_1_1IntelliTimeStampGenerator}\index{INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}}
+
+
+The basic class to generate time stamps.  
+
+
+
+
+{\ttfamily \#include $<$Utils/\+Intelli\+Time\+Stamp\+Generator.\+h$>$}
+
+
+
+Collaboration diagram for INTELLI\+::Intelli\+Time\+Stamp\+Generator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classINTELLI_1_1IntelliTimeStampGenerator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classINTELLI_1_1IntelliTimeStampGenerator_ae0823d197bd017cd93aba76bfd6b0a97}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em Set the GLOBAL config map related to this Timer\+Stamper. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \mbox{\hyperlink{group__INTELLI__UTIL__TIMESTAMP_ga080ddad4d3d659fb9dfea7c76435f34c}{INTELLI\+::\+Intelli\+Time\+Stamp\+Ptr}} $>$ \mbox{\hyperlink{classINTELLI_1_1IntelliTimeStampGenerator_acf86dff87f8eee751aec0dd5d00a2ecf}{get\+Time\+Stamps}} ()
+\begin{DoxyCompactList}\small\item\em get the vector of time stamps \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_a377d6e4689af6bec09976a551222ff37}\label{classINTELLI_1_1IntelliTimeStampGenerator_a377d6e4689af6bec09976a551222ff37}} 
+std\+::vector$<$ \mbox{\hyperlink{group__INTELLI__UTIL__TIMESTAMP_ga080ddad4d3d659fb9dfea7c76435f34c}{INTELLI\+::\+Intelli\+Time\+Stamp\+Ptr}} $>$ {\bfseries my\+Ts}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_ad7912a88633e15fbd746370fbc44c884}\label{classINTELLI_1_1IntelliTimeStampGenerator_ad7912a88633e15fbd746370fbc44c884}} 
+void \mbox{\hyperlink{classINTELLI_1_1IntelliTimeStampGenerator_ad7912a88633e15fbd746370fbc44c884}{generate\+Event}} ()
+\begin{DoxyCompactList}\small\item\em generate the vector of event \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classINTELLI_1_1IntelliTimeStampGenerator_ab5ef2163e24bd2c4feb361edbb752014}{generate\+Arrival}} ()
+\begin{DoxyCompactList}\small\item\em generate the vector of arrival \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_a2e1ab439d0459c3c4630b168fe2d75a2}\label{classINTELLI_1_1IntelliTimeStampGenerator_a2e1ab439d0459c3c4630b168fe2d75a2}} 
+void \mbox{\hyperlink{classINTELLI_1_1IntelliTimeStampGenerator_a2e1ab439d0459c3c4630b168fe2d75a2}{generate\+Final}} ()
+\begin{DoxyCompactList}\small\item\em generate the final result of s and r \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_ae9d15eb5bf65252e6774293d576226c6}\label{classINTELLI_1_1IntelliTimeStampGenerator_ae9d15eb5bf65252e6774293d576226c6}} 
+std\+::vector$<$ \mbox{\hyperlink{group__INTELLI__UTIL__TIMESTAMP_ga080ddad4d3d659fb9dfea7c76435f34c}{INTELLI\+::\+Intelli\+Time\+Stamp\+Ptr}} $>$ {\bfseries construct\+Time\+Stamps} (std\+::vector$<$ uint64\+\_\+t $>$ eventS, std\+::vector$<$ uint64\+\_\+t $>$ arrivalS)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_a7f4fc1065debed28f9a1bee1204753c6}\label{classINTELLI_1_1IntelliTimeStampGenerator_a7f4fc1065debed28f9a1bee1204753c6}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} {\bfseries cfg\+Global}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_a95078a9ad7de22a536757a096f02b747}\label{classINTELLI_1_1IntelliTimeStampGenerator_a95078a9ad7de22a536757a096f02b747}} 
+\mbox{\hyperlink{classINTELLI_1_1MicroDataSet}{INTELLI\+::\+Micro\+Data\+Set}} {\bfseries md}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_af71fff6d2f7a0a03409bda38c7768fc6}\label{classINTELLI_1_1IntelliTimeStampGenerator_af71fff6d2f7a0a03409bda38c7768fc6}} 
+int64\+\_\+t {\bfseries time\+Stamper\+\_\+zipf\+Event} = 0
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_aa9caea1b670a83b20dd2f2a43e043615}\label{classINTELLI_1_1IntelliTimeStampGenerator_aa9caea1b670a83b20dd2f2a43e043615}} 
+double {\bfseries time\+Stamper\+\_\+zipf\+Event\+Factor} = 0
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_ab904f67abbb15ca64edfe80e81cd8da9}\label{classINTELLI_1_1IntelliTimeStampGenerator_ab904f67abbb15ca64edfe80e81cd8da9}} 
+int64\+\_\+t {\bfseries test\+Size}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_a8d640f3b116eaaf7da77ec1a23b043d1}\label{classINTELLI_1_1IntelliTimeStampGenerator_a8d640f3b116eaaf7da77ec1a23b043d1}} 
+std\+::vector$<$ uint64\+\_\+t $>$ {\bfseries eventS}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_a7a2451b5059a390ed7440ff5cd655731}\label{classINTELLI_1_1IntelliTimeStampGenerator_a7a2451b5059a390ed7440ff5cd655731}} 
+std\+::vector$<$ uint64\+\_\+t $>$ {\bfseries arrivalS}
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_a0e9b72ecd5f74c6281e1f074625660bd}\label{classINTELLI_1_1IntelliTimeStampGenerator_a0e9b72ecd5f74c6281e1f074625660bd}} 
+int64\+\_\+t {\bfseries event\+Rate\+Tps} = 0
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_af347201c257ed2f2b7b8c92927d026d1}\label{classINTELLI_1_1IntelliTimeStampGenerator_af347201c257ed2f2b7b8c92927d026d1}} 
+int64\+\_\+t {\bfseries time\+Step\+Us} = 40
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_a2fb6ac46643cb5dc5c3db49cfbf2b9f6}\label{classINTELLI_1_1IntelliTimeStampGenerator_a2fb6ac46643cb5dc5c3db49cfbf2b9f6}} 
+int64\+\_\+t {\bfseries seed} = 114514
+\item 
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_a5b06dc6aaf93a9986ccb7a6b2c988669}\label{classINTELLI_1_1IntelliTimeStampGenerator_a5b06dc6aaf93a9986ccb7a6b2c988669}} 
+int64\+\_\+t {\bfseries static\+Data\+Set} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The basic class to generate time stamps. 
+
+\begin{DoxyNote}{Note}
+require configs\+:
+\begin{DoxyItemize}
+\item event\+Rate\+Tps I64 The real-\/world rate of spawn event, in Tuples/s
+\item streaming\+Tuple\+Cnt I64 The number of \char`\"{}streaming tuples\char`\"{}, can be set to the \#rows or \#cols of a matrix
+\item time\+Stamper\+\_\+zipf\+Event, I64, whether or not using the zipf for event rate, default 0
+\item time\+Stamper\+\_\+zipf\+Event\+Factor, Double, the zpf factor for event rate, default 0.\+1, should be 0$\sim$1
+\item static\+Data\+Set, I64, 0 , whether or not treat a dataset as static 
+\end{DoxyItemize}
+
+Default behavior
+\begin{DoxyItemize}
+\item create
+\item call \mbox{\hyperlink{classINTELLI_1_1IntelliTimeStampGenerator_ae0823d197bd017cd93aba76bfd6b0a97}{set\+Config}} to generate the timestamp under instructions
+\item call \mbox{\hyperlink{classINTELLI_1_1IntelliTimeStampGenerator_acf86dff87f8eee751aec0dd5d00a2ecf}{get\+Time\+Stamps}} to get the timestamp 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_ab5ef2163e24bd2c4feb361edbb752014}\label{classINTELLI_1_1IntelliTimeStampGenerator_ab5ef2163e24bd2c4feb361edbb752014}} 
+\index{INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}!generateArrival@{generateArrival}}
+\index{generateArrival@{generateArrival}!INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}}
+\doxysubsubsection{\texorpdfstring{generateArrival()}{generateArrival()}}
+{\footnotesize\ttfamily void INTELLI\+::\+Intelli\+Time\+Stamp\+Generator\+::generate\+Arrival (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+generate the vector of arrival 
+
+\begin{DoxyNote}{Note}
+As we do not consider OoO now, this is a dummy function 
+\end{DoxyNote}
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_acf86dff87f8eee751aec0dd5d00a2ecf}\label{classINTELLI_1_1IntelliTimeStampGenerator_acf86dff87f8eee751aec0dd5d00a2ecf}} 
+\index{INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}!getTimeStamps@{getTimeStamps}}
+\index{getTimeStamps@{getTimeStamps}!INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}}
+\doxysubsubsection{\texorpdfstring{getTimeStamps()}{getTimeStamps()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{group__INTELLI__UTIL__TIMESTAMP_ga080ddad4d3d659fb9dfea7c76435f34c}{INTELLI\+::\+Intelli\+Time\+Stamp\+Ptr}} $>$ INTELLI\+::\+Intelli\+Time\+Stamp\+Generator\+::get\+Time\+Stamps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+get the vector of time stamps 
+
+\begin{DoxyReturn}{Returns}
+the vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classINTELLI_1_1IntelliTimeStampGenerator_ae0823d197bd017cd93aba76bfd6b0a97}\label{classINTELLI_1_1IntelliTimeStampGenerator_ae0823d197bd017cd93aba76bfd6b0a97}} 
+\index{INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!INTELLI::IntelliTimeStampGenerator@{INTELLI::IntelliTimeStampGenerator}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool INTELLI\+::\+Intelli\+Time\+Stamp\+Generator\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the GLOBAL config map related to this Timer\+Stamper. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & The config map \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the config is successfully set 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Utils/\mbox{\hyperlink{IntelliTimeStampGenerator_8h}{Intelli\+Time\+Stamp\+Generator.\+h}}\item 
+src/\+Utils/Intelli\+Time\+Stamp\+Generator.\+cpp\end{DoxyCompactItemize}

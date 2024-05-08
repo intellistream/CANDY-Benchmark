@@ -1,0 +1,130 @@
+\hypertarget{classCANDY_1_1DataLoaderTable}{}\doxysection{CANDY\+::Data\+Loader\+Table Class Reference}
+\label{classCANDY_1_1DataLoaderTable}\index{CANDY::DataLoaderTable@{CANDY::DataLoaderTable}}
+
+
+The table class to index all Data loaders.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Loader/\+Data\+Loader\+Table.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::Data\+Loader\+Table\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classCANDY_1_1DataLoaderTable__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DataLoaderTable_ace5ad89ca531116b920044b70d2d9988}\label{classCANDY_1_1DataLoaderTable_ace5ad89ca531116b920044b70d2d9988}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1DataLoaderTable}{CANDY\+::\+Data\+Loader\+Table}} $>$ \mbox{\hyperlink{classCANDY_1_1DataLoaderTable_ace5ad89ca531116b920044b70d2d9988}{Data\+Loader\+Table\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1DataLoaderTable}{Data\+Loader\+Table}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCANDY_1_1DataLoaderTable_a27769fe39325155955fa1f880841f750}{Data\+Loader\+Table}} ()
+\begin{DoxyCompactList}\small\item\em The constructing function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1DataLoaderTable_a5b64ee18a3d1fc48411edd242fc35c3d}{register\+New\+Data\+Loader}} (\mbox{\hyperlink{AbstractDataLoader_8h_a19e97dc4d7416f34f73af3618c85aabb}{CANDY\+::\+Abstract\+Data\+Loader\+Ptr}} dnew, std\+::string tag)
+\begin{DoxyCompactList}\small\item\em To register a new loader. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{AbstractDataLoader_8h_a19e97dc4d7416f34f73af3618c85aabb}{CANDY\+::\+Abstract\+Data\+Loader\+Ptr}} \mbox{\hyperlink{classCANDY_1_1DataLoaderTable_ad48403fc38ec699f0d774c087836bbde}{find\+Data\+Loader}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em find a dataloader in the table according to its name \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DataLoaderTable_ae2b7c548e929e3b1f5a54a14c5ef2fcc}\label{classCANDY_1_1DataLoaderTable_ae2b7c548e929e3b1f5a54a14c5ef2fcc}} 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{AbstractDataLoader_8h_a19e97dc4d7416f34f73af3618c85aabb}{CANDY\+::\+Abstract\+Data\+Loader\+Ptr}} $>$ {\bfseries loader\+Map}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The table class to index all Data loaders. 
+
+\begin{DoxyNote}{Note}
+Default behavior
+\begin{DoxyItemize}
+\item create
+\item (optional) call \mbox{\hyperlink{classCANDY_1_1DataLoaderTable_a5b64ee18a3d1fc48411edd242fc35c3d}{register\+New\+Data\+Loader}} for new loader
+\item find a loader by \mbox{\hyperlink{classCANDY_1_1DataLoaderTable_ad48403fc38ec699f0d774c087836bbde}{find\+Data\+Loader}} using its tag 
+\end{DoxyItemize}
+
+default tags
+\begin{DoxyItemize}
+\item random \mbox{\hyperlink{classCANDY_1_1RandomDataLoader}{Random\+Data\+Loader}}
+\item fvecs \mbox{\hyperlink{classCANDY_1_1FVECSDataLoader}{FVECSData\+Loader}}
+\item hdf5 \mbox{\hyperlink{classCANDY_1_1HDF5DataLoader}{HDF5\+Data\+Loader}}
+\item zipf \mbox{\hyperlink{classCANDY_1_1ZipfDataLoader}{Zipf\+Data\+Loader}}
+\item exp\+Family \mbox{\hyperlink{classCANDY_1_1ExpFamilyDataLoader}{Exp\+Family\+Data\+Loader}}
+\item exp, the exponential distribution in \mbox{\hyperlink{classCANDY_1_1ExpFamilyDataLoader}{Exp\+Family\+Data\+Loader}}
+\item beta, the beta distribution in \mbox{\hyperlink{classCANDY_1_1ExpFamilyDataLoader}{Exp\+Family\+Data\+Loader}}
+\item gaussian, the beta distribution in \mbox{\hyperlink{classCANDY_1_1ExpFamilyDataLoader}{Exp\+Family\+Data\+Loader}}
+\item poisson, the poisson distribution in \mbox{\hyperlink{classCANDY_1_1ExpFamilyDataLoader}{Exp\+Family\+Data\+Loader}} 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCANDY_1_1DataLoaderTable_a27769fe39325155955fa1f880841f750}\label{classCANDY_1_1DataLoaderTable_a27769fe39325155955fa1f880841f750}} 
+\index{CANDY::DataLoaderTable@{CANDY::DataLoaderTable}!DataLoaderTable@{DataLoaderTable}}
+\index{DataLoaderTable@{DataLoaderTable}!CANDY::DataLoaderTable@{CANDY::DataLoaderTable}}
+\doxysubsubsection{\texorpdfstring{DataLoaderTable()}{DataLoaderTable()}}
+{\footnotesize\ttfamily CANDY\+::\+Data\+Loader\+Table\+::\+Data\+Loader\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The constructing function. 
+
+\begin{DoxyNote}{Note}
+If new Data\+Loader wants to be included by default, please revise the following in $\ast$.cpp
+
+revise me if you need new loader 
+\end{DoxyNote}
+more specific loader oin exp family
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1DataLoaderTable_ad48403fc38ec699f0d774c087836bbde}\label{classCANDY_1_1DataLoaderTable_ad48403fc38ec699f0d774c087836bbde}} 
+\index{CANDY::DataLoaderTable@{CANDY::DataLoaderTable}!findDataLoader@{findDataLoader}}
+\index{findDataLoader@{findDataLoader}!CANDY::DataLoaderTable@{CANDY::DataLoaderTable}}
+\doxysubsubsection{\texorpdfstring{findDataLoader()}{findDataLoader()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{AbstractDataLoader_8h_a19e97dc4d7416f34f73af3618c85aabb}{CANDY\+::\+Abstract\+Data\+Loader\+Ptr}} CANDY\+::\+Data\+Loader\+Table\+::find\+Data\+Loader (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+find a dataloader in the table according to its name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name\+Tag of loader \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Data\+Loader, nullptr if not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1DataLoaderTable_a5b64ee18a3d1fc48411edd242fc35c3d}\label{classCANDY_1_1DataLoaderTable_a5b64ee18a3d1fc48411edd242fc35c3d}} 
+\index{CANDY::DataLoaderTable@{CANDY::DataLoaderTable}!registerNewDataLoader@{registerNewDataLoader}}
+\index{registerNewDataLoader@{registerNewDataLoader}!CANDY::DataLoaderTable@{CANDY::DataLoaderTable}}
+\doxysubsubsection{\texorpdfstring{registerNewDataLoader()}{registerNewDataLoader()}}
+{\footnotesize\ttfamily void CANDY\+::\+Data\+Loader\+Table\+::register\+New\+Data\+Loader (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{AbstractDataLoader_8h_a19e97dc4d7416f34f73af3618c85aabb}{CANDY\+::\+Abstract\+Data\+Loader\+Ptr}}}]{dnew,  }\item[{std\+::string}]{tag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+To register a new loader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em onew} & The new operator \\
+\hline
+{\em tag} & THe name tag \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Data\+Loader/\mbox{\hyperlink{DataLoaderTable_8h}{Data\+Loader\+Table.\+h}}\item 
+src/\+Data\+Loader/Data\+Loader\+Table.\+cpp\end{DoxyCompactItemize}

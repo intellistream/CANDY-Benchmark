@@ -1,0 +1,4 @@
+<map id="CANDY::HDF5DataLoader" name="CANDY::HDF5DataLoader">
+<area shape="rect" id="node1" title="The class for loading *.hdf5 or *.h5 file, as specified in https://github.com/HDFGroup/hdf5." alt="" coords="14,80,199,107"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractDataLoader.html" title="The abstract class of data loader, parent for all loaders." alt="" coords="5,5,208,32"/>
+</map>

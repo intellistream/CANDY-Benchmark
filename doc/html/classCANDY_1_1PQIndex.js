@@ -1,0 +1,25 @@
+var classCANDY_1_1PQIndex =
+[
+    [ "PQIndex", "classCANDY_1_1PQIndex.html#a7b1cccf3bc29475e5da09a29d95da03e", null ],
+    [ "~PQIndex", "classCANDY_1_1PQIndex.html#aade47f78accb5d16cabfe9ec719f552e", null ],
+    [ "add", "classCANDY_1_1PQIndex.html#abfff7db11f90358f22b2dc425fc176d8", null ],
+    [ "deleteTensor", "classCANDY_1_1PQIndex.html#ae459a19ecb3e94508f48e2c06d82b515", null ],
+    [ "getTensorByIndex", "classCANDY_1_1PQIndex.html#a8ec69816f95c2633841256d378f3cb67", null ],
+    [ "insertTensor", "classCANDY_1_1PQIndex.html#a44bac43c454b1b28151cb696ab48acbd", null ],
+    [ "loadInitialTensor", "classCANDY_1_1PQIndex.html#a072c3fa03fbb0e7e6064bdbf61912bc1", null ],
+    [ "rawData", "classCANDY_1_1PQIndex.html#a936ea33dbc764dbeb81dd241c5555791", null ],
+    [ "reset", "classCANDY_1_1PQIndex.html#a19cecd5f5ad5af407d05f7866c788e43", null ],
+    [ "reviseTensor", "classCANDY_1_1PQIndex.html#a15d86a6b4b873b28ce693f088aa5a8bd", null ],
+    [ "searchIndex", "classCANDY_1_1PQIndex.html#a8b03154636917ddc1df4f29e2e2bd0a4", null ],
+    [ "searchTensor", "classCANDY_1_1PQIndex.html#a497ffde8db74ea3fb13efe62146dd154", null ],
+    [ "setConfig", "classCANDY_1_1PQIndex.html#a6eed9de267c4773a3d15f1df9fb94d57", null ],
+    [ "setFrozenLevel", "classCANDY_1_1PQIndex.html#a98718e6dc3ccd1fad01f36145fde0b98", null ],
+    [ "train", "classCANDY_1_1PQIndex.html#ab85fa9214769ad1d62b40f49c9f34989", null ],
+    [ "codes_", "classCANDY_1_1PQIndex.html#a3e9094905b9b9b4aa6f2548894f923b3", null ],
+    [ "codes_tensor_", "classCANDY_1_1PQIndex.html#aca9b09fd47b6d0035831962c3f3dcb4a", null ],
+    [ "frozenLevel", "classCANDY_1_1PQIndex.html#ae3a01ce8ab289df1d69e5a97380e3ea4", null ],
+    [ "is_trained", "classCANDY_1_1PQIndex.html#adcf634ba40b36bf6c8e93189e0981cfe", null ],
+    [ "npoints_", "classCANDY_1_1PQIndex.html#a8cb706f6614fc7d2bb60eb197c948a68", null ],
+    [ "pq_", "classCANDY_1_1PQIndex.html#a75517971dc13eefa744fe19597be798a", null ],
+    [ "vecDim_", "classCANDY_1_1PQIndex.html#a90da50f642e8b9a742ad742c30c9ef0c", null ]
+];

@@ -1,0 +1,6 @@
+<map id="CANDY::HNSW::MinimaxHeap" name="CANDY::HNSW::MinimaxHeap">
+<area shape="rect" id="node1" title="a tiny heap that is used during search" alt="" coords="95,124,309,151"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,159,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="183,5,221,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="246,5,369,32"/>
+</map>

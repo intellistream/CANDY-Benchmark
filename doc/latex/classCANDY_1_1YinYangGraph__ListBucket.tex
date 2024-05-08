@@ -1,0 +1,147 @@
+\hypertarget{classCANDY_1_1YinYangGraph__ListBucket}{}\doxysection{CANDY\+::Yin\+Yang\+Graph\+\_\+\+List\+Bucket Class Reference}
+\label{classCANDY_1_1YinYangGraph__ListBucket}\index{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}}
+
+
+a bucket of multiple \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{Yin\+Yang\+Graph\+\_\+\+List\+Cell}}  
+
+
+
+
+Collaboration diagram for CANDY\+::Yin\+Yang\+Graph\+\_\+\+List\+Bucket\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classCANDY_1_1YinYangGraph__ListBucket__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_a4d0c0195d5ff3746486530af4fc92962}\label{classCANDY_1_1YinYangGraph__ListBucket_a4d0c0195d5ff3746486530af4fc92962}} 
+int64\+\_\+t {\bfseries size} ()
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_a4d9bd0628f54a4bb1a368b456050558a}\label{classCANDY_1_1YinYangGraph__ListBucket_a4d9bd0628f54a4bb1a368b456050558a}} 
+void \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket_a4d9bd0628f54a4bb1a368b456050558a}{lock}} ()
+\begin{DoxyCompactList}\small\item\em lock this bucket \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_a2dda1f5906c78e54e8f1e7a4edff4d1c}\label{classCANDY_1_1YinYangGraph__ListBucket_a2dda1f5906c78e54e8f1e7a4edff4d1c}} 
+void \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket_a2dda1f5906c78e54e8f1e7a4edff4d1c}{unlock}} ()
+\begin{DoxyCompactList}\small\item\em unlock this bucket \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket_a8b6e8834cf1b2d19618f809464e08d33}{insert\+Tensor\+With\+Encode}} (torch\+::\+Tensor \&t, int64\+\_\+t max\+Neighbor\+Cnt, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} \&yin0\+Map, std\+::vector$<$ \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} $>$ \&vertex\+Map\+Ge1\+Vec, bool is\+Concurrent=false)
+\begin{DoxyCompactList}\small\item\em insert a tensor with its encode \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket_ad1f4d7745ba4a8710f1bd392fb0081cd}{delete\+Tensor\+With\+Encode}} (torch\+::\+Tensor \&t, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, bool is\+Concurrent=false)
+\begin{DoxyCompactList}\small\item\em delete a tensor with its encode \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket_af37978f4fe66d75c0e31d1f40d24ed6c}{delete\+Tensor}} (torch\+::\+Tensor \&t, bool is\+Concurrent=false)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListBucket_a67370120882008ded5cfad6956ccfb1b}{get\+Vertex\+With\+Encode}} (std\+::vector$<$ uint8\+\_\+t $>$ \&encode)
+\begin{DoxyCompactList}\small\item\em to get the vertex which is linked to an encode, first try exact match, then just return the first one \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_ae5418d82ec7370708e1f81c366269285}\label{classCANDY_1_1YinYangGraph__ListBucket_ae5418d82ec7370708e1f81c366269285}} 
+int64\+\_\+t {\bfseries tensors} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_ae8143562bc191c83a92ca0d5aa91bfe7}\label{classCANDY_1_1YinYangGraph__ListBucket_ae8143562bc191c83a92ca0d5aa91bfe7}} 
+std\+::list$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga1716fbfff4ef4ea65641d1c1a22c11a5}{Yin\+Yang\+Graph\+\_\+\+List\+Cell\+Ptr}} $>$ {\bfseries cell\+Ptrs}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_a81f3021c862ed1bdc65a761a8ac25fd0}\label{classCANDY_1_1YinYangGraph__ListBucket_a81f3021c862ed1bdc65a761a8ac25fd0}} 
+std\+::mutex {\bfseries m\+\_\+mut}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+a bucket of multiple \mbox{\hyperlink{classCANDY_1_1YinYangGraph__ListCell}{Yin\+Yang\+Graph\+\_\+\+List\+Cell}} 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_af37978f4fe66d75c0e31d1f40d24ed6c}\label{classCANDY_1_1YinYangGraph__ListBucket_af37978f4fe66d75c0e31d1f40d24ed6c}} 
+\index{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{bool}]{is\+Concurrent = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+delete a tensor 
+
+\begin{DoxyNote}{Note}
+will check the equal condition by torch\+::equal 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em is\+Concurrent} & whether this process is concurrently executed
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the tensor is really deleted 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_ad1f4d7745ba4a8710f1bd392fb0081cd}\label{classCANDY_1_1YinYangGraph__ListBucket_ad1f4d7745ba4a8710f1bd392fb0081cd}} 
+\index{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}!deleteTensorWithEncode@{deleteTensorWithEncode}}
+\index{deleteTensorWithEncode@{deleteTensorWithEncode}!CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}}
+\doxysubsubsection{\texorpdfstring{deleteTensorWithEncode()}{deleteTensorWithEncode()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket\+::delete\+Tensor\+With\+Encode (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{encode,  }\item[{bool}]{is\+Concurrent = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+delete a tensor with its encode 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em encode} & the corresponding encode \\
+\hline
+{\em is\+Concurrent} & whether this process is concurrently executed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the tensor is really deleted 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_a67370120882008ded5cfad6956ccfb1b}\label{classCANDY_1_1YinYangGraph__ListBucket_a67370120882008ded5cfad6956ccfb1b}} 
+\index{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}!getVertexWithEncode@{getVertexWithEncode}}
+\index{getVertexWithEncode@{getVertexWithEncode}!CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}}
+\doxysubsubsection{\texorpdfstring{getVertexWithEncode()}{getVertexWithEncode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae104880290df351dedaf4ae38472c32b}{Yin\+Yang\+Vertex\+Ptr}} CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket\+::get\+Vertex\+With\+Encode (\begin{DoxyParamCaption}\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{encode }\end{DoxyParamCaption})}
+
+
+
+to get the vertex which is linked to an encode, first try exact match, then just return the first one 
+
+\begin{DoxyReturn}{Returns}
+the vertex 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraph__ListBucket_a8b6e8834cf1b2d19618f809464e08d33}\label{classCANDY_1_1YinYangGraph__ListBucket_a8b6e8834cf1b2d19618f809464e08d33}} 
+\index{CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}!insertTensorWithEncode@{insertTensorWithEncode}}
+\index{insertTensorWithEncode@{insertTensorWithEncode}!CANDY::YinYangGraph\_ListBucket@{CANDY::YinYangGraph\_ListBucket}}
+\doxysubsubsection{\texorpdfstring{insertTensorWithEncode()}{insertTensorWithEncode()}}
+{\footnotesize\ttfamily void CANDY\+::\+Yin\+Yang\+Graph\+\_\+\+List\+Bucket\+::insert\+Tensor\+With\+Encode (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{max\+Neighbor\+Cnt,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{encode,  }\item[{\mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{CANDY\+::\+Yin\+Yang\+Vertex\+Map}} \&}]{yin0\+Map,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classCANDY_1_1YinYangVertexMap}{Yin\+Yang\+Vertex\+Map}} $>$ \&}]{vertex\+Map\+Ge1\+Vec,  }\item[{bool}]{is\+Concurrent = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+insert a tensor with its encode 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em max\+Neighbor\+Cnt} & \\
+\hline
+{\em encode} & the corresponding encode \\
+\hline
+{\em yin0\+Map} & the map of yin vertex at level 0 \\
+\hline
+{\em vertex\+Map\+Ge1\+Vec} & the vector of vertex\+Map in all level greater or equal to 1 \\
+\hline
+{\em is\+Concurrent} & whether this process is concurrently executed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Yin\+Yang\+Graph\+Index/\mbox{\hyperlink{YinYangGraph_8h}{Yin\+Yang\+Graph.\+h}}\item 
+src/\+CANDY/\+Yin\+Yang\+Graph\+Index/Yin\+Yang\+Graph.\+cpp\end{DoxyCompactItemize}

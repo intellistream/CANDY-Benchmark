@@ -1,0 +1,265 @@
+\hypertarget{classCANDY_1_1IVFTensorEncodingList}{}\doxysection{CANDY\+::IVFTensor\+Encoding\+List Class Reference}
+\label{classCANDY_1_1IVFTensorEncodingList}\index{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}}
+
+
+The inverted file (IVF) list to organize tensor and its encodings.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Online\+PQIndex/\+IVFTensor\+Encoding\+List.\+h$>$}
+
+
+
+Collaboration diagram for CANDY\+::IVFTensor\+Encoding\+List\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1IVFTensorEncodingList__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList_a854798601d76c50699896240dffa6a09}{init}} (size\+\_\+t bkts, size\+\_\+t \+\_\+encode\+Len)
+\begin{DoxyCompactList}\small\item\em init this IVFList \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList_a4a8ffbd4cd6a9529b89a0b404d3bbd96}{insert\+Tensor\+With\+Encode}} (torch\+::\+Tensor \&t, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, uint64\+\_\+t bkt\+Idx, bool is\+Concurrent=false)
+\begin{DoxyCompactList}\small\item\em insert a tensor with its encode \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList_a92dafadfcecf6d012460237030d24d9a}{delete\+Tensor\+With\+Encode}} (torch\+::\+Tensor \&t, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, uint64\+\_\+t bkt\+Idx, bool is\+Concurrent=false)
+\begin{DoxyCompactList}\small\item\em delete a tensor with its encode \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList_a79d273c1294e109f0ed0ed7918f74776}{get\+Minimum\+Num\+Of\+Tensors}} (torch\+::\+Tensor \&t, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, uint64\+\_\+t bkt\+Idx, int64\+\_\+t minimum\+Num)
+\begin{DoxyCompactList}\small\item\em get minimum number of tensors that are candidate to query t \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList_ac57d759f8188f1edcabb5541a7feb228}{get\+Minimum\+Num\+Of\+Tensors\+Hamming}} (torch\+::\+Tensor \&t, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, uint64\+\_\+t bkt\+Idx, int64\+\_\+t minimum\+Num)
+\begin{DoxyCompactList}\small\item\em get minimum number of tensors that are candidate to query t, using hamming distance \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList_a79005e2c50aed1cd435cef0bc6df2846}{get\+Minimum\+Num\+Of\+Tensors\+Inside\+Bucket}} (torch\+::\+Tensor \&t, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, uint64\+\_\+t bkt\+Idx, int64\+\_\+t minimum\+Num)
+\begin{DoxyCompactList}\small\item\em get minimum number of tensors that are candidate to query t, must inside a bucket \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1IVFTensorEncodingList_a4188159290de792c601da026d6256f99}{get\+Minimum\+Num\+Of\+Tensors\+Inside\+Bucket\+Hamming}} (torch\+::\+Tensor \&t, std\+::vector$<$ uint8\+\_\+t $>$ \&encode, uint64\+\_\+t bkt\+Idx, int64\+\_\+t minimum\+Num)
+\begin{DoxyCompactList}\small\item\em get minimum number of tensors that are candidate to query t, must inside a bucket \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a44bf03e2dd897f203656533271429d00}\label{classCANDY_1_1IVFTensorEncodingList_a44bf03e2dd897f203656533271429d00}} 
+bool {\bfseries is\+Concurrent} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a6cfb309b251cf8d227acd02cddee2ac2}\label{classCANDY_1_1IVFTensorEncodingList_a6cfb309b251cf8d227acd02cddee2ac2}} 
+static uint8\+\_\+t {\bfseries get\+Left\+Idx\+U8} (uint8\+\_\+t idx, uint8\+\_\+t left\+Offset, bool $\ast$reached\+Left\+Most)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_aed71d32169da5a3740f0783a6046e329}\label{classCANDY_1_1IVFTensorEncodingList_aed71d32169da5a3740f0783a6046e329}} 
+static uint8\+\_\+t {\bfseries get\+Right\+Idx\+U8} (uint8\+\_\+t idx, uint8\+\_\+t right\+Offset, bool $\ast$reached\+Right\+Most)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a8aeece5911f647100587e491d7ad6b76}\label{classCANDY_1_1IVFTensorEncodingList_a8aeece5911f647100587e491d7ad6b76}} 
+std\+::vector$<$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga95185c71cb0ade1bb1c97e062992680c}{CANDY\+::\+IVFList\+Bucket\+Ptr}} $>$ {\bfseries bucket\+Ptrs}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a6b1d53beb7ca7d8f3852a97e2d88e73e}\label{classCANDY_1_1IVFTensorEncodingList_a6b1d53beb7ca7d8f3852a97e2d88e73e}} 
+size\+\_\+t {\bfseries encode\+Len} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The inverted file (IVF) list to organize tensor and its encodings. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a92dafadfcecf6d012460237030d24d9a}\label{classCANDY_1_1IVFTensorEncodingList_a92dafadfcecf6d012460237030d24d9a}} 
+\index{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!deleteTensorWithEncode@{deleteTensorWithEncode}}
+\index{deleteTensorWithEncode@{deleteTensorWithEncode}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}}
+\doxysubsubsection{\texorpdfstring{deleteTensorWithEncode()}{deleteTensorWithEncode()}}
+{\footnotesize\ttfamily bool CANDY\+::\+IVFTensor\+Encoding\+List\+::delete\+Tensor\+With\+Encode (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{encode,  }\item[{uint64\+\_\+t}]{bkt\+Idx,  }\item[{bool}]{is\+Concurrent = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+delete a tensor with its encode 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em encode} & the corresponding encode \\
+\hline
+{\em bkt\+Idx} & the index number of bucket \\
+\hline
+{\em is\+Concurrent} & whether this process is concurrently executed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the tensor is really deleted 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a79d273c1294e109f0ed0ed7918f74776}\label{classCANDY_1_1IVFTensorEncodingList_a79d273c1294e109f0ed0ed7918f74776}} 
+\index{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!getMinimumNumOfTensors@{getMinimumNumOfTensors}}
+\index{getMinimumNumOfTensors@{getMinimumNumOfTensors}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}}
+\doxysubsubsection{\texorpdfstring{getMinimumNumOfTensors()}{getMinimumNumOfTensors()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+IVFTensor\+Encoding\+List\+::get\+Minimum\+Num\+Of\+Tensors (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{encode,  }\item[{uint64\+\_\+t}]{bkt\+Idx,  }\item[{int64\+\_\+t}]{minimum\+Num }\end{DoxyParamCaption})}
+
+
+
+get minimum number of tensors that are candidate to query t 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em encode} & the corresponding encode \\
+\hline
+{\em bkt\+Idx} & the index number of bucket \\
+\hline
+{\em is\+Concurrent} & whether this process is concurrently executed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a 2-\/D tensor contain all, torch\+::zeros(\{minimum\+Num,D\}) if got nothing 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item test whether the buckt\mbox{[}idx\mbox{]} has enough tensors,
+\item if not, try to expand
+\end{DoxyEnumerate}\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_ac57d759f8188f1edcabb5541a7feb228}\label{classCANDY_1_1IVFTensorEncodingList_ac57d759f8188f1edcabb5541a7feb228}} 
+\index{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!getMinimumNumOfTensorsHamming@{getMinimumNumOfTensorsHamming}}
+\index{getMinimumNumOfTensorsHamming@{getMinimumNumOfTensorsHamming}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}}
+\doxysubsubsection{\texorpdfstring{getMinimumNumOfTensorsHamming()}{getMinimumNumOfTensorsHamming()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+IVFTensor\+Encoding\+List\+::get\+Minimum\+Num\+Of\+Tensors\+Hamming (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{encode,  }\item[{uint64\+\_\+t}]{bkt\+Idx,  }\item[{int64\+\_\+t}]{minimum\+Num }\end{DoxyParamCaption})}
+
+
+
+get minimum number of tensors that are candidate to query t, using hamming distance 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em encode} & the corresponding encode \\
+\hline
+{\em bkt\+Idx} & the index number of bucket \\
+\hline
+{\em is\+Concurrent} & whether this process is concurrently executed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a 2-\/D tensor contain all, torch\+::zeros(\{minimum\+Num,D\}) if got nothing 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item test whether the buckt\mbox{[}idx\mbox{]} has enough tensors,
+\item if not, try to expand
+\end{DoxyEnumerate}\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a79005e2c50aed1cd435cef0bc6df2846}\label{classCANDY_1_1IVFTensorEncodingList_a79005e2c50aed1cd435cef0bc6df2846}} 
+\index{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!getMinimumNumOfTensorsInsideBucket@{getMinimumNumOfTensorsInsideBucket}}
+\index{getMinimumNumOfTensorsInsideBucket@{getMinimumNumOfTensorsInsideBucket}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}}
+\doxysubsubsection{\texorpdfstring{getMinimumNumOfTensorsInsideBucket()}{getMinimumNumOfTensorsInsideBucket()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+IVFTensor\+Encoding\+List\+::get\+Minimum\+Num\+Of\+Tensors\+Inside\+Bucket (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{encode,  }\item[{uint64\+\_\+t}]{bkt\+Idx,  }\item[{int64\+\_\+t}]{minimum\+Num }\end{DoxyParamCaption})}
+
+
+
+get minimum number of tensors that are candidate to query t, must inside a bucket 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em encode} & the corresponding encode \\
+\hline
+{\em bkt\+Idx} & the index number of bucket \\
+\hline
+{\em is\+Concurrent} & whether this process is concurrently executed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a 2-\/D tensor contain all, torch\+::zeros(\{minimum\+Num,D\}) if got nothing 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]improve the efficiency of this function in travsing lists! \end{DoxyRefDesc}
+
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item get the exact encode
+\end{DoxyEnumerate}
+
+probe the i th byte with left and right expand
+
+left
+
+right\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a4188159290de792c601da026d6256f99}\label{classCANDY_1_1IVFTensorEncodingList_a4188159290de792c601da026d6256f99}} 
+\index{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!getMinimumNumOfTensorsInsideBucketHamming@{getMinimumNumOfTensorsInsideBucketHamming}}
+\index{getMinimumNumOfTensorsInsideBucketHamming@{getMinimumNumOfTensorsInsideBucketHamming}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}}
+\doxysubsubsection{\texorpdfstring{getMinimumNumOfTensorsInsideBucketHamming()}{getMinimumNumOfTensorsInsideBucketHamming()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+IVFTensor\+Encoding\+List\+::get\+Minimum\+Num\+Of\+Tensors\+Inside\+Bucket\+Hamming (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{encode,  }\item[{uint64\+\_\+t}]{bkt\+Idx,  }\item[{int64\+\_\+t}]{minimum\+Num }\end{DoxyParamCaption})}
+
+
+
+get minimum number of tensors that are candidate to query t, must inside a bucket 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em encode} & the corresponding encode \\
+\hline
+{\em bkt\+Idx} & the index number of bucket \\
+\hline
+{\em is\+Concurrent} & whether this process is concurrently executed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a 2-\/D tensor contain all, torch\+::zeros(\{minimum\+Num,D\}) if got nothing 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000005}{Todo}}]improve the efficiency of this function in travsing lists! \end{DoxyRefDesc}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a854798601d76c50699896240dffa6a09}\label{classCANDY_1_1IVFTensorEncodingList_a854798601d76c50699896240dffa6a09}} 
+\index{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!init@{init}}
+\index{init@{init}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void CANDY\+::\+IVFTensor\+Encoding\+List\+::init (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{bkts,  }\item[{size\+\_\+t}]{\+\_\+encode\+Len }\end{DoxyParamCaption})}
+
+
+
+init this IVFList 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bkts} & the number of buckets \\
+\hline
+{\em \+\_\+encode\+Len} & the length of tensors\textquotesingle{} encoding \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1IVFTensorEncodingList_a4a8ffbd4cd6a9529b89a0b404d3bbd96}\label{classCANDY_1_1IVFTensorEncodingList_a4a8ffbd4cd6a9529b89a0b404d3bbd96}} 
+\index{CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}!insertTensorWithEncode@{insertTensorWithEncode}}
+\index{insertTensorWithEncode@{insertTensorWithEncode}!CANDY::IVFTensorEncodingList@{CANDY::IVFTensorEncodingList}}
+\doxysubsubsection{\texorpdfstring{insertTensorWithEncode()}{insertTensorWithEncode()}}
+{\footnotesize\ttfamily void CANDY\+::\+IVFTensor\+Encoding\+List\+::insert\+Tensor\+With\+Encode (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{encode,  }\item[{uint64\+\_\+t}]{bkt\+Idx,  }\item[{bool}]{is\+Concurrent = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+insert a tensor with its encode 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor \\
+\hline
+{\em encode} & the corresponding encode \\
+\hline
+{\em bkt\+Idx} & the index number of bucket \\
+\hline
+{\em is\+Concurrent} & whether this process is concurrently executed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+Online\+PQIndex/\mbox{\hyperlink{IVFTensorEncodingList_8h}{IVFTensor\+Encoding\+List.\+h}}\item 
+src/\+CANDY/\+Online\+PQIndex/IVFTensor\+Encoding\+List.\+cpp\end{DoxyCompactItemize}

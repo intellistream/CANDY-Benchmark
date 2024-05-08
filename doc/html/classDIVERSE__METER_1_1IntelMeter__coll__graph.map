@@ -1,0 +1,6 @@
+<map id="DIVERSE_METER::IntelMeter" name="DIVERSE_METER::IntelMeter">
+<area shape="rect" id="node1" title="the entity of intel msr&#45;based power meter, may be not support for some newer architectures" alt="" coords="18,171,223,197"/>
+<area shape="rect" id="node2" href="$classDIVERSE__METER_1_1AbstractMeter.html" title="The abstract class for all meters." alt="" coords="5,95,236,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="11,5,78,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="103,5,293,32"/>
+</map>

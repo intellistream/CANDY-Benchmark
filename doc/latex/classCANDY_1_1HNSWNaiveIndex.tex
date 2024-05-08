@@ -1,0 +1,230 @@
+\hypertarget{classCANDY_1_1HNSWNaiveIndex}{}\doxysection{CANDY\+::HNSWNaive\+Index Class Reference}
+\label{classCANDY_1_1HNSWNaiveIndex}\index{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}}
+
+
+The class of a \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} index approach, store the data in each vertex.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+HNSWNaive\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::HNSWNaive\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classCANDY_1_1HNSWNaiveIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::HNSWNaive\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1HNSWNaiveIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a9968f9fb15a62b25f4c003bf812861ad}\label{classCANDY_1_1HNSWNaiveIndex_a9968f9fb15a62b25f4c003bf812861ad}} 
+typedef int64\+\_\+t {\bfseries opt\+\_\+mode\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_a5c5570dab02dc91c4f3cd67a628e4d37}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_ad52db419597c48cd5aeb78a419bd0506}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_a207097f85e75a0da3f5b6744fe997c39}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_a94ab66578e61b3d5bf97c34bbce59b6a}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_a45ae9145af990d53065a2701f7bbcae5}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a0084d32ef9b9667a0c77dac149eed9ac}\label{classCANDY_1_1HNSWNaiveIndex_a0084d32ef9b9667a0c77dac149eed9ac}} 
+\mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} {\bfseries hnsw}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a97886e22e3b456e76dddbccf16d992b8}\label{classCANDY_1_1HNSWNaiveIndex_a97886e22e3b456e76dddbccf16d992b8}} 
+bool {\bfseries is\+\_\+\+NSW}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a82f7bd3c4ec57875a669f656104c7e7f}\label{classCANDY_1_1HNSWNaiveIndex_a82f7bd3c4ec57875a669f656104c7e7f}} 
+bool {\bfseries is\+\_\+local\+\_\+lvq} = true
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_aa2735009cdadcb360e65b1c4e4dde2cc}\label{classCANDY_1_1HNSWNaiveIndex_aa2735009cdadcb360e65b1c4e4dde2cc}} 
+\mbox{\hyperlink{classCANDY_1_1FlatIndex}{Flat\+Index}} $\ast$ {\bfseries storage} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a7ad7351b6bc27fddeeaf33f028a67c29}\label{classCANDY_1_1HNSWNaiveIndex_a7ad7351b6bc27fddeeaf33f028a67c29}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} {\bfseries my\+Cfg} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a3b1321d0bc27cfc8ccee8f67e4965e5c}\label{classCANDY_1_1HNSWNaiveIndex_a3b1321d0bc27cfc8ccee8f67e4965e5c}} 
+opt\+\_\+mode\+\_\+t {\bfseries opt\+\_\+mode\+\_\+} = OPT\+\_\+\+VANILLA
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_ae927762a85ecf1eaec7264394fb1ef0c}\label{classCANDY_1_1HNSWNaiveIndex_ae927762a85ecf1eaec7264394fb1ef0c}} 
+faiss\+::\+Metric\+Type {\bfseries faiss\+Metric} = faiss\+::\+METRIC\+\_\+\+L2
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a914968d7f00ae0325af200f98a639c12}\label{classCANDY_1_1HNSWNaiveIndex_a914968d7f00ae0325af200f98a639c12}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a872419f7b18cf13e90cfa68912623162}\label{classCANDY_1_1HNSWNaiveIndex_a872419f7b18cf13e90cfa68912623162}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_a872419f7b18cf13e90cfa68912623162}{M\+\_\+}} = 32
+\begin{DoxyCompactList}\small\item\em Number of neighbors in \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} structure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_acd208ae244db421fb0fae66923cf625d}\label{classCANDY_1_1HNSWNaiveIndex_acd208ae244db421fb0fae66923cf625d}} 
+int64\+\_\+t \mbox{\hyperlink{classCANDY_1_1HNSWNaiveIndex_acd208ae244db421fb0fae66923cf625d}{ntotal}} = 0
+\begin{DoxyCompactList}\small\item\em Number of all vectors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a4c7eb5b892de0e0ee8e36bfb0a8578de}\label{classCANDY_1_1HNSWNaiveIndex_a4c7eb5b892de0e0ee8e36bfb0a8578de}} 
+int64\+\_\+t {\bfseries ad\+Sampling\+\_\+step} = 32
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a61e2a39292f965b7ea195bcdaf2368f1}\label{classCANDY_1_1HNSWNaiveIndex_a61e2a39292f965b7ea195bcdaf2368f1}} 
+float {\bfseries ad\+Sampling\+\_\+epsilon0} = 1.\+0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+The class of a \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} index approach, store the data in each vertex. 
+
+\begin{DoxyNote}{Note}
+currently single thread 
+
+config parameters
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item max\+Connection, number of maximum neighbor connection at each level, default 32, I64
+\item is\+\_\+\+NSW, whether initialized as an NSW index, default 0 (init as \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}}), I64 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a207097f85e75a0da3f5b6744fe997c39}\label{classCANDY_1_1HNSWNaiveIndex_a207097f85e75a0da3f5b6744fe997c39}} 
+\index{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+HNSWNaive\+Index\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, recommend single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_ad52db419597c48cd5aeb78a419bd0506}\label{classCANDY_1_1HNSWNaiveIndex_ad52db419597c48cd5aeb78a419bd0506}} 
+\index{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+HNSWNaive\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, accept multiple rows \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a94ab66578e61b3d5bf97c34bbce59b6a}\label{classCANDY_1_1HNSWNaiveIndex_a94ab66578e61b3d5bf97c34bbce59b6a}} 
+\index{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+HNSWNaive\+Index\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised, recommend single row \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a45ae9145af990d53065a2701f7bbcae5}\label{classCANDY_1_1HNSWNaiveIndex_a45ae9145af990d53065a2701f7bbcae5}} 
+\index{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+HNSWNaive\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1HNSWNaiveIndex_a5c5570dab02dc91c4f3cd67a628e4d37}\label{classCANDY_1_1HNSWNaiveIndex_a5c5570dab02dc91c4f3cd67a628e4d37}} 
+\index{CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::HNSWNaiveIndex@{CANDY::HNSWNaiveIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+HNSWNaive\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{HNSWNaiveIndex_8h}{HNSWNaive\+Index.\+h}}\item 
+src/\+CANDY/HNSWNaive\+Index.\+cpp\end{DoxyCompactItemize}

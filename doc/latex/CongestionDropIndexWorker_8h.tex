@@ -1,0 +1,43 @@
+\hypertarget{CongestionDropIndexWorker_8h}{}\doxysection{include/\+CANDY/\+Congestion\+Drop\+Index/\+Congestion\+Drop\+Index\+Worker.h File Reference}
+\label{CongestionDropIndexWorker_8h}\index{include/CANDY/CongestionDropIndex/CongestionDropIndexWorker.h@{include/CANDY/CongestionDropIndex/CongestionDropIndexWorker.h}}
+{\ttfamily \#include $<$Utils/\+Abstract\+C20\+Thread.\+hpp$>$}\newline
+{\ttfamily \#include $<$Utils/\+Config\+Map.\+hpp$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$Utils/\+Intelli\+Tensor\+OP.\+hpp$>$}\newline
+{\ttfamily \#include $<$CANDY/\+Index\+Table.\+h$>$}\newline
+{\ttfamily \#include $<$Utils/\+SPSCQueue.\+hpp$>$}\newline
+{\ttfamily \#include $<$CANDY/\+Abstract\+Index.\+h$>$}\newline
+{\ttfamily \#include $<$faiss/\+Index\+Flat.\+h$>$}\newline
+{\ttfamily \#include $<$CANDY/\+Parallel\+Partition\+Index/\+Parallel\+Index\+Worker.\+h$>$}\newline
+Include dependency graph for Congestion\+Drop\+Index\+Worker.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CongestionDropIndexWorker_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CongestionDropIndexWorker_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1CongestionDropIndexWorker}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}}
+\begin{DoxyCompactList}\small\item\em A worker class to container bottom indexings, will just drop new element if congestion occurs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__CANDY__lib__container_ga5071524419a59ce5a40112f43b1bcc5a}{new\+Congestion\+Drop\+Index\+Worker}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1CongestionDropIndexWorker}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Congestion\+Drop\+Index\+Worker shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1CongestionDropIndexWorker}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}} $>$ \mbox{\hyperlink{group__CANDY__lib__container_gac7a0fbf9d0912a1261b36b8dfee2e4d6}{CANDY\+::\+Congestion\+Drop\+Index\+Worker\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1CongestionDropIndexWorker}{Congestion\+Drop\+Index\+Worker}}. \end{DoxyCompactList}\end{DoxyCompactItemize}

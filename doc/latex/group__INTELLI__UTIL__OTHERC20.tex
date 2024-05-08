@@ -1,0 +1,51 @@
+\hypertarget{group__INTELLI__UTIL__OTHERC20}{}\doxysection{Other common class or package under C++20 standard}
+\label{group__INTELLI__UTIL__OTHERC20}\index{Other common class or package under C++20 standard@{Other common class or package under C++20 standard}}
+Collaboration diagram for Other common class or package under C++20 standard\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{group__INTELLI__UTIL__OTHERC20}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread}{INTELLI\+::\+Abstract\+C20\+Thread}}
+\begin{DoxyCompactList}\small\item\em The base class and abstraction of C++20 thread, and it can be derived into other threads. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classINTELLI_1_1C20Buffer}{INTELLI\+::\+C20\+Buffer$<$ data\+Type $>$}}
+\item 
+class \mbox{\hyperlink{classINTELLI_1_1MemoryTracker}{INTELLI\+::\+Memory\+Tracker}}
+\begin{DoxyCompactList}\small\item\em The top entity to trace current, average and maximum memory foot print. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classINTELLI_1_1ThreadPerf}{INTELLI\+::\+Thread\+Perf}}
+\begin{DoxyCompactList}\small\item\em The top entity to provide perf traces, please use this class only UNLESS you know what you are doing. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI}{INTELLI\+::\+Thread\+Perf\+PAPI}}
+\begin{DoxyCompactList}\small\item\em The top entity to provide perf traces by using PAPI lib. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__OTHERC20_ga55652c588fa020f613034778ddd6b3e4}\label{group__INTELLI__UTIL__OTHERC20_ga55652c588fa020f613034778ddd6b3e4}} 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga55652c588fa020f613034778ddd6b3e4}{new\+Abstract\+C20\+Thread}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread}{INTELLI\+::\+Abstract\+C20\+Thread}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga55652c588fa020f613034778ddd6b3e4}{new\+Abstract\+C20\+Thread}} under shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__OTHERC20_ga1a3a0cb66143730c7ebd8daeb96cb0a7}\label{group__INTELLI__UTIL__OTHERC20_ga1a3a0cb66143730c7ebd8daeb96cb0a7}} 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga1a3a0cb66143730c7ebd8daeb96cb0a7}{new\+Thread\+Perf}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classINTELLI_1_1ThreadPerf}{INTELLI\+::\+Thread\+Perf}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Thread\+Perf under shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__OTHERC20_ga9e785728701a35a78305ec1bc9ce5713}\label{group__INTELLI__UTIL__OTHERC20_ga9e785728701a35a78305ec1bc9ce5713}} 
+\#define \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga9e785728701a35a78305ec1bc9ce5713}{new\+Thread\+Perf\+PAPI}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI}{INTELLI\+::\+Thread\+Perf\+PAPI}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Thread\+Perf\+PAPI under shared pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__OTHERC20_ga2fce1874a8e9e545c3fb798a919585fc}\label{group__INTELLI__UTIL__OTHERC20_ga2fce1874a8e9e545c3fb798a919585fc}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread}{Abstract\+C20\+Thread}} $>$ \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga2fce1874a8e9e545c3fb798a919585fc}{INTELLI\+::\+Abstract\+C20\+Thread\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classINTELLI_1_1AbstractC20Thread}{Abstract\+C20\+Thread}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__OTHERC20_ga14eade4ba067ff9e597662b70136f66a}\label{group__INTELLI__UTIL__OTHERC20_ga14eade4ba067ff9e597662b70136f66a}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1ThreadPerf}{INTELLI\+::\+Thread\+Perf}} $>$ \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_ga14eade4ba067ff9e597662b70136f66a}{INTELLI\+::\+Thread\+Perf\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classINTELLI_1_1ThreadPerf}{Thread\+Perf}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__INTELLI__UTIL__OTHERC20_gaf0705f5d501071cd5420a60e080bfc03}\label{group__INTELLI__UTIL__OTHERC20_gaf0705f5d501071cd5420a60e080bfc03}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI}{INTELLI\+::\+Thread\+Perf\+PAPI}} $>$ \mbox{\hyperlink{group__INTELLI__UTIL__OTHERC20_gaf0705f5d501071cd5420a60e080bfc03}{INTELLI\+::\+Thread\+Perf\+PAPIPtr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classINTELLI_1_1ThreadPerfPAPI}{Thread\+Perf\+PAPI}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This package covers some common C++20 new features, such as std\+::thread to ease the programming 

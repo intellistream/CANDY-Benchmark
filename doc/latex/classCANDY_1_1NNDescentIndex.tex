@@ -1,0 +1,416 @@
+\hypertarget{classCANDY_1_1NNDescentIndex}{}\doxysection{CANDY\+::NNDescent\+Index Class Reference}
+\label{classCANDY_1_1NNDescentIndex}\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+
+
+An index whose core algorithm is only used for offline construction, but based on its main data structure we have implemented online update operations that need to be optimized.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+NNDescent\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::NNDescent\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classCANDY_1_1NNDescentIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::NNDescent\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1NNDescentIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1NNDescentIndex_1_1Neighbor}{Neighbor}}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1NNDescentIndex_1_1Nhood}{Nhood}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a8fba5ab506cf61886789d6741526b65b}{load\+Initial\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a468a7a8c1b5be3295940feaeae7d7da7}{insert\+Tensor}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a7fee0b85e0f21246f9bf28e8a2955497}\label{classCANDY_1_1NNDescentIndex_a7fee0b85e0f21246f9bf28e8a2955497}} 
+virtual void \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a7fee0b85e0f21246f9bf28e8a2955497}{reset}} ()
+\begin{DoxyCompactList}\small\item\em reset this index to inited status \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_ac823a9b547e2b5d55733064a1f250840}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a468a7a8c1b5be3295940feaeae7d7da7}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a79d49962fa9ed97dc1784f03cca520b8}{delete\+Tensor}} (torch\+::\+Tensor \&t, int64\+\_\+t k=1)
+\begin{DoxyCompactList}\small\item\em delete a tensor \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a2ce7b92a75071023c44a1c5faf711c6c}{revise\+Tensor}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&w)
+\begin{DoxyCompactList}\small\item\em revise a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_adc61daabcb72fdec83e82ff836c39f12}{get\+Tensor\+By\+Index}} (std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&idx, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em return a vector of tensors according to some index \end{DoxyCompactList}\item 
+virtual torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_ae5d623bf91459db2d3359852c36cd749}{raw\+Data}} ()
+\begin{DoxyCompactList}\small\item\em return the raw\+Data of tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_af61aaf70a2757bc6b2fa17ca0fcdc57a}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a63d26516efb42384b49e4cb85450faad}{start\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra set-\/ups if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_abc2abeb38ba54e5e65f1ec913bba4514}{end\+HPC}} ()
+\begin{DoxyCompactList}\small\item\em some extra termination if the index has HPC fetures \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a98928b24a22c28dc2a64eee5be71a4ad}{set\+Frozen\+Level}} (int64\+\_\+t frozen\+Lv)
+\begin{DoxyCompactList}\small\item\em set the frozen level of online updating internal state \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a5ed7b7e90d321011772399ba445e2bfa}{offline\+Build}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em offline build phase \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_ac3045dbdc697d10a082af4917f400e94}\label{classCANDY_1_1NNDescentIndex_ac3045dbdc697d10a082af4917f400e94}} 
+void {\bfseries nn\+Descent} ()
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a34a7deb0f274434ee3d1be106c9e7031}\label{classCANDY_1_1NNDescentIndex_a34a7deb0f274434ee3d1be106c9e7031}} 
+void {\bfseries random\+Sample} (std\+::mt19937 \&rng, std\+::vector$<$ size\+\_\+t $>$ \&vec, size\+\_\+t n, size\+\_\+t sampled\+Count)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a5d1ad1052c83fd98c86e4d0771130e1b}\label{classCANDY_1_1NNDescentIndex_a5d1ad1052c83fd98c86e4d0771130e1b}} 
+bool {\bfseries update\+NN} (size\+\_\+t i, size\+\_\+t j, double dist)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a095d2b2d09e69181ab0a2aaed73e6262}\label{classCANDY_1_1NNDescentIndex_a095d2b2d09e69181ab0a2aaed73e6262}} 
+double {\bfseries calc\+Dist} (const torch\+::\+Tensor \&ta, const torch\+::\+Tensor \&tb)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a79c03b8e00e379877aa9183b029f3ef1}\label{classCANDY_1_1NNDescentIndex_a79c03b8e00e379877aa9183b029f3ef1}} 
+torch\+::\+Tensor {\bfseries search\+Once} (torch\+::\+Tensor q, int64\+\_\+t k)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_ae5e19385828c0c4d17a8472f49bf7c59}\label{classCANDY_1_1NNDescentIndex_ae5e19385828c0c4d17a8472f49bf7c59}} 
+std\+::vector$<$ std\+::pair$<$ double, size\+\_\+t $>$ $>$ {\bfseries search\+Once\+Inner} (torch\+::\+Tensor q, int64\+\_\+t k)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_aebf3761623b8bd572046b88cc0b34001}\label{classCANDY_1_1NNDescentIndex_aebf3761623b8bd572046b88cc0b34001}} 
+bool {\bfseries insert\+Once} (vector$<$ std\+::pair$<$ double, size\+\_\+t $>$$>$ \&neighbors, torch\+::\+Tensor t)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a91a89c08c85b337051e3387926a771e4}\label{classCANDY_1_1NNDescentIndex_a91a89c08c85b337051e3387926a771e4}} 
+bool {\bfseries delete\+Once} (torch\+::\+Tensor t, int64\+\_\+t k)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a95f5eed88d056f1e362fa123796e2d3d}\label{classCANDY_1_1NNDescentIndex_a95f5eed88d056f1e362fa123796e2d3d}} 
+void {\bfseries parallel\+For} (size\+\_\+t idx\+Size, std\+::function$<$ void(size\+\_\+t)$>$ action)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_ac8608bf4ca64c469e923dfd0bfd5805a}\label{classCANDY_1_1NNDescentIndex_ac8608bf4ca64c469e923dfd0bfd5805a}} 
+int64\+\_\+t {\bfseries graphK}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a004be3f2ab60840099c246986a659f23}\label{classCANDY_1_1NNDescentIndex_a004be3f2ab60840099c246986a659f23}} 
+int64\+\_\+t {\bfseries parallel\+Workers}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_ab10b6a61b393955ef757ef95a70c9132}\label{classCANDY_1_1NNDescentIndex_ab10b6a61b393955ef757ef95a70c9132}} 
+int64\+\_\+t {\bfseries vec\+Dim}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_ad8a0c3ddec35f69ac711e041ee4652a0}\label{classCANDY_1_1NNDescentIndex_ad8a0c3ddec35f69ac711e041ee4652a0}} 
+int64\+\_\+t {\bfseries frozen\+Level}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a04ff7b422cd9a8c44ee3bc17263c68ef}\label{classCANDY_1_1NNDescentIndex_a04ff7b422cd9a8c44ee3bc17263c68ef}} 
+double {\bfseries rho}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a27a226bf03f8e6c078d5aa64edb3444d}\label{classCANDY_1_1NNDescentIndex_a27a226bf03f8e6c078d5aa64edb3444d}} 
+double {\bfseries delta}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_aa18a872a14eb1491db4df1aef86871f3}\label{classCANDY_1_1NNDescentIndex_aa18a872a14eb1491db4df1aef86871f3}} 
+std\+::vector$<$ \mbox{\hyperlink{structCANDY_1_1NNDescentIndex_1_1Nhood}{Nhood}} $>$ {\bfseries graph}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a6d6df101cdda8c44b74a9872be88a526}\label{classCANDY_1_1NNDescentIndex_a6d6df101cdda8c44b74a9872be88a526}} 
+std\+::vector$<$ torch\+::\+Tensor $>$ {\bfseries tensor}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a3d1ca4e2973e9809969fbca0af89b261}\label{classCANDY_1_1NNDescentIndex_a3d1ca4e2973e9809969fbca0af89b261}} 
+std\+::unordered\+\_\+set$<$ size\+\_\+t $>$ {\bfseries deleted\+Idx\+Set}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+An index whose core algorithm is only used for offline construction, but based on its main data structure we have implemented online update operations that need to be optimized. 
+
+\begin{DoxyNote}{Note}
+special parameters
+\begin{DoxyItemize}
+\item parallel\+Workers The number of paraller workers, I64, default 1 (set this to less than 0 will use max hardware\+\_\+concurrency);
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item graphK, the neighbors of every node in internal data struct, default 20, I64
+\item rho, sample proportion in NNDescent algorithm which takes effect in offline build only (larger is higher accuracy but lower speed), default 1.\+0, F64
+\item delta, loop termination condition in NNDescent algorithm which takes effect in offline build only (smaller is higher accuracy but lower speed), default 0.\+01, F64 @warnning Make sure you are using 2D tensors! 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a79d49962fa9ed97dc1784f03cca520b8}\label{classCANDY_1_1NNDescentIndex_a79d49962fa9ed97dc1784f03cca520b8}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+NNDescent\+Index\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+delete a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index needs to be single row \\
+\hline
+{\em k} & the number of nearest neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the deleting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_abc2abeb38ba54e5e65f1ec913bba4514}\label{classCANDY_1_1NNDescentIndex_abc2abeb38ba54e5e65f1ec913bba4514}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!endHPC@{endHPC}}
+\index{endHPC@{endHPC}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{endHPC()}{endHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+NNDescent\+Index\+::end\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra termination if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC termination is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a3c4cdf616320ab7208fc7025b37b9a08}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_adc61daabcb72fdec83e82ff836c39f12}\label{classCANDY_1_1NNDescentIndex_adc61daabcb72fdec83e82ff836c39f12}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+NNDescent\+Index\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return a vector of tensors according to some index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the index, follow faiss\textquotesingle{}s style, allow the KNN index of multiple queries \\
+\hline
+{\em k} & the returned neighbors, i.\+e., will be the number of rows of each returned tensor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of tensors, each tensor represent KNN results of one query in idx 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a468a7a8c1b5be3295940feaeae7d7da7}\label{classCANDY_1_1NNDescentIndex_a468a7a8c1b5be3295940feaeae7d7da7}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+NNDescent\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a8fba5ab506cf61886789d6741526b65b}\label{classCANDY_1_1NNDescentIndex_a8fba5ab506cf61886789d6741526b65b}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!loadInitialTensor@{loadInitialTensor}}
+\index{loadInitialTensor@{loadInitialTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{loadInitialTensor()}{loadInitialTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+NNDescent\+Index\+::load\+Initial\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+load the initial tensors of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a468a7a8c1b5be3295940feaeae7d7da7}{insert\+Tensor}} 
+
+\begin{DoxyNote}{Note}
+This is majorly an offline function, and may be different from \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_a468a7a8c1b5be3295940feaeae7d7da7}{insert\+Tensor}} for some indexes 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, some index need to be single row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the loading is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af801592ccc0813c97a2ff45da40a1312}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a5ed7b7e90d321011772399ba445e2bfa}\label{classCANDY_1_1NNDescentIndex_a5ed7b7e90d321011772399ba445e2bfa}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!offlineBuild@{offlineBuild}}
+\index{offlineBuild@{offlineBuild}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{offlineBuild()}{offlineBuild()}}
+{\footnotesize\ttfamily bool CANDY\+::\+NNDescent\+Index\+::offline\+Build (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+offline build phase 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor for offline build \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the building is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_aca873d66824f385feac1a7cb49abdfac}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_ae5d623bf91459db2d3359852c36cd749}\label{classCANDY_1_1NNDescentIndex_ae5d623bf91459db2d3359852c36cd749}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!rawData@{rawData}}
+\index{rawData@{rawData}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{rawData()}{rawData()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+NNDescent\+Index\+::raw\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+return the raw\+Data of tensor 
+
+\begin{DoxyReturn}{Returns}
+The raw data stored in tensor 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a2ce7b92a75071023c44a1c5faf711c6c}\label{classCANDY_1_1NNDescentIndex_a2ce7b92a75071023c44a1c5faf711c6c}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+NNDescent\+Index\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+revise a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor to be revised \\
+\hline
+{\em w} & the revised value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the revising is successful 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+only support to delete and insert, no straightforward revision 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_af61aaf70a2757bc6b2fa17ca0fcdc57a}\label{classCANDY_1_1NNDescentIndex_af61aaf70a2757bc6b2fa17ca0fcdc57a}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+NNDescent\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_ac823a9b547e2b5d55733064a1f250840}\label{classCANDY_1_1NNDescentIndex_ac823a9b547e2b5d55733064a1f250840}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+NNDescent\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specfic config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a98928b24a22c28dc2a64eee5be71a4ad}\label{classCANDY_1_1NNDescentIndex_a98928b24a22c28dc2a64eee5be71a4ad}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!setFrozenLevel@{setFrozenLevel}}
+\index{setFrozenLevel@{setFrozenLevel}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{setFrozenLevel()}{setFrozenLevel()}}
+{\footnotesize\ttfamily bool CANDY\+::\+NNDescent\+Index\+::set\+Frozen\+Level (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{frozen\+Lv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the frozen level of online updating internal state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frozen\+Lv} & the level of frozen, 0 means freeze any online update in internal state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the setting is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a637e0a15f3753c2188da92f8b787061d}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1NNDescentIndex_a63d26516efb42384b49e4cb85450faad}\label{classCANDY_1_1NNDescentIndex_a63d26516efb42384b49e4cb85450faad}} 
+\index{CANDY::NNDescentIndex@{CANDY::NNDescentIndex}!startHPC@{startHPC}}
+\index{startHPC@{startHPC}!CANDY::NNDescentIndex@{CANDY::NNDescentIndex}}
+\doxysubsubsection{\texorpdfstring{startHPC()}{startHPC()}}
+{\footnotesize\ttfamily bool CANDY\+::\+NNDescent\+Index\+::start\+HPC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+some extra set-\/ups if the index has HPC fetures 
+
+\begin{DoxyReturn}{Returns}
+bool whether the HPC set-\/up is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abb4333a11499fc6c88d1d78bc77138f4}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{NNDescentIndex_8h}{NNDescent\+Index.\+h}}\item 
+src/\+CANDY/\mbox{\hyperlink{NNDescentIndex_8cpp}{NNDescent\+Index.\+cpp}}\end{DoxyCompactItemize}

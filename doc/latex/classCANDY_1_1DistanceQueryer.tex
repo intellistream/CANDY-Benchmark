@@ -1,0 +1,133 @@
+\hypertarget{classCANDY_1_1DistanceQueryer}{}\doxysection{CANDY\+::Distance\+Queryer Class Reference}
+\label{classCANDY_1_1DistanceQueryer}\index{CANDY::DistanceQueryer@{CANDY::DistanceQueryer}}
+
+
+Collaboration diagram for CANDY\+::Distance\+Queryer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1DistanceQueryer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_ad7c5df5d036a5ae60c0b6c345d35ec16}\label{classCANDY_1_1DistanceQueryer_ad7c5df5d036a5ae60c0b6c345d35ec16}} 
+typedef int64\+\_\+t {\bfseries opt\+\_\+mode\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a8aa6fed9328500231d9f2a40a473ff31}\label{classCANDY_1_1DistanceQueryer_a8aa6fed9328500231d9f2a40a473ff31}} 
+{\bfseries Distance\+Queryer} (size\+\_\+t d)
+\item 
+float \mbox{\hyperlink{classCANDY_1_1DistanceQueryer_aeab79fe2fbab013921c3b77f5e203399}{operator()}} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} idx)
+\begin{DoxyCompactList}\small\item\em compute the distance between given idx\textquotesingle{}s vector and query vector \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_af0494a639054346b6c0c128d3ee601c0}\label{classCANDY_1_1DistanceQueryer_af0494a639054346b6c0c128d3ee601c0}} 
+float {\bfseries operator()} (const int8\+\_\+t $\ast$code)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a76c77383889bcf5f25fcc1d3296ce88c}\label{classCANDY_1_1DistanceQueryer_a76c77383889bcf5f25fcc1d3296ce88c}} 
+float {\bfseries lvq\+\_\+first\+\_\+level} (const float $\ast$x, const size\+\_\+t len, int8\+\_\+t $\ast$codes)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a0dc1bcc99df501dfdb308f9c22abe8b8}\label{classCANDY_1_1DistanceQueryer_a0dc1bcc99df501dfdb308f9c22abe8b8}} 
+void {\bfseries lvq\+\_\+second\+\_\+level} (const float $\ast$x, const size\+\_\+t len, int8\+\_\+t $\ast$codes, float delta)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_ab9185a2933eaaeea6c3edf3ea2b339c1}\label{classCANDY_1_1DistanceQueryer_ab9185a2933eaaeea6c3edf3ea2b339c1}} 
+float {\bfseries symmetric\+\_\+dis} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} i, \mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} j)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_adbe34b6dbd8f2c1d619bef4a18fd45bd}\label{classCANDY_1_1DistanceQueryer_adbe34b6dbd8f2c1d619bef4a18fd45bd}} 
+void {\bfseries set\+\_\+query} (torch\+::\+Tensor \&x)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_adda300a42bd36f607a02a8344c51b7d3}\label{classCANDY_1_1DistanceQueryer_adda300a42bd36f607a02a8344c51b7d3}} 
+int8\+\_\+t $\ast$ {\bfseries compute\+\_\+code} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} idx)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a05a521c99cf611bf1761029a2f7fb1a0}\label{classCANDY_1_1DistanceQueryer_a05a521c99cf611bf1761029a2f7fb1a0}} 
+torch\+::\+Tensor {\bfseries compute\+\_\+transformed} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} idx)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_abc876cb2c54583ab5a99eab32b584305}\label{classCANDY_1_1DistanceQueryer_abc876cb2c54583ab5a99eab32b584305}} 
+void {\bfseries set\+\_\+mode} (opt\+\_\+mode\+\_\+t opt\+\_\+mode, faiss\+::\+Metric\+Type metric)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_afd60c18f7f3837414bcfbc0d82197b41}\label{classCANDY_1_1DistanceQueryer_afd60c18f7f3837414bcfbc0d82197b41}} 
+void {\bfseries set\+\_\+rank} (bool rank)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a865657d4232492cc09849211ab0244ed}\label{classCANDY_1_1DistanceQueryer_a865657d4232492cc09849211ab0244ed}} 
+void {\bfseries set\+\_\+search} (bool search)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_abe14b4c39e0d879cdf399320230fe1e6}\label{classCANDY_1_1DistanceQueryer_abe14b4c39e0d879cdf399320230fe1e6}} 
+float {\bfseries int8vec\+\_\+\+IP} (const int8\+\_\+t $\ast$x, const int8\+\_\+t $\ast$y, size\+\_\+t d)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a9b50339ee2af6487db235fdb6422f1d8}\label{classCANDY_1_1DistanceQueryer_a9b50339ee2af6487db235fdb6422f1d8}} 
+float {\bfseries fvec\+\_\+\+IP} (const float $\ast$x, const float $\ast$y, size\+\_\+t d)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a10824ce128aeff0de84ed11ba6c25871}\label{classCANDY_1_1DistanceQueryer_a10824ce128aeff0de84ed11ba6c25871}} 
+float {\bfseries int8vec\+\_\+\+L2} (const int8\+\_\+t $\ast$x, const int8\+\_\+t $\ast$y, size\+\_\+t d)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a6e051423b7d5e7a416967b3d00e9978f}\label{classCANDY_1_1DistanceQueryer_a6e051423b7d5e7a416967b3d00e9978f}} 
+float {\bfseries fvec\+\_\+\+L2} (const float $\ast$x, const float $\ast$y, size\+\_\+t d)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a5ac003b60276b6417f9b2e16fc7d5a70}\label{classCANDY_1_1DistanceQueryer_a5ac003b60276b6417f9b2e16fc7d5a70}} 
+opt\+\_\+mode\+\_\+t {\bfseries opt\+\_\+mode\+\_\+} = OPT\+\_\+\+VANILLA
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a4ff0697b33ec9bcfe5573fd9197d993e}\label{classCANDY_1_1DistanceQueryer_a4ff0697b33ec9bcfe5573fd9197d993e}} 
+faiss\+::\+Metric\+Type {\bfseries faiss\+Metric} = faiss\+::\+METRIC\+\_\+\+L2
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a876d288d9005a7b0d2e73f6c8f0bb257}\label{classCANDY_1_1DistanceQueryer_a876d288d9005a7b0d2e73f6c8f0bb257}} 
+size\+\_\+t {\bfseries d\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_ab4bc0a0cbf513b43f9c5ae106aa62f3c}\label{classCANDY_1_1DistanceQueryer_ab4bc0a0cbf513b43f9c5ae106aa62f3c}} 
+torch\+::\+Tensor {\bfseries query\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a03e47084a496cd6dcd71478e5263671f}\label{classCANDY_1_1DistanceQueryer_a03e47084a496cd6dcd71478e5263671f}} 
+float $\ast$ {\bfseries data\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a554f3890f592daa974acae6e04f4b6e1}\label{classCANDY_1_1DistanceQueryer_a554f3890f592daa974acae6e04f4b6e1}} 
+std\+::vector$<$ float $>$ $\ast$ \mbox{\hyperlink{classCANDY_1_1DistanceQueryer_a554f3890f592daa974acae6e04f4b6e1}{mean\+\_\+}}
+\begin{DoxyCompactList}\small\item\em used for LVQ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a111d31f7e12893ddb82b19ea4c9bea99}\label{classCANDY_1_1DistanceQueryer_a111d31f7e12893ddb82b19ea4c9bea99}} 
+bool {\bfseries is\+\_\+rank} = false
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a17ca9bf109b0bcd8815c34492568ef82}\label{classCANDY_1_1DistanceQueryer_a17ca9bf109b0bcd8815c34492568ef82}} 
+bool {\bfseries is\+\_\+search} = false
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_a38f02018df05ae1307b3e4a4796a9fd2}\label{classCANDY_1_1DistanceQueryer_a38f02018df05ae1307b3e4a4796a9fd2}} 
+int8\+\_\+t $\ast$ {\bfseries code\+\_\+} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_add1e3ded4658b7ffa0e99c3ef4a0bc90}\label{classCANDY_1_1DistanceQueryer_add1e3ded4658b7ffa0e99c3ef4a0bc90}} 
+float {\bfseries delta\+\_\+query\+\_\+} = 0.\+0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_ae7872d262abd43e913dec9d4e488ce8e}\label{classCANDY_1_1DistanceQueryer_ae7872d262abd43e913dec9d4e488ce8e}} 
+\mbox{\hyperlink{classCANDY_1_1AdSampling}{Ad\+Sampling}} $\ast$ \mbox{\hyperlink{classCANDY_1_1DistanceQueryer_ae7872d262abd43e913dec9d4e488ce8e}{ads}} = nullptr
+\begin{DoxyCompactList}\small\item\em used for Ad\+SAMPLING \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_acc394ce97f8623aecdbd6ef9ab977710}\label{classCANDY_1_1DistanceQueryer_acc394ce97f8623aecdbd6ef9ab977710}} 
+torch\+::\+Tensor {\bfseries transformed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1DistanceQueryer_aeab79fe2fbab013921c3b77f5e203399}\label{classCANDY_1_1DistanceQueryer_aeab79fe2fbab013921c3b77f5e203399}} 
+\index{CANDY::DistanceQueryer@{CANDY::DistanceQueryer}!operator()@{operator()}}
+\index{operator()@{operator()}!CANDY::DistanceQueryer@{CANDY::DistanceQueryer}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily float CANDY\+::\+Distance\+Queryer\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}}}]{idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+compute the distance between given idx\textquotesingle{}s vector and query vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & the target vector to be computed with query vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L2 Distance 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+HNSWNaive/Distance\+Queryer.\+h\end{DoxyCompactItemize}

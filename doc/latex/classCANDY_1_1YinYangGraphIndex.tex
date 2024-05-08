@@ -1,0 +1,232 @@
+\hypertarget{classCANDY_1_1YinYangGraphIndex}{}\doxysection{CANDY\+::Yin\+Yang\+Graph\+Index Class Reference}
+\label{classCANDY_1_1YinYangGraphIndex}\index{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}}
+
+
+The class of indexing using a yinyang graph, first use LSH to roughly locate the range of a tensor, then search it in the linked yinyanggraph.  
+
+
+
+
+{\ttfamily \#include $<$CANDY/\+Yin\+Yang\+Graph\+Index.\+h$>$}
+
+
+
+Inheritance diagram for CANDY\+::Yin\+Yang\+Graph\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{classCANDY_1_1YinYangGraphIndex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CANDY\+::Yin\+Yang\+Graph\+Index\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1YinYangGraphIndex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex_a519c0b86e1adba967826a73dea950aea}{set\+Config}} (\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} cfg)
+\begin{DoxyCompactList}\small\item\em set the index-\/specific config related to one index \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex_a43322bc9a8ebce913c5ea6ec0f40941b}{insert\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em insert a tensor \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex_a830735037ee125f2ec6895322e517d76}{search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
+\begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex_adb8fa2b3b400ccb0ccba4381357c601c}{crs\+Amm}} (torch\+::\+Tensor \&A, torch\+::\+Tensor \&B, torch\+::\+Tensor \&indices)
+\begin{DoxyCompactList}\small\item\em thw column row sampling to compute approximate matrix multiplication \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a81d543fc9ccf986788c2aaab59a0528a}\label{classCANDY_1_1YinYangGraphIndex_a81d543fc9ccf986788c2aaab59a0528a}} 
+std\+::vector$<$ uint8\+\_\+t $>$ {\bfseries encode\+Single\+Row} (torch\+::\+Tensor \&tensor, uint64\+\_\+t $\ast$bucket)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_abf1f1905356caca0c4c9bf6c3140072e}\label{classCANDY_1_1YinYangGraphIndex_abf1f1905356caca0c4c9bf6c3140072e}} 
+torch\+::\+Tensor {\bfseries random\+Projection} (torch\+::\+Tensor \&a)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a91d793e25ecd8133ea914d1e53939304}\label{classCANDY_1_1YinYangGraphIndex_a91d793e25ecd8133ea914d1e53939304}} 
+void \mbox{\hyperlink{classCANDY_1_1YinYangGraphIndex_a91d793e25ecd8133ea914d1e53939304}{gen\+Crs\+Indices}} (void)
+\begin{DoxyCompactList}\small\item\em to generate the sampling indices of crs \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a4b81cc6c5b6980a80d1d5bc84a204850}\label{classCANDY_1_1YinYangGraphIndex_a4b81cc6c5b6980a80d1d5bc84a204850}} 
+\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} {\bfseries my\+Cfg} = nullptr
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a4716784fdf4bfc75f89f1c40194c317d}\label{classCANDY_1_1YinYangGraphIndex_a4716784fdf4bfc75f89f1c40194c317d}} 
+\mbox{\hyperlink{classCANDY_1_1YinYangGraph}{CANDY\+::\+Yin\+Yang\+Graph}} {\bfseries yyg}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a6c211022c53c05cd8eedba3818b7927c}\label{classCANDY_1_1YinYangGraphIndex_a6c211022c53c05cd8eedba3818b7927c}} 
+int64\+\_\+t {\bfseries vec\+Dim} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_ab46c22ca4f1d8cac587a5537aea134af}\label{classCANDY_1_1YinYangGraphIndex_ab46c22ca4f1d8cac587a5537aea134af}} 
+int64\+\_\+t {\bfseries max\+Connection} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a34890667f9208d1365fad45269ecc67b}\label{classCANDY_1_1YinYangGraphIndex_a34890667f9208d1365fad45269ecc67b}} 
+int64\+\_\+t {\bfseries number\+Of\+Buckets} = 4096
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_ae9eb702e892f3204b9f78c322f799a96}\label{classCANDY_1_1YinYangGraphIndex_ae9eb702e892f3204b9f78c322f799a96}} 
+int64\+\_\+t {\bfseries encode\+Len} = 1
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a96a7de4d365ce47e456c9d93efdab3a4}\label{classCANDY_1_1YinYangGraphIndex_a96a7de4d365ce47e456c9d93efdab3a4}} 
+int64\+\_\+t {\bfseries candidate\+Times} = 1
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a44827035c31506d0407ec22cf5195df5}\label{classCANDY_1_1YinYangGraphIndex_a44827035c31506d0407ec22cf5195df5}} 
+int64\+\_\+t {\bfseries use\+CRS} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a8d152c99e376892b9c276e0dc0b1170f}\label{classCANDY_1_1YinYangGraphIndex_a8d152c99e376892b9c276e0dc0b1170f}} 
+int64\+\_\+t {\bfseries CRSDim} = 1
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_ab9ad85628f6f59f07a2964539563d203}\label{classCANDY_1_1YinYangGraphIndex_ab9ad85628f6f59f07a2964539563d203}} 
+int64\+\_\+t {\bfseries buckets\+Log2} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a8da0498c9a717db7a26038c5f2e4aec4}\label{classCANDY_1_1YinYangGraphIndex_a8da0498c9a717db7a26038c5f2e4aec4}} 
+int64\+\_\+t {\bfseries redo\+CRSIndices} = 0
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a152d7a53b182dc3cabb803e43952884f}\label{classCANDY_1_1YinYangGraphIndex_a152d7a53b182dc3cabb803e43952884f}} 
+std\+::string {\bfseries lsh\+Matrix\+Type} = \char`\"{}gaussian\char`\"{}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a0e5ad2523f77400a826b0d4255a0746c}\label{classCANDY_1_1YinYangGraphIndex_a0e5ad2523f77400a826b0d4255a0746c}} 
+torch\+::\+Tensor {\bfseries rotation\+Matrix}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a94303c453b3696c13fe4065236ff8d65}\label{classCANDY_1_1YinYangGraphIndex_a94303c453b3696c13fe4065236ff8d65}} 
+torch\+::\+Tensor {\bfseries crs\+Indices}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+The class of indexing using a yinyang graph, first use LSH to roughly locate the range of a tensor, then search it in the linked yinyanggraph. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000012}{Todo}}]implement the delete and revise later \end{DoxyRefDesc}
+\begin{DoxyNote}{Note}
+currently single thread 
+
+config parameters
+\begin{DoxyItemize}
+\item vec\+Dim, the dimension of vectors, default 768, I64
+\item max\+Connection, the max number of connections in the yinyang graph (for yang vertex of data), default 256, I64
+\item candidate\+Times, the times of k to determine minimum candidates, default 1 ,I64
+\item number\+Of\+Buckets, the number of first titer buckets, default 4096, I64, suggest 2$^\wedge$n
+\item encode\+Len, the length of LSH encoding, in bytes, default 1, I64
+\item metric\+Type, the type of AKNN metric, default L2, String
+\item lsh\+Matrix\+Type, the type of lsh matrix, default gaussian, String
+\begin{DoxyItemize}
+\item gaussian means a N(0,1) LSH matrix
+\item random means a random matrix where each value ranges from -\/0.\+5$\sim$0.5
+\end{DoxyItemize}
+\item use\+CRS, whether or not use column row sampling in projecting the vector, 0 (No), I64
+\begin{DoxyItemize}
+\item further trade off of accuracy v.\+s. efficiency
+\end{DoxyItemize}
+\item CRSDim, the dimension which are not pruned by crs, 1/10 of vec\+Dim, I64
+\item redo\+CRSIndices, whether or not re-\/generate the indices of CRS, 0 (No), I64 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_adb8fa2b3b400ccb0ccba4381357c601c}\label{classCANDY_1_1YinYangGraphIndex_adb8fa2b3b400ccb0ccba4381357c601c}} 
+\index{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}!crsAmm@{crsAmm}}
+\index{crsAmm@{crsAmm}!CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}}
+\doxysubsubsection{\texorpdfstring{crsAmm()}{crsAmm()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Yin\+Yang\+Graph\+Index\+::crs\+Amm (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{A,  }\item[{torch\+::\+Tensor \&}]{B,  }\item[{torch\+::\+Tensor \&}]{indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+thw column row sampling to compute approximate matrix multiplication 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & the left side matrix \\
+\hline
+{\em B} & the right side matrix \\
+\hline
+{\em idx} & the indices of sampling \\
+\hline
+{\em \+\_\+crs\+Dim} & the dimension of preserved dimensions \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a43322bc9a8ebce913c5ea6ec0f40941b}\label{classCANDY_1_1YinYangGraphIndex_a43322bc9a8ebce913c5ea6ec0f40941b}} 
+\index{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}}
+\doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Graph\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+insert a tensor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, accept multiple rows \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the insertion is successful 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a830735037ee125f2ec6895322e517d76}\label{classCANDY_1_1YinYangGraphIndex_a830735037ee125f2ec6895322e517d76}} 
+\index{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}}
+\doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
+{\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Yin\+Yang\+Graph\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+search the k-\/\+NN of a query tensor, return the result tensors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, allow multiple rows \\
+\hline
+{\em k} & the returned neighbors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1YinYangGraphIndex_a519c0b86e1adba967826a73dea950aea}\label{classCANDY_1_1YinYangGraphIndex_a519c0b86e1adba967826a73dea950aea}} 
+\index{CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::YinYangGraphIndex@{CANDY::YinYangGraphIndex}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Yin\+Yang\+Graph\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+set the index-\/specific config related to one index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & the config of this class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool whether the configuration is successful 
+\end{DoxyReturn}
+generate the rotation matrix for random projection
+
+Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\mbox{\hyperlink{YinYangGraphIndex_8h}{Yin\+Yang\+Graph\+Index.\+h}}\item 
+src/\+CANDY/\mbox{\hyperlink{YinYangGraphIndex_8cpp}{Yin\+Yang\+Graph\+Index.\+cpp}}\end{DoxyCompactItemize}

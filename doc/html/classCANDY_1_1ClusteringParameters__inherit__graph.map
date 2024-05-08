@@ -1,0 +1,4 @@
+<map id="CANDY::ClusteringParameters" name="CANDY::ClusteringParameters">
+<area shape="rect" id="node1" title="Class for the clustering parameters to be set before training/building." alt="" coords="5,5,220,32"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1Clustering.html" title="class for naive K&#45;means clustering" alt="" coords="43,80,183,107"/>
+</map>

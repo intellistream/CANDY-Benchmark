@@ -1,0 +1,4 @@
+<map id="CANDY::ExpFamilyDataLoader" name="CANDY::ExpFamilyDataLoader">
+<area shape="rect" id="node1" title="The class to load data from exponential family, i.e., poisson, gaussian, exponential and beta." alt="" coords="5,80,221,107"/>
+<area shape="rect" id="node2" href="$classCANDY_1_1AbstractDataLoader.html" title="The abstract class of data loader, parent for all loaders." alt="" coords="12,5,215,32"/>
+</map>

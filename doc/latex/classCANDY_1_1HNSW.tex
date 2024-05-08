@@ -1,0 +1,349 @@
+\hypertarget{classCANDY_1_1HNSW}{}\doxysection{CANDY\+::HNSW Class Reference}
+\label{classCANDY_1_1HNSW}\index{CANDY::HNSW@{CANDY::HNSW}}
+
+
+The class of a \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} structure, maintaining parameters and a vertex entry point.  
+
+
+
+
+Collaboration diagram for CANDY\+::HNSW\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCANDY_1_1HNSW__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCANDY_1_1HNSW_1_1MinimaxHeap}{Minimax\+Heap}}
+\begin{DoxyCompactList}\small\item\em a tiny heap that is used during search \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCANDY_1_1HNSW_1_1NodeDistCloser}{Node\+Dist\+Closer}}
+\begin{DoxyCompactList}\small\item\em sort pairs from nearest to farthest by distance \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCANDY_1_1HNSW_1_1NodeDistFarther}{Node\+Dist\+Farther}}
+\begin{DoxyCompactList}\small\item\em sort pairs from farthest to nearest \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a39751b79e4428e8789296d0f02205c15}\label{classCANDY_1_1HNSW_a39751b79e4428e8789296d0f02205c15}} 
+typedef std\+::pair$<$ float, \mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} $>$ {\bfseries Node}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a8cc399ac5628e877e239f411ebc2c5b6}\label{classCANDY_1_1HNSW_a8cc399ac5628e877e239f411ebc2c5b6}} 
+typedef int64\+\_\+t {\bfseries opt\+\_\+mode\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_afd57cfa3eef58b0f067eefa8fcc9bcf3}\label{classCANDY_1_1HNSW_afd57cfa3eef58b0f067eefa8fcc9bcf3}} 
+\mbox{\hyperlink{classCANDY_1_1HNSW_afd57cfa3eef58b0f067eefa8fcc9bcf3}{HNSW}} (int64\+\_\+t vec\+Dim, int64\+\_\+t M)
+\begin{DoxyCompactList}\small\item\em Init \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} structure with M neighbors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1HNSW_a54a73ab3b34e192ee0b628b3777c5f87}{search}} (\mbox{\hyperlink{classCANDY_1_1DistanceQueryer}{Distance\+Queryer}} \&qdis, int k, std\+::vector$<$ Vertex\+Ptr $>$ \&I, float $\ast$D, \mbox{\hyperlink{classCANDY_1_1VisitedTable}{Visited\+Table}} \&vt)
+\begin{DoxyCompactList}\small\item\em search topK neighbors using qdis and store the results in I and D \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a97dc89235f660a96f57f4bd4b26f2a12}\label{classCANDY_1_1HNSW_a97dc89235f660a96f57f4bd4b26f2a12}} 
+int {\bfseries get\+Levels\+By\+Tensor} (torch\+::\+Tensor \&t)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_ae677022ecfc5eae4515d03f24fd07dc4}\label{classCANDY_1_1HNSW_ae677022ecfc5eae4515d03f24fd07dc4}} 
+int {\bfseries get\+Levels\+By\+Ptr} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} idx)
+\item 
+void \mbox{\hyperlink{classCANDY_1_1HNSW_aeed9a735e1582f0e55ff03fd4c158914}{set\+\_\+nb\+\_\+neighbors}} (size\+\_\+t layer\+\_\+no, size\+\_\+t nb)
+\begin{DoxyCompactList}\small\item\em update the number of neighbors of a layer. Not used currently \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classCANDY_1_1HNSW_a7705f99d887e3428ae4149c836da6e2e}{nb\+\_\+neighbors}} (size\+\_\+t layer\+\_\+no)
+\begin{DoxyCompactList}\small\item\em number of neighbors for layer layer\+\_\+no \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classCANDY_1_1HNSW_a7be7a595d116391317f62bbc230ba4b4}{cum\+\_\+nb\+\_\+neighbors}} (size\+\_\+t layer\+\_\+no)
+\begin{DoxyCompactList}\small\item\em cumulated number of neighbors up to layer layer\+\_\+no excluded \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCANDY_1_1HNSW_a9ad6ed6350fa714b5fe4c2da2b1c7b11}{prepare\+\_\+level\+\_\+tab}} (torch\+::\+Tensor \&x, bool preset\+\_\+levels, bool is\+\_\+\+NSW)
+\begin{DoxyCompactList}\small\item\em assign levels to new vectors \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCANDY_1_1HNSW_ac8c62d10e8c2326b0fad1eb5137179a2}{random\+\_\+level}} ()
+\begin{DoxyCompactList}\small\item\em generate a random level \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1HNSW_a06afc95abf33f9893e408405a8fee68e}{set\+\_\+probs}} (int64\+\_\+t M, float level\+Mult)
+\begin{DoxyCompactList}\small\item\em set probabilities of a level to be assigned for new vectors \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1HNSW_a01d1a94213bfb66118a4476c997e46d8}{neighbor\+\_\+range}} (int level, size\+\_\+t $\ast$begin, size\+\_\+t $\ast$end)
+\begin{DoxyCompactList}\small\item\em set the boundaries within neighbors\+\_\+\mbox{[}Tensor\+Ptr\mbox{]} on a level \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1HNSW_a220292db5eb77101177684ef54c837c1}{add\+\_\+links\+\_\+starting\+\_\+from}} (\mbox{\hyperlink{classCANDY_1_1DistanceQueryer}{Distance\+Queryer}} \&disq, Vertex\+Ptr pt\+\_\+id, Vertex\+Ptr nearest, float d\+\_\+nearest, int level, \mbox{\hyperlink{classCANDY_1_1VisitedTable}{Visited\+Table}} \&vt)
+\begin{DoxyCompactList}\small\item\em called when add vertices. Add links to new vector according to its nearest vector\textquotesingle{}s neighbor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCANDY_1_1HNSW_a9cea150bd760b4fba3eb826172e502f1}{add\+\_\+without\+\_\+lock}} (\mbox{\hyperlink{classCANDY_1_1DistanceQueryer}{Distance\+Queryer}} \&disq, int assigned\+\_\+level, Vertex\+Ptr pt\+\_\+id, \mbox{\hyperlink{classCANDY_1_1VisitedTable}{Visited\+Table}} \&vt)
+\begin{DoxyCompactList}\small\item\em add neighbors to a vertex single-\/threaded \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a4da76a957c86e59bf67d202b30ad88be}\label{classCANDY_1_1HNSW_a4da76a957c86e59bf67d202b30ad88be}} 
+void {\bfseries set\+\_\+mode} (opt\+\_\+mode\+\_\+t opt\+\_\+mode, faiss\+::\+Metric\+Type metric)
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a99b842a6c8a8f7b592ea43820343dc08}\label{classCANDY_1_1HNSW_a99b842a6c8a8f7b592ea43820343dc08}} 
+string {\bfseries transform\+\_\+from\+\_\+tensor} (\mbox{\hyperlink{group__INTELLI__UTIL__INTELLItensor_ga4a5edfdffc2aee8b5b5c2d08a150451b}{INTELLI\+::\+Tensor\+Ptr}} idx)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a0cab98fa42498749891f3450fb7cb7cf}\label{classCANDY_1_1HNSW_a0cab98fa42498749891f3450fb7cb7cf}} 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classCANDY_1_1HNSW_a0cab98fa42498749891f3450fb7cb7cf}{levels\+\_\+}}
+\begin{DoxyCompactList}\small\item\em For Tensor t, its assigned levels. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a7f2c860688a09fa3598e6faadd46eba8}\label{classCANDY_1_1HNSW_a7f2c860688a09fa3598e6faadd46eba8}} 
+int64\+\_\+t {\bfseries vec\+Dim\+\_\+}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a78a8d911972526fff71650b76c220399}\label{classCANDY_1_1HNSW_a78a8d911972526fff71650b76c220399}} 
+int64\+\_\+t {\bfseries ntotal}
+\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classCANDY_1_1HNSW_a0557d5cb1d8a1115ed1fee401b7254e0}{cum\+\_\+nneighbor\+\_\+per\+\_\+level\+\_\+}}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_ad27b62cc3626ec175f5465d27f02a6c3}\label{classCANDY_1_1HNSW_ad27b62cc3626ec175f5465d27f02a6c3}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classCANDY_1_1HNSW_ad27b62cc3626ec175f5465d27f02a6c3}{probs\+\_\+of\+\_\+layers\+\_\+}}
+\begin{DoxyCompactList}\small\item\em assigned probabilities for each layer (sum=1) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a7183183b8fcadde10ea3b09d9decd341}\label{classCANDY_1_1HNSW_a7183183b8fcadde10ea3b09d9decd341}} 
+faiss\+::\+Random\+Generator {\bfseries rng}
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a6fd7dd98c33a4401a3f9a93dd3037e36}\label{classCANDY_1_1HNSW_a6fd7dd98c33a4401a3f9a93dd3037e36}} 
+Vertex\+Ptr \mbox{\hyperlink{classCANDY_1_1HNSW_a6fd7dd98c33a4401a3f9a93dd3037e36}{entry\+\_\+point\+\_\+}} = nullptr
+\begin{DoxyCompactList}\small\item\em entry point on the top level \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a59b9ea013986e6fa8f6b445f765a8041}\label{classCANDY_1_1HNSW_a59b9ea013986e6fa8f6b445f765a8041}} 
+opt\+\_\+mode\+\_\+t {\bfseries opt\+\_\+mode\+\_\+} = OPT\+\_\+\+VANILLA
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a7b4526fa0983d7cb85cdaf4c477e4004}\label{classCANDY_1_1HNSW_a7b4526fa0983d7cb85cdaf4c477e4004}} 
+faiss\+::\+Metric\+Type {\bfseries faiss\+Metric} = faiss\+::\+METRIC\+\_\+\+L2
+\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_af0a2c4d3de7595db829a4a9398189c88}\label{classCANDY_1_1HNSW_af0a2c4d3de7595db829a4a9398189c88}} 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{classCANDY_1_1HNSW_af0a2c4d3de7595db829a4a9398189c88}{mean\+\_\+}}
+\begin{DoxyCompactList}\small\item\em used for LVQ encoding \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_adeaf82ff8f27ffc7c854e2c0465b7735}\label{classCANDY_1_1HNSW_adeaf82ff8f27ffc7c854e2c0465b7735}} 
+torch\+::\+Tensor \mbox{\hyperlink{classCANDY_1_1HNSW_adeaf82ff8f27ffc7c854e2c0465b7735}{transform\+Matrix}}
+\begin{DoxyCompactList}\small\item\em used for ADsampling \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_ad9350b9101e80f98423e26630343176b}\label{classCANDY_1_1HNSW_ad9350b9101e80f98423e26630343176b}} 
+size\+\_\+t \mbox{\hyperlink{classCANDY_1_1HNSW_ad9350b9101e80f98423e26630343176b}{max\+\_\+level\+\_\+}} = -\/1
+\begin{DoxyCompactList}\small\item\em max level of \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} structure \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_ad31be737c9eac18523abdec8526b62f0}\label{classCANDY_1_1HNSW_ad31be737c9eac18523abdec8526b62f0}} 
+size\+\_\+t \mbox{\hyperlink{classCANDY_1_1HNSW_ad31be737c9eac18523abdec8526b62f0}{num\+\_\+entries}} = 1
+\begin{DoxyCompactList}\small\item\em entry\+\_\+point numbers, default as 1 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a899560bbfc4b700bb25262fc0229d6f7}\label{classCANDY_1_1HNSW_a899560bbfc4b700bb25262fc0229d6f7}} 
+size\+\_\+t \mbox{\hyperlink{classCANDY_1_1HNSW_a899560bbfc4b700bb25262fc0229d6f7}{ef\+Construction}} = 40
+\begin{DoxyCompactList}\small\item\em expansion factor at construction time \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a1098d7a588a5d7b0b17b2e700845df5d}\label{classCANDY_1_1HNSW_a1098d7a588a5d7b0b17b2e700845df5d}} 
+size\+\_\+t \mbox{\hyperlink{classCANDY_1_1HNSW_a1098d7a588a5d7b0b17b2e700845df5d}{ef\+Search}} = 15
+\begin{DoxyCompactList}\small\item\em expansion factor during search \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCANDY_1_1HNSW_aad0dc7f910a7c9bedf3a930bf71ef76f}{search\+\_\+bounded\+\_\+queue}} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class of a \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} structure, maintaining parameters and a vertex entry point. 
+
+\begin{DoxyNote}{Note}
+now each vertex storing each vertex\textquotesingle{}s neighbors, visited number and level, with a pointer to the vector; 
+
+The \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} structure does not store actual data of the graph except the entry point 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a220292db5eb77101177684ef54c837c1}\label{classCANDY_1_1HNSW_a220292db5eb77101177684ef54c837c1}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!add\_links\_starting\_from@{add\_links\_starting\_from}}
+\index{add\_links\_starting\_from@{add\_links\_starting\_from}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{add\_links\_starting\_from()}{add\_links\_starting\_from()}}
+{\footnotesize\ttfamily void CANDY\+::\+HNSW\+::add\+\_\+links\+\_\+starting\+\_\+from (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCANDY_1_1DistanceQueryer}{CANDY\+::\+Distance\+Queryer}} \&}]{disq,  }\item[{CANDY\+::\+Vertex\+Ptr}]{pt\+\_\+id,  }\item[{CANDY\+::\+Vertex\+Ptr}]{nearest,  }\item[{float}]{d\+\_\+nearest,  }\item[{int}]{level,  }\item[{\mbox{\hyperlink{classCANDY_1_1VisitedTable}{CANDY\+::\+Visited\+Table}} \&}]{vt }\end{DoxyParamCaption})}
+
+
+
+called when add vertices. Add links to new vector according to its nearest vector\textquotesingle{}s neighbor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disq} & Distance\+Query whose query is set as the new vertex to insert \\
+\hline
+{\em pt\+\_\+id} & new vector ptr \\
+\hline
+{\em nearest} & greedy-\/searched nearest vector to new vector. Search starting from entry point \\
+\hline
+{\em d\+\_\+nearest} & distance between nearest vector and query \\
+\hline
+{\em level} & assigned level \\
+\hline
+{\em vt} & \mbox{\hyperlink{classCANDY_1_1VisitedTable}{Visited\+Table}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a9cea150bd760b4fba3eb826172e502f1}\label{classCANDY_1_1HNSW_a9cea150bd760b4fba3eb826172e502f1}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!add\_without\_lock@{add\_without\_lock}}
+\index{add\_without\_lock@{add\_without\_lock}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{add\_without\_lock()}{add\_without\_lock()}}
+{\footnotesize\ttfamily void CANDY\+::\+HNSW\+::add\+\_\+without\+\_\+lock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCANDY_1_1DistanceQueryer}{CANDY\+::\+Distance\+Queryer}} \&}]{disq,  }\item[{int}]{assigned\+\_\+level,  }\item[{CANDY\+::\+Vertex\+Ptr}]{pt\+\_\+id,  }\item[{\mbox{\hyperlink{classCANDY_1_1VisitedTable}{CANDY\+::\+Visited\+Table}} \&}]{vt }\end{DoxyParamCaption})}
+
+
+
+add neighbors to a vertex single-\/threaded 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qdis} & distance queryer init with the query \\
+\hline
+{\em assigned\+\_\+level} & the query\textquotesingle{}s assigned level from which to add links \\
+\hline
+{\em pt\+\_\+id} & query\textquotesingle{}s vertex pointer \\
+\hline
+{\em vt} & visited table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a7be7a595d116391317f62bbc230ba4b4}\label{classCANDY_1_1HNSW_a7be7a595d116391317f62bbc230ba4b4}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!cum\_nb\_neighbors@{cum\_nb\_neighbors}}
+\index{cum\_nb\_neighbors@{cum\_nb\_neighbors}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{cum\_nb\_neighbors()}{cum\_nb\_neighbors()}}
+{\footnotesize\ttfamily size\+\_\+t CANDY\+::\+HNSW\+::cum\+\_\+nb\+\_\+neighbors (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{layer\+\_\+no }\end{DoxyParamCaption})}
+
+
+
+cumulated number of neighbors up to layer layer\+\_\+no excluded 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+\_\+no} & layer number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of neighbors for layer layer\+\_\+no 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a7705f99d887e3428ae4149c836da6e2e}\label{classCANDY_1_1HNSW_a7705f99d887e3428ae4149c836da6e2e}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!nb\_neighbors@{nb\_neighbors}}
+\index{nb\_neighbors@{nb\_neighbors}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{nb\_neighbors()}{nb\_neighbors()}}
+{\footnotesize\ttfamily size\+\_\+t CANDY\+::\+HNSW\+::nb\+\_\+neighbors (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{layer\+\_\+no }\end{DoxyParamCaption})}
+
+
+
+number of neighbors for layer layer\+\_\+no 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+\_\+no} & layer number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of neighbors for layer layer\+\_\+no 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a01d1a94213bfb66118a4476c997e46d8}\label{classCANDY_1_1HNSW_a01d1a94213bfb66118a4476c997e46d8}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!neighbor\_range@{neighbor\_range}}
+\index{neighbor\_range@{neighbor\_range}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{neighbor\_range()}{neighbor\_range()}}
+{\footnotesize\ttfamily void CANDY\+::\+HNSW\+::neighbor\+\_\+range (\begin{DoxyParamCaption}\item[{int}]{level,  }\item[{size\+\_\+t $\ast$}]{begin,  }\item[{size\+\_\+t $\ast$}]{end }\end{DoxyParamCaption})}
+
+
+
+set the boundaries within neighbors\+\_\+\mbox{[}Tensor\+Ptr\mbox{]} on a level 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & level to be searched \\
+\hline
+{\em begin} & begin index \\
+\hline
+{\em end} & end index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a9ad6ed6350fa714b5fe4c2da2b1c7b11}\label{classCANDY_1_1HNSW_a9ad6ed6350fa714b5fe4c2da2b1c7b11}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!prepare\_level\_tab@{prepare\_level\_tab}}
+\index{prepare\_level\_tab@{prepare\_level\_tab}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{prepare\_level\_tab()}{prepare\_level\_tab()}}
+{\footnotesize\ttfamily int CANDY\+::\+HNSW\+::prepare\+\_\+level\+\_\+tab (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{x,  }\item[{bool}]{preset\+\_\+levels,  }\item[{bool}]{is\+\_\+\+NSW }\end{DoxyParamCaption})}
+
+
+
+assign levels to new vectors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & new vectors to be assigned \\
+\hline
+{\em preset\+\_\+levels} & if levels have been init for new vectors \\
+\hline
+{\em is\+\_\+\+NSW} & if this is an NSW structure rather than \mbox{\hyperlink{classCANDY_1_1HNSW}{HNSW}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+max\+\_\+level assigned for new vectors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_ac8c62d10e8c2326b0fad1eb5137179a2}\label{classCANDY_1_1HNSW_ac8c62d10e8c2326b0fad1eb5137179a2}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!random\_level@{random\_level}}
+\index{random\_level@{random\_level}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{random\_level()}{random\_level()}}
+{\footnotesize\ttfamily int CANDY\+::\+HNSW\+::random\+\_\+level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+generate a random level 
+
+\begin{DoxyReturn}{Returns}
+random level 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a54a73ab3b34e192ee0b628b3777c5f87}\label{classCANDY_1_1HNSW_a54a73ab3b34e192ee0b628b3777c5f87}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!search@{search}}
+\index{search@{search}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily void CANDY\+::\+HNSW\+::search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCANDY_1_1DistanceQueryer}{Distance\+Queryer}} \&}]{qdis,  }\item[{int}]{k,  }\item[{std\+::vector$<$ Vertex\+Ptr $>$ \&}]{I,  }\item[{float $\ast$}]{D,  }\item[{\mbox{\hyperlink{classCANDY_1_1VisitedTable}{Visited\+Table}} \&}]{vt }\end{DoxyParamCaption})}
+
+
+
+search topK neighbors using qdis and store the results in I and D 
+
+
+\begin{DoxyParams}{Parameters}
+{\em qdis} & distance queryer init with the query to be searched \\
+\hline
+{\em k} & top K neighbors \\
+\hline
+{\em I} & results for vectors \\
+\hline
+{\em D} & results for distances \\
+\hline
+{\em vt} & vistied table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_aeed9a735e1582f0e55ff03fd4c158914}\label{classCANDY_1_1HNSW_aeed9a735e1582f0e55ff03fd4c158914}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!set\_nb\_neighbors@{set\_nb\_neighbors}}
+\index{set\_nb\_neighbors@{set\_nb\_neighbors}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{set\_nb\_neighbors()}{set\_nb\_neighbors()}}
+{\footnotesize\ttfamily void CANDY\+::\+HNSW\+::set\+\_\+nb\+\_\+neighbors (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{layer\+\_\+no,  }\item[{size\+\_\+t}]{nb }\end{DoxyParamCaption})}
+
+
+
+update the number of neighbors of a layer. Not used currently 
+
+
+\begin{DoxyParams}{Parameters}
+{\em layer\+\_\+no} & layer to update \\
+\hline
+{\em nb} & neighbor number to update to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a06afc95abf33f9893e408405a8fee68e}\label{classCANDY_1_1HNSW_a06afc95abf33f9893e408405a8fee68e}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!set\_probs@{set\_probs}}
+\index{set\_probs@{set\_probs}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{set\_probs()}{set\_probs()}}
+{\footnotesize\ttfamily void CANDY\+::\+HNSW\+::set\+\_\+probs (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{M,  }\item[{float}]{level\+Mult }\end{DoxyParamCaption})}
+
+
+
+set probabilities of a level to be assigned for new vectors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em M} & number of neighbors \\
+\hline
+{\em level\+Mult} & 1/log(M) to distribute the probability \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classCANDY_1_1HNSW_a0557d5cb1d8a1115ed1fee401b7254e0}\label{classCANDY_1_1HNSW_a0557d5cb1d8a1115ed1fee401b7254e0}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!cum\_nneighbor\_per\_level\_@{cum\_nneighbor\_per\_level\_}}
+\index{cum\_nneighbor\_per\_level\_@{cum\_nneighbor\_per\_level\_}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{cum\_nneighbor\_per\_level\_}{cum\_nneighbor\_per\_level\_}}
+{\footnotesize\ttfamily std\+::vector$<$size\+\_\+t$>$ CANDY\+::\+HNSW\+::cum\+\_\+nneighbor\+\_\+per\+\_\+level\+\_\+}
+
+cumulative number of neighbors stored per layer with that layer excluded, should remain intact! cum\+\_\+nneighbor\+\_\+per\+\_\+level\+\_\+\mbox{[}0\mbox{]} = 0; \mbox{\Hypertarget{classCANDY_1_1HNSW_aad0dc7f910a7c9bedf3a930bf71ef76f}\label{classCANDY_1_1HNSW_aad0dc7f910a7c9bedf3a930bf71ef76f}} 
+\index{CANDY::HNSW@{CANDY::HNSW}!search\_bounded\_queue@{search\_bounded\_queue}}
+\index{search\_bounded\_queue@{search\_bounded\_queue}!CANDY::HNSW@{CANDY::HNSW}}
+\doxysubsubsection{\texorpdfstring{search\_bounded\_queue}{search\_bounded\_queue}}
+{\footnotesize\ttfamily bool CANDY\+::\+HNSW\+::search\+\_\+bounded\+\_\+queue = true}
+
+whether the search process is bounded; now only bounded search is implemented 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+CANDY/\+HNSWNaive/HNSW.\+h\item 
+src/\+CANDY/\+HNSWNaive/HNSW.\+cpp\end{DoxyCompactItemize}
