@@ -10,7 +10,10 @@
 #include <Utils/IntelliLog.h>
 #include <CANDY/AbstractIndex.h>
 #include <CANDY/IndexTable.h>
-
+#include <include/papi_config.h>
+#if CANDY_PAPI == 1
+#include <Utils/ThreadPerfPAPI.hpp>
+#endif
 namespace py = pybind11;
 using namespace INTELLI;
 using namespace CANDY;
@@ -124,4 +127,15 @@ PYBIND11_MODULE(PyCANDY, m) {
       .def("loadInitialTensorAndQueryDistribution", &AbstractIndex::loadInitialTensorAndQueryDistribution);
   m.def("createIndex", &createIndex, "A function to create new index by name tag");
   m.def("add_tensors", &add_tensors, "A function that adds two tensors");
+  /**
+   * @brief perf
+   */
+#if CANDY_PAPI == 1
+  py::class_<INTELLI::ThreadPerfPAPI,std::shared_ptr<INTELLI::ThreadPerfPAPI>>(m, "PAPIPerf")
+      .def(py::init<>())
+      .def("initEventsByCfg", &INTELLI::ThreadPerfPAPI::initEventsByCfg)
+      .def("start", &INTELLI::ThreadPerfPAPI::start)
+      .def("end", &INTELLI::ThreadPerfPAPI::end)
+      .def("resultToConfigMap", &INTELLI::ThreadPerfPAPI::resultToConfigMap);
+#endif
 }

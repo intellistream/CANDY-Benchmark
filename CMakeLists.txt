@@ -72,7 +72,7 @@ else ()
     set(CANDY_PAPI 1)
     message(STATUS "I will try to use PAPI for HW counters, pls make sure your arch supports it")
     option(REBUILD_PAPI
-            "Rebuild the papi libs"
+            "Rebuild the papi lib"
             OFF
     )
     if (REBUILD_PAPI)
@@ -81,7 +81,7 @@ else ()
         execute_process(COMMAND bash ${PAPISCRIPTPATH}/installPAPI.sh WORKING_DIRECTORY ${PAPISCRIPTPATH})
         message(STATUS "I have rebuilt PAPI")
     endif ()
-    find_library(libPAPI libpapi.a ./thirdparty/papi_build/lib)
+    find_library(libPAPI libpapi.so ./thirdparty/papi_build/lib)
     message(STATUS "papiLibs= " ${libPAPI})
     set(LIBRARIES ${LIBRARIES} ${libPAPI})
 

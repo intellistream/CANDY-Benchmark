@@ -435,10 +435,10 @@ class ThreadPerf {
   virtual ConfigMapPtr resultToConfigMap() {
     ConfigMapPtr ru = newConfigMap();
     for (size_t i = 0; i < pairs.size(); i++) {
-      ru->edit(pairs[i].name, (uint64_t) pairs[i].record);
+      ru->edit(pairs[i].name, (int64_t) pairs[i].record);
     }
     //additional test the elapsed time
-    ru->edit("perfElapsedTime", (uint64_t) timeLastUs(tstart, tend));
+    ru->edit("perfElapsedTime", (int64_t) timeLastUs(tstart, tend));
     return ru;
   }
   /**
