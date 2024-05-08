@@ -5,7 +5,6 @@ sudo ls
 echo "Installing others..."
 sudo apt install -y liblapack-dev libblas-dev
 sudo apt-get install -y graphviz
-sudo apt-get install -y libcudnn8 libcudnn8-dev
 pip install matplotlib pandas==2.0.0
 pip install torch==1.13.0 --index-url https://download.pytorch.org/whl/cpu
 echo "Build CANDY and PyCandy"
