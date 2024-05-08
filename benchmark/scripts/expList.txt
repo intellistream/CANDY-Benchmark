@@ -11,5 +11,5 @@ scanIPEventRate
 scanIPConceptDriftTopic
 scanIPConceptDriftHotSpot
 scanIPConceptDriftTopicNoDropping
-scanOpenImg
+
 
