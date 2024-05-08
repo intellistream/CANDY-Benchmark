@@ -6,7 +6,7 @@ libtorch
 ## Extra Cmake options (set by cmake -Dxxx=ON/OFF)
 - ENABLE_PAPI, this will enable PAPI-based perf tools (OFF by default) 
     - you need first cd to thirdparty and run installPAPI.sh to enable PAPI support, or also set REBUILD_PAPI to ON
-    - not used currently
+    - not used in C++ benchmark currently
 - ENABLE_HDF5, this will enable you to load data from HDF5 (OFF by default)
     - we have included the source code of hdf5 lib, no extra dependency
 - ENABLE_PYBIND, this will enable you to make python binds, i.e., PyRAINA (OFF by default)
