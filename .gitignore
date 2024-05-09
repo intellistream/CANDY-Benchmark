@@ -41,7 +41,5 @@ benchmark/scripts/Downstream_Inference/bolt*
 benchmark/torchscripts/
 benchmark/torchscripts*
 /.vscode
-commit_info
-commit.sh
 PyCANDY.egg-info/
 dist/
