@@ -16,9 +16,12 @@ def runAKNN(cfgName,copyPath):
     dl.setConfig(cfg)
     data=dl.getData()
     query=dl.getQuery()
+    ini=data[0:50000,:]
+    rst=data[50000:,:]
+    aknn.loadInitialTensor(ini)
     # perf the insert
     perf0.start()
-    aknn.insertTensor(data)
+    aknn.insertTensor(rst)
     perf0.end()
     rucsv=perf0.resultToConfigMap()
     rucsv.toFile('perfInsert.csv')
