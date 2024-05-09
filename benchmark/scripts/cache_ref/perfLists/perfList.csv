@@ -1,0 +1,9 @@
+key,value,type
+instructions,INSTRUCTION_RETIRED,String
+cacheAccess,perf::CACHE-REFERENCES,String
+cacheMiss,perf::CACHE-MISSES,String
+l1dAccess,perf::PERF_COUNT_HW_CACHE_L1D:ACCESS,String
+l1dMiss,perf::PERF_COUNT_HW_CACHE_L1D:MISS,String
+llcAccess,perf::PERF_COUNT_HW_CACHE_LL:ACCESS,String
+llcMiss,perf::PERF_COUNT_HW_CACHE_LL:MISS,String
+totalStall,UOPS_EXECUTED:STALL_CYCLES,String
