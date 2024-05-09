@@ -122,14 +122,14 @@ def runPeriodVector(exePath, algoTag, resultPath, prefixTag, configTemplate="con
 def readResultSingle(singleValue, resultPath):
     resultFname = resultPath + "/" + str(singleValue) + "/perfInsert.csv"
     elapsedTime = readConfig(resultFname, "perfElapsedTime")
-    cpuCycle = readConfig(resultFname, "cpuCycle")
-    memStall = readConfig(resultFname, "memStall")
-    instructions = readConfig(resultFname, "instructions")
-    l1dStall = readConfig(resultFname, "l1dStall")
-    l2Stall = readConfig(resultFname, "l2Stall")
-    l3Stall = readConfig(resultFname, "l3Stall")
-    totalStall=readConfig(resultFname, "totalStall")
-    return elapsedTime, cpuCycle, memStall, instructions, l1dStall, l2Stall, l3Stall,totalStall
+    cacheAccess = readConfig(resultFname, "cacheAccess")
+    cacheMiss = readConfig(resultFname, "cacheMiss")
+    l1dAccess = readConfig(resultFname, "l1dAccess")
+    l1dMiss = readConfig(resultFname, "l1dMiss")
+    llcAccess = readConfig(resultFname, "llcAccess")
+    llcMiss = readConfig(resultFname, "llcMiss")
+    totalStall=readConfig(resultFname, "llcMiss")
+    return elapsedTime, cacheAccess, cacheMiss, l1dAccess, l1dMiss, llcAccess, llcMiss,totalStall
 def checkResultSingle(singleValue, resultPath):
     resultFname = resultPath + "/" + str(singleValue) + "/perfInsert.csv"
     ruExists=0
@@ -142,25 +142,25 @@ def checkResultSingle(singleValue, resultPath):
 
 def readResultVector(singleValueVec, resultPath):
     elapseTimeVec = []
-    cpuCycleVec = []
-    memStallVec = []
-    instructionsVec = []
-    l1dStallVec = []
-    l2StallVec = []
-    l3StallVec = []
+    cacheAccessVec = []
+    cacheMissVec = []
+    l1dAccessVec = []
+    l1dMissVec = []
+    llcAccessVec = []
+    llcMissVec = []
     totalStallVec=[]
     for i in singleValueVec:
-        elapsedTime, cpuCycle, memStall, instructions, l1dStall, l2Stall, l3Stall,totalStall = readResultSingle(i, resultPath)
+        elapsedTime, cacheAccess, cacheMiss, l1dAccess, l1dMiss, llcAccess, llcMiss,totalStall = readResultSingle(i, resultPath)
         elapseTimeVec.append(float(elapsedTime) / 1000.0)
-        cpuCycleVec.append(float(cpuCycle))
-        memStallVec.append(float(memStall))
-        instructionsVec.append(float(instructions))
-        l1dStallVec.append(float(l1dStall))
-        l2StallVec.append(float(l2Stall))
-        l3StallVec.append(float(l3Stall))
+        cacheAccessVec.append(float(cacheAccess))
+        cacheMissVec.append(float(cacheMiss))
+        l1dAccessVec.append(float(l1dAccess))
+        l1dMissVec.append(float(l1dMiss))
+        llcAccessVec.append(float(llcAccess))
+        llcMissVec.append(float(llcMiss))
         totalStallVec.append(float(totalStall))
-    return np.array(elapseTimeVec), np.array(cpuCycleVec), np.array(memStallVec), np.array(instructionsVec), np.array(
-        l1dStallVec), np.array(l2StallVec), np.array(l3StallVec),np.array(totalStallVec)
+    return np.array(elapseTimeVec), np.array(cacheAccessVec), np.array(cacheMissVec), np.array(l1dAccessVec), np.array(
+        l1dMissVec), np.array(llcAccessVec), np.array(llcMissVec),np.array(totalStallVec)
 
 def checkResultVector(singleValueVec, resultPath):
     resultIsComplete=0
@@ -173,15 +173,15 @@ def checkResultVector(singleValueVec, resultPath):
 
 def compareMethod(exeSpace, commonPathBase, resultPaths, csvTemplate, algos, dataSetName, reRun=1):
     elapsedTimeAll = []
-    memStallAll = []
+    cacheMissAll = []
     incrementalSearchAll = []
     periodAll = []
-    instructionAll = []
-    l1dStallAll = []
-    l2StallAll = []
-    l3StallAll = []
+    l1dAccessAll = []
+    l1dMissAll = []
+    llcAccessAll = []
+    llcMissAll = []
     totalStallAll = []
-    cyclesAll = []
+    cacheAccessAll = []
     resultIsComplete = 1
     algoCnt = 0
     for i in range(len(algos)):
@@ -205,34 +205,34 @@ def compareMethod(exeSpace, commonPathBase, resultPaths, csvTemplate, algos, dat
                     resultIsComplete = checkResultVector(scanVec, resultPath)
         # exit()
         if resultIsComplete:
-            elapsedTime, cpuCycle, memStall, instructions, l1dStall, l2Stall, l3Stall,totalStall = readResultVector(
+            elapsedTime, cacheAccess, cacheMiss, l1dAccess, l1dMiss, llcAccess, llcMiss,totalStall = readResultVector(
                 dataSetName, resultPath)
             elapsedTimeAll.append(elapsedTime)
-            instructionAll.append(instructions)
-            memStallAll.append(memStall)
-            l1dStallAll.append(l1dStall)
+            l1dAccessAll.append(l1dAccess)
+            cacheMissAll.append(cacheMiss)
+            l1dMissAll.append(l1dMiss)
             periodAll.append(dataSetName)
-            cyclesAll.append(cpuCycle)
-            l2StallAll.append(l2Stall)
-            l3StallAll.append(l3Stall)
+            cacheAccessAll.append(cacheAccess)
+            llcAccessAll.append(llcAccess)
+            llcMissAll.append(llcMiss)
             totalStallAll.append(totalStall)
             algoCnt = algoCnt + 1
             print(algoCnt)
         # periodAll.append(periodVec)
-    return np.array(elapsedTimeAll), np.array(cyclesAll), np.array(periodAll), np.array(instructionAll), np.array(
-        memStallAll), np.array(l1dStallAll), np.array(l2StallAll), np.array(l3StallAll), np.array(
+    return np.array(elapsedTimeAll), np.array(cacheAccessAll), np.array(periodAll), np.array(l1dAccessAll), np.array(
+        cacheMissAll), np.array(l1dMissAll), np.array(llcAccessAll), np.array(llcMissAll), np.array(
         totalStallAll)
-def getCyclesPerMethod(cyclesAll, valueChose):
-    instructionsPerMethod = []
-    for i in range(len(cyclesAll)):
-        instructionsPerMethod.append(cyclesAll[int(i)][int(valueChose)])
-    return np.array(instructionsPerMethod)       
+def getCyclesPerMethod(cacheAccessAll, valueChose):
+    l1dAccessPerMethod = []
+    for i in range(len(cacheAccessAll)):
+        l1dAccessPerMethod.append(cacheAccessAll[int(i)][int(valueChose)])
+    return np.array(l1dAccessPerMethod)       
 
 def main():
     exeSpace = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/"
-    commonBasePath = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/results/cycles_breakdown_1/"
+    commonBasePath = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/results/cache_ref/"
 
-    figPath = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/figures/cycles_breakdown_1/"
+    figPath = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/figures/cache_ref/"
     
     # add the datasets here
     # srcAVec=["datasets/AST/mcfe.mtx"] # 765*756
@@ -283,56 +283,32 @@ def main():
     print(reRun)
     #exit()
     methodTags =algoDisp
-    elapsedTimeAll, cpuCycleAll, periodAll, instructions, memStallAll, l1dStallAll, l2StallAll, l3StallAll,totalStallAll = compareMethod(
+    elapsedTimeAll, cacheAccessAll, periodAll, l1dAccess, cacheMissAll, l1dMissAll, llcAccessAll, llcMissAll,totalStallAll = compareMethod(
         exeSpace, commonBasePath, resultPaths, csvTemplate, algosVec, aRowVec, reRun)
     # Add some pre-process logic for int8 here if it is used
 
-    #print(instructions)
-    print(memStallAll)
+    #print(l1dAccess)
+    print(cacheMissAll)
     #exit(0)
     # adjust int8: int8/int8_fp32*mm
     
    
-    otherStallsAll = totalStallAll-memStallAll-l1dStallAll-l2StallAll-l3StallAll
-    otherStallsAll = np.maximum(otherStallsAll,0)
-    print(otherStallsAll)
-    totalStallAll = memStallAll+l1dStallAll+l2StallAll+l3StallAll+otherStallsAll
-    nonStallAll=cpuCycleAll-totalStallAll
-    nonStallAll=np.maximum(nonStallAll,0)
-    cpuCycleAll=totalStallAll+nonStallAll
-    allowLegend = True
-    valueVec=dataSetNames
-    for valueChose in range(len(valueVec)):
-        # instructionsPerMethod=getCyclesPerMethod(instructions,valueChose)
-        cpuCyclePerMethod = getCyclesPerMethod(cpuCycleAll, valueChose)
-        memStallPerMethod = getCyclesPerMethod(memStallAll, valueChose)
-        l1dStallPerMethod = getCyclesPerMethod(l1dStallAll, valueChose)
-        l2StallPerMethod = getCyclesPerMethod(l2StallAll, valueChose)
-        l3StallPerMethod = getCyclesPerMethod(l3StallAll, valueChose)
-        totalStallAllPerMethod=getCyclesPerMethod(totalStallAll, valueChose)
-        otherPerMethod = getCyclesPerMethod(otherStallsAll, valueChose)
-        nonStallPerMethod=getCyclesPerMethod(nonStallAll, valueChose)
-        accuBar.DrawFigure(methodTags,
-                           [memStallPerMethod, l1dStallPerMethod, l2StallPerMethod, l3StallPerMethod,
-                            otherPerMethod,nonStallPerMethod]/cpuCyclePerMethod*100.0, ['Mem Stall', 'L1D Stall', 'L2 Stall', 'L3 Stall', 'Other Stall', 'Not Stall'], '',
-                           'Propotion (%)', figPath + "/" + "cyclesbreakDown"
-                           + "_cycles_accubar" + str(valueVec[valueChose]), allowLegend,
-                           '')
-        
-        allowLegend = False
         
     #draw2yBar(methodTags,[lat95All[0][0],lat95All[1][0],lat95All[2][0],lat95All[3][0]],[errAll[0][0],errAll[1][0],errAll[2][0],errAll[3][0]],'95% latency (ms)','Error (%)',figPath + "sec6_5_stock_q1_normal")
     #groupBar2.DrawFigure(dataSetNames, errAll, methodTags, "Datasets", "Error (%)", 5, 15, figPath + "sec4_1_e2e_static_lazy_fro", True)
     #groupBar2.DrawFigure(dataSetNames, np.log(lat95All), methodTags, "Datasets", "95% latency (ms)", 5, 15, figPath + "sec4_1_e2e_static_lazy_latency_log", True)
-    ipcAll=instructions/cpuCycleAll
-    groupBar2.DrawFigure(dataSetNames,ipcAll,methodTags, "Datasets", "IPC", 5, 15, figPath + "ipc", True)
-    groupBar2.DrawFigure(dataSetNames,totalStallAll/cpuCycleAll*100.0,methodTags, "Datasets", "Ratio of Stalls (%)", 5, 15, figPath + "stall_ratio", True)
-    groupBar2.DrawFigure(dataSetNames,l1dStallAll/cpuCycleAll*100.0,methodTags, "Datasets", "Ratio of l1dStalls (%)", 5, 15, figPath + "l1dstall_ratio", True)
-    groupBar2.DrawFigure(dataSetNames,l2StallAll/cpuCycleAll*100.0,methodTags, "Datasets", "Ratio of l2Stalls (%)", 5, 15, figPath + "l2stall_ratio", True)
-    groupBar2.DrawFigure(dataSetNames,l3StallAll/cpuCycleAll*100.0,methodTags, "Datasets", "Ratio of l3Stalls (%)", 5, 15, figPath + "l3stall_ratio", True)
-    groupBar2.DrawFigureYLog(dataSetNames,memStallAll,methodTags, "Datasets", "Count of memory stall", 5, 15, figPath + "cnt_mem_stall", True)
-    print(ipcAll)
-    #groupBar2.DrawFigure(dataSetNames,(l1dStallAll+l2StallAll+l3StallAll)/cpuCycleAll*100.0,methodTags, "Datasets", "Ratio of cacheStalls (%)", 5, 15, figPath + "cachestall_ratio", True)
+
+    groupBar2.DrawFigure(dataSetNames,l1dMissAll/l1dAccess*100.0,methodTags, "Datasets", "L1 MISS (%)", 5, 15, figPath + "L1_MISS_RATE", True)
+    groupBar2.DrawFigure(dataSetNames,cacheMissAll/cacheAccessAll*100.0,methodTags, "Datasets", "CACHE MISS (%)", 5, 15, figPath + "CACHE_MISS_RATE", True)
+    groupBar2.DrawFigure(dataSetNames,llcMissAll/llcAccessAll*100.0,methodTags, "Datasets", "LLC MISS (%)", 5, 15, figPath + "LLC_MISS_RATE", True)
+
+    groupBar2.DrawFigureYLog(dataSetNames,l1dMissAll,methodTags, "Datasets", "#L1 MISS", 5, 15, figPath + "L1_MISS", True)
+    groupBar2.DrawFigureYLog(dataSetNames,cacheMissAll,methodTags, "Datasets", "#CACHE MISS", 5, 15, figPath + "CACHE_MISS", True)
+    groupBar2.DrawFigureYLog(dataSetNames,llcMissAll,methodTags, "Datasets", "#LLC MISS", 5, 15, figPath + "LLC_MISS", True)
+                         
+   
+    
+    #groupBar2.DrawFigure(dataSetNames,(l1dMissAll+llcAccessAll+llcMissAll)/cacheAccessAll*100.0,methodTags, "Datasets", "Ratio of cacheStalls (%)", 5, 15, figPath + "cachestall_ratio", True)
 
 
 
