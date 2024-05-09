@@ -2,6 +2,25 @@ import torch
 import PyCANDY as candy
 import os
 import sys
+import signal
+import sys
+import time
+cpath=""
+def timeout_handler(signum, frame):
+    global cpath
+    print("Time's up! Exiting now.")
+    a=int(0)
+    dict={'cpuCycle':a,'cpuCycle':a,'l1dStall':a,'l2Stall':a,'l3Stall':a,'memStall':a,'perfElapsedTime':a,'totalStall':a}
+    cfg= candy.dictToConfigMap(dict)
+    cfg.toFile('perfInsert.csv')
+    cfg.toFile('perfQuery.csv')
+    os.system("sudo cp *.csv "+cpath)
+    sys.exit(0)  # Exit the program
+
+def set_wall_timer(hours):
+    seconds = hours * 3600
+    signal.signal(signal.SIGALRM, timeout_handler)
+    signal.alarm(seconds)  # Set the alarm
 def runAKNN(cfgName,copyPath):
     cfg=candy.ConfigMap()
     cfg.fromFile(cfgName)
@@ -33,6 +52,9 @@ def runAKNN(cfgName,copyPath):
     rucsv.toFile('perfQuery.csv')
     os.system("sudo cp *.csv "+copyPath)
 def main():
+    global cpath
+    cpath=sys.argv[2]
+    set_wall_timer(4)
     runAKNN(sys.argv[1],sys.argv[2])
 if __name__ == "__main__":
     main()
