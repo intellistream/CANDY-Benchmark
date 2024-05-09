@@ -11,16 +11,21 @@ libtorch
     - we have included the source code of hdf5 lib, no extra dependency
 - ENABLE_PYBIND, this will enable you to make python binds, i.e., PyRAINA (OFF by default)
   - we have included the source code of pybind 11 in third party folder, please make sur it is complete
-## One-Key build examples
+## One-Key build examples with auto solving of dependencies
 - buildWithCuda.sh To build CANDY and PyCANDY with cuda support, make sure you have cuda installed before it
 - buildCPUOnly.sh This is a CPU-only version
-### Where are the scripts
-See build/benchmark/scripts/rerunAll.sh
-## Requires G++11
+- After either one, you can run the following to add PyCANDY To your default python environment
+```shell
+ python3 setup.py install --user
+```
+### Where are the evaluation scripts
+See build/benchmark/scripts/rerunAll.sh after one-key build
+## Manual build
+### Requires G++11
 
 The default version of gcc/g++ on ubuntu 22.04 (jammy) is good enough.
 
-### For x64 ubuntu older than 21.10
+#### For x64 ubuntu older than 21.10
 
 run following first
 
@@ -35,7 +40,7 @@ Then, install the default gcc/g++ of ubuntu22.04
 sudo apt-get install gcc g++ cmake python3 python3-pip
 ```
 
-### For other architectures
+#### For other architectures
 
 Please manually edit your /etc/sources.list, and add a jammy source, then
 
@@ -51,25 +56,25 @@ jammy may crash down your older version
 
 Please do not install the python3 from jammy!!! Keep it raw is safer!!!
 
-## Requires BLAS and LAPACK
+### Requires BLAS and LAPACK
 
 ```shell
 sudo apt install liblapack-dev libblas-dev
 ```
 
-## (Optional) Install graphviz
+### (Optional) Install graphviz
 
 ```shell
 sudo apt-get install graphviz
 pip install torchviz
 ```
 
-## Requires Torch
+### Requires Torch
 
 You may refer to https://pytorch.org/get-started/locally/ for mor details, following are the minimal requirements
 DO NOT USE CONADA!!!!!
 
-### (Optional) Cuda-based torch
+#### (Optional) Cuda-based torch
 
 Note:
 
@@ -92,7 +97,7 @@ Then you may have to reboot for enabling cuda.
 
 DO INSTALL CUDA BEFORE INSTALL CUDA-BASED TORCH!!!
 
-#### Cuda on Jetson
+##### Cuda on Jetson
 
 There is no need to install cuda if you use a pre-build jetpack on jetson. It will neither work,:(
 Instead, please only check your libcudnn8 and libcublas
@@ -101,7 +106,7 @@ Instead, please only check your libcudnn8 and libcublas
 sudo apt-get install libcudnn8 libcudnn8-dev libcublas-*
 ```
 
-### (Required) Install pytorch (should install separately)
+#### (Required) Install pytorch (should install separately)
 
 ```shell
 sudo apt-get install python3 python3-pip
@@ -123,23 +128,23 @@ pip3 install --ignore-installed torch==1.13.0 torchvision torchaudio --index-url
 *Note: Conflict between torch1.13.0+cpu and torchaudio+cpu may occur under python version > 3.10*
 
 
-## (optional) Requires PAPI (contained source in this repo as third party)
+### (optional) Requires PAPI (contained source in this repo as third party)
 
 PAPI is a consistent interface and methodology for collecting performance counter information from various hardware and
 software components: https://icl.utk.edu/papi/.
 , CANDY includes it in thirdparty/papi_7_0_1.
 
-### How to build PAPI
+#### How to build PAPI
 
 - cd to thirdparty and run installPAPI.sh, PAPI will be compiled and installed in thirdparty/papi_build
 
-### How to verify if PAPI works on my machine
+#### How to verify if PAPI works on my machine
 
 - cd to thirdparty/papi_build/bin , and run papi_avail by sudo, there should be at least one event avaliable
 - the run papi_native_avail, the printed tags are valid native events.
 - please report to PAPI authors if you find your machine not supported
 
-### How to use PAPI in CANDY
+#### How to use PAPI in CANDY
 
 - set -DENABLE_PAPI=ON in cmake CANDY
 - in your top config file, add two config options:
@@ -153,11 +158,11 @@ software components: https://icl.utk.edu/papi/.
       String
 - please note that papi has a limitation of events due to hardware constraints, so only put 2~3 in each run
 
-## How to build
+### Build steps
 
 (CUDA-related is only necessary if your pytorch has cuda, but it's harmless if you don't have cuda.)
 
-### Build in shell
+#### Build in shell
 
 ```shell
 export CUDACXX=/usr/local/cuda/bin/nvcc
@@ -178,7 +183,7 @@ cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=`python3 -c 'import torch;pri
 make 
 ```
 
-### Tips for build in Clion
+#### Tips for build in Clion
 
 There are bugs in the built-in cmake of Clion, so you can not run
 -DCMAKE_PREFIX_PATH=`python3 -c 'import torch;print(torch.utils.cmake_prefix_path)'`.
@@ -188,9 +193,9 @@ Following may help:
 - Paste the path to -DCMAKE_PREFIX_PATH=
 - Manually set the environment variable CUDACXX as "/usr/local/cuda/bin/nvcc" in Clion's cmake settings
 
-## (Optional) Distributed CANDY with Ray
+### (Optional) Distributed CANDY with Ray
 
-### To build
+#### To build
 
 1. Install ray by
 
@@ -221,7 +226,7 @@ Get the installation path by
 4. Go to https://docs.ray.io/en/latest/ray-observability/getting-started.html#observability-getting-started if you need
    a dashboard
 
-### To run
+#### To run
 
 * Please set up the cluster before run the program
     * To start the head node
@@ -250,11 +255,11 @@ Get the installation path by
 * For different arch, please recompile from source code, but keep the path, name of the *.so and binary the same
 * torch::Tensor seems to be unable to be packed as remote args (both in and out), please convert to std::vector<float>
 
-### Known issues
+#### Known issues
 
 Does not work with python
 
-## Local generation of the documents
+### Local generation of the documents
 
 You can also re-generate them locally, if you have the doxygen and graphviz. Following are how to install them in ubuntu
 21.10/22.04
@@ -274,18 +279,13 @@ Then, you can do
 ./genDoc.SH
 ```
 
-### HTML pages
+#### HTML pages
 
 To get the documents in doc/html folder, and start at index.html
 
-### pdf manual
+#### pdf manual
 
 To find the refman.pdf at the root
-
-## Benchmark parameters
-
-Please specify a configfile in running benchmark program, assuming we are using AMM(A,B)
-The following are config parameters:
 
 ## Evaluation scripts
 

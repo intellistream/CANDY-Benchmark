@@ -9,6 +9,7 @@
 #include <Utils/ConfigMap.hpp>
 #include <Utils/IntelliLog.h>
 #include <CANDY/AbstractIndex.h>
+#include <DataLoader/DataLoaderTable.h>
 #include <CANDY/IndexTable.h>
 #include <include/papi_config.h>
 #if CANDY_PAPI == 1
@@ -76,10 +77,22 @@ AbstractIndexPtr createIndex(std::string nameTag) {
   }
   return ru;
 }
+AbstractDataLoaderPtr  creatDataLoader(std::string nameTag) {
+  DataLoaderTable dt;
+  auto ru= dt.findDataLoader(nameTag);
+  if(ru==nullptr){
+    INTELLI_ERROR("No index named "+nameTag+", return flat");
+    nameTag="random";
+    return dt.findDataLoader(nameTag);
+  }
+  return ru;
+}
+
 PYBIND11_MODULE(PyCANDY, m) {
   /**
    * @brief export the configmap class
    */
+  m.attr("__version__") = "0.1.0";  // Set the version of the module
   py::class_<INTELLI::ConfigMap,std::shared_ptr<INTELLI::ConfigMap>>(m, "ConfigMap")
       .def(py::init<>())
       .def("edit", py::overload_cast<const std::string &, int64_t>(&INTELLI::ConfigMap::edit))
@@ -126,10 +139,16 @@ PYBIND11_MODULE(PyCANDY, m) {
       .def("searchTensorAndStringObject", &AbstractIndex::searchTensorAndStringObject)
       .def("loadInitialTensorAndQueryDistribution", &AbstractIndex::loadInitialTensorAndQueryDistribution);
   m.def("createIndex", &createIndex, "A function to create new index by name tag");
+  m.def("createDataLoader", &creatDataLoader, "A function to create new data loader by name tag");
   m.def("add_tensors", &add_tensors, "A function that adds two tensors");
   /**
    * @brief perf
    */
+  py::class_<CANDY::AbstractDataLoader,std::shared_ptr<CANDY::AbstractDataLoader>>(m, "AbstractDataLoader")
+      .def(py::init<>())
+      .def("setConfig", &CANDY::AbstractDataLoader::setConfig)
+      .def("getData", &CANDY::AbstractDataLoader::getData)
+      .def("getQuery", &CANDY::AbstractDataLoader::getQuery);
 #if CANDY_PAPI == 1
   py::class_<INTELLI::ThreadPerfPAPI,std::shared_ptr<INTELLI::ThreadPerfPAPI>>(m, "PAPIPerf")
       .def(py::init<>())
