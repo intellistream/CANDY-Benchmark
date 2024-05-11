@@ -25,8 +25,10 @@
 #include <type_traits>
 #endif
 
-
-#define chronoElapsedTime(start) std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - start).count()
+#define chronoElapsedTime(start)                               \
+    std::chrono::duration_cast<std::chrono::microseconds>(     \
+            std::chrono::high_resolution_clock::now() - start) \
+            .count()
 
 namespace faiss {
 
@@ -63,7 +65,6 @@ HNSW::HNSW(int M) : rng(12345) {
     offsets.push_back(0);
     bd_stat.reset();
     M_ = M;
-
 }
 
 int HNSW::random_level() {
@@ -117,7 +118,7 @@ void HNSW::print_neighbor_stats(int level) const {
            level,
            nb_neighbors(level));
     size_t tot_neigh = 0, tot_common = 0, tot_reciprocal = 0, n_node = 0;
-//#pragma omp parallel for reduction(+: tot_neigh) reduction(+: tot_common) \
+    //#pragma omp parallel for reduction(+: tot_neigh) reduction(+: tot_common) \
   reduction(+: tot_reciprocal) reduction(+: n_node)
     for (int i = 0; i < levels.size(); i++) {
         if (levels[i] > level) {
@@ -376,7 +377,8 @@ void search_neighbors_to_add(
             if (vt.get(nodeId))
                 continue;
             vt.set(nodeId);
-            hnsw.bd_stat.steps_iterating_add = hnsw.bd_stat.steps_iterating_add + 1;
+            hnsw.bd_stat.steps_iterating_add =
+                    hnsw.bd_stat.steps_iterating_add + 1;
 
             float dis = qdis(nodeId);
             NodeDistFarther evE1(dis, nodeId);
@@ -410,7 +412,7 @@ void greedy_update_nearest(
         size_t begin, end;
         hnsw.neighbor_range(nearest, level, &begin, &end);
         for (size_t i = begin; i < end; i++) {
-            hnsw.bd_stat.steps_greedy = hnsw.bd_stat.steps_greedy+1;
+            hnsw.bd_stat.steps_greedy = hnsw.bd_stat.steps_greedy + 1;
             storage_idx_t v = hnsw.neighbors[i];
             if (v < 0)
                 break;
@@ -447,7 +449,6 @@ void HNSW::add_links_starting_from(
     // but we can afford only this many neighbors
     int M = nb_neighbors(level);
 
-
     start = std::chrono::high_resolution_clock::now();
     ::faiss::shrink_neighbor_list(ptdis, link_targets, M);
 
@@ -483,7 +484,7 @@ void HNSW::add_with_locks(
     //  greedy search on upper levels
 
     storage_idx_t nearest;
-//#pragma omp critical
+    //#pragma omp critical
     {
         nearest = entry_point;
 
@@ -635,7 +636,8 @@ int search_from_candidates(
 
         for (size_t j = begin; j < jmax; j++) {
             int v1 = hnsw.neighbors[j];
-            hnsw.bd_stat.steps_iterating_search = hnsw.bd_stat.steps_iterating_search + 1;
+            hnsw.bd_stat.steps_iterating_search =
+                    hnsw.bd_stat.steps_iterating_search + 1;
             bool vget = vt.get(v1);
             vt.set(v1);
             saved_j[counter] = v1;

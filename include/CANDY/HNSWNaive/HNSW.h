@@ -6,6 +6,7 @@
 #define CANDY_HNSW_H
 #include <CANDY/HNSWNaive/DistanceQueryer.h>
 #include <Utils/IntelliTensorOP.hpp>
+#include <Utils/UtilityFunctions.h>
 #include <faiss/MetricType.h>
 #include <faiss/utils/Heap.h>
 #include <faiss/utils/random.h>
@@ -16,6 +17,7 @@
 typedef std::vector<INTELLI::TensorPtr> TensorVec;
 #define NULL_NEIGHBOR = nullptr;
 namespace CANDY {
+
 /**
  * @class HNSWVertex CANDY/HNSWNaiveIndex/HNSW.h
  * @brief The class of a HNSW vertex, storing the data in each vertex
@@ -26,7 +28,7 @@ class HNSWVertex {
 public:
   INTELLI::TensorPtr id;
   /// used for LVQ
-  int8_t* code_final_ = nullptr;
+  int8_t *code_final_ = nullptr;
   /// used for adsampling
   INTELLI::TensorPtr transformed = nullptr;
   int level;
@@ -94,6 +96,70 @@ public:
  */
 class HNSW {
 public:
+  struct HNSW_breakdown_stats {
+
+    size_t steps_greedy =
+        0; // number of vertices traversing in greedy search in add
+    size_t steps_iterating_add =
+        0; // number of vertices visited in add_neighbors
+    size_t steps_iterating_search =
+        0; // number of vertices visited in searching from candidates
+
+    size_t time_greedy_insert = 0;
+    size_t time_searching_neighbors_to_add = 0;
+    size_t time_add_links = 0;
+
+    size_t time_greedy_search = 0;
+    size_t time_search_from_candidates = 0;
+    HNSW_breakdown_stats() = default;
+
+    void reset() {
+      steps_greedy = 0;
+      steps_iterating_add = 0;
+      steps_iterating_search = 0;
+      time_greedy_insert = 0;
+      time_searching_neighbors_to_add = 0;
+      time_add_links = 0;
+      time_greedy_search = 0;
+      time_search_from_candidates = 0;
+    }
+
+    bool put_to_csv(std::string file_path) {
+      std::ofstream out_s;
+      out_s.open(file_path, std::ios_base::out | std::ios_base::app);
+      if (out_s) {
+        std::cout << "writing bd results to " << file_path << std::endl;
+        out_s << steps_greedy << ",";
+        out_s << steps_iterating_add << ",";
+        out_s << steps_iterating_search << ",";
+
+        out_s << time_greedy_insert << ",";
+        out_s << time_searching_neighbors_to_add << ",";
+        out_s << time_add_links << ",";
+
+        out_s << time_greedy_search << ",";
+        out_s << time_search_from_candidates << "\n";
+        return true;
+
+      } else {
+        std::cout << "open file failure, check your file path" << std::endl;
+      }
+      return false;
+    }
+
+    void print() {
+      std::cout << steps_greedy << ",";
+      std::cout << steps_iterating_add << ",";
+      std::cout << steps_iterating_search << ",";
+
+      std::cout << time_greedy_insert << ",";
+      std::cout << time_searching_neighbors_to_add << ",";
+      std::cout << time_add_links << ",";
+
+      std::cout << time_greedy_search << ",";
+      std::cout << time_search_from_candidates << "\n";
+    }
+  };
   typedef std::pair<float, INTELLI::TensorPtr> Node;
   /// sort pairs from nearest to farthest by distance
   struct NodeDistCloser {
@@ -191,6 +257,8 @@ public:
   /// cumulative number of neighbors stored per layer with that layer excluded,
   /// should remain intact! cum_nneighbor_per_level_[0] = 0;
   std::vector<size_t> cum_nneighbor_per_level_;
+
+  mutable struct HNSW_breakdown_stats bd_stat;
   /// assigned probabilities for each layer (sum=1)
   std::vector<double> probs_of_layers_;
   faiss::RandomGenerator rng;
@@ -228,6 +296,7 @@ public:
       mean_[i] = 0;
     }
     transformMatrix = AdSampling::getTransformMatrix(vecDim);
+    bd_stat.reset();
   }
   /**
    * @brief search topK neighbors using qdis and store the results in I and D

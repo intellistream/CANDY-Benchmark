@@ -26,17 +26,20 @@ void CANDY::HNSW::search(CANDY::DistanceQueryer &qdis, int k,
     }
 
 
-
+    auto start = std::chrono::high_resolution_clock::now();
     for (int level = max_level_; level >= 1; level--) {
       nearest = greedy_update_nearest(*this,qdis, level, nearest, d_nearest);
     }
+    bd_stat.time_greedy_search += chronoElapsedTime(start);
 
     int ef = efSearch > ((size_t)k) ? efSearch : k;
     qdis.set_rank(true);
     if (search_bounded_queue) {
       CANDY::HNSW::MinimaxHeap candidates(ef);
       candidates.push(nearest, d_nearest);
+      start = std::chrono::high_resolution_clock::now();
       search_from_candidates(*this, qdis, k, I, D, candidates, vt, 0, 0);
+      bd_stat.time_search_from_candidates += chronoElapsedTime(start);
     } else {
     }
     vt.advance();
@@ -157,6 +160,7 @@ int search_from_candidates(CANDY::HNSW &hnsw, CANDY::DistanceQueryer &qdis,
       // std::cout<<"setting visited to "<<vt.visno<<" for "<<*v1<<std::endl;
       vt.set(v1);
       visited_vertex++;
+      hnsw.bd_stat.steps_iterating_search = hnsw.bd_stat.steps_iterating_search +1;
       float d;
 
       if(qdis.is_search && hnsw.opt_mode_ == OPT_LVQ){
@@ -228,6 +232,7 @@ CANDY::VertexPtr greedy_update_nearest(CANDY::HNSW &hnsw,
       // INTELLI_INFO("FINDING NEAREST...");
       auto vertex = *it;
       float dis;
+      hnsw.bd_stat.steps_greedy = hnsw.bd_stat.steps_greedy+1;
       if(disq.is_search && hnsw.opt_mode_==OPT_LVQ){
           if(vertex->code_final_ == nullptr){
               vertex->code_final_ = disq.compute_code(vertex->id);
@@ -293,14 +298,17 @@ void CANDY::HNSW::add_without_lock(CANDY::DistanceQueryer &disq,
   float d_nearest = disq(nearest->id);
   // from top level to greedy search to assigned_level
   disq.set_rank(false);
+  auto start = std::chrono::high_resolution_clock::now();
   for (level = max_level_; level > assigned_level; level--) {
     nearest = greedy_update_nearest(*this, disq, level, nearest, d_nearest);
   }
+  bd_stat.time_greedy_insert += chronoElapsedTime(start);
   // start add neighbors
   //disq.set_rank(true);
   for (level = assigned_level; level >= 0; level--) {
     add_links_starting_from(disq, pt_id, nearest, d_nearest, level, vt);
   }
+
   if (assigned_level > (int)max_level_) {
     max_level_ = assigned_level;
     entry_point_ = pt_id;
@@ -314,11 +322,13 @@ void CANDY::HNSW::add_links_starting_from(CANDY::DistanceQueryer &disq,
                                           CANDY::VisitedTable &vt) {
   // maxheap to maintain link targets among neighbors of nearest
   std::priority_queue<CANDY::HNSW::NodeDistCloser> link_targets;
+  auto start = std::chrono::high_resolution_clock::now();
   search_neighbors_to_add(*this, disq, link_targets, nearest, d_nearest, level,
                           vt);
+  bd_stat.time_searching_neighbors_to_add += chronoElapsedTime(start);
   // control size
   int M = nb_neighbors(level);
-
+  start = std::chrono::high_resolution_clock::now();
   hnsw_shrink_neighbor_list(disq, link_targets, M);
 
   std::vector<CANDY::VertexPtr> neighbors;
@@ -347,6 +357,7 @@ void CANDY::HNSW::add_links_starting_from(CANDY::DistanceQueryer &disq,
     }
     add_link(*this, disq, nei, pt_id, level);
   }
+  bd_stat.time_add_links += chronoElapsedTime(start);
 }
 void add_link(CANDY::HNSW &hnsw, CANDY::DistanceQueryer &disq,
               CANDY::VertexPtr src, CANDY::VertexPtr dest, int level) {
@@ -504,6 +515,7 @@ void search_neighbors_to_add(
         continue;
       }
       vt.set(nodeId);
+      hnsw.bd_stat.steps_iterating_add = hnsw.bd_stat.steps_iterating_add +1;
 
       float dis = disq(nodeId->id);
       CANDY::HNSW::NodeDistFarther evE1(dis, nodeId);

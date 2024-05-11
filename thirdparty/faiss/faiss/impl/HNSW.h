@@ -20,8 +20,8 @@
 #include <faiss/impl/platform_macros.h>
 #include <faiss/utils/Heap.h>
 #include <faiss/utils/random.h>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 namespace faiss {
 
@@ -51,72 +51,69 @@ struct SearchParametersHNSW : SearchParameters {
 
     ~SearchParametersHNSW() {}
 };
-    struct HNSW_breakdown_stats{
+struct HNSW_breakdown_stats {
+    size_t steps_greedy =
+            0; // number of vertices traversing in greedy search in add
+    size_t steps_iterating_add =
+            0; // number of vertices visited in add_neighbors
+    size_t steps_iterating_search =
+            0; // number of vertices visited in searching from candidates
 
-        size_t steps_greedy = 0; // number of vertices traversing in greedy search in add
-        size_t steps_iterating_add = 0; // number of vertices visited in add_neighbors
-        size_t steps_iterating_search = 0; // number of vertices visited in searching from candidates
+    size_t time_greedy_insert = 0;
+    size_t time_searching_neighbors_to_add = 0;
+    size_t time_add_links = 0;
 
+    size_t time_greedy_search = 0;
+    size_t time_search_from_candidates = 0;
+    HNSW_breakdown_stats() = default;
 
-        size_t time_greedy_insert = 0;
-        size_t time_searching_neighbors_to_add = 0;
-        size_t time_add_links = 0;
+    void reset() {
+        steps_greedy = 0;
+        steps_iterating_add = 0;
+        steps_iterating_search = 0;
+        time_greedy_insert = 0;
+        time_searching_neighbors_to_add = 0;
+        time_add_links = 0;
+        time_greedy_search = 0;
+        time_search_from_candidates = 0;
+    }
 
-        size_t time_greedy_search = 0;
-        size_t time_search_from_candidates = 0;
-        HNSW_breakdown_stats()=default;
+    bool put_to_csv(std::string file_path) {
+        std::ofstream out_s;
+        out_s.open(file_path, std::ios_base::out | std::ios_base::app);
+        if (out_s) {
+            std::cout << "writing bd results to " << file_path << std::endl;
+            out_s << steps_greedy << ",";
+            out_s << steps_iterating_add << ",";
+            out_s << steps_iterating_search << ",";
 
-        void reset(){
-            steps_greedy = 0;
-            steps_iterating_add = 0;
-            steps_iterating_search = 0;
-            time_greedy_insert = 0;
-            time_searching_neighbors_to_add = 0;
-            time_add_links = 0;
-            time_greedy_search = 0;
-            time_search_from_candidates = 0;
+            out_s << time_greedy_insert << ",";
+            out_s << time_searching_neighbors_to_add << ",";
+            out_s << time_add_links << ",";
+
+            out_s << time_greedy_search << ",";
+            out_s << time_search_from_candidates << "\n";
+            return true;
+
+        } else {
+            std::cout << "open file failure, check your file path" << std::endl;
         }
+        return false;
+    }
 
-        bool put_to_csv(std::string file_path){
-            std::ofstream out_s;
-            out_s.open(file_path, std::ios_base::out | std::ios_base::app);
-            if(out_s){
-                std::cout<<"writing bd results to "<< file_path<<std::endl;
-                out_s<<steps_greedy<<",";
-                out_s<<steps_iterating_add<<",";
-                out_s<<steps_iterating_search<<",";
+    void print() {
+        std::cout << steps_greedy << ",";
+        std::cout << steps_iterating_add << ",";
+        std::cout << steps_iterating_search << ",";
 
-                out_s<<time_greedy_insert<<",";
-                out_s<<time_searching_neighbors_to_add<<",";
-                out_s<<time_add_links<<",";
+        std::cout << time_greedy_insert << ",";
+        std::cout << time_searching_neighbors_to_add << ",";
+        std::cout << time_add_links << ",";
 
-                out_s<<time_greedy_search<<",";
-                out_s<<time_search_from_candidates<<"\n";
-                return true;
-
-            } else {
-                std::cout<<"open file failure, check your file path"<<std::endl;
-
-            }
-            return false;
-        }
-
-        void print(){
-            std::cout<<steps_greedy<<",";
-            std::cout<<steps_iterating_add<<",";
-            std::cout<<steps_iterating_search<<",";
-
-            std::cout<<time_greedy_insert<<",";
-            std::cout<<time_searching_neighbors_to_add<<",";
-            std::cout<<time_add_links<<",";
-
-            std::cout<<time_greedy_search<<",";
-            std::cout<<time_search_from_candidates<<"\n";
-
-
-        }
-
-    };
+        std::cout << time_greedy_search << ",";
+        std::cout << time_search_from_candidates << "\n";
+    }
+};
 struct HNSW {
     /// internal storage of vectors (32 bits: this is expensive)
     using storage_idx_t = int32_t;
@@ -328,8 +325,6 @@ struct HNSWStats {
         nreorder += other.nreorder;
     }
 };
-
-
 
 // global var that collects them all
 FAISS_API extern HNSWStats hnsw_stats;
