@@ -16,6 +16,12 @@ bool CANDY::HNSWNaiveIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   }
   hnsw = HNSW(vecDim, M_);
 
+  auto efSearch = cfg->tryI64("efSearch", 15, true);
+  auto efConstruction = cfg->tryI64("efConstruction", 40, true);
+
+  hnsw.efSearch = efSearch;
+  hnsw.efConstruction = efConstruction;
+
 
   opt_mode_ = cfg->tryI64("opt_mode", 0, true);
   hnsw.set_mode(opt_mode_, faissMetric);
