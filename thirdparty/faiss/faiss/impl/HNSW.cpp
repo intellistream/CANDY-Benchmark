@@ -25,6 +25,9 @@
 #include <type_traits>
 #endif
 
+
+#define chronoElapsedTime(start) std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - start).count()
+
 namespace faiss {
 
 /**************************************************************
@@ -58,6 +61,9 @@ void HNSW::neighbor_range(idx_t no, int layer_no, size_t* begin, size_t* end)
 HNSW::HNSW(int M) : rng(12345) {
     set_default_probas(M, 1.0 / log(M));
     offsets.push_back(0);
+    bd_stat.reset();
+    M_ = M;
+
 }
 
 int HNSW::random_level() {
@@ -275,7 +281,6 @@ void shrink_neighbor_list(
     }
     std::priority_queue<NodeDistFarther> resultSet;
     std::vector<NodeDistFarther> returnlist;
-
     while (resultSet1.size() > 0) {
         resultSet.emplace(resultSet1.top().d, resultSet1.top().id);
         resultSet1.pop();
@@ -371,6 +376,7 @@ void search_neighbors_to_add(
             if (vt.get(nodeId))
                 continue;
             vt.set(nodeId);
+            hnsw.bd_stat.steps_iterating_add = hnsw.bd_stat.steps_iterating_add + 1;
 
             float dis = qdis(nodeId);
             NodeDistFarther evE1(dis, nodeId);
@@ -404,6 +410,7 @@ void greedy_update_nearest(
         size_t begin, end;
         hnsw.neighbor_range(nearest, level, &begin, &end);
         for (size_t i = begin; i < end; i++) {
+            hnsw.bd_stat.steps_greedy = hnsw.bd_stat.steps_greedy+1;
             storage_idx_t v = hnsw.neighbors[i];
             if (v < 0)
                 break;
@@ -432,13 +439,16 @@ void HNSW::add_links_starting_from(
         omp_lock_t* locks,
         VisitedTable& vt) {
     std::priority_queue<NodeDistCloser> link_targets;
-
+    auto start = std::chrono::high_resolution_clock::now();
     search_neighbors_to_add(
             *this, ptdis, link_targets, nearest, d_nearest, level, vt);
+    bd_stat.time_searching_neighbors_to_add += chronoElapsedTime(start);
 
     // but we can afford only this many neighbors
     int M = nb_neighbors(level);
 
+
+    start = std::chrono::high_resolution_clock::now();
     ::faiss::shrink_neighbor_list(ptdis, link_targets, M);
 
     std::vector<storage_idx_t> neighbors;
@@ -457,6 +467,7 @@ void HNSW::add_links_starting_from(
         omp_unset_lock(&locks[other_id]);
     }
     omp_set_lock(&locks[pt_id]);
+    bd_stat.time_add_links += chronoElapsedTime(start);
 }
 
 /**************************************************************
@@ -490,10 +501,11 @@ void HNSW::add_with_locks(
 
     int level = max_level; // level at which we start adding neighbors
     float d_nearest = ptdis(nearest);
-
+    auto greedy_start = std::chrono::high_resolution_clock::now();
     for (; level > pt_level; level--) {
         greedy_update_nearest(*this, ptdis, level, nearest, d_nearest);
     }
+    bd_stat.time_greedy_insert += chronoElapsedTime(greedy_start);
 
     for (; level >= 0; level--) {
         add_links_starting_from(
@@ -623,7 +635,7 @@ int search_from_candidates(
 
         for (size_t j = begin; j < jmax; j++) {
             int v1 = hnsw.neighbors[j];
-
+            hnsw.bd_stat.steps_iterating_search = hnsw.bd_stat.steps_iterating_search + 1;
             bool vget = vt.get(v1);
             vt.set(v1);
             saved_j[counter] = v1;
@@ -816,19 +828,21 @@ HNSWStats HNSW::search(
         //  greedy search on upper levels
         storage_idx_t nearest = entry_point;
         float d_nearest = qdis(nearest);
-
+        auto start = std::chrono::high_resolution_clock::now();
         for (int level = max_level; level >= 1; level--) {
             greedy_update_nearest(*this, qdis, level, nearest, d_nearest);
         }
+        bd_stat.time_greedy_search += chronoElapsedTime(start);
 
         int ef = std::max(efSearch, k);
         if (search_bounded_queue) { // this is the most common branch
             MinimaxHeap candidates(ef);
 
             candidates.push(nearest, d_nearest);
-
+            start = std::chrono::high_resolution_clock::now();
             search_from_candidates(
                     *this, qdis, k, I, D, candidates, vt, stats, 0, 0, params);
+            bd_stat.time_search_from_candidates += chronoElapsedTime(start);
         } else {
             std::priority_queue<Node> top_candidates =
                     search_from_candidate_unbounded(

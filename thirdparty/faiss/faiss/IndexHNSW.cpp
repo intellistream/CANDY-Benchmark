@@ -300,6 +300,9 @@ void IndexHNSW::search(
     const SearchParametersHNSW* params = nullptr;
 
     int efSearch = hnsw.efSearch;
+
+
+
     if (params_in) {
         params = dynamic_cast<const SearchParametersHNSW*>(params_in);
         FAISS_THROW_IF_NOT_MSG(params, "params type invalid");
@@ -309,7 +312,7 @@ void IndexHNSW::search(
 
     idx_t check_period =
             InterruptCallback::get_period_hint(hnsw.max_level * d * efSearch);
-
+    hnsw.bd_stat.reset();
     for (idx_t i0 = 0; i0 < n; i0 += check_period) {
         idx_t i1 = std::min(i0 + check_period, n);
 
@@ -362,6 +365,9 @@ void IndexHNSW::search(
     }
 
     hnsw_stats.combine({n1, n2, n3, ndis, nreorder});
+    if(verbose){
+        hnsw.bd_stat.print();
+    }
 }
 
 void IndexHNSW::add(idx_t n, const float* x) {
@@ -373,7 +379,19 @@ void IndexHNSW::add(idx_t n, const float* x) {
     storage->add(n, x);
     ntotal = storage->ntotal;
 
+    hnsw.bd_stat.reset();
+
     hnsw_add_vertices(*this, n0, n, x, verbose, hnsw.levels.size() == ntotal);
+
+    if(verbose){
+        //std::string file_path = "bd_result_"+std::to_string(hnsw.efSearch)+"_"+std::to_string(hnsw.efConstruction)+"_"+std::to_string(hnsw.efSearch)+".csv";
+        //std::string file_path = "./test.txt";
+        //std::cout<<"writing to "<<file_path<<std::endl;
+        //hnsw.bd_stat.put_to_csv(file_path);
+        hnsw.bd_stat.print();
+    }
+
+
 }
 
 void IndexHNSW::reset() {
