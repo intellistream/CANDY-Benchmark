@@ -7,6 +7,34 @@
 #else
 #define ADB_memcpy(dst, src, size) memcpy(dst, src, size)
 #endif
+bool CANDY::inlineYangIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
+  AbstractIndex::setConfig(cfg);
+  if (faissMetric != faiss::METRIC_INNER_PRODUCT) {
+    INTELLI_WARNING("I can only deal with inner product distance");
+  }
+  vecDim = cfg->tryI64("vecDim", 768, true);
+  initialVolume = cfg->tryI64("initialVolume", 100, true);
+  expandStep = cfg->tryI64("expandStep", 100, true);
+  sketchSize = cfg->tryI64("sketchSize", 10, true);
+  DCOBatchSize = cfg->tryI64("DCOBatchSize", 128, true);
+  std::string ammAlgo = cfg->tryString("ammAlgo", "mm", true);
+  //INTELLI_INFO("Size of DCO=" + std::to_string(DCOBatchSize));
+  if (ammAlgo == "crs") {
+    ammType = 1;
+    //INTELLI_INFO("Use crs for amm, sketch size=" + std::to_string(sketchSize));
+  } else if (ammAlgo == "smp-pca") {
+    ammType = 2;
+    //INTELLI_INFO("Use smp-pca for amm, sketch size=" + std::to_string(sketchSize));
+  } else {
+    ammType = 0;
+  }
+  dbTensor = torch::zeros({initialVolume, vecDim});
+  objTensor = torch::zeros({initialVolume, 1}, torch::kLong);
+
+  lastNNZ = -1;
+  lastNNZObj = -1;
+  return true;
+}
 bool CANDY::YinYangHNSWIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   if (faissMetric != faiss::METRIC_INNER_PRODUCT) {
@@ -38,7 +66,7 @@ bool CANDY::YinYangHNSWIndex::loadInitialTensor(torch::Tensor &t) {
     ver->yangIndex.setConfig(inlineCfg);
     ver->yangIndex.insertTensor(tCopy);
     auto idx = reinterpret_cast<long>(ver);
-    std::cout<<tCopy;
+    //std::cout<<tCopy;
     alg_hnsw->addPoint(tCopy.contiguous().data_ptr<float>(), idx);
    // std::cout<<idx<<std::endl;
   }

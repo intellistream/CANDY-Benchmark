@@ -22,18 +22,33 @@ namespace CANDY {
  * @ingroup  CANDY_lib_bottom The main body and interfaces of library function
  * @{
  */
+class inlineYangIndex: public FlatAMMIPObjIndex {
+ public:
+  inlineYangIndex(){}
+  ~inlineYangIndex() {}
+  /**
+ * @brief set the index-specific config related to one index
+ * @param cfg the config of this class
+ * @return bool whether the configuration is successful
+ */
+  virtual bool setConfig(INTELLI::ConfigMapPtr cfg);
+};
 /**
 * @class YinYangHNSW_YinVertex CANDY/YinYangHNSWIndex.h
 * @brief The yin vertex in a yin yang HNSW, will be linked in an HNSW graph and further index yang vertex
  * @note the current version of yang vertex is just to use @ref FlatAMMIPObjIndex
 */
+
 class YinYangHNSW_YinVertex {
+ protected:
+
  public:
+
   YinYangHNSW_YinVertex() {}
   ~YinYangHNSW_YinVertex() {}
   torch::Tensor verTensor;
   float knowMaxDistance=0;
-  FlatAMMIPObjIndex yangIndex;
+  inlineYangIndex yangIndex;
 };
 
 /**
@@ -52,6 +67,9 @@ class YinYangHNSW_YinVertex {
  */
 class YinYangHNSWIndex: public AbstractIndex{
  protected:
+
+
+
   INTELLI::ConfigMapPtr inlineCfg = nullptr;
   hnswlib::HierarchicalNSW<float>* alg_hnsw;
   int64_t vecDim = 0,maxHNSWVolume=1000000,maxConnection=16,efConstruction=200;

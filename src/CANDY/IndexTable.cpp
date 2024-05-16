@@ -14,6 +14,7 @@
 #include <CANDY/HNSWNaiveIndex.h>
 #include <CANDY/IndexTable.h>
 #include <CANDY/NNDescentIndex.h>
+#include <CANDY/YingYangHNSWIndex.h>
 #include <CANDY/OnlineIVFL2HIndex.h>
 #include <CANDY/OnlineIVFLSHIndex.h>
 #include <CANDY/OnlinePQIndex.h>
@@ -51,6 +52,7 @@ CANDY::IndexTable::IndexTable() {
   indexMap["nnDescent"] = newNNDescentIndex();
   indexMap["Flann"] = newFlannIndex();
   indexMap["DPG"] = newDPGIndex();
+  indexMap["yinYangHNSW"] = newYinYangHNSWIndex();
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif
