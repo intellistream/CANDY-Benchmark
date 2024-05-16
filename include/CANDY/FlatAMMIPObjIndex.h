@@ -147,6 +147,8 @@ class FlatAMMIPObjIndex : public AbstractIndex {
  * @return std::vector<std::vector<std::string>> the result object for each row of query
  */
   virtual std::vector<std::vector<std::string>> searchStringObject(torch::Tensor &q, int64_t k);
+
+  /*void fastInit(torch::Tensor &t);*/
 };
 
 /**

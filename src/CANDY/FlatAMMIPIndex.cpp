@@ -13,7 +13,7 @@
 bool CANDY::FlatAMMIPIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   if (faissMetric != faiss::METRIC_INNER_PRODUCT) {
-    INTELLI_WARNING("I can only deal with inner product distance");
+    //INTELLI_WARNING("I can only deal with inner product distance");
   }
   vecDim = cfg->tryI64("vecDim", 768, true);
   initialVolume = cfg->tryI64("initialVolume", 1000, true);
@@ -21,13 +21,13 @@ bool CANDY::FlatAMMIPIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   sketchSize = cfg->tryI64("sketchSize", 10, true);
   DCOBatchSize = cfg->tryI64("DCOBatchSize", -1, true);
   std::string ammAlgo = cfg->tryString("ammAlgo", "mm", true);
-  INTELLI_INFO("Size of DCO=" + std::to_string(DCOBatchSize));
+  //INTELLI_INFO("Size of DCO=" + std::to_string(DCOBatchSize));
   if (ammAlgo == "crs") {
     ammType = 1;
-    INTELLI_INFO("Use crs for amm, sketch size=" + std::to_string(sketchSize));
+    //INTELLI_INFO("Use crs for amm, sketch size=" + std::to_string(sketchSize));
   } else if (ammAlgo == "smp-pca") {
     ammType = 2;
-    INTELLI_INFO("Use smp-pca for amm, sketch size=" + std::to_string(sketchSize));
+    //INTELLI_INFO("Use smp-pca for amm, sketch size=" + std::to_string(sketchSize));
   } else {
     ammType = 0;
   }
