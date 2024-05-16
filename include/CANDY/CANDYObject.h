@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <torch/torch.h>
 namespace CANDY {
 /**
  * @ingroup  CANDY_lib_bottom The main body and interfaces of library function
@@ -38,7 +39,27 @@ class CANDYObject {
    */
   std::string getStr();
 };
-
+/**
+ * CANDYBoundObject CANDY/RAMIAObject.h
+ * @brief An object with bound tensor
+ */
+class CANDYBoundObject: public CANDYObject{
+ public:
+  CANDYBoundObject(){}
+  ~CANDYBoundObject(){}
+  torch::Tensor boundTensor;
+  /**
+  * @brief to set the bound tensor
+  * @param ts the tensor
+  * @return void
+  */
+  void setTensor( torch::Tensor &ts);
+  /**
+   * @brief to get the tensor
+   * @return the tensor
+   */
+  torch::Tensor getTensor();
+};
 /**
  * @ingroup  CANDY_lib_bottom
  * @typedef CANDYObjectPtr

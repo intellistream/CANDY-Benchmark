@@ -12,5 +12,11 @@ void CANDYObject::setStr(std::string str) {
 std::string CANDYObject::getStr() {
   return objStr;
 }
+void CANDYBoundObject::setTensor(torch::Tensor &ts) {
+  boundTensor=ts;
+}
+torch::Tensor CANDYBoundObject::getTensor() {
+  return boundTensor;
+}
 
 } // CANDY
