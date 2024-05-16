@@ -343,10 +343,12 @@ class InnerProductSpace : public SpaceInterface<float> {
     DISTFUNC<float> fstdistfunc_;
     size_t data_size_;
     size_t dim_;
-
+    size_t *dimx;
  public:
     InnerProductSpace(size_t dim) {
         fstdistfunc_ = InnerProductDistance;
+        dimx =new size_t [1];
+        dimx[0]=dim;
 #if defined(USE_AVX) || defined(USE_SSE) || defined(USE_AVX512)
     #if defined(USE_AVX512)
         if (AVX512Capable()) {
@@ -391,7 +393,7 @@ class InnerProductSpace : public SpaceInterface<float> {
     }
 
     void *get_dist_func_param() {
-        return &dim_;
+        return dimx;
     }
 
 ~InnerProductSpace() {}

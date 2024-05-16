@@ -2,6 +2,11 @@
 // Created by tony on 16/05/24.
 //
 #include <CANDY/YingYangHNSWIndex.h>
+#if defined(__GNUC__) && (__GNUC__ >= 4)
+#define ADB_memcpy(dst, src, size) __builtin_memcpy(dst, src, size)
+#else
+#define ADB_memcpy(dst, src, size) memcpy(dst, src, size)
+#endif
 bool CANDY::YinYangHNSWIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   if (faissMetric != faiss::METRIC_INNER_PRODUCT) {
@@ -24,23 +29,28 @@ bool CANDY::YinYangHNSWIndex::loadInitialTensor(torch::Tensor &t) {
    * @brief just to make each row as vertex in HNSW
    */
   auto n = t.size(0);
+  /*auto tdata=new float[vecDim*n];
+  ADB_memcpy(tdata,t.contiguous().data_ptr<float>(),t.numel());*/
   for (int64_t i = 0; i < n; i++) {
-    auto tCopy = t.slice(0, i, i + 1).clone().contiguous();
-    YinYangHNSW_YinVertex *ver=new YinYangHNSW_YinVertex;
+    auto tCopy = t.slice(0, i, i + 1).contiguous();
+    YinYangHNSW_YinVertex *ver=new YinYangHNSW_YinVertex();
     ver->verTensor=tCopy;
     ver->yangIndex.setConfig(inlineCfg);
     ver->yangIndex.insertTensor(tCopy);
     auto idx = reinterpret_cast<long>(ver);
-    alg_hnsw->addPoint(tCopy.data_ptr<float>(), idx);
+    std::cout<<tCopy;
+    alg_hnsw->addPoint(tCopy.contiguous().data_ptr<float>(), idx);
+   // std::cout<<idx<<std::endl;
   }
   return true;
 }
 bool CANDY::YinYangHNSWIndex::insertTensor(torch::Tensor &t) {
   auto n = t.size(0);
   for (int64_t i = 0; i < n; i++) {
-    auto tCopy = t.slice(0, i, i + 1).clone().contiguous();
-    std::priority_queue<std::pair<float, hnswlib::labeltype>> result = alg_hnsw->searchKnn(tCopy.data_ptr<float>(), 1);
-    auto ver =  reinterpret_cast<YinYangHNSW_YinVertex *>(*reinterpret_cast<long *>(result.top().second));
+    auto tCopy = t.slice(0, i, i + 1);
+    std::priority_queue<std::pair<float, hnswlib::labeltype>> result = alg_hnsw->searchKnn(tCopy.contiguous().data_ptr<float>(), 1);
+    auto ver =  reinterpret_cast<YinYangHNSW_YinVertex *>((result.top().second));
+    //std::cout <<result.top().second<<","<<ver->yangIndex.size()<<std::endl;
     ver->yangIndex.insertTensor(tCopy);
   }
   return true;
@@ -50,7 +60,7 @@ torch::Tensor CANDY::YinYangHNSWIndex::searchRow(torch::Tensor &q, int64_t k) {
   std::priority_queue<std::pair<float, hnswlib::labeltype>> hnswRu = alg_hnsw->searchKnn(q.contiguous().data_ptr<float>(), k);
   int64_t copiedResults=0;
   while ((!hnswRu.empty())&&(copiedResults<k)) {
-    auto ver =  reinterpret_cast<YinYangHNSW_YinVertex *>(*reinterpret_cast<long *>(hnswRu.top().second));
+    auto ver =  reinterpret_cast<YinYangHNSW_YinVertex *>((hnswRu.top().second));
     int64_t copyThisTime = ver->yangIndex.size();
     if(copyThisTime+copiedResults>k) {
       copyThisTime=k- copiedResults;
