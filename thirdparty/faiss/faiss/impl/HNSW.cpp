@@ -237,7 +237,8 @@ void HNSW::shrink_neighbor_list(
         DistanceComputer& qdis,
         std::priority_queue<NodeDistFarther>& input,
         std::vector<NodeDistFarther>& output,
-        int max_size) {
+        int max_size,
+	struct HNSW_breakdown_stats& bd_stats) {
     while (input.size() > 0) {
         NodeDistFarther v1 = input.top();
         input.pop();
@@ -245,7 +246,9 @@ void HNSW::shrink_neighbor_list(
 
         bool good = true;
         for (NodeDistFarther v2 : output) {
+		auto start = std::chrono::high_resolution_clock::now();
             float dist_v1_v2 = qdis.symmetric_dis(v2.id, v1.id);
+	    bd_stats.time_dc_linking += chronoElapsedTime(start);
 
             if (dist_v1_v2 < dist_v1_q) {
                 good = false;
@@ -276,7 +279,8 @@ using NodeDistFarther = HNSW::NodeDistFarther;
 void shrink_neighbor_list(
         DistanceComputer& qdis,
         std::priority_queue<NodeDistCloser>& resultSet1,
-        int max_size) {
+        int max_size,
+	struct HNSW_breakdown_stats& bd_stats) {
     if (resultSet1.size() < max_size) {
         return;
     }
@@ -287,7 +291,7 @@ void shrink_neighbor_list(
         resultSet1.pop();
     }
 
-    HNSW::shrink_neighbor_list(qdis, resultSet, returnlist, max_size);
+    HNSW::shrink_neighbor_list(qdis, resultSet, returnlist, max_size, bd_stats);
 
     for (NodeDistFarther curen2 : returnlist) {
         resultSet1.emplace(curen2.d, curen2.id);
@@ -320,13 +324,19 @@ void add_link(
 
     // copy to resultSet...
     std::priority_queue<NodeDistCloser> resultSet;
-    resultSet.emplace(qdis.symmetric_dis(src, dest), dest);
+    auto start = std::chrono::high_resolution_clock::now();
+    auto dist = qdis.symmetric_dis(src,dest);
+    hnsw.bd_stat.time_dc_linking += chronoElapsedTime(start);
+    resultSet.emplace(dist, dest);
     for (size_t i = begin; i < end; i++) { // HERE WAS THE BUG
         storage_idx_t neigh = hnsw.neighbors[i];
-        resultSet.emplace(qdis.symmetric_dis(src, neigh), neigh);
+	auto start = std::chrono::high_resolution_clock::now();
+	dist = qdis.symmetric_dis(src,neigh);
+	hnsw.bd_stat.time_dc_linking += chronoElapsedTime(start);
+        resultSet.emplace(dist, neigh);
     }
 
-    shrink_neighbor_list(qdis, resultSet, end - begin);
+    shrink_neighbor_list(qdis, resultSet, end - begin,hnsw.bd_stat);
 
     // ...and back
     size_t i = begin;
@@ -379,8 +389,9 @@ void search_neighbors_to_add(
             vt.set(nodeId);
             hnsw.bd_stat.steps_iterating_add =
                     hnsw.bd_stat.steps_iterating_add + 1;
-
+		auto start = std::chrono::high_resolution_clock::now();
             float dis = qdis(nodeId);
+	    hnsw.bd_stat.time_dc+=chronoElapsedTime(start);
             NodeDistFarther evE1(dis, nodeId);
 
             if (results.size() < hnsw.efConstruction || results.top().d > dis) {
@@ -450,7 +461,7 @@ void HNSW::add_links_starting_from(
     int M = nb_neighbors(level);
 
     start = std::chrono::high_resolution_clock::now();
-    ::faiss::shrink_neighbor_list(ptdis, link_targets, M);
+    ::faiss::shrink_neighbor_list(ptdis, link_targets, M,bd_stat);
 
     std::vector<storage_idx_t> neighbors;
     neighbors.reserve(link_targets.size());

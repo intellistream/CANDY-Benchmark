@@ -65,6 +65,8 @@ struct HNSW_breakdown_stats {
 
     size_t time_greedy_search = 0;
     size_t time_search_from_candidates = 0;
+    size_t time_dc = 0;
+    size_t time_dc_linking = 0;
     HNSW_breakdown_stats() = default;
 
     void reset() {
@@ -76,6 +78,8 @@ struct HNSW_breakdown_stats {
         time_add_links = 0;
         time_greedy_search = 0;
         time_search_from_candidates = 0;
+	time_dc = 0;
+	time_dc_linking = 0;
     }
 
     bool put_to_csv(std::string file_path) {
@@ -111,7 +115,9 @@ struct HNSW_breakdown_stats {
         std::cout << time_add_links << ",";
 
         std::cout << time_greedy_search << ",";
-        std::cout << time_search_from_candidates << "\n";
+        std::cout << time_search_from_candidates << ",";
+	std::cout<<time_dc<<",";
+	std::cout<<time_dc_linking<<"\n";
     }
 };
 struct HNSW {
@@ -293,7 +299,8 @@ struct HNSW {
             DistanceComputer& qdis,
             std::priority_queue<NodeDistFarther>& input,
             std::vector<NodeDistFarther>& output,
-            int max_size);
+            int max_size,
+	    struct HNSW_breakdown_stats& bd_stats);
 
     void permute_entries(const idx_t* map);
 };

@@ -134,11 +134,11 @@ void hnsw_add_vertices(
     size_t ntotal = n0 + n;
     double t0 = getmillisecs();
     if (verbose) {
-        printf("hnsw_add_vertices: adding %zd elements on top of %zd "
-               "(preset_levels=%d)\n",
-               n,
-               n0,
-               int(preset_levels));
+        //printf("hnsw_add_vertices: adding %zd elements on top of %zd "
+          //     "(preset_levels=%d)\n",
+            //   n,
+              // n0,
+              // int(preset_levels));
     }
 
     if (n == 0) {
@@ -148,7 +148,7 @@ void hnsw_add_vertices(
     int max_level = hnsw.prepare_level_tab(n, preset_levels);
 
     if (verbose) {
-        printf("  max_level = %d\n", max_level);
+        //printf("  max_level = %d\n", max_level);
     }
 
     std::vector<omp_lock_t> locks(ntotal);
@@ -196,7 +196,7 @@ void hnsw_add_vertices(
             int i0 = i1 - hist[pt_level];
 
             if (verbose) {
-                printf("Adding %d elements at level %d\n", i1 - i0, pt_level);
+               // printf("Adding %d elements at level %d\n", i1 - i0, pt_level);
             }
 
             // random permutation to get rid of dataset order bias
@@ -251,7 +251,7 @@ void hnsw_add_vertices(
         FAISS_ASSERT(i1 == 0);
     }
     if (verbose) {
-        printf("Done in %.3f ms\n", getmillisecs() - t0);
+        //printf("Done in %.3f ms\n", getmillisecs() - t0);
     }
 
     for (int i = 0; i < ntotal; i++) {
@@ -426,7 +426,7 @@ void IndexHNSW::shrink_level_0_neighbors(int new_size) {
 
             std::vector<NodeDistFarther> shrunk_list;
             HNSW::shrink_neighbor_list(
-                    *dis, initial_list, shrunk_list, new_size);
+                    *dis, initial_list, shrunk_list, new_size,hnsw.bd_stat);
 
             for (size_t j = begin; j < end; j++) {
                 if (j - begin < shrunk_list.size())
@@ -513,7 +513,7 @@ void IndexHNSW::init_level_0_from_knngraph(
         }
 
         std::vector<NodeDistFarther> shrunk_list;
-        HNSW::shrink_neighbor_list(*qdis, initial_list, shrunk_list, dest_size);
+        HNSW::shrink_neighbor_list(*qdis, initial_list, shrunk_list, dest_size,hnsw.bd_stat);
 
         size_t begin, end;
         hnsw.neighbor_range(i, 0, &begin, &end);
