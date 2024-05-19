@@ -249,6 +249,7 @@ void HNSW::shrink_neighbor_list(
 		auto start = std::chrono::high_resolution_clock::now();
             float dist_v1_v2 = qdis.symmetric_dis(v2.id, v1.id);
 	    bd_stats.time_dc_linking += chronoElapsedTime(start);
+	    bd_stats.step_linking +=1;
 
             if (dist_v1_v2 < dist_v1_q) {
                 good = false;

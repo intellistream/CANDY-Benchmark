@@ -124,28 +124,7 @@ public:
       time_search_from_candidates = 0;
     }
 
-    bool put_to_csv(std::string file_path) {
-      std::ofstream out_s;
-      out_s.open(file_path, std::ios_base::out | std::ios_base::app);
-      if (out_s) {
-        std::cout << "writing bd results to " << file_path << std::endl;
-        out_s << steps_greedy << ",";
-        out_s << steps_iterating_add << ",";
-        out_s << steps_iterating_search << ",";
-
-        out_s << time_greedy_insert << ",";
-        out_s << time_searching_neighbors_to_add << ",";
-        out_s << time_add_links << ",";
-
-        out_s << time_greedy_search << ",";
-        out_s << time_search_from_candidates << "\n";
-        return true;
-
-      } else {
-        std::cout << "open file failure, check your file path" << std::endl;
-      }
-      return false;
-    }
+   
 
     void print() {
       std::cout << steps_greedy << ",";

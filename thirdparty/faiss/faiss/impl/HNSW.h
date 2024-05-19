@@ -67,6 +67,7 @@ struct HNSW_breakdown_stats {
     size_t time_search_from_candidates = 0;
     size_t time_dc = 0;
     size_t time_dc_linking = 0;
+    size_t step_linking =0;
     HNSW_breakdown_stats() = default;
 
     void reset() {
@@ -80,30 +81,9 @@ struct HNSW_breakdown_stats {
         time_search_from_candidates = 0;
 	time_dc = 0;
 	time_dc_linking = 0;
+	step_linking = 0;
     }
 
-    bool put_to_csv(std::string file_path) {
-        std::ofstream out_s;
-        out_s.open(file_path, std::ios_base::out | std::ios_base::app);
-        if (out_s) {
-            std::cout << "writing bd results to " << file_path << std::endl;
-            out_s << steps_greedy << ",";
-            out_s << steps_iterating_add << ",";
-            out_s << steps_iterating_search << ",";
-
-            out_s << time_greedy_insert << ",";
-            out_s << time_searching_neighbors_to_add << ",";
-            out_s << time_add_links << ",";
-
-            out_s << time_greedy_search << ",";
-            out_s << time_search_from_candidates << "\n";
-            return true;
-
-        } else {
-            std::cout << "open file failure, check your file path" << std::endl;
-        }
-        return false;
-    }
 
     void print() {
         std::cout << steps_greedy << ",";
@@ -117,7 +97,8 @@ struct HNSW_breakdown_stats {
         std::cout << time_greedy_search << ",";
         std::cout << time_search_from_candidates << ",";
 	std::cout<<time_dc<<",";
-	std::cout<<time_dc_linking<<"\n";
+	std::cout<<time_dc_linking<<",";
+	std::cout<<step_linking<<"\n";
     }
 };
 struct HNSW {
