@@ -334,6 +334,7 @@ void add_link(
 	auto start = std::chrono::high_resolution_clock::now();
 	dist = qdis.symmetric_dis(src,neigh);
 	hnsw.bd_stat.time_dc_linking += chronoElapsedTime(start);
+	hnsw.bd_stat.step_before_shrinking +=1;
         resultSet.emplace(dist, neigh);
     }
 

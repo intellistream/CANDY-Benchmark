@@ -68,6 +68,7 @@ struct HNSW_breakdown_stats {
     size_t time_dc = 0;
     size_t time_dc_linking = 0;
     size_t step_linking =0;
+    size_t step_before_shrinking=0;
     HNSW_breakdown_stats() = default;
 
     void reset() {
@@ -81,6 +82,7 @@ struct HNSW_breakdown_stats {
         time_search_from_candidates = 0;
 	time_dc = 0;
 	time_dc_linking = 0;
+	step_before_shrinking = 0;
 	step_linking = 0;
     }
 
@@ -98,6 +100,7 @@ struct HNSW_breakdown_stats {
         std::cout << time_search_from_candidates << ",";
 	std::cout<<time_dc<<",";
 	std::cout<<time_dc_linking<<",";
+	std::cout<<step_before_shrinking<<",";
 	std::cout<<step_linking<<"\n";
     }
 };
