@@ -17,6 +17,7 @@ bool CANDY::inlineYangIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   expandStep = cfg->tryI64("expandStep", 100, true);
   sketchSize = cfg->tryI64("sketchSize", 10, true);
   DCOBatchSize = cfg->tryI64("DCOBatchSize", 128, true);
+
   std::string ammAlgo = cfg->tryString("ammAlgo", "mm", true);
   //INTELLI_INFO("Size of DCO=" + std::to_string(DCOBatchSize));
   if (ammAlgo == "crs") {
@@ -44,6 +45,7 @@ bool CANDY::YinYangHNSWIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   maxHNSWVolume = cfg->tryI64("maxHNSWVolume", 1000000, true);
   maxConnection = cfg->tryI64("maxConnection", 32, true);
   efConstruction = cfg->tryI64("efConstruction", 200, true);
+  initialVertex = cfg->tryI64("initialVertex", -1, true);
   inlineCfg = newConfigMap();
   inlineCfg->loadFrom(cfg.get()[0]);
   inlineCfg->edit("initialVolume",(int64_t)1);
@@ -52,10 +54,10 @@ bool CANDY::YinYangHNSWIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   alg_hnsw = new hnswlib::HierarchicalNSW<float>(&space, maxHNSWVolume, maxConnection, efConstruction);
   return true;
 }
-bool CANDY::YinYangHNSWIndex::loadInitialTensor(torch::Tensor &t) {
+bool CANDY::YinYangHNSWIndex::loadInitialTensorVertex(torch::Tensor &t) {
   /**
-   * @brief just to make each row as vertex in HNSW
-   */
+  * @brief just to make each row as vertex in HNSW
+  */
   auto n = t.size(0);
   /*auto tdata=new float[vecDim*n];
   ADB_memcpy(tdata,t.contiguous().data_ptr<float>(),t.numel());*/
@@ -68,8 +70,28 @@ bool CANDY::YinYangHNSWIndex::loadInitialTensor(torch::Tensor &t) {
     auto idx = reinterpret_cast<long>(ver);
     //std::cout<<tCopy;
     alg_hnsw->addPoint(tCopy.contiguous().data_ptr<float>(), idx);
-   // std::cout<<idx<<std::endl;
+    // std::cout<<idx<<std::endl;
   }
+  return true;
+}
+bool CANDY::YinYangHNSWIndex::loadInitialTensor(torch::Tensor &t) {
+  /**
+   * @brief just to make each row as vertex in HNSW
+   */
+  auto n = t.size(0);
+  if(initialVertex<0||(initialVertex>n)){
+    return loadInitialTensorVertex(t);
+  }
+  int64_t num_rows = n;
+  // Generate a random permutation of row indices
+  torch::Tensor indices = torch::randperm(num_rows);
+  // Index the tensor with the shuffled indices
+  torch::Tensor shuffled_tensor = t.index_select(0, indices);
+  auto verTensor = shuffled_tensor.slice(0,0,initialVertex);
+  auto rangeTensor= shuffled_tensor.slice(0,initialVertex,n);
+  INTELLI_INFO(to_string(initialVertex)+" rows in initial graph vertex");
+  loadInitialTensorVertex(verTensor);
+  insertTensor(rangeTensor);
   return true;
 }
 bool CANDY::YinYangHNSWIndex::insertTensor(torch::Tensor &t) {

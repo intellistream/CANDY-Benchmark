@@ -61,6 +61,7 @@ class YinYangHNSW_YinVertex {
  * - maxConnection, number of maximum neighbor connection at each level, default 32, I64
  * - efConstruction,  Controls index search speed/build speed tradeoff, default 200, I64
  * - ammAlgo, the amm algorithm used for compute distance, default mm, String, can be the following
+ * - initialVertex, the amount of initial vertex, default -1 (all initial data in graph), I64
     * - mm the original torch::matmul
     * - crs column row sampling
     * - smp-pca the smp-pca algorithm
@@ -72,8 +73,9 @@ class YinYangHNSWIndex: public AbstractIndex{
 
   INTELLI::ConfigMapPtr inlineCfg = nullptr;
   hnswlib::HierarchicalNSW<float>* alg_hnsw;
-  int64_t vecDim = 0,maxHNSWVolume=1000000,maxConnection=16,efConstruction=200;
+  int64_t vecDim = 0,maxHNSWVolume=1000000,maxConnection=16,efConstruction=200,initialVertex=-1;
   torch::Tensor searchRow(torch::Tensor &q, int64_t k);
+  bool loadInitialTensorVertex(torch::Tensor &t);
  public:
 
   YinYangHNSWIndex() {
