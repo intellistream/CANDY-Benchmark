@@ -238,7 +238,9 @@ void HNSW::shrink_neighbor_list(
         std::priority_queue<NodeDistFarther>& input,
         std::vector<NodeDistFarther>& output,
         int max_size,
-	struct HNSW_breakdown_stats& bd_stats) {
+	struct HNSW_breakdown_stats& bd_stats,
+	struct HNSWDistCache& dist_cache
+) {
     while (input.size() > 0) {
         NodeDistFarther v1 = input.top();
         input.pop();
@@ -247,9 +249,13 @@ void HNSW::shrink_neighbor_list(
         bool good = true;
         for (NodeDistFarther v2 : output) {
 		auto start = std::chrono::high_resolution_clock::now();
-            float dist_v1_v2 = qdis.symmetric_dis(v2.id, v1.id);
-	    bd_stats.time_dc_linking += chronoElapsedTime(start);
-	    bd_stats.step_linking +=1;
+		float dist_v1_v2;
+		if(!dist_cache.get(v1.id, v2.id, dist_v1_v2)){
+            dist_v1_v2 = qdis.symmetric_dis(v2.id, v1.id);
+			dist_cache.put(v1.id, v2.id, dist_v1_v2);
+	    	bd_stats.time_dc_linking += chronoElapsedTime(start);
+	    	bd_stats.step_linking +=1;
+		}
 
             if (dist_v1_v2 < dist_v1_q) {
                 good = false;
@@ -281,7 +287,8 @@ void shrink_neighbor_list(
         DistanceComputer& qdis,
         std::priority_queue<NodeDistCloser>& resultSet1,
         int max_size,
-	struct HNSW_breakdown_stats& bd_stats) {
+	struct HNSW_breakdown_stats& bd_stats,
+	struct HNSWDistCache& dist_cache) {
     if (resultSet1.size() < max_size) {
         return;
     }
@@ -292,7 +299,7 @@ void shrink_neighbor_list(
         resultSet1.pop();
     }
 
-    HNSW::shrink_neighbor_list(qdis, resultSet, returnlist, max_size, bd_stats);
+    HNSW::shrink_neighbor_list(qdis, resultSet, returnlist, max_size, bd_stats, dist_cache);
 
     for (NodeDistFarther curen2 : returnlist) {
         resultSet1.emplace(curen2.d, curen2.id);
@@ -338,7 +345,7 @@ void add_link(
         resultSet.emplace(dist, neigh);
     }
 
-    shrink_neighbor_list(qdis, resultSet, end - begin,hnsw.bd_stat);
+    shrink_neighbor_list(qdis, resultSet, end - begin,hnsw.bd_stat, hnsw.dist_cache);
 
     // ...and back
     size_t i = begin;
@@ -463,7 +470,7 @@ void HNSW::add_links_starting_from(
     int M = nb_neighbors(level);
 
     start = std::chrono::high_resolution_clock::now();
-    ::faiss::shrink_neighbor_list(ptdis, link_targets, M,bd_stat);
+    ::faiss::shrink_neighbor_list(ptdis, link_targets, M,bd_stat, dist_cache);
 
     std::vector<storage_idx_t> neighbors;
     neighbors.reserve(link_targets.size());

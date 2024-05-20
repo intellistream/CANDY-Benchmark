@@ -22,7 +22,7 @@
 #include <faiss/utils/random.h>
 #include <fstream>
 #include <iostream>
-
+#define HNSW_CACHE_SIZE 1024
 namespace faiss {
 
 /** Implementation of the Hierarchical Navigable Small World
@@ -51,6 +51,136 @@ struct SearchParametersHNSW : SearchParameters {
 
     ~SearchParametersHNSW() {}
 };
+
+// a global structure to maintain previously computed distance between neighbors
+struct HNSWDistCache{
+	struct DistSlot{
+		idx_t src = -1;
+		idx_t dest = -1;
+		float dist = 0;
+		uint64_t lru_count = 0;
+		DistSlot()=default;
+		// if valid, point to next valid, and vice versa
+		int64_t next = -1;
+
+		bool is_valid(){
+			return src!=-1 && dest!=-1;
+		}
+	};
+
+	int64_t first_free = 0; // occupied
+	int64_t first_unfree = -1; //
+	uint64_t num_hits = 0;
+	uint64_t num_evictions = 0;
+	std::vector<DistSlot> slots = std::vector<DistSlot>(HNSW_CACHE_SIZE);
+	uint64_t valid_cnt = 0;
+
+
+	HNSWDistCache(){
+		size_t i=0;
+		for(i=0;i<slots.size();i++){
+			if(i<HNSW_CACHE_SIZE - 1){
+				slots[i].next = i+1;
+
+			} else {
+				slots[i].next = -1;
+			}
+
+		}
+	}
+
+	bool put(idx_t src, idx_t dest, float dist){
+
+        //printf("putting \n");
+		// no need to evict
+		if(valid_cnt<HNSW_CACHE_SIZE){
+            // put at first_free
+			int64_t next = slots[first_free].next;
+			int64_t to_put = first_free;
+			slots[to_put].src = src;
+			slots[to_put].dest = dest;
+			slots[to_put].dist = dist;
+			slots[to_put].lru_count = 10;
+
+			// if no valid slots, first_valid would be -1
+			first_free = next;
+
+			slots[to_put].next = first_unfree;
+
+			first_unfree = to_put;
+
+			valid_cnt++;
+            //printf("putting at%ld complete\n", next);
+			return true;
+		} else {
+            //printf("putting failed\n");
+			return false;
+		}
+	}
+    void print(){
+        printf("number of evictions: %ld, number of hits: %ld\n", num_evictions, num_hits);
+        //int64_t next = first_free;
+        //printf("free:\n");
+
+        //next = first_unfree;
+        //printf("unfree:\n");
+        //while(next!=-1){
+            //printf("unfree %ld src: %ld dest: %ld\n", next,slots[next].src,slots[next].dest);
+       // }
+    }
+
+	bool get(idx_t src, idx_t dest, float& dist){
+           //printf("getting\n");
+		int64_t next = first_unfree;
+		int64_t last = -1;
+		while(next!=-1){
+            //printf("moving to %ld\n", next);
+            //printf("next %ld\n", slots[next].next);
+			if((slots[next].src==src && slots[next].dest==dest) || (slots[next].src == dest && slots[next].dest == src)){
+				slots[next].lru_count+=2;
+				dist = slots[next].dist;
+				num_hits++;
+                //printf("getting success\n");
+				return true;
+			}
+			slots[next].lru_count--;
+			// free this slot
+			if(slots[next].lru_count<=0){
+				num_evictions++;
+				if(last!=-1){
+
+					int64_t temp_next = slots[next].next;
+					int64_t temp_last = last;
+					slots[last].next = slots[next].next;
+					slots[next].next = first_free;
+					first_free = next;
+					next = temp_next;
+					last = temp_last;
+					valid_cnt--;
+					continue;
+				} else {
+
+					int64_t temp_next = slots[next].next;
+					int64_t temp_last = -1;
+
+					first_unfree = slots[next].next;
+					slots[next].next = first_free;
+					first_free = next;
+					next= temp_next;
+					last = temp_last;
+					valid_cnt--;
+					continue;
+				}
+
+			}
+			last = next;
+			next = slots[next].next;
+		}
+        //printf("getting complete\n");
+		return false;
+	}
+};
+
 struct HNSW_breakdown_stats {
     size_t steps_greedy =
             0; // number of vertices traversing in greedy search in add
@@ -111,6 +241,7 @@ struct HNSW {
     typedef std::pair<float, storage_idx_t> Node;
 
     mutable struct HNSW_breakdown_stats bd_stat;
+	mutable struct HNSWDistCache dist_cache;
 
     /** Heap structure that allows fast
      */
@@ -284,7 +415,8 @@ struct HNSW {
             std::priority_queue<NodeDistFarther>& input,
             std::vector<NodeDistFarther>& output,
             int max_size,
-	    struct HNSW_breakdown_stats& bd_stats);
+	    struct HNSW_breakdown_stats& bd_stats,
+		struct HNSWDistCache& dist_cache);
 
     void permute_entries(const idx_t* map);
 };

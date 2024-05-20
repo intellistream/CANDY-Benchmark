@@ -366,6 +366,8 @@ void IndexHNSW::search(
     hnsw_stats.combine({n1, n2, n3, ndis, nreorder});
     if (verbose) {
         hnsw.bd_stat.print();
+
+
     }
 }
 
@@ -389,6 +391,7 @@ void IndexHNSW::add(idx_t n, const float* x) {
         // std::cout<<"writing to "<<file_path<<std::endl;
         // hnsw.bd_stat.put_to_csv(file_path);
         hnsw.bd_stat.print();
+        hnsw.dist_cache.print();
     }
 }
 
@@ -426,7 +429,7 @@ void IndexHNSW::shrink_level_0_neighbors(int new_size) {
 
             std::vector<NodeDistFarther> shrunk_list;
             HNSW::shrink_neighbor_list(
-                    *dis, initial_list, shrunk_list, new_size,hnsw.bd_stat);
+                    *dis, initial_list, shrunk_list, new_size,hnsw.bd_stat, hnsw.dist_cache);
 
             for (size_t j = begin; j < end; j++) {
                 if (j - begin < shrunk_list.size())
@@ -513,7 +516,7 @@ void IndexHNSW::init_level_0_from_knngraph(
         }
 
         std::vector<NodeDistFarther> shrunk_list;
-        HNSW::shrink_neighbor_list(*qdis, initial_list, shrunk_list, dest_size,hnsw.bd_stat);
+        HNSW::shrink_neighbor_list(*qdis, initial_list, shrunk_list, dest_size,hnsw.bd_stat, hnsw.dist_cache);
 
         size_t begin, end;
         hnsw.neighbor_range(i, 0, &begin, &end);
