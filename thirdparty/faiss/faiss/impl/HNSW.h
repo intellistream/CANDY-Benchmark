@@ -91,16 +91,17 @@ struct HNSWDistCache{
 
 	bool put(idx_t src, idx_t dest, float dist){
 
-        //printf("putting \n");
+
 		// no need to evict
 		if(valid_cnt<HNSW_CACHE_SIZE){
             // put at first_free
+            //printf("putting with valid cnt %ld \n", valid_cnt);
 			int64_t next = slots[first_free].next;
 			int64_t to_put = first_free;
 			slots[to_put].src = src;
 			slots[to_put].dest = dest;
 			slots[to_put].dist = dist;
-			slots[to_put].lru_count = 10;
+			slots[to_put].lru_count = 1024;
 
 			// if no valid slots, first_valid would be -1
 			first_free = next;
@@ -122,11 +123,13 @@ struct HNSWDistCache{
         //int64_t next = first_free;
         //printf("free:\n");
 
-        //next = first_unfree;
-        //printf("unfree:\n");
-        //while(next!=-1){
+        int64_t next = first_unfree;
+        printf("unfree:\n");
+        printf("valid cnt% ld\n", valid_cnt);
+        while(next!=-1){
             //printf("unfree %ld src: %ld dest: %ld\n", next,slots[next].src,slots[next].dest);
-       // }
+            next = slots[next].next;
+        }
     }
 
 	bool get(idx_t src, idx_t dest, float& dist){
