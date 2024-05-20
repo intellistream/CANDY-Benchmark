@@ -69,7 +69,7 @@ bool CANDY::YinYangHNSWIndex::loadInitialTensorVertex(torch::Tensor &t) {
     ver->yangIndex.insertTensor(tCopy);
     auto idx = reinterpret_cast<long>(ver);
     if(i%(n/100)==0){
-      std::cout<<"Done "+ to_string(i)+"/"+ to_string(n)<<std::endl;
+      std::cout<<"Build done "+ to_string(i)+"/"+ to_string(n)<<std::endl;
     }
 
     alg_hnsw->addPoint(tCopy.contiguous().data_ptr<float>(), idx);
@@ -105,6 +105,9 @@ bool CANDY::YinYangHNSWIndex::insertTensor(torch::Tensor &t) {
     auto ver =  reinterpret_cast<YinYangHNSW_YinVertex *>((result.top().second));
     //std::cout <<result.top().second<<","<<ver->yangIndex.size()<<std::endl;
     ver->yangIndex.insertTensor(tCopy);
+    if(i%(n/100)==0){
+      std::cout<<"Insert done "+ to_string(i)+"/"+ to_string(n)<<std::endl;
+    }
   }
   return true;
 }
