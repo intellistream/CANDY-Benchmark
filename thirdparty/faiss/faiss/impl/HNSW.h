@@ -22,7 +22,7 @@
 #include <faiss/utils/random.h>
 #include <fstream>
 #include <iostream>
-#define HNSW_CACHE_SIZE 8192
+#define HNSW_CACHE_SIZE 1024
 namespace faiss {
 
 /** Implementation of the Hierarchical Navigable Small World
@@ -59,6 +59,7 @@ struct HNSWDistCache{
 		idx_t dest = -1;
 		float dist = 0;
 		uint64_t lru_count = 0;
+        uint64_t last_lru = 0;
 		DistSlot()=default;
 		// if valid, point to next valid, and vice versa
 		int64_t next = -1;
@@ -72,6 +73,8 @@ struct HNSWDistCache{
 	int64_t first_unfree = -1; //
 	uint64_t num_hits = 0;
 	uint64_t num_evictions = 0;
+
+    float average_refault = 0;
 	std::vector<DistSlot> slots = std::vector<DistSlot>(HNSW_CACHE_SIZE);
 	uint64_t valid_cnt = 0;
 
@@ -102,6 +105,7 @@ struct HNSWDistCache{
 			slots[to_put].dest = dest;
 			slots[to_put].dist = dist;
 			slots[to_put].lru_count = HNSW_CACHE_SIZE;
+            slots[to_put].last_lru = slots[to_put].lru_count;
 
 			// if no valid slots, first_valid would be -1
 			first_free = next;
@@ -119,7 +123,7 @@ struct HNSWDistCache{
 		}
 	}
     void print(){
-        printf("number of evictions: %ld, number of hits: %ld\n", num_evictions, num_hits);
+        printf("number of evictions: %ld, number of hits: %ld, average refault %.2f\n", num_evictions, num_hits, average_refault);
         //int64_t next = first_free;
         //printf("free:\n");
 
@@ -143,6 +147,9 @@ struct HNSWDistCache{
 				slots[next].lru_count+=2;
 				dist = slots[next].dist;
 				num_hits++;
+                auto refault_distance = slots[next].last_lru - slots[next].lru_count;
+                average_refault = average_refault + ( refault_distance-average_refault)/num_hits;
+                slots[next].last_lru = slots[next].lru_count;
                 //printf("getting success\n");
 				return true;
 			}
