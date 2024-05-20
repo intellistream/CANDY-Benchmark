@@ -22,7 +22,7 @@
 #include <faiss/utils/random.h>
 #include <fstream>
 #include <iostream>
-#define HNSW_CACHE_SIZE 1024
+#define HNSW_CACHE_SIZE 8192
 namespace faiss {
 
 /** Implementation of the Hierarchical Navigable Small World
@@ -101,7 +101,7 @@ struct HNSWDistCache{
 			slots[to_put].src = src;
 			slots[to_put].dest = dest;
 			slots[to_put].dist = dist;
-			slots[to_put].lru_count = 1024;
+			slots[to_put].lru_count = HNSW_CACHE_SIZE;
 
 			// if no valid slots, first_valid would be -1
 			first_free = next;
