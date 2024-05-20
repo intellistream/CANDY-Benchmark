@@ -68,7 +68,10 @@ bool CANDY::YinYangHNSWIndex::loadInitialTensorVertex(torch::Tensor &t) {
     ver->yangIndex.setConfig(inlineCfg);
     ver->yangIndex.insertTensor(tCopy);
     auto idx = reinterpret_cast<long>(ver);
-    //std::cout<<tCopy;
+    if(i%(n/100)==0){
+      std::cout<<"Done "+ to_string(i)+"/"+ to_string(n)<<std::endl;
+    }
+
     alg_hnsw->addPoint(tCopy.contiguous().data_ptr<float>(), idx);
     // std::cout<<idx<<std::endl;
   }
