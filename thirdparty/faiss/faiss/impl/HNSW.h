@@ -70,7 +70,7 @@ struct HNSWDistCache{
 			return src!=-1 && dest!=-1;
 		}
 	};
-	bool is_modulo = true;
+	bool is_modulo = false;
 	int64_t first_free = 0; // occupied
 	int64_t first_unfree = -1; //
 	uint64_t num_hits = 0;
@@ -214,10 +214,11 @@ struct HNSWDistCache{
             //printf("moving to %ld\n", next);
             //printf("next %ld\n", slots[next].next);
 			if((slots[next].src==src && slots[next].dest==dest) || (slots[next].src == dest && slots[next].dest == src)){
-				slots[next].lru_count+=2;
+				auto refault_distance = slots[next].last_lru - slots[next].lru_count;
+				slots[next].lru_count = HNSW_CACHE_SIZE;
 				dist = slots[next].dist;
 				num_hits++;
-                auto refault_distance = slots[next].last_lru - slots[next].lru_count;
+
                 average_refault = average_refault + ( refault_distance-average_refault)/num_hits;
                 slots[next].last_lru = slots[next].lru_count;
                 //printf("getting success\n");
