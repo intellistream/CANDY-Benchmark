@@ -22,7 +22,7 @@
 #include <faiss/utils/random.h>
 #include <fstream>
 #include <iostream>
-#define HNSW_CACHE_SIZE 8192
+#define HNSW_CACHE_SIZE 1024
 namespace faiss {
 
 /** Implementation of the Hierarchical Navigable Small World
@@ -62,6 +62,7 @@ struct HNSWDistCache{
 		float dist = 0;
 		int64_t lru_count = 0;
         uint64_t last_lru = 0;
+        uint64_t last_hit = 0;
 		DistSlot()=default;
 		// if valid, point to next valid, and vice versa
 		int64_t next = -1;
@@ -70,7 +71,8 @@ struct HNSWDistCache{
 			return src!=-1 && dest!=-1;
 		}
 	};
-	bool is_modulo = false;
+	uint64_t timestamp = 0;
+	bool is_modulo = true;
 	int64_t first_free = 0; // occupied
 	int64_t first_unfree = -1; //
 	uint64_t num_hits = 0;
@@ -106,6 +108,7 @@ struct HNSWDistCache{
 	}
 
 	bool put(idx_t src, idx_t dest, float dist){
+		timestamp+=1;
 		if(is_modulo){
 			idx_t big, little;
 			if(src > dest){
@@ -168,7 +171,8 @@ struct HNSWDistCache{
         printf("number of evictions: %ld, number of hits: %ld, average refault %.2f\n", num_evictions, num_hits, average_refault);
         //int64_t next = first_free;
         //printf("free:\n");
-
+		num_evictions = 0;
+		num_hits = 0;
         int64_t next = first_unfree;
         //printf("unfree:\n");
         //printf("valid cnt% ld\n", valid_cnt);
@@ -179,6 +183,7 @@ struct HNSWDistCache{
     }
 
 	bool get(idx_t src, idx_t dest, float& dist){
+		timestamp+=1;
 		if(is_modulo){
 			idx_t big, little;
 			if(src > dest){
@@ -197,8 +202,13 @@ struct HNSWDistCache{
 				target = target - HNSW_CACHE_SIZE;
 			}
 			if((slots[target].src==src && slots[target].dest==dest) || (slots[target].src == dest && slots[target].dest == src)){
-				dist = slots[target].dist;
+				//auto refault_distance = timestamp - slots[target].last_lru;
+				auto refault_distance = timestamp - slots[target].last_hit;
+				slots[target].last_lru=timestamp;
 				num_hits++;
+				average_refault = average_refault + ( refault_distance-average_refault)/num_hits;
+				dist = slots[target].dist;
+
 				return true;
 
 			} else {
@@ -214,12 +224,13 @@ struct HNSWDistCache{
             //printf("moving to %ld\n", next);
             //printf("next %ld\n", slots[next].next);
 			if((slots[next].src==src && slots[next].dest==dest) || (slots[next].src == dest && slots[next].dest == src)){
-				auto refault_distance = slots[next].last_lru - slots[next].lru_count;
+				auto refault_distance = timestamp - slots[next].last_hit;
+				//auto refault_distance = slots[next].last_lru - slots[next].lru_count;
 				slots[next].lru_count = HNSW_CACHE_SIZE;
 				dist = slots[next].dist;
 				num_hits++;
-
                 average_refault = average_refault + ( refault_distance-average_refault)/num_hits;
+                slots[next].last_hit = timestamp;
                 slots[next].last_lru = slots[next].lru_count;
                 //printf("getting success\n");
 				return true;
