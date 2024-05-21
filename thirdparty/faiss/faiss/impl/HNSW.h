@@ -22,7 +22,7 @@
 #include <faiss/utils/random.h>
 #include <fstream>
 #include <iostream>
-#define HNSW_CACHE_SIZE 1024
+#define HNSW_CACHE_SIZE 8192
 namespace faiss {
 
 /** Implementation of the Hierarchical Navigable Small World
@@ -52,13 +52,15 @@ struct SearchParametersHNSW : SearchParameters {
     ~SearchParametersHNSW() {}
 };
 
+
+
 // a global structure to maintain previously computed distance between neighbors
 struct HNSWDistCache{
 	struct DistSlot{
 		idx_t src = -1;
 		idx_t dest = -1;
 		float dist = 0;
-		uint64_t lru_count = 0;
+		int64_t lru_count = 0;
         uint64_t last_lru = 0;
 		DistSlot()=default;
 		// if valid, point to next valid, and vice versa
@@ -68,7 +70,7 @@ struct HNSWDistCache{
 			return src!=-1 && dest!=-1;
 		}
 	};
-
+	bool is_modulo = true;
 	int64_t first_free = 0; // occupied
 	int64_t first_unfree = -1; //
 	uint64_t num_hits = 0;
@@ -80,21 +82,61 @@ struct HNSWDistCache{
 
 
 	HNSWDistCache(){
-		size_t i=0;
-		for(i=0;i<slots.size();i++){
-			if(i<HNSW_CACHE_SIZE - 1){
-				slots[i].next = i+1;
+		if(is_modulo){
+			size_t i=0;
+			for(i=0; i<slots.size();i++){
+				slots[i].lru_count = -1;
 
-			} else {
-				slots[i].next = -1;
 			}
 
+
+		}
+		if(!is_modulo){
+			size_t i=0;
+			for(i=0;i<slots.size();i++){
+				if(i<HNSW_CACHE_SIZE - 1){
+					slots[i].next = i+1;
+
+				} else {
+					slots[i].next = -1;
+				}
+
+			}
 		}
 	}
 
 	bool put(idx_t src, idx_t dest, float dist){
+		if(is_modulo){
+			idx_t big, little;
+			if(src > dest){
+				big = src;
+				little = dest;
+			} else {
+				big = dest;
+				little = src;
+			}
+			idx_t level_1 = big % HNSW_CACHE_SIZE;
+			// here 32 is the number of max connections
+			idx_t level_2 = little % HNSW_CACHE_SIZE%32;
+			idx_t target = level_1 + level_2;
+			// circular
+			while(target > HNSW_CACHE_SIZE){
+				target = target - HNSW_CACHE_SIZE;
+			}
+			if(slots[target].lru_count<0){
+				num_evictions++;
+				slots[target].src = src;
+				slots[target].dest = dest;
+				slots[target].dist = dist;
+				slots[target].lru_count = HNSW_CACHE_SIZE;
+				return true;
+			} else {
+				return false;
 
+			}
+		}
 
+		// linear cache
 		// no need to evict
 		if(valid_cnt<HNSW_CACHE_SIZE){
             // put at first_free
@@ -128,8 +170,8 @@ struct HNSWDistCache{
         //printf("free:\n");
 
         int64_t next = first_unfree;
-        printf("unfree:\n");
-        printf("valid cnt% ld\n", valid_cnt);
+        //printf("unfree:\n");
+        //printf("valid cnt% ld\n", valid_cnt);
         while(next!=-1){
             //printf("unfree %ld src: %ld dest: %ld\n", next,slots[next].src,slots[next].dest);
             next = slots[next].next;
@@ -137,6 +179,34 @@ struct HNSWDistCache{
     }
 
 	bool get(idx_t src, idx_t dest, float& dist){
+		if(is_modulo){
+			idx_t big, little;
+			if(src > dest){
+				big = src;
+				little = dest;
+			} else {
+				big = dest;
+				little = src;
+			}
+			idx_t level_1 = big % HNSW_CACHE_SIZE;
+			// here 32 is the number of max connections
+			idx_t level_2 = little % HNSW_CACHE_SIZE%32;
+			idx_t target = level_1 + level_2;
+			// circular
+			while(target > HNSW_CACHE_SIZE){
+				target = target - HNSW_CACHE_SIZE;
+			}
+			if((slots[target].src==src && slots[target].dest==dest) || (slots[target].src == dest && slots[target].dest == src)){
+				dist = slots[target].dist;
+				num_hits++;
+				return true;
+
+			} else {
+
+				slots[target].lru_count -= HNSW_CACHE_SIZE/32;
+				return false;
+			}
+		}
            //printf("getting\n");
 		int64_t next = first_unfree;
 		int64_t last = -1;
