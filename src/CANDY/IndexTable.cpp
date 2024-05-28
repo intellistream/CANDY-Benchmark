@@ -21,8 +21,11 @@
 #include <CANDY/ParallelPartitionIndex.h>
 #include <CANDY/YinYangGraphIndex.h>
 #include <CANDY/YinYangGraphSimpleIndex.h>
+#include <CANDY/ThresholdIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
+
+
 #if CANDY_CL == 1
 //#include <CPPAlgos/CLMMCPPAlgo.h>
 #endif
@@ -51,6 +54,8 @@ CANDY::IndexTable::IndexTable() {
   indexMap["nnDescent"] = newNNDescentIndex();
   indexMap["Flann"] = newFlannIndex();
   indexMap["DPG"] = newDPGIndex();
+  //indexMap["threshold"] = newThresholdIndex();
+
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif
