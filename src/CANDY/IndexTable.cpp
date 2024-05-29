@@ -54,7 +54,7 @@ CANDY::IndexTable::IndexTable() {
   indexMap["nnDescent"] = newNNDescentIndex();
   indexMap["Flann"] = newFlannIndex();
   indexMap["DPG"] = newDPGIndex();
-  //indexMap["threshold"] = newThresholdIndex();
+  indexMap["threshold"] = newThresholdIndex();
 
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();

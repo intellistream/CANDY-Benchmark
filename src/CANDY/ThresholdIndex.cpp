@@ -71,9 +71,6 @@ bool CANDY::ThresholdIndex::insertStringObject(torch::Tensor &t, std::vector<std
   return false;
 }
 */
-bool CANDY::ThresholdIndex::loadInitialTensor(torch::Tensor &t) {
-  return insertTensor(t);
-}
 
 std::vector<faiss::idx_t> CANDY::ThresholdIndex::searchIndex(torch::Tensor q, int64_t k) {
   assert(k > 0);

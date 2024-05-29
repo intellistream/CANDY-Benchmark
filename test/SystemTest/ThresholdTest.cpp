@@ -8,13 +8,14 @@
 #include "catch.hpp"
 #include <CANDY.h>
 #include <iostream>
+#include <CANDY/ThresholdIndex.h>
 using namespace std;
 using namespace INTELLI;
 using namespace torch;
 using namespace CANDY;
 TEST_CASE("Test threshold index", "[short]")
 {
-  int a = 0;
+  //int a = 0;
   torch::manual_seed(114514);
   // place your test here
   INTELLI::ConfigMapPtr cfg = newConfigMap();

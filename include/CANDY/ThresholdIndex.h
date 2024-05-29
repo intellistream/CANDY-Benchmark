@@ -12,6 +12,7 @@
 #include <vector>
 #include <Utils/IntelliTensorOP.hpp>
 #include <faiss/IndexFlat.h>
+#include <CANDY/AbstractIndex.h>
 #include <tuple>
 namespace CANDY {
 
@@ -23,7 +24,7 @@ namespace CANDY {
  * @class ThresholdIndex CANDY/ThresholdIndex.h
  * @brief The Threshold class of an index approach
  */
-class ThresholdIndex {
+class ThresholdIndex: public AbstractIndex{
  protected:
   faiss::MetricType faissMetric = faiss::METRIC_L2;
   int64_t containerTier = 0;
@@ -73,7 +74,7 @@ class ThresholdIndex {
    * @brief some extra set-ups if the index has HPC fetures
    * @return bool whether the HPC set-up is successful
    */
-  virtual bool startHPC();
+  //virtual bool startHPC();
   /**
    * @brief insert a tensor
    * @note This is majorly an online function
@@ -91,14 +92,14 @@ class ThresholdIndex {
   * @param t the tensor, some index need to be single row
   * @return bool whether the loading is successful
   */
-  virtual bool loadInitialTensor(torch::Tensor &t);
+ // virtual bool loadInitialTensor(torch::Tensor &t);
   /**
    * @brief delete a tensor, also online function
    * @param t the tensor, some index needs to be single row
    * @param k the number of nearest neighbors
    * @return bool whether the deleting is successful
    */
-  virtual bool deleteTensor(torch::Tensor &t, int64_t k = 1);
+  //virtual bool deleteTensor(torch::Tensor &t, int64_t k = 1);
 
   /**
    * @brief revise a tensor
@@ -106,7 +107,7 @@ class ThresholdIndex {
    * @param w the revised value
    * @return bool whether the revising is successful
    */
-  virtual bool reviseTensor(torch::Tensor &t, torch::Tensor &w);
+  //virtual bool reviseTensor(torch::Tensor &t, torch::Tensor &w);
   /**
    * @brief search the k-NN of a query tensor, return their index
    * @param t the tensor, allow multiple rows
@@ -115,19 +116,7 @@ class ThresholdIndex {
    */
   virtual std::vector<faiss::idx_t> searchIndex(torch::Tensor q, int64_t k);
 
-  /**
-   * @brief return a vector of tensors according to some index
-   * @param idx the index, follow faiss's style, allow the KNN index of multiple queries
-   * @param k the returned neighbors, i.e., will be the number of rows of each returned tensor
-   * @return a vector of tensors, each tensor represent KNN results of one query in idx
-   */
-  virtual std::vector<torch::Tensor> getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k);
-  /**
-    * @brief return the rawData of tensor
-    * @return The raw data stored in tensor
-    */
-  virtual torch::Tensor rawData();
-  /**
+/**
   * @brief search the k-NN of a query tensor, return the result tensors
   * @param t the tensor, allow multiple rows
   * @param k the returned neighbors
@@ -138,13 +127,13 @@ class ThresholdIndex {
     * @brief some extra termination if the index has HPC features
     * @return bool whether the HPC termination is successful
     */
-  virtual bool endHPC();
+ // virtual bool endHPC();
   /**
    * @brief set the frozen level of online updating internal state
    * @param frozenLv the level of frozen, 0 means freeze any online update in internal state
    * @return whether the setting is successful
    */
-  virtual bool setFrozenLevel(int64_t frozenLv);
+ // virtual bool setFrozenLevel(int64_t frozenLv);
   /**
   * @brief offline build phase
   * @param t the tensor for offline build
@@ -157,7 +146,7 @@ class ThresholdIndex {
    * @brief a busy waiting for all pending operations to be done
    * @return bool, whether the waiting is actually done;
    */
-  virtual bool waitPendingOperations();
+  //virtual bool waitPendingOperations();
 
   /**
   * @brief load the initial tensors of a data base along with its string objects, use this BEFORE @ref insertTensor
@@ -166,7 +155,7 @@ class ThresholdIndex {
    *  * @param strs the corresponding list of strings
   * @return bool whether the loading is successful
   */
-  virtual bool loadInitialStringObject(torch::Tensor &t, std::vector<std::string> &strs);
+  //virtual bool loadInitialStringObject(torch::Tensor &t, std::vector<std::string> &strs);
   /**
    * @brief insert a string object
    * @note This is majorly an online function
@@ -174,7 +163,7 @@ class ThresholdIndex {
    * @param strs the corresponding list of strings
    * @return bool whether the insertion is successful
    */
-  virtual bool insertStringObject(torch::Tensor &t, std::vector<std::string> &strs);
+ // virtual bool insertStringObject(torch::Tensor &t, std::vector<std::string> &strs);
 
   /**
    * @brief  delete tensor along with its corresponding string object
@@ -183,7 +172,7 @@ class ThresholdIndex {
    * @param k the number of nearest neighbors
    * @return bool whether the delet is successful
    */
-  virtual bool deleteStringObject(torch::Tensor &t, int64_t k = 1);
+ // virtual bool deleteStringObject(torch::Tensor &t, int64_t k = 1);
 
   /**
  * @brief search the k-NN of a query tensor, return the linked string objects
@@ -191,25 +180,8 @@ class ThresholdIndex {
  * @param k the returned neighbors
  * @return std::vector<std::vector<std::string>> the result object for each row of query
  */
-  virtual std::vector<std::vector<std::string>> searchStringObject(torch::Tensor &q, int64_t k);
-  /**
- * @brief search the k-NN of a query tensor, return the linked string objects and original tensors
- * @param t the tensor, allow multiple rows
- * @param k the returned neighbors
- * @return std::tuple<std::vector<torch::Tensor>,std::vector<std::vector<std::string>>>
- */
-  virtual std::tuple<std::vector<torch::Tensor>, std::vector<std::vector<std::string>>> searchTensorAndStringObject(
-      torch::Tensor &q,
-      int64_t k);
+  //virtual std::vector<std::vector<std::string>> searchStringObject(torch::Tensor &q, int64_t k);
 
-  /**
-  * @brief load the initial tensors and query distributions of a data base, use this BEFORE @ref insertTensor
-  * @note This is majorly an offline function, and may be different from @ref insertTensor for some indexes
-  * @param t the data tensor
-  * @param query the example query tensor
-  * @return bool whether the loading is successful
-  */
-  virtual bool loadInitialTensorAndQueryDistribution(torch::Tensor &t, torch::Tensor &query);
 
 
   };
