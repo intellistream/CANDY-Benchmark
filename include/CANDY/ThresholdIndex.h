@@ -47,9 +47,9 @@ class ThresholdIndex: public AbstractIndex{
   * @param tie the setting of tier number
   * @note The parameter of tier idx affects nothing now, but will do something later
   */
-  virtual void setTier(int64_t tie) {
+  /*virtual void setTier(int64_t tie) {
     containerTier = tie;
-  }
+  }*/
   /**
     * @brief reset this index to inited status
     */
