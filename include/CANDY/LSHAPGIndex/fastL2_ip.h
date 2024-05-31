@@ -1,6 +1,6 @@
 #pragma once
 
-#define USE_FAST
+//#define USE_FAST
 
 
 
@@ -8,7 +8,6 @@
 
 #define __SSE__
 #define __AVX__
-
 #ifdef __SSE__
 #define USE_SSE
 #ifdef __AVX__
