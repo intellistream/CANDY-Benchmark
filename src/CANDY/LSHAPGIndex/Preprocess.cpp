@@ -50,6 +50,29 @@ Preprocess::Preprocess(const std::string& path, const std::string& ben_file_, fl
 	}
 }
 
+Preprocess::Preprocess(uint64_t vecDim){
+	data.N  = 0;
+	data.dim = vecDim;
+}
+
+Preprocess::set_query(float* query){
+	data.query = &query;
+}
+Preprocess::insert_data(float* new_data, uint64_t n){
+	auto old_data = data.val;
+	data.val = new float* [data.N+n];
+	for(int i=0; i<data.N; i++){
+		data.val[i] = old_data[i];
+	}
+	for(int i=data.N; i<data.N+n; i++){
+		data.val[i] = new float[data.dim];
+		for(int j=0; j<data.dim; j++){
+			data.val[i][j] = new_data[(i-data.N)*data.dim + j];
+		}
+	}
+	data.N += n;
+}
+
 void Preprocess::load_data(const std::string& path)
 {
 	std::string file = path + "_new";

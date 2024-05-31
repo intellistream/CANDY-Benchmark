@@ -23,6 +23,8 @@ public:
     bool isbuilt = 0;
     _lsh_UB=0;
 
+    Preprocess prep;
+
     /**
     * @brief set the index-specific config related to one index
     * @param cfg the config of this class

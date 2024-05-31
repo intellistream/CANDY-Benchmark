@@ -19,9 +19,13 @@ public:
 	float beta = 0.1f;
 	
 public:
+	Preprocess()=default;
+	Preprocess(uint64_t vecDim);
 	Preprocess(const std::string& path, const std::string& ben_file_);
 	Preprocess(const std::string& path, const std::string& ben_file_, float beta_);
 	void load_data(const std::string& path);
+	void insert_data(float* new_data, uint64_t n);
+	void set_query(float* query);
 	void ben_make();
 	void ben_save();
 	void ben_correct();
