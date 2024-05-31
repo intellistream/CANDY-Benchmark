@@ -16,11 +16,15 @@ void CANDY::ThresholdIndex::reset() {
 
 bool CANDY::ThresholdIndex::offlineBuild(torch::Tensor &t) {
     assert(t.size(1));
-    auto index = new faiss::IndexFlatL2(t.size(1));
-    //faiss::Index* newIndex = new faiss::IndexFlatL2(dimension);
-    //index->train(t.size(0), t.data_ptr<float>());
-    index->add(t.size(0), t.data_ptr<float>());
-    indices.push_back(index);
+    if (indices.empty() || indices.back()->ntotal >= dataThreshold) {
+        createThresholdIndex(t.size(1));
+    }
+    //auto index = new faiss::IndexFlatL2(t.size(1)); 
+    //index->add(t.size(0), t.data_ptr<float>());
+    //indices.push_back(index);
+
+    indices.back()->add(t.size(0), t.data_ptr<float>());
+    
     return true;
 }
 
@@ -39,6 +43,7 @@ bool CANDY::ThresholdIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
 
   return false;
 }
+
 bool CANDY::ThresholdIndex::setConfigClass(INTELLI::ConfigMap cfg) {
   INTELLI::ConfigMapPtr cfgPtr=newConfigMap();
   cfgPtr->loadFrom(cfg);
@@ -60,7 +65,8 @@ bool CANDY::ThresholdIndex::insertTensor(torch::Tensor &t) {
 
 void CANDY::ThresholdIndex::createThresholdIndex(int64_t dimension) {
   //auto index = new faiss::IndexFlatL2(dimension);
-  faiss::Index* index = new faiss::IndexFlatL2(dimension);
+  //int M=32;
+  auto index = new faiss::IndexFlat(dimension);
   indices.push_back(index);
 }
 
@@ -84,23 +90,39 @@ std::vector<torch::Tensor> CANDY::ThresholdIndex::searchTensor(torch::Tensor &q,
     assert(q.size(1));
 
   //auto idx = searchIndex(q, k);
-  std::vector<torch::Tensor> allKnnIndices ;
+  std::vector<faiss::idx_t> Indicesx ;
+  std::vector<float> Distances;
 
   for (int64_t i = 0; i < indices.size(); ++i) {
-    std::vector<faiss::idx_t> knnIndices(k);
-    std::vector<float> knnDistances(k);
-    indices[i]->search(q.size(0), q.data_ptr<float>(), k, knnDistances.data(), knnIndices.data());
-    for (faiss::idx_t index : knnIndices) {
-        allKnnIndices.push_back(torch::tensor(index));
-    }
-    
-    //allKnnIndices.insert(allKnnIndices.end(), knnIndices.begin(), knnIndices.end());
+    int64_t querySize = q.size(0);
+    std::vector<faiss::idx_t> inx(k * querySize);
+    std::vector<float> dist(k * querySize);
+    indices[i]->search(q.size(0), q.data_ptr<float>(), k, dist.data(), inx.data());
+    //for (faiss::idx_t index : inx) {
+      //  inx.push_back(torch::tensor(index));
+    //}
+    Indicesx.insert(Indicesx.end(), inx.begin(), inx.end());
+    Distances.insert(Distances.end(), dist.begin(), dist.end());
+
   }
 
-  return allKnnIndices;
-  //return getTensorByIndex(allKnnIndices, k);
+  std::vector<std::pair<float, faiss::idx_t>> knn;
+    for (size_t i = 0; i < Indicesx.size(); ++i) {
+        knn.emplace_back(Distances[i], Indicesx[i]);
+    }
 
-}
+    std::sort(knn.begin(), knn.end(), [](const auto &a, const auto &b) {
+        return a.first < b.first; 
+    });
+
+    std::vector<torch::Tensor> topK;
+    for (int64_t i = 0; i < k && i < knn.size(); ++i) {
+        topK.push_back(torch::tensor(knn[i].second));
+    }
+
+    return topK;
+} 
+
 /*
 torch::Tensor CANDY::ThresholdIndex::rawData() {
   return torch::rand({1, 1});
