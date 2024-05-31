@@ -55,10 +55,10 @@ Preprocess::Preprocess(uint64_t vecDim){
 	data.dim = vecDim;
 }
 
-Preprocess::set_query(float* query){
+void Preprocess::set_query(float* query){
 	data.query = &query;
 }
-Preprocess::insert_data(float* new_data, uint64_t n){
+void Preprocess::insert_data(float* new_data, uint64_t n){
 	auto old_data = data.val;
 	data.val = new float* [data.N+n];
 	for(int i=0; i<data.N; i++){
