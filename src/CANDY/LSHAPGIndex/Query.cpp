@@ -1,5 +1,5 @@
-#include "Query.h"
-#include "basis.h"
+#include <CANDY/LSHAPGIndex/Query.h>
+#include <CANDY/LSHAPGIndex/basis.h>
 #include <iostream>
 #include <set>
 #include <queue>

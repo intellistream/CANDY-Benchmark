@@ -1,5 +1,5 @@
  #pragma once
- #include "divGraph.h"
+ #include <CANDY/LSHAPGIndex/divGraph.h>
 
  using dist_t = float;
  using labeltype = int;

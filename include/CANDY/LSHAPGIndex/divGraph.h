@@ -1,6 +1,6 @@
 #pragma once
-#include "e2lsh.h"
-#include "space_l2.h"
+#include <CANDY/LSHAPGIndex/e2lsh.h>
+#include <CANDY/LSHAPGIndex/space_l2.h>
 #include <algorithm>
 #include <random>
 #include <mutex>

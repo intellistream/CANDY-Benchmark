@@ -1,5 +1,5 @@
 #pragma once
-#include "def.h"
+#include <CANDY/LSHAPGIndex/def.h>
 #include <cmath>
 #include <assert.h>
 #include <unordered_map>

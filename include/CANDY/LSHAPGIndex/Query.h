@@ -1,10 +1,10 @@
 #pragma once
-#include "def.h"
-#include "Preprocess.h"
+#include <CANDY/LSHAPGIndex/def.h>
+#include <CANDY/LSHAPGIndex/Preprocess.h>
 #include <vector>
 #include <queue>
-#include "basis.h"
-#include "e2lsh.h"
+#include <CANDY/LSHAPGIndex/basis.h>
+#include <CANDY/LSHAPGIndex/e2lsh.h>
 
 
 class Performance

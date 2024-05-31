@@ -1,12 +1,12 @@
 #pragma once
 #include <iostream>
 #include <fstream>
-#include "Preprocess.h"
-#include "divGraph.h"
-#include "fastGraph.h"
-#include "Query.h"
+#include <CANDY/LSHAPGIndex/Preprocess.h>
+#include <CANDY/LSHAPGIndex/divGraph.h>
+#include <CANDY/LSHAPGIndex/fastGraph.h>
+#include <CANDY/LSHAPGIndex/Query.h>
 #include <time.h>
-#include "basis.h"
+#include <CANDY/LSHAPGIndex/basis.h>
 #include <sstream>
 
 #if defined(unix) || defined(__unix__)

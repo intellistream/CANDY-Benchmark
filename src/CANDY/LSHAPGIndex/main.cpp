@@ -2,7 +2,7 @@
 // Created by Xi on March 2022
 //
 
-#include "alg.h"
+#include <CANDY/LSHAPGIndex/alg.h>
 int _lsh_UB=0;
 //double _chi2inv;
 //double _chi2invSqr;

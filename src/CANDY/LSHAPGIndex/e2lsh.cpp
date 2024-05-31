@@ -1,6 +1,6 @@
-#include "e2lsh.h"
-#include "Preprocess.h"
-#include "basis.h"
+#include <CANDY/LSHAPGIndex/e2lsh.h>
+#include <CANDY/LSHAPGIndex/Preprocess.h>
+#include <CANDY/LSHAPGIndex/basis.h>
 #include <fstream>
 #include <assert.h>
 #include <random>

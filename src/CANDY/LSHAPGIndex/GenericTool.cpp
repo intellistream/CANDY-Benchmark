@@ -1,4 +1,4 @@
-#include "GenericTool.h"
+#include <CANDY/LSHAPGIndex/GenericTool.h>
 
 //Cross Platform snprintf
 #ifdef _MSC_VER

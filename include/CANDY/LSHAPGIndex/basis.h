@@ -13,8 +13,8 @@
 #include <set>
 #include <map>
 #include <algorithm>
-#include "space_l2.h"
-#include "fastL2_ip.h"
+#include <CANDY/LSHAPGIndex/space_l2.h>
+#include <CANDY/LSHAPGIndex/fastL2_ip.h>
 //#include "distances_simd_avx512.h"
 #include <mutex>
 

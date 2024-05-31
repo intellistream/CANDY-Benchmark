@@ -1,7 +1,7 @@
 #pragma once
-#include "def.h"
-#include "Preprocess.h"
-#include "basis.h"
+#include <CANDY/LSHAPGIndex/def.h>
+#include <CANDY/LSHAPGIndex/Preprocess.h>
+#include <CANDY/LSHAPGIndex/basis.h>
 #include <cmath>
 #include <assert.h>
 #include <unordered_map>
@@ -9,7 +9,7 @@
 #include <queue>
 #include <map>
 #include <unordered_set>
-#include "GenericTool.h"
+#include <CANDY/LSHAPGIndex/GenericTool.h>
 //
 // One of these three settings should be set externally (by the compiler).
 //
