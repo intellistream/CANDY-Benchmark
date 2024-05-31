@@ -120,7 +120,7 @@ void Preprocess::ben_make()
 	
 	lsh::progress_display pd(benchmark.N);
 
-#pragma omp parallel for num_threads(100)
+//#pragma omp parallel for num_threads(100)
 	for (int j = 0; j < benchmark.N; j++)
 	{
 		std::vector<Tuple> dists(data.N);
