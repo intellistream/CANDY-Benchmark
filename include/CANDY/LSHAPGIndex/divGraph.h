@@ -7,7 +7,7 @@
 #include <random>
 #include <mutex>
 #include <boost/math/distributions/chi_squared.hpp>
-
+#include <torch/torch.h>
 #if _HAS_CXX17
 #include <shared_mutex>
 typedef std::shared_mutex mp_mutex;
@@ -130,6 +130,7 @@ private:
 	int clusterFlag = 0;
 
 	void oneByOneInsert();
+
 	void refine();
 	void buildExact(Preprocess* prep);
 	void buildExactLikeHNSW(Preprocess* prep);
@@ -141,6 +142,8 @@ public:
 	int maxT = -1;
 	std::atomic<size_t> compCostConstruction{ 0 };
 	std::atomic<size_t> pruningConstruction{ 0 };
+    void appendTensor(torch::Tensor &t,Preprocess* prep);
+    void appendHash(float **newData,int64_t oldSize,int64_t newSize);
 	float indexingTime = 0.0f;
 	std::unordered_set<uint64_t> foundEdges;
 	//std::vector<int> checkedArrs;

@@ -30,9 +30,19 @@ TEST_CASE("Test LSHAPG index", "[short]")
   aknnIdx.loadInitialTensor(ta);
   bfIdx.loadInitialTensor(ta);
   auto tb = torch::rand({1, 4});
+  std::cout <<"To search:" <<tb<< std::endl;
+  auto ru2=bfIdx.searchTensor(tb,1);
   auto ru=aknnIdx.searchTensor(tb,1);
   std::cout <<"result form aknn:" <<ru[0]<< std::endl;
-  auto ru2=bfIdx.searchTensor(tb,1);
+  std::cout <<"result form brutal force:" <<ru2[0]<< std::endl;
+
+
+  std::cout <<"To insert:" <<tb<< std::endl;
+  bfIdx.insertTensor(tb);
+  aknnIdx.insertTensor(tb);
+  ru2=bfIdx.searchTensor(tb,1);
+  ru=aknnIdx.searchTensor(tb,1);
+  std::cout <<"result form aknn:" <<ru[0]<< std::endl;
   std::cout <<"result form brutal force:" <<ru2[0]<< std::endl;
   //lshAPGIdx->insertTensor(tb);
   //std::cout << "0.now, the data base is\n" << lshAPGIdx->rawData() << std::endl;

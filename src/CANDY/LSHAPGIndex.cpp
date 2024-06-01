@@ -24,6 +24,7 @@ bool  LSHAPGIndex::loadInitialTensor(torch::Tensor &t) {
   flatBuffer.loadInitialTensor(t);
   return true;
 }
+
 std::vector<torch::Tensor> LSHAPGIndex::searchTensor(torch::Tensor &q, int64_t k) {
   size_t tensors = (size_t) q.size(0);
   std::vector<torch::Tensor> ru(tensors);
@@ -40,6 +41,11 @@ std::vector<torch::Tensor> LSHAPGIndex::searchTensor(torch::Tensor &q, int64_t k
     }
   }
   return ru;
+}
+bool LSHAPGIndex::insertTensor(torch::Tensor &t) {
+  divG->appendTensor(t,&prep);
+  flatBuffer.insertTensor(t);
+  return true;
 }
 
 }

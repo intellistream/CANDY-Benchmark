@@ -74,7 +74,7 @@ public:
 
 	//void search();
 
-	~queryN() { delete hashval; }
+	~queryN() {}
 };
 
 class hashBase
@@ -100,6 +100,7 @@ public:
 	void setHash();
 	float* calHash(float* point);
 	void getHash(Preprocess& prep);
+
 	virtual void getIndexes() = 0;
 	//bool isBuilt(const std::string& file);
 	//virtual void save(const std::string& file) override {}

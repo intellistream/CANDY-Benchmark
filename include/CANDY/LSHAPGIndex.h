@@ -69,7 +69,7 @@ public:
     * @param t the tensor, accept multiple rows
     * @return bool whether the insertion is successful
     */
-    //virtual bool insertTensor(torch::Tensor &t);
+    virtual bool insertTensor(torch::Tensor &t);
     /**
     * @brief search the k-NN of a query tensor, return their index
     * @param t the tensor, allow multiple rows
