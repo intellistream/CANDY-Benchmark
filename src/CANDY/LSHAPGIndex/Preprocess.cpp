@@ -326,7 +326,8 @@ void Preprocess::showDataset()
 Preprocess::~Preprocess()
 {
 	int MaxQueryNum = min(200, (int)data.N - 201);
-	clear_2d_array(data.query, data.N + MaxQueryNum);
+	clear_2d_array(data.query, data.query_size);
+	clear_2d_array(data.val, data.N);
 	//clear_2d_array(Dists, MaxQueryNum);
 	clear_2d_array(benchmark.indice, benchmark.N);
 	clear_2d_array(benchmark.dist, benchmark.N);
