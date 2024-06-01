@@ -328,17 +328,24 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
 
 void divGraph::insertLSHRefine(int pId)
 {
+  printf("\npid %d starts\n", pId);
+  printf("im here 8.04   ");
   std::priority_queue<Res> candTable;
   std::vector<zint> keys(L);
+  printf("im here 8.05   ");
   threadPoollib::VisitedList* vl = visited_list_pool_->getFreeVisitedList();
+  printf("im here 8.1   ");
   auto checkedArrs_local = vl->mass;
   //checkedArrs_local.reserve(N);
   threadPoollib::vl_type tag = vl->curV;
   for (int j = 0; j < L; j++) {
     keys[j] = getZ(hashval[pId] + j * K);
   }
+  printf("im here 8.2   ");
 
   searchLSH(pId, keys, candTable, checkedArrs_local, tag);
+
+  printf("im here 8.3   ");
   //compCostConstruction += candTable.size();
 
   if (pId != first_id && candTable.empty()) {
@@ -346,27 +353,31 @@ void divGraph::insertLSHRefine(int pId)
     //checkedArrs_local[first_id] = tag;
     checkedArrs_local.emplace(first_id);
   }
+  printf("im here 8.4   ");
 
   //write_lock lock(link_list_locks_[pId]);
   std::priority_queue<Res, std::vector<Res>, std::greater<Res>> eps;
   while (!candTable.empty()) {
     auto u = candTable.top();
     int qId = u.id;
+    printf("qId %d  ", qId);
     float dist = u.dist;
     linkLists[pId]->insert(u.dist, u.id);
     if (linkLists[pId]->size() > efC)linkLists[pId]->erase();
     eps.emplace(u.dist, u.id);
     candTable.pop();
   }
+  printf("im here 8.5   ");
   //compCostConstruction += searchInBuilding(pId, eps, linkLists[pId]->neighbors, linkLists[pId]->out, checkedArrs_local, tag);
   chooseNN(linkLists[pId]->neighbors, linkLists[pId]->out);
-
+  printf("im here 8.6   ");
   visited_list_pool_->releaseVisitedList(vl);
-
+  printf("im here 8.7   ");
   int len = linkLists[pId]->size();
   //Res* arr = new Res[len];
   //memcpy(arr, linkLists[pId]->neighbors, len * sizeof(Res));
   //lock.unlock();
+  printf("im here 8.8   ");
   for (int pos = 0; pos < len; ++pos) {
     auto& x = linkLists[pId]->neighbors[pos];
     int& qId = x.id;
@@ -376,11 +387,13 @@ void divGraph::insertLSHRefine(int pId)
 
     chooseNN(linkLists[qId]->neighbors, linkLists[qId]->out, Res(pId, dist));
   }
+  printf("im here 8.9   ");
 
   for (int j = 0; j < L; j++) {
     //write_lock lock_h(hash_locks_[j]);
     hashTables[j].insert({ keys[j],pId });
   }
+  printf("im here 8.10   ");
 }
 
 int divGraph::searchInBuilding(int p, std::priority_queue<Res, std::vector<Res>, std::greater<Res>>& eps, Res* arr, int& size_res,
@@ -622,7 +635,8 @@ void divGraph::chooseNN(Res* arr, int& size_res, Res new_res)
 void divGraph::oneByOneInsert()
 {
   linkLists.resize(N, nullptr);
-  linkListBase.resize((size_t)N * (size_t)unitL + efC);
+  time_append +=1;
+  linkListBase.resize((size_t)N * (size_t)unitL + efC*time_append);
   for (int i = 0; i < N; ++i) {
     linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL])));
   }
@@ -683,25 +697,29 @@ void divGraph::appendHash(float **newData,int64_t oldSize,int64_t newSize) {
  // std::cout<<"Hash extend done"<<std::endl;
 }
 void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
-  printf("insert tensor size %ld x %ld current N %ld\n", t.size(0), t.size(1), N);
   int64_t newSize=N+t.size(0);
   int64_t oldSize = N;
   int64_t vecDim=t.size(1);
+  time_append +=1;
   int64_t  appendSize=t.size(0);
-  linkLists.resize(newSize, nullptr);
+  linkLists.resize(newSize+1, nullptr);
   link_list_locks_=std::vector<mp_mutex>(newSize);
-  linkListBase.resize((size_t)(newSize) * (size_t)unitL + efC);
+  linkListBase.resize((size_t)(newSize) * (size_t)unitL + efC*time_append);
+  //printf("linkListBase size=%ld\n", linkListBase.size());
+  //printf("unitL=%d efC=%d time_append=%d\n", unitL, efC, time_append);
   for (int i = oldSize; i < newSize; ++i) {
-    linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL])));
-    printf("i=%d ", i);
+    linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL+efC*(time_append-1)])));
   }
-  flagStates.resize(newSize, 'E');
+
+  flagStates.resize(newSize+1, 'E');
+
   /**
    * @brief adjust myData field
    */
  // std::cout<<"Memory extend begin"<<std::endl;
   float **newData=new float* [newSize];
   DIVG_memcpy(newData,myData,oldSize*sizeof(float*));
+
   //myData= (float **) realloc(myData,newSize*(sizeof (float *)));
   for (int i = 0; i < appendSize; i++) {
     //in.seekg(sizeof(float), std::ios::cur);
@@ -710,11 +728,14 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
     auto dataRowI= rowI.data_ptr<float>();
     DIVG_memcpy(newData[i+oldSize],dataRowI,vecDim*sizeof(float));
   }
+
   appendHash(newData,oldSize,newSize);
+
  // std::cout<<"Memory extend done"<<std::endl;
   delete myData;
   myData=newData;
   prep->data.val=myData;
+
 
   /**
  * @brief adjust the N field
@@ -726,17 +747,20 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   for (int j = 0; j < appendSize; j++) {
     idx[j] = j+oldSize;
   }
+
  /* unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   std::shuffle(idx, idx + appendSize, std::default_random_engine(seed));*/
   first_id = idx[0];
 
   insertLSHRefine(idx[0]);//Ensure there is at least one point in the graph before parallelizing
+  printf("im here8.0\n");
   //lsh::progress_display pd(appendSize - 1);
 
   for (int i = 1; i < appendSize; i++) {
     insertLSHRefine(idx[i]);
    // ++pd;
   }
+  printf("im here9.0\n");
 
 }
 void divGraph::refine()

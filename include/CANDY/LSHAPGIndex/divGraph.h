@@ -36,7 +36,9 @@ public:
 
 	Node2() {}
 	Node2(int pId) :id(pId) {}
-	Node2(int pId, Res* ptr) :id(pId), neighbors(ptr) {}
+	Node2(int pId, Res* ptr) :id(pId), neighbors(ptr) {
+
+	}
 
 	void increaseIn() { ++in; }
 	void decreaseIn() { --in; }
@@ -141,6 +143,7 @@ public:
 	//Only for construction, not saved
 	int maxT = -1;
 	int unitL = 40;
+	int time_append = 0;
 	std::atomic<size_t> compCostConstruction{ 0 };
 	std::atomic<size_t> pruningConstruction{ 0 };
     void appendTensor(torch::Tensor &t,Preprocess* prep);

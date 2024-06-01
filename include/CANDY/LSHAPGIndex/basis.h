@@ -307,7 +307,8 @@ namespace threadPoollib
 		};
 
 		~VisitedList() { 
-			//delete[] mass; 
+			//delete[] mass;
+			printf("dying for %d", curV);
 		}
 	};
 	///////////////////////////////////////////////////////////
@@ -319,7 +320,7 @@ namespace threadPoollib
 
 	class VisitedListPool {
 		std::deque<VisitedList*> pool;
-		std::mutex poolguard;
+		//std::mutex poolguard;
 		int numelements;
 
 	public:
@@ -330,23 +331,28 @@ namespace threadPoollib
 		}
 
 		VisitedList* getFreeVisitedList() {
-			VisitedList* rez;
-			{
-				std::unique_lock <std::mutex> lock(poolguard);
+			VisitedList* rez = nullptr;
+
+				//std::unique_lock <std::mutex> lock(poolguard);
 				if (pool.size() > 0) {
+					printf("popping\n");
 					rez = pool.front();
 					pool.pop_front();
+					printf("popping success\n");
 				}
 				else {
+					printf("newning\n");
 					rez = new VisitedList(numelements);
 				}
-			}
+			printf("visited list %d\n", rez->curV);
+			printf("trying to reset\n");
 			rez->reset();
+			printf("reset complete\n");
 			return rez;
 		};
 
 		void releaseVisitedList(VisitedList* vl) {
-			std::unique_lock <std::mutex> lock(poolguard);
+			//std::unique_lock <std::mutex> lock(poolguard);
 			pool.push_front(vl);
 		};
 
