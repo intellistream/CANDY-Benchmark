@@ -26,7 +26,7 @@ TEST_CASE("Test LSHAPG index", "[short]")
   cfg->edit("metricType", "IP");
   aknnIdx.setConfig(cfg);
   bfIdx.setConfig(cfg);
-  auto ta = torch::rand({4, 4});
+  auto ta = torch::rand({400, 4});
   aknnIdx.loadInitialTensor(ta);
   bfIdx.loadInitialTensor(ta);
   auto tb = torch::rand({1, 4});

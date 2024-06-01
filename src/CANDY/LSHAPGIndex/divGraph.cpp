@@ -338,7 +338,7 @@ void divGraph::insertLSHRefine(int pId)
   }
 
   searchLSH(pId, keys, candTable, checkedArrs_local, tag);
-  //compCostConstruction += candTable.size();
+  compCostConstruction += candTable.size();
 
   if (pId != first_id && candTable.empty()) {
     candTable.emplace(first_id, cal_dist(myData[pId], myData[first_id], dim));
@@ -357,7 +357,7 @@ void divGraph::insertLSHRefine(int pId)
     eps.emplace(u.dist, u.id);
     candTable.pop();
   }
-  //compCostConstruction += searchInBuilding(pId, eps, linkLists[pId]->neighbors, linkLists[pId]->out, checkedArrs_local, tag);
+  compCostConstruction += searchInBuilding(pId, eps, linkLists[pId]->neighbors, linkLists[pId]->out, checkedArrs_local, tag);
   chooseNN(linkLists[pId]->neighbors, linkLists[pId]->out);
 
   visited_list_pool_->releaseVisitedList(vl);
@@ -490,7 +490,8 @@ void divGraph::chooseNN(Res* arr, int& size_res)
   chooseNN_div(arr, size_res);
 	//
 #else
-  chooseNN_simple(arr, size_res);
+  //chooseNN_simple(arr, size_res);
+  chooseNN_div(arr, size_res);
 #endif
 }
 
@@ -613,7 +614,8 @@ void divGraph::chooseNN(Res* arr, int& size_res, Res new_res)
 #ifdef DIV
   chooseNN_div(arr, size_res, new_res);
 #else
-  chooseNN_simple(arr, size_res, new_res);
+ // chooseNN_simple(arr, size_res, new_res);
+  chooseNN_div(arr, size_res, new_res);
 #endif
 
 }
@@ -622,7 +624,7 @@ void divGraph::oneByOneInsert()
 {
   linkLists.resize(N, nullptr);
   int unitL = max(efC, maxT);
-
+  g_unitL=unitL;
   linkListBase.resize((size_t)N * (size_t)unitL + efC);
   for (int i = 0; i < N; ++i) {
     linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL])));
@@ -689,11 +691,13 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   int64_t vecDim=t.size(1);
   int64_t  appendSize=t.size(0);
   linkLists.resize(newSize, nullptr);
+  delete visited_list_pool_;
+  visited_list_pool_ = new threadPoollib::VisitedListPool(1, newSize);
   link_list_locks_=std::vector<mp_mutex>(newSize);
-  int unitL = max(efC, maxT);
-  linkListBase.resize((size_t)(newSize) * (size_t)unitL + efC);
-  for (int i = oldSize; i < newSize; ++i) {
-    linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL])));
+  int unitL = g_unitL;
+  linkListBase.resize((size_t)(newSize) * (size_t)maxT );
+  for (int i = oldSize; i < newSize; i++) {
+    linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * maxT])));
   }
   flagStates.resize(newSize, 'E');
   /**
@@ -726,8 +730,8 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   for (int j = 0; j < appendSize; j++) {
     idx[j] = j+oldSize;
   }
- /* unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  std::shuffle(idx, idx + appendSize, std::default_random_engine(seed));*/
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  std::shuffle(idx, idx + appendSize, std::default_random_engine(seed));
   first_id = idx[0];
 
   insertLSHRefine(idx[0]);//Ensure there is at least one point in the graph before parallelizing

@@ -231,10 +231,10 @@ void setW(std::string& datatsetName, float& R_min);
 template <class T>
 void clear_2d_array(T** array, int n)
 {
-	for (int i = 0; i < n; ++i) {
+	/*for (int i = 0; i < n; ++i) {
 		delete[] array[i];
 	}
-	delete[] array;
+	delete[] array;*/
 }
 
 void showMemoryInfo();
