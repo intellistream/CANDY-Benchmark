@@ -308,7 +308,6 @@ namespace threadPoollib
 
 		~VisitedList() { 
 			//delete[] mass;
-			printf("dying for %d", curV);
 		}
 	};
 	///////////////////////////////////////////////////////////
@@ -332,6 +331,9 @@ namespace threadPoollib
 
 		VisitedList* getFreeVisitedList() {
 			VisitedList* rez = nullptr;
+			pool.front()->reset();
+			printf("currV=%d  numelements=%d\n", pool.front()->curV,pool.front()->numelements);
+			return pool.front();
 
 				//std::unique_lock <std::mutex> lock(poolguard);
 				if (pool.size() > 0) {

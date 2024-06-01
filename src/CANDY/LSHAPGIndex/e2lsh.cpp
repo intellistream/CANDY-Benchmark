@@ -377,6 +377,7 @@ zint zlsh::getZ(int* _h)
 		int mask = 1 << i;
 		for (int j = 0; j < K; j++) {
 			res <<= 1;
+			printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);printf("j=%d  ",j);
 			if (_h[j] & mask)
 				++res;
 		}

@@ -216,18 +216,19 @@ divGraph::divGraph(Preprocess* prep, const std::string& path, double probQ):link
 
 int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<Res>& candTable, std::unordered_set<int>& checkedArrs_local, threadPoollib::vl_type tag)
 {
-  read_lock lock_hr(hash_lock);
-  std::vector<read_lock> lock_hs;
-  for (int i = 0; i < L; ++i) {
-    lock_hs.push_back(read_lock(hash_locks_[i]));
-  }
+
+  //read_lock lock_hr(hash_lock);
+  //std::vector<read_lock> lock_hs;
+  //for (int i = 0; i < L; ++i) {
+  //  lock_hs.push_back(read_lock(hash_locks_[i]));
+  //}
 
   Res res_pair;
 
   int lshUB = N / 200;
   lshUB = L * log(pId + 1);
   int step = 2;
-
+  printf("L=%d\n", L);
   std::vector<int> numAccess(L);
   std::vector<std::multimap<zint, int>::iterator> lpos(L), rpos(L), qpos(L);
 
@@ -235,38 +236,44 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
 
 
   for (int j = 0; j < L; j++) {
+
     qpos[j] = hashTables[j].lower_bound(keys[j]);
     if (qpos[j] != hashTables[j].begin()) {
       lpos[j] = qpos[j];
       --lpos[j];
-#ifdef USE_LCCP
-      lEntries.push(posInfo(j, getLLCP(lpos[j]->first, keys[j])));
-#else
       lEntries.push(posInfo(j, getLevel(lpos[j]->first, qpos[j]->first)));
-#endif // USE_LCCP
 
     }
     //
     rpos[j] = qpos[j];
     if (rpos[j] != hashTables[j].end()) {
-#ifdef USE_LCCP
-      rEntries.push(posInfo(j, getLLCP(rpos[j]->first, keys[j])));
-#else
       rEntries.push(posInfo(j, getLevel(rpos[j]->first, qpos[j]->first)));
-#endif // USE_LCCP
     }
+
   }
 
   while (!(lEntries.empty() && rEntries.empty())) {
     posInfo t;
+
     bool f = true;//TRUE:left; FALSE:right
     if (lEntries.empty()) f = false;
     else if (rEntries.empty()) f = true;
     else if (rEntries.top().dist > lEntries.top().dist) f = false;
+    if(f){
 
+    } else {
+
+
+    }
     if (f) {
+      if(lEntries.empty()){
+        continue;
+      }
       t = lEntries.top();
       lEntries.pop();
+      if(t.id>L){
+        continue;
+      }
       for (int i = 0; i < step; ++i) {
         ++numAccess[t.id];
         res_pair.id = lpos[t.id]->second;
@@ -284,19 +291,25 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
           break;
         }
       }
+
       if (lpos[t.id] != hashTables[t.id].begin()) {
-#ifdef USE_LCCP
-        t.dist = getLLCP(lpos[t.id]->first, keys[t.id]);
-#else
         t.dist = getLevel(lpos[t.id]->first, qpos[t.id]->first);
-#endif // USE_LCCP
         lEntries.push(t);
       }
 
+
     }
     else {
+      if(rEntries.empty()){
+        continue;
+
+      }
       t = rEntries.top();
+
       rEntries.pop();
+      if(t.id>L){
+        continue;
+      }
       //read_lock lock_h(hash_locks_[t.id]);
       for (int i = 0; i < step; ++i) {
         ++numAccess[t.id];
@@ -311,41 +324,34 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
           break;
         }
       }
+
       if (rpos[t.id] != hashTables[t.id].end()) {
-#ifdef USE_LCCP
-        t.dist = getLLCP(rpos[t.id]->first, keys[t.id]);
-#else
         t.dist = getLevel(rpos[t.id]->first, qpos[t.id]->first);
-#endif // USE_LCCP
         rEntries.push(t);
       }
+
     }
     if (candTable.size() >= lshUB) break;
   }
-
   return 0;
 }
 
 void divGraph::insertLSHRefine(int pId)
 {
   printf("\npid %d starts\n", pId);
-  printf("im here 8.04   ");
   std::priority_queue<Res> candTable;
   std::vector<zint> keys(L);
-  printf("im here 8.05   ");
   threadPoollib::VisitedList* vl = visited_list_pool_->getFreeVisitedList();
-  printf("im here 8.1   ");
   auto checkedArrs_local = vl->mass;
+  //printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");printf("im here 8.15   ");
   //checkedArrs_local.reserve(N);
   threadPoollib::vl_type tag = vl->curV;
   for (int j = 0; j < L; j++) {
     keys[j] = getZ(hashval[pId] + j * K);
   }
-  printf("im here 8.2   ");
 
   searchLSH(pId, keys, candTable, checkedArrs_local, tag);
 
-  printf("im here 8.3   ");
   //compCostConstruction += candTable.size();
 
   if (pId != first_id && candTable.empty()) {
@@ -353,21 +359,19 @@ void divGraph::insertLSHRefine(int pId)
     //checkedArrs_local[first_id] = tag;
     checkedArrs_local.emplace(first_id);
   }
-  printf("im here 8.4   ");
 
   //write_lock lock(link_list_locks_[pId]);
   std::priority_queue<Res, std::vector<Res>, std::greater<Res>> eps;
   while (!candTable.empty()) {
     auto u = candTable.top();
     int qId = u.id;
-    printf("qId %d  ", qId);
     float dist = u.dist;
     linkLists[pId]->insert(u.dist, u.id);
     if (linkLists[pId]->size() > efC)linkLists[pId]->erase();
     eps.emplace(u.dist, u.id);
     candTable.pop();
   }
-  printf("im here 8.5   ");
+
   //compCostConstruction += searchInBuilding(pId, eps, linkLists[pId]->neighbors, linkLists[pId]->out, checkedArrs_local, tag);
   chooseNN(linkLists[pId]->neighbors, linkLists[pId]->out);
   printf("im here 8.6   ");
@@ -404,7 +408,7 @@ int divGraph::searchInBuilding(int p, std::priority_queue<Res, std::vector<Res>,
   int cost = 0;
   while (!eps.empty()) {
     auto u = eps.top();
-    read_lock lock_e(link_list_locks_[u.id]);
+    //read_lock lock_e(link_list_locks_[u.id]);
     if (u > arr[0]) break;
     eps.pop();
     for (int pos = 0; pos < linkLists[u.id]->size(); ++pos) {
@@ -703,7 +707,7 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   time_append +=1;
   int64_t  appendSize=t.size(0);
   linkLists.resize(newSize+1, nullptr);
-  link_list_locks_=std::vector<mp_mutex>(newSize);
+  //link_list_locks_=std::vector<mp_mutex>(newSize);
   linkListBase.resize((size_t)(newSize) * (size_t)unitL + efC*time_append);
   //printf("linkListBase size=%ld\n", linkListBase.size());
   //printf("unitL=%d efC=%d time_append=%d\n", unitL, efC, time_append);
