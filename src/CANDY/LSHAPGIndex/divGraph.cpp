@@ -358,20 +358,14 @@ void divGraph::insertLSHRefine(int pId)
     keys[j] = getZ(hashval[pId] + j * K);
   }
   int debug=0;
-  ///1
-  debug_message(debug);
   searchLSH(pId, keys, candTable, checkedArrs_local, tag);
 
   //compCostConstruction += candTable.size();
-  ///2
-  debug_message(debug);
   if (pId != first_id && candTable.empty()) {
     candTable.emplace(first_id, cal_dist(myData[pId], myData[first_id], dim));
     //checkedArrs_local[first_id] = tag;
     checkedArrs_local.emplace(first_id);
   }
-  ///3
-  debug_message(debug);
   //write_lock lock(link_list_locks_[pId]);
   std::priority_queue<Res, std::vector<Res>, std::greater<Res>> eps;
   while (!candTable.empty()) {
@@ -383,23 +377,17 @@ void divGraph::insertLSHRefine(int pId)
     eps.emplace(u.dist, u.id);
     candTable.pop();
   }
-  ///4
-  debug_message(debug);
+
   //compCostConstruction += searchInBuilding(pId, eps, linkLists[pId]->neighbors, linkLists[pId]->out, checkedArrs_local, tag);
   chooseNN(linkLists[pId]->neighbors, linkLists[pId]->out);
 
-  ///5
-  debug_message(debug);
+
 
   visited_list_pool_->releaseVisitedList(vl);
-  ///6
-  debug_message(debug);
   int len = linkLists[pId]->size();
   //Res* arr = new Res[len];
   //memcpy(arr, linkLists[pId]->neighbors, len * sizeof(Res));
   //lock.unlock();
-  ///7
-  debug_message(debug);
   for (int pos = 0; pos < len; ++pos) {
     auto& x = linkLists[pId]->neighbors[pos];
     int& qId = x.id;
@@ -409,12 +397,16 @@ void divGraph::insertLSHRefine(int pId)
 
     chooseNN(linkLists[qId]->neighbors, linkLists[qId]->out, Res(pId, dist));
   }
-  ///8
+  ///1
   debug_message(debug);
-  for (int j = 0; j < L; j++) {
+  printf("keys size=%ld\n", keys.size());
+  for (size_t j = 0; j < keys.size(); j++) {
     //write_lock lock_h(hash_locks_[j]);
     /// TODO: where the bug is
+    printf("key=%ld pid=%d\n", keys[j], pId);
+    debug_message(debug);
     hashTables[j].insert({ keys[j],pId });
+    debug_message(debug);
   }
   ///9
   debug_message(debug);
