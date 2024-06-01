@@ -5,4 +5,5 @@ add_sources(
         #main.cpp
         Preprocess.cpp
         Query.cpp
+        divGraph.cpp
 )

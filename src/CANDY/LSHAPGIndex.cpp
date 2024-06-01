@@ -24,6 +24,8 @@ bool  LSHAPGIndex::loadInitialTensor(torch::Tensor &t) {
   flatBuffer.loadInitialTensor(t);
   return true;
 }
+/*std::vector<torch::Tensor> LSHAPGIndex::searchTensor(torch::Tensor &q, int64_t k) {
 
+}*/
 
 }
