@@ -18,7 +18,8 @@ bool LSHAPGIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
 }
 bool  LSHAPGIndex::loadInitialTensor(torch::Tensor &t) {
   prep=Preprocess(vecDim);
-  prep.load_data(t);
+  auto tc=t.clone();
+  prep.load_data(tc);
   Parameter param1(prep, L, K, 1.0f);
   divG = new divGraph(prep, param1, T, efC, pC, pQ);
   flatBuffer.loadInitialTensor(t);
@@ -43,7 +44,8 @@ std::vector<torch::Tensor> LSHAPGIndex::searchTensor(torch::Tensor &q, int64_t k
   return ru;
 }
 bool LSHAPGIndex::insertTensor(torch::Tensor &t) {
-  divG->appendTensor(t,&prep);
+  auto tc=t.clone();
+  divG->appendTensor(tc,&prep);
   flatBuffer.insertTensor(t);
   return true;
 }

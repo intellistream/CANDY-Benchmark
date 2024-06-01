@@ -46,5 +46,4 @@ TEST_CASE("Test LSHAPG index", "[short]")
   std::cout <<"result form brutal force:" <<ru2[0]<< std::endl;
   //lshAPGIdx->insertTensor(tb);
   //std::cout << "0.now, the data base is\n" << lshAPGIdx->rawData() << std::endl;
-
 }
