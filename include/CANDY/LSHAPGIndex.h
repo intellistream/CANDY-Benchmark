@@ -46,6 +46,7 @@ public:
     int64_t vecDim = 0;
     FlatIndex flatBuffer;
     divGraph* divG = nullptr;
+    Preprocess prep;
    // _lsh_UB=0;
 
 
@@ -82,7 +83,7 @@ public:
      * @param k the returned neighbors
      * @return std::vector<torch::Tensor> the result tensor for each row of query
      */
-     //virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
+     virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
     /**
      * @brief return a vector of tensors according to some index
      * @param idx the index, follow faiss's style, allow the KNN index of multiple queries

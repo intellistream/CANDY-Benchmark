@@ -99,7 +99,7 @@ divGraph::divGraph(Preprocess& prep_, Parameter& param_, int T_, int efC_, doubl
   std::cout << "SAVING GRAPH..." << std::endl;
   timer.restart();
   std::cout << "SAVING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
-  showInfo(&prep_);
+  //showInfo(&prep_);
 }
 
 

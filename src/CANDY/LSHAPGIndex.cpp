@@ -17,15 +17,29 @@ bool LSHAPGIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   return true;
 }
 bool  LSHAPGIndex::loadInitialTensor(torch::Tensor &t) {
-  Preprocess prep(vecDim);
+  prep=Preprocess(vecDim);
   prep.load_data(t);
   Parameter param1(prep, L, K, 1.0f);
   divG = new divGraph(prep, param1, T, efC, pC, pQ);
   flatBuffer.loadInitialTensor(t);
   return true;
 }
-/*std::vector<torch::Tensor> LSHAPGIndex::searchTensor(torch::Tensor &q, int64_t k) {
-
-}*/
+std::vector<torch::Tensor> LSHAPGIndex::searchTensor(torch::Tensor &q, int64_t k) {
+  size_t tensors = (size_t) q.size(0);
+  std::vector<torch::Tensor> ru(tensors);
+  auto rawDB=flatBuffer.rawData();
+  for (size_t i=0;i<tensors;i++) {
+    auto rowI=q.slice(0,i,i+1);
+    ru[i]=torch::zeros({k,vecDim});
+    queryN qn =  queryN(c, k, divG->myData,rowI, beta);
+    divG->knn(&qn);
+    auto knnRes=qn.res;
+    for (int j=0;j<k;j++){
+      int64_t idx=knnRes[j].id;
+      ru[i].slice(0,j,j+1)=rawDB.slice(0,idx,idx+1);
+    }
+  }
+  return ru;
+}
 
 }

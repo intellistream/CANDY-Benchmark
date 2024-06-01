@@ -728,7 +728,17 @@ queryN::queryN(unsigned id, float c_, unsigned k_, Preprocess& prep, float beta_
 	queryPoint = prep.data.query[flag];
 	//search();
 }
-
+queryN::queryN( float c_, unsigned k_,float **dbStore, torch::Tensor &query,float beta_)
+{
+  flag = 0;
+  c = c_;
+  k = k_;
+  beta = beta_;
+  myData = dbStore;
+  dim = query.size(1);
+  queryPoint = query.contiguous().data_ptr<float>();
+  //search();
+}
 void zlsh::testLLCP()
 {
 	u = 2;

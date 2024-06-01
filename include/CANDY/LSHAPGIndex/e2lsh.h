@@ -10,6 +10,7 @@
 #include <map>
 #include <unordered_set>
 #include <CANDY/LSHAPGIndex/GenericTool.h>
+#include <torch/torch.h>
 //
 // One of these three settings should be set externally (by the compiler).
 //
@@ -69,6 +70,7 @@ public:
 
 public:
 	queryN(unsigned id, float c_, unsigned k_, Preprocess& prep, float beta);
+    queryN( float c_, unsigned k_,float **dbStore, torch::Tensor &query,float beta_);
 
 	//void search();
 
