@@ -23,6 +23,7 @@ namespace CANDY{
  * @brief The class of a LSHAPGIndex index approach,
  * @note currently single thread
  * @note config parameters
+ * @to add the delete
  * - vecDim, the dimension of vectors, default 768, I64
  * - initialVolume, the initial volume of inline database tensor, default 1000, I64
  * - expandStep, the step of expanding inline database, default 100, I64
@@ -96,6 +97,19 @@ private:
 
 };
 
+/**
+ * @ingroup  CANDY_lib_bottom
+ * @typedef LSHAPGIndexPtr
+ * @brief The class to describe a shared pointer to @ref  LSHAPGIndex
+
+ */
+typedef std::shared_ptr<class CANDY::LSHAPGIndex> LSHAPGIndexPtr;
+/**
+ * @ingroup  CANDY_lib_bottom
+ * @def LSHAPGIndex
+ * @brief (Macro) To creat a new @ref  LSHAPGIndex shared pointer.
+ */
+#define newLSHAPGIndex std::make_shared<CANDY::LSHAPGIndex>
 }
 /**
  * @}
