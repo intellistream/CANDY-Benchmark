@@ -81,7 +81,7 @@ private:
 
 
 };
-#define newLSHAPGIndex std::make_shared<RANIA::LSHAPGIndex>
+#define newLSHAPGIndex std::make_shared<CANDY::LSHAPGIndex>
 
 }
 #endif //CANDY_LSHAPGINDEX_H
