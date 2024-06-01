@@ -279,6 +279,7 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
         ++numAccess[t.id];
         res_pair.id = lpos[t.id]->second;
         if (checkedArrs_local.find(res_pair.id)==checkedArrs_local.end()) {
+        // TODO: Another bug here with dist vector or perhaps id issues
           res_pair.dist = cal_dist(myData[pId], myData[res_pair.id], dim);
           candTable.push(res_pair);
           //checkedArrs_local[res_pair.id] = tag;

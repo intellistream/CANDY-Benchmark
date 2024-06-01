@@ -235,22 +235,12 @@ namespace fastlib {
 
 inline float calL2Sqr_fast(float* v1, float* v2, int dim)
 {
-#if defined(USE_FAST)
-    if (dim % 16 == 0)
-        return fastlib::L2SqrSIMD16Ext(v1, v2, dim);
-    else if (dim % 4 == 0)
-        return fastlib::L2SqrSIMD4Ext(v1, v2, dim);
-    else if (dim > 16)
-        return fastlib::L2SqrSIMD16ExtResiduals(v1, v2, dim);
-    else if (dim > 4)
-        return fastlib::L2SqrSIMD4ExtResiduals(v1, v2, dim);
-#else
+
     float res = 0.0;
     for (int i = 0; i < dim; ++i) {
         res += (v1[i] - v2[i]) * (v1[i] - v2[i]);
     }
     return res;
-#endif
 
 
 }
