@@ -17,7 +17,9 @@ bool LSHAPGIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   return true;
 }
 bool  LSHAPGIndex::loadInitialTensor(torch::Tensor &t) {
+
   prep=Preprocess(vecDim);
+
   auto tc=t.clone();
   prep.load_data(tc);
   Parameter param1(prep, L, K, 1.0f);

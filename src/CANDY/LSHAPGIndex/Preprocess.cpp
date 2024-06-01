@@ -141,9 +141,7 @@ void  Preprocess::load_data(torch::Tensor &t) {
   //	//in.seekg(sizeof(float), std::ios::cur);
   //	//in.read((char*)data.val[i], sizeof(float) * header[2]);
   //
-  std::cout << "Load from new tensor: " << "\n";
-  std::cout << "N=    " << data.N << "\n";
-  std::cout << "dim=  " << data.dim << "\n\n";
+
 
 }
 struct Tuple

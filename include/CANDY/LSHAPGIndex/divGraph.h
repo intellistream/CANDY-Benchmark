@@ -140,6 +140,7 @@ private:
 public:
 	//Only for construction, not saved
 	int maxT = -1;
+	int unitL = 40;
 	std::atomic<size_t> compCostConstruction{ 0 };
 	std::atomic<size_t> pruningConstruction{ 0 };
     void appendTensor(torch::Tensor &t,Preprocess* prep);

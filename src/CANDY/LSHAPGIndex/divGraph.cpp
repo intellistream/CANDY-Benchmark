@@ -22,7 +22,7 @@ divGraph::divGraph(Preprocess& prep_, Parameter& param_, const std::string& file
   efC = 5 * T / 2;
   efC = efC_;
   visited_list_pool_ = new threadPoollib::VisitedListPool(1, N);
-
+  unitL =max(maxT, efC);
   normalizeHash();
   double _coeff = 1.0, _coeffq = 1.0;
   if (lowDim) {
@@ -68,6 +68,7 @@ divGraph::divGraph(Preprocess& prep_, Parameter& param_, int T_, int efC_, doubl
   //maxT = T;
   efC = 5 * T / 2;
   efC = efC_;
+  unitL = max(maxT, efC);
   visited_list_pool_ = new threadPoollib::VisitedListPool(1, N);
 
   normalizeHash();
@@ -88,17 +89,17 @@ divGraph::divGraph(Preprocess& prep_, Parameter& param_, int T_, int efC_, doubl
   coeff = W / _coeff;
   coeffq = W / _coeffq;
 #endif
-
-  lsh::timer timer;
-  std::cout << "CONSTRUCTING GRAPH..." << std::endl;
-  timer.restart();
+  //printf("\n N= %d\n", N);
+  //lsh::timer timer;
+  //std::cout << "CONSTRUCTING GRAPH..." << std::endl;
+  //timer.restart();
   oneByOneInsert();
-  std::cout << "CONSTRUCTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
-  indexingTime = timer.elapsed();
+  //std::cout << "CONSTRUCTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+  //indexingTime = timer.elapsed();
 
-  std::cout << "SAVING GRAPH..." << std::endl;
-  timer.restart();
-  std::cout << "SAVING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+  //std::cout << "SAVING GRAPH..." << std::endl;
+  //timer.restart();
+  //std::cout << "SAVING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
   //showInfo(&prep_);
 }
 
@@ -621,8 +622,6 @@ void divGraph::chooseNN(Res* arr, int& size_res, Res new_res)
 void divGraph::oneByOneInsert()
 {
   linkLists.resize(N, nullptr);
-  int unitL = max(efC, maxT);
-
   linkListBase.resize((size_t)N * (size_t)unitL + efC);
   for (int i = 0; i < N; ++i) {
     linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL])));
@@ -642,11 +641,11 @@ void divGraph::oneByOneInsert()
   std::shuffle(idx, idx + N, std::default_random_engine(seed));
   first_id = idx[0];
   insertLSHRefine(idx[0]);//Ensure there is at least one point in the graph before parallelizing
-  lsh::progress_display pd(N - 1);
+  //lsh::progress_display pd(N - 1);
 //#pragma omp parallel for
   for (int i = 1; i < N; i++) {
     insertLSHRefine(idx[i]);
-    ++pd;
+   // ++pd;
   }
   //std::cout << "count: " << pd.count() << std::endl;
 
@@ -684,16 +683,17 @@ void divGraph::appendHash(float **newData,int64_t oldSize,int64_t newSize) {
  // std::cout<<"Hash extend done"<<std::endl;
 }
 void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
+  printf("insert tensor size %ld x %ld current N %ld\n", t.size(0), t.size(1), N);
   int64_t newSize=N+t.size(0);
   int64_t oldSize = N;
   int64_t vecDim=t.size(1);
   int64_t  appendSize=t.size(0);
   linkLists.resize(newSize, nullptr);
   link_list_locks_=std::vector<mp_mutex>(newSize);
-  int unitL = max(efC, maxT);
   linkListBase.resize((size_t)(newSize) * (size_t)unitL + efC);
   for (int i = oldSize; i < newSize; ++i) {
     linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL])));
+    printf("i=%d ", i);
   }
   flagStates.resize(newSize, 'E');
   /**
