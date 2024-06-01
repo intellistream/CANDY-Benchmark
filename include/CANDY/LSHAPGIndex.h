@@ -4,26 +4,38 @@
 
 #ifndef CANDY_LSHAPGINDEX_H
 #define CANDY_LSHAPGINDEX_H
+#include <CANDY/LSHAPGIndex/alg.h>
+#include <CANDY/AbstractIndex.h>
+
 namespace CANDY{
-class LSHAPGIndex : AbstractIndex{
+class LSHAPGIndex : public AbstractIndex{
 public:
+    zlsh* gLsh = nullptr;
+    divGraph* divG = nullptr;
+    fastGraph* fsG = nullptr;
+
+    int64_t vecDim;
     float c = 1.5;
-    unsigned k = 50;
-    unsigned L = 8, K = 10;//NUS
+    unsigned k_ = 50;
+    unsigned L = 2;
+    unsigned K = 18;//NUS
     //L = 10, K = 5;
     float beta = 0.1;
     unsigned Qnum = 100;
     float W = 1.0f;
     int T = 24;
     int efC = 80;
-    L = 2;
-    K = 18;
     double pC = 0.95, pQ = 0.9;
     std::string datasetName;
     bool isbuilt = 0;
-    _lsh_UB=0;
+    int64_t _lsh_UB=0;
+    torch::Tensor dbTensor;
+    int64_t lastNNZ = -1;
+    int64_t expandStep = 100;
 
     Preprocess prep;
+
+
 
     /**
     * @brief set the index-specific config related to one index
@@ -69,6 +81,7 @@ private:
 
 
 };
+#define newLSHAPGIndex std::make_shared<RANIA::LSHAPGIndex>
 
 }
 #endif //CANDY_LSHAPGINDEX_H

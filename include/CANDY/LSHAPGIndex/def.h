@@ -1,36 +1,45 @@
+//
+// Created by rubato on 31/5/24.
+//
+
+#ifndef DEF_H
+#define DEF_H
+
 #pragma once
 
 #define USE_SQRDIST //use sqrDist to reduce the sqrt computation
 
 struct Data
 {
-	// Dimension of data
-	unsigned dim = 0;
-	// Number of data
-	unsigned N = 0;
-	// Data matrix
-	float** val = nullptr;
-	float** query=nullptr; // NO MORE THAN 200 POINTS
+    // Dimension of data
+    unsigned dim = 0;
+    // Number of data
+    unsigned N = 0;
+    unsigned lastStep = 0;
+    int query_size = 0;
+    // Data matrix
+    float** val = nullptr;
+    float** query=nullptr; // NO MORE THAN 200 POINTS
 };
 
 struct Ben
 {
-	unsigned N = 0;
-	unsigned num = 0;
-	int** indice = nullptr;
-	float** dist = nullptr;
+    unsigned N = 0;
+    unsigned num = 0;
+    int** indice = nullptr;
+    float** dist = nullptr;
 };
 
 struct HashParam
 {
-	// the value of a in S hash functions
-	float** rndAs = nullptr;
-	// the value of b in S hash functions
-	float* rndBs = nullptr;
-	// 
-	//float W = 0.0f;
+    // the value of a in S hash functions
+    float** rndAs = nullptr;
+    // the value of b in S hash functions
+    float* rndBs = nullptr;
+    //
+    //float W = 0.0f;
 
-	//float calHash(float* point, )
+    //float calHash(float* point, )
 };
 
 #define RESET   "\033[0m"
@@ -54,8 +63,8 @@ struct HashParam
 //#define USE_TRI_INEQAUALITY
 
 struct tPoints {
-	int u;
-	int v;
+    int u;
+    int v;
 };
 
 
@@ -65,5 +74,6 @@ struct tPoints {
 
 constexpr int _sspace = 8;
 constexpr int _lspace = 12;
-extern int _lsh_UB;
+//extern int _lsh_UB;
 //#define DIV
+#endif //DEF_H

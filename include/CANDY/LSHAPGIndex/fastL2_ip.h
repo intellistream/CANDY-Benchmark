@@ -1,3 +1,9 @@
+//
+// Created by rubato on 31/5/24.
+//
+
+#ifndef FASTL2_IP_H
+#define FASTL2_IP_H
 #pragma once
 
 //#define USE_FAST
@@ -463,3 +469,4 @@ inline float calL2Sqr_fast1(float* v1, float* v2, size_t dim)
 
 
 }
+#endif //FASTL2_IP_H

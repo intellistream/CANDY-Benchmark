@@ -1,3 +1,9 @@
+//
+// Created by rubato on 31/5/24.
+//
+
+#ifndef GENERICTOOL_H
+#define GENERICTOOL_H
 //This file contains some neat implementations of useful tool functions
 //by GS
 #ifndef _GENERIC_TOOL_H_
@@ -69,7 +75,7 @@ public:
 
 	//random number related and data generation
 	static double GetGaussianRandom(double mean, double sigma);
-	
+
 	//some useful templates
 	template <typename T> static T DotProduct(int dim, T *a, T *b);
 	template <typename T> static T GetSign(T val);
@@ -259,3 +265,4 @@ inline bool GenericTool::InverseMatrix(T **mat, int m, T **inv)
 }
 
 #endif
+#endif //GENERICTOOL_H

@@ -1,14 +1,19 @@
+//
+// Created by rubato on 31/5/24.
+//
+
+#ifndef SPACE_L2_H
+#define SPACE_L2_H
 #pragma once
 #include <atomic>
-//#include "fastL2_ip.h"
-extern int _G_COST;
+#include "fastL2_ip.h"
+
 template<typename MTYPE>
 using DISTFUNC = MTYPE(*)(const void*, const void*, const void*);
 
 
 static float
     L2Sqr(const void* pVect1v, const void* pVect2v, const void* qty_ptr) {
-    ++_G_COST;
     float* pVect1 = (float*)pVect1v;
     float* pVect2 = (float*)pVect2v;
     size_t qty = *((size_t*)qty_ptr);
@@ -28,7 +33,7 @@ static float
 // Favor using AVX if available.
 static float
     L2SqrSIMD16Ext(const void* pVect1v, const void* pVect2v, const void* qty_ptr) {
-    ++_G_COST;
+
     float* pVect1 = (float*)pVect1v;
     float* pVect2 = (float*)pVect2v;
     size_t qty = *((size_t*)qty_ptr);
@@ -64,7 +69,7 @@ static float
 
 static float
     L2SqrSIMD16Ext(const void* pVect1v, const void* pVect2v, const void* qty_ptr) {
-    ++_G_COST;
+
     float* pVect1 = (float*)pVect1v;
     float* pVect2 = (float*)pVect2v;
     size_t qty = *((size_t*)qty_ptr);
@@ -115,7 +120,7 @@ static float
 #if defined(USE_SSE) || defined(USE_AVX)
 static float
     L2SqrSIMD16ExtResiduals(const void* pVect1v, const void* pVect2v, const void* qty_ptr) {
-    ++_G_COST;
+
     size_t qty = *((size_t*)qty_ptr);
     size_t qty16 = qty >> 4 << 4;
     float res = L2SqrSIMD16Ext(pVect1v, pVect2v, &qty16);
@@ -132,7 +137,7 @@ static float
 #ifdef USE_SSE
 static float
     L2SqrSIMD4Ext(const void* pVect1v, const void* pVect2v, const void* qty_ptr) {
-    ++_G_COST;
+
     float PORTABLE_ALIGN32 TmpRes[8];
     float* pVect1 = (float*)pVect1v;
     float* pVect2 = (float*)pVect2v;
@@ -160,7 +165,7 @@ static float
 
 static float
     L2SqrSIMD4ExtResiduals(const void* pVect1v, const void* pVect2v, const void* qty_ptr) {
-    ++_G_COST;
+
     size_t qty = *((size_t*)qty_ptr);
     size_t qty4 = qty >> 2 << 2;
 
@@ -174,3 +179,5 @@ static float
     return (res + res_tail);
 }
 #endif
+
+#endif //SPACE_L2_H

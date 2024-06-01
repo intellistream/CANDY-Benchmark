@@ -14,6 +14,7 @@
 hashBase::hashBase(Preprocess& prep_, Parameter& param_,
 	const std::string& file)
 {
+	lastN = N;
 	N = param_.N;
 	dim = param_.dim;
 	L = param_.L;
@@ -122,24 +123,24 @@ hashBase::~hashBase()
 e2lsh::e2lsh(Preprocess& prep_, Parameter& param_,
 	const std::string& file):hashBase(prep_,param_,file)
 {
-	std::cout << std::endl << "START HASHING..." << std::endl << std::endl;
+	//std::cout << std::endl << "START HASHING..." << std::endl << std::endl;
 	lsh::timer timer;
 
-	std::cout << "SETTING HASH PARAMETER..." << std::endl;
+	//std::cout << "SETTING HASH PARAMETER..." << std::endl;
 	timer.restart();
 	setHash();
-	std::cout << "SETTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+	//std::cout << "SETTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 
-	std::cout << "COMPUTING HASH..." << std::endl;
+	//std::cout << "COMPUTING HASH..." << std::endl;
 	timer.restart();
 	getHash(prep_);
-	std::cout << "COMPUTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+	//std::cout << "COMPUTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 
-	std::cout << "BUILDING INDEX..." << std::endl;
-	std::cout << "THERE ARE " << L << " " << K << "-D HASH TABLES." << std::endl;
+	//std::cout << "BUILDING INDEX..." << std::endl;
+	//std::cout << "THERE ARE " << L << " " << K << "-D HASH TABLES." << std::endl;
 	timer.restart();
 	getIndexes();
-	std::cout << "BUILDING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+	//std::cout << "BUILDING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 }
 
 bool e2lsh::isBuilt(const std::string& file)
@@ -269,32 +270,32 @@ zlsh::zlsh(Preprocess& prep_, Parameter& param_,
 {
 	
 
-	std::cout << std::endl << "START HASHING..." << std::endl << std::endl;
+	//std::cout << std::endl << "START HASHING..." << std::endl << std::endl;
 	lsh::timer timer;
 
-	std::cout << "SETTING HASH PARAMETER..." << std::endl;
+	//std::cout << "SETTING HASH PARAMETER..." << std::endl;
 	timer.restart();
 	setHash();
-	std::cout << "SETTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+	//std::cout << "SETTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 
-	std::cout << "COMPUTING HASH..." << std::endl;
+	//std::cout << "COMPUTING HASH..." << std::endl;
 	timer.restart();
 	getHash(prep_);
-	std::cout << "COMPUTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+	//std::cout << "COMPUTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 
 	if (notInheritance) {
 		index_file = file;
 
-		std::cout << "BUILDING INDEX..." << std::endl;
-		std::cout << "THERE ARE " << L << " " << K << "-D HASH TABLES." << std::endl;
+	//	std::cout << "BUILDING INDEX..." << std::endl;
+	//	std::cout << "THERE ARE " << L << " " << K << "-D HASH TABLES." << std::endl;
 		timer.restart();
 		getIndexes();
-		std::cout << "BUILDING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+	//	std::cout << "BUILDING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 
-		std::cout << "SAVING LSH INDEX..." << std::endl;
+	//	std::cout << "SAVING LSH INDEX..." << std::endl;
 		timer.restart();
-		save(index_file);
-		std::cout << "SAVING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+	//	save(index_file);
+	//	std::cout << "SAVING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 	}
 }
 
@@ -303,11 +304,11 @@ zlsh::zlsh(const std::string& file)
 	index_file = file;
 	std::ifstream in(file, std::ios::binary);
 	if (!in.good()) {
-		std::cout << BOLDGREEN << "WARNING:\n" << GREEN << "Could not find the LSH index file. \n"
-			<< "Filename: " << file.c_str() << RESET;
+	//	std::cout << BOLDGREEN << "WARNING:\n" << GREEN << "Could not find the LSH index file. \n"
+	//		<< "Filename: " << file.c_str() << RESET;
 		exit(-1);
 	}
-	std::cout << "LOADING LSH INDEX..." << std::endl;
+	//std::cout << "LOADING LSH INDEX..." << std::endl;
 	lsh::timer timer;
 
 	in.read((char*)&N, sizeof(int));
@@ -353,7 +354,7 @@ zlsh::zlsh(const std::string& file)
 	}
 	in.close();
 
-	std::cout << "LOADING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+	//std::cout << "LOADING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 }
 
 zint zlsh::getZ(float* _h)
@@ -407,8 +408,8 @@ void zlsh::normalizeHash()
 		r = rMax / (float)hMax;
 		W *= r;
 		rMax = hMax;
-		std::cout << BOLDRED << "WARNING:\n" << RED << "Ranges of hash values is too LARGE. \n"
-			<< "Please increase W at least " << rMax / (float)hMax << "times.\n" << RESET;
+	//	std::cout << BOLDRED << "WARNING:\n" << RED << "Ranges of hash values is too LARGE. \n"
+	//		<< "Please increase W at least " << rMax / (float)hMax << "times.\n" << RESET;
 		//exit(-1);
 	}
 	
@@ -435,9 +436,9 @@ void zlsh::normalizeHash()
 
 	u = (int)floor(log(rMax) / log(2.0f)) + 1;
 
-	std::cout << RED << "Old W=    " << oldW
-		<< "\nNew W=    " << W
-		<< "\nIncrease  " << r << "times.\n" << RESET;
+	//std::cout << RED << "Old W=    " << oldW
+	//	<< "\nNew W=    " << W
+	//	<< "\nIncrease  " << r << "times.\n" << RESET;
 }
 
 void zlsh::getIndexes()

@@ -1,3 +1,9 @@
+//
+// Created by rubato on 31/5/24.
+//
+
+#ifndef BASIS_H
+#define BASIS_H
 /**
  * @file basis.h
  *
@@ -198,7 +204,7 @@ inline float cal_dist(float* v1, float* v2, int dim)
 		return sqrt(calL2Sqr_fast(v1, v2, dim));
 	#endif
 #endif
-	
+
 }
 
 inline float cal_distSqrt(float* v1, float* v2, int dim)
@@ -209,7 +215,7 @@ inline float cal_distSqrt(float* v1, float* v2, int dim)
 	return sqrt(calL2Sqr_fast(v1, v2, dim));
 #endif
 	//return sqrt(calL2Sqr_fast(v1, v2, dim));
-	
+
 }
 
 template <class T>
@@ -301,8 +307,8 @@ namespace threadPoollib
 			}
 		};
 
-		~VisitedList() { 
-			//delete[] mass; 
+		~VisitedList() {
+			//delete[] mass;
 		}
 	};
 	///////////////////////////////////////////////////////////
@@ -354,3 +360,5 @@ namespace threadPoollib
 		};
 	};
 }
+
+#endif //BASIS_H

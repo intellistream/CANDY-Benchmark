@@ -1,3 +1,9 @@
+//
+// Created by rubato on 31/5/24.
+//
+
+#ifndef E2LSH_H
+#define E2LSH_H
 #pragma once
 #include <CANDY/LSHAPGIndex/def.h>
 #include <CANDY/LSHAPGIndex/Preprocess.h>
@@ -81,6 +87,7 @@ protected:
 	std::string index_file;
 public:
 	int N = 0;
+	int lastN = 0;
 	int dim = 0;
 	// Number of hash functions
 	int S = 0;
@@ -150,7 +157,7 @@ class zlsh :public hashBase
 {
 private:
 	std::string index_file;
-	
+
 public:
 	int u = 0;//u bits per hash value
 	// Index structure: RB-Tree
@@ -176,3 +183,5 @@ public:
 	~zlsh() {}
 };
 
+
+#endif //E2LSH_H

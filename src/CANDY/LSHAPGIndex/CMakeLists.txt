@@ -2,7 +2,8 @@ add_sources(
         basis.cpp
         e2lsh.cpp
         GenericTool.cpp
-        main.cpp
         Preprocess.cpp
         Query.cpp
+        divGraph.cpp
+        alg.cpp
 )
