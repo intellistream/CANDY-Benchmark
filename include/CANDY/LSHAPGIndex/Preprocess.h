@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <unordered_map>
 #include <string>
+#include <torch/torch.h>
 //#define _NOQUERY
 
 class Preprocess
@@ -24,6 +25,7 @@ public:
 	Preprocess(const std::string& path, const std::string& ben_file_);
 	Preprocess(const std::string& path, const std::string& ben_file_, float beta_);
 	void load_data(const std::string& path);
+    void load_data(torch::Tensor &t);
 	void insert_data(float* new_data, uint64_t n);
 	void set_query(float* query);
 	void ben_make();

@@ -3,6 +3,8 @@
  *
  * @brief A set of basic tools.
  */
+#ifndef CANDY_LSHAPGINDEX_basis_H
+#define CANDY_LSHAPGINDEX_basis_H
 #pragma once
 #include <string>
 #include <iostream>
@@ -182,9 +184,12 @@ inline float cal_lengthSquare(float* v1, int dim)
 	}
 	return res;
 }
-
+extern int _g_dist_mes;
 inline float cal_dist(float* v1, float* v2, int dim)
 {
+  if(_g_dist_mes==1) {
+    return 1.0-cal_inner_product(v1,v2,dim);
+  }
 #ifdef USE_SQRDIST
 	#if (defined __AVX2__ && defined __USE__AVX2__ZX__)
 		return faiss::fvec_L2sqr_avx512(v1, v2, dim);
@@ -354,3 +359,4 @@ namespace threadPoollib
 		};
 	};
 }
+#endif

@@ -8,7 +8,7 @@ int _lsh_UB=0;
 //double _chi2invSqr;
 //double _coeff;
 
-int main(int argc, char const* argv[])
+int VIRmain(int argc, char const* argv[])
 {
 	float c = 1.5;
 	unsigned k = 50;

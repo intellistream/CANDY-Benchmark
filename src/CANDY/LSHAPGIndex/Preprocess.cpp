@@ -116,6 +116,36 @@ void Preprocess::load_data(const std::string& path)
 	in.close();
 }
 
+#if defined(__GNUC__) && (__GNUC__ >= 4)
+#define PREP_memcpy(dst, src, size) __builtin_memcpy(dst, src, size)
+#else
+#define PREP_memcpy(dst, src, size) memcpy(dst, src, size)
+#endif
+void  Preprocess::load_data(torch::Tensor &t) {
+  data.N = t.size(0);
+  data.dim = t.size(1);
+  data.val = new float* [data.N];
+  for (int i = 0; i < data.N; i++) {
+    data.val[i] = new float[data.dim];
+    //in.seekg(sizeof(float), std::ios::cur);
+    auto rowI=t.slice(0,i,i+1).contiguous();
+    auto dataRowI= rowI.data_ptr<float>();
+    PREP_memcpy(data.val[i],dataRowI,data.dim*sizeof(float));
+  }
+
+  //data.val = new float* [data.N];
+  //float* dataBase = new float[data.N * data.dim];
+  //in.read((char*)dataBase, sizeof(float) * (size_t)data.N * data.dim);
+  //for (int i = 0; i < data.N; ++i) {
+  //	data.val[i] = dataBase + i * data.dim;
+  //	//in.seekg(sizeof(float), std::ios::cur);
+  //	//in.read((char*)data.val[i], sizeof(float) * header[2]);
+  //
+  std::cout << "Load from new tensor: " << "\n";
+  std::cout << "N=    " << data.N << "\n";
+  std::cout << "dim=  " << data.dim << "\n\n";
+
+}
 struct Tuple
 {
 	unsigned id;

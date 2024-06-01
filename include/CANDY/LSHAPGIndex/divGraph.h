@@ -1,3 +1,5 @@
+#ifndef CANDY_LSHAPGINDEX_DIVEGRAPH_H
+#define CANDY_LSHAPGINDEX_DIVEGRAPH_H
 #pragma once
 #include <CANDY/LSHAPGIndex/e2lsh.h>
 #include <CANDY/LSHAPGIndex/space_l2.h>
@@ -189,6 +191,7 @@ public:
 public:
 	divGraph(Preprocess& prep, Parameter& param_, const std::string& file_, int T_,int efC_, double probC = 0.95, double probQ = 0.99);
 	divGraph(Preprocess* prep, const std::string& path, double probQ = 0.99);
+    divGraph(Preprocess& prep, Parameter& param_, int T_,int efC_, double probC = 0.95, double probQ = 0.99);
 };
 
 #include "basis.h"
@@ -247,6 +250,52 @@ divGraph::divGraph(Preprocess& prep_, Parameter& param_, const std::string& file
 
 	showInfo(&prep_);
 }
+
+divGraph::divGraph(Preprocess& prep_, Parameter& param_, int T_, int efC_, double probC,double probQ) :zlsh(prep_, param_, ""), link_list_locks_(prep_.data.N)
+{
+  myData = prep_.data.val;
+  T = T_;
+  dim = prep_.data.dim;
+  lowDim = K;
+  if (L == 0) lowDim = 0;
+  maxT = 2 * T;
+  //maxT = T;
+  efC = 5 * T / 2;
+  efC = efC_;
+  visited_list_pool_ = new threadPoollib::VisitedListPool(1, N);
+
+  normalizeHash();
+  double _coeff = 1.0, _coeffq = 1.0;
+  if (lowDim) {
+    boost::math::chi_squared chi(lowDim);
+    _coeff = sqrt(boost::math::quantile(chi, probC));
+    if (probQ == 1.0) _coeffq = DBL_MAX;
+    else _coeffq = sqrt(boost::math::quantile(chi, probQ));
+  }
+
+#ifdef USE_SQRDIST
+  _coeff = _coeff * _coeff;
+  coeff = W * W / _coeff;
+  _coeffq = _coeffq * _coeffq;
+  coeffq = W * W / _coeffq;
+#else
+  coeff = W / _coeff;
+	coeffq = W / _coeffq;
+#endif
+
+  lsh::timer timer;
+  std::cout << "CONSTRUCTING GRAPH..." << std::endl;
+  timer.restart();
+  oneByOneInsert();
+  std::cout << "CONSTRUCTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+  indexingTime = timer.elapsed();
+
+  std::cout << "SAVING GRAPH..." << std::endl;
+  timer.restart();
+  std::cout << "SAVING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
+  showInfo(&prep_);
+}
+
 
 divGraph::divGraph(Preprocess* prep, const std::string& path, double probQ):link_list_locks_(prep->data.N)
 {
@@ -1382,3 +1431,4 @@ void divGraph::save(const std::string & file)
 	}
 	out.close();
 }
+#endif

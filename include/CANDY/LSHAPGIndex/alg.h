@@ -1,3 +1,5 @@
+#ifndef CANDY_LSHAPGINDEX_ALG_H
+#define CANDY_LSHAPGINDEX_ALG_H
 #pragma once
 #include <iostream>
 #include <fstream>
@@ -207,3 +209,4 @@ bool find_file(std::string&& file)
 	std::ifstream in(file);
 	return in.good();
 }
+#endif
