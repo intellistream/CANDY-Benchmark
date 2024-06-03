@@ -352,15 +352,20 @@ void debug_message(int& debug){
 }
 void divGraph::insertLSHRefine(int pId)
 {
-  printf("\npid %d starts\n", pId);
+  printf("\npid %d starts\n", linkLists[pId]->id);
   printf("link list base size=%ld\n", linkListBase.size());
   if(pId==107){
     int i=0;
     debug_message(i);
-    assert(linkLists[pId]->neighbors);
+
   }
-  printf("with first id = %d\n", linkLists[pId]->neighbors[0].id);
-  
+  for(int i=0; i<N; i++){
+    printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
+
+  }
+  printf("with first addr = %p\n", (void*)&linkLists[pId]->neighbors[0]);
+  printf("with random addr = %p\n", (void*)&linkLists[pId]->neighbors[10]);
+
   std::priority_queue<Res> candTable;
   std::vector<zint> keys(L);
   threadPoollib::VisitedList* vl = visited_list_pool_->getFreeVisitedList();
@@ -691,11 +696,11 @@ void divGraph::oneByOneInsert()
 {
   linkLists.resize(N, nullptr);
   time_append +=1;
-  linkListBase.resize((size_t)N * (size_t)unitL + efC*time_append);
+  linkListBase.resize((size_t)N * (size_t)unitL /*+ efC*time_append*/);
 
   for (int i = 0; i < N; ++i) {
-    linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL])));
-    printf("%d assigned to base %d ", i,  i * unitL+efC*(time_append-1));
+    linkLists[i] = new Node2(i, (Res*)(&(linkListBase.data()[i * unitL])));
+    printf("%d assigned to base %d ", i,  i * unitL/*+efC*(time_append-1)*/);
     printf("with first id = %d\n", linkLists[i]->neighbors[linkLists[i]->out].id);
   }
 
@@ -762,14 +767,22 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   int64_t vecDim=t.size(1);
   time_append +=1;
   int64_t  appendSize=t.size(0);
-  linkLists.resize(newSize+1, nullptr);
+  printf("before resizing\n");
+  for(int i=0; i<N; i++){
+    printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
+
+  }
+  linkLists.resize(newSize, nullptr);
+
   //link_list_locks_=std::vector<mp_mutex>(newSize);
-  linkListBase.resize((size_t)(newSize) * (size_t)unitL + efC*time_append);
+  linkListBase.resize((size_t)(newSize) * (size_t)unitL /*+ efC*time_append*/);
   printf("linkListBase size=%ld\n", linkListBase.size());
   for (int i = oldSize; i < newSize; ++i) {
-    linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL+efC*(time_append-1)])));
-    printf("%d assigned to base %d ", i,  i * unitL+efC*(time_append-1));
-    printf("with first id = %d\n", linkLists[i]->neighbors[linkLists[i]->out].id);
+    linkLists[i] = new Node2(i, (Res*)(&(linkListBase.data()[i * unitL/*+efC*(time_append-1)*/])));
+  }
+  printf("after resizing\n");
+  for(int i=0; i<newSize; i++){
+    printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
   }
 
   flagStates.resize(newSize+1, 'E');
