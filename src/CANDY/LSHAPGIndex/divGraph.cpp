@@ -280,8 +280,9 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
         res_pair.id = lpos[t.id]->second;
         if (checkedArrs_local.find(res_pair.id)==checkedArrs_local.end()) {
         // TODO: Another bug here with dist vector or perhaps id issues
-          printf("calculating dist between %d %d\n", pId, res_pair.id);
+
           res_pair.dist = cal_dist(myData[pId], myData[res_pair.id], dim);
+          //printf("calculating dist between %d %d %f\n", pId, res_pair.id, res_pair.dist);
           candTable.push(res_pair);
           //checkedArrs_local[res_pair.id] = tag;
           checkedArrs_local.emplace(res_pair.id);
@@ -319,8 +320,9 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
         ++numAccess[t.id];
         res_pair.id = rpos[t.id]->second;
         if (checkedArrs_local.find(res_pair.id)==checkedArrs_local.end()) {
-          printf("calculating dist between %d %d\n", pId, res_pair.id);
+
           res_pair.dist = cal_dist(myData[pId], myData[res_pair.id], dim);
+          //printf("calculating dist between %d %d %f\n", pId, res_pair.id, res_pair.dist);
           candTable.push(res_pair);
           //checkedArrs_local[res_pair.id] = tag;
           checkedArrs_local.emplace(res_pair.id);
@@ -351,6 +353,14 @@ void debug_message(int& debug){
 void divGraph::insertLSHRefine(int pId)
 {
   printf("\npid %d starts\n", pId);
+  printf("link list base size=%ld\n", linkListBase.size());
+  if(pId==107){
+    int i=0;
+    debug_message(i);
+    assert(linkLists[pId]->neighbors);
+  }
+  printf("with first id = %d\n", linkLists[pId]->neighbors[0].id);
+  
   std::priority_queue<Res> candTable;
   std::vector<zint> keys(L);
   threadPoollib::VisitedList* vl = visited_list_pool_->getFreeVisitedList();
@@ -374,22 +384,38 @@ void divGraph::insertLSHRefine(int pId)
   searchLSH(pId, keys, candTable, checkedArrs_local, tag);
 
   //compCostConstruction += candTable.size();
+  //printf("cand set:\n");
   if (pId != first_id && candTable.empty()) {
+    //printf("%d ", first_id);
     candTable.emplace(first_id, cal_dist(myData[pId], myData[first_id], dim));
     //checkedArrs_local[first_id] = tag;
     checkedArrs_local.emplace(first_id);
   }
   //write_lock lock(link_list_locks_[pId]);
   std::priority_queue<Res, std::vector<Res>, std::greater<Res>> eps;
+  //printf("linking: \n");
+  //printf("%d ", linkLists[pId]->id);
+  //printf(" node out=%d \n", linkLists[pId]->out);
+  printf("linkList size=%ld, pId=%d", linkLists.size(), pId);
   while (!candTable.empty()) {
+
     auto u = candTable.top();
+
     int qId = u.id;
     float dist = u.dist;
+    //printf("%d %f ", qId, dist);
+    if(linkLists[pId]->id==107){
+      debug_message(debug);
+    }
+    //printf("%d ", linkLists[pId]->id);
+    if (linkLists[pId]->size() > efC)linkLists[pId]->erase();
     linkLists[pId]->insert(u.dist, u.id);
+    //printf("finished   ");
     if (linkLists[pId]->size() > efC)linkLists[pId]->erase();
     eps.emplace(u.dist, u.id);
     candTable.pop();
   }
+  //printf("linking finished\n");
 
   //compCostConstruction += searchInBuilding(pId, eps, linkLists[pId]->neighbors, linkLists[pId]->out, checkedArrs_local, tag);
   chooseNN(linkLists[pId]->neighbors, linkLists[pId]->out);
@@ -411,18 +437,18 @@ void divGraph::insertLSHRefine(int pId)
     chooseNN(linkLists[qId]->neighbors, linkLists[qId]->out, Res(pId, dist));
   }
   ///1
-  debug_message(debug);
+  //debug_message(debug);
   printf("keys size=%ld\n", keys.size());
   for (size_t j = 0; j < keys.size(); j++) {
     //write_lock lock_h(hash_locks_[j]);
     /// TODO: where the bug is
     //printf("key=%ld pid=%d\n", keys[j], pId);
-    debug_message(debug);
+    //debug_message(debug);
     hashTables[j].insert({ keys[j],pId });
-    debug_message(debug);
+    //debug_message(debug);
   }
   ///9
-  debug_message(debug);
+  //debug_message(debug);
 }
 
 int divGraph::searchInBuilding(int p, std::priority_queue<Res, std::vector<Res>, std::greater<Res>>& eps, Res* arr, int& size_res,
@@ -666,8 +692,11 @@ void divGraph::oneByOneInsert()
   linkLists.resize(N, nullptr);
   time_append +=1;
   linkListBase.resize((size_t)N * (size_t)unitL + efC*time_append);
+
   for (int i = 0; i < N; ++i) {
     linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL])));
+    printf("%d assigned to base %d ", i,  i * unitL+efC*(time_append-1));
+    printf("with first id = %d\n", linkLists[i]->neighbors[linkLists[i]->out].id);
   }
 
   flagStates.resize(N, 'E');
@@ -736,10 +765,11 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   linkLists.resize(newSize+1, nullptr);
   //link_list_locks_=std::vector<mp_mutex>(newSize);
   linkListBase.resize((size_t)(newSize) * (size_t)unitL + efC*time_append);
-  //printf("linkListBase size=%ld\n", linkListBase.size());
-  //printf("unitL=%d efC=%d time_append=%d\n", unitL, efC, time_append);
+  printf("linkListBase size=%ld\n", linkListBase.size());
   for (int i = oldSize; i < newSize; ++i) {
     linkLists[i] = new Node2(i, (Res*)(&(linkListBase[i * unitL+efC*(time_append-1)])));
+    printf("%d assigned to base %d ", i,  i * unitL+efC*(time_append-1));
+    printf("with first id = %d\n", linkLists[i]->neighbors[linkLists[i]->out].id);
   }
 
   flagStates.resize(newSize+1, 'E');
@@ -775,6 +805,13 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   N=newSize;
   prep->data.N=newSize;
   getHash(*prep);
+   for(int i=0; i<N; i++){
+   //printf("vec%d=", i);
+     for(int j=0; j<prep->data.dim; j=j+32){
+         //printf("%f ", myData[i][j]);
+     }
+     //printf("\n");
+   }
 
   int* idx = new int[appendSize];
   for (int j = 0; j < appendSize; j++) {

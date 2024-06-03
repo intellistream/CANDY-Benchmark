@@ -57,9 +57,23 @@ public:
 
 	inline void insert(float dist_, int pId)
 	{
-		neighbors[out++] = Res(dist_, pId);
+        //printf("out=%d ", out);
+        if(id==107){
+          is_107();
+        }
+        neighbors[out++] = Res(dist_, pId);
+        if(id==107){
+          is_107();
+        }
 		std::push_heap(neighbors, neighbors + out);
+if(id==107){
+          is_107();
+        }
 	}
+
+    inline void is_107(){
+      return;
+    }
 
 	inline void insert(int pId, float dist_)
 	{

@@ -105,7 +105,7 @@ printf("\n\ncall this with oldN=%ld N=%ld\n\n", prep.data.oldN,N);
 		hashval[j] = calHash(prep.data.val[j]);
 	}
     for(int j=0; j<N; j++){
-      printf("hash%d=%f ", j, hashval[j]);
+      //printf("hash%d=%f ", j, hashval[j]);
     }
 
 	hashMins.resize(S);
