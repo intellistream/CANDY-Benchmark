@@ -280,6 +280,7 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
         res_pair.id = lpos[t.id]->second;
         if (checkedArrs_local.find(res_pair.id)==checkedArrs_local.end()) {
         // TODO: Another bug here with dist vector or perhaps id issues
+          printf("calculating dist between %d %d\n", pId, res_pair.id);
           res_pair.dist = cal_dist(myData[pId], myData[res_pair.id], dim);
           candTable.push(res_pair);
           //checkedArrs_local[res_pair.id] = tag;
@@ -318,6 +319,7 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
         ++numAccess[t.id];
         res_pair.id = rpos[t.id]->second;
         if (checkedArrs_local.find(res_pair.id)==checkedArrs_local.end()) {
+          printf("calculating dist between %d %d\n", pId, res_pair.id);
           res_pair.dist = cal_dist(myData[pId], myData[res_pair.id], dim);
           candTable.push(res_pair);
           //checkedArrs_local[res_pair.id] = tag;
@@ -343,7 +345,7 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
 
 void debug_message(int& debug){
   debug++;
-  printf("debug at %d\n",debug);
+  //printf("debug at %d\n",debug);
   return;
 }
 void divGraph::insertLSHRefine(int pId)
@@ -355,6 +357,16 @@ void divGraph::insertLSHRefine(int pId)
   auto checkedArrs_local = vl->mass;
   //checkedArrs_local.reserve(N);
   threadPoollib::vl_type tag = vl->curV;
+  /// for L LSB trees, genereate a key that is z value (grid count combined) within jth LSH tree;
+  ///  print the hash value in bits
+  auto temp_ptr = (uint32_t*)&hashval[pId];
+  uint32_t tempbits = *temp_ptr;
+  for(int i=31; i>=0; --i){
+    printf("%u", (tempbits>>i)&1);
+    if(i%8==0) printf(" ");
+  }
+  printf("\n");
+
   for (int j = 0; j < L; j++) {
     keys[j] = getZ(hashval[pId] + j * K);
   }
@@ -404,7 +416,7 @@ void divGraph::insertLSHRefine(int pId)
   for (size_t j = 0; j < keys.size(); j++) {
     //write_lock lock_h(hash_locks_[j]);
     /// TODO: where the bug is
-    printf("key=%ld pid=%d\n", keys[j], pId);
+    //printf("key=%ld pid=%d\n", keys[j], pId);
     debug_message(debug);
     hashTables[j].insert({ keys[j],pId });
     debug_message(debug);
@@ -668,8 +680,8 @@ void divGraph::oneByOneInsert()
     idx[j] = j;
   }
 
-  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  std::shuffle(idx, idx + N, std::default_random_engine(seed));
+  //unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  //std::shuffle(idx, idx + N, std::default_random_engine(seed));
   first_id = idx[0];
   insertLSHRefine(idx[0]);//Ensure there is at least one point in the graph before parallelizing
   //lsh::progress_display pd(N - 1);
@@ -714,8 +726,10 @@ void divGraph::appendHash(float **newData,int64_t oldSize,int64_t newSize) {
  // std::cout<<"Hash extend done"<<std::endl;
 }
 void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
+
   int64_t newSize=N+t.size(0);
   int64_t oldSize = N;
+
   int64_t vecDim=t.size(1);
   time_append +=1;
   int64_t  appendSize=t.size(0);
@@ -757,8 +771,10 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   /**
  * @brief adjust the N field
  */
+   prep->data.oldN=N;
   N=newSize;
   prep->data.N=newSize;
+  getHash(*prep);
 
   int* idx = new int[appendSize];
   for (int j = 0; j < appendSize; j++) {
@@ -770,14 +786,12 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   first_id = idx[0];
 
   insertLSHRefine(idx[0]);//Ensure there is at least one point in the graph before parallelizing
-  printf("im here8.0\n");
   //lsh::progress_display pd(appendSize - 1);
 
   for (int i = 1; i < appendSize; i++) {
     insertLSHRefine(idx[i]);
    // ++pd;
   }
-  printf("im here9.0\n");
 
 }
 void divGraph::refine()

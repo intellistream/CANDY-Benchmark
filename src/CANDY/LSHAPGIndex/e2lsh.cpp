@@ -90,17 +90,30 @@ float* hashBase::calHash(float* point)
 void hashBase::getHash(Preprocess& prep)
 {
 	showMemoryInfo();
-	hashval = new float* [N];
-	for (int j = 0; j < N; j++) {
+printf("\n\ncall this with oldN=%ld N=%ld\n\n", prep.data.oldN,N);
+    if(prep.data.oldN==0){
+    	hashval = new float* [N];
+    } else {
+        auto old_hash = hashval;
+        hashval = new float* [N];
+        for(int i=0; i<prep.data.oldN; i++){
+          hashval[i] = old_hash[i];
+        }
+    }
+
+	for (int j = prep.data.oldN; j < N; j++) {
 		hashval[j] = calHash(prep.data.val[j]);
 	}
+    for(int j=0; j<N; j++){
+      printf("hash%d=%f ", j, hashval[j]);
+    }
 
 	hashMins.resize(S);
 	hashMaxs.resize(S);
 	for (int j = 0; j < S; j++){
 		hashMins[j] = FLT_MAX;
 		hashMaxs[j] = -FLT_MAX;
-		for (int i = 0; i < N; i++){
+		for (int i = prep.data.oldN; i < N; i++){
 			if (hashMins[j] > hashval[i][j]) hashMins[j] = hashval[i][j];
 
 			if (hashMaxs[j] < hashval[i][j]) hashMaxs[j] = hashval[i][j];
@@ -132,6 +145,7 @@ e2lsh::e2lsh(Preprocess& prep_, Parameter& param_,
 
 	//std::cout << "COMPUTING HASH..." << std::endl;
 	//timer.restart();
+printf("get hash in 2\n");
 	getHash(prep_);
 	//std::cout << "COMPUTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 
@@ -279,6 +293,7 @@ zlsh::zlsh(Preprocess& prep_, Parameter& param_,
 
 	//std::cout << "COMPUTING HASH..." << std::endl;
 	//timer.restart();
+    printf("get hash in 3\n");
 	getHash(prep_);
 	//std::cout << "COMPUTING TIME: " << timer.elapsed() << "s." << std::endl << std::endl;
 

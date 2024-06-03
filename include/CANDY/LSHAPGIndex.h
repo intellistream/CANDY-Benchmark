@@ -32,11 +32,14 @@ class LSHAPGIndex : public AbstractIndex{
 public:
     float c = 1.5;
     unsigned k = 50;
+	/// L: Number of LSH-b+Trees ; K: number of hash functions
     unsigned L = 8, K = 10;//NUS
     //L = 10, K = 5;
+	///
     float beta = 0.1;
     unsigned Qnum = 100;
     float W = 1.0f;
+	/// base number of neighbors and maxT is max number of neighbors
     int T = 24;
     int efC = 80;
     //L = 2;

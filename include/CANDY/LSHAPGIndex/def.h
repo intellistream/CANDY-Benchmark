@@ -8,6 +8,7 @@ struct Data
 	unsigned dim = 0;
 	// Number of data
 	unsigned N = 0;
+	unsigned oldN=0;
 	// Data matrix
 	float** val = nullptr;
 	float** query=nullptr; // NO MORE THAN 200 POINTS
