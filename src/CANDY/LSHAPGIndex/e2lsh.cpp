@@ -90,7 +90,7 @@ float* hashBase::calHash(float* point)
 void hashBase::getHash(Preprocess& prep)
 {
 	showMemoryInfo();
-printf("\n\ncall this with oldN=%ld N=%ld\n\n", prep.data.oldN,N);
+//printf("\n\ncall this with oldN=%ld N=%ld\n\n", prep.data.oldN,N);
     if(prep.data.oldN==0){
     	hashval = new float* [N];
     } else {

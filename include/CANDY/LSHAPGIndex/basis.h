@@ -332,24 +332,24 @@ namespace threadPoollib
 		VisitedList* getFreeVisitedList() {
 			VisitedList* rez = nullptr;
 			pool.front()->reset();
-			printf("currV=%d  numelements=%d\n", pool.front()->curV,pool.front()->numelements);
+			//printf("currV=%d  numelements=%d\n", pool.front()->curV,pool.front()->numelements);
 			return pool.front();
 
 				//std::unique_lock <std::mutex> lock(poolguard);
 				if (pool.size() > 0) {
-					printf("popping\n");
+			//		printf("popping\n");
 					rez = pool.front();
 					pool.pop_front();
-					printf("popping success\n");
+			//		printf("popping success\n");
 				}
 				else {
-					printf("newning\n");
+			//		printf("newning\n");
 					rez = new VisitedList(numelements);
 				}
-			printf("visited list %d\n", rez->curV);
-			printf("trying to reset\n");
+		//	printf("visited list %d\n", rez->curV);
+		//	printf("trying to reset\n");
 			rez->reset();
-			printf("reset complete\n");
+		//	printf("reset complete\n");
 			return rez;
 		};
 

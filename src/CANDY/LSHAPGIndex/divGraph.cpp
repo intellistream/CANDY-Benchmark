@@ -228,7 +228,6 @@ int  divGraph::searchLSH(int pId, std::vector<zint>& keys, std::priority_queue<R
   int lshUB = N / 200;
   lshUB = L * log(pId + 1);
   int step = 2;
-  printf("L=%d\n", L);
   std::vector<int> numAccess(L);
   std::vector<std::multimap<zint, int>::iterator> lpos(L), rpos(L), qpos(L);
 
@@ -352,19 +351,17 @@ void debug_message(int& debug){
 }
 void divGraph::insertLSHRefine(int pId)
 {
-  printf("\npid %d starts\n", linkLists[pId]->id);
-  printf("link list base size=%ld\n", linkListBase.size());
+ // printf("\npid %d starts\n", linkLists[pId]->id);
+  //printf("link list base size=%ld\n", linkListBase.size());
   if(pId==107){
     int i=0;
     debug_message(i);
 
   }
   for(int i=0; i<N; i++){
-    printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
+    //printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
 
   }
-  printf("with first addr = %p\n", (void*)&linkLists[pId]->neighbors[0]);
-  printf("with random addr = %p\n", (void*)&linkLists[pId]->neighbors[10]);
 
   std::priority_queue<Res> candTable;
   std::vector<zint> keys(L);
@@ -377,10 +374,10 @@ void divGraph::insertLSHRefine(int pId)
   auto temp_ptr = (uint32_t*)&hashval[pId];
   uint32_t tempbits = *temp_ptr;
   for(int i=31; i>=0; --i){
-    printf("%u", (tempbits>>i)&1);
-    if(i%8==0) printf(" ");
+    //printf("%u", (tempbits>>i)&1);
+    //if(i%8==0) printf(" ");
   }
-  printf("\n");
+  //printf("\n");
 
   for (int j = 0; j < L; j++) {
     keys[j] = getZ(hashval[pId] + j * K);
@@ -401,7 +398,7 @@ void divGraph::insertLSHRefine(int pId)
   //printf("linking: \n");
   //printf("%d ", linkLists[pId]->id);
   //printf(" node out=%d \n", linkLists[pId]->out);
-  printf("linkList size=%ld, pId=%d", linkLists.size(), pId);
+  //printf("linkList size=%ld, pId=%d", linkLists.size(), pId);
   while (!candTable.empty()) {
 
     auto u = candTable.top();
@@ -443,7 +440,7 @@ void divGraph::insertLSHRefine(int pId)
   }
   ///1
   //debug_message(debug);
-  printf("keys size=%ld\n", keys.size());
+  //printf("keys size=%ld\n", keys.size());
   for (size_t j = 0; j < keys.size(); j++) {
     //write_lock lock_h(hash_locks_[j]);
     /// TODO: where the bug is
@@ -697,13 +694,13 @@ void divGraph::oneByOneInsert()
   linkLists.resize(N, nullptr);
   time_append +=1;
   linkListBase.resize((size_t)N * (size_t)unitL /*+ efC*time_append*/);
-
+  //printf("linkListBase size=%ld with unitL %d\n", linkListBase.size(), unitL);
   for (int i = 0; i < N; ++i) {
-    linkLists[i] = new Node2(i, (Res*)(&(linkListBase.data()[i * unitL])));
-    printf("%d assigned to base %d ", i,  i * unitL/*+efC*(time_append-1)*/);
-    printf("with first id = %d\n", linkLists[i]->neighbors[linkLists[i]->out].id);
+    linkLists[i] = new Node2(i, (&(linkListBase.data()[i * unitL])));
+    //printf("%d assigned to base %d ", i,  i * unitL/*+efC*(time_append-1)*/);
+   // printf("with first id = %d\n", linkLists[i]->neighbors[linkLists[i]->out].id);
   }
-
+  //printf("linkListBase size=%ld with unitL %d\n", linkListBase.size(), unitL);
   flagStates.resize(N, 'E');
 
   hashTables.resize(L);
@@ -767,26 +764,56 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   int64_t vecDim=t.size(1);
   time_append +=1;
   int64_t  appendSize=t.size(0);
-  printf("before resizing\n");
+  //printf("before resizing\n");
+
   for(int i=0; i<N; i++){
-    printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
+    //printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
 
   }
   linkLists.resize(newSize, nullptr);
-
+  std::vector<Res> new_linkListBase = std::vector<Res>(newSize*unitL);
+  //printf("new list first neighbor is %d\n", new_linkListBase[0].id);
   //link_list_locks_=std::vector<mp_mutex>(newSize);
-  linkListBase.resize((size_t)(newSize) * (size_t)unitL /*+ efC*time_append*/);
-  printf("linkListBase size=%ld\n", linkListBase.size());
+  /// Corruption!
+  //linkListBase.resize((size_t)(newSize) * (size_t)unitL /*+ efC*time_append*/);
+  //printf("new list first neighbor is %d\n", new_linkListBase[0].id);
+  //printf("link list first neighbor is %d\n",  linkLists[0]->neighbors[0].id);
+  //printf("before newing\n");
   for (int i = oldSize; i < newSize; ++i) {
-    linkLists[i] = new Node2(i, (Res*)(&(linkListBase.data()[i * unitL/*+efC*(time_append-1)*/])));
+    linkLists[i] = new Node2(i, (&(new_linkListBase.data()[i * unitL/*+efC*(time_append-1)*/])));
   }
-  printf("after resizing\n");
+  //printf("after newing\n");
+  //printf("link list first neighbor is %d\n",  linkLists[0]->neighbors[0].id);
+  for(size_t i=0; i<linkListBase.size(); i++){
+    new_linkListBase[i] = linkListBase[i];
+
+  }
+  for (int i = 0; i < oldSize; ++i) {
+    linkLists[i] = new Node2(i, (&(new_linkListBase.data()[i * unitL/*+efC*(time_append-1)*/])));
+  }
+
+  //printf("after copying list\n");
+  //printf("new list first neighbor is %d\n", new_linkListBase[0].id);
+  //printf("old list first neighbor is %d\n", linkListBase[0].id);
+  //printf("link list first neighbor is %d\n",  linkLists[0]->neighbors[0].id);
+  linkListBase = new_linkListBase;
+
+  // copy linkLists
+
+
+  //printf("after resizing\n");
+  //printf("new list first neighbor is %d\n", linkListBase[0].id);
+  //printf("old list first neighbor is %d\n", linkListBase[0].id);
+  //printf("link list first neighbor is %d\n",  linkLists[0]->neighbors[0].id);
   for(int i=0; i<newSize; i++){
-    printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
+    //printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
   }
 
   flagStates.resize(newSize+1, 'E');
-
+  //printf("before copying data\n");
+  for(int i=0; i<newSize; i++){
+    //printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
+  }
   /**
    * @brief adjust myData field
    */
@@ -802,7 +829,10 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
     auto dataRowI= rowI.data_ptr<float>();
     DIVG_memcpy(newData[i+oldSize],dataRowI,vecDim*sizeof(float));
   }
-
+  //printf("before appending hash\n");
+  for(int i=0; i<newSize; i++){
+    //printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
+  }
   appendHash(newData,oldSize,newSize);
 
  // std::cout<<"Memory extend done"<<std::endl;
@@ -834,10 +864,16 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
  /* unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   std::shuffle(idx, idx + appendSize, std::default_random_engine(seed));*/
   first_id = idx[0];
-
+  //printf("before inserting the first\n");
+  for(int i=0; i<newSize; i++){
+    //printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
+  }
   insertLSHRefine(idx[0]);//Ensure there is at least one point in the graph before parallelizing
   //lsh::progress_display pd(appendSize - 1);
-
+  //printf("after inserting the first\n");
+  for(int i=0; i<newSize; i++){
+    //printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
+  }
   for (int i = 1; i < appendSize; i++) {
     insertLSHRefine(idx[i]);
    // ++pd;
