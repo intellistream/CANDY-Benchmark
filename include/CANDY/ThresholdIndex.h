@@ -29,8 +29,10 @@ class ThresholdIndex: public AbstractIndex{
   faiss::MetricType faissMetric = faiss::METRIC_L2;
   int64_t containerTier = 0;
   int64_t dataThreshold;
+  int64_t dataVolume;
   std::string indexAlgorithm;
-  std::vector<faiss::Index*> indices;
+  //std::vector<faiss::Index*> indices;
+  std::vector<CANDY::AbstractIndexPtr> indices;
 
 
  public:
@@ -81,10 +83,13 @@ class ThresholdIndex: public AbstractIndex{
    * @param t the tensor, some index need to be single row
    * @return bool whether the insertion is successful
    */
-  virtual bool insertTensor(torch::Tensor &t);
+  virtual bool insertTensor_th(torch::Tensor &t, std::string nameTag);
   
 
-  virtual void createThresholdIndex(int64_t dimension);
+  virtual void createThresholdIndex(int64_t dimension, std::string nameTag);
+  //CANDY::AbstractIndexPtr createIndex(const std::string& nameTag);
+
+  //CANDY::AbstractIndexPtr createIndex(std::string nameTag);
   
   /**
   * @brief load the initial tensors of a data base, use this BEFORE @ref insertTensor
@@ -122,7 +127,7 @@ class ThresholdIndex: public AbstractIndex{
   * @param k the returned neighbors
   * @return std::vector<torch::Tensor> the result tensor for each row of query
   */
-  virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
+  virtual std::vector<torch::Tensor> searchTensor_th(torch::Tensor &q, int64_t k);
   /**
     * @brief some extra termination if the index has HPC features
     * @return bool whether the HPC termination is successful
@@ -141,7 +146,7 @@ class ThresholdIndex: public AbstractIndex{
   * @note Please use @ref loadInitialTensor for loading initial tensors
   * @return whether the building is successful
   */
-  virtual bool offlineBuild(torch::Tensor &t);
+  virtual bool offlineBuild(torch::Tensor &t, std::string nameTag);
   /**
    * @brief a busy waiting for all pending operations to be done
    * @return bool, whether the waiting is actually done;

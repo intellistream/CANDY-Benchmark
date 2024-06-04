@@ -9,25 +9,86 @@
 #include <CANDY.h>
 #include <iostream>
 #include <CANDY/ThresholdIndex.h>
+#include <CANDY/HNSWNaive/HNSW.h>
+#include <CANDY/HNSWNaiveIndex.h>
 using namespace std;
 using namespace INTELLI;
 using namespace torch;
 using namespace CANDY;
-TEST_CASE("Test threshold index", "[short]")
-{
-  //int a = 0;
-  torch::manual_seed(114514);
-  // place your test here
-  INTELLI::ConfigMapPtr cfg = newConfigMap();
-  CANDY::ThresholdIndex thresholdIndex;
-  //CANDY::IndexTable it;
-  //auto thresholdIndex = it.getIndex("threshold");
+TEST_CASE("Test threshold index", "[short]") {
+    torch::manual_seed(114514);
+    INTELLI::ConfigMapPtr cfg = newConfigMap();
+    CANDY::ThresholdIndex thresholdIndex;
+
     cfg->edit("metricType", "L2");
-    cfg->edit("dataThreshold", (int64_t) 8);
-    cfg->edit("indexAlgorithm", "HNSW");
+    cfg->edit("dataThreshold", (int64_t) 60);
 
     thresholdIndex.setConfig(cfg);
+
+    auto ta = torch::rand({1, 3});
+    thresholdIndex.insertTensor_th(ta, "HNSWNaive");
+    auto tb = torch::rand({1, 3});
+    thresholdIndex.insertTensor_th(tb, "HNSWNaive");
+    auto tc = torch::rand({1, 3});
+    thresholdIndex.insertTensor_th(tc, "HNSWNaive");
+
+    for(int i = 0; i < 100; i++) {
+        auto x_in = torch::rand({1, 3});
+        thresholdIndex.insertTensor_th(x_in, "HNSWNaive");
+    }
+
+    thresholdIndex.insertTensor_th(ta, "HNSWNaive");
+    thresholdIndex.insertTensor_th(tb, "HNSWNaive");
+    thresholdIndex.insertTensor_th(tb, "HNSWNaive");
+
+    std::cout << "Insertion finished" << std::endl;
+
+    // Search for 'ta'
+    std::cout << "1. Now, do the query\n" << ta << std::endl;
+    auto ruTensors = thresholdIndex.searchTensor_th(ta, 2);
+    std::cout << "Get tensor\n";
+
+    for (const auto& tensor : ruTensors) {
+        std::cout << tensor << std::endl;
+    }
+    std::cout << "Total results: " << ruTensors.size() << std::endl;
+}
+
+    //size_t k = 1;
     /*
+    for(int i=0; i<20; i++)
+    {
+      auto x_in = torch::rand({1, 3});
+      hnswIdx.insertTensor(x_in);
+    }
+    cout << "insertion finish" << endl;
+    auto q = torch::rand({1, 3});
+    std::cout << "1. now, do the query\n" << q << std::endl;
+    auto ruTensors = hnswIdx.searchTensor(q, 3);
+    std::cout << "get tensor\n" << ruTensors[0] << std::endl;
+    auto y_in = torch::rand({110, 3});
+    thresholdIndex.insertTensor_th(y_in, "HNSWNaive");
+    auto ru = thresholdIndex.searchTensor_th(x_in, k);
+    for (int64_t i = 0; i < x_in.size(0); i++) {
+
+    auto new_in = newTensor(x_in.slice(0, i, i + 1));
+    cout << "looking for" << *new_in << endl;
+    cout << endl << ru[i] << endl << endl;
+  }*/
+    /*
+    auto ta = torch::rand({1, 3});
+    thresholdIndex.insertTensor_th(ta, "HNSWNaive");
+    auto tb = torch::rand({1, 3});
+    thresholdIndex.insertTensor_th(tb, "HNSWNaive");
+    auto tc = torch::rand({1, 3});
+    thresholdIndex.insertTensor_th(ta, "HNSWNaive");
+    thresholdIndex.insertTensor_th(tb, "HNSWNaive");
+    thresholdIndex.insertTensor_th(tc, "HNSWNaive");
+    //std::cout << "0.now, the data base is\n" << thresholdIndex.rawData() << std::endl;
+    */
+    
+  
+  /*
     //offline
     auto x_offline = torch::rand({150, 3});
     REQUIRE(thresholdIndex.offlineBuild(x_offline) == true);
@@ -45,31 +106,13 @@ TEST_CASE("Test threshold index", "[short]")
     std::cout << "get tensor\n" << ruTensors[0] << std::endl;
     */
    
-    auto db = torch::rand({6, 4});
-    thresholdIndex.insertTensor(db);
-    std::cout << "data base is\n" << db << std::endl;
-    auto query = db.slice(0, 2, 3);
-    std::cout << "query is\n" << query << std::endl;
-    auto thRu = thresholdIndex.searchTensor(query, 2);
-    std::cout << "get tensor\n" << thRu[0] << std::endl;
-
-    auto ta = torch::rand({1, 4});
-    thresholdIndex.insertTensor(ta);
-    auto tb = torch::rand({1, 4});
-    thresholdIndex.insertTensor(tb);
-    auto tc = torch::rand({1, 4});
-    thresholdIndex.insertTensor(tc);
-    thresholdIndex.insertTensor(tb);
-    thresholdIndex.insertTensor(ta);
-    std::cout << "0.now, the data base is\n" << thresholdIndex.rawData() << std::endl;
-    auto ruTensors = thresholdIndex.searchTensor(tb, 2);
-    std::cout << "1. now, do the query\n" << thresholdIndex.rawData() << std::endl;
-  
-    std::cout << "get tensor\n" << ruTensors[0] << std::endl;
-    
-    
-    
-  } 
+    //auto db = torch::rand({6, 4});
+    //thresholdIndex.insertTensor_th(db, "HNSWNaive");
+    //std::cout << "data base is\n" << db << std::endl;
+    //auto query = db.slice(0, 2, 3);
+    //std::cout << "query is\n" << query << std::endl;
+    //auto thRu = thresholdIndex.searchTensor(query, 2);
+    //std::cout << "get tensor\n" << thRu[0] << std::endl;
 
   /*CANDY::IndexTable it;
   auto flatIdx = it.getIndex("flat");
