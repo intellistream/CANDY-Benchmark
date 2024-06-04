@@ -80,7 +80,7 @@ public:
     * @param k the returned neighbors
     * @return std::vector<faiss::idx_t> the index, follow faiss's order
     */
-    //virtual std::vector<faiss::idx_t> searchIndex(torch::Tensor q, int64_t k);
+    virtual std::vector<faiss::idx_t> searchIndex(torch::Tensor q, int64_t k);
     /**
      * @brief search the k-NN of a query tensor, return the result tensors
      * @param t the tensor, allow multiple rows
@@ -94,7 +94,7 @@ public:
      * @param k the returned neighbors, i.e., will be the number of rows of each returned tensor
      * @return a vector of tensors, each tensor represent KNN results of one query in idx
      */
-    //virtual std::vector<torch::Tensor> getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k);
+    virtual std::vector<torch::Tensor> getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k);
 private:
 
 

@@ -28,23 +28,55 @@ bool  LSHAPGIndex::loadInitialTensor(torch::Tensor &t) {
   return true;
 }
 
-std::vector<torch::Tensor> LSHAPGIndex::searchTensor(torch::Tensor &q, int64_t k) {
-  size_t tensors = (size_t) q.size(0);
-  std::vector<torch::Tensor> ru(tensors);
-  auto rawDB=flatBuffer.rawData();
-  for (size_t i=0;i<tensors;i++) {
-    auto rowI=q.slice(0,i,i+1);
-	printf("searching for %ldth query\n", i);
-    ru[i]=torch::zeros({k,vecDim});
-    queryN qn =  queryN(c, k, divG->myData,rowI, beta);
-    divG->knn(&qn);
-    auto knnRes=qn.res;
-    for (int j=0;j<k;j++){
-      int64_t idx=knnRes[j].id;
-      ru[i].slice(0,j,j+1)=rawDB.slice(0,idx,idx+1);
+
+std::vector<faiss::idx_t> CANDY::LSHAPGIndex::searchIndex(torch::Tensor q, int64_t k){
+    auto querySize = q.size(0);
+    auto query_data = q.contiguous().data_ptr<float>();
+    prep.set_query(query_data, q.size(0));
+    if(divG) divG->ef = k+150;
+
+    std::string f1 = "divgraph";
+    std::string f2="fold";
+    auto results = search_candy(c,k,divG,prep,beta,2);
+    //unsigned num0 = results[0].res.size();
+    //printf(" result size %d\n", num0);
+    //printf("results:\n");
+    std::vector<faiss::idx_t> ru(k*querySize);
+    //printf("result set size :%lu\n",results.size());
+    for(int i=0; i<querySize; i++) {
+        auto res=results[i];
+        //printf("query result size: %lu\n",res->res.size());
+        for(int j=0; j<k; j++) {
+            ru[i*k+j]=res->res[j].id;
+        }
     }
-  }
-  return ru;
+    return ru;
+
+}
+
+std::vector<torch::Tensor> CANDY::LSHAPGIndex::searchTensor(torch::Tensor &q, int64_t k){
+    auto idx = searchIndex(q,k);
+    return getTensorByIndex(idx,k);
+
+}
+
+std::vector<torch::Tensor> CANDY::LSHAPGIndex::getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k){
+    int64_t size = idx.size() / k;
+	auto dbTensor=flatBuffer.rawData();
+    std::vector<torch::Tensor> ru(size);
+    for (int64_t i = 0; i < size; i++) {
+        ru[i] = torch::zeros({k, vecDim});
+        for (int64_t j = 0; j < k; j++) {
+            int64_t tempIdx = idx[i * k + j];
+
+            if (tempIdx >= 0) {
+                ru[i].slice(0, j, j + 1) = dbTensor.slice(0, tempIdx, tempIdx + 1);
+
+            };
+        }
+    }
+    return ru;
+
 }
 bool LSHAPGIndex::insertTensor(torch::Tensor &t) {
   auto tc=t.clone();

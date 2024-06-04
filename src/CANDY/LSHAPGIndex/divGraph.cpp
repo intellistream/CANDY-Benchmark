@@ -9,6 +9,27 @@
 #include <stdio.h>
 #include <fstream>
 void debug_message(int& debug);
+
+std::vector<queryN*> search_candy(float c, int k, divGraph* myGraph, Preprocess& prep, float beta, int qType) {
+  int Qnum = prep.data.query_size;
+  auto results = std::vector<queryN*>(Qnum, nullptr);
+  for (unsigned j = 0; j < Qnum; j++)
+  {
+    queryN* q = new queryN(j, c, k, prep, beta);
+    //printf("searching for %dth query\n", j);
+    switch (qType % 2) {
+      case 0:
+        myGraph->knn(q);
+      break;
+      case 1:
+        myGraph->knnHNSW(q);
+      break;
+    }
+    results[j] = q;
+
+  }
+  return results;
+}
 divGraph::divGraph(Preprocess& prep_, Parameter& param_, const std::string& file_, int T_, int efC_, double probC,double probQ) :zlsh(prep_, param_, ""), link_list_locks_(prep_.data.N)
 {
   myData = prep_.data.val;
@@ -353,11 +374,7 @@ void divGraph::insertLSHRefine(int pId)
 {
  // printf("\npid %d starts\n", linkLists[pId]->id);
   //printf("link list base size=%ld\n", linkListBase.size());
-  if(pId==107){
-    int i=0;
-    debug_message(i);
 
-  }
   for(int i=0; i<N; i++){
     //printf("id%d's first neighbor is %d\n", i, linkLists[i]->neighbors[0].id);
 
@@ -406,9 +423,7 @@ void divGraph::insertLSHRefine(int pId)
     int qId = u.id;
     float dist = u.dist;
     //printf("%d %f ", qId, dist);
-    if(linkLists[pId]->id==107){
-      debug_message(debug);
-    }
+
     //printf("%d ", linkLists[pId]->id);
     if (linkLists[pId]->size() > efC)linkLists[pId]->erase();
     linkLists[pId]->insert(u.dist, u.id);
@@ -1163,11 +1178,17 @@ void divGraph::knnHNSW(queryN* q)
 
 void divGraph::bestFirstSearchInGraph(queryN * q, std::string & stateFlags, entryHeap & pqEntries)
 {
+  int debug=0;
+
   while (!pqEntries.empty()) {
+    int knnth=0;
+    //printf("poping %dth candidate\n", knnth++);
     auto u = pqEntries.top().first;
+
     if (u.dist > q->minKdist) {
       break;
     }
+    //printf("candidate id=%d dist=%f\n", u.id, u.dist);
     int hop = pqEntries.top().second;
     pqEntries.pop();
     q->maxHop = q->maxHop > hop ? q->maxHop : hop;
@@ -1179,10 +1200,14 @@ void divGraph::bestFirstSearchInGraph(queryN * q, std::string & stateFlags, entr
 		_mm_prefetch((char*)(myData[nns[0].id]), _MM_HINT_T0);
 		_mm_prefetch((char*)(myData[nns[1].id]), _MM_HINT_T0);
 #endif
+    //printf("first neighobr is %d\n",(*(linkLists[u.id]))[0]);
+    //printf("reading neighbors\n");
 
     for (int pos = 0; pos != maxT; ++pos) {
+      //debug_message(debug);
+      //printf("%dth ", pos);
       int v = (*(linkLists[u.id]))[pos];
-      if (v < 0) continue;
+      if (v < 0 || v> linkListBase.size()) continue;
       switch (stateFlags[v]) {
         case 'U':
           stateFlags[v] = 'G';
@@ -1207,7 +1232,8 @@ void divGraph::bestFirstSearchInGraph(queryN * q, std::string & stateFlags, entr
       }
     }
   }
-
+  //printf("reading neighbors over\n");
+  //debug_message(debug);
   while (q->resHeap.size() > q->k) q->resHeap.pop();
   q->res.resize(q->k);
   for (int i = q->k - 1; i > -1; --i) {

@@ -27,7 +27,7 @@ public:
 	void load_data(const std::string& path);
     void load_data(torch::Tensor &t);
 	void insert_data(float* new_data, uint64_t n);
-	void set_query(float* query);
+	void set_query(float* query, int size);
 	void ben_make();
 	void ben_save();
 	void ben_correct();

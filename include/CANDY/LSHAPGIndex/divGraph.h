@@ -214,6 +214,6 @@ public:
 	divGraph(Preprocess* prep, const std::string& path, double probQ = 0.99);
     divGraph(Preprocess& prep, Parameter& param_, int T_,int efC_, double probC = 0.95, double probQ = 0.99);
 };
-
+std::vector<queryN*> search_candy(float c, int k, divGraph* myGraph, Preprocess& prep, float beta, int qType);
 
 #endif

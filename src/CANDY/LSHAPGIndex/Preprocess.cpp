@@ -55,9 +55,7 @@ Preprocess::Preprocess(uint64_t vecDim){
 	data.dim = vecDim;
 }
 
-void Preprocess::set_query(float* query){
-	data.query = &query;
-}
+
 void Preprocess::insert_data(float* new_data, uint64_t n){
 	auto old_data = data.val;
 	data.val = new float* [data.N+n];
@@ -353,6 +351,16 @@ Preprocess::~Preprocess()
 	delete[] SquareLen;
 }
 
+void Preprocess::set_query(float* query, int size){
+	data.query_size = size;
+	data.query = new float* [size];
+	for(int i=0; i<size; i++){
+		data.query[i]=new float[data.dim];
+		for(int j=0; j<data.dim; j++){
+			data.query[i][j] = query[i*data.dim+j];
+		}
+	}
+}
 
 Parameter::Parameter(Preprocess& prep, unsigned L_, unsigned K_, float rmin_)
 {
