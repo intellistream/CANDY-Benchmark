@@ -1200,13 +1200,22 @@ void divGraph::bestFirstSearchInGraph(queryN * q, std::string & stateFlags, entr
 		_mm_prefetch((char*)(myData[nns[0].id]), _MM_HINT_T0);
 		_mm_prefetch((char*)(myData[nns[1].id]), _MM_HINT_T0);
 #endif
+    //for(int i=0; i<52; i++){
+      //printf("id%d's first neighbor addr is %d\n", i, (linkListBase[i*unitL+0].id));
+
+    //}
+    //debug_message(debug);
+    //printf("link list size=%ld\n", linkLists.size());
+    //printf("first neigh
+    //debug_message(debug);bors addr %p\n", linkLists[u.id]);
     //printf("first neighobr is %d\n",(*(linkLists[u.id]))[0]);
     //printf("reading neighbors\n");
 
     for (int pos = 0; pos != maxT; ++pos) {
       //debug_message(debug);
       //printf("%dth ", pos);
-      int v = (*(linkLists[u.id]))[pos];
+      //int v = (*(linkLists[u.id]))[pos];
+      int v = linkListBase[u.id*unitL+pos].id;
       if (v < 0 || v> linkListBase.size()) continue;
       switch (stateFlags[v]) {
         case 'U':
