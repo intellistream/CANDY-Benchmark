@@ -34,6 +34,7 @@ std::vector<torch::Tensor> LSHAPGIndex::searchTensor(torch::Tensor &q, int64_t k
   auto rawDB=flatBuffer.rawData();
   for (size_t i=0;i<tensors;i++) {
     auto rowI=q.slice(0,i,i+1);
+	printf("searching for %ldth query\n", i);
     ru[i]=torch::zeros({k,vecDim});
     queryN qn =  queryN(c, k, divG->myData,rowI, beta);
     divG->knn(&qn);
