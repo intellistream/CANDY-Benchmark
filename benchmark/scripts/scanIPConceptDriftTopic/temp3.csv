@@ -36,7 +36,7 @@ candidateTimes,1,I64
 disableADC,0,I64
 isOnlinePQ,0,I64
 fineGrainedBuiltPath,OnlinePQIndex_fine.rbt,String
-dataPath,/home/rag/projects/CANDY/build/benchmark//results/scanIPConceptDriftTopic/driftData/data_50000.fvecs,String
+dataPath,/home/rag/projects/CANDY/build/benchmark//results/scanIPConceptDriftTopic/driftData/data_90000.fvecs,String
 queryPath,datasets/DPR/DPR10KC4Q.fvecs,String
 waitPendingWrite,1,I64
 is_NSW,0,I64

@@ -97,6 +97,9 @@ def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixT
     if (algoTag == 'DPG'):
         editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "DPG")
         editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'LSHAPG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "LSHAPG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
     exeTag = "onlineInsert"
     # prepare new file
     os.system("rm -rf " + exePath + "*.rbt")
@@ -265,13 +268,13 @@ def main():
     aRowVec = [60000, 70000, 90000, 100000, 200000, 500000, 1000000, 5000000]
     # aRowVec=[100, 200, 500, 1000]
     # add the algo tag here
-    algosVec = ['flat', 'LSH-H', 'PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent']
+    algosVec = ['flat', 'LSH-H', 'Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG','LSHAPG']
     # algosVec = ['flat', 'LSH-H']
     # algosVec = ['flat', 'onlinePQ']
     # algosVec=['incrementalRaw']
     # algosVec=[ 'pq']
     # algoDisp = ['BrutalForce', 'PQ']
-    algoDisp = ['Baseline', 'LSH', 'PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent']
+    algoDisp = ['Baseline', 'LSH','Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG','LSHAPG']
     # algoDisp = ['BrutalForce', 'LSH-H']
     # algoDisp=['BrutalForce']
     # algoDisp=['PQ']
