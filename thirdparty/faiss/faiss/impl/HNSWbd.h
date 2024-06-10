@@ -60,7 +60,7 @@ struct HNSW_breakdown_stats {
     size_t step_linking =0;
     size_t step_before_shrinking=0;
     HNSW_breakdown_stats() = default;
-
+    //std::string filename="hnswbd.csv";
     void reset() {
         steps_greedy = 0;
         steps_iterating_add = 0;
@@ -92,6 +92,32 @@ struct HNSW_breakdown_stats {
 	std::cout<<time_dc_linking<<",";
 	std::cout<<step_before_shrinking<<",";
 	std::cout<<step_linking<<"\n";
+
+
+    std::ofstream outputFile;
+    outputFile.open("hnswbd.csv", std::ios_base::app);
+
+    if(!outputFile.is_open()){
+        std::cerr<<"Failed to open file."<<std::endl;
+        std::cerr<<"Error:"<<std::strerror(errno)<<std::endl;
+        return;
+    }
+        outputFile << steps_greedy << ",";
+        outputFile << steps_iterating_add << ",";
+        outputFile<< steps_iterating_search << ",";
+
+        outputFile<< time_greedy_insert << ",";
+        outputFile<< time_searching_neighbors_to_add << ",";
+        outputFile<< time_add_links << ",";
+
+        outputFile<< time_greedy_search << ",";
+        outputFile<< time_search_from_candidates << ",";
+        outputFile<<time_dc<<",";
+        outputFile<<time_dc_linking<<",";
+        outputFile<<step_before_shrinking<<",";
+        outputFile<<step_linking<<"\n";
+
+    outputFile.close();
     }
 };
 struct HNSWbd {
