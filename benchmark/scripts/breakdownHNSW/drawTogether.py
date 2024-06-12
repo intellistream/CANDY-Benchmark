@@ -22,7 +22,6 @@ import os
 import pandas as pd
 import sys
 from OoOCommon import *
-from genConceptDriftTopic import genConceptDriftHotSpotEmbeddings
 
 OPT_FONT_NAME = 'Helvetica'
 TICK_FONT_SIZE = 22
@@ -51,22 +50,6 @@ matplotlib.rcParams['ytick.labelsize'] = TICK_FONT_SIZE
 matplotlib.rcParams['font.family'] = OPT_FONT_NAME
 matplotlib.rcParams['pdf.fonttype'] = 42
 
-
-def prepareEmbeddings(commonBasePath, aRowVec):
-    dataMax = 100000
-
-    os.system('sudo mkdir ' + commonBasePath + "/driftData")
-    for i in range(len(aRowVec)):
-        desiredDataFname = commonBasePath + "driftData/" + "data_" + str(aRowVec[i]) + '.fvecs'
-        desiredQueryFname = commonBasePath + "driftData/" + "query_" + str(aRowVec[i]) + '.fvecs'
-        if (os.path.exists(desiredDataFname) and os.path.exists(desiredQueryFname)):
-            print('skip embeding generation for ' + str(aRowVec[i]))
-        else:
-            genConceptDriftHotSpotEmbeddings(dataMax - 50000, int(50000), float(aRowVec[i]),
-                                             outputFname="data_" + str(aRowVec[i]) + '.fvecs',
-                                             outputQname="query_" + str(aRowVec[i]) + '.fvecs')
-            os.system('sudo cp *.fvecs ' + commonBasePath + "driftData/")
-            os.system('rm *.fvecs')
 
 
 def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixTagRaw="null"):
@@ -288,8 +271,7 @@ def main():
     # srcAVec=['datasets/ECO/wm2.mtx',"datasets/DWAVE/dwa512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700a.mtx','datasets/RDB/rdb2048.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcda_small.mtx',"datasets/BUS/gemat1.mtx",]
     # srcBVec=['datasets/ECO/wm3.mtx',"datasets/DWAVE/dwb512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700b.mtx','datasets/RDB/rdb2048l.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcdb_small.mtx',"datasets/BUS/gemat1.mtx",]
     # aRowVec= [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
-    aRowVec = [0.05, 0.1, 0.2, 0.4, 0.6, 0.8]
-
+    aRowVec = ["DPR",0.05, 0.1, 0.2, 0.4, 0.6, 0.8]
     # exit()
     # aRowVec=[100, 200]
     # add the algo tag here
@@ -344,32 +326,64 @@ def main():
     # print(recall[-1],recall[2])
 
     # groupBar2.DrawFigure(dataSetNames, np.log(thrAll), methodTags, "Datasets", "elements/ms", 5, 15, figPath + "sec4_1_e2e_static_lazy_throughput_log", True)
-    groupLine.DrawFigureYLog(periodAll, incrementalBuildAll / 1000,
-                             methodTags,
-                             "Drifted Pos", r'95% Latency of insert (ms)', 0, 1,
-                             figPath + "/" + "scanIPConceptDriftHotSpot_lat_INSERT",
-                             True)
-    groupLine.DrawFigureYLog(periodAll, pendingWaitTimeAll / 1000,
-                             methodTags,
-                             "Drifted Pos", r'Pending wait for insert (ms)', 0, 1,
-                             figPath + "/" + "scanIPConceptDriftHotSpot_lat_pending",
-                             True)
-    groupLine.DrawFigureYLog(periodAll, incrementalSearchAll / 1000,
-                             methodTags,
-                             "Drifted Pos", r'Latency of search (ms)', 0, 1,
-                             figPath + "/" + "scanIPConceptDriftHotSpot_lat_search",
-                             True)
-    groupLine.DrawFigureYLog(periodAll, (incrementalSearchAll + pendingWaitTimeAll) / 1000,
-                             methodTags,
-                             "Drifted Pos", r'Latency of query (ms)', 0, 1,
-                             figPath + "/" + "scanIPConceptDriftHotSpot_lat_instant",
-                             True)
-    groupLine.DrawFigureYnormal(periodAll, recall,
-                                methodTags,
-                                "Prob. of contamination", r'recall@10', 0, 1,
-                                figPath + "/" + "scanIPConceptDriftHotSpot_recall",
-                                False)
+    #groupLine.DrawFigureYLog(periodAll, incrementalBuildAll / 1000,
+    #                        methodTags,
+    #                       "Drifted Pos", r'95% Latency of insert (ms)', 0, 1,
+    #                      figPath + "/" + "scanIPConceptDriftHotSpot_lat_INSERT",
+    #                     True)
+    #groupLine.DrawFigureYLog(periodAll, pendingWaitTimeAll / 1000,
+    #                        methodTags,
+    #                       "Drifted Pos", r'Pending wait for insert (ms)', 0, 1,
+    #                      figPath + "/" + "scanIPConceptDriftHotSpot_lat_pending",
+    #                     True)
+    #groupLine.DrawFigureYLog(periodAll, incrementalSearchAll / 1000,
+    #                        methodTags,
+    #                       "Drifted Pos", r'Latency of search (ms)', 0, 1,
+    #                      figPath + "/" + "scanIPConceptDriftHotSpot_lat_search",
+    #                     True)
+    #groupLine.DrawFigureYLog(periodAll, (incrementalSearchAll + pendingWaitTimeAll) / 1000,
+    #                        methodTags,
+    #                       "Drifted Pos", r'Latency of query (ms)', 0, 1,
+    #                      figPath + "/" + "scanIPConceptDriftHotSpot_lat_instant",
+    #                     True)
+    #groupLine.DrawFigureYnormal(periodAll, recall,
+    #                           methodTags,
+    #                          "Prob. of contamination", r'recall@10', 0, 1,
+    #                         figPath + "/" + "scanIPConceptDriftHotSpot_recall",
+    #                        False)
+    breakdownVec = []
+    greedy=[]
+    candidate=[]
+    link=[]
+    sumstep=[]
+    for i in range(len(algosVec)):
+        resultPath = commonBasePath + algosVec[i]
+        for j in range(len(aRowVec)):
+            bddirPath = resultPath + "/"+str(aRowVec[j])
+            bdPath = bddirPath+"/"+"hnswbd.csv"
+            #df = pd.read_csv(bdPath, sep=',', header=None).iloc[9,[3,4,5]]
+            df = pd.read_csv(bdPath, sep=',', header=None).iloc[:,[3,4,5]]
+            sum = df.sum(axis=1)
+            result_df = pd.concat([df, sum], axis=1)
+            greedy.append(result_df.iloc[9,0]/result_df.iloc[9,3]*100.0)
+            candidate.append(result_df.iloc[9,1]/result_df.iloc[9,3]*100.0)
+            link.append(result_df.iloc[9,2]/result_df.iloc[9,3]*100.0)
+            sumstep.append(result_df.iloc[9,3])
+
+
+    #accuBar.DrawFigure(methodTags,
+    #                  [memStallPerMethod, l1dStallPerMethod, l2StallPerMethod, l3StallPerMethod,
+    #                  otherPerMethod,nonStallPerMethod]/cpuCyclePerMethod*100.0, ['Mem Stall', 'L1D Stall', 'L2 Stall', 'L3 Stall', 'Other Stall', 'Not Stall'], '',
+    #                'Propotion (%)', figPath + "/" + "cyclesbreakDown"
+    #               + "_cycles_accubar" + str(valueVec[valueChose]), allowLegend,
+    #              '')
+    #groupBar2.DrawFigure(dataSetNames,l1dStallAll/cpuCycleAll*100.0,methodTags, "Datasets", "Ratio of l1dStalls (%)", 5, 15, figPath + "l1dstall_ratio", True)
+    accuBar.DrawFigure(aRowVec, [greedy, candidate, link], ["Greedy","Candidate", "Link"], "",'Propotion (%)',figPath + "/" + "cyclesbreakDown"+ "_cycles_accubar", True,   '')
+
+
+
 
 
 if __name__ == "__main__":
     main()
+

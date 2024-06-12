@@ -362,7 +362,7 @@ void IndexHNSWbd::search(
     }
 
     hnsw_stats.combine({n1, n2, n3, ndis, nreorder});
-    hnsw.bd_stat.print();
+    //hnsw.bd_stat.print();
 }
 
 void IndexHNSWbd::add(idx_t n, const float* x) {
