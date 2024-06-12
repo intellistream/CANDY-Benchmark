@@ -1,3 +1,0 @@
-Description of CR.42_(Germany): 
-The ▀CR.42 Falco is a rank I German biplane fighter 
-with a battle rating of 1.7 (AB) and 1.3 (RB/SB). It has been in the game since the start of the Open Beta Test prior to Update 1.27 in the German aviation tree. In Update 1.69 "Regia Aeronautica", the CR.42, as well as the other Italian planes in the German tree, were moved to the new Italian tree, although it still exists in the German tree for those who unlocked it prior to the update.

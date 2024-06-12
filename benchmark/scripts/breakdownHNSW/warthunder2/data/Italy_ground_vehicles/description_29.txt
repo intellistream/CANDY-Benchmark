@@ -1,3 +1,0 @@
-Description of M14/41_(47/40): 
-The Fiat-Ansaldo M14/41 (47/40) is a premium rank II Italian medium tank 
-with a battle rating of 2.3 (AB/RB/SB). It was introduced in Update "Regia Marina". This tank is a one-off modification of the in-tree M14/41 with the 13.2 mm hull-mounted machine-gun which can be useful, but it is purely situational, and an upgraded main gun (the same as mounted on the M15/42).

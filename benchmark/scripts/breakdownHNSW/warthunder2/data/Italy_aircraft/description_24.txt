@@ -1,3 +1,0 @@
-Description of C._200_serie_3: 
-The C. 200 Saetta serie 3 is a rank II Italian fighter 
-with a battle rating of 2.0 (AB), 2.3 (RB), and 1.7 (SB). It was introduced in Update 1.69 "Regia Aeronautica" along with the initial Italian aviation tree, but a variant existed in the German tech tree prior to the update.

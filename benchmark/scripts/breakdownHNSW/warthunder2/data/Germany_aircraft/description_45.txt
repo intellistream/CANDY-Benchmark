@@ -1,3 +1,0 @@
-Description of Bf_110_C-7: 
-The Bf 110 C-7 is a rank II German strike aircraft 
-with a battle rating of 3.0 (AB/SB) and 2.7 (RB). It has been in the game since the start of the Open Beta Test prior to Update 1.27. Originally modelled as the Bf 110 C-4, the vehicle was renamed and remodelled into the C-7 in Update 1.79 "Project X".
