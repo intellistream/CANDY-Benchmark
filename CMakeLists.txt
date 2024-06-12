@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.14)
-project(CANDY CXX)
-
+project(CANDY CXX CUDA)
+enable_language(CUDA)
 
 # Custom CMake find instructions and macros
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
@@ -156,7 +156,7 @@ message(STATUS " Libraries: ${LIBRARIES}")
 add_subdirectory(src)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
-
+set(CMAKE_CUDA_STANDARD 14)
 # Add Library
 get_sources(CANDY_SOURCE_FILES)
 get_headers(CANDY_HEADER_FILES)

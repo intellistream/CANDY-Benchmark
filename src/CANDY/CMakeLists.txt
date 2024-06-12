@@ -20,6 +20,7 @@ add_sources(
         NNDescentIndex.cpp
         FlannIndex.cpp
         DPGIndex.cpp
+        Cuda/mm.cu
 )
 add_subdirectory(HashingModels)
 add_subdirectory(ParallelPartitionIndex)
