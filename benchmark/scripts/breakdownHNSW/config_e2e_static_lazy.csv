@@ -7,8 +7,6 @@ DCOBatchSize,5000,I64
 ammAlgo,crs,String
 sketchSize,128,I64
 initialRows,50000,I64
-driftPosition,500,I64
-driftOffset,0.1,Double
 indexTag,faiss,String
 congestionDropWorker_algoTag,faiss,String
 eventRateTps,4000,I64
