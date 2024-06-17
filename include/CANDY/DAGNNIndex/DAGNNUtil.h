@@ -13,7 +13,7 @@ namespace CANDY::DAGNN{
         float *query = nullptr;
         const size_t vecDim;
         DistanceQueryer(const dagnn_metric_t metric, const size_t dim):dagnn_metric(metric), vecDim(dim){}
-
+        DistanceQueryer(const size_t dim):vecDim(dim){}
         void set_query(float* newq) {
             query = newq;
         }
