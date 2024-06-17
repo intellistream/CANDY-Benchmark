@@ -59,6 +59,13 @@ struct HNSW_breakdown_stats {
     size_t time_dc_linking = 0;
     size_t step_linking =0;
     size_t step_before_shrinking=0;
+
+    std::vector<size_t> degrees;
+    std::vector<size_t> greedy_insert_times;
+    std::vector<size_t> expansion_insert_times;
+    std::vector<size_t> greedy_search_times;
+    std::vector<size_t> expansion_search_times;
+    std::vector<int> levels;
     HNSW_breakdown_stats() = default;
     //std::string filename="hnswbd.csv";
     void reset() {
@@ -118,7 +125,30 @@ struct HNSW_breakdown_stats {
         outputFile<<step_linking<<"\n";
 
     outputFile.close();
+        std::ofstream outputFile2;
+        outputFile2.open("hnsw_per_vertex.csv", std::ios_base::app);
+
+        if(!outputFile2.is_open()){
+            std::cerr<<"Failed to open file."<<std::endl;
+            std::cerr<<"Error:"<<std::strerror(errno)<<std::endl;
+            return;
+        }
+        for(size_t i=0; i<degrees.size(); i++) {
+            outputFile2<<i<<",";
+            outputFile2 << degrees[i] << ",";
+            outputFile2 << levels[i]<<",";
+            outputFile2 << greedy_insert_times[i] << ",";
+            outputFile2<< expansion_insert_times[i] << ",";
+            outputFile2<< greedy_search_times[i] << ",";
+            outputFile2<< expansion_search_times[i] << "\n";
+        }
+
+        outputFile2.close();
+
     }
+
+
+
 };
 struct HNSWbd {
     /// internal storage of vectors (32 bits: this is expensive)
@@ -127,6 +157,9 @@ struct HNSWbd {
     typedef std::pair<float, storage_idx_t> Node;
 
     mutable struct HNSW_breakdown_stats bd_stat;
+
+    /// params
+    float rng_alpha = 1.0;
 
     /** Heap structure that allows fast
      */
@@ -187,6 +220,12 @@ struct HNSWbd {
     /// size ntotal + 1
     std::vector<size_t> offsets;
 
+    mutable std::vector<size_t> degrees;
+    mutable std::vector<size_t> greedy_insert_times;
+    mutable std::vector<size_t> expansion_insert_times;
+    mutable std::vector<size_t> greedy_search_times;
+    mutable std::vector<size_t> expansion_search_times;
+    mutable bool is_search = false;
     /// neighbors[offsets[i]:offsets[i+1]] is the list of neighbors of vector i
     /// for all levels. this is where all storage goes.
     std::vector<storage_idx_t> neighbors;

@@ -362,7 +362,24 @@ void IndexHNSWbd::search(
     }
 
     hnsw_stats.combine({n1, n2, n3, ndis, nreorder});
-    //hnsw.bd_stat.print();
+
+    hnsw.bd_stat.greedy_insert_times=hnsw.greedy_insert_times;
+    hnsw.bd_stat.expansion_insert_times=hnsw.expansion_insert_times;
+    hnsw.bd_stat.greedy_search_times=hnsw.greedy_search_times;
+    hnsw.bd_stat.expansion_search_times=hnsw.expansion_search_times;
+    hnsw.bd_stat.levels = hnsw.levels;
+
+
+    for(storage_idx_t i=0; i<ntotal; i++) {
+        size_t begin, end;
+        hnsw.neighbor_range(i,0,&begin,&end);
+        size_t j=begin;
+        while(hnsw.neighbors[j++]!=-1) {
+            hnsw.degrees[i]++;
+        }
+    }
+    hnsw.bd_stat.degrees = hnsw.degrees;
+    hnsw.bd_stat.print();
 }
 
 void IndexHNSWbd::add(idx_t n, const float* x) {

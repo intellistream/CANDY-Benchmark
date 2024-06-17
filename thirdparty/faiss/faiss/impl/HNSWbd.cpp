@@ -223,6 +223,11 @@ int HNSWbd::prepare_level_tab(size_t n, bool preset_levels) {
         if (pt_level > max_level)
             max_level = pt_level;
         offsets.push_back(offsets.back() + cum_nb_neighbors(pt_level + 1));
+        degrees.push_back(0);
+        greedy_insert_times.push_back(0);
+        expansion_insert_times.push_back(0);
+        greedy_search_times.push_back(0);
+        expansion_search_times.push_back(0);
         neighbors.resize(offsets.back(), -1);
     }
 
@@ -331,10 +336,10 @@ void add_link(
     resultSet.emplace(dist, dest);
     for (size_t i = begin; i < end; i++) { // HERE WAS THE BUG
         storage_idx_t neigh = hnsw.neighbors[i];
-	auto start = std::chrono::high_resolution_clock::now();
-	dist = qdis.symmetric_dis(src,neigh);
-	hnsw.bd_stat.time_dc_linking += chronoElapsedTime(start);
-	hnsw.bd_stat.step_before_shrinking +=1;
+        auto start = std::chrono::high_resolution_clock::now();
+        dist = qdis.symmetric_dis(src,neigh);
+        hnsw.bd_stat.time_dc_linking += chronoElapsedTime(start);
+        hnsw.bd_stat.step_before_shrinking +=1;
         resultSet.emplace(dist, neigh);
     }
 
@@ -346,6 +351,10 @@ void add_link(
         hnsw.neighbors[i++] = resultSet.top().id;
         resultSet.pop();
     }
+    if(level==0) {
+        //hnsw.degrees[src]=i-begin;
+    }
+
     // they may have shrunk more than just by 1 element
     while (i < end) {
         hnsw.neighbors[i++] = -1;
@@ -406,6 +415,9 @@ void search_neighbors_to_add(
             if (results.size() < hnsw.efConstruction || results.top().d > dis) {
                 results.emplace(dis, nodeId);
                 candidates.emplace(dis, nodeId);
+                if(level==0) {
+                    hnsw.expansion_insert_times[nodeId]+=1;
+                }
                 if (results.size() > hnsw.efConstruction) {
                     results.pop();
                 }
@@ -440,6 +452,14 @@ void greedy_update_nearest(
             if (dis < d_nearest) {
                 nearest = v;
                 d_nearest = dis;
+
+                if(level) {
+                    if(hnsw.is_search) {
+                        hnsw.greedy_search_times[nearest]+=1;
+                    } else {
+                        hnsw.greedy_insert_times[nearest]+=1;
+                    }
+                }
             }
         }
         if (nearest == prev_nearest) {
@@ -480,14 +500,31 @@ void HNSWbd::add_links_starting_from(
         neighbors.push_back(other_id);
         link_targets.pop();
     }
-
+    // size_t begin, end;
+    // neighbor_range(pt_id, 0,&begin,&end );
+    // degrees[pt_id]=0;
+    // for(size_t b=begin; b<end; b++) {
+    //     while(neighbors[b]!=-1) {
+    //         degrees[pt_id]++;
+    //     }
+    // }
     omp_unset_lock(&locks[pt_id]);
     for (storage_idx_t other_id : neighbors) {
         omp_set_lock(&locks[other_id]);
         add_link(*this, ptdis, other_id, pt_id, level);
+        // neighbor_range(other_id, 0,&begin,&end );
+        // degrees[other_id]=0;
+        // for(size_t b=begin; b<end; b++) {
+        //     if(neighbors[b]!=-1) {
+        //         degrees[other_id]++;
+        //     } else {
+        //         break;
+        //     }
+        // }
         omp_unset_lock(&locks[other_id]);
     }
     omp_set_lock(&locks[pt_id]);
+
     bd_stat.time_add_links += chronoElapsedTime(start);
 }
 
@@ -646,9 +683,11 @@ int search_from_candidates(
         auto add_to_heap = [&](const size_t idx, const float dis) {
             if (!sel || sel->is_member(idx)) {
                 if (nres < k) {
+                    hnsw.expansion_search_times[idx]+=1;
                     faiss::maxheap_push(++nres, D, I, dis, idx);
                 } else if (dis < D[0]) {
                     faiss::maxheap_replace_top(nres, D, I, dis, idx);
+                    hnsw.expansion_search_times[idx]+=1;
                 }
             }
             candidates.push(idx, dis);
@@ -843,7 +882,9 @@ HNSWStats HNSWbd::search(
         VisitedTable& vt,
         const SearchParametersHNSW* params) const {
     HNSWStats stats;
+    is_search = true;
     if (entry_point == -1) {
+        is_search = false;
         return stats;
     }
     if (upper_beam == 1) {
@@ -929,7 +970,7 @@ HNSWStats HNSWbd::search(
             vt.advance();
         }
     }
-
+    is_search = false;
     return stats;
 }
 
