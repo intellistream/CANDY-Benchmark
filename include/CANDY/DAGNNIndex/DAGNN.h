@@ -26,6 +26,7 @@ struct DynamicTuneHNSW{
         bool operator<(const Candidate& obj1) const{
             return dist<obj1.dist;
         }
+        Candidate(float d, idx_t i): dist(d), id(i){}
     };
     struct Node{
         idx_t id = -1;
@@ -200,15 +201,17 @@ struct DynamicTuneHNSW{
     // add break down into 4 parts: greedy, candidate_add, prune and link
     void add(idx_t n, float* x);
 
-    void greedy_insert(DAGNN::DistanceQueryer& disq, Node& node, std::priority_queue<Candidate>& candidates);
+    void greedy_insert(DAGNN::DistanceQueryer& disq, Node& node,DAGNN::VisitedTable& vt);
 
     void greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
 
     void greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
 
-    void candidate_add(size_t level, idx_t entry, float distance_entry, std::priority_queue<Candidate>& candidates);
+    void link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<Candidate>& candidates,DAGNN::VisitedTable& vt);
 
-    void prune(size_t level, idx_t entry, float distance_entry, std::priority_queue<Candidate>& candidates);
+    void candidate_select(DAGNN::DistanceQueryer& disq, size_t level, std::priority_queue<Candidate>& candidates, DAGNN::VisitedTable& vt);
+
+    void prune(size_t level, idx_t entry, float distance_entry,  idx_t nearest, float dist_nearest, std::priority_queue<Candidate>& candidates);
 
     void link(size_t level, idx_t entry, std::priority_queue<Candidate>& candidates);
 

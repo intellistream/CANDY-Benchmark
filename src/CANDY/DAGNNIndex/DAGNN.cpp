@@ -26,7 +26,11 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
         disq.set_query(x+vecDim*i);
         std::priority_queue<Candidate> candidates;
         auto node = linkLists[i+n0];
-        greedy_insert(disq, *node, candidates);
+
+        DAGNN::VisitedTable vt(n0+n);
+        greedy_insert(disq, *node, vt);
+
+
     }
 
     // for(int64_t d=0; d<vecDim; d++) {
@@ -40,7 +44,8 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
 
 
 
-void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::DynamicTuneHNSW::Node& node, std::priority_queue<Candidate>& candidates){
+void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::DynamicTuneHNSW::Node& node, DAGNN::VisitedTable& vt){
+    /// Greedy Phase
     idx_t nearest = -1;
     auto assigned_level = node.level;
     if(entry_points.empty()) {
@@ -63,10 +68,25 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
     }
 
     for(size_t l=assigned_level; l>0; l--) {
+        std::priority_queue<Candidate> candidates;
         greedy_insert_top(disq, l, nearest, dist_nearest, candidates);
-    }
+        /// Candidate Phase ON TOP LEVELS and linking
+        auto entry_this_level = Candidate(dist_nearest, nearest);
+        candidates.push(entry_this_level);
+        link_from(disq, node.id, l, nearest, dist_nearest, candidates, vt);
 
+
+    }
+    std::priority_queue<Candidate> candidates;
     greedy_insert_base(disq, nearest, dist_nearest, candidates);
+    auto entry_base_level = Candidate(dist_nearest, nearest);
+    candidates.push(entry_base_level);
+    link_from(disq, node.id, 0, nearest, dist_nearest, candidates, vt);
+    /// Candidate phase on base level and linking
+
+
+
+
 
 }
 
@@ -128,6 +148,57 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
             return;
         }
     }
+}
+/// We need the nearest point to consult while linking
+void CANDY::DynamicTuneHNSW::link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<Candidate>& candidates, DAGNN::VisitedTable& vt){
+    /// Candidate phase
+    candidate_select
+    /// Link Phase
+}
+
+void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size_t level, std::priority_queue<Candidate>& candidates,  DAGNN::VisitedTable& vt){
+    std::priority_queue<Candidate> selection;
+    /// candidates might contain long-edge from greedy phase
+    if(!candidates.empty()){
+        selection.emplace(candidates.top());
+    }
+    vt.set(candidates.top().id);
+    while(!selection.empty()){
+        auto curr = selection.top();
+        if(curr.dist > candidates.top().dist){
+            break;
+        }
+        int curr_id = curr.id;
+        selection.pop();
+        auto curr_node = linkLists[curr_id];
+        size_t neighbor_length = nb_neighbors(level);
+        for(size_t i=0; i<neighbor_length; i++){
+            auto expansion = curr->neighbors[i];
+            if(expansion<0){
+                break;
+            }
+            if(vt.get(expansion)){
+                continue;
+            }
+            vt.set(expansion);
+
+            auto exp_vector = get_vector(expansion);
+            float dis = disq(exp_vector);
+            delete[] exp_vector;
+
+            auto exp_node = Candidate(dis, expansion);
+            // TODO: MODIFY CANDIDATE SELECTION
+            if(candidates.size() < efConstruction || candidates.top().dist > dis){
+                candidates.push(dis, expansion);
+                selection.emplace(dis, expansion);
+                if(candidates.size()>efConstruction){
+                    candidates.pop();
+                }
+            }
+        }
+    }
+    vt.advance();
+
 }
 
 void CANDY::DynamicTuneHNSW::search(idx_t n, const float* x, idx_t annk, idx_t* results, float* distances) {
