@@ -201,6 +201,48 @@ void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size
 
 }
 
+void CANDY::DynamicTuneHNSW::prune(size_t level, idx_t entry, float distance_entry,  idx_t nearest, float dist_nearest, std::priority_queue<Candidate>& candidates){
+    /// default version, selectively transfer candidates to output and then copy output to candidates
+    int M = nb_neighbors(level);
+    std::priority_queue<Candidate> output;
+    while(candidates.size()>0){
+        auto v1 = candidates.top();
+        candidates.pop();
+        float dist_v1_q = v1.dist;
+
+        bool rng_good=true;
+        auto v1_vector = get_vector(v1.id);
+        for(auto v2: output){
+            auto v2_vector = get_vector(v2.id);
+
+            float dist_v1_v2 = disq.distance(v1.vector, v2.vector);
+            delete[] v2_vector;
+            // from DiskANN Vanama
+            if(dist_v1_v2 < (dist_v1_q / dynamicParams.rng_alpha)){
+                rng_good = false;
+                break;
+            }
+        }
+        delete[] v1_vector;
+
+        if(rng_good){
+            output.push(v1);
+            if(output.size()>=M){
+                // transfer output to candidate
+                while(!candidates.empty()){
+                    candidates.pop()
+                }
+                while(!output.empty()){
+                    candidates.push(output.top());
+                    output.pop();
+                }
+                return;
+            }
+
+        }
+    }
+}
+
 void CANDY::DynamicTuneHNSW::search(idx_t n, const float* x, idx_t annk, idx_t* results, float* distances) {
 
 }

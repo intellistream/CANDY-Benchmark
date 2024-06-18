@@ -43,10 +43,10 @@ struct DynamicTuneHNSW{
     struct DynamicTuneParams{
         int64_t efConstruction = 40;
         int64_t efSearch = 25;
-        int64_t bottom_connections_upper_bound = 32;
-        int64_t bottom_connections_lower_bound = 16;
+        int64_t bottom_connections_upper_bound = 64;
+        int64_t bottom_connections_lower_bound = 32;
         int64_t distance_computation_opt = 0;
-
+        float rng_alpha = 1.0
         /* Number of outwards steps we define as a cluster. Suppose we have 1->2, 1->3, 3->4, 4->5
          and clusterExpansionStep = 2, then for cluster centering vertex_1, we have vertex_{1,2,3,4}
          as the cluster centering vertex_1

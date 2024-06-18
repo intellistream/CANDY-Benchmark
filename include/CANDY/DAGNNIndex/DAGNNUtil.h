@@ -30,7 +30,14 @@ namespace CANDY::DAGNN{
             }
         }
 
-
+        float distance(const float *x, const float * y){
+            switch(dagnn_metric) {
+                case(DAGNN_METRIC_L2):
+                    return L2Sqr(x, y, vecDim);
+                default:
+                    return InnerProduct(x, y, vecDim);
+            }
+        }
         static float L2Sqr(const float* x, const float* y, const size_t vecDim) {
             float result = 0;
             for (size_t i = 0; i < vecDim; i++) {
