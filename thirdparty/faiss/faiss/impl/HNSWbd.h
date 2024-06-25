@@ -300,7 +300,7 @@ struct HNSWbd {
             std::priority_queue<NodeDistFarther>& input,
             std::vector<NodeDistFarther>& output,
             int max_size,
-	    struct HNSW_breakdown_stats& bd_stats);
+	    struct HNSW_breakdown_stats& bd_stats, double alpha);
 
     void permute_entries(const idx_t* map);
 };
