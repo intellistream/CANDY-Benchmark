@@ -66,7 +66,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
     float dist_nearest = disq(vector);
     delete[] vector;
     if(assigned_level>0) {
-        printf("%ld with level=%ld\n", node.id, assigned_level);
+        //printf("%ld with level=%ld\n", node.id, assigned_level);
     }
     for(size_t l=max_level; l>assigned_level; l--) {
         greedy_insert_top(disq, l, nearest, dist_nearest);
@@ -423,7 +423,7 @@ void CANDY::DynamicTuneHNSW::greedy_search_upper(DAGNN::DistanceQueryer& disq, s
             if(dist < dist_nearest) {
                 nearest = visiting;
                 dist_nearest = dist;
-                printf("stepping to %ld with dist = %.2f on level%ld\n", visiting, dist, level);
+                //printf("stepping to %ld with dist = %.2f on level%ld\n", visiting, dist, level);
             }
             delete[] vector;
         }
@@ -450,7 +450,7 @@ void CANDY::DynamicTuneHNSW::greedy_search_base(DAGNN::DistanceQueryer& disq, id
             if(dist < dist_nearest) {
                 nearest = visiting;
                 dist_nearest = dist;
-                printf("stepping to %ld with dist = %.2f on level 0 \n", visiting, dist);
+                //printf("stepping to %ld with dist = %.2f on level 0 \n", visiting, dist);
             }
         }
         // out condition

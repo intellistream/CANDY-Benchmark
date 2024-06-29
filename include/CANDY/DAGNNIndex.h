@@ -56,5 +56,7 @@ namespace CANDY {
          */
         virtual std::vector<torch::Tensor> getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k);
     };
+#define newDAGNNIndex std::make_shared<CANDY::DAGNNIndex>
 }
+
 #endif //DAGNNINDEX_H

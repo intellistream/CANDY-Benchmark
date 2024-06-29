@@ -22,6 +22,7 @@
 #include <CANDY/ParallelPartitionIndex.h>
 #include <CANDY/YinYangGraphIndex.h>
 #include <CANDY/YinYangGraphSimpleIndex.h>
+#include <CANDY/DAGNNIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
 #if CANDY_CL == 1
@@ -53,6 +54,7 @@ CANDY::IndexTable::IndexTable() {
   indexMap["Flann"] = newFlannIndex();
   indexMap["DPG"] = newDPGIndex();
   indexMap["LSHAPG"] = newLSHAPGIndex();
+  indexMap["DAGNN"] = newDAGNNIndex();
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif

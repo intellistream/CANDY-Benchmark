@@ -16,6 +16,7 @@ bool CANDY::DAGNNIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     auto M = cfg->tryI64("maxConnection", 32, true);
     DynamicTuneHNSW::DynamicTuneParams dp;
     dagnn = new CANDY::DynamicTuneHNSW(M, vecDim, metric, dp);
+    return true;
 }
 
 bool CANDY::DAGNNIndex::loadInitialTensor(torch::Tensor &t) {
@@ -47,7 +48,7 @@ std::vector<faiss::idx_t> CANDY::DAGNNIndex::searchIndex(torch::Tensor q, int64_
         DAGNN::VisitedTable vt(dagnn->storage->ntotal);
         dagnn->search(disq, k, ru.data()+i*k, distance.data()+i*k, vt);
     }
-
+    return ru;
 }
 
 std::vector<Tensor> CANDY::DAGNNIndex::searchTensor(torch::Tensor& q, int64_t k) {
@@ -56,7 +57,25 @@ std::vector<Tensor> CANDY::DAGNNIndex::searchTensor(torch::Tensor& q, int64_t k)
 }
 
 std::vector<torch::Tensor> CANDY::DAGNNIndex::getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k) {
+    int64_t size = idx.size()/k;
+    std::vector<torch::Tensor> ru(size);
+    for(int64_t i=0; i<size; i++) {
+        ru[i] = torch::zeros({k, vecDim});
+        for(int64_t j=0; j<k; j++) {
 
+            int64_t tempIdx = idx[i*k+j];
+
+            float tempSlice[vecDim];
+
+            dagnn->storage->reconstruct(tempIdx, tempSlice);
+            auto tempTensor = torch::from_blob(tempSlice, {1, vecDim});
+
+            if(tempIdx>=0) {
+                ru[i].slice(0,j,j+1) = tempTensor;
+            }
+        }
+    }
+    return ru;
 }
 
 
