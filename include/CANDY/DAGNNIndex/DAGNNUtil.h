@@ -7,6 +7,8 @@
 #define DAGNN_METRIC_IP 0
 #define DAGNN_METRIC_L2 1
 #include <faiss/IndexFlat.h>
+#include <faiss/utils/Heap.h>
+
 namespace CANDY::DAGNN{
     typedef int32_t dagnn_metric_t;
     struct DistanceQueryer {
@@ -68,8 +70,11 @@ namespace CANDY::DAGNN{
         int visno;
         VisitedTable() : visno(1){};
         void set(int64_t idx) {
-            visited_[visno] = visno;
+            visited_[idx] = visno;
             return;
+        }
+        VisitedTable(size_t length) {
+            visited_.resize(length, 0);
         }
         bool get(int64_t idx) { return visited_[idx] == visno; }
 
@@ -79,6 +84,77 @@ namespace CANDY::DAGNN{
                 return;
             }
             visno++;
+        }
+    };
+
+    /// a tiny heap that is used during search
+    struct MinimaxHeap {
+        int n;
+        int k;
+        int nvalid;
+
+        std::vector<int64_t> ids;
+        std::vector<float> dis;
+        typedef faiss::CMax<float, int64_t> HC;
+        explicit MinimaxHeap(int n) : n(n), k(0), nvalid(0), ids(n), dis(n) {}
+        void push(int64_t i, float v) {
+            if (k == n) {
+                if (v >= dis[0]) {
+                    return;
+                }
+                if (ids[0] != -1) {
+                    --nvalid;
+                }
+                faiss::heap_pop<HC>(k--, dis.data(), ids.data());
+            }
+            faiss::heap_push<HC>(++k, dis.data(), ids.data(), v, i);
+            ++nvalid;
+        };
+        float max() const { return dis[0]; };
+        int size() const { return nvalid; };
+        void clear() {
+            nvalid = 0;
+            k = 0;
+        };
+        int64_t pop_min(float *vmin_out = nullptr) {
+            assert(k > 0);
+            // returns min. This is an O(n) operation
+            int i = k - 1;
+            while (i >= 0) {
+                if (ids[i] != -1) {
+                    break;
+                }
+                i--;
+            }
+            if (i == -1) {
+                return -1;
+            }
+            int imin = i;
+            float vmin = dis[i];
+            i--;
+            while (i >= 0) {
+                if (ids[i] != -1 && dis[i] < vmin) {
+                    vmin = dis[i];
+                    imin = i;
+                }
+                i--;
+            }
+            if (vmin_out) {
+                *vmin_out = vmin;
+            }
+            auto ret = ids[imin];
+            ids[imin] = -1;
+            --nvalid;
+            return ret;
+        };
+        int count_below(float thresh) {
+            int n_below = 0;
+            for (int i = 0; i < k; i++) {
+                if (dis[i] < thresh) {
+                    n_below++;
+                }
+            }
+            return n_below;
         }
     };
 

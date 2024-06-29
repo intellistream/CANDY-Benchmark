@@ -43,7 +43,7 @@ TEST_CASE("Test DAGNN GREEDY PHASE IN INSERT", "[insert]") {
     struct DynamicTuneHNSW::DynamicTuneParams dp;
 
     int64_t vector_dim = 128;
-    int64_t database_size = 200;
+    int64_t database_size = 5000;
     auto dhnsw =  new DynamicTuneHNSW(32,vector_dim,0,dp);
 
 
@@ -60,34 +60,47 @@ TEST_CASE("Test DAGNN GREEDY PHASE IN INSERT", "[insert]") {
 
     dhnsw->add(database_size/2, database_data);
     dhnsw->add(database_size/2, database_data+database_size/2*vector_dim);
-    auto entry = dhnsw->entry_points[0];
-    dhnsw->direct_link(entry, 1,0);
-    dhnsw->direct_link(entry, 2,0);
-    dhnsw->direct_link(1, 2,0);
-    dhnsw->direct_link(2, 3,0);
-    dhnsw->direct_link(2, 4,0);
-    dhnsw->direct_link(entry, 3,0);
-    dhnsw->direct_link(3, 4,0);
-    dhnsw->direct_link(entry, 4,0);
-    dhnsw->direct_link(entry, 5,0);
-    dhnsw->direct_link(entry, 6,0);
-
-    dhnsw->direct_link(entry, 1,1);
-    dhnsw->direct_link(entry, 4,1);
-    dhnsw->direct_link(entry, 5,1);
-    dhnsw->direct_link(entry, 6,1);
-
-    dhnsw->direct_link(4, 1,0);
-    dhnsw->direct_link(4, 2,0);
-    dhnsw->direct_link(4, 4,0);
-    dhnsw->direct_link(4, 3,0);
-    dhnsw->direct_link(4, 5,0);
-    dhnsw->direct_link(4, 6,0);
-    dhnsw->direct_link(4, 7,0);
 
     DAGNN::DistanceQueryer disq(vector_dim);
-    disq.set_query(database_data+7*vector_dim);
-    std::priority_queue<DynamicTuneHNSW::Candidate> candidates;
-    auto node = dhnsw->linkLists[7];
-    dhnsw->greedy_insert(disq, *node, candidates);
+    disq.set_query(database_data+4800*vector_dim);
+    int annk= 4000;
+    int querySize = 1;
+    std::vector<int64_t> results(annk*querySize,-1);
+    std::vector<float> distances(annk*querySize);
+    DAGNN::VisitedTable vt(database_size);
+    dhnsw->search(disq,annk,results.data(),distances.data(),vt);
+    for(size_t i=0; i<annk*querySize; i++) {
+        printf("t%ld : %f\n", results[i], distances[i]);
+    }
+    auto entry = dhnsw->entry_points[0];
+    // dhnsw->direct_link(entry, 1,0);
+    // dhnsw->direct_link(entry, 2,0);
+    // dhnsw->direct_link(1, 2,0);
+    // dhnsw->direct_link(2, 3,0);
+    // dhnsw->direct_link(2, 4,0);
+    // dhnsw->direct_link(entry, 3,0);
+    // dhnsw->direct_link(3, 4,0);
+    // dhnsw->direct_link(entry, 4,0);
+    // dhnsw->direct_link(entry, 5,0);
+    // dhnsw->direct_link(entry, 6,0);
+    //
+    // dhnsw->direct_link(entry, 1,1);
+    // dhnsw->direct_link(entry, 4,1);
+    // dhnsw->direct_link(entry, 5,1);
+    // dhnsw->direct_link(entry, 6,1);
+    //
+    // dhnsw->direct_link(4, 1,0);
+    // dhnsw->direct_link(4, 2,0);
+    // dhnsw->direct_link(4, 4,0);
+    // dhnsw->direct_link(4, 3,0);
+    // dhnsw->direct_link(4, 5,0);
+    // dhnsw->direct_link(4, 6,0);
+    // dhnsw->direct_link(4, 7,0);
+
+    //DAGNN::DistanceQueryer disq(vector_dim);
+    //disq.set_query(database_data+7*vector_dim);
+    //DAGNN::VisitedTable vt(dhnsw->storage->ntotal);
+    //std::priority_queue<DynamicTuneHNSW::Candidate> candidates;
+    //auto node = dhnsw->linkLists[7];
+   // dhnsw->greedy_insert(disq, *node, vt);
 }

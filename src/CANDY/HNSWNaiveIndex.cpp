@@ -135,9 +135,13 @@ std::vector<torch::Tensor> CANDY::HNSWNaiveIndex::searchTensor(torch::Tensor &q,
     ru[i] = torch::zeros({k, vecDim});
     auto D = std::vector<float>(k);
     auto I = std::vector<CANDY::VertexPtr>(k);
-
     hnsw.search(disq, k, I, D.data(), vt);
     for (int64_t j = 0; j < k; j++) {
+        printf("I[%d]=%p\n", j, I[j]);
+      //if(I[j]==nullptr){
+          //printf("i break\n");
+        //  break;
+      //}
       ru[i].slice(0, j, j + 1) = *(I[j]->id);
     }
   }

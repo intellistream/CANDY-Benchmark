@@ -46,7 +46,7 @@ struct DynamicTuneHNSW{
         int64_t bottom_connections_upper_bound = 64;
         int64_t bottom_connections_lower_bound = 32;
         int64_t distance_computation_opt = 0;
-        float rng_alpha = 1.0
+        float rng_alpha = 1.0;
         /* Number of outwards steps we define as a cluster. Suppose we have 1->2, 1->3, 3->4, 4->5
          and clusterExpansionStep = 2, then for cluster centering vertex_1, we have vertex_{1,2,3,4}
          as the cluster centering vertex_1
@@ -130,7 +130,7 @@ struct DynamicTuneHNSW{
             float a = exp(-level/levelMult);
             float b = 1-exp(-1/levelMult);
             float prob = exp(-level / levelMult) * (1 - exp(-1 / levelMult));
-            printf("level = %ld, levelMult = %.2f, prob=%.9f\n", level, levelMult, prob);
+            //printf("level = %ld, levelMult = %.2f, prob=%.9f\n", level, levelMult, prob);
             if(prob < 1e-9){
                 break;
             }
@@ -203,7 +203,9 @@ struct DynamicTuneHNSW{
 
     void greedy_insert(DAGNN::DistanceQueryer& disq, Node& node,DAGNN::VisitedTable& vt);
 
-    void greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
+    void greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest);
+
+    void greedy_insert_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
 
     void greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
 
@@ -211,20 +213,21 @@ struct DynamicTuneHNSW{
 
     void candidate_select(DAGNN::DistanceQueryer& disq, size_t level, std::priority_queue<Candidate>& candidates, DAGNN::VisitedTable& vt);
 
-    void prune(size_t level, idx_t entry, float distance_entry,  idx_t nearest, float dist_nearest, std::priority_queue<Candidate>& candidates);
+    void prune(DAGNN::DistanceQueryer& disq,size_t level, std::priority_queue<Candidate>& candidates);
 
     void link(size_t level, idx_t entry, std::priority_queue<Candidate>& candidates);
 
+    void add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level);
 
-    void search(idx_t n, const float* x, idx_t annk, idx_t* results, float* distances);
+    void search(DAGNN::DistanceQueryer& disq, idx_t annk, idx_t* results, float* distances, DAGNN::VisitedTable& vt);
 
     void greedy_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t entry, float dist_nearest, std::priority_queue<Candidate>& candidates);
 
-    void greedy_search_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t entry, float dist_nearest, std::priority_queue<Candidate>& candidates);
+    void greedy_search_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
 
-    void greedy_search_base(DAGNN::DistanceQueryer& disq, size_t level, idx_t entry, float dist_nearest, std::priority_queue<Candidate>& candidates);
+    void greedy_search_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
 
-    void candidate_search(idx_t entry, std::priority_queue<Candidate>& candidates);
+    int candidate_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t annk, idx_t* results, float* distances,DAGNN::MinimaxHeap& candidates,DAGNN::VisitedTable& vt);
     /// use for debug
     void direct_link(idx_t x, idx_t y, size_t level) {
         auto node_x = linkLists[x];
