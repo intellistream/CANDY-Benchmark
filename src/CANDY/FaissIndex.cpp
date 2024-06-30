@@ -80,7 +80,7 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     INTELLI_INFO("NOT AN ENCAPSULATED FAISS INDEX: USE FLAT AS DEFAULT");
     index = new faiss::IndexFlat(vecDim, faissMetric);
   }
-  index->set_verbose(true);
+  index->set_verbose(false);
   dbTensor = torch::zeros({0, vecDim});
   lastNNZ = -1;
   expandStep = 100;
@@ -220,6 +220,14 @@ std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndex(torch::Tensor q, int64_
   std::vector<faiss::idx_t> ru(k * querySize);
   std::vector<float> distance(k * querySize);
   index->search(querySize, queryData, k, distance.data(), ru.data());
+  if(index_type!="flat") {
+    for(int64_t i=0; i<querySize; i++) {
+      printf("result for %ldth query\n", i);
+      for(int64_t j=0; j<k; j++) {
+        printf("%ld: %f\n", ru[i*querySize+j], distance[i*querySize+j]);
+      }
+    }
+  }
   return ru;
 }
 

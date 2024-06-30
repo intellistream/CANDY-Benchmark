@@ -193,11 +193,11 @@ void CANDY::DynamicTuneHNSW::link_from(DAGNN::DistanceQueryer& disq, idx_t idx, 
     candidate_select(disq, level, candidates, vt);
     /// Link Phase
     /// Prune this neighbor's candidate
-    //printf("before prune candidate size=%ld\n", candidates.size());
+    //printf("before prune link targets size=%ld\n", candidates.size());
     prune(disq, level, candidates);
     std::vector<idx_t> neighbors;
     neighbors.reserve(candidates.size());
-    //printf("after prune candidate size=%ld\n", candidates.size());
+    //printf("after prune link targets size=%ld\n", candidates.size());
     while(!candidates.empty()) {
         idx_t other_id = candidates.top().id;
         add_link(disq, idx, other_id, level);
@@ -264,6 +264,10 @@ void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size
 void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  std::priority_queue<Candidate>& candidates){
     /// default version, selectively transfer candidates to output and then copy output to candidates
     int M = nb_neighbors(level);
+    //TODO: modify
+    if(candidates.size()<M) {
+        return;
+    }
     std::vector<Candidate> output;
     while(candidates.size()>0){
         auto v1 = candidates.top();
@@ -278,7 +282,8 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
             float dist_v1_v2 = disq.distance(v1_vector, v2_vector);
             delete[] v2_vector;
             // from DiskANN Vanama
-            if(dist_v1_v2 < (dist_v1_q / dynamicParams.rng_alpha)){
+            //printf("dist v1_v2 %f vs dist v1_q %f\n", dist_v1_v2, dist_v1_q);
+            if(dist_v1_v2 < (dist_v1_q /* dynamicParams.rng_alpha*/)){
                 rng_good = false;
                 break;
             }
@@ -299,6 +304,7 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
                 //     candidates.push(output.top());
                 //     output.pop();
                 // }
+                //printf("candidate size from rng good: %ld\n", candidates.size());
                 return;
             }
 
@@ -310,6 +316,7 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
     for(auto k : output) {
         candidates.push(k);
     }
+    //printf("candidate size from normal: %ld\n", candidates.size());
 }
 
 void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level) {
@@ -318,7 +325,7 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
     }
     int nb_neighbors_level = nb_neighbors(level);
     auto src_linkList = &linkLists[src]->neighbors[level];
-    auto src_dist = &linkLists[src]->distances[level];
+    //auto src_dist = &linkLists[src]->distances[level];
     if((*src_linkList)[nb_neighbors_level-1]==-1) {
         size_t i=nb_neighbors_level;
         while(i>0) {
@@ -349,26 +356,17 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
         final_neighbors.emplace(dist, neighbor);
         delete[] neighbor_vector;
     }
+    //printf("before prune neighbor %ld\n", final_neighbors.size());
     prune(disq, level, final_neighbors);
+    //printf("after prune neighbor %ld\n", final_neighbors.size());
     size_t i=0;
     //printf("updating links for %ld: ", src);
     while(!final_neighbors.empty()) {
         //printf("%ld ", final_neighbors.top().id);
-        (*src_linkList)[i] = final_neighbors.top().id;
+        (*src_linkList)[i++] = final_neighbors.top().id;
         //(*src_dist)[i++] = final_neighbors.top().dist;
         //printf("from %ld to %ld with %.2f\n ", src, dest, final_neighbors.top().dist);
 
-        // if(final_neighbors.top().dist < -40) {
-        //     auto neighbor_vector = get_vector(final_neighbors.top().id);
-        //     float sum = 0;
-        //     for(size_t dim=0; dim<vecDim; dim++) {
-        //         printf("%f x %f = %f", neighbor_vector[dim], src_vector[dim], neighbor_vector[dim]*src_vector[dim]);
-        //         sum+=neighbor_vector[dim]*src_vector[dim];
-        //         printf(" %f\n", sum);
-        //
-        //     }
-        //     delete[] neighbor_vector;
-        // }
         final_neighbors.pop();
     }
     //printf("\n");
@@ -391,14 +389,17 @@ void CANDY::DynamicTuneHNSW::search(DAGNN::DistanceQueryer &disq, idx_t annk, id
     for(size_t l=max_level; l>=1; l--) {
         std::priority_queue<Candidate> candidates;
         greedy_search_upper(disq, l, nearest, d_nearest, candidates);
+
     }
-    DAGNN::MinimaxHeap candidates(std::max(dynamicParams.efSearch, annk));
+    printf("stepping to %ld %f\n", nearest, d_nearest);
+    int64_t efSearch = annk>dynamicParams.efSearch? annk:dynamicParams.efSearch;
+    DAGNN::MinimaxHeap candidates(efSearch);
     //greedy_search_base(disq,nearest, d_nearest, candidates);
 
     candidates.push(nearest, d_nearest);
 
     candidate_search(disq, 0, annk, results, distances,candidates,vt);
-
+    vt.advance();
 
 }
 
@@ -467,11 +468,13 @@ int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_
     for(int i=0; i<candidates.size(); i++) {
         idx_t v1=candidates.ids[i];
         float d = candidates.dis[i];
+        printf("v1 from candidate = %ld\n\n\n", v1);
         if(nres<annk) {
             faiss::maxheap_push(++nres, distances, results, d, v1);
         } else if(d<distances[0]) {
             faiss::maxheap_replace_top(nres, distances, results, d,v1);
         }
+        vt.set(v1);
     }
 
     while(candidates.size()>0) {
@@ -480,14 +483,16 @@ int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_
 
         auto nb_neighbors_level = nb_neighbors(level);
         auto v0_linkList = linkLists[v0]->neighbors[level];
-        auto v0_vector=get_vector(v0);
+        //auto v0_vector=get_vector(v0);
         auto v0_distList = linkLists[v0]->distances[level];
         for(size_t j=0; j<nb_neighbors_level; j++) {
             idx_t v1 = v0_linkList[j];
             if(v1<0) {
                 break;
             }
+            //printf("stepping to %ld\n", v1);
             if(vt.get(v1)) {
+                printf("%ld already\n", v1);
                 continue;
             }
 
@@ -498,9 +503,33 @@ int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_
             delete[] v1_vector;
 
             if(nres<annk) {
+                printf("pushing v1  = %ld %f\n",v1, d1);
+                printf("before pushing:\n") ;
+                for(int64_t i=0; i<nres; i++) {
+                    printf("%ld ", results[i]);
+                }
+                printf("\n");
+
                 faiss::maxheap_push(++nres, distances, results, d1, v1);
+                printf("after pushing:\n") ;
+                for(int64_t i=0; i<nres; i++) {
+                    printf("%ld ", results[i]);
+                }
+                printf("\n");
+
             } else if(d1<distances[0]) {
+                printf("pushing v1  = %ld %f\n",v1, d1);
+                printf("before pushing:\n") ;
+                for(int64_t i=0; i<nres; i++) {
+                    printf("%ld ", results[i]);
+                }
+                printf("\n");
                 faiss::maxheap_replace_top(nres, distances, results, d1, v1);
+                printf("after pushing:\n") ;
+                for(int64_t i=0; i<nres; i++) {
+                    printf("%ld ", results[i]);
+                }
+                printf("\n");
             }
             candidates.push(v1,d1);
 

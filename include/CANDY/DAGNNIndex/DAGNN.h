@@ -21,7 +21,7 @@ struct DynamicTuneHNSW{
     using idx_t = int64_t;
 
     struct Candidate {
-        idx_t id;
+        idx_t id=-1;
         float dist;
         bool operator<(const Candidate& obj1) const{
             return dist<obj1.dist;
