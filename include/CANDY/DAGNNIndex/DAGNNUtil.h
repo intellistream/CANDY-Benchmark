@@ -66,14 +66,14 @@ namespace CANDY::DAGNN{
     /// update the number and store nothing
     class VisitedTable {
     public:
-        std::vector<uint8_t> visited_;
+        std::vector<int> visited_;
         int visno;
         VisitedTable() : visno(1){};
         void set(int64_t idx) {
             visited_[idx] = visno;
-            return;
         }
         VisitedTable(size_t length) {
+            visno = 1;
             visited_.resize(length, 0);
         }
         bool get(int64_t idx) { return visited_[idx] == visno; }

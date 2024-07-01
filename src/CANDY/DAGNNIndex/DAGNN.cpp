@@ -73,19 +73,20 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
     }
 
     for(size_t l=assigned_level; l>0; l--) {
-        std::priority_queue<Candidate> candidates;
+        std::priority_queue<CandidateCloser> candidates;
         //greedy_insert_upper(disq, l, nearest, dist_nearest, candidates);
         /// Candidate Phase ON TOP LEVELS and linking
-        auto entry_this_level = Candidate(dist_nearest, nearest);
+        auto entry_this_level = CandidateCloser(dist_nearest, nearest);
         //printf("pushing %ld with %f to candidates on level %ld\n", nearest, dist_nearest, l);
         candidates.push(entry_this_level);
         link_from(disq, node.id, l, nearest, dist_nearest, candidates, vt);
 
 
     }
-    std::priority_queue<Candidate> candidates;
-    //greedy_insert_base(disq, nearest, dist_nearest, candidates);
-    auto entry_base_level = Candidate(dist_nearest, nearest);
+    std::priority_queue<CandidateCloser> candidates;
+    greedy_insert_base(disq, nearest, dist_nearest, candidates);
+    //printf("stepping to %ld with %f\n", nearest, dist_nearest);
+    auto entry_base_level = CandidateCloser(dist_nearest, nearest);
     candidates.push(entry_base_level);
     link_from(disq, node.id, 0, nearest, dist_nearest, candidates, vt);
     /// Candidate phase on base level and linking
@@ -130,7 +131,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_top(DAGNN::DistanceQueryer& disq, siz
     }
 }
 
-void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates){
+void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates){
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
@@ -162,7 +163,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
     }
 }
 
-void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates){
+void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates){
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
@@ -188,20 +189,20 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
     }
 }
 /// We need the nearest point to consult while linking
-void CANDY::DynamicTuneHNSW::link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<Candidate>& candidates, DAGNN::VisitedTable& vt){
+void CANDY::DynamicTuneHNSW::link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt){
     /// Candidate phase
-    candidate_select(disq, level, candidates, vt);
+    priority_queue<CandidateFarther> selection;
+    candidate_select(disq, level, selection, candidates, vt);
     /// Link Phase
     /// Prune this neighbor's candidate
-    //printf("before prune link targets size=%ld\n", candidates.size());
     prune(disq, level, candidates);
     std::vector<idx_t> neighbors;
     neighbors.reserve(candidates.size());
-    //printf("after prune link targets size=%ld\n", candidates.size());
+
+
     while(!candidates.empty()) {
         idx_t other_id = candidates.top().id;
         add_link(disq, idx, other_id, level);
-
         neighbors.push_back(other_id);
         candidates.pop();
     }
@@ -213,11 +214,10 @@ void CANDY::DynamicTuneHNSW::link_from(DAGNN::DistanceQueryer& disq, idx_t idx, 
 
 }
 
-void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size_t level, std::priority_queue<Candidate>& candidates,  DAGNN::VisitedTable& vt){
-    std::priority_queue<Candidate> selection;
+void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size_t level,  std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates,  DAGNN::VisitedTable& vt){
     /// candidates might contain long-edge from greedy phase
     if(!candidates.empty()){
-        selection.emplace(candidates.top());
+        selection.emplace(candidates.top().dist, candidates.top().id);
     }
     vt.set(candidates.top().id);
     while(!selection.empty()){
@@ -230,7 +230,7 @@ void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size
         auto curr_node = linkLists[curr_id];
         size_t neighbor_length = nb_neighbors(level);
         auto curr_linkList = curr_node->neighbors[level];
-        auto curr_distList = curr_node->distances[level];
+        //auto curr_distList = curr_node->distances[level];
         for(size_t i=0; i<neighbor_length; i++){
             auto expansion = curr_linkList[i];
             if(expansion<0){
@@ -249,7 +249,7 @@ void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size
 
             // TODO: MODIFY CANDIDATE SELECTION
             if(candidates.size() < dynamicParams.efConstruction || candidates.top().dist > dis){
-                candidates.push(Candidate(dis, expansion));
+                candidates.emplace(dis, expansion);
                 selection.emplace(dis, expansion);
                 if(candidates.size()>dynamicParams.efConstruction){
                     candidates.pop();
@@ -261,18 +261,25 @@ void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size
 
 }
 
-void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  std::priority_queue<Candidate>& candidates){
+void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  std::priority_queue<CandidateCloser>& candidates){
     /// default version, selectively transfer candidates to output and then copy output to candidates
     int M = nb_neighbors(level);
     //TODO: modify
     if(candidates.size()<M) {
         return;
     }
-    std::vector<Candidate> output;
-    while(candidates.size()>0){
-        auto v1 = candidates.top();
+    std::vector<CandidateCloser> output;
+    float dis_sum = 0.0;
+    int count = 0;
+    std::priority_queue<CandidateCloser> candidates_reverse;
+    while(!candidates.empty()) {
+        candidates_reverse.emplace(-candidates.top().dist, candidates.top().id);
         candidates.pop();
-        float dist_v1_q = v1.dist;
+    }
+    while(!candidates_reverse.empty()){
+        auto v1 = candidates_reverse.top();
+        candidates_reverse.pop();
+        float dist_v1_q = -v1.dist;
 
         bool rng_good=true;
         auto v1_vector = get_vector(v1.id);
@@ -280,9 +287,9 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
             auto v2_vector = get_vector(v2.id);
 
             float dist_v1_v2 = disq.distance(v1_vector, v2_vector);
+            //printf("v1=%f v2=%f v1_v2=%f\n", v1.dist,v2.dist,dist_v1_v2);
             delete[] v2_vector;
             // from DiskANN Vanama
-            //printf("dist v1_v2 %f vs dist v1_q %f\n", dist_v1_v2, dist_v1_q);
             if(dist_v1_v2 < (dist_v1_q /* dynamicParams.rng_alpha*/)){
                 rng_good = false;
                 break;
@@ -294,31 +301,29 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
             output.emplace_back(v1);
             if(output.size()>=M){
                 // transfer output to candidate
-                while(!candidates.empty()){
-                    candidates.pop();
-                }
                 for(auto k : output) {
-                    candidates.push(k);
+                    dis_sum += -k.dist;
+                    count++;
+                    candidates.emplace(-k.dist, k.id);
                 }
-                // while(!output.empty()){
-                //     candidates.push(output.top());
-                //     output.pop();
-                // }
-                //printf("candidate size from rng good: %ld\n", candidates.size());
+                //printf("avg distance %f with size %d\n", dis_sum/count, count);
                 return;
             }
 
         }
     }
-    while(!candidates.empty()){
-        candidates.pop();
-    }
     for(auto k : output) {
-        candidates.push(k);
+        dis_sum += -k.dist;
+        count++;
+        candidates.emplace(-k.dist, k.id);
     }
-    //printf("candidate size from normal: %ld\n", candidates.size());
+    //printf("avg distance %f with size %d\n", dis_sum/count, count);
 }
 
+
+void breakpoint() {
+    return;
+}
 void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level) {
     if(src==dest) {
         return;
@@ -341,34 +346,54 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
         return;
     }
 
-    std::priority_queue<Candidate> final_neighbors;
+    std::priority_queue<CandidateCloser> final_neighbors;
     auto src_vector=get_vector(src);
     auto dest_vector = get_vector(dest);
-    delete[] dest_vector;
+
+    float dis_sum = 0.0;
+    int count = 0;
     final_neighbors.emplace(disq.distance(src_vector, dest_vector), dest);
+    dis_sum += disq.distance(src_vector, dest_vector);
+    count++;
+    float dis_avg = 0;
+    delete[] dest_vector;
     for(size_t i=0; i<nb_neighbors_level; i++) {
         auto neighbor  = (*src_linkList)[i];
         //auto dist = (*src_dist)[i];
         auto neighbor_vector = get_vector(neighbor);
         auto dist = disq.distance(neighbor_vector, src_vector);
+        //printf("neighbor %ld with dist %f       ", neighbor, dist);
 
+
+        count++;
+
+        dis_sum += dist;
+        dis_avg = (dis_sum)/count;
 
         final_neighbors.emplace(dist, neighbor);
         delete[] neighbor_vector;
     }
-    //printf("before prune neighbor %ld\n", final_neighbors.size());
+    //printf("before pruning %ld avg distance = %f with size %d\n", src, dis_sum/count, count);
+
     prune(disq, level, final_neighbors);
-    //printf("after prune neighbor %ld\n", final_neighbors.size());
+
     size_t i=0;
-    //printf("updating links for %ld: ", src);
+
+    count = 0;
+    dis_sum = 0;
+
+
     while(!final_neighbors.empty()) {
         //printf("%ld ", final_neighbors.top().id);
         (*src_linkList)[i++] = final_neighbors.top().id;
+        count +=1;
+        dis_sum +=final_neighbors.top().dist;
         //(*src_dist)[i++] = final_neighbors.top().dist;
-        //printf("from %ld to %ld with %.2f\n ", src, dest, final_neighbors.top().dist);
+
 
         final_neighbors.pop();
     }
+    //printf("after pruning %ld avg distance = %f with size %d\n\n", src, dis_sum/count, count);
     //printf("\n");
     while(i<nb_neighbors_level) {
         (*src_linkList)[i++]=-1;
@@ -387,14 +412,14 @@ void CANDY::DynamicTuneHNSW::search(DAGNN::DistanceQueryer &disq, idx_t annk, id
     delete[] nearest_vec;
 
     for(size_t l=max_level; l>=1; l--) {
-        std::priority_queue<Candidate> candidates;
-        greedy_search_upper(disq, l, nearest, d_nearest, candidates);
+        std::priority_queue<CandidateCloser> candidates_greedy;
+        greedy_search_upper(disq, l, nearest, d_nearest, candidates_greedy);
 
     }
-    printf("stepping to %ld %f\n", nearest, d_nearest);
+    std::priority_queue<CandidateCloser> candidates_greedy;
+    greedy_search_base(disq,nearest,d_nearest,candidates_greedy);
     int64_t efSearch = annk>dynamicParams.efSearch? annk:dynamicParams.efSearch;
     DAGNN::MinimaxHeap candidates(efSearch);
-    //greedy_search_base(disq,nearest, d_nearest, candidates);
 
     candidates.push(nearest, d_nearest);
 
@@ -403,7 +428,7 @@ void CANDY::DynamicTuneHNSW::search(DAGNN::DistanceQueryer &disq, idx_t annk, id
 
 }
 
-void CANDY::DynamicTuneHNSW::greedy_search_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates){
+void CANDY::DynamicTuneHNSW::greedy_search_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates){
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
@@ -435,7 +460,7 @@ void CANDY::DynamicTuneHNSW::greedy_search_upper(DAGNN::DistanceQueryer& disq, s
     }
 }
 
-void CANDY::DynamicTuneHNSW::greedy_search_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates){
+void CANDY::DynamicTuneHNSW::greedy_search_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates){
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
@@ -462,13 +487,12 @@ void CANDY::DynamicTuneHNSW::greedy_search_base(DAGNN::DistanceQueryer& disq, id
 }
 
 int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t annk, idx_t* results, float* distances,DAGNN::MinimaxHeap& candidates, DAGNN::VisitedTable& vt) {
-    int nres = 0;
+    idx_t nres = 0;
 
     int nstep = 0;
     for(int i=0; i<candidates.size(); i++) {
         idx_t v1=candidates.ids[i];
         float d = candidates.dis[i];
-        printf("v1 from candidate = %ld\n\n\n", v1);
         if(nres<annk) {
             faiss::maxheap_push(++nres, distances, results, d, v1);
         } else if(d<distances[0]) {
@@ -480,19 +504,19 @@ int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_
     while(candidates.size()>0) {
         float d0 = 0;
         idx_t v0 = candidates.pop_min(&d0);
-
+        //printf("popping v0=%ld\n", v0);
         auto nb_neighbors_level = nb_neighbors(level);
         auto v0_linkList = linkLists[v0]->neighbors[level];
-        //auto v0_vector=get_vector(v0);
+        auto v0_vector=get_vector(v0);
         auto v0_distList = linkLists[v0]->distances[level];
         for(size_t j=0; j<nb_neighbors_level; j++) {
             idx_t v1 = v0_linkList[j];
+            //printf("stepping to %ld\n", v1);
             if(v1<0) {
                 break;
             }
-            //printf("stepping to %ld\n", v1);
+
             if(vt.get(v1)) {
-                printf("%ld already\n", v1);
                 continue;
             }
 
@@ -500,48 +524,27 @@ int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_
             auto v1_vector = get_vector(v1);
             //float d1 = v0_distList[j];
             float d1=disq(v1_vector);
+            float d1_d0 = disq.distance(v1_vector, v0_vector);
+            float d0=disq(v0_vector);
+            //printf("v1=%ld d0=%f d1=%f d1_d0=%f\n", v1, d0, d1, d1_d0);
+
             delete[] v1_vector;
-
             if(nres<annk) {
-                printf("pushing v1  = %ld %f\n",v1, d1);
-                printf("before pushing:\n") ;
-                for(int64_t i=0; i<nres; i++) {
-                    printf("%ld ", results[i]);
-                }
-                printf("\n");
-
                 faiss::maxheap_push(++nres, distances, results, d1, v1);
-                printf("after pushing:\n") ;
-                for(int64_t i=0; i<nres; i++) {
-                    printf("%ld ", results[i]);
-                }
-                printf("\n");
-
             } else if(d1<distances[0]) {
-                printf("pushing v1  = %ld %f\n",v1, d1);
-                printf("before pushing:\n") ;
-                for(int64_t i=0; i<nres; i++) {
-                    printf("%ld ", results[i]);
-                }
-                printf("\n");
                 faiss::maxheap_replace_top(nres, distances, results, d1, v1);
-                printf("after pushing:\n") ;
-                for(int64_t i=0; i<nres; i++) {
-                    printf("%ld ", results[i]);
-                }
-                printf("\n");
             }
             candidates.push(v1,d1);
 
-
-
         }
+        delete v0_vector;
         nstep++;
         if(nstep>dynamicParams.efSearch && nstep>annk) {
             break;
         }
 
     }
+    //printf("nstep=%d\n", nstep);
     return nres;
 
 

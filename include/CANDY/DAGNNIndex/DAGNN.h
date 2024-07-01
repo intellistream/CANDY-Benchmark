@@ -20,13 +20,22 @@ namespace CANDY{
 struct DynamicTuneHNSW{
     using idx_t = int64_t;
 
-    struct Candidate {
+    struct CandidateCloser {
         idx_t id=-1;
         float dist;
-        bool operator<(const Candidate& obj1) const{
+        bool operator<(const CandidateCloser& obj1) const{
             return dist<obj1.dist;
         }
-        Candidate(float d, idx_t i): dist(d), id(i){}
+        CandidateCloser(float d, idx_t i): dist(d), id(i){}
+    };
+
+    struct CandidateFarther {
+        idx_t id=-1;
+        float dist;
+        bool operator<(const CandidateFarther& obj1) const{
+            return dist>obj1.dist;
+        }
+        CandidateFarther(float d, idx_t i): dist(d), id(i){}
     };
     struct Node{
         idx_t id = -1;
@@ -42,7 +51,7 @@ struct DynamicTuneHNSW{
     /// The auto-tune parameters
     struct DynamicTuneParams{
         int64_t efConstruction = 40;
-        int64_t efSearch = 25;
+        int64_t efSearch = 16;
         int64_t bottom_connections_upper_bound = 64;
         int64_t bottom_connections_lower_bound = 32;
         int64_t distance_computation_opt = 0;
@@ -205,27 +214,27 @@ struct DynamicTuneHNSW{
 
     void greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest);
 
-    void greedy_insert_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
+    void greedy_insert_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
 
-    void greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
+    void greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
 
-    void link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<Candidate>& candidates,DAGNN::VisitedTable& vt);
+    void link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt);
 
-    void candidate_select(DAGNN::DistanceQueryer& disq, size_t level, std::priority_queue<Candidate>& candidates, DAGNN::VisitedTable& vt);
+    void candidate_select(DAGNN::DistanceQueryer& disq, size_t level, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt);
 
-    void prune(DAGNN::DistanceQueryer& disq,size_t level, std::priority_queue<Candidate>& candidates);
+    void prune(DAGNN::DistanceQueryer& disq,size_t level, std::priority_queue<CandidateCloser>& candidates);
 
-    void link(size_t level, idx_t entry, std::priority_queue<Candidate>& candidates);
+    void link(size_t level, idx_t entry, std::priority_queue<CandidateCloser>& candidates);
 
     void add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level);
 
     void search(DAGNN::DistanceQueryer& disq, idx_t annk, idx_t* results, float* distances, DAGNN::VisitedTable& vt);
 
-    void greedy_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t entry, float dist_nearest, std::priority_queue<Candidate>& candidates);
+    void greedy_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t entry, float dist_nearest, std::priority_queue<CandidateCloser>& candidates);
 
-    void greedy_search_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
+    void greedy_search_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
 
-    void greedy_search_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<Candidate>& candidates);
+    void greedy_search_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
 
     int candidate_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t annk, idx_t* results, float* distances,DAGNN::MinimaxHeap& candidates,DAGNN::VisitedTable& vt);
     /// use for debug
