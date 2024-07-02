@@ -28,15 +28,18 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
         }
         double degree_avg_new = graphStates.time_local_stat.degree_sum_new/(new_ntotal*1.0);
         // D = (n1*n2)/(n1+n2) * (avg1-avg2)^2;
-        double D = (prev_ntotal*new_ntotal*1.0)/(prev_ntotal*1.0+new_ntotal*1.0) * ((degree_avg_prev-degree_avg_new) * (degree_avg_prev-degree_avg_new));
-        // combine variance = 1/(n1+n2) * ((n1-1)* var1 + (n2-1) * var2 + D)
-        printf("previous data degree var %lf\n", graphStates.global_stat.degree_variance);
-        printf("UPdated previous data degree var %lf , new data degree var %lf\n", graphStates.time_local_stat.degree_variance_old, graphStates.time_local_stat.degree_variance_new);
-        graphStates.global_stat.degree_variance = 1.0/(prev_ntotal*1.0 + new_ntotal*1.0) * (
-                                                        (prev_ntotal*1.0-1.0)*graphStates.time_local_stat.degree_variance_old
-                                                    +   (new_ntotal*1.0-1.0)*graphStates.time_local_stat.degree_variance_new
-                                                    + D);
 
+
+        /// Combine variance
+        printf("UPdated previous data degree var %lf , new data degree var %lf\n", graphStates.time_local_stat.degree_variance_old, graphStates.time_local_stat.degree_variance_new);
+        double term1 = (prev_ntotal-1.0)*graphStates.time_local_stat.degree_variance_old;
+        double term2 = (new_ntotal-1.0)*graphStates.time_local_stat.degree_variance_new;
+        double term3 = (degree_avg_new-degree_avg_prev)*(degree_avg_new-degree_avg_prev);
+        double bigterm1 = (term1+term2)/(prev_ntotal+new_ntotal-1.0);
+        double bigterm2 = prev_ntotal*new_ntotal*1.0 * term3 / ((prev_ntotal+new_ntotal)*(prev_ntotal+new_ntotal-1)*1.0);
+
+        graphStates.global_stat.degree_variance = bigterm1 + bigterm2;
+        printf("combined data degree var %lf\n", graphStates.global_stat.degree_variance);
     }
 
 
@@ -52,7 +55,7 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     graphStates.time_local_stat.old_ntotal = graphStates.global_stat.ntotal;
     graphStates.time_local_stat.degree_sum_old = graphStates.global_stat.degree_sum;
     graphStates.time_local_stat.degree_variance_old = graphStates.global_stat.degree_variance;
-    graphStates.global_stat.print();
+    //graphStates.global_stat.print();
 }
 
 void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
@@ -426,8 +429,6 @@ int64_t CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src
                     auto new_avg = old_avg + (current_degree-prev_degree)*1.0/n;
                     auto variance = old_variance + (new_avg-old_avg) * (new_avg - old_avg) + ((current_degree-new_avg)*(current_degree-new_avg)-(prev_degree-new_avg)*(prev_degree-new_avg))/n*1.0;
 
-
-
                     graphStates.time_local_stat.degree_variance_new = variance;
                 }
                 graphStates.time_local_stat.degree_sum_new+=(current_degree-prev_degree);
@@ -493,8 +494,6 @@ int64_t CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src
 
 
 
-
-
             graphStates.time_local_stat.degree_variance_old = variance;
             graphStates.time_local_stat.degree_sum_old+=(current_degree-prev_degree);
 
@@ -507,8 +506,6 @@ int64_t CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src
                 auto old_avg = graphStates.time_local_stat.degree_sum_new*1.0/n*1.0;
                 auto new_avg = old_avg + (current_degree-prev_degree)*1.0/n;
                 auto variance = old_variance + (new_avg-old_avg) * (new_avg - old_avg) + ((current_degree-new_avg)*(current_degree-new_avg)-(prev_degree-new_avg)*(prev_degree-new_avg))/n*1.0;
-
-
 
 
 
