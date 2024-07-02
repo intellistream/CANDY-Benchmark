@@ -75,7 +75,12 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
         }
         graphStates.time_local_stat.ntotal+=1;
         /// Update degree measure, since insert a 0-point into data
-        double old_degree_avg = graphStates.time_local_stat.degree_sum_new*1.0/((graphStates.time_local_stat.ntotal-1)*1.0);
+        double old_degree_avg;
+        if(graphStates.time_local_stat.ntotal==1) {
+            old_degree_avg =0;
+        } else {
+            old_degree_avg = graphStates.time_local_stat.degree_sum_new*1.0/((graphStates.time_local_stat.ntotal-1)*1.0);
+        }
         double new_degree_avg = graphStates.time_local_stat.degree_sum_new*1.0/(graphStates.time_local_stat.ntotal*1.0);
         double variance_without = graphStates.time_local_stat.degree_variance_new;
         double new_degree_variance = (graphStates.time_local_stat.ntotal-1)*1.0/(graphStates.time_local_stat.ntotal*1.0)*(variance_without + (0-old_degree_avg)*(0-old_degree_avg)/graphStates.time_local_stat.ntotal);
