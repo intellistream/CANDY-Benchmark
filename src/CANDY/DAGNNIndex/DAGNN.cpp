@@ -18,21 +18,23 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     /// update degree stats
     {
         graphStates.global_stat.degree_sum = graphStates.time_local_stat.degree_sum_old + graphStates.time_local_stat.degree_sum_new;
-        float degree_avg = graphStates.global_stat.degree_sum/(prev_ntotal+new_ntotal);
+        double degree_avg = graphStates.global_stat.degree_sum/(prev_ntotal+new_ntotal);
 
-        float degree_avg_prev;
+        double degree_avg_prev;
         if(prev_ntotal==0) {
             degree_avg_prev = 0;
         } else {
-            degree_avg_prev = graphStates.time_local_stat.degree_sum_old/prev_ntotal;
+            degree_avg_prev = graphStates.time_local_stat.degree_sum_old/(prev_ntotal*1.0);
         }
-        float degree_avg_new = graphStates.time_local_stat.degree_sum_new/new_ntotal;
+        double degree_avg_new = graphStates.time_local_stat.degree_sum_new/(new_ntotal*1.0);
         // D = (n1*n2)/(n1+n2) * (avg1-avg2)^2;
-        float D = (prev_ntotal*new_ntotal)/(prev_ntotal+new_ntotal) * ((degree_avg_prev-degree_avg_new) * (degree_avg_prev-degree_avg_new));
+        double D = (prev_ntotal*new_ntotal*1.0)/(prev_ntotal*1.0+new_ntotal*1.0) * ((degree_avg_prev-degree_avg_new) * (degree_avg_prev-degree_avg_new));
         // combine variance = 1/(n1+n2) * ((n1-1)* var1 + (n2-1) * var2 + D)
-        graphStates.global_stat.degree_variance = 1/(prev_ntotal + new_ntotal) * (
-                                                        (prev_ntotal-1)*graphStates.time_local_stat.degree_variance_old
-                                                    +   (new_ntotal-1)*graphStates.time_local_stat.degree_variance_new
+        printf("previous data degree var %lf\n", graphStates.global_stat.degree_variance);
+        printf("UPdated previous data degree var %lf , new data degree var %lf\n", graphStates.time_local_stat.degree_variance_old, graphStates.time_local_stat.degree_variance_new);
+        graphStates.global_stat.degree_variance = 1.0/(prev_ntotal*1.0 + new_ntotal*1.0) * (
+                                                        (prev_ntotal*1.0-1.0)*graphStates.time_local_stat.degree_variance_old
+                                                    +   (new_ntotal*1.0-1.0)*graphStates.time_local_stat.degree_variance_new
                                                     + D);
 
     }
@@ -385,16 +387,17 @@ int64_t CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src
         int64_t prev_degree = i;
         int64_t current_degree = i+1;
         ///TODO: Update degree stats
-        if(level==0) {
+        if(level==0 ) {
             if(src<graphStates.time_local_stat.old_ntotal) {
 
                 auto n = graphStates.time_local_stat.old_ntotal;
                 auto n2 = 1;
-                float old_degree_avg = (graphStates.time_local_stat.degree_sum_old)/n;
-                float new_degree_avg = current_degree;
-                float old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
-                float variance_without = (graphStates.time_local_stat.degree_variance_old * n - old_entry)/(n-1);
-                float old_degree_avg_without = (graphStates.time_local_stat.degree_sum_old - prev_degree)/(n-1);
+                double old_degree_avg = (graphStates.time_local_stat.degree_sum_old * 1.0)/(n*1.0);
+                double new_degree_avg = current_degree;
+                double old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
+                double variance_without = (graphStates.time_local_stat.degree_variance_old * n - old_entry)/(n-1);
+
+                double old_degree_avg_without = (graphStates.time_local_stat.degree_sum_old - prev_degree)/(n-1);
                 auto D = (n-1)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
                 auto variance = 1.0/n*((n-1-1)*variance_without +D);
 
@@ -402,25 +405,29 @@ int64_t CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src
 
 
                 graphStates.time_local_stat.degree_variance_old = variance;
-                graphStates.time_local_stat.degree_sum_old++;
+                printf("variance = %lf\n", variance);
+                graphStates.time_local_stat.degree_sum_old += (current_degree-prev_degree);
 
             } else {
 
                 auto n = graphStates.time_local_stat.ntotal;
-                auto n2 = 1;
-                float old_degree_avg = (graphStates.time_local_stat.degree_sum_new)/n;
-                float new_degree_avg = current_degree;
-                float old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
-                float variance_without = (graphStates.time_local_stat.degree_variance_new * n - old_entry)/(n-1);
-                float old_degree_avg_without = (graphStates.time_local_stat.degree_sum_new - prev_degree)/(n-1);
-                auto D = (n-1.0)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
-                auto variance = 1.0/n*((n-1-1)*variance_without +D);
+                if(n!=1) {
+                    auto n2 = 1;
+                    double old_degree_avg = (graphStates.time_local_stat.degree_sum_new * 1.0)/n*1.0;
+                    double new_degree_avg = current_degree;
+                    double old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
+                    double variance_without = (graphStates.time_local_stat.degree_variance_new * n - old_entry)/(n-1);
+
+                    double old_degree_avg_without = (graphStates.time_local_stat.degree_sum_new - prev_degree)/(n-1);
+                    auto D = (n-1.0)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
+                    auto variance = 1.0/n*((n-1-1)*variance_without +D);
 
 
 
 
-                graphStates.time_local_stat.degree_variance_new = variance;
-                graphStates.time_local_stat.degree_sum_new++;
+                    graphStates.time_local_stat.degree_variance_new = variance;
+                }
+                graphStates.time_local_stat.degree_sum_new+=(current_degree-prev_degree);
             }
         }
 
@@ -471,16 +478,17 @@ int64_t CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src
     //printf("\n");
     int64_t current_degree = i;
     int64_t prev_degree = nb_neighbors(level);
-    if(level==0) {
+    if(level==0 ) {
         if(src<graphStates.time_local_stat.old_ntotal) {
 
             auto n = graphStates.time_local_stat.old_ntotal;
             auto n2 = 1;
-            float old_degree_avg = (graphStates.time_local_stat.degree_sum_old)/n;
-            float new_degree_avg = current_degree;
-            float old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
-            float variance_without = (graphStates.time_local_stat.degree_variance_old * n - old_entry)/(n-1);
-            float old_degree_avg_without = (graphStates.time_local_stat.degree_sum_old - prev_degree)/(n-1);
+            double old_degree_avg = (graphStates.time_local_stat.degree_sum_old * 1.0)/n*1.0;
+            double new_degree_avg = current_degree;
+            double old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
+            double variance_without = (graphStates.time_local_stat.degree_variance_old * n - old_entry)/(n-1);
+
+            double old_degree_avg_without = (graphStates.time_local_stat.degree_sum_old - prev_degree)/(n-1);
             auto D = (n-1)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
             auto variance = 1.0/n*((n-1-1)*variance_without +D);
 
@@ -488,25 +496,30 @@ int64_t CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src
 
 
             graphStates.time_local_stat.degree_variance_old = variance;
-            graphStates.time_local_stat.degree_sum_old++;
+            printf("variance = %lf\n", variance);
+            graphStates.time_local_stat.degree_sum_old+=(current_degree-prev_degree);
 
         } else {
 
             auto n = graphStates.time_local_stat.ntotal;
-            auto n2 = 1;
-            float old_degree_avg = (graphStates.time_local_stat.degree_sum_new)/n;
-            float new_degree_avg = current_degree;
-            float old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
-            float variance_without = (graphStates.time_local_stat.degree_variance_new * n - old_entry)/(n-1);
-            float old_degree_avg_without = (graphStates.time_local_stat.degree_sum_new - prev_degree)/(n-1);
-            auto D = (n-1.0)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
-            auto variance = 1.0/n*((n-1-1)*variance_without +D);
+            if(n!=1) {
+                auto n2 = 1;
+                double old_degree_avg = (graphStates.time_local_stat.degree_sum_new * 1.0)/n;
+                double new_degree_avg = current_degree;
+                double old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
+                double variance_without = (graphStates.time_local_stat.degree_variance_new * n - old_entry)/(n-1);
+
+                double old_degree_avg_without = (graphStates.time_local_stat.degree_sum_new - prev_degree)/(n-1);
+                auto D = (n-1.0)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
+                auto variance = 1.0/n*((n-1-1)*variance_without +D);
 
 
 
 
-            graphStates.time_local_stat.degree_variance_new = variance;
-            graphStates.time_local_stat.degree_sum_new++;
+                graphStates.time_local_stat.degree_variance_new = variance;
+            }
+
+            graphStates.time_local_stat.degree_sum_new+=(current_degree-prev_degree);
         }
 
     }

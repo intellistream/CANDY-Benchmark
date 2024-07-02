@@ -78,12 +78,12 @@ struct DynamicTuneHNSW{
     struct GlobalGraphStats : DRLStates{
 
         int64_t degree_sum = 0.0;
-        float degree_variance = 0.0;
-        float neighbor_distance_avg = 0.0;
-        float neighbor_distance_variance = 0.0;
+        double degree_variance = 0.0;
+        double neighbor_distance_avg = 0.0;
+        double neighbor_distance_variance = 0.0;
         void print() {
             printf("ntotal=%ld\n", ntotal);
-            printf("degree average = %f , degree variance = %f\n", degree_sum/ntotal, degree_variance);
+            printf("degree average = %lf , degree variance = %lf\n", degree_sum/(ntotal*1.0), degree_variance);
             printf("avg neighbor distance = %f , neighbor distance var = %f\n", neighbor_distance_avg, neighbor_distance_variance);
         }
         ///TODO: DEFINE THIS!
@@ -96,16 +96,16 @@ struct DynamicTuneHNSW{
         size_t old_ntotal = 0;
         // sigma ^2
         int64_t degree_sum_new = 0;
-        float degree_variance_new = 0.0;
+        double degree_variance_new = 0.0;
 
         /// updating old variance to continue the update
-        float degree_variance_old = 0.0;
+        double degree_variance_old = 0.0;
         int64_t degree_sum_old = 0;
 
 
 
-        float neighbor_distance_avg = 0.0;
-        float neighbor_distance_variance = 0.0;
+        double neighbor_distance_avg = 0.0;
+        double neighbor_distance_variance = 0.0;
         void reset() {
             ntotal = 0;
             degree_sum_new = 0;
