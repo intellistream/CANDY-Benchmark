@@ -49,12 +49,12 @@ std::vector<faiss::idx_t> CANDY::DAGNNIndex::searchIndex(torch::Tensor q, int64_
         dagnn->search(disq, k, ru.data()+i*k, distance.data()+i*k, vt);
 
     }
-    for(int64_t i=0; i<querySize; i++) {
-        printf("result for %ldth query\n", i);
-        for(int64_t j=0; j<k; j++) {
-            printf("%ld %ld: %f\n", i*k+j,ru[i*k+j], distance[i*k+j]);
-        }
-    }
+    // for(int64_t i=0; i<querySize; i++) {
+    //     printf("result for %ldth query\n", i);
+    //     for(int64_t j=0; j<k; j++) {
+    //         printf("%ld %ld: %f\n", i*k+j,ru[i*k+j], distance[i*k+j]);
+    //     }
+    // }
     return ru;
 }
 

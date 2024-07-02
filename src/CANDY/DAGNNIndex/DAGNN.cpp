@@ -5,6 +5,54 @@
 #include <faiss/utils/Heap.h>
 
 
+void CANDY::DynamicTuneHNSW::updateGlobalState() {
+    /// update value average
+    auto prev_ntotal = graphStates.global_stat.ntotal;
+    auto new_ntotal = graphStates.time_local_stat.ntotal;
+    for(int64_t d=0; d<vecDim; d++) {
+        auto prev = graphStates.global_stat.value_average[d];
+        auto newv = graphStates.time_local_stat.value_average[d];
+        graphStates.global_stat.value_average[d] = (prev_ntotal*prev + new_ntotal*newv)/(prev_ntotal + new_ntotal);
+    }
+
+    /// update degree stats
+    {
+        graphStates.global_stat.degree_sum = graphStates.time_local_stat.degree_sum_old + graphStates.time_local_stat.degree_sum_new;
+        float degree_avg = graphStates.global_stat.degree_sum/(prev_ntotal+new_ntotal);
+
+        float degree_avg_prev;
+        if(prev_ntotal==0) {
+            degree_avg_prev = 0;
+        } else {
+            degree_avg_prev = graphStates.time_local_stat.degree_sum_old/prev_ntotal;
+        }
+        float degree_avg_new = graphStates.time_local_stat.degree_sum_new/new_ntotal;
+        // D = (n1*n2)/(n1+n2) * (avg1-avg2)^2;
+        float D = (prev_ntotal*new_ntotal)/(prev_ntotal+new_ntotal) * ((degree_avg_prev-degree_avg_new) * (degree_avg_prev-degree_avg_new));
+        // combine variance = 1/(n1+n2) * ((n1-1)* var1 + (n2-1) * var2 + D)
+        graphStates.global_stat.degree_variance = 1/(prev_ntotal + new_ntotal) * (
+                                                        (prev_ntotal-1)*graphStates.time_local_stat.degree_variance_old
+                                                    +   (new_ntotal-1)*graphStates.time_local_stat.degree_variance_new
+                                                    + D);
+
+    }
+
+
+    {
+
+    }
+
+
+
+
+    graphStates.global_stat.ntotal+=graphStates.time_local_stat.ntotal;
+    graphStates.time_local_stat.reset();
+    graphStates.time_local_stat.old_ntotal = graphStates.global_stat.ntotal;
+    graphStates.time_local_stat.degree_sum_old = graphStates.global_stat.degree_sum;
+    graphStates.time_local_stat.degree_variance_old = graphStates.global_stat.degree_variance;
+    graphStates.global_stat.print();
+}
+
 void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     // here params are already set or updated
     assert(n>0);
@@ -17,13 +65,13 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     for(int64_t d=0; d<vecDim; d++) {
         //printf("%.2f, ", graphStates.global_stat.value_average[d]);
     }
-    for(idx_t i=0;i<2; i++) {
+
+    for(idx_t i=0; i<n; i++) {
         for(int64_t d=0; d<vecDim; d++) {
             auto m = (x[vecDim*i+d]-graphStates.global_stat.value_average[d])/(n0+i+1);
-            graphStates.global_stat.value_average[d] += m;
+            graphStates.time_local_stat.value_average[d] += m;
         }
-    }
-    for(idx_t i=0; i<n; i++) {
+        graphStates.time_local_stat.ntotal+=1;
         disq.set_query(x+vecDim*i);
 
         auto node = linkLists[i+n0];
@@ -31,13 +79,8 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
         DAGNN::VisitedTable vt(n0+n);
         greedy_insert(disq, *node, vt);
 
-
     }
-
-    // for(int64_t d=0; d<vecDim; d++) {
-    //     printf("%.2f, ", graphStates.global_stat.value_average[d]);
-    // }
-    // printf("\n");
+    updateGlobalState();
 
 
 
@@ -269,7 +312,6 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
         return;
     }
     std::vector<CandidateCloser> output;
-    float dis_sum = 0.0;
     int count = 0;
     std::priority_queue<CandidateCloser> candidates_reverse;
     while(!candidates.empty()) {
@@ -302,7 +344,6 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
             if(output.size()>=M){
                 // transfer output to candidate
                 for(auto k : output) {
-                    dis_sum += -k.dist;
                     count++;
                     candidates.emplace(-k.dist, k.id);
                 }
@@ -313,7 +354,6 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
         }
     }
     for(auto k : output) {
-        dis_sum += -k.dist;
         count++;
         candidates.emplace(-k.dist, k.id);
     }
@@ -324,13 +364,13 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
 void breakpoint() {
     return;
 }
-void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level) {
+int64_t CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level) {
     if(src==dest) {
-        return;
+        return -1;
     }
     int nb_neighbors_level = nb_neighbors(level);
     auto src_linkList = &linkLists[src]->neighbors[level];
-    //auto src_dist = &linkLists[src]->distances[level];
+    auto src_dist = &linkLists[src]->distances[level];
     if((*src_linkList)[nb_neighbors_level-1]==-1) {
         size_t i=nb_neighbors_level;
         while(i>0) {
@@ -340,38 +380,77 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
             i--;
         }
         //printf("updating links for %ld: ", src);
-        (*src_linkList)[i]=dest;
+
+        (*src_linkList)[i] = dest;
+        int64_t prev_degree = i;
+        int64_t current_degree = i+1;
+        ///TODO: Update degree stats
+        if(level==0) {
+            if(src<graphStates.time_local_stat.old_ntotal) {
+
+                auto n = graphStates.time_local_stat.old_ntotal;
+                auto n2 = 1;
+                float old_degree_avg = (graphStates.time_local_stat.degree_sum_old)/n;
+                float new_degree_avg = current_degree;
+                float old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
+                float variance_without = (graphStates.time_local_stat.degree_variance_old * n - old_entry)/(n-1);
+                float old_degree_avg_without = (graphStates.time_local_stat.degree_sum_old - prev_degree)/(n-1);
+                auto D = (n-1)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
+                auto variance = 1.0/n*((n-1-1)*variance_without +D);
+
+
+
+
+                graphStates.time_local_stat.degree_variance_old = variance;
+                graphStates.time_local_stat.degree_sum_old++;
+
+            } else {
+
+                auto n = graphStates.time_local_stat.ntotal;
+                auto n2 = 1;
+                float old_degree_avg = (graphStates.time_local_stat.degree_sum_new)/n;
+                float new_degree_avg = current_degree;
+                float old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
+                float variance_without = (graphStates.time_local_stat.degree_variance_new * n - old_entry)/(n-1);
+                float old_degree_avg_without = (graphStates.time_local_stat.degree_sum_new - prev_degree)/(n-1);
+                auto D = (n-1.0)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
+                auto variance = 1.0/n*((n-1-1)*variance_without +D);
+
+
+
+
+                graphStates.time_local_stat.degree_variance_new = variance;
+                graphStates.time_local_stat.degree_sum_new++;
+            }
+        }
+
+        /// TODO: weighted edges
+        auto src_vec = get_vector(src);
+        auto dest_vec = get_vector(dest);
+
+        (*src_dist)[i] = disq.distance(src_vec, dest_vec);
         //printf("from %ld to %ld\n", src, dest);
         //printf("%ld \n", dest);
-        return;
+        return current_degree;
     }
 
     std::priority_queue<CandidateCloser> final_neighbors;
     auto src_vector=get_vector(src);
     auto dest_vector = get_vector(dest);
 
-    float dis_sum = 0.0;
-    int count = 0;
     final_neighbors.emplace(disq.distance(src_vector, dest_vector), dest);
-    dis_sum += disq.distance(src_vector, dest_vector);
-    count++;
-    float dis_avg = 0;
     delete[] dest_vector;
     for(size_t i=0; i<nb_neighbors_level; i++) {
         auto neighbor  = (*src_linkList)[i];
-        //auto dist = (*src_dist)[i];
-        auto neighbor_vector = get_vector(neighbor);
-        auto dist = disq.distance(neighbor_vector, src_vector);
+        /// TODO: WEIGHTED EDGES
+        auto dist = (*src_dist)[i];
+
+        //auto neighbor_vector = get_vector(neighbor);
+        //auto dist = disq.distance(neighbor_vector, src_vector);
         //printf("neighbor %ld with dist %f       ", neighbor, dist);
 
-
-        count++;
-
-        dis_sum += dist;
-        dis_avg = (dis_sum)/count;
-
         final_neighbors.emplace(dist, neighbor);
-        delete[] neighbor_vector;
+        //delete[] neighbor_vector;
     }
     //printf("before pruning %ld avg distance = %f with size %d\n", src, dis_sum/count, count);
 
@@ -379,15 +458,10 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
 
     size_t i=0;
 
-    count = 0;
-    dis_sum = 0;
-
 
     while(!final_neighbors.empty()) {
         //printf("%ld ", final_neighbors.top().id);
         (*src_linkList)[i++] = final_neighbors.top().id;
-        count +=1;
-        dis_sum +=final_neighbors.top().dist;
         //(*src_dist)[i++] = final_neighbors.top().dist;
 
 
@@ -395,9 +469,51 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
     }
     //printf("after pruning %ld avg distance = %f with size %d\n\n", src, dis_sum/count, count);
     //printf("\n");
+    int64_t current_degree = i;
+    int64_t prev_degree = nb_neighbors(level);
+    if(level==0) {
+        if(src<graphStates.time_local_stat.old_ntotal) {
+
+            auto n = graphStates.time_local_stat.old_ntotal;
+            auto n2 = 1;
+            float old_degree_avg = (graphStates.time_local_stat.degree_sum_old)/n;
+            float new_degree_avg = current_degree;
+            float old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
+            float variance_without = (graphStates.time_local_stat.degree_variance_old * n - old_entry)/(n-1);
+            float old_degree_avg_without = (graphStates.time_local_stat.degree_sum_old - prev_degree)/(n-1);
+            auto D = (n-1)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
+            auto variance = 1.0/n*((n-1-1)*variance_without +D);
+
+
+
+
+            graphStates.time_local_stat.degree_variance_old = variance;
+            graphStates.time_local_stat.degree_sum_old++;
+
+        } else {
+
+            auto n = graphStates.time_local_stat.ntotal;
+            auto n2 = 1;
+            float old_degree_avg = (graphStates.time_local_stat.degree_sum_new)/n;
+            float new_degree_avg = current_degree;
+            float old_entry = (prev_degree-old_degree_avg)*(prev_degree - old_degree_avg);
+            float variance_without = (graphStates.time_local_stat.degree_variance_new * n - old_entry)/(n-1);
+            float old_degree_avg_without = (graphStates.time_local_stat.degree_sum_new - prev_degree)/(n-1);
+            auto D = (n-1.0)/n * (old_degree_avg_without - current_degree)*(old_degree_avg_without-current_degree);
+            auto variance = 1.0/n*((n-1-1)*variance_without +D);
+
+
+
+
+            graphStates.time_local_stat.degree_variance_new = variance;
+            graphStates.time_local_stat.degree_sum_new++;
+        }
+
+    }
     while(i<nb_neighbors_level) {
         (*src_linkList)[i++]=-1;
     }
+    return current_degree;
 }
 
 void CANDY::DynamicTuneHNSW::search(DAGNN::DistanceQueryer &disq, idx_t annk, idx_t* results, float* distances, DAGNN::VisitedTable& vt) {

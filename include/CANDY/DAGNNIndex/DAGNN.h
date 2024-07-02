@@ -11,6 +11,7 @@
 #include <CANDY/DAGNNIndex/DAGNNUtil.h>
 #include <faiss/IndexFlat.h>
 #include <omp.h>
+#include <boost/math/constants/constants.hpp>
 
 namespace CANDY{
 /**
@@ -69,21 +70,62 @@ struct DynamicTuneHNSW{
 
     };
 
-    struct GraphStats{
+    struct DRLStates {
         std::vector<float> value_average;
-        float degree_average = 0.0;
-        float degree_skewness = 0.0;
+        size_t ntotal = 0;
 
+    };
+    struct GlobalGraphStats : DRLStates{
 
+        int64_t degree_sum = 0.0;
+        float degree_variance = 0.0;
+        float neighbor_distance_avg = 0.0;
+        float neighbor_distance_variance = 0.0;
+        void print() {
+            printf("ntotal=%ld\n", ntotal);
+            printf("degree average = %f , degree variance = %f\n", degree_sum/ntotal, degree_variance);
+            printf("avg neighbor distance = %f , neighbor distance var = %f\n", neighbor_distance_avg, neighbor_distance_variance);
+        }
         ///TODO: DEFINE THIS!
-        float interconnection_rates = 0.0;
-        std::vector<idx_t> overclusterings;
+
+
+
+    };
+    /// Used for updating the global graph states
+    struct BatchDataStates : DRLStates{
+        size_t old_ntotal = 0;
+        // sigma ^2
+        int64_t degree_sum_new = 0;
+        float degree_variance_new = 0.0;
+
+        /// updating old variance to continue the update
+        float degree_variance_old = 0.0;
+        int64_t degree_sum_old = 0;
+
+
+
+        float neighbor_distance_avg = 0.0;
+        float neighbor_distance_variance = 0.0;
+        void reset() {
+            ntotal = 0;
+            degree_sum_new = 0;
+            degree_variance_new = 0.0;
+            neighbor_distance_avg = 0.0;
+            neighbor_distance_variance = 0.0;
+            for(auto v: value_average) {
+                v=0.0;
+            }
+        }
+
+    };
+
+    struct WindowStates : DRLStates {
 
     };
 
     struct GraphStates{
-        GraphStats global_stat;
-        GraphStats time_local_stat;
+        GlobalGraphStats global_stat;
+        BatchDataStates time_local_stat;
 
         /// others
     };
@@ -226,7 +268,7 @@ struct DynamicTuneHNSW{
 
     void link(size_t level, idx_t entry, std::priority_queue<CandidateCloser>& candidates);
 
-    void add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level);
+    int64_t add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level);
 
     void search(DAGNN::DistanceQueryer& disq, idx_t annk, idx_t* results, float* distances, DAGNN::VisitedTable& vt);
 
@@ -276,6 +318,11 @@ struct DynamicTuneHNSW{
     bool performAction(const size_t action_num){
         return true;
     }
+    /// Using time_local_stat to update global_stat
+    void updateGlobalState();
+
+
+
 
     /// Dynamic Actions
 
