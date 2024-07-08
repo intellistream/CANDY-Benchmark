@@ -14,13 +14,61 @@
 #include <boost/math/constants/constants.hpp>
 
 namespace CANDY{
+struct BreakdownStats {
+    size_t steps_greedy = 0;
+    size_t steps_expansion = 0;
+    size_t steps_pruning = 0;
+    size_t steps_greedy_base = 0;
+    size_t steps_expansion_base = 0;
+    size_t steps_pruning_base = 0;
+    size_t prune_times = 0;
+    size_t prune_times_base = 0;
+    std::vector<std::vector<int64_t>> upper_nodes;
+
+    void print() {
+        printf("base: ");
+        auto total = steps_greedy_base+steps_expansion_base+steps_pruning_base;
+        printf("%ld %f %ld %f %ld %f\n", steps_greedy_base, steps_greedy_base/(total*1.0), steps_expansion_base, steps_expansion_base/(total*1.0), steps_pruning_base, steps_pruning_base/(total*1.0));
+
+        printf("Upper: ");
+        auto total_upper = steps_greedy+steps_expansion+steps_pruning;
+        printf("%ld %f %ld %f %ld %f\n", steps_greedy, steps_greedy/(total_upper*1.0), steps_expansion, steps_expansion/(total_upper*1.0), steps_pruning, steps_pruning/(total_upper*1.0));
+
+        printf("Prune times: ");
+        printf("%ld %ld %f\n", steps_pruning, prune_times, steps_pruning/(prune_times*1.0));
+
+        printf("Prune times Base: ");
+        printf("%ld %ld %f\n", steps_pruning_base, prune_times_base, steps_pruning_base/(prune_times_base*1.0));
+
+
+        printf("Levels: \n");
+            for(size_t l=0; l<upper_nodes.size(); l++) {
+                printf("%ldth level: %ld\n", l+1, upper_nodes[l].size());
+            }
+
+    }
+    void reset() {
+        steps_greedy = 0;
+        steps_expansion = 0;
+        steps_pruning = 0;
+
+        steps_greedy_base = 0;
+        steps_expansion_base = 0;
+        steps_pruning_base = 0;
+
+        prune_times = 0;
+        prune_times_base = 0;
+    }
+
+    BreakdownStats()=default;
+};
 /**
 * @class
 * @brief The dynamic parameter tuning graph that has the structure of HNSW
 */
 struct DynamicTuneHNSW{
     using idx_t = int64_t;
-
+    bool verbose = false;
     struct CandidateCloser {
         idx_t id=-1;
         float dist;
@@ -38,14 +86,88 @@ struct DynamicTuneHNSW{
         }
         CandidateFarther(float d, idx_t i): dist(d), id(i){}
     };
+
+
     struct Node{
         idx_t id = -1;
         size_t level = -1;
+        size_t bottom_connections = 0;
         // Neighbor* neighbors;
         std::vector<std::vector<idx_t>> neighbors;
         std::vector<std::vector<float>> distances;
-
+        bool operator<(const Node& obj1) const {
+            return bottom_connections<obj1.bottom_connections;
+        }
     };
+
+
+    struct ordered_map {
+        std::map<idx_t, Node*> data_map;        // Using std::map for ordering by id
+        std::unordered_set<idx_t> id_set;      // To maintain uniqueness of ids
+        size_t max_size;
+        size_t evictions = 0;
+        // Function to insert or update a Node
+        ordered_map()=default;
+        void insert(idx_t id,  Node* node) {
+            // Check if the id already exists
+            auto it = data_map.find(id);
+            // in case of sorting by connections
+            if (it != data_map.end()) {
+                // Update existing Node
+                it->second = node;
+
+            } else {
+                // Insert new Node
+                if (data_map.size() >= max_size) {
+                    // Remove the smallest (first) element in the map
+                    auto smallest_it = data_map.begin();
+                    int smallest_id = smallest_it->first;
+                    data_map.erase(smallest_it);
+                    id_set.erase(smallest_id);
+                    evictions++;
+                }
+                data_map.emplace(id, node);
+                id_set.insert(id); // Update id_set for uniqueness check
+            }
+        }
+
+        // Function to get the Node by id
+        Node* get(idx_t id) {
+            auto it = data_map.find(id);
+            if (it != data_map.end()) {
+                return it->second;
+            } else {
+                return nullptr; // Not found
+            }
+        }
+
+        // Function to remove a Node by id
+        void remove(idx_t id) {
+            auto it = data_map.find(id);
+            if (it != data_map.end()) {
+                data_map.erase(it);
+                id_set.erase(id);
+            }
+        }
+
+        // Function to print all Nodes (sorted by id)
+        void print_all() {
+            for (const auto& pair : data_map) {
+                std::cout << "ID: " << pair.first << ", Value: " << pair.second->bottom_connections << std::endl;
+            }
+            printf("Number of evictions: %ld\n", evictions);
+        }
+        void clear() {
+            data_map.clear();
+            id_set.clear();
+            evictions=0;
+        }
+        // Function to check if id exists
+        bool contains(idx_t id) const {
+            return id_set.find(id) != id_set.end();
+        }
+    };
+
 
 
 
@@ -62,16 +184,30 @@ struct DynamicTuneHNSW{
          as the cluster centering vertex_1
          */
         int64_t clusterExpansionStep = 1;
-        /*
-            The size of time-local window
-         */
-        int64_t timeWindowSize = 50;
+
+        int64_t clusterInnerConnectionThreshold = 1;
+        int64_t optimisticN = 16;
+        int64_t checkN = 0;
+
+
+        double degree_std_range = 1.5;
+
+        bool sparsePreference = true;
+        double neighborDistanceThreshold = 0.0;
+        std::vector<float> routeDrifts;
+        DynamicTuneParams()=default;
+        DynamicTuneParams(const int64_t M, const int64_t dim) {
+            bottom_connections_lower_bound = M;
+            bottom_connections_upper_bound = M;
+            routeDrifts.resize(dim, 0.0);
+        }
 
 
     };
 
     struct DRLStates {
         std::vector<float> value_average;
+        std::vector<float> value_variance;
         size_t ntotal = 0;
 
     };
@@ -79,12 +215,15 @@ struct DynamicTuneHNSW{
 
         int64_t degree_sum = 0.0;
         double degree_variance = 0.0;
-        double neighbor_distance_avg = 0.0;
+        double neighbor_distance_sum = 0.0;
         double neighbor_distance_variance = 0.0;
+        int64_t steps_taken_max = 0;
+        double steps_taken_avg = 0.0;
+        int64_t steps_expansion_average = 0.0;
         void print() {
-            printf("ntotal=%ld\n", ntotal);
-            printf("degree average = %lf , degree variance = %lf\n", degree_sum/(ntotal*1.0), degree_variance);
-            printf("avg neighbor distance = %f , neighbor distance var = %f\n", neighbor_distance_avg, neighbor_distance_variance);
+            //printf("ntotal=%ld\n", ntotal);
+            //printf("degree average = %lf , degree variance = %lf\n", degree_sum/(ntotal*1.0), degree_variance);
+            //printf("avg neighbor distance = %f , neighbor distance var = %f\n", neighbor_distance_sum/, neighbor_distance_variance);
         }
         ///TODO: DEFINE THIS!
 
@@ -102,38 +241,84 @@ struct DynamicTuneHNSW{
         double degree_variance_old = 0.0;
         int64_t degree_sum_old = 0;
 
+        double neighbor_distance_sum_new = 0.0;
+        double neighbor_distance_variance_new = 0.0;
+        double neighbor_distance_sum_old = 0.0;
+        double neighbor_distance_variance_old = 0.0;
+
+        int64_t steps_taken_sum = 0;
+        int64_t steps_taken_max = 0;
+
+        int64_t steps_expansion_sum = 0;
 
 
-        double neighbor_distance_avg = 0.0;
-        double neighbor_distance_variance = 0.0;
+
         void reset() {
             ntotal = 0;
             degree_sum_new = 0;
             degree_variance_new = 0.0;
-            neighbor_distance_avg = 0.0;
-            neighbor_distance_variance = 0.0;
-            for(auto v: value_average) {
-                v=0.0;
+            neighbor_distance_sum_new = 0.0;
+            neighbor_distance_variance_new = 0.0;
+            for(size_t i=0; i<value_average.size(); i++) {
+                value_average[i]=0.0;
+                value_variance[i] = 0.0;
             }
         }
 
     };
 
     struct WindowStates : DRLStates {
-
+        size_t oldWindowSize = 50;
+        size_t newWindowSize = 100;
+        ordered_map oldVertices;
+        ordered_map newVertices;
+        void init() {
+            oldVertices.max_size = oldWindowSize;
+            newVertices.max_size = newWindowSize;
+        }
+        void reset() {
+            newVertices.clear();
+            oldVertices.clear();
+        }
+        WindowStates()=default;
     };
 
     struct GraphStates{
+        int64_t vecDim = 0;
         GlobalGraphStats global_stat;
         BatchDataStates time_local_stat;
+        WindowStates window_states;
+        void init() {
+            global_stat.value_average.resize(vecDim,0.0);
+            global_stat.value_variance.resize(vecDim, 0.0);
+            time_local_stat.value_average.resize(vecDim,0.0);
+            time_local_stat.value_variance.resize(vecDim,0.0);
+            window_states.init();
+        }
+        void forward() {
+            global_stat.ntotal+=time_local_stat.ntotal;
+            time_local_stat.reset();
+            time_local_stat.old_ntotal = global_stat.ntotal;
 
+            /// give timelocal previous var
+            time_local_stat.degree_sum_old = global_stat.degree_sum;
+            time_local_stat.degree_variance_old = global_stat.degree_variance;
+            time_local_stat.neighbor_distance_sum_old = global_stat.neighbor_distance_sum;
+            time_local_stat.neighbor_distance_variance_old = global_stat.neighbor_distance_variance;
+
+            time_local_stat.steps_expansion_sum = 0;
+            time_local_stat.steps_taken_sum = 0;
+            time_local_stat.steps_taken_max = 0;
+        }
         /// others
     };
+
     int64_t vecDim;
     DAGNN::DistanceQueryer* disq = nullptr;
 
     DynamicTuneParams dynamicParams;
     GraphStates graphStates;
+    BreakdownStats bd_stats;
     // The database, only for retrieving vector using reconstruct();
     faiss::IndexFlat* storage = nullptr;
     /// The graph neighbor structure. Use linkLists[idx] to locate a Nodes' neighbor list
@@ -150,6 +335,7 @@ struct DynamicTuneHNSW{
 
     DynamicTuneHNSW(const int64_t M, const int64_t dim, const DAGNN::dagnn_metric_t metric, const DynamicTuneParams setting) {
         vecDim = dim;
+        graphStates.vecDim = dim;
         set_default_probs(M, 1.0/log(M));
         disq = new DAGNN::DistanceQueryer(metric,dim);
         if(metric == DAGNN_METRIC_L2){
@@ -159,8 +345,9 @@ struct DynamicTuneHNSW{
         }
         dynamicParams = setting;
 
-        graphStates.global_stat.value_average.resize(vecDim,0.0);
-        graphStates.time_local_stat.value_average.resize(vecDim,0.0);
+
+        graphStates.init();
+
         assert(storage);
     }
 
@@ -177,15 +364,15 @@ struct DynamicTuneHNSW{
         int64_t nn=0;
         cum_nneighbor_per_level.push_back(0);
         for(int64_t level=0;;level++){
-            //float prob = exp(-level/levelMult)*(1-exp(-1/levelMult));
+
             float a = exp(-level/levelMult);
             float b = 1-exp(-1/levelMult);
             float prob = exp(-level / levelMult) * (1 - exp(-1 / levelMult));
-            //printf("level = %ld, levelMult = %.2f, prob=%.9f\n", level, levelMult, prob);
             if(prob < 1e-9){
                 break;
             }
             assign_probs.push_back(prob);
+
             if(level!=0){
                 nn+=M;
             } else {
@@ -193,6 +380,7 @@ struct DynamicTuneHNSW{
             }
             cum_nneighbor_per_level.push_back(nn);
         }
+        bd_stats.upper_nodes.resize(assign_probs.size()-1);
 
     }
 
@@ -220,20 +408,18 @@ struct DynamicTuneHNSW{
             auto new_node = new Node();
             new_node->id = n0+i;
             new_node->level = level;
+            if(level>0) {
+                bd_stats.upper_nodes[level-1].push_back(i);
+            }
             for(size_t l=0; l<=level; l++) {
                 auto l_neighbors = std::vector<idx_t>(nb_neighbors(l),-1);
                 auto l_distances = std::vector<float>(nb_neighbors(l), -0.0);
                 new_node->neighbors.push_back(l_neighbors);
                 new_node->distances.push_back(l_distances);
             }
-            //new_node->neighbors.resize(cum_nneighbor_per_level[new_node->level+1], -1);
-            //new_node->distances.resize(cum_nneighbor_per_level[new_node->level+1], -1);
+
             // use cum_nneighbor_per_level[new_node.level] to get total number of levels
             linkLists.push_back(new_node);
-            // printf("My id is %ld:\n", new_node->id);
-            // for(size_t l=0; l<=level; l++) {
-            //     printf("level is %ld, cum neighbor is %ld\n",l, new_node->neighbors[l].size());
-            // }
         }
     }
 
@@ -254,21 +440,29 @@ struct DynamicTuneHNSW{
 
     void greedy_insert(DAGNN::DistanceQueryer& disq, Node& node,DAGNN::VisitedTable& vt);
 
-    void greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest);
+    void greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, int64_t& steps_taken);
 
-    void greedy_insert_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
+    void greedy_insert_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken);
 
-    void greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
+    void greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken);
 
     void link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt);
 
+    void link_from_base(DAGNN::DistanceQueryer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt);
+
     void candidate_select(DAGNN::DistanceQueryer& disq, size_t level, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt);
+
+    void candidate_select_base(DAGNN::DistanceQueryer& disq, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt);
 
     void prune(DAGNN::DistanceQueryer& disq,size_t level, std::priority_queue<CandidateCloser>& candidates);
 
+    void prune_base(DAGNN::DistanceQueryer& disq, std::priority_queue<CandidateCloser>& candidates);
+
     void link(size_t level, idx_t entry, std::priority_queue<CandidateCloser>& candidates);
 
-    int64_t add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level);
+    void add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level);
+
+    void add_link_base(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, int64_t& prev_degree, int64_t& current_degree);
 
     void search(DAGNN::DistanceQueryer& disq, idx_t annk, idx_t* results, float* distances, DAGNN::VisitedTable& vt);
 

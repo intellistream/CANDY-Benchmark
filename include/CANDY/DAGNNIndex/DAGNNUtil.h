@@ -85,6 +85,7 @@ namespace CANDY::DAGNN{
             }
             visno++;
         }
+        ~VisitedTable(){};
     };
 
     /// a tiny heap that is used during search
@@ -157,6 +158,7 @@ namespace CANDY::DAGNN{
             return n_below;
         }
     };
+    /// combine two groups with avg and var
 
 }
 #endif //DAGNNUTIL_H
