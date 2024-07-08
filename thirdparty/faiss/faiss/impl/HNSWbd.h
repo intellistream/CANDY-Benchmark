@@ -78,16 +78,16 @@ struct HNSW_breakdown_stats {
 
 
     void print() {
-        std::cout << steps_greedy << ",";
+        std::cout << steps_greedy << ","; //0
         std::cout << steps_iterating_add << ",";
-        std::cout << steps_iterating_search << ",";
+        std::cout << steps_iterating_search << ","; //0
 
         std::cout << time_greedy_insert << ",";
         std::cout << time_searching_neighbors_to_add << ",";
         std::cout << time_add_links << ",";
 
-        std::cout << time_greedy_search << ",";
-        std::cout << time_search_from_candidates << ",";
+        std::cout << time_greedy_search << ","; //0
+        std::cout << time_search_from_candidates << ","; //0
 	std::cout<<time_dc<<",";
 	std::cout<<time_dc_linking<<",";
 	std::cout<<step_before_shrinking<<",";
@@ -300,7 +300,7 @@ struct HNSWbd {
             std::priority_queue<NodeDistFarther>& input,
             std::vector<NodeDistFarther>& output,
             int max_size,
-	    struct HNSW_breakdown_stats& bd_stats, double alpha);
+	    struct HNSW_breakdown_stats& bd_stats);
 
     void permute_entries(const idx_t* map);
 };

@@ -206,122 +206,74 @@ void HNSWbd::fill_with_random_links(size_t n) {
     }
 }
 
-int HNSWbd::prepare_level_tab(size_t n, bool preset_levels) {
-    /*size_t n0 = offsets.size() - 1;
+    int HNSWbd::prepare_level_tab(size_t n, bool preset_levels) {
+    size_t n0 = offsets.size() - 1;
 
     if (preset_levels) {
         FAISS_ASSERT(n0 + n == levels.size());
     } else {
         FAISS_ASSERT(n0 == levels.size());
         for (int i = 0; i < n; i++) {
-            int pt_level = random_level();
+            //int pt_level = random_level();
+            int pt_level=0;
             levels.push_back(pt_level + 1);
         }
     }
-    */
-    int max_level = 1;
-    /*for (int i = 0; i < n; i++) {
-        int pt_level = levels[i + n0] - 1;
-        if (pt_level > max_level)
-            max_level = pt_level;
+
+    int max_level = 0;
+    for (int i = 0; i < n; i++) {
+        //int pt_level = levels[i + n0] - 1;
+        int pt_level=0;
+        // if (pt_level > max_level)
+        //     max_level = pt_level;
         offsets.push_back(offsets.back() + cum_nb_neighbors(pt_level + 1));
         neighbors.resize(offsets.back(), -1);
-    }*/
+    }
 
     return max_level;
 }
-
 /** Enumerate vertices from nearest to farthest from query, keep a
  * neighbor only if there is no previous neighbor that is closer to
  * that vertex than the query.
  */
-// void HNSWbd::shrink_neighbor_list(
-//         DistanceComputer& qdis,
-//         std::priority_queue<NodeDistFarther>& input,
-//         std::vector<NodeDistFarther>& output,
-//         int max_size,
-// 	struct HNSW_breakdown_stats& bd_stats) {
-//     while (input.size() > 0) {
-//         NodeDistFarther v1 = input.top();
-//         input.pop();
-//         float dist_v1_q = v1.d;
-//
-//         bool good = true;
-//         for (NodeDistFarther v2 : output) {
-// 		auto start = std::chrono::high_resolution_clock::now();
-//             float dist_v1_v2 = qdis.symmetric_dis(v2.id, v1.id);
-// 	    bd_stats.time_dc_linking += chronoElapsedTime(start);
-// 	    bd_stats.step_linking +=1;
-//
-//             if (dist_v1_v2 < dist_v1_q) {
-//                 good = false;
-//                 break;
-//             }
-//         }
-//
-//         if (good) {
-//             output.push_back(v1);
-//             if (output.size() >= max_size) {
-//                 return;
-//             }
-//         }
-//     }
-    // }
-    //
 void HNSWbd::shrink_neighbor_list(
-    DistanceComputer &qdis,
-    std::priority_queue<NodeDistFarther>&input,
-    std::vector<NodeDistFarther>&output,
-    int max_size,
-    HNSW_breakdown_stats &bd_stats,
-    double alpha
-    )
- {
-        std::unordered_set<storage_idx_t> V;
-        std::unordered_map<storage_idx_t, float> distances;
+        DistanceComputer& qdis,
+        std::priority_queue<NodeDistFarther>& input,
+        std::vector<NodeDistFarther>& output,
+        int max_size,
+	struct HNSW_breakdown_stats& bd_stats) {
 
-        while (!input.empty()) {
-            NodeDistFarther node = input.top();
-            input.pop();
-            V.emplace(node.id);
-            distances[node.id] = node.d;
-        }
+    double alpha = 1.1;
 
-        // new neighbors set
-        std::unordered_set<storage_idx_t> new_neighbors;
+    std::priority_queue<NodeDistCloser> input2;
+    std::priority_queue<NodeDistFarther> input1;
+    //std::vector<NodeDistFarther> output2;
 
-        while (!V.empty()) {
-            // point p* in V that is closest to query
-            auto p_star_it = std::min_element(V.begin(), V.end(), [&distances](storage_idx_t a, storage_idx_t b) {
-                return distances[a] < distances[b];
-            });
-            storage_idx_t p_star = *p_star_it;
-            V.erase(p_star);
-
-            // Add p* to the new neighbors set
-            new_neighbors.emplace(p_star);
-            if (new_neighbors.size() >= max_size) {
-                break;
-            }
-
-            for (auto it = V.begin(); it != V.end(); ) {
-                storage_idx_t p_prime = *it;
-                auto start = std::chrono::high_resolution_clock::now();
-                float dist_p_star_p_prime = qdis.symmetric_dis(p_star, p_prime);
-                bd_stats.time_dc_linking += chronoElapsedTime(start);
-                bd_stats.step_linking += 1;
-
-                if (alpha * dist_p_star_p_prime <= distances[p_prime]) {
-                    it = V.erase(it);
-                } else {
-                    ++it;
-                }
-            }
-        }
-
-        // Convert new_neighbors to output
-        output.assign(new_neighbors.begin(), new_neighbors.end());
+    while (!input.empty()) {
+        input2.emplace(input.top().d, input.top().id);
+        input1.emplace(input.top().d, input.top().id);
+        input.pop();
     }
+    NodeDistCloser p_star = input2.top();
+
+    while((output.size() < max_size) && (!input1.empty())) {
+        NodeDistFarther p_prime = input1.top();
+        input1.pop();
+        auto start = std::chrono::high_resolution_clock::now();
+        float dist_pstar_pprime = qdis.symmetric_dis(p_star.id, p_prime.id);
+        bd_stats.time_dc_linking += chronoElapsedTime(start);
+        bd_stats.step_linking +=1;
+
+        if ( (alpha * dist_pstar_pprime) > p_prime.d) {
+                output.push_back(p_prime);
+            }
+    }
+
+    // for (NodeDistCloser curr1 : output2) {
+    //     output.emplace_back(curr1.d, curr1.id);
+    // }
+}
+
 
 
 namespace {
@@ -349,8 +301,8 @@ void shrink_neighbor_list(
         resultSet.emplace(resultSet1.top().d, resultSet1.top().id);
         resultSet1.pop();
     }
-    double alpha= 1.5;
-    HNSWbd::shrink_neighbor_list(qdis, resultSet, returnlist, max_size, bd_stats, alpha);
+
+    HNSWbd::shrink_neighbor_list(qdis, resultSet, returnlist, max_size, bd_stats);
 
     for (NodeDistFarther curen2 : returnlist) {
         resultSet1.emplace(curen2.d, curen2.id);
@@ -581,12 +533,13 @@ void HNSWbd::add_with_locks(
     int level = max_level; // level at which we start adding neighbors
     float d_nearest = ptdis(nearest);
     auto greedy_start = std::chrono::high_resolution_clock::now();
-    for (; level > pt_level; level--) {
+    /*for (; level > pt_level; level--) {
         greedy_update_nearest(*this, ptdis, level, nearest, d_nearest);
-    }
+    }*/
+    greedy_update_nearest(*this, ptdis, level, nearest, d_nearest);
     bd_stat.time_greedy_insert += chronoElapsedTime(greedy_start);
-
     for (; level >= 0; level--) {
+        //greedy_update_nearest(*this, ptdis, level, nearest, d_nearest);
         add_links_starting_from(
                 ptdis, pt_id, nearest, d_nearest, level, locks.data(), vt);
     }
