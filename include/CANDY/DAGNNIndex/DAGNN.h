@@ -87,11 +87,35 @@ struct DynamicTuneHNSW{
         CandidateFarther(float d, idx_t i): dist(d), id(i){}
     };
 
+    struct EdgeCloser {
+        idx_t src=-1;
+        idx_t dest = -1;
+        size_t idx = -1;
+        float dist;
+
+        bool operator<(const EdgeCloser& obj1) const {
+            return dist<obj1.dist;
+        }
+        EdgeCloser(float d, idx_t i, idx_t j, size_t id): dist(d), src(i), dest(j), idx(id) {}
+    };
+
+    struct EdgeFarther {
+        idx_t src=-1;
+        idx_t dest = -1;
+        size_t idx = -1;
+        float dist;
+
+
+        bool operator<(const EdgeFarther& obj1) const {
+            return dist>obj1.dist;
+        }
+        EdgeFarther(float d, idx_t i, idx_t j, size_t id): dist(d), src(i), dest(j), idx(id){}
+    };
 
     struct Node{
         idx_t id = -1;
         size_t level = -1;
-        size_t bottom_connections = 0;
+        int64_t bottom_connections = 0;
         // Neighbor* neighbors;
         std::vector<std::vector<idx_t>> neighbors;
         std::vector<std::vector<float>> distances;
@@ -183,14 +207,16 @@ struct DynamicTuneHNSW{
          and clusterExpansionStep = 2, then for cluster centering vertex_1, we have vertex_{1,2,3,4}
          as the cluster centering vertex_1
          */
-        int64_t clusterExpansionStep = 1;
+        int64_t clusterExpansionStep = 2;
 
         int64_t clusterInnerConnectionThreshold = 1;
         int64_t optimisticN = 16;
-        int64_t checkN = 0;
-
+        size_t discardN = 0;
+        size_t discardClusterN =32;
+        double discardClusterProp=0.3;
 
         double degree_std_range = 1.5;
+        double degree_allow_range = 0.25;
 
         bool sparsePreference = true;
         double neighborDistanceThreshold = 0.0;
@@ -473,6 +499,22 @@ struct DynamicTuneHNSW{
     void greedy_search_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
 
     int candidate_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t annk, idx_t* results, float* distances,DAGNN::MinimaxHeap& candidates,DAGNN::VisitedTable& vt);
+
+    void cutEdgesBase(idx_t src);
+
+    /// acquire all nodes around a cluster to candidates
+    void getCluster(idx_t src, std::priority_queue<EdgeFarther>& edges);
+    void getCluster(idx_t src, std::priority_queue<EdgeCloser>& edges);
+
+    void processNewWindow();
+
+    void processOldWindow();
+
+    /// 0 oldVertices, 1 newVertices
+    void cutEdgesWindow(WindowStates& window_states, int64_t mode);
+    void swapEdgesWindow(WindowStates& window_states, int64_t mode);
+    void linkEdgesWindow(WindowStates& window_states, int64_t mode);
+
     /// use for debug
     void direct_link(idx_t x, idx_t y, size_t level) {
         auto node_x = linkLists[x];

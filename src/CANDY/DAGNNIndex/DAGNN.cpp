@@ -69,7 +69,7 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
             graphStates.time_local_stat.neighbor_distance_sum_old, graphStates.time_local_stat.neighbor_distance_sum_new,
             graphStates.time_local_stat.neighbor_distance_variance_old, graphStates.time_local_stat.neighbor_distance_variance_new,
             prev_ntotal, new_ntotal);
-        if(true) {
+        if(verbose) {
             printf("UPdated previous degree var %lf avg %lf, new data degree var %lf avg %lf\n", graphStates.time_local_stat.degree_variance_old, graphStates.time_local_stat.degree_sum_old/(prev_ntotal*1.0), graphStates.time_local_stat.degree_variance_new, graphStates.time_local_stat.degree_sum_new/(new_ntotal*1.0));
             printf("UPdated previous neighbor distance var %lf , new data neighbor distance var %lf\n", graphStates.time_local_stat.neighbor_distance_variance_old, graphStates.time_local_stat.neighbor_distance_variance_new);
         }
@@ -104,10 +104,28 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
             }
         }
     }
-    printf("All new vertices in window:\n");
-    graphStates.window_states.newVertices.print_all();
-    printf("All old vertices in window:\n");
-    graphStates.window_states.oldVertices.print_all();
+    if(verbose) {
+        printf("All new vertices in window:\n");
+        graphStates.window_states.newVertices.print_all();
+    }
+    if(graphStates.time_local_stat.old_ntotal>1000) {
+        printf("cutting and adding\n");
+        cutEdgesWindow(graphStates.window_states, 1);
+        linkEdgesWindow(graphStates.window_states, 1);
+    }
+    if(verbose) {
+        printf("All old vertices in window:\n");
+        graphStates.window_states.oldVertices.print_all();
+    }
+    if(graphStates.time_local_stat.old_ntotal>1000) {
+        printf("cutting and adding\n");
+        cutEdgesWindow(graphStates.window_states, 0);
+        linkEdgesWindow(graphStates.window_states, 0);
+    }
+
+    printf("After cutting degree avg %lf var %lf, distance avg %lf var %lf\n",
+        graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0), graphStates.global_stat.degree_variance,
+        graphStates.global_stat.neighbor_distance_sum/(graphStates.global_stat.ntotal*1.0), graphStates.global_stat.neighbor_distance_variance);
     graphStates.window_states.reset();
     //bd_stats.print();
     bd_stats.reset();
@@ -1094,3 +1112,305 @@ int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_
 
 
 }
+/// Allow single-directional edge
+void CANDY::DynamicTuneHNSW::cutEdgesBase(idx_t src) {
+    auto node=linkLists[src];
+    auto dists = node->distances[0];
+    auto neighbors = node->neighbors[0];
+    if(node->bottom_connections<dynamicParams.bottom_connections_lower_bound) {
+        return;
+    }
+    int64_t prev_degree = node->bottom_connections;
+    int64_t current_degree;
+    float previous_distance_sum = 0.0;
+    float current_distance_sum = 0.0;
+    if(!dynamicParams.sparsePreference) {
+        auto candidates = std::priority_queue<CandidateFarther>(); // no sparse preference->nearest to farthest
+        for(int i=0; i<node->bottom_connections; i++) {
+            candidates.emplace(dists[i], neighbors[i]);
+            previous_distance_sum+=dists[i];
+        }
+        int i=0;
+        while(i<dynamicParams.discardN){
+            i++;
+            candidates.pop();
+        }
+        i=0;
+        while(candidates.empty()) {
+            neighbors[i]=candidates.top().id;
+            dists[i]=candidates.top().dist;
+            current_distance_sum+=dists[i];
+            candidates.pop();
+            i++;
+        }
+        current_degree = i;
+        node->bottom_connections=i;
+
+    } else {
+        auto candidates = std::priority_queue<CandidateCloser>(); // sparse preference->farthest to closer
+        for(int i=0; i<node->bottom_connections; i++) {
+            candidates.emplace(dists[i], neighbors[i]);
+            previous_distance_sum+=dists[i];
+        }
+        int i=0;
+        while(i<dynamicParams.discardN){
+            i++;
+            candidates.pop();
+        }
+        i=0;
+        while(candidates.empty()) {
+            neighbors[i]=candidates.top().id;
+            dists[i]=candidates.top().dist;
+            current_distance_sum+=dists[i];
+            candidates.pop();
+            i++;
+        }
+        current_degree = i;
+        node->bottom_connections = i;
+    }
+
+    auto n=graphStates.global_stat.ntotal;
+    graphStates.global_stat.degree_variance = update_var_with_new_value(
+        n, graphStates.global_stat.degree_variance,graphStates.global_stat.degree_sum,
+        current_degree, prev_degree);
+    graphStates.global_stat.degree_sum+=(current_degree-prev_degree);
+
+    auto current_distance_avg = current_distance_sum/(current_degree*1.0);
+    auto previous_distance_avg = previous_distance_sum/(prev_degree*1.0);
+    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+        n, graphStates.global_stat.neighbor_distance_variance, graphStates.global_stat.neighbor_distance_sum,
+        current_distance_avg, previous_distance_avg);
+    graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
+}
+
+void CANDY::DynamicTuneHNSW::getCluster(idx_t src, std::priority_queue<EdgeFarther>& edges) {
+    queue<std::pair<idx_t, int>> to_bfs;
+    to_bfs.emplace(src,0);
+    unordered_set<idx_t> visited;
+    visited.insert(src);
+    unordered_map<idx_t, int> steps_away;
+    steps_away[src]=0;
+    int expansion = dynamicParams.clusterExpansionStep;
+    visited.insert(src);
+
+    while(!to_bfs.empty() ) {
+        auto current = to_bfs.front().first;
+        auto current_step = to_bfs.front().second;
+        if(current_step>expansion) {
+            break;
+        }
+        to_bfs.pop();
+        auto node = linkLists[current];
+        for(int i=0; i<node->bottom_connections; i++) {
+            if(visited.find(node->neighbors[0][i])==visited.end()) {
+                visited.insert(node->neighbors[0][i]);
+                steps_away[node->neighbors[0][i]]=current_step+1;
+                to_bfs.push(std::pair<idx_t, int>(node->neighbors[0][i], current_step+1));
+                if(current_step+1<=expansion) {
+                    edges.push(EdgeFarther(node->distances[0][i], node->id, node->neighbors[0][i], i));
+                }
+            }
+        }
+    }
+
+}
+
+void CANDY::DynamicTuneHNSW::getCluster(idx_t src, std::priority_queue<EdgeCloser>& edges) {
+    queue<std::pair<idx_t, int>> to_bfs;
+    to_bfs.emplace(src,0);
+    unordered_set<idx_t> visited;
+    visited.insert(src);
+    unordered_map<idx_t, int> steps_away;
+    steps_away[src]=0;
+    int expansion = dynamicParams.clusterExpansionStep;
+    visited.insert(src);
+
+    while(!to_bfs.empty() ) {
+        auto current = to_bfs.front().first;
+        auto current_step = to_bfs.front().second;
+        if(current_step>expansion) {
+            break;
+        }
+        to_bfs.pop();
+        auto node = linkLists[current];
+        for(int i=0; i<node->bottom_connections; i++) {
+            if(visited.find(node->neighbors[0][i])==visited.end()) {
+                visited.insert(node->neighbors[0][i]);
+                steps_away[node->neighbors[0][i]]=current_step+1;
+                to_bfs.push(std::pair<idx_t, int>(node->neighbors[0][i], current_step+1));
+                if(current_step+1<=expansion) {
+                    edges.push(EdgeCloser(node->distances[0][i], node->id, node->neighbors[0][i], i));
+                }
+            }
+        }
+    }
+}
+// We just try to lower average neighbor distance in this case
+void CANDY::DynamicTuneHNSW::cutEdgesWindow(WindowStates& window_states, int64_t mode) {
+    ordered_map vertices;
+    if(mode == 1) {
+        vertices = window_states.newVertices;
+    } else {
+        vertices = window_states.oldVertices;
+    }
+    auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
+    auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
+        for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++) {
+            auto node = it->second;
+
+            //cutEdgesBase(node->id);
+
+            std::priority_queue<EdgeCloser> edges;
+            getCluster(node->id, edges);
+            int i=0;
+            auto discardClucsterN = std::min(dynamicParams.discardClusterN*1.0, edges.size()*dynamicParams.discardClusterProp);
+            while(i<(size_t)discardClucsterN && !edges.empty()) {
+                auto to_cut = edges.top();
+
+                edges.pop();
+                auto src_node = linkLists[to_cut.src];
+                if(src_node->bottom_connections*1.0<degree_avg-dynamicParams.degree_std_range*std_dev-1) {
+                    continue;
+                }
+                auto prev_degree = src_node->bottom_connections;
+                float previous_distance_sum = 0;
+                float current_distance_sum = 0;
+                for(int64_t j=0; j<to_cut.idx; j++) {
+                    current_distance_sum+=src_node->distances[0][j];
+                }
+                //printf("cutting from %ld to %ld, previous degree %ld, current degree %ld\n",to_cut.src, to_cut.dest, prev_degree, src_node->bottom_connections-1 );
+                for(int64_t j=to_cut.idx; j<src_node->bottom_connections-1; j++) {
+                    src_node->neighbors[0][j]=src_node->neighbors[0][j+1];
+                    src_node->distances[0][j]=src_node->distances[0][j+1];
+                    current_distance_sum+=src_node->distances[0][j];
+                }
+                previous_distance_sum = current_distance_sum+to_cut.dist;
+                src_node->bottom_connections--;
+                auto current_degree = src_node->bottom_connections;
+
+
+                auto n = graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
+                graphStates.global_stat.degree_variance = update_var_with_new_value(
+                    n, graphStates.global_stat.degree_variance,graphStates.global_stat.degree_sum,
+                    current_degree, prev_degree);
+                graphStates.global_stat.degree_sum+=(current_degree-prev_degree);
+
+                auto current_distance_avg = current_distance_sum/(current_degree*1.0);
+                auto previous_distance_avg = previous_distance_sum/(prev_degree*1.0);
+                float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                    n, graphStates.global_stat.neighbor_distance_variance, graphStates.global_stat.neighbor_distance_sum,
+                    current_distance_avg, previous_distance_avg);
+                graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
+                // if(graphStates.global_stat.neighbor_distance_variance<0 || graphStates.global_stat.degree_variance<0) {
+                //     printf("edge cutted:%ld %ld %ld %f\n", to_cut.src, to_cut.dest,to_cut.idx,to_cut.dist);
+                //     printf("current degree %ld, previous degree %ld\n", current_degree, prev_degree);
+                //     printf("current avg %lf, previous avg %lf\n", current_distance_avg, previous_distance_avg);
+                //     printf("old variance %lf, old sum %lf\n", old_variance, old_sum);
+                //     exit(0);
+                // }
+
+                i++;
+            }
+        }
+}
+
+
+void CANDY::DynamicTuneHNSW::swapEdgesWindow(WindowStates& window_states, int64_t mode) {
+
+}
+
+void CANDY::DynamicTuneHNSW::linkEdgesWindow(WindowStates& window_states, int64_t mode) {
+    ordered_map vertices;
+    if(mode == 1) {
+        vertices = window_states.newVertices;
+    } else {
+        vertices = window_states.oldVertices;
+    }
+    auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
+    auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
+
+    for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++) {
+        auto node = it->second;
+        // only processing those with too few edges
+        if(node->bottom_connections*1.0>degree_avg+dynamicParams.degree_std_range*std_dev+1) {
+            continue;
+        }
+        std::priority_queue<EdgeCloser> edges;
+        getCluster(node->id, edges);
+        auto prev_degree = node->bottom_connections;
+        float previous_distance_sum = 0.0;
+        float current_distance_sum = 0.0;
+        for(int64_t j=0; j<node->bottom_connections; j++) {
+            previous_distance_sum+=node->distances[0][j];
+        }
+
+        current_distance_sum=previous_distance_sum;
+
+        auto previous_distance_avg = previous_distance_sum/(prev_degree*1.0);
+        auto current_distance_avg = previous_distance_avg;
+        auto current_degree = prev_degree;
+
+        auto node_vector = get_vector(node->id);
+        while(current_degree < degree_avg+dynamicParams.degree_allow_range*std_dev && !edges.empty()) {
+            auto to_add = edges.top();
+            edges.pop();
+            if(to_add.src==node->id) {
+                //bad neighbor->cut
+                for(int64_t j=to_add.idx; j<node->bottom_connections-1; j++) {
+                    node->neighbors[0][j] = node->neighbors[0][j+1];
+                    node->distances[0][j] = node->distances[0][j+1];
+                }
+                current_distance_sum -= to_add.dist;
+                current_degree--;
+                if(current_degree!=0) {
+                    current_distance_avg = current_distance_sum/(current_degree*1.0);
+                } else {
+                    current_distance_avg =0;
+                }
+                node->bottom_connections = current_degree;
+            } else if(to_add.src!=node->id && to_add.dest!=node->id) {
+                // add outward edges
+                auto nexus = linkLists[to_add.dest];
+                for(int64_t i=0; i<nexus->bottom_connections; i++) {
+                    auto dest_vector = get_vector(nexus->neighbors[0][i]);
+                    auto dist = disq->distance(node_vector, dest_vector);
+                    if(dist<current_distance_avg) {
+                        node->neighbors[0][node->bottom_connections] = nexus->neighbors[0][i];
+                        node->distances[0][node->bottom_connections] = dist;
+
+                        current_degree++;
+                        node->bottom_connections=current_degree;
+                        current_distance_sum += dist;
+                        current_distance_avg = current_distance_sum/(current_degree*1.0);
+                        if(current_degree >= degree_avg+dynamicParams.degree_allow_range*std_dev) {
+
+                            delete[] dest_vector;
+                            break;
+                        }
+                    }
+
+                    delete[] dest_vector;
+                }
+            }
+        }
+        delete[] node_vector;
+        auto n = graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
+        graphStates.global_stat.degree_variance = update_var_with_new_value(
+            n, graphStates.global_stat.degree_variance,graphStates.global_stat.degree_sum,
+            current_degree, prev_degree);
+        graphStates.global_stat.degree_sum+=(current_degree-prev_degree);
+
+        float old_variance = graphStates.global_stat.neighbor_distance_variance;
+        auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+        graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+            n, graphStates.global_stat.neighbor_distance_variance, graphStates.global_stat.neighbor_distance_sum,
+            current_distance_avg, previous_distance_avg);
+        graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
+
+    }
+
+}
+
+
