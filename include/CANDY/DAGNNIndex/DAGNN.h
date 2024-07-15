@@ -12,6 +12,7 @@
 #include <faiss/IndexFlat.h>
 #include <omp.h>
 #include <boost/math/constants/constants.hpp>
+#include <Algorithm/EDMStream.hpp>
 
 namespace CANDY{
 struct BreakdownStats {
@@ -350,6 +351,8 @@ struct DynamicTuneHNSW{
     /// The graph neighbor structure. Use linkLists[idx] to locate a Nodes' neighbor list
     std::vector<Node*> linkLists;
     std::vector<idx_t> entry_points;
+    /// Used for clustering
+    SESAME::EDMStream* stream;
     /// HNSW level assigning
     std::vector<double> assign_probs;
     /// cumulative number of neighbors stored per level
@@ -360,6 +363,11 @@ struct DynamicTuneHNSW{
 
 
     DynamicTuneHNSW(const int64_t M, const int64_t dim, const DAGNN::dagnn_metric_t metric, const DynamicTuneParams setting) {
+        SESAME::param_t stream_param;
+        stream = new SESAME::EDMStream(stream_param);
+        stream->Init();
+
+
         vecDim = dim;
         graphStates.vecDim = dim;
         set_default_probs(M, 1.0/log(M));

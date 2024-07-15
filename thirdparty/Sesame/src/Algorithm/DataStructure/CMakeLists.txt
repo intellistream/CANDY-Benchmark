@@ -1,0 +1,19 @@
+add_source_sesame(
+        Point.cpp
+        TreeNode.cpp
+        CoresetTree.cpp
+        MicroCluster.cpp
+        Snapshot.cpp
+        WeightedAdjacencyList.cpp
+        DataStructureFactory.cpp
+        CFTree.cpp
+        DPTree.cpp
+        DPNode.cpp
+        Cache.cpp
+        OutlierResevoir.cpp
+        FeatureVector.cpp
+        CharacteristicsVector.cpp
+        DensityGrid.cpp
+        GridCluster.cpp
+        MeyersonSketch.cpp
+)

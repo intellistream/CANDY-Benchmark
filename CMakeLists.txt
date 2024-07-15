@@ -20,8 +20,10 @@ add_subdirectory(thirdparty/faiss)
 # Set specific options for Faiss compilation
 #target_compile_options(faiss PRIVATE "-fno-openmp")
 set(LIBRARIES ${LIBRARIES} faiss)
-
+set(CMAKE_PREFIX_PATH "/usr/local/lib/python3.10/dist-packages/torch/share/cmake")
+SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/usr/include/boost")
 find_package(Torch REQUIRED)
+#find_package(boost REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
 # Set Optimization Flags
@@ -41,8 +43,9 @@ option(ENABLE_RAY
 )
 option(ENABLE_HDF5
         "Enable load data from hdf5 file"
-        OFF
+        ON
 )
+set(ENABLE_HDF5 1)
 option(ENABLE_PYBIND
         "Enable original pybind and build CANDY python"
         OFF
@@ -122,6 +125,10 @@ else ()
     add_subdirectory(thirdparty/hdf5-1.14.3)
     set(LIBRARIES ${LIBRARIES} hdf5-static)
 endif ()
+
+
+add_subdirectory(thirdparty/Sesame)
+set(LIBRARIES ${LIBRARIES}  sesame)
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/hdf5_config.h.in"
         "${PROJECT_BINARY_DIR}/include/hdf5_config.h"
@@ -134,7 +141,7 @@ message(STATUS "CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE}")
 #pytorch
 #set(Torch_DIR "/home/tony/.local/lib/python3.10/site-packages/torch/share/cmake" )
 # Log4cc
-#find_package(Log4cxx REQUIRED)
+#(Log4cxx REQUIRED)
 #include_directories(${Log4cxx_INCLUDE_DIR})
 #set(LIBRARIES ${LIBRARIES} ${Log4cxx_LIBRARY})
 
@@ -166,6 +173,7 @@ set_property(TARGET CANDY PROPERTY CXX_STANDARD 20)
 target_include_directories(CANDY PUBLIC "include")
 target_include_directories(CANDY PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(CANDY PUBLIC "thirdparty/papi_build/include")
+target_include_directories(CANDY PUBLIC "thirdparty/Sesame/include/")
 target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
 target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
 target_link_libraries(CANDY PUBLIC ${LIBRARIES})

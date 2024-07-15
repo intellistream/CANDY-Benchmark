@@ -1,0 +1,17 @@
+add_source_sesame(
+        StreamKM.cpp
+        CluStream.cpp
+        Birch.cpp
+        DenStream.cpp
+        EDMStream.cpp
+        DBStream.cpp
+        DStream.cpp
+        SlidingWindowClustering.cpp
+        Algorithm.cpp
+        AlgorithmFactory.cpp
+        Benne.cpp
+)
+add_subdirectory(DataStructure)
+add_subdirectory(OfflineRefinement)
+add_subdirectory(WindowModel)
+add_subdirectory(DesignAspect)
