@@ -127,8 +127,6 @@ else ()
 endif ()
 
 
-add_subdirectory(thirdparty/Sesame)
-set(LIBRARIES ${LIBRARIES}  sesame)
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/hdf5_config.h.in"
         "${PROJECT_BINARY_DIR}/include/hdf5_config.h"
@@ -173,7 +171,6 @@ set_property(TARGET CANDY PROPERTY CXX_STANDARD 20)
 target_include_directories(CANDY PUBLIC "include")
 target_include_directories(CANDY PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(CANDY PUBLIC "thirdparty/papi_build/include")
-target_include_directories(CANDY PUBLIC "thirdparty/Sesame/include/")
 target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
 target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
 target_link_libraries(CANDY PUBLIC ${LIBRARIES})

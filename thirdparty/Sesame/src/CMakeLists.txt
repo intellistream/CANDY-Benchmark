@@ -1,7 +1,0 @@
-add_subdirectory(Algorithm)
-add_subdirectory(Engine)
-add_subdirectory(Sources)
-add_subdirectory(Sinks)
-add_subdirectory(Evaluation)
-add_subdirectory(Utils)
-add_subdirectory(Timer)
