@@ -69,6 +69,7 @@ struct BreakdownStats {
 struct DynamicTuneHNSW{
     using idx_t = int64_t;
     bool verbose = false;
+    uint64_t timestamp = 0;
     struct CandidateCloser {
         idx_t id=-1;
         float dist;
@@ -217,10 +218,13 @@ struct DynamicTuneHNSW{
 
         double degree_std_range = 1.5;
         double degree_allow_range = 0.25;
+        double degree_lift_range = 1.75;
 
         bool sparsePreference = true;
         double neighborDistanceThreshold = 0.0;
         std::vector<float> routeDrifts;
+
+        uint64_t expiration_timestamp = 450;
         DynamicTuneParams()=default;
         DynamicTuneParams(const int64_t M, const int64_t dim) {
             bottom_connections_lower_bound = M;
@@ -296,15 +300,20 @@ struct DynamicTuneHNSW{
     struct WindowStates : DRLStates {
         size_t oldWindowSize = 50;
         size_t newWindowSize = 100;
+        size_t hierarchyWindowSize = 15;
+
         ordered_map oldVertices;
         ordered_map newVertices;
+        ordered_map hierarchyVertices;
         void init() {
             oldVertices.max_size = oldWindowSize;
             newVertices.max_size = newWindowSize;
+            hierarchyVertices.max_size = hierarchyWindowSize;
         }
         void reset() {
             newVertices.clear();
             oldVertices.clear();
+            hierarchyVertices.clear();
         }
         WindowStates()=default;
     };
@@ -350,6 +359,7 @@ struct DynamicTuneHNSW{
     /// The graph neighbor structure. Use linkLists[idx] to locate a Nodes' neighbor list
     std::vector<Node*> linkLists;
     std::vector<idx_t> entry_points;
+    std::vector<uint64_t> last_visited;
     /// HNSW level assigning
     std::vector<double> assign_probs;
     /// cumulative number of neighbors stored per level
@@ -448,6 +458,7 @@ struct DynamicTuneHNSW{
 
             // use cum_nneighbor_per_level[new_node.level] to get total number of levels
             linkLists.push_back(new_node);
+            last_visited.push_back(0);
         }
     }
 
@@ -505,17 +516,24 @@ struct DynamicTuneHNSW{
     void cutEdgesBase(idx_t src);
 
     /// acquire all nodes around a cluster to candidates
-    void getCluster(idx_t src, std::priority_queue<EdgeFarther>& edges);
-    void getCluster(idx_t src, std::priority_queue<EdgeCloser>& edges);
+    void getCluster(idx_t src, std::priority_queue<EdgeFarther>& edges, int expansion);
+    void getCluster(idx_t src, std::priority_queue<EdgeCloser>& edges, int expansion);
 
     void processNewWindow();
 
     void processOldWindow();
 
+    /// Action set I: Cluster Optimization
     /// 0 oldVertices, 1 newVertices
     void cutEdgesWindow(WindowStates& window_states, int64_t mode);
     void swapEdgesWindow(WindowStates& window_states, int64_t mode);
     void linkEdgesWindow(WindowStates& window_states, int64_t mode);
+
+    /// Action set III: Hierarchy optimization
+    void liftClusterCenter(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt);
+    void degradeNavigationPoint(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt);
+    void hierarchyOptimizationDegradeWIndow(WindowStates& window_states);
+    void hierarchyOptimizationLiftWIndow(WindowStates& window_states);
 
     /// use for debug
     void direct_link(idx_t x, idx_t y, size_t level) {

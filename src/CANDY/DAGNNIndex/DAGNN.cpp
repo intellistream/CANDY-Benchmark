@@ -104,28 +104,39 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
             }
         }
     }
+
+
+    /// Hierarchy
+    {
+        if(graphStates.time_local_stat.old_ntotal>1000 && max_level>1) {
+            printf("Collected vertices to adjust hierarchy:\n");
+            graphStates.window_states.hierarchyVertices.print_all();
+            //hierarchyOptimizationDegradeWIndow(graphStates.window_states);
+            hierarchyOptimizationLiftWIndow(graphStates.window_states);
+        }
+    }
     if(verbose) {
         printf("All new vertices in window:\n");
         graphStates.window_states.newVertices.print_all();
-    }
-    if(graphStates.time_local_stat.old_ntotal>1000) {
-        printf("cutting and adding\n");
-        cutEdgesWindow(graphStates.window_states, 1);
-        linkEdgesWindow(graphStates.window_states, 1);
     }
     if(verbose) {
         printf("All old vertices in window:\n");
         graphStates.window_states.oldVertices.print_all();
     }
     if(graphStates.time_local_stat.old_ntotal>1000) {
-        printf("cutting and adding\n");
-        cutEdgesWindow(graphStates.window_states, 0);
-        linkEdgesWindow(graphStates.window_states, 0);
+        if(verbose) {
+            printf("cutting and adding\n");
+        }
+        //cutEdgesWindow(graphStates.window_states, 0);
+        //linkEdgesWindow(graphStates.window_states, 0);
     }
-
-    printf("After cutting degree avg %lf var %lf, distance avg %lf var %lf\n",
-        graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0), graphStates.global_stat.degree_variance,
-        graphStates.global_stat.neighbor_distance_sum/(graphStates.global_stat.ntotal*1.0), graphStates.global_stat.neighbor_distance_variance);
+    if(verbose) {
+        printf("After cutting degree avg %lf var %lf, distance avg %lf var %lf\n",
+               graphStates.global_stat.degree_sum / (graphStates.global_stat.ntotal * 1.0),
+               graphStates.global_stat.degree_variance,
+               graphStates.global_stat.neighbor_distance_sum / (graphStates.global_stat.ntotal * 1.0),
+               graphStates.global_stat.neighbor_distance_variance);
+    }
     graphStates.window_states.reset();
     //bd_stats.print();
     bd_stats.reset();
@@ -160,7 +171,6 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
 
         }
     }
-    printf("\n\n");
     for(idx_t i=0; i<n; i++) {
 
         graphStates.time_local_stat.ntotal+=1;
@@ -172,8 +182,10 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
             graphStates.time_local_stat.ntotal, graphStates.time_local_stat.neighbor_distance_variance_new, graphStates.time_local_stat.neighbor_distance_sum_new);
 
         disq.set_query(x+vecDim*i);
+        timestamp++;
 
         auto node = linkLists[i+n0];
+        last_visited[i+n0] = timestamp;
 
         DAGNN::VisitedTable vt(n0+n);
         greedy_insert(disq, *node, vt);
@@ -199,7 +211,13 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
 
     //printf("node %ld assigned level at %ld\n", node.id, node.level);
     if(assigned_level > max_level) {
+        node.level+=1;
+        assigned_level +=1;
         max_level = assigned_level;
+        auto l_neighbors = std::vector<idx_t>(nb_neighbors(max_level),-1);
+        auto l_distances = std::vector<float>(nb_neighbors(max_level), -0.0);
+        node.neighbors.push_back(l_neighbors);
+        node.distances.push_back(l_distances);
         entry_points[0] = node.id;
         printf("changing max level to %ld\n", max_level);
     }
@@ -253,14 +271,24 @@ void CANDY::DynamicTuneHNSW::greedy_insert_top(DAGNN::DistanceQueryer& disq, siz
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
+        last_visited[nearest] = timestamp;
         size_t nb_neighbor_level = nb_neighbors(level);
         for(size_t i=0; i<nb_neighbor_level; i++) {
             if(level > node->level) {
                 break;
             }
             auto visiting = node->neighbors[level][i];
+
             if(visiting < 0) {
                 break;
+            }
+            if(level == 1){
+                if(timestamp - last_visited[visiting]>dynamicParams.expiration_timestamp){
+                    if(linkLists[visiting]->level==1){
+                        //printf("timestamp: %ld, last_visited: %ld\n", timestamp, last_visited[visiting]);
+                        //graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
+                    }
+                }
             }
 
             auto vector = get_vector(visiting);
@@ -287,6 +315,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
+        last_visited[nearest] = timestamp;
         size_t nb_neighbor_level = nb_neighbors(level);
         for(size_t i=0; i<nb_neighbor_level; i++) {
             if(level > node->level) {
@@ -296,7 +325,13 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
             if(visiting < 0) {
                 break;
             }
-
+            if(level == 1){
+                if(timestamp - last_visited[visiting]>dynamicParams.expiration_timestamp){
+                    if(linkLists[visiting]->level==1){
+                        //graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
+                    }
+                }
+            }
             auto vector = get_vector(visiting);
 
             auto dist = disq(vector);
@@ -323,14 +358,22 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
+        last_visited[nearest] = timestamp;
         if(node->bottom_connections*1.0>degree_avg+dynamicParams.degree_std_range*std_dev+1 || node->bottom_connections*1.0<degree_avg-dynamicParams.degree_std_range*std_dev-1) {
             graphStates.window_states.oldVertices.insert(node->id, node);
+
         }
         size_t nb_neighbor_level = nb_neighbors(0);
         for(size_t i=0; i<nb_neighbor_level; i++) {
             auto visiting = node->neighbors[0][i];
             if(visiting < 0) {
                 break;
+            }
+            if(linkLists[visiting]->level==0) {
+                if(linkLists[visiting]->bottom_connections*1.0>degree_avg+dynamicParams.degree_lift_range*std_dev+1) {
+                    graphStates.window_states.oldVertices.remove(visiting);
+                    graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
+                }
             }
             auto vector = get_vector(visiting);
             auto dist = disq(vector);
@@ -659,10 +702,10 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
     int nb_neighbors_level = nb_neighbors(level);
     auto src_linkList = &linkLists[src]->neighbors[level];
     auto src_dist = &linkLists[src]->distances[level];
-    if((*src_linkList)[nb_neighbors_level-1]==-1) {
+    if((*src_linkList)[nb_neighbors_level-1]<0) {
         size_t i=nb_neighbors_level;
         while(i>0) {
-            if((*src_linkList)[i-1]!=-1) {
+            if((*src_linkList)[i-1]>=0) {
                 break;
             }
             i--;
@@ -814,7 +857,7 @@ void CANDY::DynamicTuneHNSW::add_link_base(DAGNN::DistanceQueryer& disq, idx_t s
     int nb_neighbors_level = nb_neighbors(level);
     auto src_linkList = &linkLists[src]->neighbors[level];
     auto src_dist = &linkLists[src]->distances[level];
-    if((*src_linkList)[nb_neighbors_level-1]==-1) {
+    if((*src_linkList)[nb_neighbors_level-1]<0) {
         size_t i=nb_neighbors_level;
         while(i>0) {
             if((*src_linkList)[i-1]!=-1) {
@@ -1183,14 +1226,16 @@ void CANDY::DynamicTuneHNSW::cutEdgesBase(idx_t src) {
     graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
 }
 
-void CANDY::DynamicTuneHNSW::getCluster(idx_t src, std::priority_queue<EdgeFarther>& edges) {
+void CANDY::DynamicTuneHNSW::getCluster(idx_t src, std::priority_queue<EdgeFarther>& edges, int expansion) {
     queue<std::pair<idx_t, int>> to_bfs;
     to_bfs.emplace(src,0);
     unordered_set<idx_t> visited;
     visited.insert(src);
     unordered_map<idx_t, int> steps_away;
     steps_away[src]=0;
-    int expansion = dynamicParams.clusterExpansionStep;
+    if(expansion==0){
+        expansion = dynamicParams.clusterExpansionStep;
+    }
     visited.insert(src);
 
     while(!to_bfs.empty() ) {
@@ -1215,14 +1260,16 @@ void CANDY::DynamicTuneHNSW::getCluster(idx_t src, std::priority_queue<EdgeFarth
 
 }
 
-void CANDY::DynamicTuneHNSW::getCluster(idx_t src, std::priority_queue<EdgeCloser>& edges) {
+void CANDY::DynamicTuneHNSW::getCluster(idx_t src, std::priority_queue<EdgeCloser>& edges, int expansion) {
     queue<std::pair<idx_t, int>> to_bfs;
     to_bfs.emplace(src,0);
     unordered_set<idx_t> visited;
     visited.insert(src);
     unordered_map<idx_t, int> steps_away;
     steps_away[src]=0;
-    int expansion = dynamicParams.clusterExpansionStep;
+    if(expansion==0) {
+        expansion = dynamicParams.clusterExpansionStep;
+    }
     visited.insert(src);
 
     while(!to_bfs.empty() ) {
@@ -1261,7 +1308,7 @@ void CANDY::DynamicTuneHNSW::cutEdgesWindow(WindowStates& window_states, int64_t
             //cutEdgesBase(node->id);
 
             std::priority_queue<EdgeCloser> edges;
-            getCluster(node->id, edges);
+            getCluster(node->id, edges, 0);
             int i=0;
             auto discardClucsterN = std::min(dynamicParams.discardClusterN*1.0, edges.size()*dynamicParams.discardClusterProp);
             while(i<(size_t)discardClucsterN && !edges.empty()) {
@@ -1338,7 +1385,7 @@ void CANDY::DynamicTuneHNSW::linkEdgesWindow(WindowStates& window_states, int64_
             continue;
         }
         std::priority_queue<EdgeCloser> edges;
-        getCluster(node->id, edges);
+        getCluster(node->id, edges, 0);
         auto prev_degree = node->bottom_connections;
         float previous_distance_sum = 0.0;
         float current_distance_sum = 0.0;
@@ -1410,6 +1457,166 @@ void CANDY::DynamicTuneHNSW::linkEdgesWindow(WindowStates& window_states, int64_
         graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
 
     }
+
+}
+
+void CANDY::DynamicTuneHNSW::liftClusterCenter(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt){
+    auto node = linkLists[src];
+    if(node->level!=0){
+        printf("unable to lift this node up from level>0\n");
+        return;
+    }
+    auto vector = get_vector(src);
+    disq.set_query(vector);
+    auto nearest = entry_points[0];
+    auto entry_vector = get_vector(nearest);
+    auto dist_nearest = disq(entry_vector);
+    delete[] entry_vector;
+    // lift the node from 0 to level 1
+    int64_t steps_taken = 0;
+
+    node->level = 1;
+    if(node->neighbors.size()!=2){
+        auto l_neighbors = std::vector<idx_t>(nb_neighbors(1),-1);
+        auto l_distances = std::vector<float>(nb_neighbors(1), -0.0);
+        node->neighbors.push_back(l_neighbors);
+        node->distances.push_back(l_distances);
+    }
+
+    for(size_t l = max_level; l>1; l--){
+        greedy_insert_top(disq, l, nearest, dist_nearest, steps_taken);
+    }
+
+    std::priority_queue<CandidateCloser> candidates;
+    greedy_insert_upper(disq, 1, nearest, dist_nearest, candidates, steps_taken);
+
+    auto entry_first_level = CandidateCloser(dist_nearest, nearest);
+    candidates.push(entry_first_level);
+    link_from(disq, src, 1, nearest, dist_nearest,candidates, vt);
+    // here no need to re-update steps_taken as it ends at level 1
+    delete[] vector;
+}
+
+void CANDY::DynamicTuneHNSW::degradeNavigationPoint(DAGNN::DistanceQueryer& disq, CANDY::DynamicTuneHNSW::idx_t src, DAGNN::VisitedTable& vt) {
+    auto node = linkLists[src];
+    if(node->level!=1){
+        printf("unable to degrade node from level other than 1!\n");
+    }
+
+    // deletion of a point
+    // simple link (p1,p2) for (p1, p) and (p,p2)
+    int i=0;
+    for(i=0; i< nb_neighbors(1); i++){
+        if(node->neighbors[1][i]<0){
+            break;
+        }
+    }
+    int first_level_neighbor_nb = i;
+    int left = 0;
+    int right = first_level_neighbor_nb-1;
+    while(left<right){
+        auto left_node = linkLists[node->neighbors[1][left]];
+        auto right_node = linkLists[node->neighbors[1][right]];
+        auto left_vector=get_vector(node->neighbors[1][left]);
+        auto right_vector=get_vector(node->neighbors[1][right]);
+        auto dist = disq.distance(left_vector, right_vector);
+        delete[] left_vector;
+        delete[] right_vector;
+
+        int left_idx = 0;
+        int right_idx = 0;
+        for(left_idx = 0; left_idx<nb_neighbors(1); left_idx++){
+            if(left_node->neighbors[1][left_idx]<0){
+                break;
+            }
+            if(left_node->neighbors[1][left_idx]==src){
+                break;
+            }
+        }
+        for(right_idx=0; right_idx<nb_neighbors(1); right_idx++){
+            if(right_node->neighbors[1][right_idx]<0){
+                break;
+            }
+            if(right_node->neighbors[1][right_idx]==src){
+                break;
+            }
+        }
+        left_node->neighbors[1][left_idx] = right_node->id;
+        left_node->distances[1][left_idx] = dist;
+        right_node->neighbors[1][right_idx] = left_node->id;
+        right_node->distances[1][right_idx] = dist;
+        left++;
+        right--;
+    }
+
+    if(left==right){
+        auto left_node = linkLists[node->neighbors[1][left]];
+        int left_idx = 0;
+        for(left_idx = 0; left_idx<nb_neighbors(1); left_idx++){
+            if(left_node->neighbors[1][left_idx]<0){
+                break;
+            }
+            if(left_node->neighbors[1][left_idx]==src){
+                break;
+            }
+        }
+        int i=left_idx;
+        while(i<nb_neighbors(1)-1 ){
+            if(left_node->neighbors[1][i]<0){
+                break;
+            }
+            left_node->neighbors[1][i]=left_node->neighbors[1][i+1];
+            i++;
+        }
+        left_node->neighbors[1][i]=-1;
+    }
+
+
+    node->level = 0;
+    for(size_t i=0; i<nb_neighbors(1); i++){
+        node->neighbors[1][i]=-1;
+    }
+
+
+}
+
+void CANDY::DynamicTuneHNSW::hierarchyOptimizationDegradeWIndow(WindowStates& window_states){
+    DAGNN::DistanceQueryer disq(vecDim);
+    std::vector<idx_t> degraded;
+    auto vertices =window_states.hierarchyVertices;
+    for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++){
+        auto node = it->second;
+        if(node->level!=1){
+            continue;
+        }
+        DAGNN::VisitedTable vt(graphStates.global_stat.ntotal);
+        degradeNavigationPoint(disq, node->id, vt);
+        degraded.push_back(node->id);
+    }
+    for(size_t i=0; i<degraded.size(); i++){
+        window_states.hierarchyVertices.remove(degraded[i]);
+    }
+
+
+}
+
+void CANDY::DynamicTuneHNSW::hierarchyOptimizationLiftWIndow(WindowStates& window_states){
+    DAGNN::DistanceQueryer disq(vecDim);
+    std::vector<idx_t> lifted;
+    auto vertices =window_states.hierarchyVertices;
+    for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++){
+        auto node = it->second;
+        if(node->level!=0){
+            continue;
+        }
+        DAGNN::VisitedTable vt(graphStates.global_stat.ntotal+graphStates.time_local_stat.ntotal);
+        liftClusterCenter(disq, node->id, vt);
+        lifted.push_back(node->id);
+    }
+    for(size_t i=0; i<lifted.size(); i++){
+        window_states.hierarchyVertices.remove(lifted[i]);
+    }
+
 
 }
 
