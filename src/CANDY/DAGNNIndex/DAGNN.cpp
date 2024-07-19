@@ -109,12 +109,21 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     /// Hierarchy
     {
         if(graphStates.time_local_stat.old_ntotal>1000 && max_level>1) {
-            printf("Collected vertices to adjust hierarchy:\n");
-            graphStates.window_states.hierarchyVertices.print_all();
+            //printf("Collected vertices to adjust hierarchy:\n");
+            //graphStates.window_states.hierarchyVertices.print_all();
             //hierarchyOptimizationDegradeWIndow(graphStates.window_states);
-            hierarchyOptimizationLiftWIndow(graphStates.window_states);
+            //hierarchyOptimizationLiftWIndow(graphStates.window_states);
         }
     }
+    /// Navigation
+    {
+        if(graphStates.time_local_stat.old_ntotal>1000 && max_level>1) {
+            printf("Collected bad vertices to exploration navigate:\n");
+            graphStates.window_states.hierarchyVertices.print_all();
+            navigationBacktrackWindow(graphStates.window_states);
+        }
+    }
+
     if(verbose) {
         printf("All new vertices in window:\n");
         graphStates.window_states.newVertices.print_all();
@@ -249,16 +258,26 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
     }
     std::priority_queue<CandidateCloser> candidates;
     greedy_insert_base(disq, nearest, dist_nearest, candidates, steps_taken);
+    // Navigability states
+    graphStates.time_local_stat.steps_taken_sum += steps_taken;
+    if(steps_taken > graphStates.time_local_stat.steps_taken_max) {
+        if(steps_taken - dynamicParams.steps_above_avg > graphStates.global_stat.steps_taken_avg
+            || steps_taken - dynamicParams.steps_above_max > graphStates.global_stat.steps_taken_max) {
+            auto far_node = linkLists[nearest];
+            graphStates.window_states.oldVertices.insert(nearest, far_node);
+        }
+        graphStates.time_local_stat.steps_taken_max = steps_taken;
+
+
+    }
+    graphStates.global_stat.steps_taken_max = (graphStates.global_stat.steps_taken_max>steps_taken)?graphStates.global_stat.steps_taken_max:steps_taken;
 
     auto entry_base_level = CandidateCloser(dist_nearest, nearest);
     candidates.push(entry_base_level);
     link_from_base(disq, node.id,  nearest, dist_nearest, candidates, vt);
     /// Candidate phase on base level and linking
 
-    // Navigability states
-    graphStates.time_local_stat.steps_taken_sum += steps_taken;
-    graphStates.time_local_stat.steps_taken_max = (graphStates.time_local_stat.steps_taken_max>steps_taken)?graphStates.time_local_stat.steps_taken_max:steps_taken;
-    graphStates.global_stat.steps_taken_max = (graphStates.global_stat.steps_taken_max>steps_taken)?graphStates.global_stat.steps_taken_max:steps_taken;
+
 
 
 
@@ -360,7 +379,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
         auto node = linkLists[nearest];
         last_visited[nearest] = timestamp;
         if(node->bottom_connections*1.0>degree_avg+dynamicParams.degree_std_range*std_dev+1 || node->bottom_connections*1.0<degree_avg-dynamicParams.degree_std_range*std_dev-1) {
-            graphStates.window_states.oldVertices.insert(node->id, node);
+            //graphStates.window_states.oldVertices.insert(node->id, node);
 
         }
         size_t nb_neighbor_level = nb_neighbors(0);
@@ -371,7 +390,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
             }
             if(linkLists[visiting]->level==0) {
                 if(linkLists[visiting]->bottom_connections*1.0>degree_avg+dynamicParams.degree_lift_range*std_dev+1) {
-                    graphStates.window_states.oldVertices.remove(visiting);
+                    //graphStates.window_states.oldVertices.remove(visiting);
                     graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
                 }
             }
@@ -446,9 +465,6 @@ void CANDY::DynamicTuneHNSW::link_from_base(DAGNN::DistanceQueryer& disq, idx_t 
     // }
     for(auto nei: neighbors) {
         add_link_base(disq, nei, idx, previous_degree, current_degree);
-
-
-
     }
 
 }
@@ -1589,7 +1605,7 @@ void CANDY::DynamicTuneHNSW::hierarchyOptimizationDegradeWIndow(WindowStates& wi
         if(node->level!=1){
             continue;
         }
-        DAGNN::VisitedTable vt(graphStates.global_stat.ntotal);
+        DAGNN::VisitedTable vt(graphStates.global_stat.ntotal+graphStates.time_local_stat.ntotal);
         degradeNavigationPoint(disq, node->id, vt);
         degraded.push_back(node->id);
     }
@@ -1617,7 +1633,69 @@ void CANDY::DynamicTuneHNSW::hierarchyOptimizationLiftWIndow(WindowStates& windo
         window_states.hierarchyVertices.remove(lifted[i]);
     }
 
+}
 
+void CANDY::DynamicTuneHNSW::backtrackCandidate(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt){
+    auto entry_point = entry_points[0];
+    auto entry_vector = get_vector(entry_point);
+    auto src_vector = get_vector(src);
+    disq.set_query(entry_vector);
+    auto backtracking = src;
+    auto dist_backtracking = disq(src_vector);
+    int step_taken = 0;
+    delete[] src_vector;
+    std::priority_queue<CandidateCloser> candidates;
+    size_t nb_neighbor_level = nb_neighbors(0);
+
+    while(step_taken < dynamicParams.max_backtrack_steps){
+        idx_t prev_backtracking = backtracking;
+        auto node = linkLists[backtracking];
+        for(size_t i=0; i<nb_neighbor_level; i++){
+            auto visiting = node->neighbors[0][i];
+            if(visiting<0){
+                break;
+            }
+            auto vector = get_vector(visiting);
+            auto dist = disq(vector);
+            delete[] vector;
+            if(dist<dist_backtracking){
+                backtracking = visiting;
+                dist_backtracking = dist;
+            }
+        }
+        if(backtracking == prev_backtracking){
+            break;
+        }
+        step_taken++;
+    }
+
+    // now we've arrived at the wanted place near the entry, we would add links around to src
+
+    auto entry_base_level = CandidateCloser(dist_backtracking, backtracking);
+    candidates.push(entry_base_level);
+    /// to add some neighbors near entry to src with disq's query as entry
+    link_from_base(disq, src, backtracking, dist_backtracking, candidates, vt);
+
+}
+
+void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, DAGNN::VisitedTable& vt){
+
+
+}
+
+void CANDY::DynamicTuneHNSW::navigationBacktrackWindow(WindowStates& window_states){
+    auto vertices =window_states.oldVertices;
+    auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
+    auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
+    DAGNN::DistanceQueryer disq(vecDim);
+    for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++){
+        auto node = it->second;
+        if(node->bottom_connections*1.0>degree_avg+dynamicParams.degree_std_range*std_dev+1) {
+            continue;
+        }
+        DAGNN::VisitedTable vt(graphStates.global_stat.ntotal+graphStates.time_local_stat.ntotal);
+        backtrackCandidate(disq, node->id, vt);
+    }
 }
 
 

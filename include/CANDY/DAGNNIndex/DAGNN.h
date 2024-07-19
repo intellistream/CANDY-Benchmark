@@ -195,7 +195,7 @@ struct DynamicTuneHNSW{
 
 
 
-
+    /// Action set IV: Parameters modification
     /// The auto-tune parameters
     struct DynamicTuneParams{
         int64_t efConstruction = 40;
@@ -225,6 +225,11 @@ struct DynamicTuneHNSW{
         std::vector<float> routeDrifts;
 
         uint64_t expiration_timestamp = 450;
+
+        uint64_t max_backtrack_steps = 20;
+        uint64_t steps_above_avg = 50;
+        uint64_t steps_above_max = 20;
+
         DynamicTuneParams()=default;
         DynamicTuneParams(const int64_t M, const int64_t dim) {
             bottom_connections_lower_bound = M;
@@ -534,6 +539,11 @@ struct DynamicTuneHNSW{
     void degradeNavigationPoint(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt);
     void hierarchyOptimizationDegradeWIndow(WindowStates& window_states);
     void hierarchyOptimizationLiftWIndow(WindowStates& window_states);
+
+    /// Action set II: Explorative navigation
+    void backtrackCandidate(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt);
+    void linkClusters(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, DAGNN::VisitedTable& vt);
+    void navigationBacktrackWindow(WindowStates& window_states);
 
     /// use for debug
     void direct_link(idx_t x, idx_t y, size_t level) {
