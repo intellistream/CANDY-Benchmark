@@ -224,11 +224,13 @@ struct DynamicTuneHNSW{
         double neighborDistanceThreshold = 0.0;
         std::vector<float> routeDrifts;
 
-        uint64_t expiration_timestamp = 450;
+        size_t expiration_timestamp = 450;
 
-        uint64_t max_backtrack_steps = 20;
-        uint64_t steps_above_avg = 50;
-        uint64_t steps_above_max = 20;
+        size_t max_backtrack_steps = 20;
+        size_t steps_above_avg = 50;
+        size_t steps_above_max = 20;
+
+        size_t nb_navigation_paths =16;
 
         DynamicTuneParams()=default;
         DynamicTuneParams(const int64_t M, const int64_t dim) {

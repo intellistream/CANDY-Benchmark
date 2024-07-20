@@ -119,8 +119,8 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     {
         if(graphStates.time_local_stat.old_ntotal>1000 && max_level>1) {
             printf("Collected bad vertices to exploration navigate:\n");
-            graphStates.window_states.hierarchyVertices.print_all();
-            navigationBacktrackWindow(graphStates.window_states);
+            //graphStates.window_states.hierarchyVertices.print_all();
+            //navigationBacktrackWindow(graphStates.window_states);
         }
     }
 
@@ -1267,9 +1267,10 @@ void CANDY::DynamicTuneHNSW::getCluster(idx_t src, std::priority_queue<EdgeFarth
                 visited.insert(node->neighbors[0][i]);
                 steps_away[node->neighbors[0][i]]=current_step+1;
                 to_bfs.push(std::pair<idx_t, int>(node->neighbors[0][i], current_step+1));
-                if(current_step+1<=expansion) {
-                    edges.push(EdgeFarther(node->distances[0][i], node->id, node->neighbors[0][i], i));
-                }
+
+            }
+            if(current_step+1<=expansion) {
+                edges.push(EdgeFarther(node->distances[0][i], node->id, node->neighbors[0][i], i));
             }
         }
     }
@@ -1679,6 +1680,149 @@ void CANDY::DynamicTuneHNSW::backtrackCandidate(DAGNN::DistanceQueryer& disq, id
 }
 
 void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, DAGNN::VisitedTable& vt){
+    if(src==dest){
+        printf("Do not attempt to link within one cluster for this set of actions!\n");
+        return;
+    }
+
+    auto edges_src =std::priority_queue<EdgeCloser>();
+    auto edges_dest = std::priority_queue<EdgeCloser>();
+
+    getCluster(src, edges_src, 0);
+    getCluster(dest, edges_dest, 0);
+
+    //Replace long links within cluster with an bi-directional edge to another cluster to allow possible fast transportation
+    size_t count = 0;
+    while(!edges_src.empty() && !edges_dest.empty() && count < dynamicParams.nb_navigation_paths){
+        auto edge_src = edges_src.top();
+        auto edge_dest = edges_dest.top();
+
+        // Plan1: (n1,n2) & (n3, n4) -> (n1,n4) & (n3,n2) with some conditions
+        // Plan2: (n1,n2) & (n3,n4) -> (n1,n3) & (n2, n4)
+        auto node_1_id = edge_src.src;
+        auto node_2_id = edge_src.dest;
+        auto node_3_id = edge_dest.src;
+        auto node_4_id = edge_dest.dest;
+
+        bool overlapping = true;
+
+        auto idx_src = edge_src.idx;
+        auto idx_dest = edge_dest.idx;
+        if(node_1_id == node_3_id || node_1_id == node_4_id || node_2_id == node_3_id || node_2_id == node_4_id){
+            // overlapping so continue
+            continue;
+        }
+        auto node_1 = linkLists[node_1_id];
+        bool plan_1 = true;
+        bool plan_2 = true;
+        for(int i=0; i< nb_neighbors(0); i++){
+            if(node_3_id == node_1->neighbors[0][i]) {
+                plan_2 = false;
+            }
+            if(node_4_id == node_1->neighbors[0][i]){
+                plan_1 = false;
+            }
+            if(-1 == node_1->neighbors[0][i]){
+                break;
+            }
+        }
+        if(!plan_1 && !plan_2){
+            count++;
+            continue;
+        }
+
+        auto node_3 = linkLists[node_3_id];
+        for(int i=0; i<nb_neighbors(0); i++){
+            if(node_1_id == node_3->neighbors[0][i]){
+                plan_2 = false;
+            }
+            if(node_2_id == node_3->neighbors[0][i]){
+                plan_1 = false;
+            }
+            if(-1==node_3->neighbors[0][i]){
+                break;
+            }
+        }
+        if(!plan_1 && !plan_2){
+            count++;
+            continue;
+        }
+        auto idx_2 = -1;
+        auto node_2 = linkLists[node_2_id];
+        for(int i=0; i<nb_neighbors(0); i++){
+            if(node_4_id == node_2->neighbors[0][i]){
+                plan_2 = false;
+            }
+            if(node_3_id == node_2->neighbors[0][i]){
+                plan_1 = false;
+            }
+            if(node_1_id == node_2->neighbors[0][i]){
+                idx_2 = i;
+            }
+            if(-1 == node_2->neighbors[0][i] && idx_2==-1){
+                idx_2 = i;
+                break;
+            }
+        }
+        if(!plan_1 && !plan_2){
+            count++;
+            continue;
+        }
+        auto node_4 = linkLists[node_4_id];
+        auto idx_4 = -1;
+        for(int i=0; i<nb_neighbors(0); i++){
+            if(node_2_id == node_4->neighbors[0][i]){
+                plan_2 = false;
+            }
+            if(node_1_id == node_4->neighbors[0][i]){
+                plan_1 = false;
+            }
+            if(node_3_id == node_4->neighbors[0][i]){
+                idx_4 = i;
+            }
+            if(-1 == node_4->neighbors[0][i] && idx_4==-1){
+                idx_4 = i;
+                break;
+            }
+        }
+        if(!plan_1 && !plan_2){
+            count++;
+            continue;
+        }
+        auto vector_1 = get_vector(node_1_id);
+        auto vector_2 = get_vector(node_2_id);
+        auto vector_3 = get_vector(node_3_id);
+        auto vector_4 = get_vector(node_4_id);
+
+        auto length14 = disq.distance(vector_1, vector_4);
+        auto length23 = disq.distance(vector_2, vector_3);
+        auto length13 = disq.distance(vector_1, vector_3);
+        auto length24 = disq.distance(vector_2, vector_4);
+
+        delete[] vector_1;
+        delete[] vector_2;
+        delete[] vector_3;
+        delete[] vector_4;
+
+        if(plan_1 && plan_2){
+            // choose a plan that brings less total distance
+            if(length14+length23 >= length13+length24){
+                plan_1 = false;
+            } else {
+                plan_2 = false;
+            }
+        }
+        if(plan_1){
+            
+        } else if(plan_2){
+
+        }
+
+
+
+        count++;
+    }
+
 
 
 }
