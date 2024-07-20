@@ -1704,10 +1704,14 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
         auto node_3_id = edge_dest.src;
         auto node_4_id = edge_dest.dest;
 
-        bool overlapping = true;
+        double node_1_sum = 0.0;
+        double node_2_sum = 0.0;
+        double node_3_sum = 0.0;
+        double node_4_sum = 0.0;
 
-        auto idx_src = edge_src.idx;
-        auto idx_dest = edge_dest.idx;
+
+        auto idx_1 = edge_src.idx;
+        auto idx_3 = edge_dest.idx;
         if(node_1_id == node_3_id || node_1_id == node_4_id || node_2_id == node_3_id || node_2_id == node_4_id){
             // overlapping so continue
             continue;
@@ -1725,6 +1729,7 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
             if(-1 == node_1->neighbors[0][i]){
                 break;
             }
+            node_1_sum += node_1->distances[0][i];
         }
         if(!plan_1 && !plan_2){
             count++;
@@ -1742,6 +1747,7 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
             if(-1==node_3->neighbors[0][i]){
                 break;
             }
+            node_3_sum+=node_3->distances[0][i];
         }
         if(!plan_1 && !plan_2){
             count++;
@@ -1763,8 +1769,9 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
                 idx_2 = i;
                 break;
             }
+            node_2_sum+=node_2->distances[0][i];
         }
-        if(!plan_1 && !plan_2){
+        if((!plan_1 && !plan_2) || (idx_2==-1)){
             count++;
             continue;
         }
@@ -1784,8 +1791,9 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
                 idx_4 = i;
                 break;
             }
+            node_4_sum+=node_4->distances[0][i];
         }
-        if(!plan_1 && !plan_2){
+        if((!plan_1 && !plan_2)||(idx_4==-1)){
             count++;
             continue;
         }
@@ -1812,10 +1820,219 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
                 plan_2 = false;
             }
         }
-        if(plan_1){
-            
-        } else if(plan_2){
+        auto n = graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
+        if(plan_1) {
+            // (n1,n2)(n3,n4)->(n1,n4)(n2,n3)
+            //node1
+            {
+                auto previous_distance = node_1->distances[0][idx_1];
+                node_1->neighbors[0][idx_1] = node_4_id;
+                node_1->distances[0][idx_1] = length14;
+                auto previous_distance_avg = node_1_sum / (node_1->bottom_connections * 1.0);
+                auto current_distance_avg =
+                        (node_1_sum - previous_distance + length14) / (node_1->bottom_connections * 1.0);
+                float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                        n, graphStates.global_stat.neighbor_distance_variance,
+                        graphStates.global_stat.neighbor_distance_sum,
+                        current_distance_avg, previous_distance_avg);
+                graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
+            }
+            //node3
+            {
+                auto previous_distance = node_3->distances[0][idx_3];
+                node_3->neighbors[0][idx_3]=node_2_id;
+                node_3->distances[0][idx_3] = length23;
+                auto previous_distance_avg = node_3_sum/(node_3->bottom_connections*1.0);
+                auto current_distance_avg = (node_3_sum-previous_distance+length23)/(node_3->bottom_connections*1.0);
+                float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                        n, graphStates.global_stat.neighbor_distance_variance,
+                        graphStates.global_stat.neighbor_distance_sum,
+                        current_distance_avg, previous_distance_avg);
+                graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
+            }
+            //node2
+            {
+                if(idx_2<node_2->bottom_connections){
+                    auto previous_distance = node_2->distances[0][idx_2];
+                    node_2->neighbors[0][idx_2] = node_3_id;
+                    node_2->distances[0][idx_2] = length23;
+                    auto previous_distance_avg = node_2_sum/(node_2->bottom_connections*1.0);
+                    auto current_distance_avg = (node_2_sum-previous_distance_avg+length23)/(node_2->bottom_connections*1.0);
+                    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.neighbor_distance_variance,
+                            graphStates.global_stat.neighbor_distance_sum,
+                            current_distance_avg, previous_distance_avg);
+                    graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
+                } else {
+                    auto previous_distance = 0;
+                    node_2->neighbors[0][idx_2]=node_3_id;
+                    node_2->distances[0][idx_2]=length23;
+                    auto prev_degree = node_2->bottom_connections;
+                    node_2->bottom_connections++;
+                    auto current_degree = node_2->bottom_connections;
+                    graphStates.global_stat.degree_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.degree_variance,graphStates.global_stat.degree_sum,
+                            current_degree, prev_degree);
+                    graphStates.global_stat.degree_sum+=(current_degree-prev_degree);
+                    auto previous_distance_avg = node_2_sum/(prev_degree*1.0);
+                    auto current_distance_avg = (node_2_sum + length23)/(current_degree*1.0);
+                    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.neighbor_distance_variance, graphStates.global_stat.neighbor_distance_sum,
+                            current_distance_avg, previous_distance_avg);
+                    graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
 
+                }
+            }
+            //node4
+            {
+                if(idx_4<node_4->bottom_connections){
+                    auto previous_distance = node_4->distances[0][idx_4];
+                    node_4->neighbors[0][idx_4] = node_1_id;
+                    node_4->distances[0][idx_4] = length14;
+                    auto previous_distance_avg = node_4_sum/(node_4->bottom_connections*1.0);
+                    auto current_distance_avg = (node_4_sum-previous_distance_avg+length14)/(node_4->bottom_connections*1.0);
+                    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.neighbor_distance_variance,
+                            graphStates.global_stat.neighbor_distance_sum,
+                            current_distance_avg, previous_distance_avg);
+                    graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
+                } else {
+                    auto previous_distance = 0;
+                    node_4->neighbors[0][idx_4]=node_1_id;
+                    node_4->distances[0][idx_4]=length14;
+                    auto prev_degree = node_4->bottom_connections;
+                    node_4->bottom_connections++;
+                    auto current_degree = node_4->bottom_connections;
+                    graphStates.global_stat.degree_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.degree_variance,graphStates.global_stat.degree_sum,
+                            current_degree, prev_degree);
+                    graphStates.global_stat.degree_sum+=(current_degree-prev_degree);
+                    auto previous_distance_avg = node_4_sum/(prev_degree*1.0);
+                    auto current_distance_avg = (node_4_sum + length14)/(current_degree*1.0);
+                    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.neighbor_distance_variance, graphStates.global_stat.neighbor_distance_sum,
+                            current_distance_avg, previous_distance_avg);
+                    graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
+                }
+            }
+        } else if(plan_2){
+            // (n1,n2)(n3,n4)->(n1,n3)&(n2,n4)
+            //node1
+            {
+                auto previous_distance = node_1->distances[0][idx_1];
+                node_1->neighbors[0][idx_1] = node_3_id;
+                node_1->distances[0][idx_1] = length13;
+                auto previous_distance_avg = node_1_sum / (node_1->bottom_connections * 1.0);
+                auto current_distance_avg =
+                        (node_1_sum - previous_distance + length13) / (node_1->bottom_connections * 1.0);
+                float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                        n, graphStates.global_stat.neighbor_distance_variance,
+                        graphStates.global_stat.neighbor_distance_sum,
+                        current_distance_avg, previous_distance_avg);
+                graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
+            }
+            //node3
+            {
+                auto previous_distance = node_3->distances[0][idx_3];
+                node_3->neighbors[0][idx_3]=node_1_id;
+                node_3->distances[0][idx_3] = length13;
+                auto previous_distance_avg = node_3_sum/(node_3->bottom_connections*1.0);
+                auto current_distance_avg = (node_3_sum-previous_distance+length13)/(node_3->bottom_connections*1.0);
+                float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                        n, graphStates.global_stat.neighbor_distance_variance,
+                        graphStates.global_stat.neighbor_distance_sum,
+                        current_distance_avg, previous_distance_avg);
+                graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
+            }
+            //node2
+            {
+                if(idx_2<node_2->bottom_connections){
+                    auto previous_distance = node_2->distances[0][idx_2];
+                    node_2->neighbors[0][idx_2] = node_4_id;
+                    node_2->distances[0][idx_2] = length24;
+                    auto previous_distance_avg = node_2_sum/(node_2->bottom_connections*1.0);
+                    auto current_distance_avg = (node_2_sum-previous_distance_avg+length24)/(node_2->bottom_connections*1.0);
+                    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.neighbor_distance_variance,
+                            graphStates.global_stat.neighbor_distance_sum,
+                            current_distance_avg, previous_distance_avg);
+                    graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
+                } else {
+                    auto previous_distance = 0;
+                    node_2->neighbors[0][idx_2]=node_4_id;
+                    node_2->distances[0][idx_2]=length24;
+                    auto prev_degree = node_2->bottom_connections;
+                    node_2->bottom_connections++;
+                    auto current_degree = node_2->bottom_connections;
+                    graphStates.global_stat.degree_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.degree_variance,graphStates.global_stat.degree_sum,
+                            current_degree, prev_degree);
+                    graphStates.global_stat.degree_sum+=(current_degree-prev_degree);
+                    auto previous_distance_avg = node_2_sum/(prev_degree*1.0);
+                    auto current_distance_avg = (node_2_sum + length24)/(current_degree*1.0);
+                    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.neighbor_distance_variance, graphStates.global_stat.neighbor_distance_sum,
+                            current_distance_avg, previous_distance_avg);
+                    graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
+
+                }
+            }
+            //node4
+            {
+                if(idx_4<node_4->bottom_connections){
+                    auto previous_distance = node_4->distances[0][idx_4];
+                    node_4->neighbors[0][idx_4] = node_2_id;
+                    node_4->distances[0][idx_4] = length24;
+                    auto previous_distance_avg = node_4_sum/(node_4->bottom_connections*1.0);
+                    auto current_distance_avg = (node_4_sum-previous_distance_avg+length24)/(node_4->bottom_connections*1.0);
+                    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.neighbor_distance_variance,
+                            graphStates.global_stat.neighbor_distance_sum,
+                            current_distance_avg, previous_distance_avg);
+                    graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
+                } else {
+                    auto previous_distance = 0;
+                    node_4->neighbors[0][idx_4]=node_2_id;
+                    node_4->distances[0][idx_4]=length24;
+                    auto prev_degree = node_4->bottom_connections;
+                    node_4->bottom_connections++;
+                    auto current_degree = node_4->bottom_connections;
+                    graphStates.global_stat.degree_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.degree_variance,graphStates.global_stat.degree_sum,
+                            current_degree, prev_degree);
+                    graphStates.global_stat.degree_sum+=(current_degree-prev_degree);
+                    auto previous_distance_avg = node_4_sum/(prev_degree*1.0);
+                    auto current_distance_avg = (node_4_sum + length24)/(current_degree*1.0);
+                    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+                    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+                    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+                            n, graphStates.global_stat.neighbor_distance_variance, graphStates.global_stat.neighbor_distance_sum,
+                            current_distance_avg, previous_distance_avg);
+                    graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
+                }
+            }
         }
 
 
