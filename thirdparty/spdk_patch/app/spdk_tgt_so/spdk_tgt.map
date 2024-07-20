@@ -1,0 +1,11 @@
+{
+	global:
+
+	# public functions
+	crc16_t10dif;
+	crc32_iscsi;
+	xor_gen;
+	crc16_t10dif_copy;
+	crc64_rocksoft_refl;
+	local: *;
+};

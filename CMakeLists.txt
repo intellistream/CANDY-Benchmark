@@ -47,6 +47,37 @@ option(ENABLE_PYBIND
         "Enable original pybind and build CANDY python"
         OFF
 )
+# spdk
+option(ENABLE_SPDK
+        "Enable SPDK support, pls first compile papi or set REBUILD_PAPI to ON"
+        OFF
+)
+# OPTIONAL PAPI
+if (NOT ENABLE_SPDK)
+    message(STATUS "I will NOT use SPDK ")
+    set(CANDY_SPDK 0)
+else ()
+    include(cmake/SPDK.cmake)
+    set(CANDY_SPDK 1)
+    message(STATUS "I will try to use SPDK for SSD, pls make sure your arch supports it")
+    option(REBUILD_SPDK
+            "Rebuild the SPDK lib"
+            OFF
+    )
+    if (REBUILD_SPDK)
+        build_spdk_libs(${PROJECT_SOURCE_DIR}/thirdparty)
+        message(STATUS "I have rebuilt SPDK")
+    endif ()
+    find_spdk_paths(${PROJECT_SOURCE_DIR}/thirdparty/spdk/build SPDK_INCLUDE_DIRS SPDK_LIBRARIES)
+    message(STATUS "SPDK LIB= " ${SPDK_LIBRARIES})
+    set(LIBRARIES ${LIBRARIES} ${SPDK_LIBRARIES})
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/spdk/build/include)
+endif ()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/spdk_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/spdk_config.h"
+)
+
 #OPTIONAL OPENCL
 if (NOT ENABLE_OPENCL)
     message(STATUS "I will NOT include opencl support ")
