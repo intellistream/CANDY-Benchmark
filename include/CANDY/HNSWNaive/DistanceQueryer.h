@@ -19,7 +19,7 @@ namespace CANDY {
  * not depend on storage index to re-build data.
  */
 class DistanceQueryer {
-public:
+ public:
   typedef int64_t opt_mode_t;
   opt_mode_t opt_mode_ = OPT_VANILLA;
   faiss::MetricType faissMetric = faiss::METRIC_L2;
@@ -36,13 +36,13 @@ public:
   float delta_query_ = 0.0;
 
   /// used for AdSAMPLING
-  AdSampling* ads = nullptr;
+  AdSampling *ads = nullptr;
   torch::Tensor transformed;
 
   explicit DistanceQueryer(size_t d)
-      : d_(d){
+      : d_(d) {
 
-        };
+  };
   DistanceQueryer() = default;
   /**
    * @brief compute the distance between given idx's vector and query vector
@@ -50,7 +50,7 @@ public:
    * @return L2 Distance
    */
   float operator()(INTELLI::TensorPtr idx) {
-      // we always build using vanilla
+    // we always build using vanilla
     if (opt_mode_ == OPT_VANILLA || !is_search || (opt_mode_ == OPT_DCO && !is_rank)) {
       auto idx_data = (*idx).contiguous().data_ptr<float>();
       if (faissMetric == faiss::METRIC_L2) {
@@ -61,14 +61,14 @@ public:
     }
     if (opt_mode_ == OPT_LVQ) {
       auto idx_data = (*idx).contiguous().data_ptr<float>();
-      int8_t* first_codes_idx = new int8_t[d_];
-      int8_t* first_codes_query = code_;
+      int8_t *first_codes_idx = new int8_t[d_];
+      int8_t *first_codes_query = code_;
       //float delta_idx = lvq_first_level(idx_data, d_, first_codes_idx);
       //float delta_query = delta_query_;
       lvq_first_level(idx_data, d_, first_codes_idx);
 
       // during ranking, need to compute residual codes (second-level lvq)
-      if(is_rank){
+      if (is_rank) {
 //          int8_t* second_codes_idx = new int8_t[d_];
 //          int8_t* second_codes_query = new int8_t[d_];
 //          lvq_second_level(idx_data, d_, second_codes_idx, delta_idx);
@@ -81,10 +81,10 @@ public:
 //          free(second_codes_query);
       }
       if (faissMetric == faiss::METRIC_L2) {
-          auto dist =  int8vec_L2(first_codes_idx, first_codes_query, d_);
-          free(first_codes_idx);
-          //free(first_codes_query);
-          return dist;
+        auto dist = int8vec_L2(first_codes_idx, first_codes_query, d_);
+        free(first_codes_idx);
+        //free(first_codes_query);
+        return dist;
       } else {
         auto dist = int8vec_IP(first_codes_idx, first_codes_query, d_);
         free(first_codes_idx);
@@ -92,73 +92,73 @@ public:
         return -dist;
       }
     }
-    if(opt_mode_ == OPT_DCO && is_rank){
-        if(faissMetric == faiss::METRIC_L2){
-            //assert(ads);
-            //std::cout<< "this query"<<transformed;
-            //std::cout<<"to saerch"<<*idx;
-            auto dist = ads->distanceCompute_L2(transformed, *idx);
-            return dist;
-        } else {
-            printf("ADSAMPLING DOES NOT SUPPORT INNER PRODUCT!\n");
-        }
+    if (opt_mode_ == OPT_DCO && is_rank) {
+      if (faissMetric == faiss::METRIC_L2) {
+        //assert(ads);
+        //std::cout<< "this query"<<transformed;
+        //std::cout<<"to saerch"<<*idx;
+        auto dist = ads->distanceCompute_L2(transformed, *idx);
+        return dist;
+      } else {
+        printf("ADSAMPLING DOES NOT SUPPORT INNER PRODUCT!\n");
+      }
     }
     return 0;
   }
 
-  float operator()(const int8_t* code){
-      if(opt_mode_ == OPT_LVQ){
-          if(faissMetric == faiss::METRIC_L2){
-              auto dist = int8vec_L2(code_, code, d_);
-              return dist;
-          } else {
-              auto dist = int8vec_IP(code_, code, d_);
-              return -dist;
-          }
+  float operator()(const int8_t *code) {
+    if (opt_mode_ == OPT_LVQ) {
+      if (faissMetric == faiss::METRIC_L2) {
+        auto dist = int8vec_L2(code_, code, d_);
+        return dist;
+      } else {
+        auto dist = int8vec_IP(code_, code, d_);
+        return -dist;
       }
-      return 0;
+    }
+    return 0;
   }
-  float lvq_first_level(const float* x, const size_t len, int8_t* codes){
+  float lvq_first_level(const float *x, const size_t len, int8_t *codes) {
     assert(mean_);
-    size_t min_index =0;
-    size_t max_index =0;
+    size_t min_index = 0;
+    size_t max_index = 0;
     float min = x[min_index] - (*mean_)[min_index];
     float max = x[max_index] - (*mean_)[max_index];
 
-    for(size_t i=1; i<len; i++){
-        if(x[i]-(*mean_)[i]<min){
-            min_index = i;
-            min = x[i] - (*mean_)[i];
-        } else if(x[i] - (*mean_)[i]>max){
-            max_index = i;
-            max = x[i] - (*mean_)[i];
-        }
+    for (size_t i = 1; i < len; i++) {
+      if (x[i] - (*mean_)[i] < min) {
+        min_index = i;
+        min = x[i] - (*mean_)[i];
+      } else if (x[i] - (*mean_)[i] > max) {
+        max_index = i;
+        max = x[i] - (*mean_)[i];
+      }
     }
 
     float u = max;
     float l = min;
 
-    float delta = (u-l)/(pow(2.0, 8)-1);
-    for(size_t i=0; i<len; i++){
-        float temp = (delta * (std::floor((x[i]-(*mean_)[i]-l)/delta)+0.5) +l);
-        codes[i] = (int)(0xff*temp);
+    float delta = (u - l) / (pow(2.0, 8) - 1);
+    for (size_t i = 0; i < len; i++) {
+      float temp = (delta * (std::floor((x[i] - (*mean_)[i] - l) / delta) + 0.5) + l);
+      codes[i] = (int) (0xff * temp);
     }
     return delta;
 
   }
 
-  void lvq_second_level(const float*x, const size_t len, int8_t* codes, float delta){
-      assert(mean_);
+  void lvq_second_level(const float *x, const size_t len, int8_t *codes, float delta) {
+    assert(mean_);
 
-      float u = delta/2;
-      float l = -delta/2;
+    float u = delta / 2;
+    float l = -delta / 2;
 
-      float delta_second = (u-l)/(pow(2.0, 8)-1);
-      for(size_t i=0; i<len; i++){
-          float temp = (delta_second * (std::floor((x[i]-l)/delta_second)+0.5) +l);
-          codes[i] = (int)(0xff*temp);
-      }
-      return;
+    float delta_second = (u - l) / (pow(2.0, 8) - 1);
+    for (size_t i = 0; i < len; i++) {
+      float temp = (delta_second * (std::floor((x[i] - l) / delta_second) + 0.5) + l);
+      codes[i] = (int) (0xff * temp);
+    }
+    return;
 
   }
 
@@ -175,13 +175,13 @@ public:
     if (opt_mode_ == OPT_LVQ) {
       auto i_data = (*i).contiguous().data_ptr<float>();
       auto j_data = (*j).contiguous().data_ptr<float>();
-      int8_t* first_codes_i = new int8_t[d_];
-      int8_t* first_codes_j = new int8_t[d_];
+      int8_t *first_codes_i = new int8_t[d_];
+      int8_t *first_codes_j = new int8_t[d_];
       //float delta_i = lvq_first_level(i_data, d_, first_codes_i);
       //float delta_j = lvq_first_level(j_data, d_, first_codes_j);
       lvq_first_level(i_data, d_, first_codes_i);
       lvq_first_level(j_data, d_, first_codes_j);
-      if(is_rank){
+      if (is_rank) {
 //          int8_t* second_codes_i = new int8_t[d_];
 //          int8_t* second_codes_j = new int8_t[d_];
 //          lvq_second_level(i_data, d_, second_codes_i, delta_i);
@@ -200,20 +200,20 @@ public:
         free(first_codes_j);
         return dist;
       } else {
-          auto dist = int8vec_IP(first_codes_i, first_codes_j, d_);
-          free(first_codes_i);
-          free(first_codes_j);
-          return -dist;
+        auto dist = int8vec_IP(first_codes_i, first_codes_j, d_);
+        free(first_codes_i);
+        free(first_codes_j);
+        return -dist;
       }
     }
-    if(opt_mode_ == OPT_DCO){
-        if(faissMetric == faiss::METRIC_L2){
-            assert(ads);
-            auto dist = ads->distanceCompute_L2(*i, *j);
-            return dist;
-        } else {
-            printf("ADSAMPLING DOES NOT SUPPORT INNER PRODUCT!\n");
-        }
+    if (opt_mode_ == OPT_DCO) {
+      if (faissMetric == faiss::METRIC_L2) {
+        assert(ads);
+        auto dist = ads->distanceCompute_L2(*i, *j);
+        return dist;
+      } else {
+        printf("ADSAMPLING DOES NOT SUPPORT INNER PRODUCT!\n");
+      }
     }
     return 0;
   }
@@ -221,73 +221,73 @@ public:
   void set_query(torch::Tensor &x) {
     query_ = x;
     data_ = (query_).contiguous().data_ptr<float>();
-    if(opt_mode_ == OPT_LVQ){
-        if(code_!=nullptr){
-            free(code_);
-        }
-        code_ = new int8_t[d_];
-        delta_query_ = lvq_first_level(data_, d_, code_);
+    if (opt_mode_ == OPT_LVQ) {
+      if (code_ != nullptr) {
+        free(code_);
+      }
+      code_ = new int8_t[d_];
+      delta_query_ = lvq_first_level(data_, d_, code_);
     }
   }
 
-  int8_t* compute_code(INTELLI::TensorPtr idx){
-      auto data = (*idx).contiguous().data_ptr<float>();
-      int8_t* codes = new int8_t[d_];
-      lvq_first_level(data, d_, codes);
-      return codes;
+  int8_t *compute_code(INTELLI::TensorPtr idx) {
+    auto data = (*idx).contiguous().data_ptr<float>();
+    int8_t *codes = new int8_t[d_];
+    lvq_first_level(data, d_, codes);
+    return codes;
   }
 
-  torch::Tensor compute_transformed(INTELLI::TensorPtr idx){
-      assert(ads);
-      return ads->transform(*idx);
+  torch::Tensor compute_transformed(INTELLI::TensorPtr idx) {
+    assert(ads);
+    return ads->transform(*idx);
   }
 
   void set_mode(opt_mode_t opt_mode, faiss::MetricType metric) {
     opt_mode_ = opt_mode;
     faissMetric = metric;
-    if(opt_mode_ == OPT_DCO){
-        ads = new AdSampling(d_);
+    if (opt_mode_ == OPT_DCO) {
+      ads = new AdSampling(d_);
     }
   }
 
-  void set_rank(bool rank){
-      is_rank = rank;
+  void set_rank(bool rank) {
+    is_rank = rank;
   }
 
-  void set_search(bool search){
-      is_search = search;
+  void set_search(bool search) {
+    is_search = search;
   }
 
   float int8vec_IP(const int8_t *x, const int8_t *y, size_t d) {
     int32_t product = 0;
     for (size_t i = 0; i < d; i++) {
-      product += (int32_t)(x[i] * y[i]);
+      product += (int32_t) (x[i] * y[i]);
     }
-    return (float)(product);
+    return (float) (product);
   }
 
-  float fvec_IP(const float* x, const float* y,size_t d){
-      float product = 0;
-      for(size_t i=0; i<d; i++){
-          product += x[i] * y[i];
-      }
-      return product;
+  float fvec_IP(const float *x, const float *y, size_t d) {
+    float product = 0;
+    for (size_t i = 0; i < d; i++) {
+      product += x[i] * y[i];
+    }
+    return product;
   }
 
   float int8vec_L2(const int8_t *x, const int8_t *y, size_t d) {
     int32_t sum = 0;
     for (size_t i = 0; i < d; i++) {
-      sum += (int32_t)((x[i] - y[i]) * (x[i] - y[i]));
+      sum += (int32_t) ((x[i] - y[i]) * (x[i] - y[i]));
     }
-    return (float)(sum);
+    return (float) (sum);
   }
 
-  float fvec_L2(const float *x, const float *y, size_t d){
-      float sum = 0;
-      for(size_t i=0;i<d; i++){
-          sum += (x[i]-y[i])*(x[i]-y[i]);
-      }
-      return sum;
+  float fvec_L2(const float *x, const float *y, size_t d) {
+    float sum = 0;
+    for (size_t i = 0; i < d; i++) {
+      sum += (x[i] - y[i]) * (x[i] - y[i]);
+    }
+    return sum;
   }
 
   //    int8_t* lvq_encode(const float *x, const float *mean, size_t d) {

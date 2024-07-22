@@ -51,40 +51,42 @@ matplotlib.rcParams['font.family'] = OPT_FONT_NAME
 matplotlib.rcParams['pdf.fonttype'] = 42
 dataset_vecDim_mapping = {
     'DPR': 768,
-    'SIFT':128,
+    'SIFT': 128,
     'Enron': 1369,
-    'Sun':512,
-    'Trevi':4096,
-    'Glove':100,
-    'Msong':420
+    'Sun': 512,
+    'Trevi': 4096,
+    'Glove': 100,
+    'Msong': 420
 }
 dataset_dataPath_mapping = {
     'DPR': 'datasets/DPR/DPR100KC4.fvecs',
     'SIFT': 'datasets/fvecs/sift1M/sift/sift_base.fvecs',
     'Enron': 'datasets/hdf5/enron/enron.hdf5',
-    'Sun':'datasets/hdf5/sun/sun.hdf5',
-    'Trevi':'datasets/hdf5/trevi/trevi.hdf5',
-    'Glove':'datasets/hdf5/glove/glove.hdf5',
-    'Msong':'datasets/hdf5/msong/msong.hdf5',
+    'Sun': 'datasets/hdf5/sun/sun.hdf5',
+    'Trevi': 'datasets/hdf5/trevi/trevi.hdf5',
+    'Glove': 'datasets/hdf5/glove/glove.hdf5',
+    'Msong': 'datasets/hdf5/msong/msong.hdf5',
 }
 dataset_queryPath_mapping = {
     'DPR': 'datasets/DPR/DPR10KC4Q.fvecs',
     'SIFT': 'datasets/fvecs/sift1M/sift/sift_query.fvecs',
     'Enron': 'datasets/hdf5/enron/enron.hdf5',
-    'Sun':'datasets/hdf5/sun/sun.hdf5',
-    'Trevi':'datasets/hdf5/trevi/trevi.hdf5',
-    'Glove':'datasets/hdf5/glove/glove.hdf5',
-    'Msong':'datasets/hdf5/msong/msong.hdf5',
+    'Sun': 'datasets/hdf5/sun/sun.hdf5',
+    'Trevi': 'datasets/hdf5/trevi/trevi.hdf5',
+    'Glove': 'datasets/hdf5/glove/glove.hdf5',
+    'Msong': 'datasets/hdf5/msong/msong.hdf5',
 }
 dataset_dataLoaderTag_mapping = {
     'DPR': 'fvecs',
     'SIFT': 'fvecs',
     'Enron': 'hdf5',
-    'Sun':'hdf5',
-    'Trevi':'hdf5',
-    'Glove':'hdf5',
-    'Msong':'hdf5',
+    'Sun': 'hdf5',
+    'Trevi': 'hdf5',
+    'Glove': 'hdf5',
+    'Msong': 'hdf5',
 }
+
+
 def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixTagRaw="null"):
     # resultFolder="periodTests"
     prefixTag = str(prefixTagRaw)
@@ -137,7 +139,7 @@ def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixT
     os.system("cp *.rbt " + exePath)
     # run
     if ((algoTag == 'nnDescent2')):
-        os.system("cp dummy.csv " +  exePath+"onlineInsert_result.csv")
+        os.system("cp dummy.csv " + exePath + "onlineInsert_result.csv")
     else:
         os.system("cd " + exePath + "&& export OMP_NUM_THREADS=1 &&" + "sudo ./" + exeTag + " " + 'temp1.csv')
     # copy result
@@ -282,7 +284,6 @@ def getCyclesPerMethod(cyclesAll, valueChose):
 
 
 def main():
-    
     exeSpace = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/"
     commonBasePath = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/results/scanIPE2ENoDropping/"
 
@@ -301,20 +302,20 @@ def main():
     # srcAVec=['datasets/ECO/wm2.mtx',"datasets/DWAVE/dwa512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700a.mtx','datasets/RDB/rdb2048.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcda_small.mtx',"datasets/BUS/gemat1.mtx",]
     # srcBVec=['datasets/ECO/wm3.mtx',"datasets/DWAVE/dwb512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700b.mtx','datasets/RDB/rdb2048l.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcdb_small.mtx',"datasets/BUS/gemat1.mtx",]
     # aRowVec= [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
-    aRowVec = ['Glove','SIFT','Msong','Sun','DPR','Trevi']
+    aRowVec = ['Glove', 'SIFT', 'Msong', 'Sun', 'DPR', 'Trevi']
     dataSetNames = aRowVec
     # aRowVec=[100, 200, 500, 1000]
     # add the algo tag here
-    #algosVec = ['flat', 'LSH-H','flatAMMIP','flatAMMIPSMPPCA','PQ','IVFPQ','HNSW']
-    algosVec = ['flat', 'LSH-H','Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent']
+    # algosVec = ['flat', 'LSH-H','flatAMMIP','flatAMMIPSMPPCA','PQ','IVFPQ','HNSW']
+    algosVec = ['flat', 'LSH-H', 'Flann', 'PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent']
     # algosVec = ['flat', 'LSH-H']
     # algosVec = ['flat', 'onlinePQ']
     # algosVec=['incrementalRaw']
     # algosVec=[ 'pq']
     # algoDisp = ['BrutalForce', 'PQ']
-    algoDisp = ['Baseline', 'LSH-H','Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent']
-    #algoDisp = ['BrutalForce', 'LSH-H','AMM(CRS)','AMM(PCA)','PQ','IVFPQ','HNSW']
-    #algoDisp = ['BrutalForce', 'LSH-H']
+    algoDisp = ['Baseline', 'LSH-H', 'Flann', 'PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent']
+    # algoDisp = ['BrutalForce', 'LSH-H','AMM(CRS)','AMM(PCA)','PQ','IVFPQ','HNSW']
+    # algoDisp = ['BrutalForce', 'LSH-H']
     # algoDisp=['BrutalForce']
     # algoDisp=['PQ']
     # add the algo tag here
@@ -355,24 +356,30 @@ def main():
     # print(recall[-1],recall[2])
 
     # groupBar2.DrawFigure(dataSetNames, np.log(thrAll), methodTags, "Datasets", "elements/ms", 5, 15, figPath + "sec4_1_e2e_static_lazy_throughput_log", True)
-    groupBar2.DrawFigureYLog(dataSetNames,incrementalBuildAll / 1000,methodTags, "Datasets", r'95% Latency of insert (ms)', 5, 15, figPath + "/e2e_latency_insert", True)
-    groupBar2.DrawFigureYLog(dataSetNames,incrementalSearchAll / 1000,methodTags, "Datasets", r'Latency of search@10(ms)', 5, 15, figPath + "/e2e_latency_wp", False)
-    groupBar2.DrawFigureYLog(dataSetNames,(incrementalSearchAll+pendingWaitTimeAll) / 1000,methodTags, "Datasets", r'Latency of query@10(ms)', 5, 15, figPath + "/e2e_latency_all", False)
-    groupBar2.DrawFigureYLog(dataSetNames,pendingWaitTimeAll / 1000,methodTags, "Datasets", r'Pending write @10(ms)', 5, 15, figPath + "/e2e_pending_latency_wp", False)
-    groupBar2.DrawFigure(dataSetNames,recall,methodTags, "Datasets", r'recall @10', 5, 15, figPath + "/e2e_recall_1", False)
-    df = pd.DataFrame((incrementalSearchAll+pendingWaitTimeAll) /1e6, columns=dataSetNames, index=algoDisp)
-    df.to_csv( figPath + "/e2e_latency.csv",float_format='%.2f')
+    groupBar2.DrawFigureYLog(dataSetNames, incrementalBuildAll / 1000, methodTags, "Datasets",
+                             r'95% Latency of insert (ms)', 5, 15, figPath + "/e2e_latency_insert", True)
+    groupBar2.DrawFigureYLog(dataSetNames, incrementalSearchAll / 1000, methodTags, "Datasets",
+                             r'Latency of search@10(ms)', 5, 15, figPath + "/e2e_latency_wp", False)
+    groupBar2.DrawFigureYLog(dataSetNames, (incrementalSearchAll + pendingWaitTimeAll) / 1000, methodTags, "Datasets",
+                             r'Latency of query@10(ms)', 5, 15, figPath + "/e2e_latency_all", False)
+    groupBar2.DrawFigureYLog(dataSetNames, pendingWaitTimeAll / 1000, methodTags, "Datasets", r'Pending write @10(ms)',
+                             5, 15, figPath + "/e2e_pending_latency_wp", False)
+    groupBar2.DrawFigure(dataSetNames, recall, methodTags, "Datasets", r'recall @10', 5, 15, figPath + "/e2e_recall_1",
+                         False)
+    df = pd.DataFrame((incrementalSearchAll + pendingWaitTimeAll) / 1e6, columns=dataSetNames, index=algoDisp)
+    df.to_csv(figPath + "/e2e_latency.csv", float_format='%.2f')
     df = pd.DataFrame(recall, columns=dataSetNames, index=algoDisp)
-    df.to_csv( figPath + "/e2e_recall.csv",float_format='%.2f')
-    totalQuery = (incrementalSearchAll+pendingWaitTimeAll) / 1e3
-    df = pd.DataFrame(pendingWaitTimeAll /totalQuery/10, columns=dataSetNames, index=algoDisp)
-    df.to_csv( figPath + "/e2e_pw_propotion.csv",float_format='%.2f')
+    df.to_csv(figPath + "/e2e_recall.csv", float_format='%.2f')
+    totalQuery = (incrementalSearchAll + pendingWaitTimeAll) / 1e3
+    df = pd.DataFrame(pendingWaitTimeAll / totalQuery / 10, columns=dataSetNames, index=algoDisp)
+    df.to_csv(figPath + "/e2e_pw_propotion.csv", float_format='%.2f')
     df = pd.DataFrame(pendingWaitTimeAll / 1e6, columns=dataSetNames, index=algoDisp)
-    df.to_csv( figPath + "/e2e_pw_value.csv",float_format='%.2f')
-    df = pd.DataFrame(incrementalSearchAll / 10/totalQuery, columns=dataSetNames, index=algoDisp)
-    df.to_csv( figPath + "/e2e_vs_propotion.csv",float_format='%.2f')
+    df.to_csv(figPath + "/e2e_pw_value.csv", float_format='%.2f')
+    df = pd.DataFrame(incrementalSearchAll / 10 / totalQuery, columns=dataSetNames, index=algoDisp)
+    df.to_csv(figPath + "/e2e_vs_propotion.csv", float_format='%.2f')
     df = pd.DataFrame(incrementalSearchAll / 1e6, columns=dataSetNames, index=algoDisp)
-    df.to_csv( figPath + "/e2e_vs_value.csv",float_format='%.2f')
+    df.to_csv(figPath + "/e2e_vs_value.csv", float_format='%.2f')
+
 
 if __name__ == "__main__":
     main()

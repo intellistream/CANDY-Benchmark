@@ -6,9 +6,8 @@
 #include <cuda.h>
 #include <cuda_runtime.h>
 
-
 // Utility function to check CUDA errors
-inline void checkCudaError(cudaError_t result, char const* const func, const char* const file, int const line) {
+inline void checkCudaError(cudaError_t result, char const *const func, const char *const file, int const line) {
   if (result != cudaSuccess) {
     std::cerr << "CUDA error = " << static_cast<int>(result) << " at " <<
               file << ":" << line << " '" << func << "' \n" << cudaGetErrorString(result) << std::endl;
@@ -20,7 +19,7 @@ inline void checkCudaError(cudaError_t result, char const* const func, const cha
 __global__ void matrixMulCUDA(float *a, float *b, float *c, int M, int N, int K) {
   int row = blockIdx.y * blockDim.y + threadIdx.y;
   int col = blockIdx.x * blockDim.x + threadIdx.x;
-  if(row < M && col < K) {
+  if (row < M && col < K) {
     float sum = 0.0;
     for (int i = 0; i < N; i++) {
       sum += a[row * N + i] * b[i * K + col];
@@ -49,7 +48,12 @@ torch::Tensor CudaMM(torch::Tensor a, torch::Tensor b) {
                      (M + threadsPerBlock.y - 1) / threadsPerBlock.y);
 
   // Launch the kernel
-  matrixMulCUDA<<<blocksPerGrid, threadsPerBlock>>>(a.data_ptr<float>(), b.data_ptr<float>(), c.data_ptr<float>(), M, N, K);
+  matrixMulCUDA<<<blocksPerGrid, threadsPerBlock>>>(a.data_ptr<float>(),
+                                                    b.data_ptr<float>(),
+                                                    c.data_ptr<float>(),
+                                                    M,
+                                                    N,
+                                                    K);
 
   // Wait for GPU to finish before accessing on host
   CHECK_CUDA_ERROR(cudaDeviceSynchronize());

@@ -25,8 +25,8 @@ TEST_CASE("Test basic", "[short]")
 
 TEST_CASE("Test cuda mm", "[short]")
 {
-  auto a=torch::rand({128,128});
-  auto c=CudaMM(a,a);
-  std::cout<<c;
-  REQUIRE(c.size(0)==128);
+  auto a = torch::rand({128, 128});
+  auto c = CudaMM(a, a);
+  std::cout << c;
+  REQUIRE(c.size(0) == 128);
 }

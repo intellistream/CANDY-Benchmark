@@ -114,7 +114,7 @@ bool NNDescentIndex::updateNN(size_t i, size_t j, double dist) {
     std::push_heap(graph[i].pool.begin(), graph[i].pool.end());
     return true;
   } else if (dist < graph[i].pool.front().distance &&
-             !graph[i].neighborIdxSet.count(j)) {
+      !graph[i].neighborIdxSet.count(j)) {
     graph[i].neighborIdxSet.erase(graph[i].pool.front().id);
     graph[i].neighborIdxSet.insert(j);
 
@@ -129,7 +129,7 @@ bool NNDescentIndex::updateNN(size_t i, size_t j, double dist) {
 double NNDescentIndex::calcDist(const torch::Tensor &ta,
                                 const torch::Tensor &tb) {
   auto taPtr = ta.contiguous().data_ptr<float>(),
-       tbPtr = tb.contiguous().data_ptr<float>();
+      tbPtr = tb.contiguous().data_ptr<float>();
   double ans = 0;
   if (faissMetric == faiss::METRIC_L2) {
     for (size_t i = 0; i < vecDim; ++i) {
@@ -180,7 +180,7 @@ std::vector<std::pair<double, size_t>> NNDescentIndex::searchOnceInner(
               neighbors.emplace_back(dist, neighbor.id);
               std::push_heap(neighbors.begin(), neighbors.end());
             } else if (calcDist(tensor[neighbor.id], q) <
-                       neighbors.front().first) {
+                neighbors.front().first) {
               neighborIdxWithVisitFlag.erase(neighbors.front().second);
               neighborIdxWithVisitFlag.insert(
                   std::make_pair(neighbor.id, false));
@@ -229,7 +229,7 @@ void NNDescentIndex::parallelFor(size_t idxSize,
   for (size_t id = 0; id < parallelWorkers; ++id)
     threads[id] = std::make_shared<std::thread>([=]() {
       size_t threadBegin = id * itemPerThread,
-             threadEnd = std::min(idxSize, (id + 1) * itemPerThread);
+          threadEnd = std::min(idxSize, (id + 1) * itemPerThread);
       for (size_t i = threadBegin; i < threadEnd; ++i) action(i);
     });
   for (auto thread : threads) thread->join();

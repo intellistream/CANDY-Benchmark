@@ -21,7 +21,7 @@ TEST_CASE("Test dpg index", "[short]") {
   INTELLI::ConfigMapPtr cfg = newConfigMap();
   CANDY::IndexTable it;
   auto flatIdx = it.getIndex("flat");
-  cfg->edit("vecDim", (int64_t)2);
+  cfg->edit("vecDim", (int64_t) 2);
   flatIdx->setConfig(cfg);
   auto ta = torch::rand({8, 2});
   flatIdx->insertTensor(ta);

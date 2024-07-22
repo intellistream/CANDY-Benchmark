@@ -224,7 +224,7 @@ else ()
     install(TARGETS PyCANDY LIBRARY DESTINATION .)
     message(STATUS "Additional include torch_python: ${TORCH_PYTHON_LIBRARY}")
     set(CANDY_PYBIND 1)
-    set_property(TARGET PyCANDY  PROPERTY CXX_STANDARD 20)
+    set_property(TARGET PyCANDY PROPERTY CXX_STANDARD 20)
 endif ()
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/pybind_config.h.in"

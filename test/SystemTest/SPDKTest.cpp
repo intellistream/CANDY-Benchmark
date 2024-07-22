@@ -40,7 +40,7 @@ int tmain() {
   pthread_t threads[NUM_THREADS];
   struct thread_context contexts[NUM_THREADS];
   uint32_t sector_size = spdk_nvme_ns_get_sector_size(g_ns);
-  printf("Sector size=%d",sector_size);
+  printf("Sector size=%d", sector_size);
   for (int i = 0; i < NUM_THREADS; i++) {
     contexts[i].lba = BASE_LBA + i * LBA_INCREMENT;
     contexts[i].qpair = spdk_nvme_ctrlr_alloc_io_qpair(g_ctrlr, NULL, 0);
@@ -62,9 +62,9 @@ int tmain() {
 }
 
 static void *thread_func(void *arg) {
-  struct thread_context *ctx = (struct thread_context *)arg;
+  struct thread_context *ctx = (struct thread_context *) arg;
   uint32_t sector_size = spdk_nvme_ns_get_sector_size(g_ns);
-  uint32_t *buffer = (uint32_t *)spdk_zmalloc(sector_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
+  uint32_t *buffer = (uint32_t *) spdk_zmalloc(sector_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
   if (buffer == NULL) {
     fprintf(stderr, "Failed to allocate buffer\n");
     pthread_exit(NULL);
@@ -126,7 +126,10 @@ static bool probe_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid, st
   return true;
 }
 
-static void attach_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid, struct spdk_nvme_ctrlr *ctrlr, const struct spdk_nvme_ctrlr_opts *opts) {
+static void attach_cb(void *cb_ctx,
+                      const struct spdk_nvme_transport_id *trid,
+                      struct spdk_nvme_ctrlr *ctrlr,
+                      const struct spdk_nvme_ctrlr_opts *opts) {
   g_ctrlr = ctrlr;
 }
 

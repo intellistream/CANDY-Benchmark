@@ -23,10 +23,10 @@ namespace CANDY {
  * pointer to the vector
  */
 class HNSWVertex {
-public:
+ public:
   INTELLI::TensorPtr id;
   /// used for LVQ
-  int8_t* code_final_ = nullptr;
+  int8_t *code_final_ = nullptr;
   /// used for adsampling
   INTELLI::TensorPtr transformed = nullptr;
   int level;
@@ -45,11 +45,11 @@ typedef std::shared_ptr<HNSWVertex> VertexPtr;
 /// Table to store visited iteration number during search and insert; Now only
 /// update the number and store nothing
 class VisitedTable {
-public:
+ public:
   /// For Tensor t, use visited[TensorPtr] to define if its visited;
   std::unordered_map<INTELLI::TensorPtr, uint8_t> visited_;
   int visno;
-  VisitedTable() : visno(1){};
+  VisitedTable() : visno(1) {};
   void set(VertexPtr idx) {
     idx->visno = visno;
     return;
@@ -93,13 +93,13 @@ public:
  * entry point
  */
 class HNSW {
-public:
+ public:
   typedef std::pair<float, INTELLI::TensorPtr> Node;
   /// sort pairs from nearest to farthest by distance
   struct NodeDistCloser {
     float dist;
     VertexPtr id;
-    NodeDistCloser(float dist, VertexPtr id) : dist(dist), id(id){};
+    NodeDistCloser(float dist, VertexPtr id) : dist(dist), id(id) {};
     bool operator<(const NodeDistCloser &obj1) const {
       return dist < obj1.dist;
     }
@@ -108,7 +108,7 @@ public:
   struct NodeDistFarther {
     float dist;
     VertexPtr id;
-    NodeDistFarther(float dist, VertexPtr id) : dist(dist), id(id){};
+    NodeDistFarther(float dist, VertexPtr id) : dist(dist), id(id) {};
     bool operator<(const NodeDistFarther &obj1) const {
       return dist > obj1.dist;
     }

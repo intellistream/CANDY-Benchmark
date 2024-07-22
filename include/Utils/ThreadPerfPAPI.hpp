@@ -208,15 +208,15 @@ class ThreadPerfPAPI : public ThreadPerf {
     return ru;
   }
   void initEventsByCfg(ConfigMapPtr cfg) {
-      std::string perfListSrc = cfg->tryString("perfListSrc", "perfLists/perfList.csv", 1);
-      ConfigMapPtr perfList = newConfigMap();
-      if(perfList->fromFile(perfListSrc)==false) {
-        exit(-1);
-      }
-      auto strMap = perfList->getStrMap();
-      for (auto &iter : strMap) {
-        addPapiTag(iter.first, iter.second);
-        //return;
+    std::string perfListSrc = cfg->tryString("perfListSrc", "perfLists/perfList.csv", 1);
+    ConfigMapPtr perfList = newConfigMap();
+    if (perfList->fromFile(perfListSrc) == false) {
+      exit(-1);
+    }
+    auto strMap = perfList->getStrMap();
+    for (auto &iter : strMap) {
+      addPapiTag(iter.first, iter.second);
+      //return;
     }
     /*if (cfg->tryU64("perfInstructions", 0)) {
       addPapiTag("instructions", PAPI_TOT_INS);

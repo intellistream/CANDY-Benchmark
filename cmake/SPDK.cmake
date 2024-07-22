@@ -34,20 +34,20 @@ function(find_spdk_paths SPDK_BUILD_DIR SPDK_INCLUDE_DIRS SPDK_LIBRARIES_OUT)
         set(UtilSub ${SPDK_BUILD_DIR}/lib/libspdk_util.a)
         message(CRC_LIB= ${CRCPATH})
         # Store the result in the specified variable
-        set(${SPDK_LIBRARIES_OUT} ${SPDK_SO_FILES} ${DPDK_SO_FILES} ${OPENSSL_LIBRARIES}  ${CRCPATH} ${ISAL_LIBRARY} PARENT_SCOPE)
+        set(${SPDK_LIBRARIES_OUT} ${SPDK_SO_FILES} ${DPDK_SO_FILES} ${OPENSSL_LIBRARIES} ${CRCPATH} ${ISAL_LIBRARY} PARENT_SCOPE)
         #message(SPDK_LIB= ${SPDK_LIBRARIES})
-    else()
+    else ()
         message(FATAL_ERROR "SPDK library not found")
     endif ()
-        # Find the SPDK include directory
-        find_path(SPDK_INCLUDE_DIR spdk/env.h
-                HINTS ${SPDK_BUILD_DIR}/include
-                NO_DEFAULT_PATH)
+    # Find the SPDK include directory
+    find_path(SPDK_INCLUDE_DIR spdk/env.h
+            HINTS ${SPDK_BUILD_DIR}/include
+            NO_DEFAULT_PATH)
 
-        if (SPDK_INCLUDE_DIR)
-            # Set the output variable to the found include directory
-            set(${SPDK_INCLUDE_DIRS} ${SPDK_INCLUDE_DIR} PARENT_SCOPE)
-        else()
-            message(FATAL_ERROR "SPDK include directory not found")
-        endif ()
+    if (SPDK_INCLUDE_DIR)
+        # Set the output variable to the found include directory
+        set(${SPDK_INCLUDE_DIRS} ${SPDK_INCLUDE_DIR} PARENT_SCOPE)
+    else ()
+        message(FATAL_ERROR "SPDK include directory not found")
+    endif ()
 endfunction()

@@ -270,7 +270,7 @@ def DrawFigureYLog(xvalues, yvalues, legend_labels, x_label, y_label, y_min, y_m
                    frameon=True, borderaxespad=0, handlelength=1.2,
                    handletextpad=0.1,
                    labelspacing=0.1)
-    #plt.xscale('log')
+    # plt.xscale('log')
 
     plt.yscale('log')
 
@@ -280,7 +280,7 @@ def DrawFigureYLog(xvalues, yvalues, legend_labels, x_label, y_label, y_min, y_m
 
     plt.grid(axis='y', color='gray')
     figure.yaxis.set_major_locator(LogLocator(base=10))
-    #figure.xaxis.set_major_locator(LogLocator(base=10))
+    # figure.xaxis.set_major_locator(LogLocator(base=10))
     plt.xticks(fontsize=TICK_FONT_SIZE)
     figure.get_xaxis().set_tick_params(direction='in', pad=10)
     figure.get_yaxis().set_tick_params(direction='in', pad=10)
