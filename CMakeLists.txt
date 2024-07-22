@@ -47,6 +47,25 @@ option(ENABLE_PYBIND
         "Enable original pybind and build CANDY python"
         OFF
 )
+# Find CUDA package
+find_package(CUDA QUIET)
+
+# Check if CUDA is enabled
+if(CUDA_FOUND)
+    message(STATUS "CUDA found. Enabling CUDA support.")
+    set(CANDY_CUDA 1)
+    # Add your CUDA-related configurations or targets here
+    # Example:
+    # cuda_add_executable(my_cuda_executable main.cu)
+else()
+    message(STATUS "CUDA not found. Building without CUDA support.")
+    set(CANDY_CUDA 0)
+    # Handle the case where CUDA is not found
+endif()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/cuda_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/cuda_config.h"
+)
 # spdk
 option(ENABLE_SPDK
         "Enable SPDK support, pls first compile papi or set REBUILD_PAPI to ON"

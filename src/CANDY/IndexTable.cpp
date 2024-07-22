@@ -23,11 +23,15 @@
 #include <CANDY/YinYangGraphSimpleIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
+#include <include/spdk_config.h>
 #if CANDY_CL == 1
 //#include <CPPAlgos/CLMMCPPAlgo.h>
 #endif
 #if CANDY_RAY == 1
 #include <CANDY/DistributedPartitionIndex.h>
+#endif
+#if CANDY_SPDK == 1
+#include <CANDY/FlatSSDGPUIndex.h>
 #endif
 namespace CANDY {
 CANDY::IndexTable::IndexTable() {
@@ -56,6 +60,9 @@ CANDY::IndexTable::IndexTable() {
 #endif
 #if CANDY_RAY == 1
   indexMap["distributedPartition"] = newDistributedPartitionIndex();
+#endif
+#if CANDY_SPDK == 1
+  indexMap["flatSSDGPU"] = newFlatSSDGPUIndex();
 #endif
 }
 }  // namespace CANDY
