@@ -35,6 +35,7 @@ namespace CANDY {
     * - mm the original torch::matmul
     * - crs column row sampling
     * - smp-pca the smp-pca algorithm
+ * @warning please run the benchmark/scripts/setupSPDK/drawTogether.py at generation path before using SSD
  */
 class FlatSSDGPUIndex : public AbstractIndex {
  protected:
