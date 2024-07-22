@@ -11,3 +11,4 @@ max_threads=$(nproc)
 
 make -j${max_threads}
 rm build/lib/*.a
+sudo make install

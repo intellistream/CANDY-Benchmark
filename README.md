@@ -134,7 +134,15 @@ pip3 install --ignore-installed torch==1.13.0 torchvision torchaudio --index-url
 ```
 
 *Note: Conflict between torch1.13.0+cpu and torchaudio+cpu may occur under python version > 3.10*
-
+### (Optional) Requires SPDK (contained source in this repo as third party)
+The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and eliminates interrupt handling overhead.
+#### How to build SPDK
+- cd to thirdparty and run cloneSPDK.sh, SPDK will be compiled and installed at default OS path
+  - Alternatively, set -DREBUILD_SPDK=ON to let CMAKE do this for you
+#### How to use SPDK in CANDY
+- set -DENABLE_SPDK=ON in cmake CANDY
+#### Known issues
+isa-l is disabled, as it conflicts with some other c++ libs
 ### (optional) Requires PAPI (contained source in this repo as third party)
 
 PAPI is a consistent interface and methodology for collecting performance counter information from various hardware and
