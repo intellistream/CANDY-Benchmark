@@ -38,6 +38,7 @@ if(ENABLE_SPDK)
     add_sources(
            FlatSSDGPUIndex.cpp
     )
+    add_subdirectory(FlatSSDGPUIndex)
 endif ()
 if(CANDY_CUDA)
     message(WARNING "Cuda feature is experimental, and it is enabled")
