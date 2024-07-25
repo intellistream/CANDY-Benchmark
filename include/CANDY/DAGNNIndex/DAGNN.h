@@ -14,6 +14,50 @@
 #include <boost/math/constants/constants.hpp>
 
 namespace CANDY{
+enum dynamic_action_num{
+    bad_link_cut,
+    outwards_link,
+    DEG_refine,
+    backtrack_candidate,
+    intercluster_link,
+    lift_cluster_center,
+    lower_navigation_point,
+    increase_rng_alpha,
+    decrease_rng_alpha,
+    increase_cluster_expansion,
+    decrease_cluster_expansion,
+    increase_cluster_innerconnection_threshold,
+    decrease_cluster_innerconnection_threshold,
+    increase_optimisticN,
+    decrease_optimisticN,
+    increase_discardClusterProp,
+    decrease_discardClusterProp,
+    increase_discardClusterN,
+    decrease_discardClusterN,
+    increase_expansionConstruction,
+    decrease_expansionConstruction,
+    increase_degree_std_range,
+    decrease_degree_std_range,
+    increase_degree_allow_range,
+    decrease_degree_allow_range,
+    increase_sparsePreference,
+    decrease_sparsePreference,
+    increase_neighborDistanceThreshold,
+    decrease_neighborDistanceThreshold,
+    increasae_max_backtrack_steps,
+    decrease_max_backtrack_steps,
+    increase_steps_above_avg,
+    decrease_steps_above_avg,
+    increase_steps_above_max,
+    decrease_steps_above_max,
+    increase_nb_navigation_paths,
+    decrease_nb_navigation_paths,
+    increase_expiration_timestamp,
+    decrease_expiration_timestamp,
+    increase_degree_lift_range,
+    decrease_degree_lift_range
+
+};
 struct BreakdownStats {
     size_t steps_greedy = 0;
     size_t steps_expansion = 0;
@@ -216,7 +260,7 @@ struct DynamicTuneHNSW{
         size_t discardClusterN =32;
         double discardClusterProp=0.3;
 
-        double degree_std_range = 1.5;
+        double degree_std_range = 2;
         double degree_allow_range = 0.25;
         double degree_lift_range = 1.75;
 
@@ -583,9 +627,7 @@ struct DynamicTuneHNSW{
         return true;
     }
 
-    bool performAction(const size_t action_num){
-        return true;
-    }
+    bool performAction(const size_t action_num);
     /// Using time_local_stat to update global_stat
     void updateGlobalState();
 

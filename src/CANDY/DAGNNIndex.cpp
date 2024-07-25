@@ -15,6 +15,12 @@ bool CANDY::DAGNNIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     }
     auto M = cfg->tryI64("maxConnection", 32, true);
     DynamicTuneHNSW::DynamicTuneParams dp;
+    dp.discardClusterN = cfg->tryI64("discardClusterN", 32, true);
+    dp.degree_std_range = cfg->tryDouble("degree_std_range",1.5,true);
+    dp.optimisticN = cfg->tryI64("OptimisticN", 16, true);
+    printf("\ndiscardClusterN=%ld\n", dp.discardClusterN);
+    printf("\ndegree_std_range=%.2lf\n",dp.degree_std_range);
+    printf("\noptimisitcN=%ld\n", dp.optimisticN);
     dagnn = new CANDY::DynamicTuneHNSW(M, vecDim, metric, dp);
     return true;
 }

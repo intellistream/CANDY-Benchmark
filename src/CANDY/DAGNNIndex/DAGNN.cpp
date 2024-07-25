@@ -118,7 +118,9 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     /// Navigation
     {
         if(graphStates.time_local_stat.old_ntotal>1000 && max_level>1) {
-            printf("Collected bad vertices to exploration navigate:\n");
+            if(verbose){
+                printf("Collected bad vertices to exploration navigate:\n");
+            }
             //graphStates.window_states.hierarchyVertices.print_all();
             //navigationBacktrackWindow(graphStates.window_states);
         }
@@ -137,6 +139,7 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
             printf("cutting and adding\n");
         }
         //cutEdgesWindow(graphStates.window_states, 0);
+        //cutEdgesWindow(graphStates.window_states, 1);
         //linkEdgesWindow(graphStates.window_states, 0);
     }
     if(verbose) {
@@ -264,7 +267,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
         if(steps_taken - dynamicParams.steps_above_avg > graphStates.global_stat.steps_taken_avg
             || steps_taken - dynamicParams.steps_above_max > graphStates.global_stat.steps_taken_max) {
             auto far_node = linkLists[nearest];
-            graphStates.window_states.oldVertices.insert(nearest, far_node);
+            //graphStates.window_states.oldVertices.insert(nearest, far_node);
         }
         graphStates.time_local_stat.steps_taken_max = steps_taken;
 
@@ -379,7 +382,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
         auto node = linkLists[nearest];
         last_visited[nearest] = timestamp;
         if(node->bottom_connections*1.0>degree_avg+dynamicParams.degree_std_range*std_dev+1 || node->bottom_connections*1.0<degree_avg-dynamicParams.degree_std_range*std_dev-1) {
-            //graphStates.window_states.oldVertices.insert(node->id, node);
+            graphStates.window_states.oldVertices.insert(node->id, node);
 
         }
         size_t nb_neighbor_level = nb_neighbors(0);
@@ -1822,6 +1825,7 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
         }
         auto n = graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
         if(plan_1) {
+            printf("executing plan A:\n");
             // (n1,n2)(n3,n4)->(n1,n4)(n2,n3)
             //node1
             {
@@ -1929,6 +1933,7 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
             }
         } else if(plan_2){
             // (n1,n2)(n3,n4)->(n1,n3)&(n2,n4)
+            printf("executing plan 2\n");
             //node1
             {
                 auto previous_distance = node_1->distances[0][idx_1];
@@ -2033,6 +2038,9 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
                     graphStates.global_stat.neighbor_distance_sum+=(current_distance_avg-previous_distance_avg);
                 }
             }
+        } else{
+             printf("no plan to execute\n");
+
         }
 
 
@@ -2060,3 +2068,92 @@ void CANDY::DynamicTuneHNSW::navigationBacktrackWindow(WindowStates& window_stat
 }
 
 
+bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
+    switch(action_num){
+        case bad_link_cut:
+            break;
+        case outwards_link:
+            break;
+        case DEG_refine:
+            break;
+        case backtrack_candidate:
+            break;
+        case intercluster_link:
+            break;
+        case lift_cluster_center:
+            break;
+        case lower_navigation_point:
+            break;
+        case increase_rng_alpha:
+            break;
+        case decrease_rng_alpha:
+            break;
+        case increase_cluster_expansion:
+            break;
+        case decrease_cluster_expansion:
+            break;
+        case increase_cluster_innerconnection_threshold:
+            break;
+        case decrease_cluster_innerconnection_threshold:
+            break;
+        case increase_optimisticN:
+            break;
+        case decrease_optimisticN:
+            break;
+        case increase_discardClusterProp:
+            break;
+        case decrease_discardClusterProp:
+            break;
+        case increase_discardClusterN:
+            break;
+        case decrease_discardClusterN:
+            break;
+        case increase_expansionConstruction:
+            break;
+        case decrease_expansionConstruction:
+            break;
+        case increase_degree_std_range:
+            break;
+        case decrease_degree_std_range:
+            break;
+        case increase_degree_allow_range:
+            break;
+        case decrease_degree_allow_range:
+            break;
+        case increase_sparsePreference:
+            break;
+        case decrease_sparsePreference:
+            break;
+        case increase_neighborDistanceThreshold:
+            break;
+        case decrease_neighborDistanceThreshold:
+            break;
+        case increasae_max_backtrack_steps:
+            break;
+        case decrease_max_backtrack_steps:
+            break;
+        case increase_steps_above_avg:
+            break;
+        case decrease_steps_above_avg:
+            break;
+        case increase_steps_above_max:
+            break;
+        case decrease_steps_above_max:
+            break;
+        case increase_nb_navigation_paths:
+            break;
+        case decrease_nb_navigation_paths:
+            break;
+        case increase_expiration_timestamp:
+            break;
+        case decrease_expiration_timestamp:
+            break;
+        case increase_degree_lift_range:
+            break;
+        case decrease_degree_lift_range:
+            break;
+        default:
+            return false;
+    }
+    return true;
+}
