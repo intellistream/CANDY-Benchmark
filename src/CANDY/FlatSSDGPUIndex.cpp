@@ -11,16 +11,18 @@
 #include <assert.h>
 #include <Utils/IntelliLog.h>
 #include <CANDY/CANDYObject.h>
+#include <vector>
+#include <algorithm>
+#include <utility>
 bool CANDY::FlatSSDGPUIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   if (faissMetric != faiss::METRIC_INNER_PRODUCT) {
     INTELLI_WARNING("I can only deal with inner product distance");
   }
   vecDim = cfg->tryI64("vecDim", 768, true);
-  initialVolume = cfg->tryI64("initialVolume", 1000, true);
-  expandStep = cfg->tryI64("expandStep", 100, true);
+  SSDBufferSize = cfg->tryI64("SSDBufferSize", 1000, true);
   sketchSize = cfg->tryI64("sketchSize", 10, true);
-  DCOBatchSize = cfg->tryI64("DCOBatchSize", -1, true);
+  DCOBatchSize = cfg->tryI64("DCOBatchSize", SSDBufferSize, true);
   std::string ammAlgo = cfg->tryString("ammAlgo", "mm", true);
   INTELLI_INFO("Size of DCO=" + std::to_string(DCOBatchSize));
   if (ammAlgo == "crs") {
@@ -32,227 +34,141 @@ bool CANDY::FlatSSDGPUIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   } else {
     ammType = 0;
   }
-  dbTensor = torch::zeros({initialVolume, vecDim});
-  objTensor = torch::zeros({initialVolume, 1}, torch::kLong);
 
-  lastNNZ = -1;
-  lastNNZObj = -1;
   return true;
 }
-static inline torch::Tensor amm_crs(torch::Tensor &a, torch::Tensor &b, int64_t ss) {
-  int64_t n = a.size(1);
-  // Probability distribution
-  torch::Tensor probs = torch::ones(n) / n;  // default: uniform
-  auto crsIndices = torch::multinomial(probs, ss, true);
-  auto A_sampled = a.index_select(1, crsIndices);
-  auto B_sampled = b.index_select(0, crsIndices);
-  return torch::matmul(A_sampled, B_sampled);
+bool CANDY::FlatSSDGPUIndex::startHPC() {
+  ssd.setupEnv();
+  dmBuffer.init(vecDim,SSDBufferSize,0,ssd.getNameSpaceSize()/2,&ssd);
+  return true;
 }
-static inline torch::Tensor amm_smppca(torch::Tensor &A, torch::Tensor &B, int64_t k2) {
-  // Step 1: Input A:n1*d B:d*n2
-  A = A.t(); // d*n1
-  int64_t d = A.size(0);
-  int64_t n1 = A.size(1);
-  int64_t n2 = B.size(1);
-  int64_t k = (int64_t) k2;
-
-  // Step 2: Get sketched matrix
-  torch::Tensor pi = 1 / std::sqrt(k) * torch::randn({k, d}); // Gaussian sketching matrix
-  torch::Tensor A_tilde = torch::matmul(pi, A); // k*n1
-  torch::Tensor B_tilde = torch::matmul(pi, B); // k*n2
-
-  torch::Tensor A_tilde_B_tilde = torch::matmul(A_tilde.t(), B_tilde);
-
-  // Step 3: Compute column norms
-  // 3.1 column norms of A and B
-  torch::Tensor col_norm_A = torch::linalg::vector_norm(A, 2, {0}, false, c10::nullopt); // ||Ai|| for i in [n1]
-  torch::Tensor col_norm_B = torch::linalg::vector_norm(B, 2, {0}, false, c10::nullopt); // ||Bj|| for j in [n2]
-
-  // 3.2 column norms of A_tilde and B_tilde
-  torch::Tensor col_norm_A_tilde = torch::linalg::vector_norm(A_tilde, 2, {0}, false,
-                                                              c10::nullopt); // ||Ai|| for i in [n1]
-  torch::Tensor col_norm_B_tilde = torch::linalg::vector_norm(B_tilde, 2, {0}, false,
-                                                              c10::nullopt); // ||Bj|| for j in [n2]
-
-  // Step 4: Compute M_tilde
-  torch::Tensor col_norm_A_col_norm_B = torch::matmul(col_norm_A.reshape({n1, 1}), col_norm_B.reshape({1, n2}));
-
-  torch::Tensor col_norm_A_tilde_col_norm_B_tilde =
-      torch::matmul(col_norm_A_tilde.reshape({n1, 1}), col_norm_B_tilde.reshape({1, n2}));
-  torch::Tensor mask = (col_norm_A_tilde_col_norm_B_tilde == 0);
-  col_norm_A_tilde_col_norm_B_tilde.masked_fill_(mask, 1e-6); // incase divide by 0 in next step
-
-  torch::Tensor ratio = torch::div(col_norm_A_col_norm_B, col_norm_A_tilde_col_norm_B_tilde);
-
-  torch::Tensor M_tilde = torch::mul(A_tilde_B_tilde, ratio);
-
-  return M_tilde;
-}
-torch::Tensor CANDY::FlatSSDGPUIndex::myMMInline(torch::Tensor &a, torch::Tensor &b, int64_t ss) {
-  switch (ammType) {
-    case 1: return amm_crs(a, b, ss);
-    case 2: return amm_smppca(a, b, ss);
-  }
-  return torch::matmul(a, b);
+bool CANDY::FlatSSDGPUIndex::endHPC() {
+  dmBuffer.clear();
+  ssd.cleanEnv();
+  return true;
 }
 void CANDY::FlatSSDGPUIndex::reset() {
-  lastNNZ = -1;
+
 }
 bool CANDY::FlatSSDGPUIndex::insertTensor(torch::Tensor &t) {
-  return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+  if(t.size(0)>SSDBufferSize) {
+    int64_t total_vectors = t.size(0);
+    for (int64_t startPos = 0; startPos < total_vectors; startPos += SSDBufferSize) {
+      int64_t endPos = std::min(startPos + SSDBufferSize, total_vectors);
+      auto tempTensor=t.slice(0,startPos,endPos);
+      dmBuffer.appendTensor(tempTensor);
+    }
+    return  true;
+  }
+  else {
+    return dmBuffer.appendTensor(t);
+  }
+
 }
 
-bool CANDY::FlatSSDGPUIndex::insertStringObject(torch::Tensor &t, std::vector<std::string> &strs) {
-  INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
-  size_t strMaxLen = t.size(0);
-  if (strs.size() != strMaxLen) {
-    return false;
+bool CANDY::FlatSSDGPUIndex::deleteTensor(torch::Tensor &t, int64_t k) {
+
+  int64_t rows = t.size(0);
+  for (int64_t i = 0; i < rows; i++) {
+    auto rowI = t.slice(0, i, i + 1).contiguous();
+    auto idx = findTopKClosest(rowI,1,DCOBatchSize);
+    if (0 <= idx[0]) {
+      dmBuffer.deleteTensor(idx[0],idx[0]+1);
+      //INTELLI::IntelliTensorOP::editRows(&dbTensor, &rowW, (int64_t) idx);
+    }
   }
-  auto objInsertTensor = torch::zeros({t.size(0), 1}, torch::kLong);
-  for (size_t i = 0; i < strMaxLen; i++) {
-    auto objTemp = new CANDYObject();
-    objTemp->setStr(strs[i]);
-    int64_t ti = i;
-    // Set the element at position [i][0] to store the shared pointer
-    /*auto ptr_ptr = reinterpret_cast<std::shared_ptr<CANDYObject>*>(objInsertTensor[ti][0].data_ptr());
-    *ptr_ptr = objTemp;*/
-    auto ptr_ptr = reinterpret_cast<long *>((objInsertTensor[ti][0].data_ptr()));
-    *ptr_ptr = reinterpret_cast<long>(objTemp);
-  }
-  INTELLI::IntelliTensorOP::appendRowsBufferMode(&objTensor, &objInsertTensor, &lastNNZObj, expandStep);
   return true;
 }
-bool CANDY::FlatSSDGPUIndex::deleteTensor(torch::Tensor &t, int64_t k) {
-  std::vector<faiss::idx_t> idxToDelete = searchIndex(t, k);
-  std::vector<int64_t> &int64Vector = reinterpret_cast<std::vector<int64_t> &>(idxToDelete);
-  return INTELLI::IntelliTensorOP::deleteRowsBufferMode(&dbTensor, int64Vector, &lastNNZ);
-}
-bool CANDY::FlatSSDGPUIndex::deleteStringObject(torch::Tensor &t, int64_t k) {
-  std::vector<faiss::idx_t> idxToDelete = searchIndex(t, k);
-  std::vector<int64_t> &int64Vector = reinterpret_cast<std::vector<int64_t> &>(idxToDelete);
-  INTELLI::IntelliTensorOP::deleteRowsBufferMode(&dbTensor, int64Vector, &lastNNZ);
-  for (size_t i = 0; i < int64Vector.size(); i++) {
-    int64_t tempIdx = int64Vector[i];
-    auto retrieved_ptr = reinterpret_cast<CANDYObject *>(*reinterpret_cast<long *>(objTensor[tempIdx][0].data_ptr()));
-    delete retrieved_ptr;
+static
+void mergeTopK(std::vector<std::pair<float, int64_t>>& topK, const std::vector<std::pair<float, int64_t>>& newResults, int64_t top_k) {
+  topK.insert(topK.end(), newResults.begin(), newResults.end());
+  std::sort(topK.begin(), topK.end(), [](const std::pair<float, int64_t>& a, const std::pair<float, int64_t>& b) {
+    return a.first > b.first;
+  });
+  // Keep only the top_k elements
+  if (topK.size() > top_k) {
+    topK.resize(top_k);
   }
-  return INTELLI::IntelliTensorOP::deleteRowsBufferMode(&objTensor, int64Vector, &lastNNZObj);
 }
+std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor &query,
+                                                             int64_t top_k,
+                                                             int64_t batch_size
+                                                             ) {
+  std::vector<std::pair<float, int64_t>> topK;
+  int64_t total_vectors = dmBuffer.size();
+  torch::Tensor transposed_query = query.t();
+  for (int64_t startPos = 0; startPos < total_vectors; startPos += batch_size) {
+    int64_t endPos = std::min(startPos + batch_size, total_vectors);
 
+    // Load batch using getTensor
+    torch::Tensor dbBatch = dmBuffer.getTensor(startPos, endPos);
+   // std::cout<<"DB data:\n"<<dbBatch<<std::endl;
+    // Compute distances
+    torch::Tensor distances = torch::matmul(dbBatch, transposed_query);
+    //std::cout<<"distance :\n"<<distances.t()<<std::endl;
+
+    // Use torch::topk to get the top_k smallest distances and their indices
+    auto topk_result = torch::topk(distances.t(), top_k, /*dim=*/1, /*largest=*/true, /*sorted=*/true);
+
+    // Extract top_k distances and indices
+    torch::Tensor topk_distances = std::get<0>(topk_result).flatten();
+    torch::Tensor topk_indices = std::get<1>(topk_result).flatten()+startPos;
+    //std::cout<<"top k :\n"<<topk_distances<<std::endl;
+    // Create a vector of (distance, index) pairs
+    std::vector<std::pair<float, int64_t>> batchResults;
+    for (int64_t i = 0; i < topk_distances.numel(); ++i) {
+      batchResults.emplace_back(topk_distances[i].item<float>(), topk_indices[i].item<int64_t>());
+    }
+
+    // Merge current batch results with topK
+    if (topK.empty()) {
+      topK = std::move(batchResults);
+    } else {
+      mergeTopK(topK, batchResults, top_k);
+    }
+  }
+
+  // Extract indices from the topK vector
+  std::vector<int64_t> topKIndices;
+  for (const auto& result : topK) {
+    topKIndices.push_back(result.second);
+  }
+
+  return topKIndices;
+}
 bool CANDY::FlatSSDGPUIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
   if (t.size(0) > w.size(0) || t.size(1) != w.size(1)) {
     return false;
   }
+  auto idx = findTopKClosest(t,1,DCOBatchSize);
   int64_t rows = t.size(0);
-  faiss::IndexFlat indexFlat(vecDim); // call constructor
-  float *dbData = dbTensor.contiguous().data_ptr<float>();
-  indexFlat.add(lastNNZ + 1, dbData); // add vectors to the index
   for (int64_t i = 0; i < rows; i++) {
-    float distance;
-    faiss::idx_t idx;
-    auto rowI = t.slice(0, i, i + 1).contiguous();
-    float *queryData = rowI.data_ptr<float>();
-    indexFlat.search(1, queryData, 1, &distance, &idx);
-    if (0 <= idx && idx <= lastNNZ) {
+    //auto rowI = t.slice(0, i, i + 1).contiguous();
+    if (0 <= idx[i]) {
       auto rowW = w.slice(0, i, i + 1);
-      INTELLI::IntelliTensorOP::editRows(&dbTensor, &rowW, (int64_t) idx);
+      dmBuffer.reviseTensor(idx[i],rowW);
+      //INTELLI::IntelliTensorOP::editRows(&dbTensor, &rowW, (int64_t) idx);
     }
   }
   return true;
 }
-std::vector<faiss::idx_t> CANDY::FlatSSDGPUIndex::knnInline(torch::Tensor &query,
-                                                              int64_t k,
-                                                              int64_t distanceBatchSize) {
-  // Transpose the query tensor
-  torch::Tensor transposed_query = query.t();
+std::vector<torch::Tensor> CANDY::FlatSSDGPUIndex::searchTensor(torch::Tensor &q, int64_t k) {
+  auto idx = findTopKClosest(q,k,DCOBatchSize);
+  //std::cout<<"sorting idx"<<std::endl;
 
-  // Load the database in batches
-  int64_t batch_size = lastNNZ + 1;
-  int64_t dbSize = lastNNZ + 1;
-  if (distanceBatchSize > 0 && distanceBatchSize < lastNNZ + 1) {
-    batch_size = distanceBatchSize;
-  }
-  torch::Tensor knn_indices;
-  torch::Tensor distanceAll = torch::zeros({lastNNZ + 1, query.size(0)});
-  int64_t distanceBufferPointer = -1;
-  for (int64_t i = 0; i < dbSize; i += batch_size) {
-    int64_t end_idx = std::min(i + batch_size, dbSize);
-    torch::Tensor database_batch = dbTensor.slice(0, i, end_idx);
-    // Compute matrix multiplication to get distances
-    torch::Tensor distancesBatch = myMMInline(database_batch, transposed_query, sketchSize);
-    INTELLI::IntelliTensorOP::appendRowsBufferMode(&distanceAll, &distancesBatch, &distanceBufferPointer);
-  }
-  // Get the indices of the k-nearest neighbors
-  auto topk_tuple = torch::topk(distanceAll.t(), k, 1, true, true);
-  torch::Tensor topk_indices = std::get<1>(topk_tuple);
-  // Convert indices tensor to C++ vector
-  std::vector<faiss::idx_t> knn_indices_vec;
-  // Flatten the tensor
-  torch::Tensor flattened_tensor = topk_indices.flatten();
-
-  // Create std::vector<uint64_t> from the flattened tensor
-  const int64_t *data_ptr = flattened_tensor.data_ptr<int64_t>();
-  std::vector<faiss::idx_t> result(data_ptr, data_ptr + flattened_tensor.numel());
-
-  return result;
-}
-std::vector<faiss::idx_t> CANDY::FlatSSDGPUIndex::searchIndex(torch::Tensor q, int64_t k) {
-  /*faiss::IndexFlat indexFlat(vecDim, faissMetric); // call constructor
-  float *dbData = dbTensor.contiguous().data_ptr<float>();
-  float *queryData = q.contiguous().data_ptr<float>();
-  indexFlat.add(lastNNZ + 1, dbData); // add vectors to the index
-  int64_t querySize = q.size(0);
-  std::vector<faiss::idx_t> ru(k * querySize);
-  std::vector<float> distance(k * querySize);
-  indexFlat.search(querySize, queryData, k, distance.data(), ru.data());*/
-  auto ru = knnInline(q, k, DCOBatchSize);
-  return ru;
+  return getTensorByStdIdx(idx, k);
 }
 
-std::vector<torch::Tensor> CANDY::FlatSSDGPUIndex::getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k) {
+std::vector<torch::Tensor> CANDY::FlatSSDGPUIndex::getTensorByStdIdx(std::vector<int64_t> &idx, int64_t k) {
   int64_t tensors = idx.size() / k;
   std::vector<torch::Tensor> ru(tensors);
-
   for (int64_t i = 0; i < tensors; i++) {
     ru[i] = torch::zeros({k, vecDim});
     for (int64_t j = 0; j < k; j++) {
       int64_t tempIdx = idx[i * k + j];
-      if (tempIdx >= 0) { ru[i].slice(0, j, j + 1) = dbTensor.slice(0, tempIdx, tempIdx + 1); }
+      if (tempIdx >= 0) { ru[i].slice(0, j, j + 1) = dmBuffer.getTensor(tempIdx,tempIdx+1);}
     }
   }
-  return ru;
-}
-torch::Tensor CANDY::FlatSSDGPUIndex::rawData() {
-  return dbTensor.slice(0, 0, lastNNZ + 1).contiguous();
-}
-
-std::vector<torch::Tensor> CANDY::FlatSSDGPUIndex::searchTensor(torch::Tensor &q, int64_t k) {
-  auto idx = searchIndex(q, k);
-  return getTensorByIndex(idx, k);
-}
-
-std::vector<std::vector<std::string>> CANDY::FlatSSDGPUIndex::searchStringObject(torch::Tensor &q, int64_t k) {
-
-  int64_t rows = q.size(0);
-  std::vector<std::vector<std::string>> ru(rows);
-  auto idx = searchIndex(q, k);
-  for (size_t i = 0; i < (size_t) rows; i++) {
-    ru[i] = std::vector<std::string>(k);
-    for (int64_t j = 0; j < k; j++) {
-      int64_t tempIdx = idx[i * k + j];
-      if (tempIdx >= 0) {
-        // Accessing and printing elements of the tensor
-        auto retrieved_ptr =
-            reinterpret_cast<CANDYObject *>(*reinterpret_cast<long *>(objTensor[tempIdx][0].data_ptr()));
-        // *reinterpret_cast<std::shared_ptr<CANDYObject>*>(objTensor[tempIdx][0].data_ptr());
-        if (retrieved_ptr != nullptr) {
-          // std::cout<< retrieved_ptr->getStr();
-          ru[i][j] = retrieved_ptr->getStr();
-        }
-      }
-    }
-  }
-
   return ru;
 }
 #endif
