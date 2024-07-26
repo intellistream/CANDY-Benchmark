@@ -15,7 +15,7 @@
 #include <random>
 #include <cmath>
 #include <iostream>
-
+#include <algorithm>
 using namespace std;
 namespace INTELLI {
 /**

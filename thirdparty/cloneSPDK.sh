@@ -1,5 +1,6 @@
 #!/bin/bash
 # configure script
+sudo apt install libisal-dev
 git clone https://github.com/spdk/spdk.git 
 cd spdk 
 git checkout 94a53a5
