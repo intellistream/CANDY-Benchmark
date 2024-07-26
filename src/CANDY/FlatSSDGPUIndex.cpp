@@ -102,7 +102,7 @@ std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor
 
     // Load batch using getTensor
     torch::Tensor dbBatch = dmBuffer.getTensor(startPos, endPos);
-   // std::cout<<"DB data:\n"<<dbBatch<<std::endl;
+    //std::cout<<"DB data:\n"<<dbBatch<<std::endl;
     // Compute distances
     torch::Tensor distances = torch::matmul(dbBatch, transposed_query);
     //std::cout<<"distance :\n"<<distances.t()<<std::endl;

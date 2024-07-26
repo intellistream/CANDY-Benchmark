@@ -22,7 +22,7 @@ function(find_spdk_paths SPDK_BUILD_DIR SPDK_INCLUDE_DIRS SPDK_LIBRARIES_OUT)
     #pkg_check_modules(SPDK REQUIRED spdk)
     pkg_check_modules(SPDK REQUIRED spdk_nvme spdk_vmd)
 
-    if (SPDK_LIB_NVME)
+
         # Get the directory of the found library
         # Find OpenSSL
         find_package(OpenSSL REQUIRED)
@@ -36,9 +36,7 @@ function(find_spdk_paths SPDK_BUILD_DIR SPDK_INCLUDE_DIRS SPDK_LIBRARIES_OUT)
         # Store the result in the specified variable
         set(${SPDK_LIBRARIES_OUT} ${SPDK_SO_FILES} ${DPDK_SO_FILES} ${OPENSSL_LIBRARIES} ${CRCPATH} ${ISAL_LIBRARY} PARENT_SCOPE)
         #message(SPDK_LIB= ${SPDK_LIBRARIES})
-    else ()
-        message(FATAL_ERROR "SPDK library not found")
-    endif ()
+
     # Find the SPDK include directory
     find_path(SPDK_INCLUDE_DIR spdk/env.h
             HINTS ${SPDK_BUILD_DIR}/include
