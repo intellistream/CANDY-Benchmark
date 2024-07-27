@@ -4,6 +4,10 @@
 
 #include <CANDY/FlatSSDGPUIndex/SPDKSSD.h>
 //#include <Utils/IntelliLog.h>
+#include <fstream>
+#include <spdk/env.h>
+#include <sys/statvfs.h>
+#include <regex>
 #if CANDY_SPDK == 1
 namespace CANDY {
 spdk_nvme_ctrlr *g_spdk_ctrlr = nullptr;
@@ -25,13 +29,34 @@ SPDKSSD::SPDKSSD() {
 SPDKSSD::~SPDKSSD() {
   //spdk_nvme_detach(ctrlr);
 }
-
+void SPDKSSD::setDmaSize(int64_t sz) {
+  maxDma = sz;
+}
 size_t SPDKSSD::getNameSpaceSize() {
   return ns_size;
 }
 size_t SPDKSSD::getSectorSize() {
   return sector_size;
 }
+
+size_t SPDKSSD::getHugePageSize() {
+ // size_t max_alloc_size = 0;
+  std::ifstream infile("/proc/meminfo");
+  std::string line;
+  std::regex hugepages_size_regex("Hugepagesize:\\s+(\\d+) kB");
+ // size_t hugepages_free = 0;
+  size_t hugepages_size_kb = 0;
+
+  while (std::getline(infile, line)) {
+    std::smatch match;
+    if (std::regex_search(line, match, hugepages_size_regex)) {
+      hugepages_size_kb = std::stoul(match[1].str());
+    }
+  }
+
+  return hugepages_size_kb * 1000;
+}
+
 void  SPDKSSD::setupEnv() {
   if(isSet) {
     return;
@@ -62,11 +87,12 @@ void  SPDKSSD::setupEnv() {
   }
   sector_size = spdk_nvme_ns_get_sector_size(ns);
   ns_size = spdk_nvme_ns_get_size(ns);
+  setDmaSize(getHugePageSize()/10);
  // INTELLI_INFO("Sector size="+std::to_string(sector_size)+"name space size="+std::to_string(ns_size));
  // exit(-1);
 }
 void SPDKSSD::cleanEnv() {
-  spdk_nvme_detach(ctrlr);
+  //spdk_nvme_detach(ctrlr);
   spdk_env_fini();
 }
 struct spdk_nvme_qpair* SPDKSSD::allocQpair() {
@@ -78,7 +104,35 @@ struct spdk_nvme_qpair* SPDKSSD::allocQpair() {
   m_mut.unlock();
   return qpair;
 }
-void SPDKSSD::write(const void* buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair* qpair) {
+void SPDKSSD::write(void *buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair *qpair)  {
+  /*int64_t remainSize = size;
+  uint64_t tempOffset = offset;
+  uint64_t bufferPos = 0;
+  uint8_t *tempBuffer = (uint8_t *)buffer;
+  while (remainSize>0) {
+    int64_t writeSize = std::min(remainSize,maxDma);
+    writeInline(&tempBuffer[bufferPos],writeSize,tempOffset,qpair);
+    tempOffset += writeSize;
+    bufferPos += writeSize;
+    remainSize -= writeSize;
+  }*/
+  writeInline(buffer,size,offset,qpair);
+}
+void SPDKSSD::read(void *buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair *qpair) {
+  /*int64_t remainSize = size;
+  uint64_t tempOffset = offset;
+  uint64_t bufferPos = 0;
+  uint8_t *tempBuffer = (uint8_t *)buffer;
+  while (remainSize>0) {
+    int64_t readSize = std::min(remainSize,maxDma);
+    readInline(&tempBuffer[bufferPos],readSize,tempOffset,qpair);
+    tempOffset += readSize;
+    bufferPos += readSize;
+    remainSize -= readSize;
+  }*/
+  readInline(buffer,size,offset,qpair);
+}
+void SPDKSSD::writeInline(const void* buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair* qpair) {
   if (offset + size > ns_size) {
     throw std::out_of_range("Write exceeds namespace size");
   }
@@ -89,16 +143,19 @@ void SPDKSSD::write(const void* buffer, size_t size, uint64_t offset, struct spd
   if (!temp_buffer) {
     throw std::runtime_error("Failed to allocate temporary buffer");
   }*/
-  size_t max_chunk_size = 128 * 1024 * 1024; // 128MB chunk size
+  size_t max_chunk_size = maxDma;
   size_t remaining_size = size;
   const uint8_t* current_buffer = static_cast<const uint8_t*>(buffer);
   uint64_t current_offset = offset;
-
+  size_t chunk_size = std::min(remaining_size, max_chunk_size);
+  uint64_t sector_offset = current_offset / sector_size;
+  size_t sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
+  void* temp_buffer = spdk_zmalloc(sector_aligned_size, 0,  NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
   while (remaining_size > 0) {
-    size_t chunk_size = std::min(remaining_size, max_chunk_size);
-    uint64_t sector_offset = current_offset / sector_size;
-    size_t sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
-    void* temp_buffer = spdk_zmalloc(sector_aligned_size, 0,  NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
+     chunk_size = std::min(remaining_size, max_chunk_size);
+     sector_offset = current_offset / sector_size;
+     sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
+
     if (!temp_buffer) {
       throw std::runtime_error("Failed to allocate temporary buffer");
     }
@@ -112,20 +169,19 @@ void SPDKSSD::write(const void* buffer, size_t size, uint64_t offset, struct spd
     std::memcpy(static_cast<uint8_t*>(temp_buffer) + (current_offset % sector_size), current_buffer, chunk_size);
 
     int rc = spdk_nvme_ns_cmd_write(ns, qpair, temp_buffer, sector_offset, sector_aligned_size / sector_size, write_complete, nullptr, 0);
-    if (rc != 0) {
-      spdk_free(temp_buffer);
-      throw std::runtime_error("Write command failed");
+    while (rc != 0) {
+      rc = spdk_nvme_ns_cmd_write(ns, qpair, temp_buffer, sector_offset, sector_aligned_size / sector_size, write_complete, nullptr, 0);
     }
 
     while (!spdk_nvme_qpair_process_completions(qpair, 0));
 
-    spdk_free(temp_buffer);(temp_buffer);
+
 
     remaining_size -= chunk_size;
     current_buffer += chunk_size;
     current_offset += chunk_size;
   }
-
+  spdk_free(temp_buffer);
 
 
   // Read existing data if not aligned
@@ -148,40 +204,42 @@ void SPDKSSD::write(const void* buffer, size_t size, uint64_t offset, struct spd
   spdk_free(temp_buffer);*/
 }
 
-void SPDKSSD::read(void* buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair* qpair) {
+void SPDKSSD::readInline(void* buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair* qpair) {
   if (offset + size > ns_size) {
     throw std::out_of_range("Read exceeds namespace size");
   }
-  size_t max_chunk_size = 128 * 1024 * 1024; // 128MB chunk size
+  size_t max_chunk_size = maxDma;
   size_t remaining_size = size;
   uint8_t* current_buffer = static_cast<uint8_t*>(buffer);
   uint64_t current_offset = offset;
-
+  size_t chunk_size = std::min(remaining_size, max_chunk_size);
+  uint64_t sector_offset = current_offset / sector_size;
+  size_t sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
+  void* temp_buffer = spdk_zmalloc(sector_aligned_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
   while (remaining_size > 0) {
-    size_t chunk_size = std::min(remaining_size, max_chunk_size);
-    uint64_t sector_offset = current_offset / sector_size;
-    size_t sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
-    void* temp_buffer = spdk_zmalloc(sector_aligned_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
+     chunk_size = std::min(remaining_size, max_chunk_size);
+     sector_offset = current_offset / sector_size;
+     sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
     if (!temp_buffer) {
       throw std::runtime_error("Failed to allocate temporary buffer");
     }
 
     int rc = spdk_nvme_ns_cmd_read(ns, qpair, temp_buffer, sector_offset, sector_aligned_size / sector_size, read_complete, nullptr, 0);
-    if (rc != 0) {
-      spdk_free(temp_buffer);
-      throw std::runtime_error("Read command failed");
+    while (rc != 0) {
+      rc = spdk_nvme_ns_cmd_read(ns, qpair, temp_buffer, sector_offset, sector_aligned_size / sector_size, read_complete, nullptr, 0);
     }
 
     while (!spdk_nvme_qpair_process_completions(qpair, 0));
 
     std::memcpy(current_buffer, static_cast<uint8_t*>(temp_buffer) + (current_offset % sector_size), chunk_size);
 
-    spdk_free(temp_buffer);
+
 
     remaining_size -= chunk_size;
     current_buffer += chunk_size;
     current_offset += chunk_size;
   }
+  spdk_free(temp_buffer);
   /*uint64_t sector_offset = offset / sector_size;
   size_t sector_aligned_size = ((offset + size + sector_size - 1) / sector_size) * sector_size;
   void* temp_buffer = spdk_zmalloc(sector_aligned_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);

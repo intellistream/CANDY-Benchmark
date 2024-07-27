@@ -68,6 +68,7 @@ class PlainDiskMemBufferTU {
   U64VCacheLine cacheU;
   int64_t tensorBegin=0,u64Begin=0;
   int64_t bsize=0;
+  int64_t dmaSize = 1024000;
   struct spdk_nvme_qpair* ssdQpair = NULL;
   std::atomic_bool isDirtyT = false;
   std::atomic_bool isDirtyU = false;
@@ -84,8 +85,9 @@ class PlainDiskMemBufferTU {
    * @param _u64Begin the begin offset of u64 storage in disk
    * @param qpair the disk io pair
    * @param _ssdPtr the pointer of linked ssd
+   * @param _dmaSize the max size of dma buffer, I64, default 1024000
    */
-  void init(int64_t vecDim,int64_t bufferSize,int64_t _tensorBegin,int64_t _u64Begin,SPDKSSD *_ssdPtr);
+  void init(int64_t vecDim,int64_t bufferSize,int64_t _tensorBegin,int64_t _u64Begin,SPDKSSD *_ssdPtr,int64_t _dmaSize=1024000);
   /**
    * @brief to return the size of ingested vectors
    * @return the number of rows.

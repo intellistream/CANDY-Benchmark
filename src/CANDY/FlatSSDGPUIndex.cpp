@@ -38,12 +38,15 @@ bool CANDY::FlatSSDGPUIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   return true;
 }
 bool CANDY::FlatSSDGPUIndex::startHPC() {
+  uint64_t dmaSize;
   ssd.setupEnv();
+  dmaSize = ssd.getHugePageSize();
+  INTELLI_INFO("Huge page size = "+to_string(dmaSize));
   dmBuffer.init(vecDim,SSDBufferSize,0,ssd.getNameSpaceSize()/2,&ssd);
   return true;
 }
 bool CANDY::FlatSSDGPUIndex::endHPC() {
-  dmBuffer.clear();
+  //dmBuffer.clear();
   ssd.cleanEnv();
   return true;
 }

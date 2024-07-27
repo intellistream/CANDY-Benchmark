@@ -4,7 +4,7 @@
 #include <CANDY/FlatSSDGPUIndex/DiskMemBuffer.h>
 #if CANDY_SPDK == 1
 namespace CANDY{
-void PlainDiskMemBufferTU::init(int64_t vecDim,int64_t bufferSize,int64_t _tensorBegin,int64_t _u64Begin,SPDKSSD *_ssdPtr) {
+void PlainDiskMemBufferTU::init(int64_t vecDim,int64_t bufferSize,int64_t _tensorBegin,int64_t _u64Begin,SPDKSSD *_ssdPtr,int64_t _dmaSize) {
   //diskInfo.
   diskInfo.vecDim=vecDim;
   cacheT.buffer=torch::zeros({bufferSize,vecDim});
@@ -21,6 +21,7 @@ void PlainDiskMemBufferTU::init(int64_t vecDim,int64_t bufferSize,int64_t _tenso
   //std::cout<<cacheT.buffer;
   isDirtyT = false;
   isDirtyU = false;
+  dmaSize = _dmaSize;
 }
 int64_t  PlainDiskMemBufferTU::size() {
   return diskInfo.vecCnt;
@@ -30,7 +31,7 @@ torch::Tensor PlainDiskMemBufferTU::getTensor(int64_t startPos, int64_t endPos) 
    * @brief totally inside memory
    */
    auto inMemTensor = cacheT.buffer.contiguous();
-  int64_t remainSizeRu;
+  //int64_t remainSizeRu;
   int64_t diskOffset;
   if(startPos>=cacheT.beginPos&&endPos<=cacheT.endPos) {
     torch::Tensor ru = inMemTensor.slice(0,startPos-cacheT.beginPos,endPos-cacheT.beginPos);
@@ -75,7 +76,7 @@ torch::Tensor PlainDiskMemBufferTU::getTensor(int64_t startPos, int64_t endPos) 
 }
 std::vector<uint64_t> PlainDiskMemBufferTU::getU64(int64_t startPos, int64_t endPos) {
   auto& inMemBuffer = cacheU.buffer;
-  int64_t remainSizeRu;
+  //int64_t remainSizeRu;
   int64_t diskOffset;
   int64_t bufferBegin = u64Begin;
   // Totally inside memory
@@ -256,7 +257,7 @@ bool PlainDiskMemBufferTU::deleteU64(int64_t startPos, int64_t endPos) {
 
 void PlainDiskMemBufferTU::clear() {
   ssdPtr->write(&diskInfo,sizeof(DiskHeader),tensorBegin,ssdQpair);
-  spdk_nvme_ctrlr_free_io_qpair(ssdQpair);
+  //spdk_nvme_ctrlr_free_io_qpair(ssdQpair);
 }
 }
 #endif
