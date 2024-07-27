@@ -64,34 +64,33 @@ TEST_CASE("Test tensor RW", "[short]")
   SPDKSSD ssd;
   int temp = 0;
   torch::manual_seed(7758258);
-  auto a = torch::rand({4,4});
-  auto a02=a.slice(0,0,2);
-  auto a24=a.slice(0,2,4);
-  auto a34=a.slice(0,3,4);
+  auto a = torch::rand({4, 4});
+  auto a02 = a.slice(0, 0, 2);
+  auto a24 = a.slice(0, 2, 4);
+  auto a34 = a.slice(0, 3, 4);
   INTELLI_INFO("Here is tensor");
-  std::cout<<a<<std::endl;
+  std::cout << a << std::endl;
   INTELLI::ConfigMapPtr cfg = newConfigMap();
   cfg->edit("vecDim", (int64_t) 4);
   cfg->edit("metricType", "IP");
-  cfg->edit("SSDBufferSize",(int64_t)2);
+  cfg->edit("SSDBufferSize", (int64_t) 2);
   auto ssdIdx = newFlatSSDGPUIndex();
   auto flatIdx = newFlatAMMIPIndex();
   ssdIdx->setConfig(cfg);
   ssdIdx->startHPC();
   ssdIdx->insertTensor(a02);
   ssdIdx->insertTensor(a24);
-  auto ru =ssdIdx->searchTensor(a34,2);
+  auto ru = ssdIdx->searchTensor(a34, 2);
   INTELLI_INFO("Here is search on row 3");
-  std::cout<<ru[0]<<std::endl;
+  std::cout << ru[0] << std::endl;
   ssdIdx->endHPC();
   INTELLI_INFO("Validate ...");
   flatIdx->setConfig(cfg);
   flatIdx->insertTensor(a02);
   flatIdx->insertTensor(a24);
-  ru =flatIdx->searchTensor(a34,2);
+  ru = flatIdx->searchTensor(a34, 2);
   INTELLI_INFO("Here is search on row 3, using faiss");
-  std::cout<<ru[0]<<std::endl;
-
+  std::cout << ru[0] << std::endl;
 
   REQUIRE(temp == 0);
 }

@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CANDY
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">An indexing library for online vector management</div>
   </td>
@@ -466,10 +466,10 @@ $(document).ready(function(){initNavTree('ThreadPerf_8hpp_source.html',''); init
 <div class="line"><a name="l00435"></a><span class="lineno"><a class="line" href="classINTELLI_1_1ThreadPerf.html#a81cc283af578a49b56d6c4e713b4d9f5">  435</a></span>&#160;  <span class="keyword">virtual</span> <a class="code" href="group__INTELLI__UTIL__CONFIGS.html#gaeb9674f6f5860b687d73f618962dfcea">ConfigMapPtr</a> <a class="code" href="classINTELLI_1_1ThreadPerf.html#a81cc283af578a49b56d6c4e713b4d9f5">resultToConfigMap</a>() {</div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    <a class="code" href="group__INTELLI__UTIL__CONFIGS.html#gaeb9674f6f5860b687d73f618962dfcea">ConfigMapPtr</a> ru = <a class="code" href="group__INTELLI__UTIL__CONFIGS.html#ga51f72aea36218fddbbb4b335ce6c0d49">newConfigMap</a>();</div>
 <div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code" href="classINTELLI_1_1ThreadPerf.html#a90526297620da280f35a6530653e127a">pairs</a>.size(); i++) {</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;      ru-&gt;edit(<a class="code" href="classINTELLI_1_1ThreadPerf.html#a90526297620da280f35a6530653e127a">pairs</a>[i].name, (uint64_t) <a class="code" href="classINTELLI_1_1ThreadPerf.html#a90526297620da280f35a6530653e127a">pairs</a>[i].record);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;      ru-&gt;edit(<a class="code" href="classINTELLI_1_1ThreadPerf.html#a90526297620da280f35a6530653e127a">pairs</a>[i].name, (int64_t) <a class="code" href="classINTELLI_1_1ThreadPerf.html#a90526297620da280f35a6530653e127a">pairs</a>[i].record);</div>
 <div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    }</div>
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <span class="comment">//additional test the elapsed time</span></div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    ru-&gt;edit(<span class="stringliteral">&quot;perfElapsedTime&quot;</span>, (uint64_t) timeLastUs(tstart, tend));</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    ru-&gt;edit(<span class="stringliteral">&quot;perfElapsedTime&quot;</span>, (int64_t) timeLastUs(tstart, tend));</div>
 <div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    <span class="keywordflow">return</span> ru;</div>
 <div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;  }</div>
 <div class="line"><a name="l00448"></a><span class="lineno"><a class="line" href="classINTELLI_1_1ThreadPerf.html#a94a366e2f9276dade12c8985912a57f8">  448</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classINTELLI_1_1ThreadPerf.html#a94a366e2f9276dade12c8985912a57f8">initEventsByCfg</a>(<a class="code" href="group__INTELLI__UTIL__CONFIGS.html#gaeb9674f6f5860b687d73f618962dfcea">ConfigMapPtr</a> cfg) {</div>

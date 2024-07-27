@@ -11,7 +11,7 @@
 #include <CANDY/FlatSSDGPUIndex/SPDKSSD.h>
 #include <vector>
 #include <atomic>
-namespace CANDY{
+namespace CANDY {
 /**
  *  @defgroup  CANDY_lib_bottom_sub The support classes for index approaches
  * @{
@@ -40,8 +40,8 @@ class TensorVCacheLine {
   int64_t endPos = 0;
   int64_t temperature = 0;
   torch::Tensor buffer;
-  TensorVCacheLine () {}
-  ~TensorVCacheLine () {}
+  TensorVCacheLine() {}
+  ~TensorVCacheLine() {}
 };
 /**
  * @class U64VCacheLine CANDY/FlatSSDGPUIndex/DiskMemBuffer.h
@@ -52,9 +52,9 @@ class U64VCacheLine {
   int64_t beginPos = 0;
   int64_t endPos = 0;
   int64_t temperature = 0;
-  std::vector<uint64_t>buffer;
-  U64VCacheLine () {}
-  ~U64VCacheLine () {}
+  std::vector<uint64_t> buffer;
+  U64VCacheLine() {}
+  ~U64VCacheLine() {}
 };
 /**
  * @class PlainDiskMemBufferOfTensor CANDY/FlatSSDGPUIndex/DiskMemBuffer.h
@@ -66,14 +66,14 @@ class PlainDiskMemBufferTU {
   DiskHeader diskInfo;
   TensorVCacheLine cacheT;
   U64VCacheLine cacheU;
-  int64_t tensorBegin=0,u64Begin=0;
-  int64_t bsize=0;
+  int64_t tensorBegin = 0, u64Begin = 0;
+  int64_t bsize = 0;
   int64_t dmaSize = 1024000;
-  struct spdk_nvme_qpair* ssdQpair = NULL;
+  struct spdk_nvme_qpair *ssdQpair = NULL;
   std::atomic_bool isDirtyT = false;
   std::atomic_bool isDirtyU = false;
  public:
-  struct spdk_nvme_qpair* diskQpair;
+  struct spdk_nvme_qpair *diskQpair;
   PlainDiskMemBufferTU() {}
   ~PlainDiskMemBufferTU() {}
   SPDKSSD *ssdPtr = nullptr;
@@ -87,7 +87,12 @@ class PlainDiskMemBufferTU {
    * @param _ssdPtr the pointer of linked ssd
    * @param _dmaSize the max size of dma buffer, I64, default 1024000
    */
-  void init(int64_t vecDim,int64_t bufferSize,int64_t _tensorBegin,int64_t _u64Begin,SPDKSSD *_ssdPtr,int64_t _dmaSize=1024000);
+  void init(int64_t vecDim,
+            int64_t bufferSize,
+            int64_t _tensorBegin,
+            int64_t _u64Begin,
+            SPDKSSD *_ssdPtr,
+            int64_t _dmaSize = 1024000);
   /**
    * @brief to return the size of ingested vectors
    * @return the number of rows.
@@ -103,28 +108,28 @@ class PlainDiskMemBufferTU {
    * @param endPos the end position
    * @return the tensor, [n*vecDim]
    */
-  torch::Tensor getTensor(int64_t startPos,int64_t endPos);
+  torch::Tensor getTensor(int64_t startPos, int64_t endPos);
   /**
  * @brief to get the tensor at specified position
  * @param startPos the start position
  * @param endPos the end position
  * @return the tensor, [n*vecDim]
  */
-  std::vector<uint64_t> getU64(int64_t startPos,int64_t endPos);
+  std::vector<uint64_t> getU64(int64_t startPos, int64_t endPos);
   /**
    * @brief to revise the tensor at specified position
    * @param startPos the start position
    * @param t the tensor, [n*vecDim]
    * @return whether it is successful
    */
-  bool reviseTensor(int64_t startPos,torch::Tensor &t);
+  bool reviseTensor(int64_t startPos, torch::Tensor &t);
   /**
    * @brief to revise the tensor at specified position
    * @param startPos the start position
    * @param u the u64 vector, [n]
    * @return whether it is successful
    */
-  bool reviseU64(int64_t startPos,std::vector<uint64_t> &u);
+  bool reviseU64(int64_t startPos, std::vector<uint64_t> &u);
   /**
  * @brief to append the tensor to the end of storage region
  * @param t the tensor, [n*vecDim]
@@ -143,14 +148,14 @@ class PlainDiskMemBufferTU {
    * @param endPos the end position
    * @return whether it is successful
    */
-  bool deleteTensor(int64_t startPos,int64_t endPos);
+  bool deleteTensor(int64_t startPos, int64_t endPos);
   /**
    * @brief to delete a U64 at specified position
    * @param startPos the start position
    * @param endPos the end position
    * @return whether it is successful
    */
-  bool deleteU64(int64_t startPos,int64_t endPos);
+  bool deleteU64(int64_t startPos, int64_t endPos);
 };
 }
 /**

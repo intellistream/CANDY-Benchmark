@@ -101,17 +101,17 @@ bool CANDY::DIW_RayWrapper::reset() {
   return false;
 }
 RAY_REMOTE(CANDY::DIW_RayWrapper::FactoryCreate,
-           &CANDY::DIW_RayWrapper::setConfig,
-           &CANDY::DIW_RayWrapper::insertTensor,
-           &CANDY::DIW_RayWrapper::deleteTensor,
-           &CANDY::DIW_RayWrapper::searchTensor,
-           &CANDY::DIW_RayWrapper::reset,
-           &CANDY::DIW_RayWrapper::startHPC,
-           &CANDY::DIW_RayWrapper::endHPC,
-           &CANDY::DIW_RayWrapper::setFrozenLevel,
-           &CANDY::DIW_RayWrapper::offlineBuild,
-           &CANDY::DIW_RayWrapper::loadInitialTensor,
-           &CANDY::DIW_RayWrapper::waitPendingOperations
+    &CANDY::DIW_RayWrapper::setConfig,
+    &CANDY::DIW_RayWrapper::insertTensor,
+    &CANDY::DIW_RayWrapper::deleteTensor,
+    &CANDY::DIW_RayWrapper::searchTensor,
+    &CANDY::DIW_RayWrapper::reset,
+    &CANDY::DIW_RayWrapper::startHPC,
+    &CANDY::DIW_RayWrapper::endHPC,
+    &CANDY::DIW_RayWrapper::setFrozenLevel,
+    &CANDY::DIW_RayWrapper::offlineBuild,
+    &CANDY::DIW_RayWrapper::loadInitialTensor,
+    &CANDY::DIW_RayWrapper::waitPendingOperations
 );
 
 bool CANDY::DistributedIndexWorker::setConfig(INTELLI::ConfigMapPtr cfg) {

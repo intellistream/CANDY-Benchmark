@@ -233,7 +233,7 @@ class SPSCQueue {
  private:
 #ifdef __cpp_lib_hardware_interference_size
   static constexpr size_t kCacheLineSize =
-          std::hardware_destructive_interference_size;
+      std::hardware_destructive_interference_size;
 #else
   static constexpr size_t
       kCacheLineSize = 64;

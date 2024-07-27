@@ -32,7 +32,6 @@ class SPDKSSD {
  */
   SPDKSSD(void);
 
-
   /**
    * @brief Destructor that frees the SPDK resources.
    */
@@ -45,7 +44,7 @@ class SPDKSSD {
    * @param offset Offset in the SSD where data should be written.
    * @param qpair Queue pair to use for the write operation.
    */
-  void write(void *buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair* qpair);
+  void write(void *buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair *qpair);
 
   /**
    * @brief Reads data from the SSD.
@@ -54,7 +53,7 @@ class SPDKSSD {
    * @param offset Offset in the SSD from where data should be read.
    * @param qpair Queue pair to use for the read operation.
    */
-  void read(void* buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair* qpair);
+  void read(void *buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair *qpair);
   /**
    * @brief set the max size of zmalloc DMA
    * @param sz  size in bytes
@@ -64,7 +63,7 @@ class SPDKSSD {
    * @brief Allocates a new I/O queue pair.
    * @return Pointer to the allocated queue pair.
    */
-  struct spdk_nvme_qpair* allocQpair();
+  struct spdk_nvme_qpair *allocQpair();
   /**
    * * @brief To setup the environment
    */
@@ -91,8 +90,8 @@ class SPDKSSD {
   size_t getHugePageSize(void);
  private:
   std::mutex m_mut;
-  struct spdk_nvme_ctrlr* ctrlr; ///< Pointer to the NVMe controller.
-  struct spdk_nvme_ns* ns; ///< Pointer to the NVMe namespace.
+  struct spdk_nvme_ctrlr *ctrlr; ///< Pointer to the NVMe controller.
+  struct spdk_nvme_ns *ns; ///< Pointer to the NVMe namespace.
   int64_t maxDma = 1024000;
   size_t sector_size; ///< Sector size of the NVMe namespace.
   size_t ns_size; ///< Size of the NVMe namespace.
@@ -104,7 +103,7 @@ class SPDKSSD {
    * @param offset Offset in the SSD where data should be written.
    * @param qpair Queue pair to use for the write operation.
    */
-  void writeInline(const void* buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair* qpair);
+  void writeInline(const void *buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair *qpair);
 
   /**
    * @brief Reads data from the SSD.
@@ -113,20 +112,20 @@ class SPDKSSD {
    * @param offset Offset in the SSD from where data should be read.
    * @param qpair Queue pair to use for the read operation.
    */
-  void readInline(void* buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair* qpair);
+  void readInline(void *buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair *qpair);
   /**
    * @brief Completion callback for read operations.
    * @param arg User argument.
    * @param completion Completion status.
    */
-  static void read_complete(void* arg, const struct spdk_nvme_cpl* completion);
+  static void read_complete(void *arg, const struct spdk_nvme_cpl *completion);
 
   /**
    * @brief Completion callback for write operations.
    * @param arg User argument.
    * @param completion Completion status.
    */
-  static void write_complete(void* arg, const struct spdk_nvme_cpl* completion);
+  static void write_complete(void *arg, const struct spdk_nvme_cpl *completion);
 };
 } // CANDY
 /**

@@ -50,7 +50,7 @@ add_catch_test(nnDescent_test SystemTest/NNDescentIndexTest.cpp CANDY)
 add_catch_test(kdTree_test SystemTest/KdTreeTest.cpp CANDY)
 add_catch_test(dpgIndex_test SystemTest/DPGIndexTest.cpp CANDY)
 
-if(CANDY_CUDA)
+if (CANDY_CUDA)
     add_catch_test(cuda_test SystemTest/CudaTest.cpp CANDY)
     message(WARNING "I will Compile the test for minimal cuda function, attention!")
 endif ()

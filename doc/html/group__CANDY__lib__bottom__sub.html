@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CANDY
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">An indexing library for online vector management</div>
   </td>
@@ -109,6 +109,16 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1CongestionDropIndexWorker.html">CANDY::CongestionDropIndexWorker</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A worker class to container bottom indexings, will just drop new element if congestion occurs.  <a href="classCANDY_1_1CongestionDropIndexWorker.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1DiskHeader.html">CANDY::DiskHeader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class to store necessary information on disk, typically at first sector.  <a href="classCANDY_1_1DiskHeader.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1TensorVCacheLine.html">CANDY::TensorVCacheLine</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1U64VCacheLine.html">CANDY::U64VCacheLine</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The virtual cache line to buffer data, storage of uint64_t.  <a href="classCANDY_1_1U64VCacheLine.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1PlainDiskMemBufferTU.html">CANDY::PlainDiskMemBufferTU</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1MLPBucketIdxModel.html">CANDY::MLPBucketIdxModel</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1MLPHashingModel.html">CANDY::MLPHashingModel</a></td></tr>
@@ -118,6 +128,12 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1DIW__RayWrapper.html">CANDY::DIW_RayWrapper</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">the ray wrapper of <a class="el" href="classCANDY_1_1DistributedIndexWorker.html" title="A worker class of parallel index thread.">DistributedIndexWorker</a>, most of its function will be ray-remote  <a href="classCANDY_1_1DIW__RayWrapper.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensorCacheLine.html">TensorCacheLine</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The virtual cache line to buffer data, storage of tensor.  <a href="classTensorCacheLine.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlainDiskMemBufferOfTensor.html">PlainDiskMemBufferOfTensor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a straight forward plain storage of tensor and u64, will firstly use in-memory data, and switch into disk, full flush between memory and disk  <a href="classPlainDiskMemBufferOfTensor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1IVFListCell.html">CANDY::IVFListCell</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a cell of row tensor pointers which have the same code  <a href="classCANDY_1_1IVFListCell.html#details">More...</a><br /></td></tr>
@@ -167,6 +183,40 @@ Functions</h2></td></tr>
 <tr class="memitem:ga292279e7b8692e572c4fe3aaad569bb3"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; torch::Tensor &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga292279e7b8692e572c4fe3aaad569bb3">CANDY::CongestionDropIndexWorker::searchTensor</a> (torch::Tensor &amp;q, int64_t k)</td></tr>
 <tr class="memdesc:ga292279e7b8692e572c4fe3aaad569bb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">search the k-NN of a query tensor, return the result tensors  <a href="group__CANDY__lib__bottom__sub.html#ga292279e7b8692e572c4fe3aaad569bb3">More...</a><br /></td></tr>
 <tr class="separator:ga292279e7b8692e572c4fe3aaad569bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga433e53f9851e5c2a6d9104a1aee528bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga433e53f9851e5c2a6d9104a1aee528bc">CANDY::PlainDiskMemBufferTU::init</a> (int64_t vecDim, int64_t bufferSize, int64_t _tensorBegin, int64_t _u64Begin, SPDKSSD *_ssdPtr, int64_t _dmaSize=1024000)</td></tr>
+<tr class="memdesc:ga433e53f9851e5c2a6d9104a1aee528bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">init everything  <a href="group__CANDY__lib__bottom__sub.html#ga433e53f9851e5c2a6d9104a1aee528bc">More...</a><br /></td></tr>
+<tr class="separator:ga433e53f9851e5c2a6d9104a1aee528bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4975f1c4b585dc560b70fe20f9adb561"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga4975f1c4b585dc560b70fe20f9adb561">CANDY::PlainDiskMemBufferTU::size</a> ()</td></tr>
+<tr class="memdesc:ga4975f1c4b585dc560b70fe20f9adb561"><td class="mdescLeft">&#160;</td><td class="mdescRight">to return the size of ingested vectors  <a href="group__CANDY__lib__bottom__sub.html#ga4975f1c4b585dc560b70fe20f9adb561">More...</a><br /></td></tr>
+<tr class="separator:ga4975f1c4b585dc560b70fe20f9adb561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3fa07ecea02a3b565729cd48a4d67f3"><td class="memItemLeft" align="right" valign="top"><a id="gac3fa07ecea02a3b565729cd48a4d67f3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#gac3fa07ecea02a3b565729cd48a4d67f3">CANDY::PlainDiskMemBufferTU::clear</a> ()</td></tr>
+<tr class="memdesc:gac3fa07ecea02a3b565729cd48a4d67f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear the occupied resource <br /></td></tr>
+<tr class="separator:gac3fa07ecea02a3b565729cd48a4d67f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5708694a4d8a2be07f1119b51570da7c"><td class="memItemLeft" align="right" valign="top">torch::Tensor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga5708694a4d8a2be07f1119b51570da7c">CANDY::PlainDiskMemBufferTU::getTensor</a> (int64_t startPos, int64_t endPos)</td></tr>
+<tr class="memdesc:ga5708694a4d8a2be07f1119b51570da7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">to get the tensor at specified position  <a href="group__CANDY__lib__bottom__sub.html#ga5708694a4d8a2be07f1119b51570da7c">More...</a><br /></td></tr>
+<tr class="separator:ga5708694a4d8a2be07f1119b51570da7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2f5c62c7892b1dcdb9c007e617e990ed"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga2f5c62c7892b1dcdb9c007e617e990ed">CANDY::PlainDiskMemBufferTU::getU64</a> (int64_t startPos, int64_t endPos)</td></tr>
+<tr class="memdesc:ga2f5c62c7892b1dcdb9c007e617e990ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">to get the tensor at specified position  <a href="group__CANDY__lib__bottom__sub.html#ga2f5c62c7892b1dcdb9c007e617e990ed">More...</a><br /></td></tr>
+<tr class="separator:ga2f5c62c7892b1dcdb9c007e617e990ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7ee2509534826751be83f3a83acfd43f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga7ee2509534826751be83f3a83acfd43f">CANDY::PlainDiskMemBufferTU::reviseTensor</a> (int64_t startPos, torch::Tensor &amp;t)</td></tr>
+<tr class="memdesc:ga7ee2509534826751be83f3a83acfd43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">to revise the tensor at specified position  <a href="group__CANDY__lib__bottom__sub.html#ga7ee2509534826751be83f3a83acfd43f">More...</a><br /></td></tr>
+<tr class="separator:ga7ee2509534826751be83f3a83acfd43f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadcc9a55b8f837024f4c1b5fcb1f976b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#gadcc9a55b8f837024f4c1b5fcb1f976b6">CANDY::PlainDiskMemBufferTU::reviseU64</a> (int64_t startPos, std::vector&lt; uint64_t &gt; &amp;u)</td></tr>
+<tr class="memdesc:gadcc9a55b8f837024f4c1b5fcb1f976b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">to revise the tensor at specified position  <a href="group__CANDY__lib__bottom__sub.html#gadcc9a55b8f837024f4c1b5fcb1f976b6">More...</a><br /></td></tr>
+<tr class="separator:gadcc9a55b8f837024f4c1b5fcb1f976b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab1b8d9afa2228563553632cbe1eaed83"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#gab1b8d9afa2228563553632cbe1eaed83">CANDY::PlainDiskMemBufferTU::appendTensor</a> (torch::Tensor &amp;t)</td></tr>
+<tr class="memdesc:gab1b8d9afa2228563553632cbe1eaed83"><td class="mdescLeft">&#160;</td><td class="mdescRight">to append the tensor to the end of storage region  <a href="group__CANDY__lib__bottom__sub.html#gab1b8d9afa2228563553632cbe1eaed83">More...</a><br /></td></tr>
+<tr class="separator:gab1b8d9afa2228563553632cbe1eaed83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacbb9cf0fc77992eaec8fcc27a3cb489a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#gacbb9cf0fc77992eaec8fcc27a3cb489a">CANDY::PlainDiskMemBufferTU::appendU64</a> (std::vector&lt; uint64_t &gt; &amp;u)</td></tr>
+<tr class="memdesc:gacbb9cf0fc77992eaec8fcc27a3cb489a"><td class="mdescLeft">&#160;</td><td class="mdescRight">to append the tensor to the end of storage region  <a href="group__CANDY__lib__bottom__sub.html#gacbb9cf0fc77992eaec8fcc27a3cb489a">More...</a><br /></td></tr>
+<tr class="separator:gacbb9cf0fc77992eaec8fcc27a3cb489a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa8fa6f7e98a94a7667b89ee9ef8d5fc4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#gaa8fa6f7e98a94a7667b89ee9ef8d5fc4">CANDY::PlainDiskMemBufferTU::deleteTensor</a> (int64_t startPos, int64_t endPos)</td></tr>
+<tr class="memdesc:gaa8fa6f7e98a94a7667b89ee9ef8d5fc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">to delete the tensor at specified position  <a href="group__CANDY__lib__bottom__sub.html#gaa8fa6f7e98a94a7667b89ee9ef8d5fc4">More...</a><br /></td></tr>
+<tr class="separator:gaa8fa6f7e98a94a7667b89ee9ef8d5fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga80cf399d51f6800417f89c3425f08fe2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga80cf399d51f6800417f89c3425f08fe2">CANDY::PlainDiskMemBufferTU::deleteU64</a> (int64_t startPos, int64_t endPos)</td></tr>
+<tr class="memdesc:ga80cf399d51f6800417f89c3425f08fe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">to delete a U64 at specified position  <a href="group__CANDY__lib__bottom__sub.html#ga80cf399d51f6800417f89c3425f08fe2">More...</a><br /></td></tr>
+<tr class="separator:ga80cf399d51f6800417f89c3425f08fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga25261033c359b239cb9b6cfc55aafeeb"><td class="memItemLeft" align="right" valign="top"><a id="ga25261033c359b239cb9b6cfc55aafeeb"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::TensorIdxPair::TensorIdxPair</b> (torch::Tensor _t, int64_t _idx)</td></tr>
 <tr class="separator:ga25261033c359b239cb9b6cfc55aafeeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -273,6 +323,81 @@ int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::CongestionD
 <tr class="memitem:ga134a26c4f5a5a9b8be841b0a75e7a607"><td class="memItemLeft" align="right" valign="top"><a id="ga134a26c4f5a5a9b8be841b0a75e7a607"></a>
 TensorListIdxQueuePtr&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::CongestionDropIndexWorker::reduceQueue</b></td></tr>
 <tr class="separator:ga134a26c4f5a5a9b8be841b0a75e7a607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4604af6fc5e497547707b8e607d98afc"><td class="memItemLeft" align="right" valign="top"><a id="ga4604af6fc5e497547707b8e607d98afc"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::DiskHeader::version</b> = 0</td></tr>
+<tr class="separator:ga4604af6fc5e497547707b8e607d98afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6143f49329077f4d90a3698dc1f851a0"><td class="memItemLeft" align="right" valign="top"><a id="ga6143f49329077f4d90a3698dc1f851a0"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::DiskHeader::vecDim</b> = 0</td></tr>
+<tr class="separator:ga6143f49329077f4d90a3698dc1f851a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f76e6e20773c38b487d6469f11f4486"><td class="memItemLeft" align="right" valign="top"><a id="ga4f76e6e20773c38b487d6469f11f4486"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::DiskHeader::vecCnt</b> = 0</td></tr>
+<tr class="separator:ga4f76e6e20773c38b487d6469f11f4486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga656a9281014dbd3d1026fb65859af95a"><td class="memItemLeft" align="right" valign="top"><a id="ga656a9281014dbd3d1026fb65859af95a"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::DiskHeader::u64Cnt</b> = 0</td></tr>
+<tr class="separator:ga656a9281014dbd3d1026fb65859af95a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga28abf55e09d4d473737277503f6e50ed"><td class="memItemLeft" align="right" valign="top"><a id="ga28abf55e09d4d473737277503f6e50ed"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::DiskHeader::aknnType</b> = 0</td></tr>
+<tr class="separator:ga28abf55e09d4d473737277503f6e50ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8612bb7500d01e8933ba135eda195534"><td class="memItemLeft" align="right" valign="top"><a id="ga8612bb7500d01e8933ba135eda195534"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::TensorVCacheLine::beginPos</b> = 0</td></tr>
+<tr class="separator:ga8612bb7500d01e8933ba135eda195534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf990d92ff3646090a307c04b55a33c14"><td class="memItemLeft" align="right" valign="top"><a id="gaf990d92ff3646090a307c04b55a33c14"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::TensorVCacheLine::endPos</b> = 0</td></tr>
+<tr class="separator:gaf990d92ff3646090a307c04b55a33c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5f31e819f2ada0d826455a085bde099a"><td class="memItemLeft" align="right" valign="top"><a id="ga5f31e819f2ada0d826455a085bde099a"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::TensorVCacheLine::temperature</b> = 0</td></tr>
+<tr class="separator:ga5f31e819f2ada0d826455a085bde099a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6bf670e6aafe581708a22dbeedb0def0"><td class="memItemLeft" align="right" valign="top"><a id="ga6bf670e6aafe581708a22dbeedb0def0"></a>
+torch::Tensor&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::TensorVCacheLine::buffer</b></td></tr>
+<tr class="separator:ga6bf670e6aafe581708a22dbeedb0def0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae5fd319533c103c4b148b823444844cc"><td class="memItemLeft" align="right" valign="top"><a id="gae5fd319533c103c4b148b823444844cc"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::U64VCacheLine::beginPos</b> = 0</td></tr>
+<tr class="separator:gae5fd319533c103c4b148b823444844cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8476d868284b35296b65962cdec8e0f0"><td class="memItemLeft" align="right" valign="top"><a id="ga8476d868284b35296b65962cdec8e0f0"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::U64VCacheLine::endPos</b> = 0</td></tr>
+<tr class="separator:ga8476d868284b35296b65962cdec8e0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadff9eec028a81c732e260a9986482bce"><td class="memItemLeft" align="right" valign="top"><a id="gadff9eec028a81c732e260a9986482bce"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::U64VCacheLine::temperature</b> = 0</td></tr>
+<tr class="separator:gadff9eec028a81c732e260a9986482bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6c9c90ac6a900403f03f5315d38a3c69"><td class="memItemLeft" align="right" valign="top"><a id="ga6c9c90ac6a900403f03f5315d38a3c69"></a>
+std::vector&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::U64VCacheLine::buffer</b></td></tr>
+<tr class="separator:ga6c9c90ac6a900403f03f5315d38a3c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71666cc8123dc3340c0f5915499e81fb"><td class="memItemLeft" align="right" valign="top"><a id="ga71666cc8123dc3340c0f5915499e81fb"></a>
+<a class="el" href="classCANDY_1_1DiskHeader.html">DiskHeader</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::diskInfo</b></td></tr>
+<tr class="separator:ga71666cc8123dc3340c0f5915499e81fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafce514309b38d032835354911914a0ba"><td class="memItemLeft" align="right" valign="top"><a id="gafce514309b38d032835354911914a0ba"></a>
+<a class="el" href="classCANDY_1_1TensorVCacheLine.html">TensorVCacheLine</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::cacheT</b></td></tr>
+<tr class="separator:gafce514309b38d032835354911914a0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaee5cd4245f92e6bc376b114cedcaabd8"><td class="memItemLeft" align="right" valign="top"><a id="gaee5cd4245f92e6bc376b114cedcaabd8"></a>
+<a class="el" href="classCANDY_1_1U64VCacheLine.html">U64VCacheLine</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::cacheU</b></td></tr>
+<tr class="separator:gaee5cd4245f92e6bc376b114cedcaabd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6166deadce5212f7d8daed5a9c27430b"><td class="memItemLeft" align="right" valign="top"><a id="ga6166deadce5212f7d8daed5a9c27430b"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::tensorBegin</b> = 0</td></tr>
+<tr class="separator:ga6166deadce5212f7d8daed5a9c27430b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga29574bfd184fc8c0364519a8a7aebcbf"><td class="memItemLeft" align="right" valign="top"><a id="ga29574bfd184fc8c0364519a8a7aebcbf"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::u64Begin</b> = 0</td></tr>
+<tr class="separator:ga29574bfd184fc8c0364519a8a7aebcbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8641c31bb3418fc0dd2f11e37d1daf95"><td class="memItemLeft" align="right" valign="top"><a id="ga8641c31bb3418fc0dd2f11e37d1daf95"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::bsize</b> = 0</td></tr>
+<tr class="separator:ga8641c31bb3418fc0dd2f11e37d1daf95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ae9c10e1dcd8e2be423a7775e50620c"><td class="memItemLeft" align="right" valign="top"><a id="ga6ae9c10e1dcd8e2be423a7775e50620c"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::dmaSize</b> = 1024000</td></tr>
+<tr class="separator:ga6ae9c10e1dcd8e2be423a7775e50620c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3fde5b930c2c5f2c773b821f53af5ee4"><td class="memItemLeft" align="right" valign="top"><a id="ga3fde5b930c2c5f2c773b821f53af5ee4"></a>
+struct spdk_nvme_qpair *&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::ssdQpair</b> = NULL</td></tr>
+<tr class="separator:ga3fde5b930c2c5f2c773b821f53af5ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga847af2aaa1ae4695cd664100fc3581ee"><td class="memItemLeft" align="right" valign="top"><a id="ga847af2aaa1ae4695cd664100fc3581ee"></a>
+std::atomic_bool&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::isDirtyT</b> = false</td></tr>
+<tr class="separator:ga847af2aaa1ae4695cd664100fc3581ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga292b279485f304f6bdd8d59ee97fc63d"><td class="memItemLeft" align="right" valign="top"><a id="ga292b279485f304f6bdd8d59ee97fc63d"></a>
+std::atomic_bool&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::isDirtyU</b> = false</td></tr>
+<tr class="separator:ga292b279485f304f6bdd8d59ee97fc63d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4ae6efeb8987353c8acae2272af5fc51"><td class="memItemLeft" align="right" valign="top"><a id="ga4ae6efeb8987353c8acae2272af5fc51"></a>
+struct spdk_nvme_qpair *&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::diskQpair</b></td></tr>
+<tr class="separator:ga4ae6efeb8987353c8acae2272af5fc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab73c297f7d8f3deca418f6042a2ce7c7"><td class="memItemLeft" align="right" valign="top"><a id="gab73c297f7d8f3deca418f6042a2ce7c7"></a>
+SPDKSSD *&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::ssdPtr</b> = nullptr</td></tr>
+<tr class="separator:gab73c297f7d8f3deca418f6042a2ce7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae9a2d628596d044a06c9f8d54f387fa0"><td class="memItemLeft" align="right" valign="top"><a id="gae9a2d628596d044a06c9f8d54f387fa0"></a>
 torch::Tensor&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::TensorIdxPair::t</b></td></tr>
 <tr class="separator:gae9a2d628596d044a06c9f8d54f387fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -415,6 +540,60 @@ typedef std::shared_ptr&lt; <a class="el" href="classCANDY_1_1SimpleStreamCluste
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gab1b8d9afa2228563553632cbe1eaed83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab1b8d9afa2228563553632cbe1eaed83">&#9670;&nbsp;</a></span>appendTensor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::PlainDiskMemBufferTU::appendTensor </td>
+          <td>(</td>
+          <td class="paramtype">torch::Tensor &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to append the tensor to the end of storage region </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>the tensor, [n*vecDim] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether it is successful </dd></dl>
+
+</div>
+</div>
+<a id="gacbb9cf0fc77992eaec8fcc27a3cb489a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacbb9cf0fc77992eaec8fcc27a3cb489a">&#9670;&nbsp;</a></span>appendU64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::PlainDiskMemBufferTU::appendU64 </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; uint64_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to append the tensor to the end of storage region </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>the u64 vector, [n] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether it is successful </dd></dl>
+
+</div>
+</div>
 <a id="ga2f555c491d065aa248ef9f4ec1617765"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga2f555c491d065aa248ef9f4ec1617765">&#9670;&nbsp;</a></span>deleteStringObject()</h2>
 
@@ -462,8 +641,46 @@ typedef std::shared_ptr&lt; <a class="el" href="classCANDY_1_1SimpleStreamCluste
 
 </div>
 </div>
+<a id="gaa8fa6f7e98a94a7667b89ee9ef8d5fc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa8fa6f7e98a94a7667b89ee9ef8d5fc4">&#9670;&nbsp;</a></span>deleteTensor() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::PlainDiskMemBufferTU::deleteTensor </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>startPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>endPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to delete the tensor at specified position </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startPos</td><td>the start position </td></tr>
+    <tr><td class="paramname">endPos</td><td>the end position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether it is successful </dd></dl>
+
+</div>
+</div>
 <a id="gacd38ddca9b4a74e55b352c9d9bf9dc37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacd38ddca9b4a74e55b352c9d9bf9dc37">&#9670;&nbsp;</a></span>deleteTensor()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#gacd38ddca9b4a74e55b352c9d9bf9dc37">&#9670;&nbsp;</a></span>deleteTensor() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -508,6 +725,44 @@ typedef std::shared_ptr&lt; <a class="el" href="classCANDY_1_1SimpleStreamCluste
 
 </div>
 </div>
+<a id="ga80cf399d51f6800417f89c3425f08fe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga80cf399d51f6800417f89c3425f08fe2">&#9670;&nbsp;</a></span>deleteU64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::PlainDiskMemBufferTU::deleteU64 </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>startPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>endPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to delete a U64 at specified position </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startPos</td><td>the start position </td></tr>
+    <tr><td class="paramname">endPos</td><td>the end position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether it is successful </dd></dl>
+
+</div>
+</div>
 <a id="ga2b838efccc92668b23acda243e67184a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga2b838efccc92668b23acda243e67184a">&#9670;&nbsp;</a></span>endHPC()</h2>
 
@@ -533,6 +788,44 @@ typedef std::shared_ptr&lt; <a class="el" href="classCANDY_1_1SimpleStreamCluste
 
 <p>some extra termination if the index has HPC fetures </p>
 <dl class="section return"><dt>Returns</dt><dd>bool whether the HPC termination is successful </dd></dl>
+
+</div>
+</div>
+<a id="ga5708694a4d8a2be07f1119b51570da7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5708694a4d8a2be07f1119b51570da7c">&#9670;&nbsp;</a></span>getTensor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">torch::Tensor CANDY::PlainDiskMemBufferTU::getTensor </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>startPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>endPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to get the tensor at specified position </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startPos</td><td>the start position </td></tr>
+    <tr><td class="paramname">endPos</td><td>the end position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the tensor, [n*vecDim] </dd></dl>
 
 </div>
 </div>
@@ -579,6 +872,110 @@ typedef std::shared_ptr&lt; <a class="el" href="classCANDY_1_1SimpleStreamCluste
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a vector of tensors, each tensor represent KNN results of one query in idx </dd></dl>
+
+</div>
+</div>
+<a id="ga2f5c62c7892b1dcdb9c007e617e990ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2f5c62c7892b1dcdb9c007e617e990ed">&#9670;&nbsp;</a></span>getU64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;uint64_t&gt; CANDY::PlainDiskMemBufferTU::getU64 </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>startPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>endPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to get the tensor at specified position </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startPos</td><td>the start position </td></tr>
+    <tr><td class="paramname">endPos</td><td>the end position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the tensor, [n*vecDim] </dd></dl>
+
+</div>
+</div>
+<a id="ga433e53f9851e5c2a6d9104a1aee528bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga433e53f9851e5c2a6d9104a1aee528bc">&#9670;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CANDY::PlainDiskMemBufferTU::init </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>vecDim</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>bufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>_tensorBegin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>_u64Begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SPDKSSD *&#160;</td>
+          <td class="paramname"><em>_ssdPtr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>_dmaSize</em> = <code>1024000</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>init everything </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vecDim</td><td>The dimension of vectors </td></tr>
+    <tr><td class="paramname">bufferSize</td><td>the size for both tensor cache (in rows) and U64 cache (in sizeof(uint64_t)) </td></tr>
+    <tr><td class="paramname">_tensorBegin</td><td>the begin offset of tensor storage in disk </td></tr>
+    <tr><td class="paramname">_u64Begin</td><td>the begin offset of u64 storage in disk </td></tr>
+    <tr><td class="paramname">qpair</td><td>the disk io pair </td></tr>
+    <tr><td class="paramname">_ssdPtr</td><td>the pointer of linked ssd </td></tr>
+    <tr><td class="paramname">_dmaSize</td><td>the max size of dma buffer, I64, default 1024000 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -890,8 +1287,46 @@ typedef std::shared_ptr&lt; <a class="el" href="classCANDY_1_1SimpleStreamCluste
 
 </div>
 </div>
+<a id="ga7ee2509534826751be83f3a83acfd43f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7ee2509534826751be83f3a83acfd43f">&#9670;&nbsp;</a></span>reviseTensor() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::PlainDiskMemBufferTU::reviseTensor </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>startPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">torch::Tensor &amp;&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to revise the tensor at specified position </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startPos</td><td>the start position </td></tr>
+    <tr><td class="paramname">t</td><td>the tensor, [n*vecDim] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether it is successful </dd></dl>
+
+</div>
+</div>
 <a id="ga3cab4d64f1ea52be1842cbcaad1817bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3cab4d64f1ea52be1842cbcaad1817bf">&#9670;&nbsp;</a></span>reviseTensor()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3cab4d64f1ea52be1842cbcaad1817bf">&#9670;&nbsp;</a></span>reviseTensor() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -933,6 +1368,44 @@ typedef std::shared_ptr&lt; <a class="el" href="classCANDY_1_1SimpleStreamCluste
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool whether the revising is successful </dd></dl>
+
+</div>
+</div>
+<a id="gadcc9a55b8f837024f4c1b5fcb1f976b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadcc9a55b8f837024f4c1b5fcb1f976b6">&#9670;&nbsp;</a></span>reviseU64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::PlainDiskMemBufferTU::reviseU64 </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>startPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; uint64_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to revise the tensor at specified position </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startPos</td><td>the start position </td></tr>
+    <tr><td class="paramname">u</td><td>the u64 vector, [n] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether it is successful </dd></dl>
 
 </div>
 </div>
@@ -1284,6 +1757,26 @@ typedef std::shared_ptr&lt; <a class="el" href="classCANDY_1_1SimpleStreamCluste
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether the setting is successful </dd></dl>
+
+</div>
+</div>
+<a id="ga4975f1c4b585dc560b70fe20f9adb561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4975f1c4b585dc560b70fe20f9adb561">&#9670;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t CANDY::PlainDiskMemBufferTU::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to return the size of ingested vectors </p>
+<dl class="section return"><dt>Returns</dt><dd>the number of rows. </dd></dl>
 
 </div>
 </div>

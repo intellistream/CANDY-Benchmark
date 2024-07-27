@@ -36,6 +36,11 @@ var annotated_dup =
       [ "FlatAMMIPIndex", "classCANDY_1_1FlatAMMIPIndex.html", "classCANDY_1_1FlatAMMIPIndex" ],
       [ "FlatAMMIPObjIndex", "classCANDY_1_1FlatAMMIPObjIndex.html", "classCANDY_1_1FlatAMMIPObjIndex" ],
       [ "FlatIndex", "classCANDY_1_1FlatIndex.html", "classCANDY_1_1FlatIndex" ],
+      [ "DiskHeader", "classCANDY_1_1DiskHeader.html", "classCANDY_1_1DiskHeader" ],
+      [ "TensorVCacheLine", "classCANDY_1_1TensorVCacheLine.html", "classCANDY_1_1TensorVCacheLine" ],
+      [ "U64VCacheLine", "classCANDY_1_1U64VCacheLine.html", "classCANDY_1_1U64VCacheLine" ],
+      [ "PlainDiskMemBufferTU", "classCANDY_1_1PlainDiskMemBufferTU.html", "classCANDY_1_1PlainDiskMemBufferTU" ],
+      [ "FlatSSDGPUIndex", "classCANDY_1_1FlatSSDGPUIndex.html", "classCANDY_1_1FlatSSDGPUIndex" ],
       [ "MLPBucketIdxModel", "classCANDY_1_1MLPBucketIdxModel.html", "classCANDY_1_1MLPBucketIdxModel" ],
       [ "MLPHashingModel", "classCANDY_1_1MLPHashingModel.html", "classCANDY_1_1MLPHashingModel" ],
       [ "AdSampling", "classCANDY_1_1AdSampling.html", "classCANDY_1_1AdSampling" ],
@@ -167,6 +172,8 @@ var annotated_dup =
     [ "HNSWAlter", "classHNSWAlter.html", null ],
     [ "HostPara", "classHostPara.html", "classHostPara" ],
     [ "INTELLITensorOP", "classINTELLITensorOP.html", null ],
+    [ "PlainDiskMemBufferOfTensor", "classPlainDiskMemBufferOfTensor.html", null ],
+    [ "TensorCacheLine", "classTensorCacheLine.html", null ],
     [ "VertexComparison", "structVertexComparison.html", "structVertexComparison" ],
     [ "VisitedBitset", "classVisitedBitset.html", null ]
 ];

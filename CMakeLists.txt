@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.14)
-project(CANDY CXX CUDA)
-enable_language(CUDA)
+project(CANDY CXX )
+
 
 # Custom CMake find instructions and macros
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
@@ -25,7 +25,7 @@ find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
 # Set Optimization Flags
-set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type")
+set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type -Wno-interference-size")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DNO_RACE_CHECK -DCANDY_DEBUG_MODE=1")
 set(CMAKE_CXX_FLAGS_RELEASE "-Wno-ignored-qualifiers -Wno-sign-compare -O3")
 set(PROJECT_BINARY_DIR_RAW ${PROJECT_BINARY_DIR})
@@ -51,17 +51,34 @@ option(ENABLE_PYBIND
 find_package(CUDA QUIET)
 
 # Check if CUDA is enabled
-if(CUDA_FOUND)
+if (CUDA_FOUND)
     message(STATUS "CUDA found. Enabling CUDA support.")
+    message(STATUS "CUDA version: ${CUDA_VERSION_STRING}")
     set(CANDY_CUDA 1)
+    enable_language(CUDA)
+
+    # Extract major and minor version numbers
+    string(REGEX MATCH "^([0-9]+)\\.([0-9]+)" CUDA_VERSION_MATCH ${CUDA_VERSION_STRING})
+    set(CUDA_VERSION_MAJOR ${CMAKE_MATCH_1})
+    set(CUDA_VERSION_MINOR ${CMAKE_MATCH_2})
+
+    # Determine CUDA standard based on version
+    if (CUDA_VERSION_MAJOR GREATER 12 OR (CUDA_VERSION_MAJOR EQUAL 12 AND CUDA_VERSION_MINOR GREATER_EQUAL 5))
+        set(CMAKE_CUDA_STANDARD 17)
+        message(STATUS "Allow c++ 17 in CUDA")
+    else()
+        set(CMAKE_CUDA_STANDARD 14)
+        message(STATUS "Allow c++ 14 in CUDA")
+    endif()
+    project(CANDY CXX CUDA)
     # Add your CUDA-related configurations or targets here
     # Example:
     # cuda_add_executable(my_cuda_executable main.cu)
-else()
+else ()
     message(STATUS "CUDA not found. Building without CUDA support.")
     set(CANDY_CUDA 0)
     # Handle the case where CUDA is not found
-endif()
+endif ()
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/cuda_config.h.in"
         "${PROJECT_BINARY_DIR}/include/cuda_config.h"
@@ -160,7 +177,6 @@ configure_file(
         "${PROJECT_SOURCE_DIR}/include/ray_config.h.in"
         "${PROJECT_BINARY_DIR}/include/ray_config.h"
 )
-#set(CMAKE_CUDA_ARCHITECTURES 55)
 # Set LOGGING_LEVEL Flag
 #option of hdf5
 if (NOT ENABLE_HDF5)
@@ -206,7 +222,7 @@ message(STATUS " Libraries: ${LIBRARIES}")
 add_subdirectory(src)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
-set(CMAKE_CUDA_STANDARD 14)
+
 # Add Library
 get_sources(CANDY_SOURCE_FILES)
 get_headers(CANDY_HEADER_FILES)

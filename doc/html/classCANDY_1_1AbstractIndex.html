@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CANDY
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">An indexing library for online vector management</div>
   </td>
@@ -112,7 +112,7 @@ Inheritance diagram for CANDY::AbstractIndex:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCANDY_1_1AbstractIndex__inherit__graph.png" border="0" usemap="#aCANDY_1_1AbstractIndex_inherit__map" alt="Inheritance graph"/></div>
 <map name="aCANDY_1_1AbstractIndex_inherit__map" id="aCANDY_1_1AbstractIndex_inherit__map">
-<area shape="rect" title="The abstract class of an index approach." alt="" coords="5,468,169,495"/>
+<area shape="rect" title="The abstract class of an index approach." alt="" coords="5,493,169,520"/>
 <area shape="rect" href="classCANDY_1_1BucketedFlatIndex.html" title="The class of splitting similar vectors into fixed number of buckets, each bucket is managed by FlatIn..." alt="" coords="227,5,422,32"/>
 <area shape="rect" href="classCANDY_1_1BufferedCongestionDropIndex.html" title="Similar to CongestionDropIndex, but will try to place some of the online data into an ingestion&#45;effic..." alt="" coords="223,57,426,98"/>
 <area shape="rect" href="classCANDY_1_1CongestionDropIndex.html" title="A container index to evaluate other bottom index, will just drop the data if congestion occurs,..." alt="" coords="217,123,432,149"/>
@@ -123,15 +123,16 @@ Inheritance diagram for CANDY::AbstractIndex:</div>
 <area shape="rect" href="classCANDY_1_1FlatAMMIPIndex.html" title="The class of a flat index approach, using brutal force management for data, but approximate matrix mu..." alt="" coords="235,392,415,419"/>
 <area shape="rect" href="classCANDY_1_1FlatAMMIPObjIndex.html" title="Similar to FlatAMMIPIndex, but additionally has object storage (currently only string)" alt="" coords="223,443,426,469"/>
 <area shape="rect" href="classCANDY_1_1FlatIndex.html" title="The class of a flat index approach, using brutal force management." alt="" coords="257,493,392,520"/>
-<area shape="rect" href="classCANDY_1_1HNSWNaiveIndex.html" title="The class of a HNSW index approach, store the data in each vertex." alt="" coords="230,544,419,571"/>
-<area shape="rect" href="classCANDY_1_1NNDescentIndex.html" title="An index whose core algorithm is only used for offline construction, but based on its main data struc..." alt="" coords="233,595,416,621"/>
-<area shape="rect" href="classCANDY_1_1OnlineIVFLSHIndex.html" title="A LSH indexing, using 2&#45;tier IVF List to manage buckets. The base tier is hamming encoding,..." alt="" coords="225,645,424,672"/>
-<area shape="rect" href="classCANDY_1_1OnlinePQIndex.html" title="The class of online PQ approach, using IVF&#45;style coarse&#45;grained + fine&#45;grained quantizers." alt="" coords="239,696,410,723"/>
-<area shape="rect" href="classCANDY_1_1PQIndex.html" title="class for indexing vectors using product quantizations, this is a raw implementation without hierachi..." alt="" coords="261,747,389,773"/>
-<area shape="rect" href="classCANDY_1_1ParallelPartitionIndex.html" title="A basic parallel index, works under generic data partition, allow configurable index of threads,..." alt="" coords="237,798,413,839"/>
-<area shape="rect" href="classCANDY_1_1YinYangGraphIndex.html" title="The class of indexing using a yinyang graph, first use LSH to roughly locate the range of a tensor,..." alt="" coords="225,864,424,891"/>
-<area shape="rect" href="classCANDY_1_1YinYangGraphSimpleIndex.html" title="The class of indexing using a simpe yinyang graph,there is no LSH search is only within the linked yi..." alt="" coords="221,915,429,957"/>
-<area shape="rect" href="classCANDY_1_1OnlineIVFL2HIndex.html" title="A L2H (learning 2 hash) indexing, using 2&#45;tier IVF List to manage buckets. The base tier is hamming e..." alt="" coords="480,645,679,672"/>
+<area shape="rect" href="classCANDY_1_1FlatSSDGPUIndex.html" title="Similar to FlatAMMIPObjectIndex, but runs on SSD and GPU for large scale." alt="" coords="230,544,419,571"/>
+<area shape="rect" href="classCANDY_1_1HNSWNaiveIndex.html" title="The class of a HNSW index approach, store the data in each vertex." alt="" coords="230,595,419,621"/>
+<area shape="rect" href="classCANDY_1_1NNDescentIndex.html" title="An index whose core algorithm is only used for offline construction, but based on its main data struc..." alt="" coords="233,645,416,672"/>
+<area shape="rect" href="classCANDY_1_1OnlineIVFLSHIndex.html" title="A LSH indexing, using 2&#45;tier IVF List to manage buckets. The base tier is hamming encoding,..." alt="" coords="225,696,424,723"/>
+<area shape="rect" href="classCANDY_1_1OnlinePQIndex.html" title="The class of online PQ approach, using IVF&#45;style coarse&#45;grained + fine&#45;grained quantizers." alt="" coords="239,747,410,773"/>
+<area shape="rect" href="classCANDY_1_1PQIndex.html" title="class for indexing vectors using product quantizations, this is a raw implementation without hierachi..." alt="" coords="261,797,389,824"/>
+<area shape="rect" href="classCANDY_1_1ParallelPartitionIndex.html" title="A basic parallel index, works under generic data partition, allow configurable index of threads,..." alt="" coords="237,849,413,890"/>
+<area shape="rect" href="classCANDY_1_1YinYangGraphIndex.html" title="The class of indexing using a yinyang graph, first use LSH to roughly locate the range of a tensor,..." alt="" coords="225,915,424,941"/>
+<area shape="rect" href="classCANDY_1_1YinYangGraphSimpleIndex.html" title="The class of indexing using a simpe yinyang graph,there is no LSH search is only within the linked yi..." alt="" coords="221,966,429,1007"/>
+<area shape="rect" href="classCANDY_1_1OnlineIVFL2HIndex.html" title="A L2H (learning 2 hash) indexing, using 2&#45;tier IVF List to manage buckets. The base tier is hamming e..." alt="" coords="480,696,679,723"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -203,15 +204,27 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a2184c1380f1d9f6516b174beec06eda9"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a2184c1380f1d9f6516b174beec06eda9">loadInitialStringObject</a> (torch::Tensor &amp;t, std::vector&lt; std::string &gt; &amp;strs)</td></tr>
 <tr class="memdesc:a2184c1380f1d9f6516b174beec06eda9"><td class="mdescLeft">&#160;</td><td class="mdescRight">load the initial tensors of a data base along with its string objects, use this BEFORE <a class="el" href="classCANDY_1_1AbstractIndex.html#a10e65ecee21528fe6df84114b61110d4">insertTensor</a>  <a href="classCANDY_1_1AbstractIndex.html#a2184c1380f1d9f6516b174beec06eda9">More...</a><br /></td></tr>
 <tr class="separator:a2184c1380f1d9f6516b174beec06eda9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d8dd3c2a29fcf75ac05b9e2d21fe2eb"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a9d8dd3c2a29fcf75ac05b9e2d21fe2eb">loadInitialU64Object</a> (torch::Tensor &amp;t, std::vector&lt; uint64_t &gt; &amp;u64s)</td></tr>
+<tr class="memdesc:a9d8dd3c2a29fcf75ac05b9e2d21fe2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">load the initial tensors of a data base along with its string objects, use this BEFORE <a class="el" href="classCANDY_1_1AbstractIndex.html#a10e65ecee21528fe6df84114b61110d4">insertTensor</a>  <a href="classCANDY_1_1AbstractIndex.html#a9d8dd3c2a29fcf75ac05b9e2d21fe2eb">More...</a><br /></td></tr>
+<tr class="separator:a9d8dd3c2a29fcf75ac05b9e2d21fe2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9946053cdb6b0a6c8723b7404d63499d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a9946053cdb6b0a6c8723b7404d63499d">insertStringObject</a> (torch::Tensor &amp;t, std::vector&lt; std::string &gt; &amp;strs)</td></tr>
 <tr class="memdesc:a9946053cdb6b0a6c8723b7404d63499d"><td class="mdescLeft">&#160;</td><td class="mdescRight">insert a string object  <a href="classCANDY_1_1AbstractIndex.html#a9946053cdb6b0a6c8723b7404d63499d">More...</a><br /></td></tr>
 <tr class="separator:a9946053cdb6b0a6c8723b7404d63499d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a234a3546ece87e1ded2b1c1ac15a25fb"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a234a3546ece87e1ded2b1c1ac15a25fb">insertU64Object</a> (torch::Tensor &amp;t, std::vector&lt; uint64_t &gt; &amp;u64s)</td></tr>
+<tr class="memdesc:a234a3546ece87e1ded2b1c1ac15a25fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">insert a u64 object  <a href="classCANDY_1_1AbstractIndex.html#a234a3546ece87e1ded2b1c1ac15a25fb">More...</a><br /></td></tr>
+<tr class="separator:a234a3546ece87e1ded2b1c1ac15a25fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a409739ea60c38ce4a68f0aa04c44f38d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a409739ea60c38ce4a68f0aa04c44f38d">deleteStringObject</a> (torch::Tensor &amp;t, int64_t k=1)</td></tr>
 <tr class="memdesc:a409739ea60c38ce4a68f0aa04c44f38d"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete tensor along with its corresponding string object  <a href="classCANDY_1_1AbstractIndex.html#a409739ea60c38ce4a68f0aa04c44f38d">More...</a><br /></td></tr>
 <tr class="separator:a409739ea60c38ce4a68f0aa04c44f38d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b1bfef1a65faa9a8a7546553243d91d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a7b1bfef1a65faa9a8a7546553243d91d">deleteU64Object</a> (torch::Tensor &amp;t, int64_t k=1)</td></tr>
+<tr class="memdesc:a7b1bfef1a65faa9a8a7546553243d91d"><td class="mdescLeft">&#160;</td><td class="mdescRight">delete tensor along with its corresponding U64 object  <a href="classCANDY_1_1AbstractIndex.html#a7b1bfef1a65faa9a8a7546553243d91d">More...</a><br /></td></tr>
+<tr class="separator:a7b1bfef1a65faa9a8a7546553243d91d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d641c1ab983db0c3def862d6045ca6b"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a2d641c1ab983db0c3def862d6045ca6b">searchStringObject</a> (torch::Tensor &amp;q, int64_t k)</td></tr>
 <tr class="memdesc:a2d641c1ab983db0c3def862d6045ca6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">search the k-NN of a query tensor, return the linked string objects  <a href="classCANDY_1_1AbstractIndex.html#a2d641c1ab983db0c3def862d6045ca6b">More...</a><br /></td></tr>
 <tr class="separator:a2d641c1ab983db0c3def862d6045ca6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a411261089c34e182f3d65360c4fe453a"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::vector&lt; uint64_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a411261089c34e182f3d65360c4fe453a">searchU64Object</a> (torch::Tensor &amp;q, int64_t k)</td></tr>
+<tr class="memdesc:a411261089c34e182f3d65360c4fe453a"><td class="mdescLeft">&#160;</td><td class="mdescRight">search the k-NN of a query tensor, return the linked U64 objects  <a href="classCANDY_1_1AbstractIndex.html#a411261089c34e182f3d65360c4fe453a">More...</a><br /></td></tr>
+<tr class="separator:a411261089c34e182f3d65360c4fe453a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9c6596f497da56d887fec3ab4daa5f7"><td class="memItemLeft" align="right" valign="top">virtual std::tuple&lt; std::vector&lt; torch::Tensor &gt;, std::vector&lt; std::vector&lt; std::string &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#af9c6596f497da56d887fec3ab4daa5f7">searchTensorAndStringObject</a> (torch::Tensor &amp;q, int64_t k)</td></tr>
 <tr class="memdesc:af9c6596f497da56d887fec3ab4daa5f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">search the k-NN of a query tensor, return the linked string objects and original tensors  <a href="classCANDY_1_1AbstractIndex.html#af9c6596f497da56d887fec3ab4daa5f7">More...</a><br /></td></tr>
 <tr class="separator:af9c6596f497da56d887fec3ab4daa5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -330,7 +343,54 @@ int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>containerTier</b> 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool whether the deleting is successful </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classCANDY_1_1PQIndex.html#ae459a19ecb3e94508f48e2c06d82b515">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#afbeb98090cd0b350f88f9c3dbca1b530">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#a192374ae2c6b1fae306c6866fa06658e">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#a1db25199e5ff66fadf61ee644b5e4f0e">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#a79d49962fa9ed97dc1784f03cca520b8">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a207097f85e75a0da3f5b6744fe997c39">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#a5302cde90e75103b7402033596fabe08">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a9f2cb2d5a59df9f0a8c64a7062595b3a">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#a869e7692763ec3f660f439204443c1c1">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#a162c3345f30e536a72ad3766fbade5b1">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#a496e444140f44b7bbe24509e48df1c37">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a987acc08b0a1eedb453abb67c19b81e8">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a009f182d19234991949a30304ae7a7c8">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#aa19e0c4764d32e0151e48ab2c5bb0be7">CANDY::BucketedFlatIndex</a>.</p>
+<p>Reimplemented in <a class="el" href="classCANDY_1_1PQIndex.html#ae459a19ecb3e94508f48e2c06d82b515">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#afbeb98090cd0b350f88f9c3dbca1b530">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#a192374ae2c6b1fae306c6866fa06658e">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#a1db25199e5ff66fadf61ee644b5e4f0e">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#a79d49962fa9ed97dc1784f03cca520b8">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a207097f85e75a0da3f5b6744fe997c39">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a84db96e63511eee4084c4698ca12f86f">CANDY::FlatSSDGPUIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#a5302cde90e75103b7402033596fabe08">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a9f2cb2d5a59df9f0a8c64a7062595b3a">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#a869e7692763ec3f660f439204443c1c1">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#a162c3345f30e536a72ad3766fbade5b1">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#a496e444140f44b7bbe24509e48df1c37">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a987acc08b0a1eedb453abb67c19b81e8">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a009f182d19234991949a30304ae7a7c8">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#aa19e0c4764d32e0151e48ab2c5bb0be7">CANDY::BucketedFlatIndex</a>.</p>
+
+</div>
+</div>
+<a id="a7b1bfef1a65faa9a8a7546553243d91d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b1bfef1a65faa9a8a7546553243d91d">&#9670;&nbsp;</a></span>deleteU64Object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::AbstractIndex::deleteU64Object </td>
+          <td>(</td>
+          <td class="paramtype">torch::Tensor &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>k</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>delete tensor along with its corresponding U64 object </p>
+<dl class="section note"><dt>Note</dt><dd>This is majorly an online function </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>the tensor, some index need to be single row </td></tr>
+    <tr><td class="paramname">k</td><td>the number of nearest neighbors </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool whether the delet is successful </dd></dl>
 
 </div>
 </div>
@@ -360,7 +420,7 @@ int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>containerTier</b> 
 <p>some extra termination if the index has HPC features </p>
 <dl class="section return"><dt>Returns</dt><dd>bool whether the HPC termination is successful </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#a53c9ed029555a10ab0a4fa586d10590b">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#abc2abeb38ba54e5e65f1ec913bba4514">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#aebed4bc748d8d81ee1b5a1f9b7e94dc4">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#a8a4f37420d66aa6bda69f197ba994a27">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#ae7ca848f836f3be011325b93a74a5b39">CANDY::CongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a99d2e92ca9ba47ad0968748b3fbb1691">CANDY::BufferedCongestionDropIndex</a>.</p>
+<p>Reimplemented in <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#a53c9ed029555a10ab0a4fa586d10590b">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#abc2abeb38ba54e5e65f1ec913bba4514">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a1b45e2e75b87130673981398bfea5477">CANDY::FlatSSDGPUIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#aebed4bc748d8d81ee1b5a1f9b7e94dc4">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#a8a4f37420d66aa6bda69f197ba994a27">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#ae7ca848f836f3be011325b93a74a5b39">CANDY::CongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a99d2e92ca9ba47ad0968748b3fbb1691">CANDY::BufferedCongestionDropIndex</a>.</p>
 
 </div>
 </div>
@@ -495,7 +555,54 @@ int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>containerTier</b> 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool whether the insertion is successful </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classCANDY_1_1YinYangGraphSimpleIndex.html#ab7c2e433699f9000b4b4f66b83a92885">CANDY::YinYangGraphSimpleIndex</a>, <a class="el" href="classCANDY_1_1YinYangGraphIndex.html#a43322bc9a8ebce913c5ea6ec0f40941b">CANDY::YinYangGraphIndex</a>, <a class="el" href="classCANDY_1_1PQIndex.html#a44bac43c454b1b28151cb696ab48acbd">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#a75c5a4f6b2c7c060e79226d28f687bb4">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#acfd9ce8a70d7d5c5c43fbb900b652974">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#a70846ac08b2e410fdd87026d251aff16">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#a468a7a8c1b5be3295940feaeae7d7da7">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#ad52db419597c48cd5aeb78a419bd0506">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#a80608780f9aac45e9298a90731056fcf">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a7dc5fcb82339e3cb2075f1807997dcc7">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#a453abc262f3b3334d6b74ca2755844c7">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1FlannIndex.html#adce332c12ed6eac48f14fd63bf308c3a">CANDY::FlannIndex</a>, <a class="el" href="classCANDY_1_1FaissIndex.html#a203ceaafd5118eea2d9eb8614ccee4e6">CANDY::FaissIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#ae11b068932f5620e797e26c5f0ea857e">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#aa232b9bce9ecc57c13efd748a246fb3d">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a5d3666628c7fe47bba4de5687674ab65">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a03c97915c56006caa22423292ae92899">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#af1ea55e4cab3616ae392436de867629e">CANDY::BucketedFlatIndex</a>.</p>
+<p>Reimplemented in <a class="el" href="classCANDY_1_1YinYangGraphSimpleIndex.html#ab7c2e433699f9000b4b4f66b83a92885">CANDY::YinYangGraphSimpleIndex</a>, <a class="el" href="classCANDY_1_1YinYangGraphIndex.html#a43322bc9a8ebce913c5ea6ec0f40941b">CANDY::YinYangGraphIndex</a>, <a class="el" href="classCANDY_1_1PQIndex.html#a44bac43c454b1b28151cb696ab48acbd">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#a75c5a4f6b2c7c060e79226d28f687bb4">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#acfd9ce8a70d7d5c5c43fbb900b652974">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#a70846ac08b2e410fdd87026d251aff16">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#a468a7a8c1b5be3295940feaeae7d7da7">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#ad52db419597c48cd5aeb78a419bd0506">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a41485237c51c2d8b091e691ee8789b09">CANDY::FlatSSDGPUIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#a80608780f9aac45e9298a90731056fcf">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a7dc5fcb82339e3cb2075f1807997dcc7">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#a453abc262f3b3334d6b74ca2755844c7">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1FlannIndex.html#adce332c12ed6eac48f14fd63bf308c3a">CANDY::FlannIndex</a>, <a class="el" href="classCANDY_1_1FaissIndex.html#a203ceaafd5118eea2d9eb8614ccee4e6">CANDY::FaissIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#ae11b068932f5620e797e26c5f0ea857e">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#aa232b9bce9ecc57c13efd748a246fb3d">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a5d3666628c7fe47bba4de5687674ab65">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a03c97915c56006caa22423292ae92899">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#af1ea55e4cab3616ae392436de867629e">CANDY::BucketedFlatIndex</a>.</p>
+
+</div>
+</div>
+<a id="a234a3546ece87e1ded2b1c1ac15a25fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a234a3546ece87e1ded2b1c1ac15a25fb">&#9670;&nbsp;</a></span>insertU64Object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::AbstractIndex::insertU64Object </td>
+          <td>(</td>
+          <td class="paramtype">torch::Tensor &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; uint64_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u64s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>insert a u64 object </p>
+<dl class="section note"><dt>Note</dt><dd>This is majorly an online function </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>the tensor, some index need to be single row </td></tr>
+    <tr><td class="paramname">u64s</td><td>the corresponding list of u64 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool whether the insertion is successful </dd></dl>
 
 </div>
 </div>
@@ -638,6 +745,56 @@ int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>containerTier</b> 
 
 </div>
 </div>
+<a id="a9d8dd3c2a29fcf75ac05b9e2d21fe2eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d8dd3c2a29fcf75ac05b9e2d21fe2eb">&#9670;&nbsp;</a></span>loadInitialU64Object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::AbstractIndex::loadInitialU64Object </td>
+          <td>(</td>
+          <td class="paramtype">torch::Tensor &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; uint64_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>u64s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>load the initial tensors of a data base along with its string objects, use this BEFORE <a class="el" href="classCANDY_1_1AbstractIndex.html#a10e65ecee21528fe6df84114b61110d4">insertTensor</a> </p>
+<dl class="section note"><dt>Note</dt><dd>This is majorly an offline function, and may be different from <a class="el" href="classCANDY_1_1AbstractIndex.html#a10e65ecee21528fe6df84114b61110d4">insertTensor</a> for some indexes </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>the tensor, some index need to be single row<ul>
+<li></li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">u64s</td><td>the corresponding list of uint64_t </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool whether the loading is successful </dd></dl>
+
+</div>
+</div>
 <a id="aca873d66824f385feac1a7cb49abdfac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aca873d66824f385feac1a7cb49abdfac">&#9670;&nbsp;</a></span>offlineBuild()</h2>
 
@@ -752,7 +909,7 @@ Please use <a class="el" href="classCANDY_1_1AbstractIndex.html#af801592ccc0813c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool whether the revising is successful </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classCANDY_1_1PQIndex.html#a15d86a6b4b873b28ce693f088aa5a8bd">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#a02338950a960a583fc6f64f3bb8fc2f8">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#a731683831efe8a75a15868dfc052c20b">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#a7d07faa760fd9c66f09db8bd1f57b332">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#a2ce7b92a75071023c44a1c5faf711c6c">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a94ab66578e61b3d5bf97c34bbce59b6a">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#a503565d2118cc8e5c70bb9356a9ffcb7">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a88ff25881850b136cea8e54bbb96029b">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#a824258a88b722422ea1d9b2aaab94580">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#a68b1b2990adf2ddc9e44609c4106af94">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#a963a0a92427743696d50e558b5ca8ae3">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a600b3d34473d349d28797291b7d81603">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a171d63e92d035080c88d73cd3e61efc1">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#a408a8ac22861d1aa88153a677442543b">CANDY::BucketedFlatIndex</a>.</p>
+<p>Reimplemented in <a class="el" href="classCANDY_1_1PQIndex.html#a15d86a6b4b873b28ce693f088aa5a8bd">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#a02338950a960a583fc6f64f3bb8fc2f8">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#a731683831efe8a75a15868dfc052c20b">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#a7d07faa760fd9c66f09db8bd1f57b332">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#a2ce7b92a75071023c44a1c5faf711c6c">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a94ab66578e61b3d5bf97c34bbce59b6a">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a6e3865b05747d6873cb1876bbe2c8df9">CANDY::FlatSSDGPUIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#a503565d2118cc8e5c70bb9356a9ffcb7">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a88ff25881850b136cea8e54bbb96029b">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#a824258a88b722422ea1d9b2aaab94580">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#a68b1b2990adf2ddc9e44609c4106af94">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#a963a0a92427743696d50e558b5ca8ae3">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a600b3d34473d349d28797291b7d81603">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a171d63e92d035080c88d73cd3e61efc1">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#a408a8ac22861d1aa88153a677442543b">CANDY::BucketedFlatIndex</a>.</p>
 
 </div>
 </div>
@@ -896,7 +1053,7 @@ Please use <a class="el" href="classCANDY_1_1AbstractIndex.html#af801592ccc0813c
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;torch::Tensor&gt; the result tensor for each row of query </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classCANDY_1_1YinYangGraphSimpleIndex.html#a042edc4b6808fb7b57cdfcfcacdc7825">CANDY::YinYangGraphSimpleIndex</a>, <a class="el" href="classCANDY_1_1YinYangGraphIndex.html#a830735037ee125f2ec6895322e517d76">CANDY::YinYangGraphIndex</a>, <a class="el" href="classCANDY_1_1PQIndex.html#a497ffde8db74ea3fb13efe62146dd154">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#ae2ce22bf1157fd1df2f5c4eb6d90eae5">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#a7d3ccc9d9bfb6366e6c790917be6de03">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#a0064fa7ee822fde2aa19abda7257a067">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#af61aaf70a2757bc6b2fa17ca0fcdc57a">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a45ae9145af990d53065a2701f7bbcae5">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#ac9ab4989ff2215d81fb1dc7c7d22ed6c">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a26d241a9209e8b9e29890e885bbd1ce7">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#aa7ca0920e5f68d5c9026f3fcd5d1208a">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1FlannIndex.html#a07a6c40cfafd71ee9ad95766072dea62">CANDY::FlannIndex</a>, <a class="el" href="classCANDY_1_1FaissIndex.html#ac73e27e6acbaab35df05efd2d9deda97">CANDY::FaissIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#a4419cf5d60e25a6006b6ae114d18500b">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#a6508a7b08ebef9b75eb13b03d18f3d82">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a2b3683b0eada580bca787d95c7f94ddb">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a0ecd376ef8d4dba6d4a53356606551c7">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#acc762170417aa9bbdaf05dff4c46cba4">CANDY::BucketedFlatIndex</a>.</p>
+<p>Reimplemented in <a class="el" href="classCANDY_1_1YinYangGraphSimpleIndex.html#a042edc4b6808fb7b57cdfcfcacdc7825">CANDY::YinYangGraphSimpleIndex</a>, <a class="el" href="classCANDY_1_1YinYangGraphIndex.html#a830735037ee125f2ec6895322e517d76">CANDY::YinYangGraphIndex</a>, <a class="el" href="classCANDY_1_1PQIndex.html#a497ffde8db74ea3fb13efe62146dd154">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#ae2ce22bf1157fd1df2f5c4eb6d90eae5">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#a7d3ccc9d9bfb6366e6c790917be6de03">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#a0064fa7ee822fde2aa19abda7257a067">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#af61aaf70a2757bc6b2fa17ca0fcdc57a">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a45ae9145af990d53065a2701f7bbcae5">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a679a81a8b59a5011e8aaf8f009a7ddd8">CANDY::FlatSSDGPUIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#ac9ab4989ff2215d81fb1dc7c7d22ed6c">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a26d241a9209e8b9e29890e885bbd1ce7">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#aa7ca0920e5f68d5c9026f3fcd5d1208a">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1FlannIndex.html#a07a6c40cfafd71ee9ad95766072dea62">CANDY::FlannIndex</a>, <a class="el" href="classCANDY_1_1FaissIndex.html#ac73e27e6acbaab35df05efd2d9deda97">CANDY::FaissIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#a4419cf5d60e25a6006b6ae114d18500b">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#a6508a7b08ebef9b75eb13b03d18f3d82">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a2b3683b0eada580bca787d95c7f94ddb">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a0ecd376ef8d4dba6d4a53356606551c7">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#acc762170417aa9bbdaf05dff4c46cba4">CANDY::BucketedFlatIndex</a>.</p>
 
 </div>
 </div>
@@ -948,6 +1105,52 @@ Please use <a class="el" href="classCANDY_1_1AbstractIndex.html#af801592ccc0813c
 
 </div>
 </div>
+<a id="a411261089c34e182f3d65360c4fe453a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a411261089c34e182f3d65360c4fe453a">&#9670;&nbsp;</a></span>searchU64Object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::vector&lt; uint64_t &gt; &gt; CANDY::AbstractIndex::searchU64Object </td>
+          <td>(</td>
+          <td class="paramtype">torch::Tensor &amp;&#160;</td>
+          <td class="paramname"><em>q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>search the k-NN of a query tensor, return the linked U64 objects </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>the tensor, allow multiple rows </td></tr>
+    <tr><td class="paramname">k</td><td>the returned neighbors </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::vector&lt;std::string&gt;&gt; the result object for each row of query </dd></dl>
+
+</div>
+</div>
 <a id="a01f91296bd41aa55dd6a4c6465cc3a19"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01f91296bd41aa55dd6a4c6465cc3a19">&#9670;&nbsp;</a></span>setConfig()</h2>
 
@@ -984,7 +1187,7 @@ Please use <a class="el" href="classCANDY_1_1AbstractIndex.html#af801592ccc0813c
 If there is any initial tensors to be stored, please load it after this by <a class="el" href="classCANDY_1_1AbstractIndex.html#af801592ccc0813c97a2ff45da40a1312">loadInitialTensor</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>bool whether the configuration is successful </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classCANDY_1_1YinYangGraphSimpleIndex.html#a5d5a2bc72e0125f9d76c1b560209ec9f">CANDY::YinYangGraphSimpleIndex</a>, <a class="el" href="classCANDY_1_1YinYangGraphIndex.html#a519c0b86e1adba967826a73dea950aea">CANDY::YinYangGraphIndex</a>, <a class="el" href="classCANDY_1_1PQIndex.html#a6eed9de267c4773a3d15f1df9fb94d57">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#aeab084deb363745ce62519ba0afd01d8">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#a1823178439f62386371dfa219a0a9836">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#ae72ef6def73d5cc1177c4e2ea09ba1b8">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFL2HIndex.html#a1ad72dd1c11c05f254ec7ac6198c2852">CANDY::OnlineIVFL2HIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#ac823a9b547e2b5d55733064a1f250840">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a5c5570dab02dc91c4f3cd67a628e4d37">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#a67e201cac16e382a9735fc671a04ff26">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a5e7b1a1647299048f5f813bac6b893b6">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#acecf691f5609a7277d6bd4ed07733a34">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1FlannIndex.html#ab803bdd6c42a9ab5cd0de1084fa3521e">CANDY::FlannIndex</a>, <a class="el" href="classCANDY_1_1FaissIndex.html#a2dfbef3e81c7119da3800832432088f4">CANDY::FaissIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#aa089de0ae6e391a85d1e198717b337cb">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#ac6f6b52ee4617d0c90dbd33b9a173a60">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#ac5ff19d4cfd3be329bf799f17a67187d">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a74ec9cca80736bd02d6cedeae5e3d6c6">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#ac4b3aba170f23ed43fe71e1f8dc043fe">CANDY::BucketedFlatIndex</a>.</p>
+<p>Reimplemented in <a class="el" href="classCANDY_1_1YinYangGraphSimpleIndex.html#a5d5a2bc72e0125f9d76c1b560209ec9f">CANDY::YinYangGraphSimpleIndex</a>, <a class="el" href="classCANDY_1_1YinYangGraphIndex.html#a519c0b86e1adba967826a73dea950aea">CANDY::YinYangGraphIndex</a>, <a class="el" href="classCANDY_1_1PQIndex.html#a6eed9de267c4773a3d15f1df9fb94d57">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#aeab084deb363745ce62519ba0afd01d8">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1OnlinePQIndex.html#a1823178439f62386371dfa219a0a9836">CANDY::OnlinePQIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#ae72ef6def73d5cc1177c4e2ea09ba1b8">CANDY::OnlineIVFLSHIndex</a>, <a class="el" href="classCANDY_1_1OnlineIVFL2HIndex.html#a1ad72dd1c11c05f254ec7ac6198c2852">CANDY::OnlineIVFL2HIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#ac823a9b547e2b5d55733064a1f250840">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a5c5570dab02dc91c4f3cd67a628e4d37">CANDY::HNSWNaiveIndex</a>, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#acc01b41086b8943419ef5960f9d7f2da">CANDY::FlatSSDGPUIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#a67e201cac16e382a9735fc671a04ff26">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a5e7b1a1647299048f5f813bac6b893b6">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#acecf691f5609a7277d6bd4ed07733a34">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1FlannIndex.html#ab803bdd6c42a9ab5cd0de1084fa3521e">CANDY::FlannIndex</a>, <a class="el" href="classCANDY_1_1FaissIndex.html#a2dfbef3e81c7119da3800832432088f4">CANDY::FaissIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#aa089de0ae6e391a85d1e198717b337cb">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#ac6f6b52ee4617d0c90dbd33b9a173a60">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#ac5ff19d4cfd3be329bf799f17a67187d">CANDY::CongestionDropIndex</a>, <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a74ec9cca80736bd02d6cedeae5e3d6c6">CANDY::BufferedCongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BucketedFlatIndex.html#ac4b3aba170f23ed43fe71e1f8dc043fe">CANDY::BucketedFlatIndex</a>.</p>
 
 </div>
 </div>
@@ -1124,7 +1327,7 @@ If there is any initial tensors to be stored, please load it after this by <a cl
 <p>some extra set-ups if the index has HPC fetures </p>
 <dl class="section return"><dt>Returns</dt><dd>bool whether the HPC set-up is successful </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#af32d13d2b41277c07fd451178fc24988">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#a63d26516efb42384b49e4cb85450faad">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#add25332ff97a0969aafc0188d636fc7c">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#ac77f8c981ff6899cc3d3403fd61fc6fb">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a4209f7398ea5fd9ffc5553e187a3d4a6">CANDY::CongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a6e12a7d25abb65d33422963a92879ee4">CANDY::BufferedCongestionDropIndex</a>.</p>
+<p>Reimplemented in <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#af32d13d2b41277c07fd451178fc24988">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#a63d26516efb42384b49e4cb85450faad">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a8da3a6a52731920d652d5f9c82284add">CANDY::FlatSSDGPUIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#add25332ff97a0969aafc0188d636fc7c">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#ac77f8c981ff6899cc3d3403fd61fc6fb">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a4209f7398ea5fd9ffc5553e187a3d4a6">CANDY::CongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a6e12a7d25abb65d33422963a92879ee4">CANDY::BufferedCongestionDropIndex</a>.</p>
 
 </div>
 </div>

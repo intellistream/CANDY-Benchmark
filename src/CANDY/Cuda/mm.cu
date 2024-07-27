@@ -5,23 +5,23 @@
 #include <ATen/ATen.h>
 #include <cuda.h>
 #include <cuda_runtime.h>
-
+#include <stdint.h>
 // Utility function to check CUDA errors
-inline void checkCudaError(cudaError_t result, char const *const func, const char *const file, int const line) {
+inline void checkCudaError(cudaError_t result, char const *const func, const char *const file, int64_t const line) {
   if (result != cudaSuccess) {
-    std::cerr << "CUDA error = " << static_cast<int>(result) << " at " <<
+    std::cerr << "CUDA error = " << static_cast<int64_t>(result) << " at " <<
               file << ":" << line << " '" << func << "' \n" << cudaGetErrorString(result) << std::endl;
     exit(1);
   }
 }
 
 #define CHECK_CUDA_ERROR(val) checkCudaError((val), #val, __FILE__, __LINE__)
-__global__ void matrixMulCUDA(float *a, float *b, float *c, int M, int N, int K) {
-  int row = blockIdx.y * blockDim.y + threadIdx.y;
-  int col = blockIdx.x * blockDim.x + threadIdx.x;
+__global__ void matrixMulCUDA(float *a, float *b, float *c, int64_t M, int64_t N, int64_t K) {
+  int64_t row = blockIdx.y * blockDim.y + threadIdx.y;
+  int64_t col = blockIdx.x * blockDim.x + threadIdx.x;
   if (row < M && col < K) {
     float sum = 0.0;
-    for (int i = 0; i < N; i++) {
+    for (int64_t i = 0; i < N; i++) {
       sum += a[row * N + i] * b[i * K + col];
     }
     c[row * K + col] = sum;
@@ -34,9 +34,9 @@ torch::Tensor CudaMM(torch::Tensor a, torch::Tensor b) {
   b = b.to(at::kCUDA).contiguous();
 
   // Dimensions
-  int M = a.size(0);
-  int N = a.size(1);
-  int K = b.size(1);
+  int64_t M = a.size(0);
+  int64_t N = a.size(1);
+  int64_t K = b.size(1);
 
   // Create the output tensor on the GPU
 

@@ -34,13 +34,13 @@ if (ENABLE_RAY)
     add_subdirectory(DistributedPartitionIndex)
     add_sources(DistributedPartitionIndex.cpp)
 endif ()
-if(ENABLE_SPDK)
+if (ENABLE_SPDK)
     add_sources(
-           FlatSSDGPUIndex.cpp
+            FlatSSDGPUIndex.cpp
     )
     add_subdirectory(FlatSSDGPUIndex)
 endif ()
-if(CANDY_CUDA)
+if (CANDY_CUDA)
     message(WARNING "Cuda feature is experimental, and it is enabled")
     add_sources(
             Cuda/mm.cu

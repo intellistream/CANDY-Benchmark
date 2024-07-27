@@ -23,19 +23,19 @@ function(find_spdk_paths SPDK_BUILD_DIR SPDK_INCLUDE_DIRS SPDK_LIBRARIES_OUT)
     pkg_check_modules(SPDK REQUIRED spdk_nvme spdk_vmd)
 
 
-        # Get the directory of the found library
-        # Find OpenSSL
-        find_package(OpenSSL REQUIRED)
+    # Get the directory of the found library
+    # Find OpenSSL
+    find_package(OpenSSL REQUIRED)
 
-        file(GLOB SPDK_SO_FILES "${SPDK_BUILD_DIR}/lib/*.so")
-        file(GLOB DPDK_SO_FILES "${SPDK_BUILD_DIR}/../dpdk/build/lib/*.so")
-        #set(SPDK_SO_FILES spdk_env_dpdk spdk_nvme)
-        set(CRCPATH "${SPDK_BUILD_DIR}/lib/libspdk_spdk_tgt.so")
-        set(UtilSub ${SPDK_BUILD_DIR}/lib/libspdk_util.a)
-        message(CRC_LIB= ${CRCPATH})
-        # Store the result in the specified variable
-        set(${SPDK_LIBRARIES_OUT} ${SPDK_SO_FILES} ${DPDK_SO_FILES} ${OPENSSL_LIBRARIES} ${CRCPATH} ${ISAL_LIBRARY} PARENT_SCOPE)
-        #message(SPDK_LIB= ${SPDK_LIBRARIES})
+    file(GLOB SPDK_SO_FILES "${SPDK_BUILD_DIR}/lib/*.so")
+    file(GLOB DPDK_SO_FILES "${SPDK_BUILD_DIR}/../dpdk/build/lib/*.so")
+    #set(SPDK_SO_FILES spdk_env_dpdk spdk_nvme)
+    set(CRCPATH "${SPDK_BUILD_DIR}/lib/libspdk_spdk_tgt.so")
+    set(UtilSub ${SPDK_BUILD_DIR}/lib/libspdk_util.a)
+    message(CRC_LIB= ${CRCPATH})
+    # Store the result in the specified variable
+    set(${SPDK_LIBRARIES_OUT} ${SPDK_SO_FILES} ${DPDK_SO_FILES} ${OPENSSL_LIBRARIES} ${CRCPATH} ${ISAL_LIBRARY} PARENT_SCOPE)
+    #message(SPDK_LIB= ${SPDK_LIBRARIES})
 
     # Find the SPDK include directory
     find_path(SPDK_INCLUDE_DIR spdk/env.h

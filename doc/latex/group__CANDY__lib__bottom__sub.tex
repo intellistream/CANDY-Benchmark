@@ -5,6 +5,14 @@
 \item 
 class \mbox{\hyperlink{classCANDY_1_1CongestionDropIndexWorker}{CANDY\+::\+Congestion\+Drop\+Index\+Worker}}
 \begin{DoxyCompactList}\small\item\em A worker class to container bottom indexings, will just drop new element if congestion occurs. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1DiskHeader}{CANDY\+::\+Disk\+Header}}
+\begin{DoxyCompactList}\small\item\em The class to store necessary information on disk, typically at first sector. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1TensorVCacheLine}{CANDY\+::\+Tensor\+VCache\+Line}}
+\item 
+class \mbox{\hyperlink{classCANDY_1_1U64VCacheLine}{CANDY\+::\+U64\+VCache\+Line}}
+\begin{DoxyCompactList}\small\item\em The virtual cache line to buffer data, storage of uint64\+\_\+t. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1PlainDiskMemBufferTU}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU}}
+\item 
 class \mbox{\hyperlink{classCANDY_1_1MLPBucketIdxModel}{CANDY\+::\+MLPBucket\+Idx\+Model}}
 \item 
 class \mbox{\hyperlink{classCANDY_1_1MLPHashingModel}{CANDY\+::\+MLPHashing\+Model}}
@@ -13,6 +21,10 @@ class \mbox{\hyperlink{classCANDY_1_1ParallelIndexWorker}{CANDY\+::\+Parallel\+I
 \begin{DoxyCompactList}\small\item\em A worker class of parallel index thread. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classCANDY_1_1DIW__RayWrapper}{CANDY\+::\+DIW\+\_\+\+Ray\+Wrapper}}
 \begin{DoxyCompactList}\small\item\em the ray wrapper of \mbox{\hyperlink{classCANDY_1_1DistributedIndexWorker}{Distributed\+Index\+Worker}}, most of its function will be ray-\/remote \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classTensorCacheLine}{Tensor\+Cache\+Line}}
+\begin{DoxyCompactList}\small\item\em The virtual cache line to buffer data, storage of tensor. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classPlainDiskMemBufferOfTensor}{Plain\+Disk\+Mem\+Buffer\+Of\+Tensor}}
+\begin{DoxyCompactList}\small\item\em a straight forward plain storage of tensor and u64, will firstly use in-\/memory data, and switch into disk, full flush between memory and disk \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classCANDY_1_1IVFListCell}{CANDY\+::\+IVFList\+Cell}}
 \begin{DoxyCompactList}\small\item\em a cell of row tensor pointers which have the same code \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classCANDY_1_1SimpleStreamClustering}{CANDY\+::\+Simple\+Stream\+Clustering}}
@@ -50,6 +62,29 @@ virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae32fab6713f0cf575
 \begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
 virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga292279e7b8692e572c4fe3aaad569bb3}{CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
 \begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga433e53f9851e5c2a6d9104a1aee528bc}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::init}} (int64\+\_\+t vec\+Dim, int64\+\_\+t buffer\+Size, int64\+\_\+t \+\_\+tensor\+Begin, int64\+\_\+t \+\_\+u64\+Begin, SPDKSSD $\ast$\+\_\+ssd\+Ptr, int64\+\_\+t \+\_\+dma\+Size=1024000)
+\begin{DoxyCompactList}\small\item\em init everything \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga4975f1c4b585dc560b70fe20f9adb561}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::size}} ()
+\begin{DoxyCompactList}\small\item\em to return the size of ingested vectors \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gac3fa07ecea02a3b565729cd48a4d67f3}\label{group__CANDY__lib__bottom__sub_gac3fa07ecea02a3b565729cd48a4d67f3}} 
+void \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gac3fa07ecea02a3b565729cd48a4d67f3}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::clear}} ()
+\begin{DoxyCompactList}\small\item\em clear the occupied resource \end{DoxyCompactList}\item 
+torch\+::\+Tensor \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga5708694a4d8a2be07f1119b51570da7c}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Tensor}} (int64\+\_\+t start\+Pos, int64\+\_\+t end\+Pos)
+\begin{DoxyCompactList}\small\item\em to get the tensor at specified position \end{DoxyCompactList}\item 
+std\+::vector$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga2f5c62c7892b1dcdb9c007e617e990ed}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+U64}} (int64\+\_\+t start\+Pos, int64\+\_\+t end\+Pos)
+\begin{DoxyCompactList}\small\item\em to get the tensor at specified position \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7ee2509534826751be83f3a83acfd43f}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::revise\+Tensor}} (int64\+\_\+t start\+Pos, torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em to revise the tensor at specified position \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gadcc9a55b8f837024f4c1b5fcb1f976b6}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::revise\+U64}} (int64\+\_\+t start\+Pos, std\+::vector$<$ uint64\+\_\+t $>$ \&u)
+\begin{DoxyCompactList}\small\item\em to revise the tensor at specified position \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gab1b8d9afa2228563553632cbe1eaed83}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::append\+Tensor}} (torch\+::\+Tensor \&t)
+\begin{DoxyCompactList}\small\item\em to append the tensor to the end of storage region \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gacbb9cf0fc77992eaec8fcc27a3cb489a}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::append\+U64}} (std\+::vector$<$ uint64\+\_\+t $>$ \&u)
+\begin{DoxyCompactList}\small\item\em to append the tensor to the end of storage region \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaa8fa6f7e98a94a7667b89ee9ef8d5fc4}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::delete\+Tensor}} (int64\+\_\+t start\+Pos, int64\+\_\+t end\+Pos)
+\begin{DoxyCompactList}\small\item\em to delete the tensor at specified position \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga80cf399d51f6800417f89c3425f08fe2}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::delete\+U64}} (int64\+\_\+t start\+Pos, int64\+\_\+t end\+Pos)
+\begin{DoxyCompactList}\small\item\em to delete a U64 at specified position \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga25261033c359b239cb9b6cfc55aafeeb}\label{group__CANDY__lib__bottom__sub_ga25261033c359b239cb9b6cfc55aafeeb}} 
 {\bfseries CANDY\+::\+Tensor\+Idx\+Pair\+::\+Tensor\+Idx\+Pair} (torch\+::\+Tensor \+\_\+t, int64\+\_\+t \+\_\+idx)
 \item 
@@ -135,6 +170,81 @@ int64\+\_\+t {\bfseries CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::force\+Dro
 \item 
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga134a26c4f5a5a9b8be841b0a75e7a607}\label{group__CANDY__lib__bottom__sub_ga134a26c4f5a5a9b8be841b0a75e7a607}} 
 Tensor\+List\+Idx\+Queue\+Ptr {\bfseries CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::reduce\+Queue}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga4604af6fc5e497547707b8e607d98afc}\label{group__CANDY__lib__bottom__sub_ga4604af6fc5e497547707b8e607d98afc}} 
+uint64\+\_\+t {\bfseries CANDY\+::\+Disk\+Header\+::version} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga6143f49329077f4d90a3698dc1f851a0}\label{group__CANDY__lib__bottom__sub_ga6143f49329077f4d90a3698dc1f851a0}} 
+uint64\+\_\+t {\bfseries CANDY\+::\+Disk\+Header\+::vec\+Dim} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga4f76e6e20773c38b487d6469f11f4486}\label{group__CANDY__lib__bottom__sub_ga4f76e6e20773c38b487d6469f11f4486}} 
+uint64\+\_\+t {\bfseries CANDY\+::\+Disk\+Header\+::vec\+Cnt} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga656a9281014dbd3d1026fb65859af95a}\label{group__CANDY__lib__bottom__sub_ga656a9281014dbd3d1026fb65859af95a}} 
+uint64\+\_\+t {\bfseries CANDY\+::\+Disk\+Header\+::u64\+Cnt} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga28abf55e09d4d473737277503f6e50ed}\label{group__CANDY__lib__bottom__sub_ga28abf55e09d4d473737277503f6e50ed}} 
+uint64\+\_\+t {\bfseries CANDY\+::\+Disk\+Header\+::aknn\+Type} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga8612bb7500d01e8933ba135eda195534}\label{group__CANDY__lib__bottom__sub_ga8612bb7500d01e8933ba135eda195534}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Tensor\+VCache\+Line\+::begin\+Pos} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaf990d92ff3646090a307c04b55a33c14}\label{group__CANDY__lib__bottom__sub_gaf990d92ff3646090a307c04b55a33c14}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Tensor\+VCache\+Line\+::end\+Pos} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga5f31e819f2ada0d826455a085bde099a}\label{group__CANDY__lib__bottom__sub_ga5f31e819f2ada0d826455a085bde099a}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Tensor\+VCache\+Line\+::temperature} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga6bf670e6aafe581708a22dbeedb0def0}\label{group__CANDY__lib__bottom__sub_ga6bf670e6aafe581708a22dbeedb0def0}} 
+torch\+::\+Tensor {\bfseries CANDY\+::\+Tensor\+VCache\+Line\+::buffer}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gae5fd319533c103c4b148b823444844cc}\label{group__CANDY__lib__bottom__sub_gae5fd319533c103c4b148b823444844cc}} 
+int64\+\_\+t {\bfseries CANDY\+::\+U64\+VCache\+Line\+::begin\+Pos} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga8476d868284b35296b65962cdec8e0f0}\label{group__CANDY__lib__bottom__sub_ga8476d868284b35296b65962cdec8e0f0}} 
+int64\+\_\+t {\bfseries CANDY\+::\+U64\+VCache\+Line\+::end\+Pos} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gadff9eec028a81c732e260a9986482bce}\label{group__CANDY__lib__bottom__sub_gadff9eec028a81c732e260a9986482bce}} 
+int64\+\_\+t {\bfseries CANDY\+::\+U64\+VCache\+Line\+::temperature} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga6c9c90ac6a900403f03f5315d38a3c69}\label{group__CANDY__lib__bottom__sub_ga6c9c90ac6a900403f03f5315d38a3c69}} 
+std\+::vector$<$ uint64\+\_\+t $>$ {\bfseries CANDY\+::\+U64\+VCache\+Line\+::buffer}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga71666cc8123dc3340c0f5915499e81fb}\label{group__CANDY__lib__bottom__sub_ga71666cc8123dc3340c0f5915499e81fb}} 
+\mbox{\hyperlink{classCANDY_1_1DiskHeader}{Disk\+Header}} {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::disk\+Info}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gafce514309b38d032835354911914a0ba}\label{group__CANDY__lib__bottom__sub_gafce514309b38d032835354911914a0ba}} 
+\mbox{\hyperlink{classCANDY_1_1TensorVCacheLine}{Tensor\+VCache\+Line}} {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::cacheT}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaee5cd4245f92e6bc376b114cedcaabd8}\label{group__CANDY__lib__bottom__sub_gaee5cd4245f92e6bc376b114cedcaabd8}} 
+\mbox{\hyperlink{classCANDY_1_1U64VCacheLine}{U64\+VCache\+Line}} {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::cacheU}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga6166deadce5212f7d8daed5a9c27430b}\label{group__CANDY__lib__bottom__sub_ga6166deadce5212f7d8daed5a9c27430b}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::tensor\+Begin} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga29574bfd184fc8c0364519a8a7aebcbf}\label{group__CANDY__lib__bottom__sub_ga29574bfd184fc8c0364519a8a7aebcbf}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::u64\+Begin} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga8641c31bb3418fc0dd2f11e37d1daf95}\label{group__CANDY__lib__bottom__sub_ga8641c31bb3418fc0dd2f11e37d1daf95}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::bsize} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga6ae9c10e1dcd8e2be423a7775e50620c}\label{group__CANDY__lib__bottom__sub_ga6ae9c10e1dcd8e2be423a7775e50620c}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::dma\+Size} = 1024000
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga3fde5b930c2c5f2c773b821f53af5ee4}\label{group__CANDY__lib__bottom__sub_ga3fde5b930c2c5f2c773b821f53af5ee4}} 
+struct spdk\+\_\+nvme\+\_\+qpair $\ast$ {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::ssd\+Qpair} = NULL
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga847af2aaa1ae4695cd664100fc3581ee}\label{group__CANDY__lib__bottom__sub_ga847af2aaa1ae4695cd664100fc3581ee}} 
+std\+::atomic\+\_\+bool {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::is\+DirtyT} = false
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga292b279485f304f6bdd8d59ee97fc63d}\label{group__CANDY__lib__bottom__sub_ga292b279485f304f6bdd8d59ee97fc63d}} 
+std\+::atomic\+\_\+bool {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::is\+DirtyU} = false
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga4ae6efeb8987353c8acae2272af5fc51}\label{group__CANDY__lib__bottom__sub_ga4ae6efeb8987353c8acae2272af5fc51}} 
+struct spdk\+\_\+nvme\+\_\+qpair $\ast$ {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::disk\+Qpair}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gab73c297f7d8f3deca418f6042a2ce7c7}\label{group__CANDY__lib__bottom__sub_gab73c297f7d8f3deca418f6042a2ce7c7}} 
+SPDKSSD $\ast$ {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::ssd\+Ptr} = nullptr
 \item 
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gae9a2d628596d044a06c9f8d54f387fa0}\label{group__CANDY__lib__bottom__sub_gae9a2d628596d044a06c9f8d54f387fa0}} 
 torch\+::\+Tensor {\bfseries CANDY\+::\+Tensor\+Idx\+Pair\+::t}
@@ -279,6 +389,42 @@ typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classCANDY_1_1SimpleStreamClu
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gab1b8d9afa2228563553632cbe1eaed83}\label{group__CANDY__lib__bottom__sub_gab1b8d9afa2228563553632cbe1eaed83}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!appendTensor@{appendTensor}}
+\index{appendTensor@{appendTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{appendTensor()}{appendTensor()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::append\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})}
+
+
+
+to append the tensor to the end of storage region 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the tensor, \mbox{[}n$\ast$vec\+Dim\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether it is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gacbb9cf0fc77992eaec8fcc27a3cb489a}\label{group__CANDY__lib__bottom__sub_gacbb9cf0fc77992eaec8fcc27a3cb489a}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!appendU64@{appendU64}}
+\index{appendU64@{appendU64}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{appendU64()}{appendU64()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::append\+U64 (\begin{DoxyParamCaption}\item[{std\+::vector$<$ uint64\+\_\+t $>$ \&}]{u }\end{DoxyParamCaption})}
+
+
+
+to append the tensor to the end of storage region 
+
+
+\begin{DoxyParams}{Parameters}
+{\em u} & the u64 vector, \mbox{[}n\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether it is successful 
+\end{DoxyReturn}
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga2f555c491d065aa248ef9f4ec1617765}\label{group__CANDY__lib__bottom__sub_ga2f555c491d065aa248ef9f4ec1617765}} 
 \index{The support classes for index approaches@{The support classes for index approaches}!deleteStringObject@{deleteStringObject}}
 \index{deleteStringObject@{deleteStringObject}!The support classes for index approaches@{The support classes for index approaches}}
@@ -302,10 +448,30 @@ This is majorly an online function
 \begin{DoxyReturn}{Returns}
 bool whether the delet is successful 
 \end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaa8fa6f7e98a94a7667b89ee9ef8d5fc4}\label{group__CANDY__lib__bottom__sub_gaa8fa6f7e98a94a7667b89ee9ef8d5fc4}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{start\+Pos,  }\item[{int64\+\_\+t}]{end\+Pos }\end{DoxyParamCaption})}
+
+
+
+to delete the tensor at specified position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Pos} & the start position \\
+\hline
+{\em end\+Pos} & the end position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether it is successful 
+\end{DoxyReturn}
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gacd38ddca9b4a74e55b352c9d9bf9dc37}\label{group__CANDY__lib__bottom__sub_gacd38ddca9b4a74e55b352c9d9bf9dc37}} 
 \index{The support classes for index approaches@{The support classes for index approaches}!deleteTensor@{deleteTensor}}
 \index{deleteTensor@{deleteTensor}!The support classes for index approaches@{The support classes for index approaches}}
-\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
+\doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
@@ -322,6 +488,26 @@ delete a tensor
 \begin{DoxyReturn}{Returns}
 bool whether the deleting is successful 
 \end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga80cf399d51f6800417f89c3425f08fe2}\label{group__CANDY__lib__bottom__sub_ga80cf399d51f6800417f89c3425f08fe2}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!deleteU64@{deleteU64}}
+\index{deleteU64@{deleteU64}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{deleteU64()}{deleteU64()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::delete\+U64 (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{start\+Pos,  }\item[{int64\+\_\+t}]{end\+Pos }\end{DoxyParamCaption})}
+
+
+
+to delete a U64 at specified position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Pos} & the start position \\
+\hline
+{\em end\+Pos} & the end position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether it is successful 
+\end{DoxyReturn}
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga2b838efccc92668b23acda243e67184a}\label{group__CANDY__lib__bottom__sub_ga2b838efccc92668b23acda243e67184a}} 
 \index{The support classes for index approaches@{The support classes for index approaches}!endHPC@{endHPC}}
 \index{endHPC@{endHPC}!The support classes for index approaches@{The support classes for index approaches}}
@@ -334,6 +520,26 @@ some extra termination if the index has HPC fetures
 
 \begin{DoxyReturn}{Returns}
 bool whether the HPC termination is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga5708694a4d8a2be07f1119b51570da7c}\label{group__CANDY__lib__bottom__sub_ga5708694a4d8a2be07f1119b51570da7c}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!getTensor@{getTensor}}
+\index{getTensor@{getTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{getTensor()}{getTensor()}}
+{\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Tensor (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{start\+Pos,  }\item[{int64\+\_\+t}]{end\+Pos }\end{DoxyParamCaption})}
+
+
+
+to get the tensor at specified position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Pos} & the start position \\
+\hline
+{\em end\+Pos} & the end position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the tensor, \mbox{[}n$\ast$vec\+Dim\mbox{]} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7249e5be900c17f858411d7aa74351c6}\label{group__CANDY__lib__bottom__sub_ga7249e5be900c17f858411d7aa74351c6}} 
 \index{The support classes for index approaches@{The support classes for index approaches}!getTensorByIndex@{getTensorByIndex}}
@@ -355,6 +561,53 @@ return a vector of tensors according to some index
 \begin{DoxyReturn}{Returns}
 a vector of tensors, each tensor represent KNN results of one query in idx 
 \end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga2f5c62c7892b1dcdb9c007e617e990ed}\label{group__CANDY__lib__bottom__sub_ga2f5c62c7892b1dcdb9c007e617e990ed}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!getU64@{getU64}}
+\index{getU64@{getU64}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{getU64()}{getU64()}}
+{\footnotesize\ttfamily std\+::vector$<$uint64\+\_\+t$>$ CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+U64 (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{start\+Pos,  }\item[{int64\+\_\+t}]{end\+Pos }\end{DoxyParamCaption})}
+
+
+
+to get the tensor at specified position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Pos} & the start position \\
+\hline
+{\em end\+Pos} & the end position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the tensor, \mbox{[}n$\ast$vec\+Dim\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga433e53f9851e5c2a6d9104a1aee528bc}\label{group__CANDY__lib__bottom__sub_ga433e53f9851e5c2a6d9104a1aee528bc}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!init@{init}}
+\index{init@{init}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::init (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{vec\+Dim,  }\item[{int64\+\_\+t}]{buffer\+Size,  }\item[{int64\+\_\+t}]{\+\_\+tensor\+Begin,  }\item[{int64\+\_\+t}]{\+\_\+u64\+Begin,  }\item[{SPDKSSD $\ast$}]{\+\_\+ssd\+Ptr,  }\item[{int64\+\_\+t}]{\+\_\+dma\+Size = {\ttfamily 1024000} }\end{DoxyParamCaption})}
+
+
+
+init everything 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec\+Dim} & The dimension of vectors \\
+\hline
+{\em buffer\+Size} & the size for both tensor cache (in rows) and U64 cache (in sizeof(uint64\+\_\+t)) \\
+\hline
+{\em \+\_\+tensor\+Begin} & the begin offset of tensor storage in disk \\
+\hline
+{\em \+\_\+u64\+Begin} & the begin offset of u64 storage in disk \\
+\hline
+{\em qpair} & the disk io pair \\
+\hline
+{\em \+\_\+ssd\+Ptr} & the pointer of linked ssd \\
+\hline
+{\em \+\_\+dma\+Size} & the max size of dma buffer, I64, default 1024000 \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7e29b5c156942b906c91cad583f269f0}\label{group__CANDY__lib__bottom__sub_ga7e29b5c156942b906c91cad583f269f0}} 
 \index{The support classes for index approaches@{The support classes for index approaches}!inlineMain@{inlineMain}}
 \index{inlineMain@{inlineMain}!The support classes for index approaches@{The support classes for index approaches}}
@@ -526,10 +779,30 @@ return the raw\+Data of tensor
 \begin{DoxyReturn}{Returns}
 The raw data stored in tensor 
 \end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7ee2509534826751be83f3a83acfd43f}\label{group__CANDY__lib__bottom__sub_ga7ee2509534826751be83f3a83acfd43f}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{start\+Pos,  }\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})}
+
+
+
+to revise the tensor at specified position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Pos} & the start position \\
+\hline
+{\em t} & the tensor, \mbox{[}n$\ast$vec\+Dim\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether it is successful 
+\end{DoxyReturn}
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga3cab4d64f1ea52be1842cbcaad1817bf}\label{group__CANDY__lib__bottom__sub_ga3cab4d64f1ea52be1842cbcaad1817bf}} 
 \index{The support classes for index approaches@{The support classes for index approaches}!reviseTensor@{reviseTensor}}
 \index{reviseTensor@{reviseTensor}!The support classes for index approaches@{The support classes for index approaches}}
-\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
+\doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily bool CANDY\+::\+Parallel\+Index\+Worker\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
@@ -545,6 +818,26 @@ revise a tensor
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 bool whether the revising is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gadcc9a55b8f837024f4c1b5fcb1f976b6}\label{group__CANDY__lib__bottom__sub_gadcc9a55b8f837024f4c1b5fcb1f976b6}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!reviseU64@{reviseU64}}
+\index{reviseU64@{reviseU64}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{reviseU64()}{reviseU64()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::revise\+U64 (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{start\+Pos,  }\item[{std\+::vector$<$ uint64\+\_\+t $>$ \&}]{u }\end{DoxyParamCaption})}
+
+
+
+to revise the tensor at specified position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Pos} & the start position \\
+\hline
+{\em u} & the u64 vector, \mbox{[}n\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether it is successful 
 \end{DoxyReturn}
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7a92693bfe51a3b13a5ce8703a21a8f0}\label{group__CANDY__lib__bottom__sub_ga7a92693bfe51a3b13a5ce8703a21a8f0}} 
 \index{The support classes for index approaches@{The support classes for index approaches}!searchIndex@{searchIndex}}
@@ -723,6 +1016,19 @@ set the frozen level of online updating internal state
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 whether the setting is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga4975f1c4b585dc560b70fe20f9adb561}\label{group__CANDY__lib__bottom__sub_ga4975f1c4b585dc560b70fe20f9adb561}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!size@{size}}
+\index{size@{size}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int64\+\_\+t CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+to return the size of ingested vectors 
+
+\begin{DoxyReturn}{Returns}
+the number of rows. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga4a3953683b78e957a69eb6df64d8d121}\label{group__CANDY__lib__bottom__sub_ga4a3953683b78e957a69eb6df64d8d121}} 
 \index{The support classes for index approaches@{The support classes for index approaches}!startHPC@{startHPC}}

@@ -65,15 +65,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AbstractC20Thread_8hpp.html",
-"cl__gl_8h_source.html",
-"classCANDY_1_1CongestionDropIndexWorker.html",
-"classCANDY_1_1FlannComponent.html#a83755b53a66550b538830768b64e80dd",
-"classCANDY_1_1KmeansTree.html#a640a35d5fe49e93ddafc582c0ef0ec9b",
-"classCANDY_1_1SimpleStreamClustering.html#a0776c10728d0936808f8b20ca5306193",
-"classINTELLI_1_1IntelliTimeStampGenerator.html#acf86dff87f8eee751aec0dd5d00a2ecf",
-"group__CANDY__lib__bottom__sub.html#ga23606f290228bd2dd6128d494fbc5b45",
-"group__INTELLI__UTIL__INTELLItensor.html",
-"struct__cl__icd__dispatch.html#a629863a7f82842fd95329776f6b91c73"
+"cl_8h_source.html",
+"classCANDY_1_1CongestionDropIndex.html#a9bf9364cb4c51172aa9f2bb03d9b0a25",
+"classCANDY_1_1FaissIndex.html#acc9a517d02a50f3e2a1367f6fe9ccc81",
+"classCANDY_1_1IVFTensorEncodingList.html#a8aeece5911f647100587e491d7ad6b76",
+"classCANDY_1_1ProductQuantizer.html#a0000b52b8104403bd39b8d27ddd58143",
+"classINTELLI_1_1C20Buffer.html",
+"group__CANDY__lib__bottom.html#ga32d60e9e159c56684b3e289bdbe0ceff",
+"group__INTELLI__UTIL.html#ga3073b6b7d400cabfefe2b74b461df801",
+"structCANDY_1_1KmeansTree_1_1Node.html#a39ac5fb66b817c43fd800127439b7a0f",
+"unioncl__half2.html#a7a58d285ab2de55cfcf52c2d34190884"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

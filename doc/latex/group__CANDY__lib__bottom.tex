@@ -24,6 +24,8 @@ class \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex}{CANDY\+::\+Flat\+AMMIPOb
 \begin{DoxyCompactList}\small\item\em Similar to \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex}{Flat\+AMMIPIndex}}, but additionally has object storage (currently only string) \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classCANDY_1_1FlatIndex}{CANDY\+::\+Flat\+Index}}
 \begin{DoxyCompactList}\small\item\em The class of a flat index approach, using brutal force management. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCANDY_1_1FlatSSDGPUIndex}{CANDY\+::\+Flat\+SSDGPUIndex}}
+\begin{DoxyCompactList}\small\item\em Similar to Flat\+AMMIPObject\+Index, but runs on SSD and GPU for large scale. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classCANDY_1_1OnlineIVFL2HIndex}{CANDY\+::\+Online\+IVFL2\+HIndex}}
 \begin{DoxyCompactList}\small\item\em A L2H (learning 2 hash) indexing, using 2-\/tier IVF List to manage buckets. The base tier is hamming encoding, implemented under list, the top tier is sampled summarization of hamming encoding, implemented under vector (faster access, harder to change, but less representative). The L2H function is using ML to approximate spectral hashing principles (NIPS 2008) \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classCANDY_1_1OnlineIVFLSHIndex}{CANDY\+::\+Online\+IVFLSHIndex}}
@@ -109,6 +111,14 @@ typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1FlatAMMIP
 \mbox{\Hypertarget{group__CANDY__lib__bottom_ga41a534e197cdbfaf6f4e911c2efdf876}\label{group__CANDY__lib__bottom_ga41a534e197cdbfaf6f4e911c2efdf876}} 
 typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1FlatIndex}{CANDY\+::\+Flat\+Index}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga41a534e197cdbfaf6f4e911c2efdf876}{CANDY\+::\+Flat\+Index\+Ptr}}
 \begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1FlatIndex}{Flat\+Index}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_gaacd41b9e95cc6561e9bd6622643a74c3}\label{group__CANDY__lib__bottom_gaacd41b9e95cc6561e9bd6622643a74c3}} 
+\#define \mbox{\hyperlink{group__CANDY__lib__bottom_gaacd41b9e95cc6561e9bd6622643a74c3}{new\+Flat\+SSDGPUIndex}}~std\+::make\+\_\+shared$<$\mbox{\hyperlink{classCANDY_1_1FlatSSDGPUIndex}{CANDY\+::\+Flat\+SSDGPUIndex}}$>$
+\begin{DoxyCompactList}\small\item\em (Macro) To creat a new Flat\+SSDGPUIndex shared pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom_ga40cfa5dc103762e63a5f8ae8eb5ee876}\label{group__CANDY__lib__bottom_ga40cfa5dc103762e63a5f8ae8eb5ee876}} 
+typedef std\+::shared\+\_\+ptr$<$ class \mbox{\hyperlink{classCANDY_1_1FlatSSDGPUIndex}{CANDY\+::\+Flat\+SSDGPUIndex}} $>$ \mbox{\hyperlink{group__CANDY__lib__bottom_ga40cfa5dc103762e63a5f8ae8eb5ee876}{CANDY\+::\+Flat\+SSDGPUIndex\+Ptr}}
+\begin{DoxyCompactList}\small\item\em The class to describe a shared pointer to \mbox{\hyperlink{classCANDY_1_1FlatSSDGPUIndex}{Flat\+SSDGPUIndex}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{group__CANDY__lib__bottom_ga2c6142ec795734f6a4fb5e388b310afa}\label{group__CANDY__lib__bottom_ga2c6142ec795734f6a4fb5e388b310afa}} 
