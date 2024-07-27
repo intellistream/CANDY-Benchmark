@@ -90,12 +90,20 @@ void mergeTopK(std::vector<std::pair<float, int64_t>>& topK, const std::vector<s
     topK.resize(top_k);
   }
 }
+static
+void mergeTopKVec(std::vector<std::vector<std::pair<float, int64_t>>>& topK, const std::vector<std::vector<std::pair<float, int64_t>>>& newResults, int64_t top_k) {
+  size_t rows=topK.size();
+  for(size_t i=0;i<rows;i++) {
+    mergeTopK(topK[i],newResults[i],top_k);
+  }
+}
 std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor &query,
                                                              int64_t top_k,
                                                              int64_t batch_size
                                                              ) {
-  std::vector<std::pair<float, int64_t>> topK;
+  std::vector<std::vector<std::pair<float, int64_t>>> topK;
   int64_t total_vectors = dmBuffer.size();
+  int64_t queryRows = query.size(0);
   torch::Tensor transposed_query = query.t();
   for (int64_t startPos = 0; startPos < total_vectors; startPos += batch_size) {
     int64_t endPos = std::min(startPos + batch_size, total_vectors);
@@ -109,31 +117,33 @@ std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor
 
     // Use torch::topk to get the top_k smallest distances and their indices
     auto topk_result = torch::topk(distances.t(), top_k, /*dim=*/1, /*largest=*/true, /*sorted=*/true);
-
+   // std::cout<<"top k :\n"<<std::get<0>(topk_result)<<std::endl;
     // Extract top_k distances and indices
-    torch::Tensor topk_distances = std::get<0>(topk_result).flatten();
-    torch::Tensor topk_indices = std::get<1>(topk_result).flatten()+startPos;
-    //std::cout<<"top k :\n"<<topk_distances<<std::endl;
+    torch::Tensor topk_distances = std::get<0>(topk_result);
+    torch::Tensor topk_indices = std::get<1>(topk_result)+startPos;
+    //
     // Create a vector of (distance, index) pairs
-    std::vector<std::pair<float, int64_t>> batchResults;
-    for (int64_t i = 0; i < topk_distances.numel(); ++i) {
-      batchResults.emplace_back(topk_distances[i].item<float>(), topk_indices[i].item<int64_t>());
+    std::vector<std::vector<std::pair<float, int64_t>>> batchResults(queryRows);
+    for (int64_t i=0;i<queryRows;i++) {
+      for (int64_t j = 0; j < top_k; j++) {
+        batchResults[i].emplace_back(topk_distances[i][j].item<float>(), topk_indices[i][j].item<int64_t>());
+      }
     }
-
     // Merge current batch results with topK
     if (topK.empty()) {
       topK = std::move(batchResults);
     } else {
-      mergeTopK(topK, batchResults, top_k);
+      mergeTopKVec(topK, batchResults, top_k);
     }
   }
 
   // Extract indices from the topK vector
-  std::vector<int64_t> topKIndices;
-  for (const auto& result : topK) {
-    topKIndices.push_back(result.second);
+  std::vector<int64_t> topKIndices(top_k*queryRows);
+  for (int64_t i = 0; i < queryRows; i++) {
+    for (int64_t j = 0; j < top_k; j++) {
+      topKIndices[i*top_k+j]=topK[i][j].second;
+    }
   }
-
   return topKIndices;
 }
 bool CANDY::FlatSSDGPUIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
