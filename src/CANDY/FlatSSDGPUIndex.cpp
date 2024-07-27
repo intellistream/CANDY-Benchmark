@@ -16,13 +16,20 @@
 #include <utility>
 bool CANDY::FlatSSDGPUIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
+  distanceFunc=distanceIP;
   if (faissMetric != faiss::METRIC_INNER_PRODUCT) {
-    INTELLI_WARNING("I can only deal with inner product distance");
+    INTELLI_WARNING("Switch to L2");
+    distanceFunc=distanceL2;
   }
   vecDim = cfg->tryI64("vecDim", 768, true);
   SSDBufferSize = cfg->tryI64("SSDBufferSize", 1000, true);
   sketchSize = cfg->tryI64("sketchSize", 10, true);
   DCOBatchSize = cfg->tryI64("DCOBatchSize", SSDBufferSize, true);
+  if(torch::cuda::is_available()){
+    cudaDevice = cfg->tryI64("cudaDevice", -1, true);
+    INTELLI_INFO("Cuda is detected. and use this cuda device for DCO:" + std::to_string(cudaDevice));
+  }
+
   std::string ammAlgo = cfg->tryString("ammAlgo", "mm", true);
   INTELLI_INFO("Size of DCO=" + std::to_string(DCOBatchSize));
   if (ammAlgo == "crs") {
@@ -107,7 +114,7 @@ std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor
   std::vector<std::vector<std::pair<float, int64_t>>> topK;
   int64_t total_vectors = dmBuffer.size();
   int64_t queryRows = query.size(0);
-  torch::Tensor transposed_query = query.t();
+  //torch::Tensor transposed_query = query.t();
   for (int64_t startPos = 0; startPos < total_vectors; startPos += batch_size) {
     int64_t endPos = std::min(startPos + batch_size, total_vectors);
 
@@ -115,16 +122,22 @@ std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor
     torch::Tensor dbBatch = dmBuffer.getTensor(startPos, endPos);
     //std::cout<<"DB data:\n"<<dbBatch<<std::endl;
     // Compute distances
-    torch::Tensor distances = torch::matmul(dbBatch, transposed_query);
+    torch::Tensor distances = distanceFunc(dbBatch,query,cudaDevice);
+       // torch::matmul(dbBatch, transposed_query);
     //std::cout<<"distance :\n"<<distances.t()<<std::endl;
 
     // Use torch::topk to get the top_k smallest distances and their indices
-    auto topk_result = torch::topk(distances.t(), top_k, /*dim=*/1, /*largest=*/true, /*sorted=*/true);
+    auto topk_result = torch::topk(distances,top_k, /*dim=*/1, /*largest=*/true, /*sorted=*/true);
+
    // std::cout<<"top k :\n"<<std::get<0>(topk_result)<<std::endl;
     // Extract top_k distances and indices
     torch::Tensor topk_distances = std::get<0>(topk_result);
     torch::Tensor topk_indices = std::get<1>(topk_result)+startPos;
     //
+    if(cudaDevice>-1&&torch::cuda::is_available()){
+      topk_distances=topk_distances.to(torch::kCPU);
+      topk_indices=topk_indices.to(torch::kCPU);
+    }
     // Create a vector of (distance, index) pairs
     std::vector<std::vector<std::pair<float, int64_t>>> batchResults(queryRows);
     for (int64_t i=0;i<queryRows;i++) {
@@ -183,5 +196,52 @@ std::vector<torch::Tensor> CANDY::FlatSSDGPUIndex::getTensorByStdIdx(std::vector
     }
   }
   return ru;
+}
+torch::Tensor CANDY::FlatSSDGPUIndex::distanceIP(torch::Tensor db, torch::Tensor query, int64_t cudaDev) {
+  torch::Tensor transposed_query = query.t();
+  torch::Tensor dbTensor = db;
+  if(cudaDev>-1&&torch::cuda::is_available()){
+    // Move tensors to GPU 1
+    auto device = torch::Device(torch::kCUDA, cudaDev);
+    transposed_query=transposed_query.to(device);
+    dbTensor=dbTensor.to(device);
+  }
+  torch::Tensor distances = torch::matmul(dbTensor, transposed_query);
+  auto ru = distances.t();
+  /*if(cudaDev>-1&&torch::cuda::is_available()){
+   ru = ru.to(torch::kCPU);
+  }*/
+  return ru;
+}
+
+torch::Tensor CANDY::FlatSSDGPUIndex::distanceL2(torch::Tensor db0, torch::Tensor _q, int64_t cudaDev) {
+  torch::Tensor dbTensor = db0;
+  torch::Tensor query = _q;
+  if(cudaDev>-1&&torch::cuda::is_available()){
+    // Move tensors to GPU 1
+    auto device = torch::Device(torch::kCUDA, cudaDev);
+    dbTensor=dbTensor.to(device);
+    query = query.to(device);
+  }
+  auto n = dbTensor.size(0);
+  auto q = query.size(0);
+  auto vecDim = dbTensor.size(1);
+
+  // Ensure result tensor is on the same device as input tensors
+  torch::Tensor result = torch::empty({q, n}, dbTensor.options());
+
+  // Compute L2 distance using a for loop
+  for (int i = 0; i < q; ++i) {
+    auto query_row = query[i].view({1, vecDim}); // [1, vecDim]
+    auto diff = dbTensor - query_row; // [n, vecDim]
+    auto dist_squared = diff.pow(2).sum(1); // [n]
+    auto dist = dist_squared.sqrt(); // [n]
+    result[i] = -dist;
+  }
+  /*if(cudaDev>-1&&torch::cuda::is_available()){
+    // Move tensors to GPU 1
+    result = result.to(torch::kCPU);
+  }*/
+  return result;
 }
 #endif

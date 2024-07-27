@@ -32,6 +32,7 @@ namespace CANDY {
  * - SSDBufferSize, the size of memory-ssd buffer, in rows of vectors, default 1000, I64
  * - sketchSize, the sketch size of amm, default 10, I64
  * - DCOBatchSize, the batch size of internal distance comparison operation (DCO), default equal to ssdBufferSize, I64
+ * - cudaDevice, the cuda device for DCO, default -1 (none), I64
  * - ammAlgo, the amm algorithm used for compute distance, default mm, String, can be the following
     * - mm the original torch::matmul
     * - crs column row sampling
@@ -49,6 +50,7 @@ class FlatSSDGPUIndex : public AbstractIndex {
   int64_t DCOBatchSize = -1;
   int64_t SSDBufferSize = 1000;
   int64_t vecDim = 768;
+  int64_t cudaDevice = -1;
   // Main function to process batches and find top_k closest vectors
   std::vector<int64_t> findTopKClosest(const torch::Tensor& query, int64_t top_k, int64_t batch_size);
  // torch::Tensor myMMInline(torch::Tensor &a, torch::Tensor &b, int64_t ss = 10);
@@ -59,6 +61,31 @@ class FlatSSDGPUIndex : public AbstractIndex {
   * @return a vector of tensors, each tensor represent KNN results of one query in idx
   */
   virtual std::vector<torch::Tensor> getTensorByStdIdx(std::vector<int64_t> &idx, int64_t k);
+   /**
+    * @brief the distance function pointer member
+    * @note will select largest distance during the following sorting, please convert if your distance is 'minimal'
+    * @param db The data base tensor, sized [n*vecDim] to be scanned
+    * @param query The query tensor, sized [q*vecDim] to be scanned
+    * @param cudaDev The id of cuda device, -1 means no cuda
+    * @return The distance tensor, must sized [q*n] and remain in cpu
+    */
+  torch::Tensor (*distanceFunc)(torch::Tensor db,torch::Tensor query,int64_t cudaDev);
+  /**
+   * @brief the distance function of inner product
+   * @param db The data base tensor, sized [n*vecDim] to be scanned
+   * @param query The query tensor, sized [q*vecDim] to be scanned
+   * @param cudaDev The id of cuda device, -1 means no cuda
+   * @return The distance tensor, must sized [q*n], will in GPU if cuda is valid
+   */
+  static torch::Tensor distanceIP(torch::Tensor db,torch::Tensor query,int64_t cudaDev);
+  /**
+   * @brief the distance function of L2
+   * @param db The data base tensor, sized [n*vecDim] to be scanned
+   * @param query The query tensor, sized [q*vecDim] to be scanned
+   * @param cudaDev The id of cuda device, -1 means no cuda
+   * @return The distance tensor, must sized [q*n], will in GPU if cuda is valid
+   */
+  static torch::Tensor distanceL2(torch::Tensor db,torch::Tensor query,int64_t cudaDev);
  // std::vector<faiss::idx_t> knnInline(torch::Tensor &query, int64_t k, int64_t distanceBatch = -1);
  public:
   FlatSSDGPUIndex() {
