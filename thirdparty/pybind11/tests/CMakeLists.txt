@@ -88,7 +88,12 @@ set(PYBIND11_TEST_FILTER
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   # We're being loaded directly, i.e. not via add_subdirectory, so make this
   # work as its own project and load the pybind11Config to get the tools we need
-  find_package(pybind11 REQUIRED CONFIG)
+
+  if(SKBUILD)
+    add_subdirectory(.. pybind11_src)
+  else()
+    find_package(pybind11 REQUIRED CONFIG)
+  endif()
 endif()
 
 if(NOT CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
@@ -330,7 +335,7 @@ if(Boost_FOUND)
     add_library(Boost::headers IMPORTED INTERFACE)
     if(TARGET Boost::boost)
       # Classic FindBoost
-      set_property(TARGET Boost::boost PROPERTY INTERFACE_LINK_LIBRARIES Boost::boost)
+      set_property(TARGET Boost::headers PROPERTY INTERFACE_LINK_LIBRARIES Boost::boost)
     else()
       # Very old FindBoost, or newer Boost than CMake in older CMakes
       set_property(TARGET Boost::headers PROPERTY INTERFACE_INCLUDE_DIRECTORIES
@@ -488,6 +493,9 @@ foreach(target ${test_targets})
                                                    "${CMAKE_CURRENT_BINARY_DIR}")
       endforeach()
     endif()
+  endif()
+  if(SKBUILD)
+    install(TARGETS ${target} LIBRARY DESTINATION .)
   endif()
 endforeach()
 
