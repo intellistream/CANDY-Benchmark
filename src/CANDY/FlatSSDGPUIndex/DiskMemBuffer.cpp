@@ -168,7 +168,7 @@ bool PlainDiskMemBufferTU::reviseTensor(int64_t startPos, torch::Tensor &t) {
     * @brief read the new
     */
     diskOffset = startPos * diskInfo.vecDim * sizeof(float) + 512 + tensorBegin;
-    ssdPtr->read(inMemTensor.data_ptr(), bsize * diskInfo.vecDim * sizeof(float), diskOffset, ssdQpair);
+    ssdPtr->read(inMemTensor.clone().data_ptr(), bsize * diskInfo.vecDim * sizeof(float), diskOffset, ssdQpair);
     cacheT.beginPos = startPos;
     cacheT.endPos = startPos + bsize;
     cacheT.buffer = inMemTensor;
