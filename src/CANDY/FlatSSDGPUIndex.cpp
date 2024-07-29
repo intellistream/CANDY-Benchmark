@@ -29,6 +29,10 @@ bool CANDY::FlatSSDGPUIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     cudaDevice = cfg->tryI64("cudaDevice", -1, true);
     INTELLI_INFO("Cuda is detected. and use this cuda device for DCO:" + std::to_string(cudaDevice));
   }
+  if(DCOBatchSize>SSDBufferSize) {
+    INTELLI_WARNING("DCO batch size should not exceed SSD buffer size, go back to the same." );
+    DCOBatchSize = SSDBufferSize;
+  }
 
   std::string ammAlgo = cfg->tryString("ammAlgo", "mm", true);
   INTELLI_INFO("Size of DCO=" + std::to_string(DCOBatchSize));
