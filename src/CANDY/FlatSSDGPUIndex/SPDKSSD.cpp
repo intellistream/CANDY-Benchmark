@@ -103,7 +103,7 @@ void SPDKSSD::setupEnv() {
   }
   sector_size = spdk_nvme_ns_get_sector_size(ns);
   ns_size = spdk_nvme_ns_get_size(ns);
-  setDmaSize(getHugePageSize()/10);
+  setDmaSize(getHugePageSize()/4);
  // std::cout<<"Free huge pages"<<getFreeHugePages()<<std::endl;
   //INTELLI_INFO("Sector size="+std::to_string(sector_size)+"name space size="+std::to_string(ns_size));
   // exit(-1);
