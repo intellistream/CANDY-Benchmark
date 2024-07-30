@@ -88,6 +88,11 @@ class SPDKSSD {
    * @return the size in bytes
    */
   size_t getHugePageSize(void);
+  /**
+  * @brief  Get the number of free huge page
+  * @return the count of free huge pages
+  */
+  size_t getFreeHugePages(void);
  private:
   std::mutex m_mut;
   struct spdk_nvme_ctrlr *ctrlr; ///< Pointer to the NVMe controller.

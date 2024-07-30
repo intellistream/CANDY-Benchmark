@@ -56,6 +56,22 @@ size_t SPDKSSD::getHugePageSize() {
 
   return hugepages_size_kb * 1000;
 }
+size_t SPDKSSD::getFreeHugePages()  {
+
+  std::ifstream infile("/proc/meminfo");
+  std::string line;
+  std::regex hugepages_regex("HugePages_Free:\\s+(\\d+)");
+  size_t hugepages_free = 0;
+
+
+  while (std::getline(infile, line)) {
+    std::smatch match;
+    if (std::regex_search(line, match, hugepages_regex)) {
+      hugepages_free = std::stoul(match[1].str());
+    }
+  }
+  return hugepages_free;
+}
 
 void SPDKSSD::setupEnv() {
   if (isSet) {
@@ -87,8 +103,9 @@ void SPDKSSD::setupEnv() {
   }
   sector_size = spdk_nvme_ns_get_sector_size(ns);
   ns_size = spdk_nvme_ns_get_size(ns);
-  setDmaSize(getHugePageSize() / 10);
-  // INTELLI_INFO("Sector size="+std::to_string(sector_size)+"name space size="+std::to_string(ns_size));
+  setDmaSize(getHugePageSize()/10);
+ // std::cout<<"Free huge pages"<<getFreeHugePages()<<std::endl;
+  //INTELLI_INFO("Sector size="+std::to_string(sector_size)+"name space size="+std::to_string(ns_size));
   // exit(-1);
 }
 void SPDKSSD::cleanEnv() {
@@ -150,7 +167,7 @@ void SPDKSSD::writeInline(const void *buffer, size_t size, uint64_t offset, stru
   size_t chunk_size = std::min(remaining_size, max_chunk_size);
   uint64_t sector_offset = current_offset / sector_size;
   size_t sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
-  void *temp_buffer = spdk_zmalloc(2*sector_aligned_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_SHARE);
+  void *temp_buffer = spdk_zmalloc(sector_aligned_size+sector_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
   while (remaining_size > 0) {
     chunk_size = std::min(remaining_size, max_chunk_size);
     sector_offset = current_offset / sector_size;
@@ -231,7 +248,7 @@ void SPDKSSD::readInline(void *buffer, size_t size, uint64_t offset, struct spdk
   size_t chunk_size = std::min(remaining_size, max_chunk_size);
   uint64_t sector_offset = current_offset / sector_size;
   size_t sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
-  void *temp_buffer = spdk_zmalloc(2*sector_aligned_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
+  void *temp_buffer = spdk_zmalloc(sector_aligned_size+sector_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
   while (remaining_size > 0) {
     chunk_size = std::min(remaining_size, max_chunk_size);
     sector_offset = current_offset / sector_size;

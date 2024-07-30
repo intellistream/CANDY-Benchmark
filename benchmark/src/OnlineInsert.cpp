@@ -1,5 +1,3 @@
-/*! \file OnlineInsert.cpp*/
-//
 // Created by tony on 06/01/24.
 //
 #include <iostream>
