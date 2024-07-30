@@ -331,11 +331,17 @@ cd ../figures
 You will find the figures then.
 
 ## Known issues
+
 ### CUDA and torch
-For torch>=2.0, the header may require you to only use c++17 for tensor, please do either the following such that the nvcc works when include <torch.h>:
+
+For torch>=2.0, the header may require you to only use c++17 for tensor, please do either the following such that the
+nvcc works when include <torch.h>:
+
 - Downgrade torch into 1.13.0
 - Upgrade CUDA to 12.5 or above
+
 ### How to run SPDK-related functions without sudo/root
+
   ```shell
    sudo setcap all+ep <your_app_name>
    ./<your_app_name>

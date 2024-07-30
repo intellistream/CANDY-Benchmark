@@ -93,6 +93,31 @@ class SPDKSSD {
   * @return the count of free huge pages
   */
   size_t getFreeHugePages(void);
+  /**
+   * @brief clear the inside statistics
+   */
+  void clearStatistics(void);
+  /**
+   * @brief get the total write count into the disk in bytes
+   * @return the total disk write
+   */
+  int64_t getTotalDiskWrite();
+  /**
+   * @brief get the total write count required by user in bytes
+   * @return the total user write
+   */
+  int64_t getTotalUserWrite();
+  /**
+  * @brief get the total read count from the disk in bytes
+  * @return the total disk read
+  */
+  int64_t getTotalDiskRead();
+  /**
+   * @brief get the total read count required by user in bytes
+   * @return the total user read
+   */
+  int64_t getTotalUserRead();
+
  private:
   std::mutex m_mut;
   struct spdk_nvme_ctrlr *ctrlr; ///< Pointer to the NVMe controller.
@@ -100,6 +125,7 @@ class SPDKSSD {
   int64_t maxDma = 1024000;
   size_t sector_size; ///< Sector size of the NVMe namespace.
   size_t ns_size; ///< Size of the NVMe namespace.
+  int64_t totalDiskWrite = 0, totalUserWrite = 0, totalDiskRead = 0, totalUserRead = 0;
   bool isSet = false;
   /**
    * @brief Writes data to the SSD.

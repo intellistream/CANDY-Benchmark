@@ -183,6 +183,18 @@ Functions</h2></td></tr>
 <tr class="memitem:ga292279e7b8692e572c4fe3aaad569bb3"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; torch::Tensor &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga292279e7b8692e572c4fe3aaad569bb3">CANDY::CongestionDropIndexWorker::searchTensor</a> (torch::Tensor &amp;q, int64_t k)</td></tr>
 <tr class="memdesc:ga292279e7b8692e572c4fe3aaad569bb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">search the k-NN of a query tensor, return the result tensors  <a href="group__CANDY__lib__bottom__sub.html#ga292279e7b8692e572c4fe3aaad569bb3">More...</a><br /></td></tr>
 <tr class="separator:ga292279e7b8692e572c4fe3aaad569bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga35414314c7618e912b5f3c2bdb331487"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga35414314c7618e912b5f3c2bdb331487">CANDY::PlainDiskMemBufferTU::getMemoryReadCntTotal</a> (void)</td></tr>
+<tr class="memdesc:ga35414314c7618e912b5f3c2bdb331487"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the total count of times in terms of memory read  <a href="group__CANDY__lib__bottom__sub.html#ga35414314c7618e912b5f3c2bdb331487">More...</a><br /></td></tr>
+<tr class="separator:ga35414314c7618e912b5f3c2bdb331487"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga73dabce5cd8d634860a41992bd7cf38d"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga73dabce5cd8d634860a41992bd7cf38d">CANDY::PlainDiskMemBufferTU::getMemoryReadCntMiss</a> (void)</td></tr>
+<tr class="memdesc:ga73dabce5cd8d634860a41992bd7cf38d"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the miss count of times in terms of memory read  <a href="group__CANDY__lib__bottom__sub.html#ga73dabce5cd8d634860a41992bd7cf38d">More...</a><br /></td></tr>
+<tr class="separator:ga73dabce5cd8d634860a41992bd7cf38d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a81115c39c6f9c24674d2cd2ceebedf"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga7a81115c39c6f9c24674d2cd2ceebedf">CANDY::PlainDiskMemBufferTU::getMemoryWriteCntTotal</a> (void)</td></tr>
+<tr class="memdesc:ga7a81115c39c6f9c24674d2cd2ceebedf"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the total count of times in terms of memory write  <a href="group__CANDY__lib__bottom__sub.html#ga7a81115c39c6f9c24674d2cd2ceebedf">More...</a><br /></td></tr>
+<tr class="separator:ga7a81115c39c6f9c24674d2cd2ceebedf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaad05152d4f9ef5c274ed91c26944265a"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#gaad05152d4f9ef5c274ed91c26944265a">CANDY::PlainDiskMemBufferTU::getMemoryWriteCntMiss</a> (void)</td></tr>
+<tr class="memdesc:gaad05152d4f9ef5c274ed91c26944265a"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the miss count of times in terms of memory write  <a href="group__CANDY__lib__bottom__sub.html#gaad05152d4f9ef5c274ed91c26944265a">More...</a><br /></td></tr>
+<tr class="separator:gaad05152d4f9ef5c274ed91c26944265a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga433e53f9851e5c2a6d9104a1aee528bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga433e53f9851e5c2a6d9104a1aee528bc">CANDY::PlainDiskMemBufferTU::init</a> (int64_t vecDim, int64_t bufferSize, int64_t _tensorBegin, int64_t _u64Begin, SPDKSSD *_ssdPtr, int64_t _dmaSize=1024000)</td></tr>
 <tr class="memdesc:ga433e53f9851e5c2a6d9104a1aee528bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">init everything  <a href="group__CANDY__lib__bottom__sub.html#ga433e53f9851e5c2a6d9104a1aee528bc">More...</a><br /></td></tr>
 <tr class="separator:ga433e53f9851e5c2a6d9104a1aee528bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,6 +205,10 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#gac3fa07ecea02a3b565729cd48a4d67f3">CANDY::PlainDiskMemBufferTU::clear</a> ()</td></tr>
 <tr class="memdesc:gac3fa07ecea02a3b565729cd48a4d67f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear the occupied resource <br /></td></tr>
 <tr class="separator:gac3fa07ecea02a3b565729cd48a4d67f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad0b982eb7b03b639f5e70da1fdc5f5c0"><td class="memItemLeft" align="right" valign="top"><a id="gad0b982eb7b03b639f5e70da1fdc5f5c0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#gad0b982eb7b03b639f5e70da1fdc5f5c0">CANDY::PlainDiskMemBufferTU::clearStatistics</a> ()</td></tr>
+<tr class="memdesc:gad0b982eb7b03b639f5e70da1fdc5f5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear the statistics <br /></td></tr>
+<tr class="separator:gad0b982eb7b03b639f5e70da1fdc5f5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5708694a4d8a2be07f1119b51570da7c"><td class="memItemLeft" align="right" valign="top">torch::Tensor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom__sub.html#ga5708694a4d8a2be07f1119b51570da7c">CANDY::PlainDiskMemBufferTU::getTensor</a> (int64_t startPos, int64_t endPos)</td></tr>
 <tr class="memdesc:ga5708694a4d8a2be07f1119b51570da7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">to get the tensor at specified position  <a href="group__CANDY__lib__bottom__sub.html#ga5708694a4d8a2be07f1119b51570da7c">More...</a><br /></td></tr>
 <tr class="separator:ga5708694a4d8a2be07f1119b51570da7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -383,6 +399,18 @@ int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMe
 <tr class="memitem:ga6ae9c10e1dcd8e2be423a7775e50620c"><td class="memItemLeft" align="right" valign="top"><a id="ga6ae9c10e1dcd8e2be423a7775e50620c"></a>
 int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::dmaSize</b> = 1024000</td></tr>
 <tr class="separator:ga6ae9c10e1dcd8e2be423a7775e50620c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab52623321729ec85b299bfec1cb73642"><td class="memItemLeft" align="right" valign="top"><a id="gab52623321729ec85b299bfec1cb73642"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::memoryReadCntTotal</b> = 0</td></tr>
+<tr class="separator:gab52623321729ec85b299bfec1cb73642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaab8aa4948dec8c8ecba486757b8ab430"><td class="memItemLeft" align="right" valign="top"><a id="gaab8aa4948dec8c8ecba486757b8ab430"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::memoryReadCntMiss</b> = 0</td></tr>
+<tr class="separator:gaab8aa4948dec8c8ecba486757b8ab430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabab5f382a6920aa7d74b340a19085928"><td class="memItemLeft" align="right" valign="top"><a id="gabab5f382a6920aa7d74b340a19085928"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::memoryWriteCntTotal</b> = 0</td></tr>
+<tr class="separator:gabab5f382a6920aa7d74b340a19085928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga56b42dbdef111c60096b5cdae28a011c"><td class="memItemLeft" align="right" valign="top"><a id="ga56b42dbdef111c60096b5cdae28a011c"></a>
+int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::memoryWriteCntMiss</b> = 0</td></tr>
+<tr class="separator:ga56b42dbdef111c60096b5cdae28a011c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3fde5b930c2c5f2c773b821f53af5ee4"><td class="memItemLeft" align="right" valign="top"><a id="ga3fde5b930c2c5f2c773b821f53af5ee4"></a>
 struct spdk_nvme_qpair *&#160;</td><td class="memItemRight" valign="bottom"><b>CANDY::PlainDiskMemBufferTU::ssdQpair</b> = NULL</td></tr>
 <tr class="separator:ga3fde5b930c2c5f2c773b821f53af5ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -788,6 +816,90 @@ typedef std::shared_ptr&lt; <a class="el" href="classCANDY_1_1SimpleStreamCluste
 
 <p>some extra termination if the index has HPC fetures </p>
 <dl class="section return"><dt>Returns</dt><dd>bool whether the HPC termination is successful </dd></dl>
+
+</div>
+</div>
+<a id="ga73dabce5cd8d634860a41992bd7cf38d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga73dabce5cd8d634860a41992bd7cf38d">&#9670;&nbsp;</a></span>getMemoryReadCntMiss()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t CANDY::PlainDiskMemBufferTU::getMemoryReadCntMiss </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get the miss count of times in terms of memory read </p>
+<dl class="section return"><dt>Returns</dt><dd>the count of times </dd></dl>
+
+</div>
+</div>
+<a id="ga35414314c7618e912b5f3c2bdb331487"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga35414314c7618e912b5f3c2bdb331487">&#9670;&nbsp;</a></span>getMemoryReadCntTotal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t CANDY::PlainDiskMemBufferTU::getMemoryReadCntTotal </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get the total count of times in terms of memory read </p>
+<dl class="section return"><dt>Returns</dt><dd>the count of times </dd></dl>
+
+</div>
+</div>
+<a id="gaad05152d4f9ef5c274ed91c26944265a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaad05152d4f9ef5c274ed91c26944265a">&#9670;&nbsp;</a></span>getMemoryWriteCntMiss()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t CANDY::PlainDiskMemBufferTU::getMemoryWriteCntMiss </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get the miss count of times in terms of memory write </p>
+<dl class="section return"><dt>Returns</dt><dd>the count of times </dd></dl>
+
+</div>
+</div>
+<a id="ga7a81115c39c6f9c24674d2cd2ceebedf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7a81115c39c6f9c24674d2cd2ceebedf">&#9670;&nbsp;</a></span>getMemoryWriteCntTotal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t CANDY::PlainDiskMemBufferTU::getMemoryWriteCntTotal </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get the total count of times in terms of memory write </p>
+<dl class="section return"><dt>Returns</dt><dd>the count of times </dd></dl>
 
 </div>
 </div>

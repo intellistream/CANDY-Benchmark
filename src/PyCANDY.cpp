@@ -141,7 +141,9 @@ PYBIND11_MODULE(PyCANDY, m) {
       .def("searchStringObject", &AbstractIndex::searchStringObject)
       .def("searchU64Object", &AbstractIndex::searchU64Object)
       .def("searchTensorAndStringObject", &AbstractIndex::searchTensorAndStringObject)
-      .def("loadInitialTensorAndQueryDistribution", &AbstractIndex::loadInitialTensorAndQueryDistribution);
+      .def("loadInitialTensorAndQueryDistribution", &AbstractIndex::loadInitialTensorAndQueryDistribution)
+      .def("resetIndexStatistics", &AbstractIndex::resetIndexStatistics)
+      .def("getIndexStatistics", &AbstractIndex::getIndexStatistics);
   m.def("createIndex", &createIndex, "A function to create new index by name tag");
   m.def("createDataLoader", &creatDataLoader, "A function to create new data loader by name tag");
   m.def("add_tensors", &add_tensors, "A function that adds two tensors");

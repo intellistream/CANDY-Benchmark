@@ -11,8 +11,7 @@ The abstract class of an index approach.
 
 
 
-Inheritance diagram for CANDY\+::Abstract\+Index\+:
-\nopagebreak
+Inheritance diagram for CANDY\+::Abstract\+Index\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -85,7 +84,11 @@ virtual std\+::vector$<$ std\+::vector$<$ uint64\+\_\+t $>$ $>$ \mbox{\hyperlink
 virtual std\+::tuple$<$ std\+::vector$<$ torch\+::\+Tensor $>$, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ $>$ \mbox{\hyperlink{classCANDY_1_1AbstractIndex_af9c6596f497da56d887fec3ab4daa5f7}{search\+Tensor\+And\+String\+Object}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
 \begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the linked string objects and original tensors \end{DoxyCompactList}\item 
 virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a7b33be0f70010fdb579f47cac3f59f95}{load\+Initial\+Tensor\+And\+Query\+Distribution}} (torch\+::\+Tensor \&t, torch\+::\+Tensor \&query)
-\begin{DoxyCompactList}\small\item\em load the initial tensors and query distributions of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em load the initial tensors and query distributions of a data base, use this BEFORE \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{insert\+Tensor}} \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classCANDY_1_1AbstractIndex_aec0bc1f94db6b9f06fe3a468bd165e57}{reset\+Index\+Statistics}} (void)
+\begin{DoxyCompactList}\small\item\em to reset the internal statistics of this index \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a0624d816994337eda6e99130f0ed5ce2}{get\+Index\+Statistics}} (void)
+\begin{DoxyCompactList}\small\item\em to get the internal statistics of this index \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -197,6 +200,23 @@ bool whether the HPC termination is successful
 
 
 Reimplemented in \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a53c9ed029555a10ab0a4fa586d10590b}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_abc2abeb38ba54e5e65f1ec913bba4514}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatSSDGPUIndex_a1b45e2e75b87130673981398bfea5477}{CANDY\+::\+Flat\+SSDGPUIndex}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_aebed4bc748d8d81ee1b5a1f9b7e94dc4}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_a8a4f37420d66aa6bda69f197ba994a27}{CANDY\+::\+Distributed\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_ae7ca848f836f3be011325b93a74a5b39}{CANDY\+::\+Congestion\+Drop\+Index}}, and \mbox{\hyperlink{classCANDY_1_1BufferedCongestionDropIndex_a99d2e92ca9ba47ad0968748b3fbb1691}{CANDY\+::\+Buffered\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a0624d816994337eda6e99130f0ed5ce2}\label{classCANDY_1_1AbstractIndex_a0624d816994337eda6e99130f0ed5ce2}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!getIndexStatistics@{getIndexStatistics}}
+\index{getIndexStatistics@{getIndexStatistics}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{getIndexStatistics()}{getIndexStatistics()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}} CANDY\+::\+Abstract\+Index\+::get\+Index\+Statistics (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+to get the internal statistics of this index 
+
+\begin{DoxyReturn}{Returns}
+the statistics results in Config\+Map\+Ptr 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1FlatSSDGPUIndex_ab2fe44a3b3e3ffae6619940a2514894a}{CANDY\+::\+Flat\+SSDGPUIndex}}.
 
 \mbox{\Hypertarget{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}\label{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}} 
 \index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!getTensorByIndex@{getTensorByIndex}}
@@ -448,6 +468,23 @@ The raw data stored in tensor
 
 
 Reimplemented in \mbox{\hyperlink{classCANDY_1_1PQIndex_a936ea33dbc764dbeb81dd241c5555791}{CANDY\+::\+PQIndex}}, \mbox{\hyperlink{classCANDY_1_1ParallelPartitionIndex_a748632b1ee4dfb4103984879a1f9b0e0}{CANDY\+::\+Parallel\+Partition\+Index}}, \mbox{\hyperlink{classCANDY_1_1NNDescentIndex_ae5d623bf91459db2d3359852c36cd749}{CANDY\+::\+NNDescent\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatIndex_a44c1a243c76f7a54b5c01c57aba83ff2}{CANDY\+::\+Flat\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPObjIndex_a8fe44b97278037219985701957060495}{CANDY\+::\+Flat\+AMMIPObj\+Index}}, \mbox{\hyperlink{classCANDY_1_1FlatAMMIPIndex_a834361168ee0c8940b21405f47a2f51e}{CANDY\+::\+Flat\+AMMIPIndex}}, \mbox{\hyperlink{classCANDY_1_1DPGIndex_a17f789dbfd1be6ab6ae01b3395804f64}{CANDY\+::\+DPGIndex}}, \mbox{\hyperlink{classCANDY_1_1DistributedPartitionIndex_abb6b9e46862c924952050b51b7f6a250}{CANDY\+::\+Distributed\+Partition\+Index}}, and \mbox{\hyperlink{classCANDY_1_1CongestionDropIndex_a521b668ea05085c1174acc1af35ed5e3}{CANDY\+::\+Congestion\+Drop\+Index}}.
+
+\mbox{\Hypertarget{classCANDY_1_1AbstractIndex_aec0bc1f94db6b9f06fe3a468bd165e57}\label{classCANDY_1_1AbstractIndex_aec0bc1f94db6b9f06fe3a468bd165e57}} 
+\index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!resetIndexStatistics@{resetIndexStatistics}}
+\index{resetIndexStatistics@{resetIndexStatistics}!CANDY::AbstractIndex@{CANDY::AbstractIndex}}
+\doxysubsubsection{\texorpdfstring{resetIndexStatistics()}{resetIndexStatistics()}}
+{\footnotesize\ttfamily bool CANDY\+::\+Abstract\+Index\+::reset\+Index\+Statistics (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+to reset the internal statistics of this index 
+
+\begin{DoxyReturn}{Returns}
+whether the reset is executed 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classCANDY_1_1FlatSSDGPUIndex_a7e869763e1460bc8bfe57cc112f47fe8}{CANDY\+::\+Flat\+SSDGPUIndex}}.
 
 \mbox{\Hypertarget{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}\label{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}} 
 \index{CANDY::AbstractIndex@{CANDY::AbstractIndex}!reviseTensor@{reviseTensor}}

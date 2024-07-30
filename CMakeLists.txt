@@ -1,6 +1,6 @@
 
 cmake_minimum_required(VERSION 3.14)
-project(CANDY CXX )
+project(CANDY CXX)
 
 
 # Custom CMake find instructions and macros
@@ -66,10 +66,10 @@ if (CUDA_FOUND)
     if (CUDA_VERSION_MAJOR GREATER 12 OR (CUDA_VERSION_MAJOR EQUAL 12 AND CUDA_VERSION_MINOR GREATER_EQUAL 5))
         set(CMAKE_CUDA_STANDARD 17)
         message(STATUS "Allow c++ 17 in CUDA")
-    else()
+    else ()
         set(CMAKE_CUDA_STANDARD 14)
         message(STATUS "Allow c++ 14 in CUDA")
-    endif()
+    endif ()
     project(CANDY CXX CUDA)
     # Add your CUDA-related configurations or targets here
     # Example:

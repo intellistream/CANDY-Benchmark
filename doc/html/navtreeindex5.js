@@ -1,5 +1,11 @@
 var NAVTREEINDEX5 =
 {
+"classCANDY_1_1ParallelPartitionIndex.html#af32d13d2b41277c07fd451178fc24988":[2,2,1,5,24],
+"classCANDY_1_1ParallelPartitionIndex.html#af34efab99886c6d99696814fbf675bf9":[2,2,1,5,26],
+"classCANDY_1_1ParallelPartitionIndex.html#af6a384cdcf16500259ba1d20ab5a118a":[2,2,1,5,6],
+"classCANDY_1_1ParallelPartitionIndex.html#afbeb98090cd0b350f88f9c3dbca1b530":[2,2,1,5,3],
+"classCANDY_1_1PlainDiskMemBufferTU.html":[2,0,4],
+"classCANDY_1_1ProductQuantizer.html":[3,0,1,51],
 "classCANDY_1_1ProductQuantizer.html#a0000b52b8104403bd39b8d27ddd58143":[3,0,1,51,21],
 "classCANDY_1_1ProductQuantizer.html#a301a0bfccb90afb5ce57e9b60a4eccf4":[3,0,1,51,17],
 "classCANDY_1_1ProductQuantizer.html#a302f7f6acc8b5be19345f300713662b7":[3,0,1,51,10],
@@ -243,11 +249,5 @@ var NAVTREEINDEX5 =
 "classHostPara.html#a9e735e251908c44caa7f9fbad40771da":[3,0,61,2],
 "classHostPara.html#ac2858e8a7dc99a870f6bd98918a78a44":[3,0,61,3],
 "classINTELLITensorOP.html":[2,3,3,0],
-"classINTELLI_1_1AbstractC20Thread.html":[2,3,0,0],
-"classINTELLI_1_1AbstractC20Thread.html#a01a2c2b58a19777dc8814076efdb2552":[2,3,0,0,2],
-"classINTELLI_1_1AbstractC20Thread.html#a283bad4a88b50a8472245bab68f3f7bd":[2,3,0,0,0],
-"classINTELLI_1_1AbstractC20Thread.html#a2913736fe46742523e79ebfd01a62e0c":[2,3,0,0,1],
-"classINTELLI_1_1AbstractC20Thread.html#a37df714f21a13ce2f5b6879adf6e002a":[2,3,0,0,4],
-"classINTELLI_1_1AbstractC20Thread.html#a7f1a0ff57df718f809ca74935f4c9e2b":[2,3,0,0,5],
-"classINTELLI_1_1AbstractC20Thread.html#aaee52a094251c8a4160cdefd661de099":[2,3,0,0,3]
+"classINTELLI_1_1AbstractC20Thread.html":[2,3,0,0]
 };

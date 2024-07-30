@@ -231,6 +231,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a7b33be0f70010fdb579f47cac3f59f95"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a7b33be0f70010fdb579f47cac3f59f95">loadInitialTensorAndQueryDistribution</a> (torch::Tensor &amp;t, torch::Tensor &amp;query)</td></tr>
 <tr class="memdesc:a7b33be0f70010fdb579f47cac3f59f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">load the initial tensors and query distributions of a data base, use this BEFORE <a class="el" href="classCANDY_1_1AbstractIndex.html#a10e65ecee21528fe6df84114b61110d4">insertTensor</a>  <a href="classCANDY_1_1AbstractIndex.html#a7b33be0f70010fdb579f47cac3f59f95">More...</a><br /></td></tr>
 <tr class="separator:a7b33be0f70010fdb579f47cac3f59f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0bc1f94db6b9f06fe3a468bd165e57"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#aec0bc1f94db6b9f06fe3a468bd165e57">resetIndexStatistics</a> (void)</td></tr>
+<tr class="memdesc:aec0bc1f94db6b9f06fe3a468bd165e57"><td class="mdescLeft">&#160;</td><td class="mdescRight">to reset the internal statistics of this index  <a href="classCANDY_1_1AbstractIndex.html#aec0bc1f94db6b9f06fe3a468bd165e57">More...</a><br /></td></tr>
+<tr class="separator:aec0bc1f94db6b9f06fe3a468bd165e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0624d816994337eda6e99130f0ed5ce2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__INTELLI__UTIL__CONFIGS.html#gaeb9674f6f5860b687d73f618962dfcea">INTELLI::ConfigMapPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1AbstractIndex.html#a0624d816994337eda6e99130f0ed5ce2">getIndexStatistics</a> (void)</td></tr>
+<tr class="memdesc:a0624d816994337eda6e99130f0ed5ce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">to get the internal statistics of this index  <a href="classCANDY_1_1AbstractIndex.html#a0624d816994337eda6e99130f0ed5ce2">More...</a><br /></td></tr>
+<tr class="separator:a0624d816994337eda6e99130f0ed5ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -421,6 +427,37 @@ int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>containerTier</b> 
 <dl class="section return"><dt>Returns</dt><dd>bool whether the HPC termination is successful </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#a53c9ed029555a10ab0a4fa586d10590b">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#abc2abeb38ba54e5e65f1ec913bba4514">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a1b45e2e75b87130673981398bfea5477">CANDY::FlatSSDGPUIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#aebed4bc748d8d81ee1b5a1f9b7e94dc4">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#a8a4f37420d66aa6bda69f197ba994a27">CANDY::DistributedPartitionIndex</a>, <a class="el" href="classCANDY_1_1CongestionDropIndex.html#ae7ca848f836f3be011325b93a74a5b39">CANDY::CongestionDropIndex</a>, and <a class="el" href="classCANDY_1_1BufferedCongestionDropIndex.html#a99d2e92ca9ba47ad0968748b3fbb1691">CANDY::BufferedCongestionDropIndex</a>.</p>
+
+</div>
+</div>
+<a id="a0624d816994337eda6e99130f0ed5ce2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0624d816994337eda6e99130f0ed5ce2">&#9670;&nbsp;</a></span>getIndexStatistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__INTELLI__UTIL__CONFIGS.html#gaeb9674f6f5860b687d73f618962dfcea">INTELLI::ConfigMapPtr</a> CANDY::AbstractIndex::getIndexStatistics </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>to get the internal statistics of this index </p>
+<dl class="section return"><dt>Returns</dt><dd>the statistics results in ConfigMapPtr </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#ab2fe44a3b3e3ffae6619940a2514894a">CANDY::FlatSSDGPUIndex</a>.</p>
 
 </div>
 </div>
@@ -862,6 +899,37 @@ Please use <a class="el" href="classCANDY_1_1AbstractIndex.html#af801592ccc0813c
 <dl class="section return"><dt>Returns</dt><dd>The raw data stored in tensor </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classCANDY_1_1PQIndex.html#a936ea33dbc764dbeb81dd241c5555791">CANDY::PQIndex</a>, <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#a748632b1ee4dfb4103984879a1f9b0e0">CANDY::ParallelPartitionIndex</a>, <a class="el" href="classCANDY_1_1NNDescentIndex.html#ae5d623bf91459db2d3359852c36cd749">CANDY::NNDescentIndex</a>, <a class="el" href="classCANDY_1_1FlatIndex.html#a44c1a243c76f7a54b5c01c57aba83ff2">CANDY::FlatIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a8fe44b97278037219985701957060495">CANDY::FlatAMMIPObjIndex</a>, <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#a834361168ee0c8940b21405f47a2f51e">CANDY::FlatAMMIPIndex</a>, <a class="el" href="classCANDY_1_1DPGIndex.html#a17f789dbfd1be6ab6ae01b3395804f64">CANDY::DPGIndex</a>, <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#abb6b9e46862c924952050b51b7f6a250">CANDY::DistributedPartitionIndex</a>, and <a class="el" href="classCANDY_1_1CongestionDropIndex.html#a521b668ea05085c1174acc1af35ed5e3">CANDY::CongestionDropIndex</a>.</p>
+
+</div>
+</div>
+<a id="aec0bc1f94db6b9f06fe3a468bd165e57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec0bc1f94db6b9f06fe3a468bd165e57">&#9670;&nbsp;</a></span>resetIndexStatistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CANDY::AbstractIndex::resetIndexStatistics </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>to reset the internal statistics of this index </p>
+<dl class="section return"><dt>Returns</dt><dd>whether the reset is executed </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a7e869763e1460bc8bfe57cc112f47fe8">CANDY::FlatSSDGPUIndex</a>.</p>
 
 </div>
 </div>

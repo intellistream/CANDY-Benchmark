@@ -3,6 +3,7 @@
 // Created by tony on 25/05/23.
 //
 #include <include/spdk_config.h>
+#include <Utils/UtilityFunctions.h>
 #if CANDY_SPDK == 1
 #include <CANDY/FlatSSDGPUIndex.h>
 #include <Utils/UtilityFunctions.h>
@@ -29,9 +30,11 @@ bool CANDY::FlatSSDGPUIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     cudaDevice = cfg->tryI64("cudaDevice", -1, true);
     INTELLI_INFO("Cuda is detected. and use this cuda device for DCO:" + std::to_string(cudaDevice));
   }
-  if(DCOBatchSize>SSDBufferSize) {
-    INTELLI_WARNING("DCO batch size should not exceed SSD buffer size, go back to the same." );
+  if (DCOBatchSize > SSDBufferSize && SSDBufferSize > 0) {
+    INTELLI_WARNING("DCO batch size should not exceed SSD buffer size, go back to the same.");
     DCOBatchSize = SSDBufferSize;
+  } else if (SSDBufferSize <= 0) {
+    INTELLI_WARNING("SSD buffer will not be used");
   }
 
   std::string ammAlgo = cfg->tryString("ammAlgo", "mm", true);
@@ -65,7 +68,7 @@ void CANDY::FlatSSDGPUIndex::reset() {
 
 }
 bool CANDY::FlatSSDGPUIndex::insertTensor(torch::Tensor &t) {
-  if (t.size(0) > SSDBufferSize) {
+  if (t.size(0) > SSDBufferSize && SSDBufferSize > 0) {
     int64_t total_vectors = t.size(0);
     for (int64_t startPos = 0; startPos < total_vectors; startPos += SSDBufferSize) {
       int64_t endPos = std::min(startPos + SSDBufferSize, total_vectors);
@@ -129,7 +132,7 @@ std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor
     torch::Tensor dbBatch = dmBuffer.getTensor(startPos, endPos);
     //std::cout<<"DB data:\n"<<dbBatch<<std::endl;
     // Compute distances
-    torch::Tensor distances = distanceFunc(dbBatch, query, cudaDevice);
+    torch::Tensor distances = distanceFunc(dbBatch, query, cudaDevice, this);
     // torch::matmul(dbBatch, transposed_query);
     //std::cout<<"distance :\n"<<distances.t()<<std::endl;
 
@@ -142,8 +145,10 @@ std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor
     torch::Tensor topk_indices = std::get<1>(topk_result) + startPos;
     //
     if (cudaDevice > -1 && torch::cuda::is_available()) {
+      auto tStart = std::chrono::high_resolution_clock::now();
       topk_distances = topk_distances.to(torch::kCPU);
       topk_indices = topk_indices.to(torch::kCPU);
+      gpuCommunicationUs += chronoElapsedTime(tStart);
     }
     // Create a vector of (distance, index) pairs
     std::vector<std::vector<std::pair<float, int64_t>>> batchResults(queryRows);
@@ -185,6 +190,49 @@ bool CANDY::FlatSSDGPUIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
   }
   return true;
 }
+bool CANDY::FlatSSDGPUIndex::resetIndexStatistics() {
+  ssd.clearStatistics();
+  dmBuffer.clearStatistics();
+  gpuComputingUs = 0;
+  gpuCommunicationUs = 0;
+  return true;
+}
+INTELLI::ConfigMapPtr CANDY::FlatSSDGPUIndex::getIndexStatistics() {
+  auto cfg = AbstractIndex::getIndexStatistics();
+  cfg->edit("hasExtraStatistics", (int64_t) 1);
+  /**
+   * @brief disk raw I/O
+   */
+  cfg->edit("totalDiskRead", (int64_t) ssd.getTotalDiskRead());
+  cfg->edit("totalUserRead", (int64_t) ssd.getTotalUserRead());
+  cfg->edit("totalDiskWrite", (int64_t) ssd.getTotalDiskWrite());
+  cfg->edit("totalUserWrite", (int64_t) ssd.getTotalUserWrite());
+  /**
+   * @brief count of memory access
+   */
+  cfg->edit("totalMemReadCnt", (int64_t) dmBuffer.getMemoryReadCntTotal());
+  cfg->edit("missMemReadCnt", (int64_t) dmBuffer.getMemoryReadCntMiss());
+  double memMissHitRead = dmBuffer.getMemoryReadCntMiss();
+  memMissHitRead = memMissHitRead / dmBuffer.getMemoryReadCntTotal();
+  cfg->edit("memMissRead", (double) memMissHitRead);
+  cfg->edit("totalMemWriteCnt", (int64_t) dmBuffer.getMemoryWriteCntTotal());
+  cfg->edit("missMemWriteCnt", (int64_t) dmBuffer.getMemoryWriteCntMiss());
+  double memMissHitWrite = dmBuffer.getMemoryWriteCntMiss();
+  memMissHitWrite = memMissHitWrite / dmBuffer.getMemoryWriteCntTotal();
+  cfg->edit("memMissWrite", (double) memMissHitWrite);
+  /**
+   * @brief gpu statistics
+   */
+  if (cudaDevice > -1 && torch::cuda::is_available()) {
+    cfg->edit("gpuCommunicationUs", (int64_t) gpuCommunicationUs);
+    cfg->edit("gpuComputingUs", (int64_t) gpuComputingUs);
+  }
+  else {
+    cfg->edit("cpuComputingUs", (int64_t) gpuComputingUs);
+  }
+  return cfg;
+}
+
 std::vector<torch::Tensor> CANDY::FlatSSDGPUIndex::searchTensor(torch::Tensor &q, int64_t k) {
   auto idx = findTopKClosest(q, k, DCOBatchSize);
   //std::cout<<"sorting idx"<<std::endl;
@@ -204,31 +252,47 @@ std::vector<torch::Tensor> CANDY::FlatSSDGPUIndex::getTensorByStdIdx(std::vector
   }
   return ru;
 }
-torch::Tensor CANDY::FlatSSDGPUIndex::distanceIP(torch::Tensor db, torch::Tensor query, int64_t cudaDev) {
-  torch::Tensor transposed_query = query.t();
+torch::Tensor CANDY::FlatSSDGPUIndex::distanceIP(torch::Tensor db,
+                                                 torch::Tensor query,
+                                                 int64_t cudaDev,
+                                                 FlatSSDGPUIndex *idx) {
+  torch::Tensor q0 = query;
   torch::Tensor dbTensor = db;
+  int64_t compTime = 0, commTime = 0;
+  auto tStart = std::chrono::high_resolution_clock::now();
   if (cudaDev > -1 && torch::cuda::is_available()) {
     // Move tensors to GPU 1
     auto device = torch::Device(torch::kCUDA, cudaDev);
-    transposed_query = transposed_query.to(device);
+    q0 = q0.to(device);
     dbTensor = dbTensor.to(device);
+    commTime = chronoElapsedTime(tStart);
+    idx->gpuCommunicationUs += commTime;
   }
-  torch::Tensor distances = torch::matmul(dbTensor, transposed_query);
+  torch::Tensor distances = torch::matmul(dbTensor, q0.t());
   auto ru = distances.t();
+  compTime = chronoElapsedTime(tStart) - commTime;
+  idx->gpuComputingUs += compTime;
   /*if(cudaDev>-1&&torch::cuda::is_available()){
    ru = ru.to(torch::kCPU);
   }*/
   return ru;
 }
 
-torch::Tensor CANDY::FlatSSDGPUIndex::distanceL2(torch::Tensor db0, torch::Tensor _q, int64_t cudaDev) {
+torch::Tensor CANDY::FlatSSDGPUIndex::distanceL2(torch::Tensor db0,
+                                                 torch::Tensor _q,
+                                                 int64_t cudaDev,
+                                                 FlatSSDGPUIndex *idx) {
   torch::Tensor dbTensor = db0;
   torch::Tensor query = _q;
+  int64_t compTime = 0, commTime = 0;
+  auto tStart = std::chrono::high_resolution_clock::now();
   if (cudaDev > -1 && torch::cuda::is_available()) {
     // Move tensors to GPU 1
     auto device = torch::Device(torch::kCUDA, cudaDev);
     dbTensor = dbTensor.to(device);
     query = query.to(device);
+    commTime = chronoElapsedTime(tStart);
+    idx->gpuCommunicationUs += commTime;
   }
   auto n = dbTensor.size(0);
   auto q = query.size(0);
@@ -245,10 +309,13 @@ torch::Tensor CANDY::FlatSSDGPUIndex::distanceL2(torch::Tensor db0, torch::Tenso
     auto dist = dist_squared.sqrt(); // [n]
     result[i] = dist;
   }
+  result = -result;
+  compTime = chronoElapsedTime(tStart) - commTime;
+  idx->gpuComputingUs += compTime;
   /*if(cudaDev>-1&&torch::cuda::is_available()){
     // Move tensors to GPU 1
     result = result.to(torch::kCPU);
   }*/
-  return -result;
+  return result;
 }
 #endif

@@ -155,3 +155,11 @@ bool CANDY::AbstractIndex::loadInitialTensorAndQueryDistribution(torch::Tensor &
   assert(query.size(0) > 0);
   return loadInitialTensor(t);
 }
+bool CANDY::AbstractIndex::resetIndexStatistics() {
+  return false;
+}
+INTELLI::ConfigMapPtr CANDY::AbstractIndex::getIndexStatistics() {
+  auto ru = newConfigMap();
+  ru->edit("hasExtraStatistics", (int64_t) 0);
+  return ru;
+}

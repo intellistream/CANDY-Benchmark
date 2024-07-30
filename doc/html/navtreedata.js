@@ -66,15 +66,15 @@ var NAVTREEINDEX =
 [
 "AbstractC20Thread_8hpp.html",
 "cl_8h_source.html",
-"classCANDY_1_1CongestionDropIndex.html#a9bf9364cb4c51172aa9f2bb03d9b0a25",
-"classCANDY_1_1FaissIndex.html#acc9a517d02a50f3e2a1367f6fe9ccc81",
-"classCANDY_1_1IVFTensorEncodingList.html#a8aeece5911f647100587e491d7ad6b76",
-"classCANDY_1_1ProductQuantizer.html#a0000b52b8104403bd39b8d27ddd58143",
-"classINTELLI_1_1C20Buffer.html",
-"group__CANDY__lib__bottom.html#ga32d60e9e159c56684b3e289bdbe0ceff",
-"group__INTELLI__UTIL.html#ga3073b6b7d400cabfefe2b74b461df801",
-"structCANDY_1_1KmeansTree_1_1Node.html#a39ac5fb66b817c43fd800127439b7a0f",
-"unioncl__half2.html#a7a58d285ab2de55cfcf52c2d34190884"
+"classCANDY_1_1CongestionDropIndex.html#a88b6618bd2ce48cd8914c022f9545b16",
+"classCANDY_1_1FaissIndex.html#aa5bd9a0cfef2c7d9f7f1afa655a77714",
+"classCANDY_1_1IVFTensorEncodingList.html#a5372c03c29072862fad9e7c278d8c74c",
+"classCANDY_1_1ParallelPartitionIndex.html#af32d13d2b41277c07fd451178fc24988",
+"classINTELLI_1_1AbstractC20Thread.html#a01a2c2b58a19777dc8814076efdb2552",
+"group__CANDY__lib__bottom.html#ga22fa407b8d97c8659942e1858fc46f9f",
+"group__CANDY__lib__container.html#gab368927e5b1a7b8699244bfe0de8d377",
+"structCANDY_1_1HNSW_1_1NodeDistCloser.html#a1f22974442cd0115ddf8b6c709c3e1de",
+"unioncl__char8.html#a242003b91e29c8b5ae3ffd975945ea6d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -62,6 +62,14 @@ virtual bool \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gae32fab6713f0cf575
 \begin{DoxyCompactList}\small\item\em set the index-\/specfic config related to one index \end{DoxyCompactList}\item 
 virtual std\+::vector$<$ torch\+::\+Tensor $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga292279e7b8692e572c4fe3aaad569bb3}{CANDY\+::\+Congestion\+Drop\+Index\+Worker\+::search\+Tensor}} (torch\+::\+Tensor \&q, int64\+\_\+t k)
 \begin{DoxyCompactList}\small\item\em search the k-\/\+NN of a query tensor, return the result tensors \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga35414314c7618e912b5f3c2bdb331487}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Memory\+Read\+Cnt\+Total}} (void)
+\begin{DoxyCompactList}\small\item\em get the total count of times in terms of memory read \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga73dabce5cd8d634860a41992bd7cf38d}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Memory\+Read\+Cnt\+Miss}} (void)
+\begin{DoxyCompactList}\small\item\em get the miss count of times in terms of memory read \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga7a81115c39c6f9c24674d2cd2ceebedf}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Memory\+Write\+Cnt\+Total}} (void)
+\begin{DoxyCompactList}\small\item\em get the total count of times in terms of memory write \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gaad05152d4f9ef5c274ed91c26944265a}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Memory\+Write\+Cnt\+Miss}} (void)
+\begin{DoxyCompactList}\small\item\em get the miss count of times in terms of memory write \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga433e53f9851e5c2a6d9104a1aee528bc}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::init}} (int64\+\_\+t vec\+Dim, int64\+\_\+t buffer\+Size, int64\+\_\+t \+\_\+tensor\+Begin, int64\+\_\+t \+\_\+u64\+Begin, SPDKSSD $\ast$\+\_\+ssd\+Ptr, int64\+\_\+t \+\_\+dma\+Size=1024000)
 \begin{DoxyCompactList}\small\item\em init everything \end{DoxyCompactList}\item 
 int64\+\_\+t \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga4975f1c4b585dc560b70fe20f9adb561}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::size}} ()
@@ -69,6 +77,9 @@ int64\+\_\+t \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga4975f1c4b585dc560
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gac3fa07ecea02a3b565729cd48a4d67f3}\label{group__CANDY__lib__bottom__sub_gac3fa07ecea02a3b565729cd48a4d67f3}} 
 void \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gac3fa07ecea02a3b565729cd48a4d67f3}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::clear}} ()
 \begin{DoxyCompactList}\small\item\em clear the occupied resource \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gad0b982eb7b03b639f5e70da1fdc5f5c0}\label{group__CANDY__lib__bottom__sub_gad0b982eb7b03b639f5e70da1fdc5f5c0}} 
+void \mbox{\hyperlink{group__CANDY__lib__bottom__sub_gad0b982eb7b03b639f5e70da1fdc5f5c0}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::clear\+Statistics}} ()
+\begin{DoxyCompactList}\small\item\em clear the statistics \end{DoxyCompactList}\item 
 torch\+::\+Tensor \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga5708694a4d8a2be07f1119b51570da7c}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Tensor}} (int64\+\_\+t start\+Pos, int64\+\_\+t end\+Pos)
 \begin{DoxyCompactList}\small\item\em to get the tensor at specified position \end{DoxyCompactList}\item 
 std\+::vector$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{group__CANDY__lib__bottom__sub_ga2f5c62c7892b1dcdb9c007e617e990ed}{CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+U64}} (int64\+\_\+t start\+Pos, int64\+\_\+t end\+Pos)
@@ -230,6 +241,18 @@ int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::bsize} = 0
 \item 
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga6ae9c10e1dcd8e2be423a7775e50620c}\label{group__CANDY__lib__bottom__sub_ga6ae9c10e1dcd8e2be423a7775e50620c}} 
 int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::dma\+Size} = 1024000
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gab52623321729ec85b299bfec1cb73642}\label{group__CANDY__lib__bottom__sub_gab52623321729ec85b299bfec1cb73642}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::memory\+Read\+Cnt\+Total} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaab8aa4948dec8c8ecba486757b8ab430}\label{group__CANDY__lib__bottom__sub_gaab8aa4948dec8c8ecba486757b8ab430}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::memory\+Read\+Cnt\+Miss} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gabab5f382a6920aa7d74b340a19085928}\label{group__CANDY__lib__bottom__sub_gabab5f382a6920aa7d74b340a19085928}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::memory\+Write\+Cnt\+Total} = 0
+\item 
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga56b42dbdef111c60096b5cdae28a011c}\label{group__CANDY__lib__bottom__sub_ga56b42dbdef111c60096b5cdae28a011c}} 
+int64\+\_\+t {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::memory\+Write\+Cnt\+Miss} = 0
 \item 
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga3fde5b930c2c5f2c773b821f53af5ee4}\label{group__CANDY__lib__bottom__sub_ga3fde5b930c2c5f2c773b821f53af5ee4}} 
 struct spdk\+\_\+nvme\+\_\+qpair $\ast$ {\bfseries CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::ssd\+Qpair} = NULL
@@ -520,6 +543,58 @@ some extra termination if the index has HPC fetures
 
 \begin{DoxyReturn}{Returns}
 bool whether the HPC termination is successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga73dabce5cd8d634860a41992bd7cf38d}\label{group__CANDY__lib__bottom__sub_ga73dabce5cd8d634860a41992bd7cf38d}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!getMemoryReadCntMiss@{getMemoryReadCntMiss}}
+\index{getMemoryReadCntMiss@{getMemoryReadCntMiss}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{getMemoryReadCntMiss()}{getMemoryReadCntMiss()}}
+{\footnotesize\ttfamily int64\+\_\+t CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Memory\+Read\+Cnt\+Miss (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get the miss count of times in terms of memory read 
+
+\begin{DoxyReturn}{Returns}
+the count of times 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga35414314c7618e912b5f3c2bdb331487}\label{group__CANDY__lib__bottom__sub_ga35414314c7618e912b5f3c2bdb331487}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!getMemoryReadCntTotal@{getMemoryReadCntTotal}}
+\index{getMemoryReadCntTotal@{getMemoryReadCntTotal}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{getMemoryReadCntTotal()}{getMemoryReadCntTotal()}}
+{\footnotesize\ttfamily int64\+\_\+t CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Memory\+Read\+Cnt\+Total (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get the total count of times in terms of memory read 
+
+\begin{DoxyReturn}{Returns}
+the count of times 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_gaad05152d4f9ef5c274ed91c26944265a}\label{group__CANDY__lib__bottom__sub_gaad05152d4f9ef5c274ed91c26944265a}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!getMemoryWriteCntMiss@{getMemoryWriteCntMiss}}
+\index{getMemoryWriteCntMiss@{getMemoryWriteCntMiss}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{getMemoryWriteCntMiss()}{getMemoryWriteCntMiss()}}
+{\footnotesize\ttfamily int64\+\_\+t CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Memory\+Write\+Cnt\+Miss (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get the miss count of times in terms of memory write 
+
+\begin{DoxyReturn}{Returns}
+the count of times 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga7a81115c39c6f9c24674d2cd2ceebedf}\label{group__CANDY__lib__bottom__sub_ga7a81115c39c6f9c24674d2cd2ceebedf}} 
+\index{The support classes for index approaches@{The support classes for index approaches}!getMemoryWriteCntTotal@{getMemoryWriteCntTotal}}
+\index{getMemoryWriteCntTotal@{getMemoryWriteCntTotal}!The support classes for index approaches@{The support classes for index approaches}}
+\doxysubsubsection{\texorpdfstring{getMemoryWriteCntTotal()}{getMemoryWriteCntTotal()}}
+{\footnotesize\ttfamily int64\+\_\+t CANDY\+::\+Plain\+Disk\+Mem\+Buffer\+TU\+::get\+Memory\+Write\+Cnt\+Total (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get the total count of times in terms of memory write 
+
+\begin{DoxyReturn}{Returns}
+the count of times 
 \end{DoxyReturn}
 \mbox{\Hypertarget{group__CANDY__lib__bottom__sub_ga5708694a4d8a2be07f1119b51570da7c}\label{group__CANDY__lib__bottom__sub_ga5708694a4d8a2be07f1119b51570da7c}} 
 \index{The support classes for index approaches@{The support classes for index approaches}!getTensor@{getTensor}}

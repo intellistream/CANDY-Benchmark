@@ -231,6 +231,16 @@ class AbstractIndex {
   * @return bool whether the loading is successful
   */
   virtual bool loadInitialTensorAndQueryDistribution(torch::Tensor &t, torch::Tensor &query);
+  /**
+   * @brief to reset the internal statistics of this index
+   * @return whether the reset is executed
+   */
+  virtual bool resetIndexStatistics(void);
+  /**
+   * @brief to get the internal statistics of this index
+   * @return the statistics results in ConfigMapPtr
+   */
+  virtual INTELLI::ConfigMapPtr getIndexStatistics(void);
 };
 
 /**

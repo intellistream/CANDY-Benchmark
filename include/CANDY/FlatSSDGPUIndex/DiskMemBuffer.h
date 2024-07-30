@@ -69,6 +69,8 @@ class PlainDiskMemBufferTU {
   int64_t tensorBegin = 0, u64Begin = 0;
   int64_t bsize = 0;
   int64_t dmaSize = 1024000;
+  int64_t memoryReadCntTotal = 0, memoryReadCntMiss = 0;
+  int64_t memoryWriteCntTotal = 0, memoryWriteCntMiss = 0;
   struct spdk_nvme_qpair *ssdQpair = NULL;
   std::atomic_bool isDirtyT = false;
   std::atomic_bool isDirtyU = false;
@@ -77,6 +79,26 @@ class PlainDiskMemBufferTU {
   PlainDiskMemBufferTU() {}
   ~PlainDiskMemBufferTU() {}
   SPDKSSD *ssdPtr = nullptr;
+  /**
+   * @brief get the total count of times in terms of memory read
+   * @return the count of times
+   */
+  int64_t getMemoryReadCntTotal(void);
+  /**
+  * @brief get the miss count of times in terms of memory read
+  * @return the count of times
+  */
+  int64_t getMemoryReadCntMiss(void);
+  /**
+  * @brief get the total count of times in terms of memory write
+  * @return the count of times
+  */
+  int64_t getMemoryWriteCntTotal(void);
+  /**
+  * @brief get the miss count of times in terms of memory write
+  * @return the count of times
+  */
+  int64_t getMemoryWriteCntMiss(void);
   /**
    * @brief init everything
    * @param vecDim The dimension of vectors
@@ -102,6 +124,10 @@ class PlainDiskMemBufferTU {
   * @brief clear the occupied resource
   */
   void clear();
+  /**
+  * @brief clear the statistics
+  */
+  void clearStatistics();
   /**
    * @brief to get the tensor at specified position
    * @param startPos the start position
@@ -156,6 +182,7 @@ class PlainDiskMemBufferTU {
    * @return whether it is successful
    */
   bool deleteU64(int64_t startPos, int64_t endPos);
+
 };
 }
 /**

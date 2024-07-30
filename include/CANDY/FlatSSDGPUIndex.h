@@ -15,7 +15,7 @@
 #include <CANDY/AbstractIndex.h>
 #include <CANDY/FlatSSDGPUIndex/DiskMemBuffer.h>
 namespace CANDY {
-
+class FlatSSDGPUIndex;
 /**
  * @ingroup  CANDY_lib_bottom The main body and interfaces of library function
  * @{
@@ -50,6 +50,7 @@ class FlatSSDGPUIndex : public AbstractIndex {
   int64_t SSDBufferSize = 1000;
   int64_t vecDim = 768;
   int64_t cudaDevice = -1;
+
   // Main function to process batches and find top_k closest vectors
   std::vector<int64_t> findTopKClosest(const torch::Tensor &query, int64_t top_k, int64_t batch_size);
   // torch::Tensor myMMInline(torch::Tensor &a, torch::Tensor &b, int64_t ss = 10);
@@ -66,25 +67,28 @@ class FlatSSDGPUIndex : public AbstractIndex {
    * @param db The data base tensor, sized [n*vecDim] to be scanned
    * @param query The query tensor, sized [q*vecDim] to be scanned
    * @param cudaDev The id of cuda device, -1 means no cuda
+   * @param idx the pointer to index
    * @return The distance tensor, must sized [q*n] and remain in cpu
    */
-  torch::Tensor (*distanceFunc)(torch::Tensor db, torch::Tensor query, int64_t cudaDev);
+  torch::Tensor (*distanceFunc)(torch::Tensor db, torch::Tensor query, int64_t cudaDev, FlatSSDGPUIndex *idx);
   /**
    * @brief the distance function of inner product
    * @param db The data base tensor, sized [n*vecDim] to be scanned
    * @param query The query tensor, sized [q*vecDim] to be scanned
    * @param cudaDev The id of cuda device, -1 means no cuda
+   * @param idx the pointer to index
    * @return The distance tensor, must sized [q*n], will in GPU if cuda is valid
    */
-  static torch::Tensor distanceIP(torch::Tensor db, torch::Tensor query, int64_t cudaDev);
+  static torch::Tensor distanceIP(torch::Tensor db, torch::Tensor query, int64_t cudaDev, FlatSSDGPUIndex *idx);
   /**
    * @brief the distance function of L2
    * @param db The data base tensor, sized [n*vecDim] to be scanned
    * @param query The query tensor, sized [q*vecDim] to be scanned
    * @param cudaDev The id of cuda device, -1 means no cuda
+   * @param idx the pointer to index
    * @return The distance tensor, must sized [q*n], will in GPU if cuda is valid
    */
-  static torch::Tensor distanceL2(torch::Tensor db, torch::Tensor query, int64_t cudaDev);
+  static torch::Tensor distanceL2(torch::Tensor db, torch::Tensor query, int64_t cudaDev, FlatSSDGPUIndex *idx);
   // std::vector<faiss::idx_t> knnInline(torch::Tensor &query, int64_t k, int64_t distanceBatch = -1);
  public:
   FlatSSDGPUIndex() {
@@ -94,6 +98,8 @@ class FlatSSDGPUIndex : public AbstractIndex {
   ~FlatSSDGPUIndex() {
 
   }
+  int64_t gpuComputingUs = 0;
+  int64_t gpuCommunicationUs = 0;
   /**
    * @brief some extra set-ups if the index has HPC fetures
    * @return bool whether the HPC set-up is successful
@@ -184,6 +190,17 @@ class FlatSSDGPUIndex : public AbstractIndex {
  * @return std::vector<std::vector<std::string>> the result object for each row of query
  */
   // virtual std::vector<std::vector<std::string>> searchStringObject(torch::Tensor &q, int64_t k);
+
+  /**
+   * @brief to reset the internal statistics of this index
+   * @return whether the reset is executed
+   */
+  virtual bool resetIndexStatistics(void);
+  /**
+   * @brief to get the internal statistics of this index
+   * @return the statistics results in ConfigMapPtr
+   */
+  virtual INTELLI::ConfigMapPtr getIndexStatistics(void);
 };
 
 /**

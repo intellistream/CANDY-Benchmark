@@ -1,5 +1,11 @@
 var NAVTREEINDEX4 =
 {
+"classCANDY_1_1IVFTensorEncodingList.html#a5372c03c29072862fad9e7c278d8c74c":[3,0,1,39,0],
+"classCANDY_1_1IVFTensorEncodingList.html#a577b25bfcdf218bbb0dc6e548abf120a":[3,0,1,39,1],
+"classCANDY_1_1IVFTensorEncodingList.html#a6b1d53beb7ca7d8f3852a97e2d88e73e":[3,0,1,39,10],
+"classCANDY_1_1IVFTensorEncodingList.html#a79005e2c50aed1cd435cef0bc6df2846":[3,0,1,39,5],
+"classCANDY_1_1IVFTensorEncodingList.html#a79d273c1294e109f0ed0ed7918f74776":[3,0,1,39,3],
+"classCANDY_1_1IVFTensorEncodingList.html#a854798601d76c50699896240dffa6a09":[3,0,1,39,7],
 "classCANDY_1_1IVFTensorEncodingList.html#a8aeece5911f647100587e491d7ad6b76":[3,0,1,39,9],
 "classCANDY_1_1IVFTensorEncodingList.html#a92dafadfcecf6d012460237030d24d9a":[3,0,1,39,2],
 "classCANDY_1_1IVFTensorEncodingList.html#ac57d759f8188f1edcabb5541a7feb228":[3,0,1,39,4],
@@ -243,11 +249,5 @@ var NAVTREEINDEX4 =
 "classCANDY_1_1ParallelPartitionIndex.html#ae2ce22bf1157fd1df2f5c4eb6d90eae5":[2,2,1,5,20],
 "classCANDY_1_1ParallelPartitionIndex.html#ae42a798e463a98f619ce8d2b64f85ac7":[2,2,1,5,29],
 "classCANDY_1_1ParallelPartitionIndex.html#aeab084deb363745ce62519ba0afd01d8":[2,2,1,5,22],
-"classCANDY_1_1ParallelPartitionIndex.html#af0cb5d35d361f77fccb804dbada191e9":[2,2,1,5,25],
-"classCANDY_1_1ParallelPartitionIndex.html#af32d13d2b41277c07fd451178fc24988":[2,2,1,5,24],
-"classCANDY_1_1ParallelPartitionIndex.html#af34efab99886c6d99696814fbf675bf9":[2,2,1,5,26],
-"classCANDY_1_1ParallelPartitionIndex.html#af6a384cdcf16500259ba1d20ab5a118a":[2,2,1,5,6],
-"classCANDY_1_1ParallelPartitionIndex.html#afbeb98090cd0b350f88f9c3dbca1b530":[2,2,1,5,3],
-"classCANDY_1_1PlainDiskMemBufferTU.html":[2,0,4],
-"classCANDY_1_1ProductQuantizer.html":[3,0,1,51]
+"classCANDY_1_1ParallelPartitionIndex.html#af0cb5d35d361f77fccb804dbada191e9":[2,2,1,5,25]
 };

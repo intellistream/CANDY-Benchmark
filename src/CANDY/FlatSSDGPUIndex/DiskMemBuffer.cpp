@@ -12,32 +12,67 @@ void PlainDiskMemBufferTU::init(int64_t vecDim,
                                 int64_t _dmaSize) {
   //diskInfo.
   diskInfo.vecDim = vecDim;
-  cacheT.buffer = torch::zeros({bufferSize, vecDim});
-  cacheT.beginPos = 0;
-  cacheT.endPos = bufferSize;
-  cacheU.buffer = std::vector<uint64_t>(bufferSize, 0);
-  cacheU.beginPos = 0;
-  cacheU.endPos = bufferSize;
   bsize = bufferSize;
   tensorBegin = _tensorBegin;
   u64Begin = _u64Begin;
+  dmaSize = _dmaSize;
+  if (bufferSize > 0) {
+    cacheT.buffer = torch::zeros({bufferSize, vecDim});
+    cacheT.beginPos = 0;
+    cacheT.endPos = bufferSize;
+    cacheU.buffer = std::vector<uint64_t>(bufferSize, 0);
+    cacheU.beginPos = 0;
+    cacheU.endPos = bufferSize;
+    //std::cout<<cacheT.buffer;
+    isDirtyT = false;
+    isDirtyU = false;
+  }
   ssdPtr = _ssdPtr;
   ssdQpair = ssdPtr->allocQpair();
-  //std::cout<<cacheT.buffer;
-  isDirtyT = false;
-  isDirtyU = false;
-  dmaSize = _dmaSize;
+
 }
+int64_t PlainDiskMemBufferTU::getMemoryWriteCntTotal() {
+  return memoryWriteCntTotal;
+}
+int64_t PlainDiskMemBufferTU::getMemoryWriteCntMiss() {
+  return memoryWriteCntMiss;
+}
+int64_t PlainDiskMemBufferTU::getMemoryReadCntTotal() {
+  return memoryReadCntTotal;
+}
+int64_t PlainDiskMemBufferTU::getMemoryReadCntMiss() {
+  return memoryReadCntMiss;
+}
+void PlainDiskMemBufferTU::clearStatistics() {
+  memoryWriteCntTotal = 0;
+  memoryWriteCntMiss = 0;
+  memoryReadCntTotal = 0;
+  memoryReadCntMiss = 0;
+}
+
 int64_t PlainDiskMemBufferTU::size() {
   return diskInfo.vecCnt;
 }
 torch::Tensor PlainDiskMemBufferTU::getTensor(int64_t startPos, int64_t endPos) {
-  /**
-   * @brief totally inside memory
-   */
-  auto inMemTensor = cacheT.buffer.contiguous();
+
+
   //int64_t remainSizeRu;
   int64_t diskOffset;
+  /**
+   * @brief no buffer, direct disk read
+   */
+  if (bsize <= 0) {
+    diskOffset = startPos * diskInfo.vecDim * sizeof(float) + 512 + tensorBegin;
+    int64_t readSize = endPos - startPos;
+    auto ru = torch::zeros({readSize, (int64_t) diskInfo.vecDim}).contiguous();
+    ssdPtr->read(ru.data_ptr(), readSize * diskInfo.vecDim * sizeof(float), diskOffset, ssdQpair);
+    return ru;
+  }
+  auto inMemTensor = cacheT.buffer.contiguous();
+  memoryReadCntTotal++;
+  /**
+  * @brief totally inside memory
+  */
   if (startPos >= cacheT.beginPos && endPos <= cacheT.endPos) {
     torch::Tensor ru = inMemTensor.slice(0, startPos - cacheT.beginPos, endPos - cacheT.beginPos);
     return ru;
@@ -58,6 +93,7 @@ torch::Tensor PlainDiskMemBufferTU::getTensor(int64_t startPos, int64_t endPos) 
       return  ru;
     }*/
   else {
+    memoryReadCntMiss++;
     /**
     * @brief flush the old
     */
@@ -127,9 +163,21 @@ std::vector<uint64_t> PlainDiskMemBufferTU::getU64(int64_t startPos, int64_t end
 }
 bool PlainDiskMemBufferTU::reviseTensor(int64_t startPos, torch::Tensor &t) {
   int64_t endPos = startPos + t.size(0);
-  int64_t remainSizeRu;
+  //int64_t remainSizeRu;
   int64_t diskOffset;
+  /**
+   * @brief no buffer, direct disk write
+   */
+  if (bsize <= 0) {
+    diskOffset = startPos * diskInfo.vecDim * sizeof(float) + 512 + tensorBegin;
+    int64_t writeSize = t.size(0);
+    auto writeTensor = t.contiguous();
+    ssdPtr->write(writeTensor.data_ptr(), writeSize * diskInfo.vecDim * sizeof(float), diskOffset, ssdQpair);
+    return true;
+  }
   isDirtyT = true;
+  memoryWriteCntTotal++;
+
   /**
  * @brief totally inside memory
  */
@@ -158,6 +206,7 @@ bool PlainDiskMemBufferTU::reviseTensor(int64_t startPos, torch::Tensor &t) {
        return true;
      }*/
   else {
+    memoryWriteCntMiss++;
     diskOffset = cacheT.beginPos * diskInfo.vecDim * sizeof(float) + 512 + tensorBegin;
     /**
      * @brief flush the old

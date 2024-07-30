@@ -38,6 +38,19 @@ size_t SPDKSSD::getNameSpaceSize() {
 size_t SPDKSSD::getSectorSize() {
   return sector_size;
 }
+int64_t SPDKSSD::getTotalDiskWrite() {
+  return totalDiskWrite;
+}
+int64_t SPDKSSD::getTotalUserWrite() {
+  return totalUserWrite;
+}
+
+int64_t SPDKSSD::getTotalDiskRead() {
+  return totalDiskRead;
+}
+int64_t SPDKSSD::getTotalUserRead() {
+  return totalUserRead;
+}
 
 size_t SPDKSSD::getHugePageSize() {
   // size_t max_alloc_size = 0;
@@ -56,13 +69,12 @@ size_t SPDKSSD::getHugePageSize() {
 
   return hugepages_size_kb * 1000;
 }
-size_t SPDKSSD::getFreeHugePages()  {
+size_t SPDKSSD::getFreeHugePages() {
 
   std::ifstream infile("/proc/meminfo");
   std::string line;
   std::regex hugepages_regex("HugePages_Free:\\s+(\\d+)");
   size_t hugepages_free = 0;
-
 
   while (std::getline(infile, line)) {
     std::smatch match;
@@ -72,7 +84,12 @@ size_t SPDKSSD::getFreeHugePages()  {
   }
   return hugepages_free;
 }
-
+void SPDKSSD::clearStatistics() {
+  totalDiskWrite = 0;
+  totalDiskRead = 0;
+  totalUserRead = 0;
+  totalUserWrite = 0;
+}
 void SPDKSSD::setupEnv() {
   if (isSet) {
     return;
@@ -103,8 +120,8 @@ void SPDKSSD::setupEnv() {
   }
   sector_size = spdk_nvme_ns_get_sector_size(ns);
   ns_size = spdk_nvme_ns_get_size(ns);
-  setDmaSize(getHugePageSize()/4);
- // std::cout<<"Free huge pages"<<getFreeHugePages()<<std::endl;
+  setDmaSize(getHugePageSize() / 4);
+  // std::cout<<"Free huge pages"<<getFreeHugePages()<<std::endl;
   //INTELLI_INFO("Sector size="+std::to_string(sector_size)+"name space size="+std::to_string(ns_size));
   // exit(-1);
 }
@@ -133,6 +150,7 @@ void SPDKSSD::write(void *buffer, size_t size, uint64_t offset, struct spdk_nvme
     bufferPos += writeSize;
     remainSize -= writeSize;
   }*/
+  totalUserWrite += size;
   writeInline(buffer, size, offset, qpair);
 }
 void SPDKSSD::read(void *buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair *qpair) {
@@ -147,6 +165,7 @@ void SPDKSSD::read(void *buffer, size_t size, uint64_t offset, struct spdk_nvme_
     bufferPos += readSize;
     remainSize -= readSize;
   }*/
+  totalUserRead += size;
   readInline(buffer, size, offset, qpair);
 }
 void SPDKSSD::writeInline(const void *buffer, size_t size, uint64_t offset, struct spdk_nvme_qpair *qpair) {
@@ -167,7 +186,7 @@ void SPDKSSD::writeInline(const void *buffer, size_t size, uint64_t offset, stru
   size_t chunk_size = std::min(remaining_size, max_chunk_size);
   uint64_t sector_offset = current_offset / sector_size;
   size_t sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
-  void *temp_buffer = spdk_zmalloc(sector_aligned_size+sector_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
+  void *temp_buffer = spdk_zmalloc(sector_aligned_size + sector_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
   while (remaining_size > 0) {
     chunk_size = std::min(remaining_size, max_chunk_size);
     sector_offset = current_offset / sector_size;
@@ -179,15 +198,15 @@ void SPDKSSD::writeInline(const void *buffer, size_t size, uint64_t offset, stru
 
     // Read existing data if not aligned
     if (current_offset % sector_size != 0 || chunk_size % sector_size != 0) {
-      read(temp_buffer, sector_aligned_size+sector_size, (sector_offset) * sector_size, qpair);
+      read(temp_buffer, sector_aligned_size + sector_size, (sector_offset) * sector_size, qpair);
     }
     size_t insideCopyOffset = current_offset % sector_size;
     // Copy user data into the temp buffer
 
     std::memcpy(static_cast<uint8_t *>(temp_buffer) + (insideCopyOffset), current_buffer, chunk_size);
     size_t lbaCnt = sector_aligned_size / sector_size;
-    if(insideCopyOffset) {
-      lbaCnt+=1;
+    if (insideCopyOffset) {
+      lbaCnt += 1;
     }
     int rc = spdk_nvme_ns_cmd_write(ns,
                                     qpair,
@@ -207,7 +226,7 @@ void SPDKSSD::writeInline(const void *buffer, size_t size, uint64_t offset, stru
                                   nullptr,
                                   0);
     }
-
+    totalDiskWrite += sector_aligned_size;
     while (!spdk_nvme_qpair_process_completions(qpair, 0));
 
     remaining_size -= chunk_size;
@@ -248,7 +267,7 @@ void SPDKSSD::readInline(void *buffer, size_t size, uint64_t offset, struct spdk
   size_t chunk_size = std::min(remaining_size, max_chunk_size);
   uint64_t sector_offset = current_offset / sector_size;
   size_t sector_aligned_size = ((chunk_size + sector_size - 1) / sector_size) * sector_size;
-  void *temp_buffer = spdk_zmalloc(sector_aligned_size+sector_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
+  void *temp_buffer = spdk_zmalloc(sector_aligned_size + sector_size, 0, NULL, SPDK_ENV_SOCKET_ID_ANY, SPDK_MALLOC_DMA);
   while (remaining_size > 0) {
     chunk_size = std::min(remaining_size, max_chunk_size);
     sector_offset = current_offset / sector_size;
@@ -258,8 +277,8 @@ void SPDKSSD::readInline(void *buffer, size_t size, uint64_t offset, struct spdk
     }
     size_t insideCopyOffset = current_offset % sector_size;
     size_t lbaCnt = sector_aligned_size / sector_size;
-    if(insideCopyOffset) {
-      lbaCnt+=1;
+    if (insideCopyOffset) {
+      lbaCnt += 1;
     }
     int rc = spdk_nvme_ns_cmd_read(ns,
                                    qpair,
@@ -279,12 +298,11 @@ void SPDKSSD::readInline(void *buffer, size_t size, uint64_t offset, struct spdk
                                  nullptr,
                                  0);
     }
-
+    totalDiskRead += sector_aligned_size;
     while (!spdk_nvme_qpair_process_completions(qpair, 0));
 
-
-    uint8_t *copyDest = (uint8_t *)temp_buffer;
-    std::memcpy(current_buffer, &copyDest [insideCopyOffset], chunk_size );
+    uint8_t *copyDest = (uint8_t *) temp_buffer;
+    std::memcpy(current_buffer, &copyDest[insideCopyOffset], chunk_size);
 
     remaining_size -= chunk_size;
     current_buffer += chunk_size;
