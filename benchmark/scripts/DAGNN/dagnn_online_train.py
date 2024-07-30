@@ -32,8 +32,8 @@ device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cp
 
 replay_buffer = ReplayBuffer(buffer_size)
 state_dim =26
-action_dim = 41
-agent = DQN(state_dim, action_dim, hidden_dim, lr, gamma, epsilon, target_update, device)
+action_dim = 45
+agent = DQN(state_dim, hidden_dim, action_dim, lr, gamma, epsilon, target_update, device)
 return_list = []
 
 # 0.2 Intialize AKNN
@@ -137,13 +137,15 @@ gdIndex.insertTensor(dataTensorStream)
 gdResults = gdIndex.searchTensor(queryTensor, ANNK)
 
 
-throughput = aRows * 1e6 / tDone
+throughput = aRows * 1e6 / (tDone*1e6)
 throughputByElements = throughput * dataTensorStream.size(1)
 insertion_latency95 = get_latency_percentage(0.95, timestamps)
 recall = calculate_recall(gdResults, indexResults)
 print("RECALL = "+str(recall))
 print("INSERTION LATENCY 95%= "+str(insertion_latency95))
 print("QUERY LATENCY = "+str(queryLatency))
+print("THROUGHPUT = "+str(throughput))
+print("THROUGHPUT BY ELEMENTS = "+str(throughputByElements))
 print("ACTIONS = " +str(Actions))
 
 

@@ -172,7 +172,7 @@ PYBIND11_MODULE(PyCANDY, m) {
     .def_readonly("neighbor_distance_sum_new", &DynamicTuneHNSW::BatchDataStates::neighbor_distance_sum_new)
     .def_readonly("neighbor_distance_variance_new", &DynamicTuneHNSW::BatchDataStates::neighbor_distance_variance_new)
     .def_readonly("neighbor_distance_sum_old", &DynamicTuneHNSW::BatchDataStates::neighbor_distance_sum_old)
-    .def_readonly("neighobr_distance_variance_old", &DynamicTuneHNSW::BatchDataStates::neighbor_distance_variance_old)
+    .def_readonly("neighbor_distance_variance_old", &DynamicTuneHNSW::BatchDataStates::neighbor_distance_variance_old)
     .def_readonly("steps_taken_sum", &DynamicTuneHNSW::BatchDataStates::steps_taken_sum)
     .def_readonly("steps_taken_max", &DynamicTuneHNSW::BatchDataStates::steps_taken_max)
     .def_readonly("steps_expansion_sum", &DynamicTuneHNSW::BatchDataStates::steps_expansion_sum)

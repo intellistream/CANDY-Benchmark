@@ -15,9 +15,13 @@
 
 namespace CANDY{
 enum dynamic_action_num{
-    bad_link_cut,
-    outwards_link,
-    DEG_refine,
+    do_nothing,
+    bad_link_cut_old,
+    bad_link_cut_new,
+    outwards_link_old,
+    outwards_link_new,
+    DEG_refine_old,
+    DEG_refine_new,
     backtrack_candidate,
     intercluster_link,
     lift_cluster_center,
@@ -254,18 +258,18 @@ struct DynamicTuneHNSW{
          */
         int64_t clusterExpansionStep = 2;
 
-        int64_t clusterInnerConnectionThreshold = 1;
+        double clusterInnerConnectionThreshold = 0.5;
         int64_t optimisticN = 16;
         size_t discardN = 0;
         size_t discardClusterN =32;
         double discardClusterProp=0.3;
 
         double degree_std_range = 1.5;
-        double degree_allow_range = 0.25;
+        double degree_allow_range = 0.5;
         double degree_lift_range = 1.75;
 
         bool sparsePreference = true;
-        double neighborDistanceThreshold = 0.0;
+        double neighborDistanceThreshold = 0.5;
         std::vector<float> routeDrifts;
 
         size_t expiration_timestamp = 450;
@@ -601,6 +605,7 @@ struct DynamicTuneHNSW{
     void backtrackCandidate(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt);
     void linkClusters(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, DAGNN::VisitedTable& vt);
     void navigationBacktrackWindow(WindowStates& window_states);
+    void linkClusterWindow(WindowStates& window_states);
 
     /// use for debug
     void direct_link(idx_t x, idx_t y, size_t level) {

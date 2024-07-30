@@ -268,7 +268,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
         if(steps_taken - dynamicParams.steps_above_avg > graphStates.global_stat.steps_taken_avg
             || steps_taken - dynamicParams.steps_above_max > graphStates.global_stat.steps_taken_max) {
             auto far_node = linkLists[nearest];
-            //graphStates.window_states.oldVertices.insert(nearest, far_node);
+            graphStates.window_states.oldVertices.insert(nearest, far_node);
         }
         graphStates.time_local_stat.steps_taken_max = steps_taken;
 
@@ -309,7 +309,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_top(DAGNN::DistanceQueryer& disq, siz
                 if(timestamp - last_visited[visiting]>dynamicParams.expiration_timestamp){
                     if(linkLists[visiting]->level==1){
                         //printf("timestamp: %ld, last_visited: %ld\n", timestamp, last_visited[visiting]);
-                        //graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
+                        graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
                     }
                 }
             }
@@ -351,7 +351,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
             if(level == 1){
                 if(timestamp - last_visited[visiting]>dynamicParams.expiration_timestamp){
                     if(linkLists[visiting]->level==1){
-                        //graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
+                        graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
                     }
                 }
             }
@@ -461,12 +461,12 @@ void CANDY::DynamicTuneHNSW::link_from_base(DAGNN::DistanceQueryer& disq, idx_t 
         candidates.pop();
 
     }
-    // double new_degree_avg = graphStates.time_local_stat.degree_sum_new/(graphStates.time_local_stat.ntotal*1.0);
-    // double new_std_dev = std::sqrt(graphStates.time_local_stat.degree_variance_new);
+    double new_degree_avg = graphStates.time_local_stat.degree_sum_new/(graphStates.time_local_stat.ntotal*1.0);
+    double new_std_dev = std::sqrt(graphStates.time_local_stat.degree_variance_new);
     // /// TODO: Pre pruning to avoid further pruning
-    // if(current_degree<new_degree_avg-new_std_dev-1 || current_degree > new_degree_avg+new_std_dev+1) {
-    //     graphStates.window_states.newVertices.insert(idx, linkLists[idx]);
-    // }
+     if(current_degree<new_degree_avg-new_std_dev-1 || current_degree > new_degree_avg+new_std_dev+1) {
+         graphStates.window_states.newVertices.insert(idx, linkLists[idx]);
+     }
     for(auto nei: neighbors) {
         add_link_base(disq, nei, idx, previous_degree, current_degree);
     }
@@ -618,7 +618,7 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
             //printf("v1=%f v2=%f v1_v2=%f\n", v1.dist,v2.dist,dist_v1_v2);
             delete[] v2_vector;
             // from DiskANN Vanama
-            if(dist_v1_v2 < (dist_v1_q /* dynamicParams.rng_alpha*/)){
+            if(dist_v1_v2 < (dist_v1_q /dynamicParams.rng_alpha)){
                 rng_good = false;
                 break;
             }
@@ -683,7 +683,7 @@ void CANDY::DynamicTuneHNSW::prune_base(DAGNN::DistanceQueryer& disq, std::prior
             //printf("v1=%f v2=%f v1_v2=%f\n", v1.dist,v2.dist,dist_v1_v2);
             delete[] v2_vector;
             // from DiskANN Vanama
-            if(dist_v1_v2 < (dist_v1_q /* dynamicParams.rng_alpha*/)){
+            if(dist_v1_v2 < (dist_v1_q / dynamicParams.rng_alpha)){
                 rng_good = false;
                 break;
             }
@@ -2068,90 +2068,226 @@ void CANDY::DynamicTuneHNSW::navigationBacktrackWindow(WindowStates& window_stat
     }
 }
 
+void CANDY::DynamicTuneHNSW::linkClusterWindow(CANDY::DynamicTuneHNSW::WindowStates &window_states) {
+    DAGNN::DistanceQueryer disq(vecDim);
+    auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
+    auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
+    auto it1 = window_states.oldVertices.data_map.begin();
+    auto it2 = window_states.newVertices.data_map.begin();
+    while(it1!=window_states.oldVertices.data_map.end() && it2!=window_states.newVertices.data_map.end()){
+        auto node1 = it1->second;
+        auto node2 = it2->second;
+        if(node1->bottom_connections<degree_avg-dynamicParams.degree_allow_range*std_dev-1 || node2->bottom_connections<degree_avg-dynamicParams.degree_allow_range*std_dev-1) {
+            DAGNN::VisitedTable vt(graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal);
+            linkClusters(disq, it1->first, it2->first, vt);
+        }
+    }
+
+
+}
+
 
 bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
+    printf("Performing action %ld\n", action_num);
     switch(action_num){
-        case bad_link_cut:
+        case do_nothing:
             break;
-        case outwards_link:
+        case bad_link_cut_old:
+            cutEdgesWindow(graphStates.window_states, 0);
             break;
-        case DEG_refine:
+        case bad_link_cut_new:
+            cutEdgesWindow(graphStates.window_states, 1);
+            break;
+        case outwards_link_old:
+            linkEdgesWindow(graphStates.window_states, 0);
+            break;
+        case outwards_link_new:
+            linkEdgesWindow(graphStates.window_states,1);
+            break;
+        case DEG_refine_old:
+            swapEdgesWindow(graphStates.window_states, 0);
+            break;
+        case DEG_refine_new:
+            swapEdgesWindow(graphStates.window_states,1);
             break;
         case backtrack_candidate:
+            navigationBacktrackWindow(graphStates.window_states);
             break;
         case intercluster_link:
+            linkClusterWindow(graphStates.window_states);
+
             break;
         case lift_cluster_center:
+            hierarchyOptimizationLiftWIndow(graphStates.window_states);
             break;
         case lower_navigation_point:
+            hierarchyOptimizationDegradeWIndow(graphStates.window_states);
             break;
         case increase_rng_alpha:
+            if(dynamicParams.rng_alpha<0.95) {
+                dynamicParams.rng_alpha += 0.05;
+            }
             break;
         case decrease_rng_alpha:
+            if(dynamicParams.rng_alpha>0.55){
+                dynamicParams.rng_alpha-=0.05;
+            }
             break;
         case increase_cluster_expansion:
+            if(dynamicParams.clusterExpansionStep<4){
+                dynamicParams.clusterExpansionStep+=1;
+            }
             break;
         case decrease_cluster_expansion:
+            if(dynamicParams.clusterExpansionStep>1){
+                dynamicParams.clusterExpansionStep-=1;
+            }
             break;
         case increase_cluster_innerconnection_threshold:
+            if(dynamicParams.clusterInnerConnectionThreshold <0.75){
+                dynamicParams.clusterExpansionStep+=0.05;
+            }
             break;
         case decrease_cluster_innerconnection_threshold:
+            if(dynamicParams.clusterInnerConnectionThreshold>0.15){
+                dynamicParams.clusterExpansionStep-=0.05;
+            }
             break;
         case increase_optimisticN:
+            if(dynamicParams.optimisticN <96){
+                dynamicParams.optimisticN+=8;
+            }
             break;
         case decrease_optimisticN:
+            if(dynamicParams.optimisticN>0){
+                dynamicParams.optimisticN-=8;
+            }
             break;
         case increase_discardClusterProp:
+            if(dynamicParams.discardClusterProp<0.75){
+                dynamicParams.discardClusterProp+=0.05;
+            }
             break;
         case decrease_discardClusterProp:
+            if(dynamicParams.discardClusterProp>0.1){
+                dynamicParams.discardClusterProp-=0.05;
+            }
             break;
         case increase_discardClusterN:
+            if(dynamicParams.discardClusterN < 256){
+                dynamicParams.discardClusterProp+=16;
+            }
             break;
         case decrease_discardClusterN:
+            if(dynamicParams.discardClusterN>16){
+                dynamicParams.discardClusterProp-=16;
+            }
             break;
         case increase_expansionConstruction:
+            if(dynamicParams.efConstruction < 240){
+                dynamicParams.efConstruction+=10;
+            }
             break;
         case decrease_expansionConstruction:
+            if(dynamicParams.efConstruction>20){
+                dynamicParams.efConstruction-=10;
+            }
             break;
         case increase_degree_std_range:
+            if(dynamicParams.degree_std_range<2.25){
+                dynamicParams.degree_std_range+=0.125;
+            }
             break;
         case decrease_degree_std_range:
+            if(dynamicParams.degree_std_range>0.5){
+                dynamicParams.degree_std_range-=0.125;
+            }
             break;
         case increase_degree_allow_range:
+            if(dynamicParams.degree_allow_range<0.75){
+                dynamicParams.degree_allow_range+=0.125;
+            }
             break;
         case decrease_degree_allow_range:
+            if(dynamicParams.degree_allow_range>0.125){
+                dynamicParams.degree_allow_range-=0.125;
+            }
             break;
         case increase_sparsePreference:
+            dynamicParams.sparsePreference=1;
             break;
         case decrease_sparsePreference:
+            dynamicParams.sparsePreference=0;
             break;
         case increase_neighborDistanceThreshold:
+            if(dynamicParams.neighborDistanceThreshold<0.75){
+                dynamicParams.neighborDistanceThreshold+=0.125;
+            }
             break;
         case decrease_neighborDistanceThreshold:
+            if(dynamicParams.neighborDistanceThreshold>0.125){
+                dynamicParams.neighborDistanceThreshold-=0.125;
+            }
             break;
         case increasae_max_backtrack_steps:
+            if(dynamicParams.max_backtrack_steps<40){
+                dynamicParams.max_backtrack_steps+=2;
+            }
             break;
         case decrease_max_backtrack_steps:
+            if(dynamicParams.max_backtrack_steps>8){
+                dynamicParams.max_backtrack_steps-=2;
+            }
             break;
         case increase_steps_above_avg:
+            if(dynamicParams.steps_above_avg < 150){
+                dynamicParams.steps_above_avg+=10;
+            }
             break;
         case decrease_steps_above_avg:
+            if(dynamicParams.steps_above_avg>20){
+                dynamicParams.steps_above_avg-=10;
+            }
             break;
         case increase_steps_above_max:
+            if(dynamicParams.steps_above_max < 100){
+                dynamicParams.steps_above_max+=5;
+            }
             break;
         case decrease_steps_above_max:
+            if(dynamicParams.steps_above_max>5){
+                dynamicParams.steps_above_max-=5;
+            }
             break;
         case increase_nb_navigation_paths:
+            if(dynamicParams.nb_navigation_paths < 96){
+                dynamicParams.nb_navigation_paths+=8;
+            }
             break;
         case decrease_nb_navigation_paths:
+            if(dynamicParams.nb_navigation_paths>8){
+                dynamicParams.nb_navigation_paths-=8;
+            }
             break;
         case increase_expiration_timestamp:
+            if(dynamicParams.expiration_timestamp<2500){
+                dynamicParams.expiration_timestamp+=50;
+            }
             break;
         case decrease_expiration_timestamp:
+            if(dynamicParams.expiration_timestamp>300){
+                dynamicParams.expiration_timestamp-=50;
+            }
             break;
         case increase_degree_lift_range:
+            if(dynamicParams.degree_lift_range < 2.5){
+                dynamicParams.degree_lift_range+=0.125;
+            }
             break;
         case decrease_degree_lift_range:
+            if(dynamicParams.degree_lift_range>1.0){
+                dynamicParams.degree_lift_range-=0.125;
+            }
             break;
         default:
             return false;
