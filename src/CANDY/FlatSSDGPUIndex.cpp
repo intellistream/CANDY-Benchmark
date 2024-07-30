@@ -135,7 +135,7 @@ std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor
     torch::Tensor distances = distanceFunc(dbBatch, query, cudaDevice, this);
     // torch::matmul(dbBatch, transposed_query);
     //std::cout<<"distance :\n"<<distances.t()<<std::endl;
-
+    auto tStartTopK = std::chrono::high_resolution_clock::now();
     // Use torch::topk to get the top_k smallest distances and their indices
     auto topk_result = torch::topk(distances, top_k, /*dim=*/1, /*largest=*/true, /*sorted=*/true);
 
@@ -143,6 +143,7 @@ std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor
     // Extract top_k distances and indices
     torch::Tensor topk_distances = std::get<0>(topk_result);
     torch::Tensor topk_indices = std::get<1>(topk_result) + startPos;
+    gpuComputingUs +=  chronoElapsedTime(tStartTopK);
     //
     if (cudaDevice > -1 && torch::cuda::is_available()) {
       auto tStart = std::chrono::high_resolution_clock::now();
