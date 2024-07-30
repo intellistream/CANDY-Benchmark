@@ -152,7 +152,6 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     graphStates.window_states.reset();
     //bd_stats.print();
     bd_stats.reset();
-    graphStates.forward();
     if(verbose){
         printf("\n\n");
     }
@@ -167,7 +166,9 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     idx_t n0 = storage->ntotal;
     storage->add(n,x);
     DAGNN::DistanceQueryer disq(vecDim);
-
+    if(n0>0){
+        graphStates.forward();
+    }
 
     for(idx_t i=0; i<n; i++) {
         for(int64_t d=0; d<vecDim; d++) {

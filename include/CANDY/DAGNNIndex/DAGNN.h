@@ -260,7 +260,7 @@ struct DynamicTuneHNSW{
         size_t discardClusterN =32;
         double discardClusterProp=0.3;
 
-        double degree_std_range = 2;
+        double degree_std_range = 1.5;
         double degree_allow_range = 0.25;
         double degree_lift_range = 1.75;
 
@@ -366,6 +366,16 @@ struct DynamicTuneHNSW{
             oldVertices.clear();
             hierarchyVertices.clear();
         }
+        size_t get_count(int i){
+            if(i==0){
+                return oldVertices.data_map.size();
+            } else if(i==1){
+                return newVertices.data_map.size();
+            } else if(i==2){
+                return hierarchyVertices.data_map.size();
+            }
+            return -1;
+        }
         WindowStates()=default;
     };
 
@@ -391,6 +401,7 @@ struct DynamicTuneHNSW{
             time_local_stat.degree_variance_old = global_stat.degree_variance;
             time_local_stat.neighbor_distance_sum_old = global_stat.neighbor_distance_sum;
             time_local_stat.neighbor_distance_variance_old = global_stat.neighbor_distance_variance;
+
 
             time_local_stat.steps_expansion_sum = 0;
             time_local_stat.steps_taken_sum = 0;

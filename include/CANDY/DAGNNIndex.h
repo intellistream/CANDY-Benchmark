@@ -55,6 +55,14 @@ namespace CANDY {
          * @return a vector of tensors, each tensor represent KNN results of one query in idx
          */
         virtual std::vector<torch::Tensor> getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k);
+
+        DynamicTuneHNSW::GraphStates getState(){
+            return dagnn->graphStates;
+        }
+
+        bool performAction(const size_t action_num){
+            return dagnn->performAction(action_num);
+        }
     };
 #define newDAGNNIndex std::make_shared<CANDY::DAGNNIndex>
 }
