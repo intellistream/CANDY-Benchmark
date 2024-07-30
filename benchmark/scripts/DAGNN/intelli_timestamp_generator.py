@@ -60,8 +60,25 @@ class IntelliTimeStampGenerator:
     def getTimeStamps(self) -> List[IntelliTimeStamp]:
         # Implementation for getting the vector of time stamps
         return self.myTs
-    
-tsg = IntelliTimeStampGenerator(50)
-print(tsg.arrivalS)
-print(tsg.eventS)
-print(tsg.myTs)
+def get_latency_percentage(fraction: float, myTs: List[IntelliTimeStamp]) -> float:
+    rLen = len(myTs)
+    nonZeroCnt = 0
+    validLatency = []
+
+    for ts in myTs:
+        if ts.processedTime >= ts.arrivalTime and ts.processedTime != 0:
+            validLatency.append(ts.processedTime - ts.arrivalTime)
+            nonZeroCnt += 1
+
+    if nonZeroCnt == 0:
+        print("Error: No valid latency, maybe there is no AMM result?")
+        return 0.0
+
+    validLatency.sort()
+    t = nonZeroCnt * fraction
+    idx = int(t) + 1
+
+    if idx >= len(validLatency):
+        idx = len(validLatency) - 1
+
+    return validLatency[idx]

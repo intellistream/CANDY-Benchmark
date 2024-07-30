@@ -4,7 +4,7 @@ import torch
 import collections
 import random
 import torch.nn.functional as F
-
+np.bool = np.bool_
 class ReplayBuffer:
     def __init__(self, capacity):
         self.buffer = collections.deque(maxlen=capacity) 
