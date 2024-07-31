@@ -74,6 +74,20 @@ class PlainDiskMemBufferTU {
   struct spdk_nvme_qpair *ssdQpair = NULL;
   std::atomic_bool isDirtyT = false;
   std::atomic_bool isDirtyU = false;
+  /**
+   * @brief inline helper to get the tensor at specified position
+   * @param startPos the start position
+   * @param endPos the end position
+   * @return the tensor, [n*vecDim]
+   */
+  torch::Tensor getTensorInline(int64_t startPos, int64_t endPos);
+  /**
+   * @brief inline helper to revise the tensor at specified position
+   * @param startPos the start position
+   * @param t the tensor, [n*vecDim]
+   * @return whether it is successful
+   */
+  bool reviseTensorInline(int64_t startPos, torch::Tensor &t);
  public:
   struct spdk_nvme_qpair *diskQpair;
   PlainDiskMemBufferTU() {}

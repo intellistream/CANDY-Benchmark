@@ -100,9 +100,14 @@ bool CANDY::FlatAMMIPIndex::insertTensor(torch::Tensor &t) {
 }
 
 bool CANDY::FlatAMMIPIndex::deleteTensor(torch::Tensor &t, int64_t k) {
-  std::vector<faiss::idx_t> idxToDelete = searchIndex(t, k);
-  std::vector<int64_t> &int64Vector = reinterpret_cast<std::vector<int64_t> &>(idxToDelete);
-  return INTELLI::IntelliTensorOP::deleteRowsBufferMode(&dbTensor, int64Vector, &lastNNZ);
+  int64_t rows = t.size(0);
+  for (int64_t i = 0; i < rows; i++) {
+    auto rowI = t.slice(0, i, i + 1);
+    std::vector<faiss::idx_t> idxToDelete = searchIndex(rowI, k);
+    std::vector<int64_t> &int64Vector = reinterpret_cast<std::vector<int64_t> &>(idxToDelete);
+    INTELLI::IntelliTensorOP::deleteRowsBufferMode(&dbTensor, int64Vector, &lastNNZ);
+  }
+  return true;
 }
 
 bool CANDY::FlatAMMIPIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {

@@ -54,6 +54,31 @@ int64_t PlainDiskMemBufferTU::size() {
   return diskInfo.vecCnt;
 }
 torch::Tensor PlainDiskMemBufferTU::getTensor(int64_t startPos, int64_t endPos) {
+  if(bsize <= 0 || endPos-startPos<=bsize) {
+    return getTensorInline(startPos,endPos);
+  }
+  auto ru = torch::zeros({endPos-startPos,(int64_t)(diskInfo.vecDim)});
+  int64_t total_vectors = endPos-startPos;
+  for (int64_t i = 0; i < total_vectors; i += bsize) {
+    int64_t endI = std::min(i + bsize, total_vectors);
+    ru.slice(0,i,endI) = getTensor(startPos+i,startPos+endI);
+  }
+  return ru;
+}
+bool PlainDiskMemBufferTU::reviseTensor(int64_t startPos, torch::Tensor &t) {
+  if(bsize <= 0 || t.size(0)<=bsize) {
+    return reviseTensorInline(startPos,t);
+  }
+  int64_t total_vectors = t.size(0);
+  for (int64_t i = 0; i < total_vectors; i += bsize) {
+    int64_t endI = std::min(i + bsize, total_vectors);
+    auto iSlice = t.slice(0,i,endI);
+    reviseTensorInline(startPos+i,iSlice);
+   // ru.slice(0,i,endI) = getTensor(startPos+i,startPos+endI);
+  }
+  return true;
+}
+torch::Tensor PlainDiskMemBufferTU::getTensorInline(int64_t startPos, int64_t endPos) {
 
 
   //int64_t remainSizeRu;
@@ -161,7 +186,7 @@ std::vector<uint64_t> PlainDiskMemBufferTU::getU64(int64_t startPos, int64_t end
     return ru;
   }
 }
-bool PlainDiskMemBufferTU::reviseTensor(int64_t startPos, torch::Tensor &t) {
+bool PlainDiskMemBufferTU::reviseTensorInline(int64_t startPos, torch::Tensor &t) {
   int64_t endPos = startPos + t.size(0);
   //int64_t remainSizeRu;
   int64_t diskOffset;

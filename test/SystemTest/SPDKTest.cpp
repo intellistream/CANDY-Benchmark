@@ -72,14 +72,15 @@ TEST_CASE("Test tensor RW", "[short]")
   std::cout << a << std::endl;
   INTELLI::ConfigMapPtr cfg = newConfigMap();
   cfg->edit("vecDim", (int64_t) 4);
-  cfg->edit("metricType", "IP");
+  cfg->edit("metricType", "L2");
   cfg->edit("SSDBufferSize", (int64_t) 2);
   auto ssdIdx = newFlatSSDGPUIndex();
-  auto flatIdx = newFlatAMMIPIndex();
+  auto flatIdx = newFlatIndex();
   ssdIdx->setConfig(cfg);
   ssdIdx->startHPC();
   ssdIdx->insertTensor(a02);
   ssdIdx->insertTensor(a24);
+  ssdIdx->deleteTensor(a24);
   auto ru = ssdIdx->searchTensor(a34, 2);
   INTELLI_INFO("Here is search on row 3");
   std::cout << ru[0] << std::endl;
@@ -88,6 +89,7 @@ TEST_CASE("Test tensor RW", "[short]")
   flatIdx->setConfig(cfg);
   flatIdx->insertTensor(a02);
   flatIdx->insertTensor(a24);
+  flatIdx->deleteTensor(a24);
   ru = flatIdx->searchTensor(a34, 2);
   INTELLI_INFO("Here is search on row 3, using faiss");
   std::cout << ru[0] << std::endl;

@@ -31,8 +31,8 @@ bool CANDY::FlatSSDGPUIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     INTELLI_INFO("Cuda is detected. and use this cuda device for DCO:" + std::to_string(cudaDevice));
   }
   if (DCOBatchSize > SSDBufferSize && SSDBufferSize > 0) {
-    INTELLI_WARNING("DCO batch size should not exceed SSD buffer size, go back to the same.");
-    DCOBatchSize = SSDBufferSize;
+    INTELLI_WARNING("DCO batch size is not recommended to exceed SSD buffer size.");
+    //DCOBatchSize = SSDBufferSize;
   } else if (SSDBufferSize <= 0) {
     INTELLI_WARNING("SSD buffer will not be used");
   }
@@ -87,10 +87,9 @@ bool CANDY::FlatSSDGPUIndex::deleteTensor(torch::Tensor &t, int64_t k) {
   int64_t rows = t.size(0);
   for (int64_t i = 0; i < rows; i++) {
     auto rowI = t.slice(0, i, i + 1).contiguous();
-    auto idx = findTopKClosest(rowI, 1, DCOBatchSize);
-    if (0 <= idx[0]) {
-      dmBuffer.deleteTensor(idx[0], idx[0] + 1);
-      //INTELLI::IntelliTensorOP::editRows(&dbTensor, &rowW, (int64_t) idx);
+    auto idx = findTopKClosest(rowI, k, DCOBatchSize);
+    for (int64_t j = 0;j<k;j++) {
+      dmBuffer.deleteTensor(idx[j],idx[j]+1);
     }
   }
   return true;
