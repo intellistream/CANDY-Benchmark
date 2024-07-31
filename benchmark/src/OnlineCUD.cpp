@@ -10,7 +10,7 @@
 
 using namespace INTELLI;
 static inline CANDY::AbstractIndexPtr indexPtr = nullptr;
-static inline std::vector<INTELLI::IntelliTimeStampPtr> timeStamps;
+static inline std::vector<INTELLI::IntelliTimeStampPtr> timeStamps, tsDel;
 static inline timer_t timerid;
 
 bool fileExists(const std::string &filename) {
@@ -27,16 +27,19 @@ static inline void earlyTerminateTimerCallBack() {
   }*/
   auto briefOutCfg = newConfigMap();
   double latency95 = 0;
-  briefOutCfg->edit("throughput", (int64_t) 0);
+  briefOutCfg->edit("latencyOfConstruction", (int64_t) 0);
+  briefOutCfg->edit("throughputOfInsert", (int64_t) 0);
+  briefOutCfg->edit("throughputOfDel", (int64_t) 0);
   briefOutCfg->edit("recall", (int64_t) 0);
   briefOutCfg->edit("throughputByElements", (int64_t) 0);
+  briefOutCfg->edit("95%latency(Del)", (int64_t) 0);
   briefOutCfg->edit("95%latency(Insert)", latency95);
   briefOutCfg->edit("pendingWrite", latency95);
   briefOutCfg->edit("latencyOfQuery", (int64_t) 0);
   briefOutCfg->edit("normalExit", (int64_t) 0);
-  briefOutCfg->toFile("onlineInsert_result.csv");
+  briefOutCfg->toFile("onlineCUD_result.csv");
   std::cout << "brief results\n" << briefOutCfg->toString() << std::endl;
-  //UtilityFunctions::saveTimeStampToFile("onlineInsert_timestamps.csv", timeStamps);
+  //UtilityFunctions::saveTimeStampToFile("onlineCUD_timestamps.csv", timeStamps);
   exit(-1);
 }
 static inline void timerCallback(union sigval v) {
@@ -86,29 +89,33 @@ int main(int argc, char **argv) {
   }
   dataLoader->setConfig(inMap);
   int64_t initialRows = inMap->tryI64("initialRows", 0, true);
-  auto dataTensorAll = dataLoader->getData().nan_to_num(0);
+  int64_t deleteRows = inMap->tryI64("deleteRows", 0, true);
+  /*auto dataTensorAll = dataLoader->getData().nan_to_num(0);
   //auto dataTensorAll = dataLoader->getData();
   auto dataTensorInitial = dataTensorAll.slice(0, 0, initialRows);
-  auto dataTensorStream = dataTensorAll.slice(0, initialRows, dataTensorAll.size(0));
+  auto dataTensorStream = dataTensorAll.slice(0, initialRows, dataTensorAll.size(0));*/
   //auto queryTensor = dataLoader->getQuery();
   auto queryTensor = dataLoader->getQuery().nan_to_num(0);
+  int64_t streamSize = dataLoader->size() - initialRows;
   INTELLI_INFO(
-      "Initial tensor: Demension =" + std::to_string(dataTensorInitial.size(1)) + ",#data="
-          + std::to_string(dataTensorInitial.size(0)));
+      "Initial tensor: Dimension =" + std::to_string(dataLoader->getDimension()) + ",#data="
+          + std::to_string(dataLoader->size()));
   INTELLI_INFO(
-      "Streaming tensor: Demension =" + std::to_string(dataTensorStream.size(1)) + ",#data="
-          + std::to_string(dataTensorStream.size(0)) + ",#query="
+      "Streaming tensor: ,#data="
+          + std::to_string(streamSize) + ",#query="
           + std::to_string(queryTensor.size(0)));
 
   /**
   * @brief 3. create the timestamps
   */
-  INTELLI::IntelliTimeStampGenerator timeStampGen;
-  inMap->edit("streamingTupleCnt", (int64_t) dataTensorStream.size(0));
+  INTELLI::IntelliTimeStampGenerator timeStampGen, tsGen2;
+  inMap->edit("streamingTupleCnt", (int64_t) std::max(streamSize, deleteRows));
   timeStampGen.setConfig(inMap);
   timeStamps = timeStampGen.getTimeStamps();
+  tsGen2.setConfig(inMap);
+  tsDel = tsGen2.getTimeStamps();
   INTELLI_INFO("3.TimeStampSize =" + std::to_string(timeStamps.size()));
-  int64_t batchSize = inMap->tryI64("batchSize", dataTensorStream.size(0), true);
+  int64_t batchSize = inMap->tryI64("batchSize", streamSize, true);
   /**
    * @brief 4. creat index
    */
@@ -127,10 +134,10 @@ int main(int argc, char **argv) {
   uint64_t startRow = 0;
   uint64_t endRow = startRow + batchSize;
   uint64_t tNow = 0;
-  uint64_t tEXpectedArrival = timeStamps[endRow - 1]->arrivalTime;
+  uint64_t tEXpectedArrival = tsDel[endRow - 1]->arrivalTime;
   uint64_t tp = 0;
   uint64_t tDone = 0;
-  uint64_t aRows = dataTensorStream.size(0);
+  uint64_t aRows = deleteRows;
   if (cutOffTimeSeconds > 0) {
     setEarlyTerminateTimer(cutOffTimeSeconds);
     s_timeOutSeconds = cutOffTimeSeconds;
@@ -138,6 +145,7 @@ int main(int argc, char **argv) {
         "Allow up to" + std::to_string(cutOffTimeSeconds) + "seconds before termination");
   }
   INTELLI_INFO("3.0 Load initial tensor!");
+  auto start = std::chrono::high_resolution_clock::now();
   if (initialRows > 0) {
 
     /*auto qTemp=queryTensor.clone();
@@ -147,13 +155,69 @@ int main(int argc, char **argv) {
         INTELLI::IntelliTensorOP::appendRows(&qTemp, &queryTensor);
       }
     }*/
-    indexPtr->loadInitialTensor(dataTensorInitial);
+    auto initialTensor = dataLoader->getDataAt(0, initialRows);
+    indexPtr->loadInitialTensor(initialTensor);
   }
-  auto start = std::chrono::high_resolution_clock::now();
+  int64_t constructionTime = chronoElapsedTime(start);
+  start = std::chrono::high_resolution_clock::now();
   int64_t frozenLevel = inMap->tryI64("frozenLevel", 1, true);
   indexPtr->setFrozenLevel(frozenLevel);
-  INTELLI_INFO("3.1 STREAMING NOW!!!");
+  INTELLI_INFO("3.1  Delete NOW!!!");
   double prossedOld = 0;
+  while (startRow < aRows) {
+    tNow = chronoElapsedTime(start);
+    //index++;
+    while (tNow < tEXpectedArrival) {
+      tNow = chronoElapsedTime(start);
+      // INTELLI_INFO("Wait "+ to_string(tNow)+":"+ to_string(tEXpectedArrival));
+    }
+    double prossed = endRow;
+    prossed = prossed * 100.0 / aRows;
+
+    /**
+     * @brief now, the whole batch has arrived, compute
+     */
+    auto subA = dataLoader->getDataAt((int64_t) startRow, (int64_t) endRow);
+    //std::cout<<subA;
+    indexPtr->deleteTensor(subA);
+    tp = chronoElapsedTime(start);
+    /**
+     * @brief the new arrived A will be no longer probed, so we can assign the processed time now
+     */
+    for (size_t i = startRow; i < endRow; i++) {
+      tsDel[i]->processedTime = tp;
+    }
+    /**
+     * @brief update the indexes
+     */
+
+    startRow += batchSize;
+    endRow += batchSize;
+    if (endRow >= aRows) {
+      endRow = aRows;
+    }
+    if (prossed - prossedOld >= 10.0) {
+      INTELLI_INFO("Done" + to_string(prossed) + "%(" + to_string(startRow) + "/" + to_string(aRows) + ")");
+      prossedOld = prossed;
+    }
+    tEXpectedArrival = tsDel[endRow - 1]->arrivalTime;
+
+  }
+  tDone = chronoElapsedTime(start);
+  double throughputDel = aRows * 1e6 / tDone;
+
+  INTELLI_INFO("3.2 Insert NOW!!!");
+  startRow = 0;
+  endRow = startRow + batchSize;
+  tNow = 0;
+  tEXpectedArrival = timeStamps[endRow - 1]->arrivalTime;
+  tp = 0;
+  tDone = 0;
+  aRows = streamSize;
+  start = std::chrono::high_resolution_clock::now();
+
+  indexPtr->setFrozenLevel(frozenLevel);
+  prossedOld = 0;
   while (startRow < aRows) {
     tNow = chronoElapsedTime(start);
     //index++;
@@ -166,7 +230,7 @@ int main(int argc, char **argv) {
     /**
      * @brief now, the whole batch has arrived, compute
      */
-    auto subA = dataTensorStream.slice(0, startRow, endRow);
+    auto subA = dataLoader->getDataAt((int64_t) startRow + initialRows, (int64_t) endRow + initialRows);
     indexPtr->insertTensor(subA);
     tp = chronoElapsedTime(start);
     /**
@@ -209,7 +273,7 @@ int main(int argc, char **argv) {
   uint64_t queryLatency = tNow;
   indexPtr->endHPC();
   indexPtr->isHPCStarted = false;
-  std::string groundTruthPrefix = inMap->tryString("groundTruthPrefix", "onlineInsert_GroundTruth", true);
+  std::string groundTruthPrefix = inMap->tryString("groundTruthPrefix", "onlineCUD_GroundTruth", true);
 
   std::string probeName = groundTruthPrefix + "/" + std::to_string(indexResults.size() - 1) + ".rbt";
   double recall = 0.0;
@@ -226,12 +290,16 @@ int main(int argc, char **argv) {
     gdMap->loadFrom(*inMap);
     gdMap->edit("faissIndexTag", "flat");
     CANDY::IndexTable indexTable2;
-    auto gdIndex = indexTable2.getIndex("faiss");
+    auto gdIndex = indexTable2.getIndex("flat");
     gdIndex->setConfig(gdMap);
     if (initialRows > 0) {
-      gdIndex->loadInitialTensor(dataTensorInitial);
+      auto initialTensor = dataLoader->getDataAt(0, initialRows);
+      gdIndex->loadInitialTensor(initialTensor);
     }
-    gdIndex->insertTensor(dataTensorStream);
+    auto subADel = dataLoader->getDataAt((int64_t) 0, (int64_t) deleteRows);
+    gdIndex->deleteTensor(subADel);
+    auto subAInsert = dataLoader->getDataAt((int64_t) initialRows, (int64_t) (initialRows + streamSize));
+    gdIndex->insertTensor(subAInsert);
 
     auto gdResults = gdIndex->searchTensor(queryTensor, ANNK);
     INTELLI_INFO("Ground truth is done");
@@ -242,21 +310,24 @@ int main(int argc, char **argv) {
   }
 
   double throughput = aRows * 1e6 / tDone;
-  double throughputByElements = throughput * dataTensorStream.size(1);
+  // double throughputByElements = throughput * dataTensorStream.size(1);
   double latency95 = UtilityFunctions::getLatencyPercentage(0.95, timeStamps);
+  double latency95Del = UtilityFunctions::getLatencyPercentage(0.95, tsDel);
   auto briefOutCfg = newConfigMap();
-  briefOutCfg->edit("throughput", throughput);
+  briefOutCfg->edit("latencyOfConstruction", constructionTime);
+  briefOutCfg->edit("throughputOfInsert", throughput);
+  briefOutCfg->edit("throughputOfDel", throughputDel);
   briefOutCfg->edit("recall", recall);
-  briefOutCfg->edit("throughputByElements", throughputByElements);
   briefOutCfg->edit("95%latency(Insert)", latency95);
+  briefOutCfg->edit("95%latency(Del)", latency95Del);
   briefOutCfg->edit("pendingWrite", pendingWriteTime);
   briefOutCfg->edit("latencyOfQuery", queryLatency);
   briefOutCfg->edit("normalExit", (int64_t) 1);
-  briefOutCfg->toFile("onlineInsert_result.csv");
+  briefOutCfg->toFile("onlineCUD_result.csv");
   auto indexStatistics = indexPtr->getIndexStatistics();
   std::cout << "brief results\n" << briefOutCfg->toString() << std::endl;
   std::cout << "index statistics\n" << indexStatistics->toString() << std::endl;
-  indexStatistics->toFile("onlineInsert_indexStatistics.csv");
-  UtilityFunctions::saveTimeStampToFile("onlineInsert_timestamps.csv", timeStamps);
+  indexStatistics->toFile("onlineCUD_indexStatistics.csv");
+  UtilityFunctions::saveTimeStampToFile("onlineCUD_timestamps.csv", timeStamps);
   return 0;
 }

@@ -42,6 +42,12 @@
 * - gaussian, the beta distribution in  @ref ExpFamilyDataLoader
 * - poisson, the poisson distribution in  @ref ExpFamilyDataLoader
 * @section sec_benchmark Built-in benchmarks
+* @subsection subsec_onlineCUD The online create, update, delete benchmark
+* This is an upgraded version of onlineInsert @ref subsec_onlineInsert, which will firstly construct AKNN, then delete some tensor, and
+* finally conduct the insert, the usage is
+* ./onlineInsert <name of config file>
+* @note additional parameters compared with onlineInsert
+* - deleteRows, the number of rows you want to delete before insert, I64, default 0
 * @subsection subsec_onlineInsert The online insert benchmark
 * This benchmark program evaluates the inserting latency and recall of a specified index, the usage is
 * ./onlineInsert <name of config file>

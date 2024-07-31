@@ -154,6 +154,8 @@ PYBIND11_MODULE(PyCANDY, m) {
       .def(py::init<>())
       .def("setConfig", &CANDY::AbstractDataLoader::setConfig)
       .def("getData", &CANDY::AbstractDataLoader::getData)
+      .def("getDataAt", &CANDY::AbstractDataLoader::getDataAt)
+      .def("getQueryAt", &CANDY::AbstractDataLoader::getQueryAt)
       .def("getQuery", &CANDY::AbstractDataLoader::getQuery);
 #if CANDY_PAPI == 1
   py::class_<INTELLI::ThreadPerfPAPI, std::shared_ptr<INTELLI::ThreadPerfPAPI>>(m, "PAPIPerf")

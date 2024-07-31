@@ -85,11 +85,10 @@ bool CANDY::FlatSSDGPUIndex::insertTensor(torch::Tensor &t) {
 bool CANDY::FlatSSDGPUIndex::deleteTensor(torch::Tensor &t, int64_t k) {
 
   int64_t rows = t.size(0);
-  for (int64_t i = 0; i < rows; i++) {
-    auto rowI = t.slice(0, i, i + 1).contiguous();
-    auto idx = findTopKClosest(rowI, k, DCOBatchSize);
-    for (int64_t j = 0;j<k;j++) {
-      dmBuffer.deleteTensor(idx[j],idx[j]+1);
+  auto idx = findTopKClosest(t, k, DCOBatchSize);
+  for (int64_t i = 0; i < rows * k; i++) {
+    if (idx[i] >= 0) {
+      dmBuffer.deleteTensor(idx[i], idx[i] + 1);
     }
   }
   return true;
@@ -142,7 +141,7 @@ std::vector<int64_t> CANDY::FlatSSDGPUIndex::findTopKClosest(const torch::Tensor
     // Extract top_k distances and indices
     torch::Tensor topk_distances = std::get<0>(topk_result);
     torch::Tensor topk_indices = std::get<1>(topk_result) + startPos;
-    gpuComputingUs +=  chronoElapsedTime(tStartTopK);
+    gpuComputingUs += chronoElapsedTime(tStartTopK);
     //
     if (cudaDevice > -1 && torch::cuda::is_available()) {
       auto tStart = std::chrono::high_resolution_clock::now();
@@ -226,8 +225,7 @@ INTELLI::ConfigMapPtr CANDY::FlatSSDGPUIndex::getIndexStatistics() {
   if (cudaDevice > -1 && torch::cuda::is_available()) {
     cfg->edit("gpuCommunicationUs", (int64_t) gpuCommunicationUs);
     cfg->edit("gpuComputingUs", (int64_t) gpuComputingUs);
-  }
-  else {
+  } else {
     cfg->edit("cpuComputingUs", (int64_t) gpuComputingUs);
   }
   return cfg;
