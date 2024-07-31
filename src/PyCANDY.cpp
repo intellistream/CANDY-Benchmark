@@ -10,6 +10,7 @@
 #include <Utils/IntelliLog.h>
 #include <CANDY/AbstractIndex.h>
 #include <DataLoader/DataLoaderTable.h>
+#include <DataLoader/RBTDataLoader.h>
 #include <CANDY/IndexTable.h>
 #include <include/papi_config.h>
 #if CANDY_PAPI == 1
@@ -147,6 +148,10 @@ PYBIND11_MODULE(PyCANDY, m) {
   m.def("createIndex", &createIndex, "A function to create new index by name tag");
   m.def("createDataLoader", &creatDataLoader, "A function to create new data loader by name tag");
   m.def("add_tensors", &add_tensors, "A function that adds two tensors");
+  m.def("createRBT", &CANDY::RBTDataLoader::createRBT, "Create a RBT file from tensor");
+  m.def("appendTensorToRBT", &CANDY::RBTDataLoader::appendTensorToRBT, "Append tensor to an RBT file");
+  m.def("readRowsFromRBT", &CANDY::RBTDataLoader::readRowsFromRBT, "read certain rows form RBT file");
+  m.def("getSizesFromRBT", &CANDY::RBTDataLoader::getSizesFromRBT, "get the sizes of RBT file");
   /**
    * @brief perf
    */

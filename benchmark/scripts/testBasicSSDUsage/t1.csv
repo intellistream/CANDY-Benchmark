@@ -1,0 +1,15 @@
+key,value,type
+vecDim,768,I64
+vecVolume,100000,I64
+batchSize,1000,I64
+metricType,L2,String
+SSDBufferSize,100000,I64
+DCOBatchSize,50000,I64
+querySize,100,I64
+indexTag,flatSSDGPU,String
+cudaDevice,1,I64
+ANNK,10,I64
+staticDataSet,1,I64
+dataLoaderTag,random,String
+dataPath,datasets/hdf5/msong/msong.hdf5,String
+queryPath,datasets/DPR/DPR10KC4Q.fvecs,String

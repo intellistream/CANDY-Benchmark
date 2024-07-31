@@ -36,20 +36,20 @@ namespace CANDY {
 * @note parameters of config
 * - vecDim, the dimension of vectors, default 768, I64
 * - vecVolume, the volume of vectors, default 1000, I64
-* - driftPosition, the position of starting some 'concept drift', default 0 (no drift), I64
- * - driftOffset, the offset value of concept drift, default 0.5, Double
- * - queryNoiseFraction, the fraction of noise in query, default 0, allow 0~1, Double
 * - querySize, the size of query, default 10, I64
 * - seed, the random seed, default 7758258, I64
+* - dataPath, the path to the data file, datasets/rbt/example.rbt, String
+* - normalizeTensor, whether or not normalize the tensors in L2, 1 (yes), I64
+* - useSeparateQuery, whether or not load query separately, 1, I64
+* - queryPath, the path to query file,  datasets/rbt/example.rbt. String
 *  @note: default name tags
  * "rbt": @ref RBTDataLoader
  */
 class RBTDataLoader : public AbstractDataLoader {
  protected:
-  torch::Tensor A, B;
-  int64_t vecDim, vecVolume, querySize, seed;
-  double driftOffset, queryNoiseFraction;
-
+  int64_t vecDim, vecVolume, querySize, useSeparateQuery;
+  std::string dataPath,queryPath;
+  std::vector<int64_t> dataSizes;
  public:
   RBTDataLoader() = default;
 
@@ -75,25 +75,12 @@ class RBTDataLoader : public AbstractDataLoader {
    * @return the generated data tensor
    */
   virtual torch::Tensor getData();
-
-  /**
-   * @brief get the data tensor at specific offset
-   * @note implement and use this when the whole data tensor does not fit into main memory
-   * @return the generated data tensor
-   */
-  virtual torch::Tensor getDataAt(int64_t startPos, int64_t endPos);
   /**
   * @brief get the query tensor
   * @return the generated query tensor
   */
   virtual torch::Tensor getQuery();
 
-  /**
-   * @brief get the data tensor at specific offset
-   * @note implement and use this when the whole data tensor does not fit into main memory
-   * @return the generated data tensor
-   */
-  virtual torch::Tensor getQueryAt(int64_t startPos, int64_t endPos);
   /**
    * @brief get the dimension of data
    * @return the dimension
@@ -105,12 +92,33 @@ class RBTDataLoader : public AbstractDataLoader {
    */
   virtual int64_t size();
   /**
-   * @brief
-   * @param fname
-   * @param t
+   * @brief create a RBT file from tensor
+   * @param fname the file name
+   * @param t the tensor to initialize RBT
+   * @return whether it is successful
    */
-  static void createRBT(std::string fname,torch::Tensor &t);
-  static void appendTensorToRBT(std::string fname,torch::Tensor &t);
+  static int64_t createRBT(std::string fname,torch::Tensor &t);
+  /**
+   * @brief Append tensor to an RBT file
+   * @param fname the file name
+   * @param t the tensor to initialize RBT
+   * @return whether it is successful
+   */
+  static int64_t appendTensorToRBT(std::string fname,torch::Tensor &t);
+  /**
+   * @brief read certain rows form RBT file
+   * @param fname the file name
+   * @param startPos the start position of rows
+   * @param endPos the end position of rows
+   * @return the read tensor
+   */
+  static torch::Tensor readRowsFromRBT(std::string fname,int64_t startPos, int64_t endPos);
+  /**
+   * @brief get the sizes of RBT file
+   * @param fname the file name
+   * @return the vector of size, [0] for rows, [1] for cols
+   */
+  static std::vector<int64_t> getSizesFromRBT(std::string fname);
 };
 
 /**

@@ -32,6 +32,7 @@ namespace CANDY {
  * - congestionDrop @ref CongestionDropIndex
  * - bufferedCongestionDrop @ref BufferedCongestionDropIndex
  * - flatAMMIP @ref FlatAMMIPIndex
+ * - flatSSDGPU @ref FlatSSDGPUIndex
 */
 class IndexTable {
  protected:

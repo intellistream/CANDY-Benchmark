@@ -31,11 +31,13 @@ namespace CANDY {
  * - fvecs @ref FVECSDataLoader
  * - hdf5 @ref HDF5DataLoader
  * - zipf @ref ZipfDataLoader
+ * - rbt @ref RBTDataLoader
  * - expFamily @ref ExpFamilyDataLoader
  * - exp, the exponential distribution in  @ref ExpFamilyDataLoader
  * - beta, the beta distribution in  @ref ExpFamilyDataLoader
  * - gaussian, the beta distribution in  @ref ExpFamilyDataLoader
  * - poisson, the poisson distribution in  @ref ExpFamilyDataLoader
+
  */
 class DataLoaderTable {
  protected:
