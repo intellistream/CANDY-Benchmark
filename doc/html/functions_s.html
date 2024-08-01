@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">CANDY
-   &#160;<span id="projectnumber">0.1.0</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">An indexing library for online vector management</div>
   </td>
@@ -147,6 +147,7 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 , <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#aa7ca0920e5f68d5c9026f3fcd5d1208a">CANDY::FlatAMMIPIndex</a>
 , <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a26d241a9209e8b9e29890e885bbd1ce7">CANDY::FlatAMMIPObjIndex</a>
 , <a class="el" href="classCANDY_1_1FlatIndex.html#ac9ab4989ff2215d81fb1dc7c7d22ed6c">CANDY::FlatIndex</a>
+, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a679a81a8b59a5011e8aaf8f009a7ddd8">CANDY::FlatSSDGPUIndex</a>
 , <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a45ae9145af990d53065a2701f7bbcae5">CANDY::HNSWNaiveIndex</a>
 , <a class="el" href="classCANDY_1_1NNDescentIndex.html#af61aaf70a2757bc6b2fa17ca0fcdc57a">CANDY::NNDescentIndex</a>
 , <a class="el" href="classCANDY_1_1OnlineIVFLSHIndex.html#a0064fa7ee822fde2aa19abda7257a067">CANDY::OnlineIVFLSHIndex</a>
@@ -165,6 +166,9 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 </li>
 <li>searchTensorUnblock()
 : <a class="el" href="classCANDY_1_1DistributedIndexWorker.html#a44dc06d087842a373bd4bf49ad525fc6">CANDY::DistributedIndexWorker</a>
+</li>
+<li>searchU64Object()
+: <a class="el" href="classCANDY_1_1AbstractIndex.html#a411261089c34e182f3d65360c4fe453a">CANDY::AbstractIndex</a>
 </li>
 <li>selectDivision()
 : <a class="el" href="classCANDY_1_1KdTree.html#abb9edda0a4b364281d22cd58401f21f6">CANDY::KdTree</a>
@@ -195,6 +199,7 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 , <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#acecf691f5609a7277d6bd4ed07733a34">CANDY::FlatAMMIPIndex</a>
 , <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#a5e7b1a1647299048f5f813bac6b893b6">CANDY::FlatAMMIPObjIndex</a>
 , <a class="el" href="classCANDY_1_1FlatIndex.html#a67e201cac16e382a9735fc671a04ff26">CANDY::FlatIndex</a>
+, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#acc01b41086b8943419ef5960f9d7f2da">CANDY::FlatSSDGPUIndex</a>
 , <a class="el" href="classCANDY_1_1FVECSDataLoader.html#a448abc9bb7c7944a248c3540ce4f9b57">CANDY::FVECSDataLoader</a>
 , <a class="el" href="classCANDY_1_1HDF5DataLoader.html#a9ad7f9c7b19840e09fb89c0d124c844d">CANDY::HDF5DataLoader</a>
 , <a class="el" href="classCANDY_1_1HNSWNaiveIndex.html#a5c5570dab02dc91c4f3cd67a628e4d37">CANDY::HNSWNaiveIndex</a>
@@ -265,7 +270,9 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 , <a class="el" href="classCANDY_1_1FlatAMMIPIndex.html#af29e9f7a884b53088203e63e69b0d1a1">CANDY::FlatAMMIPIndex</a>
 , <a class="el" href="classCANDY_1_1FlatAMMIPObjIndex.html#ae1845a0af873fb2623aa21f931935a16">CANDY::FlatAMMIPObjIndex</a>
 , <a class="el" href="classCANDY_1_1FlatIndex.html#ae598008bed9612befba457d842bb098b">CANDY::FlatIndex</a>
+, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#ab550359046af17617cc4f9eb2ef57bc1">CANDY::FlatSSDGPUIndex</a>
 , <a class="el" href="structCANDY_1_1KmeansTree_1_1Node.html#a39ac5fb66b817c43fd800127439b7a0f">CANDY::KmeansTree::Node</a>
+, <a class="el" href="group__CANDY__lib__bottom__sub.html#ga4975f1c4b585dc560b70fe20f9adb561">CANDY::PlainDiskMemBufferTU</a>
 , <a class="el" href="classINTELLI_1_1C20Buffer.html#ab7526325e9cbbbd8b2aa529c85283566">INTELLI::C20Buffer&lt; dataType &gt;</a>
 </li>
 <li>sizeWithEncode()
@@ -289,6 +296,7 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 , <a class="el" href="classCANDY_1_1DistributedPartitionIndex.html#ac77f8c981ff6899cc3d3403fd61fc6fb">CANDY::DistributedPartitionIndex</a>
 , <a class="el" href="classCANDY_1_1DIW__RayWrapper.html#a36573f2239f525aed4ef4e0998f6f7ea">CANDY::DIW_RayWrapper</a>
 , <a class="el" href="classCANDY_1_1DPGIndex.html#add25332ff97a0969aafc0188d636fc7c">CANDY::DPGIndex</a>
+, <a class="el" href="classCANDY_1_1FlatSSDGPUIndex.html#a8da3a6a52731920d652d5f9c82284add">CANDY::FlatSSDGPUIndex</a>
 , <a class="el" href="classCANDY_1_1NNDescentIndex.html#a63d26516efb42384b49e4cb85450faad">CANDY::NNDescentIndex</a>
 , <a class="el" href="group__CANDY__lib__bottom__sub.html#ga4a3953683b78e957a69eb6df64d8d121">CANDY::ParallelIndexWorker</a>
 , <a class="el" href="classCANDY_1_1ParallelPartitionIndex.html#af32d13d2b41277c07fd451178fc24988">CANDY::ParallelPartitionIndex</a>

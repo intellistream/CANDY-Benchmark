@@ -1,1706 +1,1803 @@
 \begin{theindex}
 
   \item {\_cl\_device\_integer\_dot\_product\_acceleration\_properties\_khr}, 
-		\hyperpage{67}
-  \item {\_cl\_device\_pci\_bus\_info\_khr}, \hyperpage{68}
-  \item {\_cl\_icd\_dispatch}, \hyperpage{68}
-  \item {\_cl\_image\_format}, \hyperpage{72}
-  \item {\_cl\_mem\_android\_native\_buffer\_host\_ptr}, \hyperpage{72}
-  \item {\_cl\_mem\_ext\_host\_ptr}, \hyperpage{73}
-  \item {\_cl\_mem\_ion\_host\_ptr}, \hyperpage{74}
-  \item {\_cl\_motion\_estimation\_desc\_intel}, \hyperpage{75}
-  \item {\_cl\_name\_version\_khr}, \hyperpage{75}
-  \item {\_cl\_queue\_family\_properties\_intel}, \hyperpage{76}
+		\hyperpage{75}
+  \item {\_cl\_device\_pci\_bus\_info\_khr}, \hyperpage{76}
+  \item {\_cl\_icd\_dispatch}, \hyperpage{76}
+  \item {\_cl\_image\_format}, \hyperpage{80}
+  \item {\_cl\_mem\_android\_native\_buffer\_host\_ptr}, \hyperpage{80}
+  \item {\_cl\_mem\_ext\_host\_ptr}, \hyperpage{81}
+  \item {\_cl\_mem\_ion\_host\_ptr}, \hyperpage{82}
+  \item {\_cl\_motion\_estimation\_desc\_intel}, \hyperpage{83}
+  \item {\_cl\_name\_version\_khr}, \hyperpage{83}
+  \item {\_cl\_queue\_family\_properties\_intel}, \hyperpage{84}
 
   \indexspace
 
   \item {add}
-    \subitem {CANDY::PQIndex}, \hyperpage{365}
-    \subitem {CANDY::ProductQuantizer}, \hyperpage{372}
+    \subitem {CANDY::PQIndex}, \hyperpage{387}
+    \subitem {CANDY::ProductQuantizer}, \hyperpage{394}
   \item {add\_links\_starting\_from}
-    \subitem {CANDY::HNSW}, \hyperpage{248}
+    \subitem {CANDY::HNSW}, \hyperpage{268}
   \item {add\_without\_lock}
-    \subitem {CANDY::HNSW}, \hyperpage{248}
+    \subitem {CANDY::HNSW}, \hyperpage{268}
   \item {addIndex}
-    \subitem {CANDY::IndexTable}, \hyperpage{259}
+    \subitem {CANDY::IndexTable}, \hyperpage{279}
   \item {addPapiTag}
-    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{409, 410}
+    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{432, 433}
   \item {addPoints}
-    \subitem {CANDY::KdTree}, \hyperpage{291}
-    \subitem {CANDY::KmeansTree}, \hyperpage{298}
+    \subitem {CANDY::KdTree}, \hyperpage{311}
+    \subitem {CANDY::KmeansTree}, \hyperpage{318}
   \item {addPointToTree}
-    \subitem {CANDY::KdTree}, \hyperpage{292}
-    \subitem {CANDY::KmeansTree}, \hyperpage{298}
+    \subitem {CANDY::KdTree}, \hyperpage{312}
+    \subitem {CANDY::KmeansTree}, \hyperpage{318}
   \item {addSingleRow}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{382}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{404}
   \item {addSingleRowWithIdx}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{383}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{405}
   \item {append}
-    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{117, 118}
+    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{127, 128}
   \item {appendLogFile}
-    \subitem {Log utils}, \hyperpage{56}
+    \subitem {Log utils}, \hyperpage{64}
   \item {appendRows}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{262, 263}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{282, 283}
   \item {appendRowsBufferMode}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{263, 264}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{283, 284}
+  \item {appendTensor}
+    \subitem {The support classes for index approaches}, \hyperpage{28}
+  \item {appendU64}
+    \subitem {The support classes for index approaches}, \hyperpage{28}
   \item {attachTensor}
-    \subitem {CANDY::YinYangVertex}, \hyperpage{435}
+    \subitem {CANDY::YinYangVertex}, \hyperpage{460}
 
   \indexspace
 
   \item {BF\_NEXT\_POW\_2}
-    \subitem {BucketedFlatIndex.cpp}, \hyperpage{493}
+    \subitem {BucketedFlatIndex.cpp}, \hyperpage{519}
   \item {bind2Core}
-    \subitem {INTELLI::UtilityFunctions}, \hyperpage{413}
+    \subitem {INTELLI::UtilityFunctions}, \hyperpage{437}
   \item {blocks}
-    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{98}
-  \item {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{98}
-    \subitem {blocks}, \hyperpage{98}
-    \subitem {end}, \hyperpage{99}
-    \subitem {get\_num\_blocks}, \hyperpage{99}
-    \subitem {get\_total\_size}, \hyperpage{99}
-    \subitem {start}, \hyperpage{100}
-  \item {BS::multi\_future$<$ T $>$}, \hyperpage{312}
-    \subitem {get}, \hyperpage{313}
-    \subitem {multi\_future}, \hyperpage{313}
-    \subitem {operator[]}, \hyperpage{314}
-    \subitem {push\_back}, \hyperpage{314}
-    \subitem {size}, \hyperpage{314}
-  \item {BS::synced\_stream}, \hyperpage{389}
-    \subitem {endl}, \hyperpage{391}
-    \subitem {flush}, \hyperpage{392}
-    \subitem {print}, \hyperpage{390}
-    \subitem {println}, \hyperpage{391}
-    \subitem {synced\_stream}, \hyperpage{390}
-  \item {BS::thread\_pool}, \hyperpage{395}
-    \subitem {get\_tasks\_queued}, \hyperpage{397}
-    \subitem {get\_tasks\_running}, \hyperpage{397}
-    \subitem {get\_tasks\_total}, \hyperpage{397}
-    \subitem {get\_thread\_count}, \hyperpage{397}
-    \subitem {is\_paused}, \hyperpage{398}
-    \subitem {parallelize\_loop}, \hyperpage{398, 399}
-    \subitem {push\_loop}, \hyperpage{400}
-    \subitem {push\_task}, \hyperpage{401}
-    \subitem {reset}, \hyperpage{401}
-    \subitem {submit}, \hyperpage{402}
-    \subitem {thread\_pool}, \hyperpage{396}
-  \item {BS::timer}, \hyperpage{412}
-    \subitem {ms}, \hyperpage{412}
+    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{109}
+  \item {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{108}
+    \subitem {blocks}, \hyperpage{109}
+    \subitem {end}, \hyperpage{109}
+    \subitem {get\_num\_blocks}, \hyperpage{109}
+    \subitem {get\_total\_size}, \hyperpage{110}
+    \subitem {start}, \hyperpage{110}
+  \item {BS::multi\_future$<$ T $>$}, \hyperpage{332}
+    \subitem {get}, \hyperpage{333}
+    \subitem {multi\_future}, \hyperpage{333}
+    \subitem {operator[]}, \hyperpage{334}
+    \subitem {push\_back}, \hyperpage{334}
+    \subitem {size}, \hyperpage{334}
+  \item {BS::synced\_stream}, \hyperpage{411}
+    \subitem {endl}, \hyperpage{413}
+    \subitem {flush}, \hyperpage{414}
+    \subitem {print}, \hyperpage{412}
+    \subitem {println}, \hyperpage{413}
+    \subitem {synced\_stream}, \hyperpage{412}
+  \item {BS::thread\_pool}, \hyperpage{418}
+    \subitem {get\_tasks\_queued}, \hyperpage{419}
+    \subitem {get\_tasks\_running}, \hyperpage{420}
+    \subitem {get\_tasks\_total}, \hyperpage{420}
+    \subitem {get\_thread\_count}, \hyperpage{420}
+    \subitem {is\_paused}, \hyperpage{420}
+    \subitem {parallelize\_loop}, \hyperpage{420, 421}
+    \subitem {push\_loop}, \hyperpage{422, 423}
+    \subitem {push\_task}, \hyperpage{423}
+    \subitem {reset}, \hyperpage{424}
+    \subitem {submit}, \hyperpage{424}
+    \subitem {thread\_pool}, \hyperpage{419}
+  \item {BS::timer}, \hyperpage{435}
+    \subitem {ms}, \hyperpage{435}
   \item {BucketedFlatIndex.cpp}
-    \subitem {BF\_NEXT\_POW\_2}, \hyperpage{493}
+    \subitem {BF\_NEXT\_POW\_2}, \hyperpage{519}
   \item {bufferSize}
-    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{118}
+    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{128}
   \item {buildCentroids}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{383}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{405}
 
   \indexspace
 
   \item {C20Buffer}
-    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{117}
+    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{127}
   \item {calculateRecall}
-    \subitem {INTELLI::UtilityFunctions}, \hyperpage{414}
-  \item {CANDY::AbstractDataLoader}, \hyperpage{78}
-    \subitem {getData}, \hyperpage{79}
-    \subitem {getQuery}, \hyperpage{79}
-    \subitem {hijackConfig}, \hyperpage{80}
-    \subitem {setConfig}, \hyperpage{80}
-  \item {CANDY::AbstractIndex}, \hyperpage{81}
-    \subitem {deleteStringObject}, \hyperpage{84}
-    \subitem {deleteTensor}, \hyperpage{85}
-    \subitem {endHPC}, \hyperpage{85}
-    \subitem {getTensorByIndex}, \hyperpage{85}
-    \subitem {insertStringObject}, \hyperpage{86}
-    \subitem {insertTensor}, \hyperpage{86}
-    \subitem {loadInitialStringObject}, \hyperpage{87}
-    \subitem {loadInitialTensor}, \hyperpage{88}
-    \subitem {loadInitialTensorAndQueryDistribution}, \hyperpage{88}
-    \subitem {offlineBuild}, \hyperpage{89}
-    \subitem {rawData}, \hyperpage{89}
-    \subitem {reviseTensor}, \hyperpage{89}
-    \subitem {searchIndex}, \hyperpage{90}
-    \subitem {searchStringObject}, \hyperpage{90}
-    \subitem {searchTensor}, \hyperpage{91}
-    \subitem {searchTensorAndStringObject}, \hyperpage{91}
-    \subitem {setConfig}, \hyperpage{92}
-    \subitem {setConfigClass}, \hyperpage{92}
-    \subitem {setFrozenLevel}, \hyperpage{93}
-    \subitem {setTier}, \hyperpage{93}
-    \subitem {startHPC}, \hyperpage{93}
-    \subitem {waitPendingOperations}, \hyperpage{94}
-  \item {CANDY::AdSampling}, \hyperpage{97}
-  \item {CANDY::BucketedFlatIndex}, \hyperpage{101}
-    \subitem {deleteTensor}, \hyperpage{104}
-    \subitem {encodeMultiRows}, \hyperpage{104}
-    \subitem {insertTensor}, \hyperpage{104}
-    \subitem {loadInitialTensor}, \hyperpage{105}
-    \subitem {reviseTensor}, \hyperpage{105}
-    \subitem {searchSingleRow}, \hyperpage{106}
-    \subitem {searchTensor}, \hyperpage{106}
-    \subitem {setConfig}, \hyperpage{107}
-  \item {CANDY::BufferedCongestionDropIndex}, \hyperpage{107}
-    \subitem {deleteTensor}, \hyperpage{111}
-    \subitem {endHPC}, \hyperpage{111}
-    \subitem {generateBucketedFlatIndexConfig}, \hyperpage{112}
-    \subitem {insertTensor}, \hyperpage{112}
-    \subitem {insertTensorInline}, \hyperpage{112}
-    \subitem {loadInitialTensor}, \hyperpage{113}
-    \subitem {offlineBuild}, \hyperpage{113}
-    \subitem {reviseTensor}, \hyperpage{114}
-    \subitem {searchTensor}, \hyperpage{114}
-    \subitem {setConfig}, \hyperpage{115}
-    \subitem {setFrozenLevel}, \hyperpage{115}
-    \subitem {startHPC}, \hyperpage{115}
-  \item {CANDY::Candy\_Python}, \hyperpage{120}
-    \subitem {dataLoader\_create}, \hyperpage{122}
-    \subitem {dataLoader\_editCfgDouble}, \hyperpage{122}
-    \subitem {dataLoader\_editCfgFloat}, \hyperpage{123}
-    \subitem {dataLoader\_editCfgI64}, \hyperpage{123}
-    \subitem {dataLoader\_editCfgStr}, \hyperpage{123}
-    \subitem {dataLoader\_getData}, \hyperpage{124}
-    \subitem {dataLoader\_getQuery}, \hyperpage{124}
-    \subitem {dataLoader\_init}, \hyperpage{125}
-    \subitem {index\_create}, \hyperpage{125}
-    \subitem {index\_delete}, \hyperpage{125}
-    \subitem {index\_deleteString}, \hyperpage{126}
-    \subitem {index\_editCfgDouble}, \hyperpage{126}
-    \subitem {index\_editCfgI64}, \hyperpage{127}
-    \subitem {index\_editCfgStr}, \hyperpage{127}
-    \subitem {index\_endHPC}, \hyperpage{127}
-    \subitem {index\_init}, \hyperpage{128}
-    \subitem {index\_insert}, \hyperpage{128}
-    \subitem {index\_insertString}, \hyperpage{129}
-    \subitem {index\_loadCfgFromFile}, \hyperpage{129}
-    \subitem {index\_loadInitial}, \hyperpage{129}
-    \subitem {index\_loadInitialString}, \hyperpage{130}
-    \subitem {index\_offlineBuild}, \hyperpage{130}
-    \subitem {index\_rawData}, \hyperpage{131}
-    \subitem {index\_reset}, \hyperpage{131}
-    \subitem {index\_revise}, \hyperpage{131}
-    \subitem {index\_search}, \hyperpage{132}
-    \subitem {index\_searchString}, \hyperpage{132}
-    \subitem {index\_searchTensorAndStringList}, \hyperpage{133}
-    \subitem {index\_setFrozenLevel}, \hyperpage{133}
-    \subitem {index\_startHPC}, \hyperpage{133}
-    \subitem {index\_waitPending}, \hyperpage{134}
-    \subitem {tensorFromFile}, \hyperpage{134}
-    \subitem {tensorFromFVECS}, \hyperpage{134}
-    \subitem {tensorFromHDF5}, \hyperpage{135}
-    \subitem {tensorToFile}, \hyperpage{135}
-  \item {CANDY::CANDYObject}, \hyperpage{136}
-    \subitem {getStr}, \hyperpage{136}
-    \subitem {setStr}, \hyperpage{137}
-  \item {CANDY::Clustering}, \hyperpage{149}
-    \subitem {computeCentroids}, \hyperpage{151}
-    \subitem {imbalance\_factor}, \hyperpage{151}
-    \subitem {splitClusters}, \hyperpage{152}
-    \subitem {train}, \hyperpage{152}
-  \item {CANDY::ClusteringIterationStats}, \hyperpage{153}
-  \item {CANDY::ClusteringParameters}, \hyperpage{154}
-  \item {CANDY::CongestionDropIndex}, \hyperpage{157}
-    \subitem {deleteStringObject}, \hyperpage{160}
-    \subitem {deleteTensor}, \hyperpage{160}
-    \subitem {endHPC}, \hyperpage{161}
-    \subitem {getTensorByIndex}, \hyperpage{161}
-    \subitem {insertStringObject}, \hyperpage{162}
-    \subitem {insertTensor}, \hyperpage{162}
-    \subitem {loadInitialStringObject}, \hyperpage{163}
-    \subitem {loadInitialTensor}, \hyperpage{163}
-    \subitem {offlineBuild}, \hyperpage{164}
-    \subitem {rawData}, \hyperpage{164}
-    \subitem {reviseTensor}, \hyperpage{164}
-    \subitem {searchStringObject}, \hyperpage{165}
-    \subitem {searchTensor}, \hyperpage{165}
-    \subitem {searchTensorAndStringObject}, \hyperpage{166}
-    \subitem {setConfig}, \hyperpage{166}
-    \subitem {setFrozenLevel}, \hyperpage{167}
-    \subitem {startHPC}, \hyperpage{167}
-    \subitem {waitPendingOperations}, \hyperpage{167}
-  \item {CANDY::CongestionDropIndexWorker}, \hyperpage{168}
-  \item {CANDY::DataLoaderTable}, \hyperpage{170}
-    \subitem {DataLoaderTable}, \hyperpage{171}
-    \subitem {findDataLoader}, \hyperpage{171}
-    \subitem {registerNewDataLoader}, \hyperpage{172}
-  \item {CANDY::DistanceQueryer}, \hyperpage{173}
-    \subitem {operator()}, \hyperpage{174}
-  \item {CANDY::DistributedIndexWorker}, \hyperpage{175}
-    \subitem {deleteTensor}, \hyperpage{177}
-    \subitem {endHPC}, \hyperpage{177}
-    \subitem {getUnblockQueryResult}, \hyperpage{177}
-    \subitem {insertTensor}, \hyperpage{178}
-    \subitem {loadInitialTensor}, \hyperpage{178}
-    \subitem {loadInitialTensorUnblocked}, \hyperpage{178}
-    \subitem {offlineBuild}, \hyperpage{179}
-    \subitem {offlineBuildUnblocked}, \hyperpage{179}
-    \subitem {searchTensor}, \hyperpage{179}
-    \subitem {searchTensorUnblock}, \hyperpage{180}
-    \subitem {setConfig}, \hyperpage{180}
-    \subitem {setFrozenLevel}, \hyperpage{180}
-    \subitem {startHPC}, \hyperpage{181}
-    \subitem {waitPendingOperations}, \hyperpage{181}
-  \item {CANDY::DistributedPartitionIndex}, \hyperpage{182}
-    \subitem {deleteTensor}, \hyperpage{184}
-    \subitem {endHPC}, \hyperpage{184}
-    \subitem {getTensorByIndex}, \hyperpage{185}
-    \subitem {insertTensor}, \hyperpage{185}
-    \subitem {loadInitialTensor}, \hyperpage{185}
-    \subitem {offlineBuild}, \hyperpage{186}
-    \subitem {rawData}, \hyperpage{186}
-    \subitem {reviseTensor}, \hyperpage{186}
-    \subitem {searchTensor}, \hyperpage{187}
-    \subitem {setConfig}, \hyperpage{187}
-    \subitem {setFrozenLevel}, \hyperpage{188}
-    \subitem {startHPC}, \hyperpage{188}
-    \subitem {waitPendingOperations}, \hyperpage{188}
-  \item {CANDY::DIW\_RayWrapper}, \hyperpage{189}
-    \subitem {deleteTensor}, \hyperpage{190}
-    \subitem {endHPC}, \hyperpage{191}
-    \subitem {insertTensor}, \hyperpage{191}
-    \subitem {loadInitialTensor}, \hyperpage{191}
-    \subitem {offlineBuild}, \hyperpage{192}
-    \subitem {searchTensor}, \hyperpage{192}
-    \subitem {setConfig}, \hyperpage{192}
-    \subitem {setFrozenLevel}, \hyperpage{193}
-    \subitem {startHPC}, \hyperpage{193}
-    \subitem {waitPendingOperations}, \hyperpage{193}
-  \item {CANDY::DPGIndex}, \hyperpage{194}
-    \subitem {deleteTensor}, \hyperpage{197}
-    \subitem {endHPC}, \hyperpage{197}
-    \subitem {getTensorByIndex}, \hyperpage{197}
-    \subitem {insertTensor}, \hyperpage{198}
-    \subitem {loadInitialTensor}, \hyperpage{198}
-    \subitem {offlineBuild}, \hyperpage{199}
-    \subitem {rawData}, \hyperpage{199}
-    \subitem {reviseTensor}, \hyperpage{199}
-    \subitem {searchTensor}, \hyperpage{200}
-    \subitem {setConfig}, \hyperpage{200}
-    \subitem {setFrozenLevel}, \hyperpage{201}
-    \subitem {startHPC}, \hyperpage{201}
-  \item {CANDY::DPGIndex::Neighbor}, \hyperpage{315}
-  \item {CANDY::DPGIndex::NhoodLayer0}, \hyperpage{317}
-  \item {CANDY::DPGIndex::NhoodLayer1}, \hyperpage{318}
-  \item {CANDY::ExpFamilyDataLoader}, \hyperpage{203}
-    \subitem {getData}, \hyperpage{206}
-    \subitem {getQuery}, \hyperpage{206}
-    \subitem {hijackConfig}, \hyperpage{206}
-    \subitem {setConfig}, \hyperpage{207}
-  \item {CANDY::FaissIndex}, \hyperpage{207}
-    \subitem {getTensorByIndex}, \hyperpage{209}
-    \subitem {insertTensor}, \hyperpage{210}
-    \subitem {loadInitialTensor}, \hyperpage{210}
-    \subitem {searchIndex}, \hyperpage{211}
+    \subitem {INTELLI::UtilityFunctions}, \hyperpage{438}
+  \item {CANDY::AbstractDataLoader}, \hyperpage{86}
+    \subitem {getData}, \hyperpage{87}
+    \subitem {getQuery}, \hyperpage{87}
+    \subitem {hijackConfig}, \hyperpage{88}
+    \subitem {setConfig}, \hyperpage{88}
+  \item {CANDY::AbstractIndex}, \hyperpage{89}
+    \subitem {deleteStringObject}, \hyperpage{92}
+    \subitem {deleteTensor}, \hyperpage{93}
+    \subitem {deleteU64Object}, \hyperpage{93}
+    \subitem {endHPC}, \hyperpage{94}
+    \subitem {getIndexStatistics}, \hyperpage{94}
+    \subitem {getTensorByIndex}, \hyperpage{94}
+    \subitem {insertStringObject}, \hyperpage{95}
+    \subitem {insertTensor}, \hyperpage{95}
+    \subitem {insertU64Object}, \hyperpage{96}
+    \subitem {loadInitialStringObject}, \hyperpage{96}
+    \subitem {loadInitialTensor}, \hyperpage{97}
+    \subitem {loadInitialTensorAndQueryDistribution}, \hyperpage{97}
+    \subitem {loadInitialU64Object}, \hyperpage{98}
+    \subitem {offlineBuild}, \hyperpage{98}
+    \subitem {rawData}, \hyperpage{99}
+    \subitem {resetIndexStatistics}, \hyperpage{99}
+    \subitem {reviseTensor}, \hyperpage{99}
+    \subitem {searchIndex}, \hyperpage{100}
+    \subitem {searchStringObject}, \hyperpage{100}
+    \subitem {searchTensor}, \hyperpage{101}
+    \subitem {searchTensorAndStringObject}, \hyperpage{101}
+    \subitem {searchU64Object}, \hyperpage{102}
+    \subitem {setConfig}, \hyperpage{102}
+    \subitem {setConfigClass}, \hyperpage{102}
+    \subitem {setFrozenLevel}, \hyperpage{103}
+    \subitem {setTier}, \hyperpage{103}
+    \subitem {startHPC}, \hyperpage{104}
+    \subitem {waitPendingOperations}, \hyperpage{104}
+  \item {CANDY::AdSampling}, \hyperpage{107}
+  \item {CANDY::BucketedFlatIndex}, \hyperpage{111}
+    \subitem {deleteTensor}, \hyperpage{114}
+    \subitem {encodeMultiRows}, \hyperpage{114}
+    \subitem {insertTensor}, \hyperpage{114}
+    \subitem {loadInitialTensor}, \hyperpage{115}
+    \subitem {reviseTensor}, \hyperpage{115}
+    \subitem {searchSingleRow}, \hyperpage{116}
+    \subitem {searchTensor}, \hyperpage{116}
+    \subitem {setConfig}, \hyperpage{117}
+  \item {CANDY::BufferedCongestionDropIndex}, \hyperpage{117}
+    \subitem {deleteTensor}, \hyperpage{121}
+    \subitem {endHPC}, \hyperpage{121}
+    \subitem {generateBucketedFlatIndexConfig}, \hyperpage{122}
+    \subitem {insertTensor}, \hyperpage{122}
+    \subitem {insertTensorInline}, \hyperpage{122}
+    \subitem {loadInitialTensor}, \hyperpage{123}
+    \subitem {offlineBuild}, \hyperpage{123}
+    \subitem {reviseTensor}, \hyperpage{124}
+    \subitem {searchTensor}, \hyperpage{124}
+    \subitem {setConfig}, \hyperpage{125}
+    \subitem {setFrozenLevel}, \hyperpage{125}
+    \subitem {startHPC}, \hyperpage{125}
+  \item {CANDY::Candy\_Python}, \hyperpage{130}
+    \subitem {dataLoader\_create}, \hyperpage{132}
+    \subitem {dataLoader\_editCfgDouble}, \hyperpage{132}
+    \subitem {dataLoader\_editCfgFloat}, \hyperpage{133}
+    \subitem {dataLoader\_editCfgI64}, \hyperpage{133}
+    \subitem {dataLoader\_editCfgStr}, \hyperpage{133}
+    \subitem {dataLoader\_getData}, \hyperpage{134}
+    \subitem {dataLoader\_getQuery}, \hyperpage{134}
+    \subitem {dataLoader\_init}, \hyperpage{135}
+    \subitem {index\_create}, \hyperpage{135}
+    \subitem {index\_delete}, \hyperpage{135}
+    \subitem {index\_deleteString}, \hyperpage{136}
+    \subitem {index\_editCfgDouble}, \hyperpage{136}
+    \subitem {index\_editCfgI64}, \hyperpage{137}
+    \subitem {index\_editCfgStr}, \hyperpage{137}
+    \subitem {index\_endHPC}, \hyperpage{137}
+    \subitem {index\_init}, \hyperpage{138}
+    \subitem {index\_insert}, \hyperpage{138}
+    \subitem {index\_insertString}, \hyperpage{139}
+    \subitem {index\_loadCfgFromFile}, \hyperpage{139}
+    \subitem {index\_loadInitial}, \hyperpage{139}
+    \subitem {index\_loadInitialString}, \hyperpage{140}
+    \subitem {index\_offlineBuild}, \hyperpage{140}
+    \subitem {index\_rawData}, \hyperpage{141}
+    \subitem {index\_reset}, \hyperpage{141}
+    \subitem {index\_revise}, \hyperpage{141}
+    \subitem {index\_search}, \hyperpage{142}
+    \subitem {index\_searchString}, \hyperpage{142}
+    \subitem {index\_searchTensorAndStringList}, \hyperpage{143}
+    \subitem {index\_setFrozenLevel}, \hyperpage{143}
+    \subitem {index\_startHPC}, \hyperpage{143}
+    \subitem {index\_waitPending}, \hyperpage{144}
+    \subitem {tensorFromFile}, \hyperpage{144}
+    \subitem {tensorFromFVECS}, \hyperpage{144}
+    \subitem {tensorFromHDF5}, \hyperpage{145}
+    \subitem {tensorToFile}, \hyperpage{145}
+  \item {CANDY::CANDYObject}, \hyperpage{146}
+    \subitem {getStr}, \hyperpage{146}
+    \subitem {setStr}, \hyperpage{147}
+  \item {CANDY::Clustering}, \hyperpage{159}
+    \subitem {computeCentroids}, \hyperpage{161}
+    \subitem {imbalance\_factor}, \hyperpage{161}
+    \subitem {splitClusters}, \hyperpage{162}
+    \subitem {train}, \hyperpage{162}
+  \item {CANDY::ClusteringIterationStats}, \hyperpage{163}
+  \item {CANDY::ClusteringParameters}, \hyperpage{164}
+  \item {CANDY::CongestionDropIndex}, \hyperpage{167}
+    \subitem {deleteStringObject}, \hyperpage{170}
+    \subitem {deleteTensor}, \hyperpage{170}
+    \subitem {endHPC}, \hyperpage{171}
+    \subitem {getTensorByIndex}, \hyperpage{171}
+    \subitem {insertStringObject}, \hyperpage{172}
+    \subitem {insertTensor}, \hyperpage{172}
+    \subitem {loadInitialStringObject}, \hyperpage{173}
+    \subitem {loadInitialTensor}, \hyperpage{173}
+    \subitem {offlineBuild}, \hyperpage{174}
+    \subitem {rawData}, \hyperpage{174}
+    \subitem {reviseTensor}, \hyperpage{174}
+    \subitem {searchStringObject}, \hyperpage{175}
+    \subitem {searchTensor}, \hyperpage{175}
+    \subitem {searchTensorAndStringObject}, \hyperpage{176}
+    \subitem {setConfig}, \hyperpage{176}
+    \subitem {setFrozenLevel}, \hyperpage{177}
+    \subitem {startHPC}, \hyperpage{177}
+    \subitem {waitPendingOperations}, \hyperpage{177}
+  \item {CANDY::CongestionDropIndexWorker}, \hyperpage{178}
+  \item {CANDY::DataLoaderTable}, \hyperpage{180}
+    \subitem {DataLoaderTable}, \hyperpage{181}
+    \subitem {findDataLoader}, \hyperpage{181}
+    \subitem {registerNewDataLoader}, \hyperpage{182}
+  \item {CANDY::DiskHeader}, \hyperpage{183}
+  \item {CANDY::DistanceQueryer}, \hyperpage{184}
+    \subitem {operator()}, \hyperpage{185}
+  \item {CANDY::DistributedIndexWorker}, \hyperpage{186}
+    \subitem {deleteTensor}, \hyperpage{188}
+    \subitem {endHPC}, \hyperpage{188}
+    \subitem {getUnblockQueryResult}, \hyperpage{188}
+    \subitem {insertTensor}, \hyperpage{189}
+    \subitem {loadInitialTensor}, \hyperpage{189}
+    \subitem {loadInitialTensorUnblocked}, \hyperpage{189}
+    \subitem {offlineBuild}, \hyperpage{190}
+    \subitem {offlineBuildUnblocked}, \hyperpage{190}
+    \subitem {searchTensor}, \hyperpage{190}
+    \subitem {searchTensorUnblock}, \hyperpage{191}
+    \subitem {setConfig}, \hyperpage{191}
+    \subitem {setFrozenLevel}, \hyperpage{191}
+    \subitem {startHPC}, \hyperpage{192}
+    \subitem {waitPendingOperations}, \hyperpage{192}
+  \item {CANDY::DistributedPartitionIndex}, \hyperpage{193}
+    \subitem {deleteTensor}, \hyperpage{195}
+    \subitem {endHPC}, \hyperpage{195}
+    \subitem {getTensorByIndex}, \hyperpage{196}
+    \subitem {insertTensor}, \hyperpage{196}
+    \subitem {loadInitialTensor}, \hyperpage{196}
+    \subitem {offlineBuild}, \hyperpage{197}
+    \subitem {rawData}, \hyperpage{197}
+    \subitem {reviseTensor}, \hyperpage{197}
+    \subitem {searchTensor}, \hyperpage{198}
+    \subitem {setConfig}, \hyperpage{198}
+    \subitem {setFrozenLevel}, \hyperpage{199}
+    \subitem {startHPC}, \hyperpage{199}
+    \subitem {waitPendingOperations}, \hyperpage{199}
+  \item {CANDY::DIW\_RayWrapper}, \hyperpage{200}
+    \subitem {deleteTensor}, \hyperpage{201}
+    \subitem {endHPC}, \hyperpage{202}
+    \subitem {insertTensor}, \hyperpage{202}
+    \subitem {loadInitialTensor}, \hyperpage{202}
+    \subitem {offlineBuild}, \hyperpage{203}
+    \subitem {searchTensor}, \hyperpage{203}
+    \subitem {setConfig}, \hyperpage{203}
+    \subitem {setFrozenLevel}, \hyperpage{204}
+    \subitem {startHPC}, \hyperpage{204}
+    \subitem {waitPendingOperations}, \hyperpage{204}
+  \item {CANDY::DPGIndex}, \hyperpage{205}
+    \subitem {deleteTensor}, \hyperpage{208}
+    \subitem {endHPC}, \hyperpage{208}
+    \subitem {getTensorByIndex}, \hyperpage{208}
+    \subitem {insertTensor}, \hyperpage{209}
+    \subitem {loadInitialTensor}, \hyperpage{209}
+    \subitem {offlineBuild}, \hyperpage{210}
+    \subitem {rawData}, \hyperpage{210}
+    \subitem {reviseTensor}, \hyperpage{210}
     \subitem {searchTensor}, \hyperpage{211}
     \subitem {setConfig}, \hyperpage{211}
-  \item {CANDY::FLANN::BranchStruct$<$ T $>$}, \hyperpage{100}
-  \item {CANDY::FLANN::DistanceIndex}, \hyperpage{173}
-  \item {CANDY::FLANN::Heap$<$ T $>$}, \hyperpage{245}
-  \item {CANDY::FLANN::RandomCenterChooser}, \hyperpage{376}
-  \item {CANDY::FLANN::ResultSet}, \hyperpage{380}
-  \item {CANDY::FLANN::UniqueRandom}, \hyperpage{413}
-  \item {CANDY::FLANN::VisitBitset}, \hyperpage{416}
-  \item {CANDY::FlannComponent}, \hyperpage{212}
-    \subitem {setParams}, \hyperpage{213}
-  \item {CANDY::FlannIndex}, \hyperpage{214}
-    \subitem {getTensorByIndex}, \hyperpage{215}
-    \subitem {insertTensor}, \hyperpage{215}
-    \subitem {loadInitialTensor}, \hyperpage{215}
-    \subitem {searchIndex}, \hyperpage{216}
-    \subitem {searchTensor}, \hyperpage{216}
-    \subitem {setConfig}, \hyperpage{217}
-  \item {CANDY::FlannParam}, \hyperpage{218}
-  \item {CANDY::FlatAMMIPIndex}, \hyperpage{218}
-    \subitem {deleteTensor}, \hyperpage{221}
-    \subitem {getTensorByIndex}, \hyperpage{221}
+    \subitem {setFrozenLevel}, \hyperpage{212}
+    \subitem {startHPC}, \hyperpage{212}
+  \item {CANDY::DPGIndex::Neighbor}, \hyperpage{335}
+  \item {CANDY::DPGIndex::NhoodLayer0}, \hyperpage{337}
+  \item {CANDY::DPGIndex::NhoodLayer1}, \hyperpage{338}
+  \item {CANDY::ExpFamilyDataLoader}, \hyperpage{214}
+    \subitem {getData}, \hyperpage{217}
+    \subitem {getQuery}, \hyperpage{217}
+    \subitem {hijackConfig}, \hyperpage{217}
+    \subitem {setConfig}, \hyperpage{218}
+  \item {CANDY::FaissIndex}, \hyperpage{218}
+    \subitem {getTensorByIndex}, \hyperpage{220}
     \subitem {insertTensor}, \hyperpage{221}
-    \subitem {rawData}, \hyperpage{223}
-    \subitem {reviseTensor}, \hyperpage{223}
-    \subitem {searchIndex}, \hyperpage{223}
-    \subitem {searchTensor}, \hyperpage{224}
-    \subitem {setConfig}, \hyperpage{224}
-    \subitem {size}, \hyperpage{225}
-  \item {CANDY::FlatAMMIPObjIndex}, \hyperpage{225}
-    \subitem {deleteStringObject}, \hyperpage{227}
-    \subitem {deleteTensor}, \hyperpage{228}
-    \subitem {getTensorByIndex}, \hyperpage{228}
-    \subitem {insertStringObject}, \hyperpage{229}
-    \subitem {insertTensor}, \hyperpage{229}
-    \subitem {rawData}, \hyperpage{229}
-    \subitem {reviseTensor}, \hyperpage{230}
-    \subitem {searchIndex}, \hyperpage{230}
-    \subitem {searchStringObject}, \hyperpage{231}
-    \subitem {searchTensor}, \hyperpage{231}
-    \subitem {setConfig}, \hyperpage{231}
-    \subitem {size}, \hyperpage{232}
-  \item {CANDY::FlatIndex}, \hyperpage{232}
-    \subitem {deleteTensor}, \hyperpage{234}
-    \subitem {getTensorByIndex}, \hyperpage{234}
-    \subitem {insertTensor}, \hyperpage{235}
-    \subitem {rawData}, \hyperpage{235}
-    \subitem {reviseTensor}, \hyperpage{235}
-    \subitem {searchIndex}, \hyperpage{236}
-    \subitem {searchTensor}, \hyperpage{236}
-    \subitem {setConfig}, \hyperpage{237}
-    \subitem {size}, \hyperpage{237}
-  \item {CANDY::FVECSDataLoader}, \hyperpage{238}
-    \subitem {getData}, \hyperpage{240}
-    \subitem {getQuery}, \hyperpage{240}
-    \subitem {setConfig}, \hyperpage{240}
-    \subitem {tensorFromFVECS}, \hyperpage{241}
-  \item {CANDY::HDF5DataLoader}, \hyperpage{241}
-    \subitem {getData}, \hyperpage{243}
-    \subitem {getQuery}, \hyperpage{243}
-    \subitem {setConfig}, \hyperpage{244}
-    \subitem {tensorFromHDF5}, \hyperpage{244}
-  \item {CANDY::HNSW}, \hyperpage{246}
-    \subitem {add\_links\_starting\_from}, \hyperpage{248}
-    \subitem {add\_without\_lock}, \hyperpage{248}
-    \subitem {cum\_nb\_neighbors}, \hyperpage{249}
-    \subitem {cum\_nneighbor\_per\_level\_}, \hyperpage{252}
-    \subitem {nb\_neighbors}, \hyperpage{249}
-    \subitem {neighbor\_range}, \hyperpage{249}
-    \subitem {prepare\_level\_tab}, \hyperpage{250}
-    \subitem {random\_level}, \hyperpage{250}
-    \subitem {search}, \hyperpage{250}
-    \subitem {search\_bounded\_queue}, \hyperpage{252}
-    \subitem {set\_nb\_neighbors}, \hyperpage{251}
-    \subitem {set\_probs}, \hyperpage{251}
-  \item {CANDY::HNSW::MinimaxHeap}, \hyperpage{308}
-  \item {CANDY::HNSW::NodeDistCloser}, \hyperpage{327}
-  \item {CANDY::HNSW::NodeDistFarther}, \hyperpage{328}
-  \item {CANDY::HNSWNaiveIndex}, \hyperpage{252}
-    \subitem {deleteTensor}, \hyperpage{254}
-    \subitem {insertTensor}, \hyperpage{254}
+    \subitem {loadInitialTensor}, \hyperpage{221}
+    \subitem {searchIndex}, \hyperpage{222}
+    \subitem {searchTensor}, \hyperpage{222}
+    \subitem {setConfig}, \hyperpage{222}
+  \item {CANDY::FLANN::BranchStruct$<$ T $>$}, \hyperpage{110}
+  \item {CANDY::FLANN::DistanceIndex}, \hyperpage{184}
+  \item {CANDY::FLANN::Heap$<$ T $>$}, \hyperpage{265}
+  \item {CANDY::FLANN::RandomCenterChooser}, \hyperpage{398}
+  \item {CANDY::FLANN::ResultSet}, \hyperpage{402}
+  \item {CANDY::FLANN::UniqueRandom}, \hyperpage{436}
+  \item {CANDY::FLANN::VisitBitset}, \hyperpage{441}
+  \item {CANDY::FlannComponent}, \hyperpage{223}
+    \subitem {setParams}, \hyperpage{224}
+  \item {CANDY::FlannIndex}, \hyperpage{225}
+    \subitem {getTensorByIndex}, \hyperpage{226}
+    \subitem {insertTensor}, \hyperpage{226}
+    \subitem {loadInitialTensor}, \hyperpage{226}
+    \subitem {searchIndex}, \hyperpage{227}
+    \subitem {searchTensor}, \hyperpage{227}
+    \subitem {setConfig}, \hyperpage{228}
+  \item {CANDY::FlannParam}, \hyperpage{229}
+  \item {CANDY::FlatAMMIPIndex}, \hyperpage{229}
+    \subitem {deleteTensor}, \hyperpage{232}
+    \subitem {getTensorByIndex}, \hyperpage{232}
+    \subitem {insertTensor}, \hyperpage{232}
+    \subitem {rawData}, \hyperpage{234}
+    \subitem {reviseTensor}, \hyperpage{234}
+    \subitem {searchIndex}, \hyperpage{234}
+    \subitem {searchTensor}, \hyperpage{235}
+    \subitem {setConfig}, \hyperpage{235}
+    \subitem {size}, \hyperpage{236}
+  \item {CANDY::FlatAMMIPObjIndex}, \hyperpage{236}
+    \subitem {deleteStringObject}, \hyperpage{238}
+    \subitem {deleteTensor}, \hyperpage{239}
+    \subitem {getTensorByIndex}, \hyperpage{239}
+    \subitem {insertStringObject}, \hyperpage{240}
+    \subitem {insertTensor}, \hyperpage{240}
+    \subitem {rawData}, \hyperpage{240}
+    \subitem {reviseTensor}, \hyperpage{241}
+    \subitem {searchIndex}, \hyperpage{241}
+    \subitem {searchStringObject}, \hyperpage{242}
+    \subitem {searchTensor}, \hyperpage{242}
+    \subitem {setConfig}, \hyperpage{242}
+    \subitem {size}, \hyperpage{243}
+  \item {CANDY::FlatIndex}, \hyperpage{243}
+    \subitem {deleteTensor}, \hyperpage{245}
+    \subitem {getTensorByIndex}, \hyperpage{245}
+    \subitem {insertTensor}, \hyperpage{246}
+    \subitem {rawData}, \hyperpage{246}
+    \subitem {reviseTensor}, \hyperpage{246}
+    \subitem {searchIndex}, \hyperpage{247}
+    \subitem {searchTensor}, \hyperpage{247}
+    \subitem {setConfig}, \hyperpage{248}
+    \subitem {size}, \hyperpage{248}
+  \item {CANDY::FlatSSDGPUIndex}, \hyperpage{249}
+    \subitem {deleteTensor}, \hyperpage{251}
+    \subitem {distanceFunc}, \hyperpage{257}
+    \subitem {distanceIP}, \hyperpage{252}
+    \subitem {distanceL2}, \hyperpage{252}
+    \subitem {endHPC}, \hyperpage{252}
+    \subitem {getIndexStatistics}, \hyperpage{253}
+    \subitem {getTensorByStdIdx}, \hyperpage{253}
+    \subitem {insertTensor}, \hyperpage{253}
+    \subitem {resetIndexStatistics}, \hyperpage{254}
     \subitem {reviseTensor}, \hyperpage{255}
     \subitem {searchTensor}, \hyperpage{255}
     \subitem {setConfig}, \hyperpage{256}
-  \item {CANDY::HNSWVertex}, \hyperpage{256}
-  \item {CANDY::IndexTable}, \hyperpage{258}
-    \subitem {addIndex}, \hyperpage{259}
-    \subitem {getIndex}, \hyperpage{260}
-  \item {CANDY::IVFListBucket}, \hyperpage{279}
-    \subitem {deleteTensor}, \hyperpage{280}
-    \subitem {deleteTensorWithEncode}, \hyperpage{280}
-    \subitem {getAllTensors}, \hyperpage{281}
-    \subitem {getAllTensorsWithEncode}, \hyperpage{281}
-    \subitem {getMinimumTensorsUnderHamming}, \hyperpage{281}
-    \subitem {insertTensorWithEncode}, \hyperpage{282}
-    \subitem {sizeWithEncode}, \hyperpage{282}
-  \item {CANDY::IVFListCell}, \hyperpage{283}
-    \subitem {deleteTensor}, \hyperpage{284}
-    \subitem {deleteTensorPtr}, \hyperpage{284}
-    \subitem {getAllTensors}, \hyperpage{284}
-    \subitem {insertTensor}, \hyperpage{284}
-    \subitem {insertTensorPtr}, \hyperpage{285}
-  \item {CANDY::IVFTensorEncodingList}, \hyperpage{285}
-    \subitem {deleteTensorWithEncode}, \hyperpage{286}
-    \subitem {getMinimumNumOfTensors}, \hyperpage{287}
-    \subitem {getMinimumNumOfTensorsHamming}, \hyperpage{287}
-    \subitem {getMinimumNumOfTensorsInsideBucket}, \hyperpage{288}
+    \subitem {size}, \hyperpage{256}
+    \subitem {startHPC}, \hyperpage{257}
+  \item {CANDY::FVECSDataLoader}, \hyperpage{258}
+    \subitem {getData}, \hyperpage{260}
+    \subitem {getQuery}, \hyperpage{260}
+    \subitem {setConfig}, \hyperpage{260}
+    \subitem {tensorFromFVECS}, \hyperpage{261}
+  \item {CANDY::HDF5DataLoader}, \hyperpage{261}
+    \subitem {getData}, \hyperpage{263}
+    \subitem {getQuery}, \hyperpage{263}
+    \subitem {setConfig}, \hyperpage{264}
+    \subitem {tensorFromHDF5}, \hyperpage{264}
+  \item {CANDY::HNSW}, \hyperpage{266}
+    \subitem {add\_links\_starting\_from}, \hyperpage{268}
+    \subitem {add\_without\_lock}, \hyperpage{268}
+    \subitem {cum\_nb\_neighbors}, \hyperpage{269}
+    \subitem {cum\_nneighbor\_per\_level\_}, \hyperpage{272}
+    \subitem {nb\_neighbors}, \hyperpage{269}
+    \subitem {neighbor\_range}, \hyperpage{269}
+    \subitem {prepare\_level\_tab}, \hyperpage{270}
+    \subitem {random\_level}, \hyperpage{270}
+    \subitem {search}, \hyperpage{270}
+    \subitem {search\_bounded\_queue}, \hyperpage{272}
+    \subitem {set\_nb\_neighbors}, \hyperpage{271}
+    \subitem {set\_probs}, \hyperpage{271}
+  \item {CANDY::HNSW::MinimaxHeap}, \hyperpage{328}
+  \item {CANDY::HNSW::NodeDistCloser}, \hyperpage{347}
+  \item {CANDY::HNSW::NodeDistFarther}, \hyperpage{348}
+  \item {CANDY::HNSWNaiveIndex}, \hyperpage{272}
+    \subitem {deleteTensor}, \hyperpage{274}
+    \subitem {insertTensor}, \hyperpage{274}
+    \subitem {reviseTensor}, \hyperpage{275}
+    \subitem {searchTensor}, \hyperpage{275}
+    \subitem {setConfig}, \hyperpage{276}
+  \item {CANDY::HNSWVertex}, \hyperpage{276}
+  \item {CANDY::IndexTable}, \hyperpage{278}
+    \subitem {addIndex}, \hyperpage{279}
+    \subitem {getIndex}, \hyperpage{280}
+  \item {CANDY::IVFListBucket}, \hyperpage{299}
+    \subitem {deleteTensor}, \hyperpage{300}
+    \subitem {deleteTensorWithEncode}, \hyperpage{300}
+    \subitem {getAllTensors}, \hyperpage{301}
+    \subitem {getAllTensorsWithEncode}, \hyperpage{301}
+    \subitem {getMinimumTensorsUnderHamming}, \hyperpage{301}
+    \subitem {insertTensorWithEncode}, \hyperpage{302}
+    \subitem {sizeWithEncode}, \hyperpage{302}
+  \item {CANDY::IVFListCell}, \hyperpage{303}
+    \subitem {deleteTensor}, \hyperpage{304}
+    \subitem {deleteTensorPtr}, \hyperpage{304}
+    \subitem {getAllTensors}, \hyperpage{304}
+    \subitem {insertTensor}, \hyperpage{304}
+    \subitem {insertTensorPtr}, \hyperpage{305}
+  \item {CANDY::IVFTensorEncodingList}, \hyperpage{305}
+    \subitem {deleteTensorWithEncode}, \hyperpage{306}
+    \subitem {getMinimumNumOfTensors}, \hyperpage{307}
+    \subitem {getMinimumNumOfTensorsHamming}, \hyperpage{307}
+    \subitem {getMinimumNumOfTensorsInsideBucket}, \hyperpage{308}
     \subitem {getMinimumNumOfTensorsInsideBucketHamming}, 
-		\hyperpage{288}
-    \subitem {init}, \hyperpage{289}
-    \subitem {insertTensorWithEncode}, \hyperpage{289}
-  \item {CANDY::KdTree}, \hyperpage{290}
-    \subitem {addPoints}, \hyperpage{291}
-    \subitem {addPointToTree}, \hyperpage{292}
-    \subitem {divideTree}, \hyperpage{292}
-    \subitem {getNeighbors}, \hyperpage{292}
-    \subitem {knnSearch}, \hyperpage{293}
-    \subitem {meanSplit}, \hyperpage{293}
-    \subitem {planeSplit}, \hyperpage{294}
-    \subitem {searchLevel}, \hyperpage{294}
-    \subitem {selectDivision}, \hyperpage{295}
-    \subitem {setConfig}, \hyperpage{295}
-    \subitem {setParams}, \hyperpage{295}
-  \item {CANDY::KdTree::Node}, \hyperpage{326}
-  \item {CANDY::KmeansTree}, \hyperpage{296}
-    \subitem {addPoints}, \hyperpage{298}
-    \subitem {addPointToTree}, \hyperpage{298}
-    \subitem {computeClustering}, \hyperpage{298}
-    \subitem {computeNodeStat}, \hyperpage{299}
-    \subitem {explore}, \hyperpage{299}
-    \subitem {findNN}, \hyperpage{299}
-    \subitem {getNeighbors}, \hyperpage{300}
-    \subitem {knnSearch}, \hyperpage{300}
-    \subitem {setConfig}, \hyperpage{301}
-    \subitem {setParams}, \hyperpage{301}
-  \item {CANDY::KmeansTree::Node}, \hyperpage{326}
-  \item {CANDY::KmeansTree::NodeInfo}, \hyperpage{329}
-  \item {CANDY::MLPBucketIdxModel}, \hyperpage{309}
-    \subitem {hash}, \hyperpage{309}
+		\hyperpage{308}
     \subitem {init}, \hyperpage{309}
-    \subitem {trainModel}, \hyperpage{310}
-  \item {CANDY::MLPHashingModel}, \hyperpage{310}
-    \subitem {fineTuneModel}, \hyperpage{311}
-    \subitem {hash}, \hyperpage{311}
-    \subitem {init}, \hyperpage{311}
-    \subitem {trainModel}, \hyperpage{312}
-  \item {CANDY::NNDescentIndex}, \hyperpage{319}
-    \subitem {deleteTensor}, \hyperpage{321}
-    \subitem {endHPC}, \hyperpage{321}
-    \subitem {getTensorByIndex}, \hyperpage{322}
-    \subitem {insertTensor}, \hyperpage{322}
-    \subitem {loadInitialTensor}, \hyperpage{322}
-    \subitem {offlineBuild}, \hyperpage{323}
-    \subitem {rawData}, \hyperpage{323}
-    \subitem {reviseTensor}, \hyperpage{323}
-    \subitem {searchTensor}, \hyperpage{324}
-    \subitem {setConfig}, \hyperpage{324}
-    \subitem {setFrozenLevel}, \hyperpage{325}
-    \subitem {startHPC}, \hyperpage{325}
-  \item {CANDY::NNDescentIndex::Neighbor}, \hyperpage{316}
-  \item {CANDY::NNDescentIndex::Nhood}, \hyperpage{316}
-  \item {CANDY::OnlineIVFL2HIndex}, \hyperpage{329}
-    \subitem {loadInitialTensor}, \hyperpage{331}
-    \subitem {loadInitialTensorAndQueryDistribution}, \hyperpage{332}
-    \subitem {setConfig}, \hyperpage{332}
-    \subitem {trainModelWithData}, \hyperpage{333}
-  \item {CANDY::OnlineIVFLSHIndex}, \hyperpage{333}
-    \subitem {crsAmm}, \hyperpage{335}
-    \subitem {deleteRowsInline}, \hyperpage{336}
-    \subitem {deleteTensor}, \hyperpage{336}
-    \subitem {insertTensor}, \hyperpage{336}
-    \subitem {reviseTensor}, \hyperpage{337}
-    \subitem {searchTensor}, \hyperpage{337}
-    \subitem {setConfig}, \hyperpage{338}
-  \item {CANDY::OnlinePQIndex}, \hyperpage{338}
-    \subitem {deleteRowsInline}, \hyperpage{341}
+    \subitem {insertTensorWithEncode}, \hyperpage{309}
+  \item {CANDY::KdTree}, \hyperpage{310}
+    \subitem {addPoints}, \hyperpage{311}
+    \subitem {addPointToTree}, \hyperpage{312}
+    \subitem {divideTree}, \hyperpage{312}
+    \subitem {getNeighbors}, \hyperpage{312}
+    \subitem {knnSearch}, \hyperpage{313}
+    \subitem {meanSplit}, \hyperpage{313}
+    \subitem {planeSplit}, \hyperpage{314}
+    \subitem {searchLevel}, \hyperpage{314}
+    \subitem {selectDivision}, \hyperpage{315}
+    \subitem {setConfig}, \hyperpage{315}
+    \subitem {setParams}, \hyperpage{315}
+  \item {CANDY::KdTree::Node}, \hyperpage{346}
+  \item {CANDY::KmeansTree}, \hyperpage{316}
+    \subitem {addPoints}, \hyperpage{318}
+    \subitem {addPointToTree}, \hyperpage{318}
+    \subitem {computeClustering}, \hyperpage{318}
+    \subitem {computeNodeStat}, \hyperpage{319}
+    \subitem {explore}, \hyperpage{319}
+    \subitem {findNN}, \hyperpage{319}
+    \subitem {getNeighbors}, \hyperpage{320}
+    \subitem {knnSearch}, \hyperpage{320}
+    \subitem {setConfig}, \hyperpage{321}
+    \subitem {setParams}, \hyperpage{321}
+  \item {CANDY::KmeansTree::Node}, \hyperpage{346}
+  \item {CANDY::KmeansTree::NodeInfo}, \hyperpage{349}
+  \item {CANDY::MLPBucketIdxModel}, \hyperpage{329}
+    \subitem {hash}, \hyperpage{329}
+    \subitem {init}, \hyperpage{329}
+    \subitem {trainModel}, \hyperpage{330}
+  \item {CANDY::MLPHashingModel}, \hyperpage{330}
+    \subitem {fineTuneModel}, \hyperpage{331}
+    \subitem {hash}, \hyperpage{331}
+    \subitem {init}, \hyperpage{331}
+    \subitem {trainModel}, \hyperpage{332}
+  \item {CANDY::NNDescentIndex}, \hyperpage{339}
     \subitem {deleteTensor}, \hyperpage{341}
-    \subitem {fineGrainedEncode}, \hyperpage{342}
+    \subitem {endHPC}, \hyperpage{341}
+    \subitem {getTensorByIndex}, \hyperpage{342}
     \subitem {insertTensor}, \hyperpage{342}
     \subitem {loadInitialTensor}, \hyperpage{342}
     \subitem {offlineBuild}, \hyperpage{343}
+    \subitem {rawData}, \hyperpage{343}
     \subitem {reviseTensor}, \hyperpage{343}
     \subitem {searchTensor}, \hyperpage{344}
     \subitem {setConfig}, \hyperpage{344}
     \subitem {setFrozenLevel}, \hyperpage{345}
-  \item {CANDY::ParallelIndexWorker}, \hyperpage{346}
-  \item {CANDY::ParallelPartitionIndex}, \hyperpage{349}
-    \subitem {deleteStringObject}, \hyperpage{351}
-    \subitem {deleteTensor}, \hyperpage{352}
-    \subitem {endHPC}, \hyperpage{352}
-    \subitem {getTensorByIndex}, \hyperpage{352}
-    \subitem {insertStringObject}, \hyperpage{353}
-    \subitem {insertTensor}, \hyperpage{353}
-    \subitem {loadInitialStringObject}, \hyperpage{354}
-    \subitem {loadInitialTensor}, \hyperpage{354}
-    \subitem {offlineBuild}, \hyperpage{355}
-    \subitem {rawData}, \hyperpage{355}
-    \subitem {reviseTensor}, \hyperpage{355}
-    \subitem {searchStringObject}, \hyperpage{356}
-    \subitem {searchTensor}, \hyperpage{356}
-    \subitem {searchTensorAndStringObject}, \hyperpage{357}
-    \subitem {setConfig}, \hyperpage{357}
-    \subitem {setFrozenLevel}, \hyperpage{358}
-    \subitem {startHPC}, \hyperpage{358}
-    \subitem {waitPendingOperations}, \hyperpage{358}
-  \item {CANDY::PQDecoder}, \hyperpage{360}
-    \subitem {decode}, \hyperpage{361}
-  \item {CANDY::PQEncoder}, \hyperpage{362}
-    \subitem {encode}, \hyperpage{362}
-  \item {CANDY::PQIndex}, \hyperpage{363}
-    \subitem {add}, \hyperpage{365}
-    \subitem {deleteTensor}, \hyperpage{365}
-    \subitem {getTensorByIndex}, \hyperpage{367}
-    \subitem {insertTensor}, \hyperpage{367}
-    \subitem {loadInitialTensor}, \hyperpage{368}
-    \subitem {rawData}, \hyperpage{368}
-    \subitem {reviseTensor}, \hyperpage{368}
-    \subitem {searchIndex}, \hyperpage{369}
-    \subitem {searchTensor}, \hyperpage{369}
-    \subitem {setConfig}, \hyperpage{370}
-    \subitem {setFrozenLevel}, \hyperpage{370}
-    \subitem {train}, \hyperpage{370}
-  \item {CANDY::ProductQuantizer}, \hyperpage{371}
-    \subitem {add}, \hyperpage{372}
-    \subitem {compute\_code}, \hyperpage{373}
-    \subitem {compute\_codes}, \hyperpage{373}
-    \subitem {compute\_distance\_table}, \hyperpage{373}
-    \subitem {compute\_distance\_tables}, \hyperpage{374}
-    \subitem {decode}, \hyperpage{374}
-    \subitem {search}, \hyperpage{375}
-    \subitem {setCentroidsFrom}, \hyperpage{375}
-    \subitem {train}, \hyperpage{376}
-  \item {CANDY::RandomDataLoader}, \hyperpage{377}
-    \subitem {getData}, \hyperpage{378}
-    \subitem {getQuery}, \hyperpage{378}
-    \subitem {setConfig}, \hyperpage{379}
-  \item {CANDY::SimpleStreamClustering}, \hyperpage{381}
-    \subitem {addSingleRow}, \hyperpage{382}
-    \subitem {addSingleRowWithIdx}, \hyperpage{383}
-    \subitem {buildCentroids}, \hyperpage{383}
-    \subitem {classifyMultiRow}, \hyperpage{384}
-    \subitem {classifySingleRow}, \hyperpage{384}
-    \subitem {deleteSingleRow}, \hyperpage{385}
-    \subitem {deleteSingleRowWithIdx}, \hyperpage{385}
-    \subitem {euclideanDelete}, \hyperpage{386}
-    \subitem {euclideanDistance}, \hyperpage{386}
-    \subitem {euclideanInsert}, \hyperpage{386}
-    \subitem {exportCentroids}, \hyperpage{387}
-    \subitem {loadCentroids}, \hyperpage{387}
-    \subitem {saveCentroidsToFile}, \hyperpage{388}
-  \item {CANDY::TensorIdxPair}, \hyperpage{392}
-  \item {CANDY::TensorListIdxPair}, \hyperpage{393}
-  \item {CANDY::TensorStrPair}, \hyperpage{394}
-  \item {CANDY::TensorStrVecPair}, \hyperpage{394}
-  \item {CANDY::VisitedTable}, \hyperpage{417}
-  \item {CANDY::YinYangGraph}, \hyperpage{418}
-    \subitem {deleteTensorWithEncode}, \hyperpage{419}
-    \subitem {getMinimumNumOfTensors}, \hyperpage{419}
-    \subitem {init}, \hyperpage{420}
-    \subitem {insertTensorWithEncode}, \hyperpage{420}
-  \item {CANDY::YinYangGraph\_DistanceFunctions}, \hyperpage{421}
-  \item {CANDY::YinYangGraph\_ListBucket}, \hyperpage{421}
-    \subitem {deleteTensor}, \hyperpage{422}
-    \subitem {deleteTensorWithEncode}, \hyperpage{423}
-    \subitem {getVertexWithEncode}, \hyperpage{423}
-    \subitem {insertTensorWithEncode}, \hyperpage{423}
-  \item {CANDY::YinYangGraph\_ListCell}, \hyperpage{424}
-    \subitem {deleteTensor}, \hyperpage{425}
-    \subitem {getVertex}, \hyperpage{425}
-    \subitem {insertTensor}, \hyperpage{425}
-  \item {CANDY::YinYangGraphIndex}, \hyperpage{426}
-    \subitem {crsAmm}, \hyperpage{428}
-    \subitem {insertTensor}, \hyperpage{429}
-    \subitem {searchTensor}, \hyperpage{429}
-    \subitem {setConfig}, \hyperpage{429}
-  \item {CANDY::YinYangGraphSimpleIndex}, \hyperpage{430}
-    \subitem {insertSingleRowTensor}, \hyperpage{431}
-    \subitem {insertTensor}, \hyperpage{432}
-    \subitem {searchTensor}, \hyperpage{432}
-    \subitem {setConfig}, \hyperpage{432}
-  \item {CANDY::YinYangVertex}, \hyperpage{433}
-    \subitem {attachTensor}, \hyperpage{435}
-    \subitem {detachTensor}, \hyperpage{435}
-    \subitem {greedySearchForKNearestTensor}, \hyperpage{436}
-    \subitem {greedySearchForKNearestVertex}, \hyperpage{436, 437}
-    \subitem {greedySearchForNearestVertex}, \hyperpage{437, 438}
-    \subitem {init}, \hyperpage{438}
-    \subitem {setUperLayer}, \hyperpage{439}
-    \subitem {toString}, \hyperpage{439}
-    \subitem {tryToConnect}, \hyperpage{439}
-  \item {CANDY::YinYangVertexMap}, \hyperpage{440}
-    \subitem {edit}, \hyperpage{441}
-    \subitem {erase}, \hyperpage{442}
-    \subitem {exist}, \hyperpage{442}
-    \subitem {nearestKVertexWithinMap}, \hyperpage{442}
-    \subitem {nearestVertexWithinMap}, \hyperpage{443}
-    \subitem {nearestVertexWithinMe}, \hyperpage{443}
-  \item {CANDY::ZipfDataLoader}, \hyperpage{444}
-    \subitem {getData}, \hyperpage{445}
-    \subitem {getQuery}, \hyperpage{446}
-    \subitem {setConfig}, \hyperpage{446}
-  \item {cl\_char16}, \hyperpage{137}
-  \item {cl\_char2}, \hyperpage{137}
-  \item {cl\_char4}, \hyperpage{138}
-  \item {cl\_char8}, \hyperpage{138}
-  \item {cl\_double16}, \hyperpage{138}
-  \item {cl\_double2}, \hyperpage{138}
-  \item {cl\_double4}, \hyperpage{139}
-  \item {cl\_double8}, \hyperpage{139}
-  \item {cl\_float16}, \hyperpage{139}
-  \item {cl\_float2}, \hyperpage{139}
-  \item {cl\_float4}, \hyperpage{140}
-  \item {cl\_float8}, \hyperpage{140}
-  \item {cl\_half16}, \hyperpage{140}
-  \item {cl\_half2}, \hyperpage{140}
-  \item {cl\_half4}, \hyperpage{141}
-  \item {cl\_half8}, \hyperpage{141}
-  \item {cl\_int16}, \hyperpage{141}
-  \item {cl\_int2}, \hyperpage{141}
-  \item {cl\_int4}, \hyperpage{142}
-  \item {cl\_int8}, \hyperpage{142}
-  \item {cl\_long16}, \hyperpage{142}
-  \item {cl\_long2}, \hyperpage{142}
-  \item {cl\_long4}, \hyperpage{143}
-  \item {cl\_long8}, \hyperpage{143}
-  \item {cl\_short16}, \hyperpage{143}
-  \item {cl\_short2}, \hyperpage{143}
-  \item {cl\_short4}, \hyperpage{144}
-  \item {cl\_short8}, \hyperpage{144}
-  \item {cl\_uchar16}, \hyperpage{144}
-  \item {cl\_uchar2}, \hyperpage{144}
-  \item {cl\_uchar4}, \hyperpage{145}
-  \item {cl\_uchar8}, \hyperpage{145}
-  \item {cl\_uint16}, \hyperpage{145}
-  \item {cl\_uint2}, \hyperpage{145}
-  \item {cl\_uint4}, \hyperpage{146}
-  \item {cl\_uint8}, \hyperpage{146}
-  \item {cl\_ulong16}, \hyperpage{146}
-  \item {cl\_ulong2}, \hyperpage{146}
-  \item {cl\_ulong4}, \hyperpage{147}
-  \item {cl\_ulong8}, \hyperpage{147}
-  \item {cl\_ushort16}, \hyperpage{147}
-  \item {cl\_ushort2}, \hyperpage{147}
-  \item {cl\_ushort4}, \hyperpage{148}
-  \item {cl\_ushort8}, \hyperpage{148}
+    \subitem {startHPC}, \hyperpage{345}
+  \item {CANDY::NNDescentIndex::Neighbor}, \hyperpage{336}
+  \item {CANDY::NNDescentIndex::Nhood}, \hyperpage{336}
+  \item {CANDY::OnlineIVFL2HIndex}, \hyperpage{349}
+    \subitem {loadInitialTensor}, \hyperpage{351}
+    \subitem {loadInitialTensorAndQueryDistribution}, \hyperpage{352}
+    \subitem {setConfig}, \hyperpage{352}
+    \subitem {trainModelWithData}, \hyperpage{353}
+  \item {CANDY::OnlineIVFLSHIndex}, \hyperpage{353}
+    \subitem {crsAmm}, \hyperpage{355}
+    \subitem {deleteRowsInline}, \hyperpage{356}
+    \subitem {deleteTensor}, \hyperpage{356}
+    \subitem {insertTensor}, \hyperpage{356}
+    \subitem {reviseTensor}, \hyperpage{357}
+    \subitem {searchTensor}, \hyperpage{357}
+    \subitem {setConfig}, \hyperpage{358}
+  \item {CANDY::OnlinePQIndex}, \hyperpage{358}
+    \subitem {deleteRowsInline}, \hyperpage{361}
+    \subitem {deleteTensor}, \hyperpage{361}
+    \subitem {fineGrainedEncode}, \hyperpage{362}
+    \subitem {insertTensor}, \hyperpage{362}
+    \subitem {loadInitialTensor}, \hyperpage{362}
+    \subitem {offlineBuild}, \hyperpage{363}
+    \subitem {reviseTensor}, \hyperpage{363}
+    \subitem {searchTensor}, \hyperpage{364}
+    \subitem {setConfig}, \hyperpage{364}
+    \subitem {setFrozenLevel}, \hyperpage{365}
+  \item {CANDY::ParallelIndexWorker}, \hyperpage{366}
+  \item {CANDY::ParallelPartitionIndex}, \hyperpage{369}
+    \subitem {deleteStringObject}, \hyperpage{371}
+    \subitem {deleteTensor}, \hyperpage{372}
+    \subitem {endHPC}, \hyperpage{372}
+    \subitem {getTensorByIndex}, \hyperpage{372}
+    \subitem {insertStringObject}, \hyperpage{373}
+    \subitem {insertTensor}, \hyperpage{373}
+    \subitem {loadInitialStringObject}, \hyperpage{374}
+    \subitem {loadInitialTensor}, \hyperpage{374}
+    \subitem {offlineBuild}, \hyperpage{375}
+    \subitem {rawData}, \hyperpage{375}
+    \subitem {reviseTensor}, \hyperpage{375}
+    \subitem {searchStringObject}, \hyperpage{376}
+    \subitem {searchTensor}, \hyperpage{376}
+    \subitem {searchTensorAndStringObject}, \hyperpage{377}
+    \subitem {setConfig}, \hyperpage{377}
+    \subitem {setFrozenLevel}, \hyperpage{378}
+    \subitem {startHPC}, \hyperpage{378}
+    \subitem {waitPendingOperations}, \hyperpage{378}
+  \item {CANDY::PlainDiskMemBufferTU}, \hyperpage{381}
+  \item {CANDY::PQDecoder}, \hyperpage{382}
+    \subitem {decode}, \hyperpage{383}
+  \item {CANDY::PQEncoder}, \hyperpage{384}
+    \subitem {encode}, \hyperpage{384}
+  \item {CANDY::PQIndex}, \hyperpage{385}
+    \subitem {add}, \hyperpage{387}
+    \subitem {deleteTensor}, \hyperpage{387}
+    \subitem {getTensorByIndex}, \hyperpage{389}
+    \subitem {insertTensor}, \hyperpage{389}
+    \subitem {loadInitialTensor}, \hyperpage{390}
+    \subitem {rawData}, \hyperpage{390}
+    \subitem {reviseTensor}, \hyperpage{390}
+    \subitem {searchIndex}, \hyperpage{391}
+    \subitem {searchTensor}, \hyperpage{391}
+    \subitem {setConfig}, \hyperpage{392}
+    \subitem {setFrozenLevel}, \hyperpage{392}
+    \subitem {train}, \hyperpage{392}
+  \item {CANDY::ProductQuantizer}, \hyperpage{393}
+    \subitem {add}, \hyperpage{394}
+    \subitem {compute\_code}, \hyperpage{395}
+    \subitem {compute\_codes}, \hyperpage{395}
+    \subitem {compute\_distance\_table}, \hyperpage{395}
+    \subitem {compute\_distance\_tables}, \hyperpage{396}
+    \subitem {decode}, \hyperpage{396}
+    \subitem {search}, \hyperpage{397}
+    \subitem {setCentroidsFrom}, \hyperpage{397}
+    \subitem {train}, \hyperpage{398}
+  \item {CANDY::RandomDataLoader}, \hyperpage{399}
+    \subitem {getData}, \hyperpage{400}
+    \subitem {getQuery}, \hyperpage{400}
+    \subitem {setConfig}, \hyperpage{401}
+  \item {CANDY::SimpleStreamClustering}, \hyperpage{403}
+    \subitem {addSingleRow}, \hyperpage{404}
+    \subitem {addSingleRowWithIdx}, \hyperpage{405}
+    \subitem {buildCentroids}, \hyperpage{405}
+    \subitem {classifyMultiRow}, \hyperpage{406}
+    \subitem {classifySingleRow}, \hyperpage{406}
+    \subitem {deleteSingleRow}, \hyperpage{407}
+    \subitem {deleteSingleRowWithIdx}, \hyperpage{407}
+    \subitem {euclideanDelete}, \hyperpage{408}
+    \subitem {euclideanDistance}, \hyperpage{408}
+    \subitem {euclideanInsert}, \hyperpage{408}
+    \subitem {exportCentroids}, \hyperpage{409}
+    \subitem {loadCentroids}, \hyperpage{409}
+    \subitem {saveCentroidsToFile}, \hyperpage{410}
+  \item {CANDY::TensorIdxPair}, \hyperpage{414}
+  \item {CANDY::TensorListIdxPair}, \hyperpage{415}
+  \item {CANDY::TensorStrPair}, \hyperpage{416}
+  \item {CANDY::TensorStrVecPair}, \hyperpage{416}
+  \item {CANDY::TensorVCacheLine}, \hyperpage{417}
+  \item {CANDY::U64VCacheLine}, \hyperpage{436}
+  \item {CANDY::VisitedTable}, \hyperpage{442}
+  \item {CANDY::YinYangGraph}, \hyperpage{443}
+    \subitem {deleteTensorWithEncode}, \hyperpage{444}
+    \subitem {getMinimumNumOfTensors}, \hyperpage{444}
+    \subitem {init}, \hyperpage{445}
+    \subitem {insertTensorWithEncode}, \hyperpage{445}
+  \item {CANDY::YinYangGraph\_DistanceFunctions}, \hyperpage{446}
+  \item {CANDY::YinYangGraph\_ListBucket}, \hyperpage{446}
+    \subitem {deleteTensor}, \hyperpage{447}
+    \subitem {deleteTensorWithEncode}, \hyperpage{447}
+    \subitem {getVertexWithEncode}, \hyperpage{448}
+    \subitem {insertTensorWithEncode}, \hyperpage{448}
+  \item {CANDY::YinYangGraph\_ListCell}, \hyperpage{449}
+    \subitem {deleteTensor}, \hyperpage{450}
+    \subitem {getVertex}, \hyperpage{450}
+    \subitem {insertTensor}, \hyperpage{450}
+  \item {CANDY::YinYangGraphIndex}, \hyperpage{451}
+    \subitem {crsAmm}, \hyperpage{453}
+    \subitem {insertTensor}, \hyperpage{453}
+    \subitem {searchTensor}, \hyperpage{454}
+    \subitem {setConfig}, \hyperpage{454}
+  \item {CANDY::YinYangGraphSimpleIndex}, \hyperpage{455}
+    \subitem {insertSingleRowTensor}, \hyperpage{456}
+    \subitem {insertTensor}, \hyperpage{457}
+    \subitem {searchTensor}, \hyperpage{457}
+    \subitem {setConfig}, \hyperpage{457}
+  \item {CANDY::YinYangVertex}, \hyperpage{458}
+    \subitem {attachTensor}, \hyperpage{460}
+    \subitem {detachTensor}, \hyperpage{460}
+    \subitem {greedySearchForKNearestTensor}, \hyperpage{461}
+    \subitem {greedySearchForKNearestVertex}, \hyperpage{461, 462}
+    \subitem {greedySearchForNearestVertex}, \hyperpage{462, 463}
+    \subitem {init}, \hyperpage{463}
+    \subitem {setUperLayer}, \hyperpage{464}
+    \subitem {toString}, \hyperpage{464}
+    \subitem {tryToConnect}, \hyperpage{464}
+  \item {CANDY::YinYangVertexMap}, \hyperpage{465}
+    \subitem {edit}, \hyperpage{466}
+    \subitem {erase}, \hyperpage{467}
+    \subitem {exist}, \hyperpage{467}
+    \subitem {nearestKVertexWithinMap}, \hyperpage{467}
+    \subitem {nearestVertexWithinMap}, \hyperpage{468}
+    \subitem {nearestVertexWithinMe}, \hyperpage{468}
+  \item {CANDY::ZipfDataLoader}, \hyperpage{469}
+    \subitem {getData}, \hyperpage{470}
+    \subitem {getQuery}, \hyperpage{471}
+    \subitem {setConfig}, \hyperpage{471}
+  \item {cl\_char16}, \hyperpage{147}
+  \item {cl\_char2}, \hyperpage{147}
+  \item {cl\_char4}, \hyperpage{148}
+  \item {cl\_char8}, \hyperpage{148}
+  \item {cl\_double16}, \hyperpage{148}
+  \item {cl\_double2}, \hyperpage{148}
+  \item {cl\_double4}, \hyperpage{149}
+  \item {cl\_double8}, \hyperpage{149}
+  \item {cl\_float16}, \hyperpage{149}
+  \item {cl\_float2}, \hyperpage{149}
+  \item {cl\_float4}, \hyperpage{150}
+  \item {cl\_float8}, \hyperpage{150}
+  \item {cl\_half16}, \hyperpage{150}
+  \item {cl\_half2}, \hyperpage{150}
+  \item {cl\_half4}, \hyperpage{151}
+  \item {cl\_half8}, \hyperpage{151}
+  \item {cl\_int16}, \hyperpage{151}
+  \item {cl\_int2}, \hyperpage{151}
+  \item {cl\_int4}, \hyperpage{152}
+  \item {cl\_int8}, \hyperpage{152}
+  \item {cl\_long16}, \hyperpage{152}
+  \item {cl\_long2}, \hyperpage{152}
+  \item {cl\_long4}, \hyperpage{153}
+  \item {cl\_long8}, \hyperpage{153}
+  \item {cl\_short16}, \hyperpage{153}
+  \item {cl\_short2}, \hyperpage{153}
+  \item {cl\_short4}, \hyperpage{154}
+  \item {cl\_short8}, \hyperpage{154}
+  \item {cl\_uchar16}, \hyperpage{154}
+  \item {cl\_uchar2}, \hyperpage{154}
+  \item {cl\_uchar4}, \hyperpage{155}
+  \item {cl\_uchar8}, \hyperpage{155}
+  \item {cl\_uint16}, \hyperpage{155}
+  \item {cl\_uint2}, \hyperpage{155}
+  \item {cl\_uint4}, \hyperpage{156}
+  \item {cl\_uint8}, \hyperpage{156}
+  \item {cl\_ulong16}, \hyperpage{156}
+  \item {cl\_ulong2}, \hyperpage{156}
+  \item {cl\_ulong4}, \hyperpage{157}
+  \item {cl\_ulong8}, \hyperpage{157}
+  \item {cl\_ushort16}, \hyperpage{157}
+  \item {cl\_ushort2}, \hyperpage{157}
+  \item {cl\_ushort4}, \hyperpage{158}
+  \item {cl\_ushort8}, \hyperpage{158}
   \item {classifyMultiRow}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{384}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{406}
   \item {classifySingleRow}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{384}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{406}
   \item {cloneInto}
-    \subitem {Shared Utils}, \hyperpage{43}
+    \subitem {Shared Utils}, \hyperpage{51}
   \item {compute\_code}
-    \subitem {CANDY::ProductQuantizer}, \hyperpage{373}
+    \subitem {CANDY::ProductQuantizer}, \hyperpage{395}
   \item {compute\_codes}
-    \subitem {CANDY::ProductQuantizer}, \hyperpage{373}
+    \subitem {CANDY::ProductQuantizer}, \hyperpage{395}
   \item {compute\_distance\_table}
-    \subitem {CANDY::ProductQuantizer}, \hyperpage{373}
+    \subitem {CANDY::ProductQuantizer}, \hyperpage{395}
   \item {compute\_distance\_tables}
-    \subitem {CANDY::ProductQuantizer}, \hyperpage{374}
+    \subitem {CANDY::ProductQuantizer}, \hyperpage{396}
   \item {computeCentroids}
-    \subitem {CANDY::Clustering}, \hyperpage{151}
+    \subitem {CANDY::Clustering}, \hyperpage{161}
   \item {computeClustering}
-    \subitem {CANDY::KmeansTree}, \hyperpage{298}
+    \subitem {CANDY::KmeansTree}, \hyperpage{318}
   \item {computeNodeStat}
-    \subitem {CANDY::KmeansTree}, \hyperpage{299}
-  \item {Configurations}, \hyperpage{54}
+    \subitem {CANDY::KmeansTree}, \hyperpage{319}
+  \item {Configurations}, \hyperpage{62}
   \item {crsAmm}
-    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{335}
-    \subitem {CANDY::YinYangGraphIndex}, \hyperpage{428}
+    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{355}
+    \subitem {CANDY::YinYangGraphIndex}, \hyperpage{453}
   \item {cum\_nb\_neighbors}
-    \subitem {CANDY::HNSW}, \hyperpage{249}
+    \subitem {CANDY::HNSW}, \hyperpage{269}
   \item {cum\_nneighbor\_per\_level\_}
-    \subitem {CANDY::HNSW}, \hyperpage{252}
+    \subitem {CANDY::HNSW}, \hyperpage{272}
 
   \indexspace
 
   \item {data}
-    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{119}
+    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{129}
   \item {dataLoader\_create}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{122}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{132}
   \item {dataLoader\_editCfgDouble}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{122}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{132}
   \item {dataLoader\_editCfgFloat}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{123}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{133}
   \item {dataLoader\_editCfgI64}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{123}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{133}
   \item {dataLoader\_editCfgStr}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{123}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{133}
   \item {dataLoader\_getData}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{124}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{134}
   \item {dataLoader\_getQuery}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{124}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{134}
   \item {dataLoader\_init}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{125}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{135}
   \item {DataLoaderTable}
-    \subitem {CANDY::DataLoaderTable}, \hyperpage{171}
+    \subitem {CANDY::DataLoaderTable}, \hyperpage{181}
   \item {decode}
-    \subitem {CANDY::PQDecoder}, \hyperpage{361}
-    \subitem {CANDY::ProductQuantizer}, \hyperpage{374}
-  \item {default\_attrs}, \hyperpage{172}
+    \subitem {CANDY::PQDecoder}, \hyperpage{383}
+    \subitem {CANDY::ProductQuantizer}, \hyperpage{396}
+  \item {default\_attrs}, \hyperpage{182}
   \item {deleteRow}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{264, 265}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{284, 285}
   \item {deleteRowBufferMode}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{265}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{285}
   \item {deleteRows}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{266}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{286}
   \item {deleteRowsBufferMode}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{267}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{287}
   \item {deleteRowsInline}
-    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{336}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{341}
+    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{356}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{361}
   \item {deleteSingleRow}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{385}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{407}
   \item {deleteSingleRowWithIdx}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{385}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{407}
   \item {deleteStringObject}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{84}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{160}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{227}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{351}
-    \subitem {The support classes for index approaches}, \hyperpage{26}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{92}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{170}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{238}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{371}
+    \subitem {The support classes for index approaches}, \hyperpage{28}
   \item {deleteTensor}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{85}
-    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{104}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{111}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{160}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{177}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{184}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{190}
-    \subitem {CANDY::DPGIndex}, \hyperpage{197}
-    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{221}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{228}
-    \subitem {CANDY::FlatIndex}, \hyperpage{234}
-    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{254}
-    \subitem {CANDY::IVFListBucket}, \hyperpage{280}
-    \subitem {CANDY::IVFListCell}, \hyperpage{284}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{321}
-    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{336}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{341}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{352}
-    \subitem {CANDY::PQIndex}, \hyperpage{365}
-    \subitem {CANDY::YinYangGraph\_ListBucket}, \hyperpage{422}
-    \subitem {CANDY::YinYangGraph\_ListCell}, \hyperpage{425}
-    \subitem {The support classes for index approaches}, \hyperpage{27}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{93}
+    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{114}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{121}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{170}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{188}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{195}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{201}
+    \subitem {CANDY::DPGIndex}, \hyperpage{208}
+    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{232}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{239}
+    \subitem {CANDY::FlatIndex}, \hyperpage{245}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{251}
+    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{274}
+    \subitem {CANDY::IVFListBucket}, \hyperpage{300}
+    \subitem {CANDY::IVFListCell}, \hyperpage{304}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{341}
+    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{356}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{361}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{372}
+    \subitem {CANDY::PQIndex}, \hyperpage{387}
+    \subitem {CANDY::YinYangGraph\_ListBucket}, \hyperpage{447}
+    \subitem {CANDY::YinYangGraph\_ListCell}, \hyperpage{450}
+    \subitem {The support classes for index approaches}, \hyperpage{30}
   \item {deleteTensorPtr}
-    \subitem {CANDY::IVFListCell}, \hyperpage{284}
+    \subitem {CANDY::IVFListCell}, \hyperpage{304}
   \item {deleteTensorWithEncode}
-    \subitem {CANDY::IVFListBucket}, \hyperpage{280}
-    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{286}
-    \subitem {CANDY::YinYangGraph}, \hyperpage{419}
-    \subitem {CANDY::YinYangGraph\_ListBucket}, \hyperpage{423}
+    \subitem {CANDY::IVFListBucket}, \hyperpage{300}
+    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{306}
+    \subitem {CANDY::YinYangGraph}, \hyperpage{444}
+    \subitem {CANDY::YinYangGraph\_ListBucket}, \hyperpage{447}
+  \item {deleteU64}
+    \subitem {The support classes for index approaches}, \hyperpage{30}
+  \item {deleteU64Object}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{93}
   \item {detachTensor}
-    \subitem {CANDY::YinYangVertex}, \hyperpage{435}
-  \item {DIVERSE\_METER::AbstractMeter}, \hyperpage{94}
-    \subitem {getStaicEnergyConsumption}, \hyperpage{96}
-    \subitem {setConfig}, \hyperpage{96}
-    \subitem {setStaticPower}, \hyperpage{96}
-    \subitem {testStaticPower}, \hyperpage{97}
-  \item {DIVERSE\_METER::EspMeterUart}, \hyperpage{202}
-    \subitem {setConfig}, \hyperpage{203}
-  \item {DIVERSE\_METER::IntelMeter}, \hyperpage{277}
-    \subitem {setConfig}, \hyperpage{278}
-  \item {DIVERSE\_METER::MeterTable}, \hyperpage{304}
-    \subitem {findMeter}, \hyperpage{306}
-    \subitem {MeterTable}, \hyperpage{306}
-    \subitem {registerNewMeter}, \hyperpage{306}
-  \item {DIVERSE\_METER::rapl\_power\_unit}, \hyperpage{380}
+    \subitem {CANDY::YinYangVertex}, \hyperpage{460}
+  \item {distanceFunc}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{257}
+  \item {distanceIP}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{252}
+  \item {distanceL2}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{252}
+  \item {DIVERSE\_METER::AbstractMeter}, \hyperpage{105}
+    \subitem {getStaicEnergyConsumption}, \hyperpage{106}
+    \subitem {setConfig}, \hyperpage{106}
+    \subitem {setStaticPower}, \hyperpage{107}
+    \subitem {testStaticPower}, \hyperpage{107}
+  \item {DIVERSE\_METER::EspMeterUart}, \hyperpage{213}
+    \subitem {setConfig}, \hyperpage{214}
+  \item {DIVERSE\_METER::IntelMeter}, \hyperpage{297}
+    \subitem {setConfig}, \hyperpage{298}
+  \item {DIVERSE\_METER::MeterTable}, \hyperpage{324}
+    \subitem {findMeter}, \hyperpage{326}
+    \subitem {MeterTable}, \hyperpage{326}
+    \subitem {registerNewMeter}, \hyperpage{326}
+  \item {DIVERSE\_METER::rapl\_power\_unit}, \hyperpage{402}
   \item {divideTree}
-    \subitem {CANDY::KdTree}, \hyperpage{292}
+    \subitem {CANDY::KdTree}, \hyperpage{312}
 
   \indexspace
 
   \item {edit}
-    \subitem {CANDY::YinYangVertexMap}, \hyperpage{441}
-    \subitem {Shared Utils}, \hyperpage{44}
+    \subitem {CANDY::YinYangVertexMap}, \hyperpage{466}
+    \subitem {Shared Utils}, \hyperpage{51, 52}
   \item {editRows}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{267, 268}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{287, 288}
   \item {encode}
-    \subitem {CANDY::PQEncoder}, \hyperpage{362}
+    \subitem {CANDY::PQEncoder}, \hyperpage{384}
   \item {encodeMultiRows}
-    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{104}
+    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{114}
   \item {end}
-    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{99}
+    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{109}
   \item {endHPC}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{85}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{111}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{161}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{177}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{184}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{191}
-    \subitem {CANDY::DPGIndex}, \hyperpage{197}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{321}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{352}
-    \subitem {The support classes for index approaches}, \hyperpage{27}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{94}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{121}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{171}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{188}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{195}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{202}
+    \subitem {CANDY::DPGIndex}, \hyperpage{208}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{252}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{341}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{372}
+    \subitem {The support classes for index approaches}, \hyperpage{31}
   \item {endl}
-    \subitem {BS::synced\_stream}, \hyperpage{391}
-  \item {Energy Meter packs}, \hyperpage{59}
+    \subitem {BS::synced\_stream}, \hyperpage{413}
+  \item {Energy Meter packs}, \hyperpage{67}
   \item {erase}
-    \subitem {CANDY::YinYangVertexMap}, \hyperpage{442}
+    \subitem {CANDY::YinYangVertexMap}, \hyperpage{467}
   \item {euclideanDelete}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{386}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{408}
   \item {euclideanDistance}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{386}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{408}
   \item {euclideanInsert}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{386}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{408}
   \item {exist}
-    \subitem {CANDY::YinYangVertexMap}, \hyperpage{442}
-    \subitem {Shared Utils}, \hyperpage{45}
+    \subitem {CANDY::YinYangVertexMap}, \hyperpage{467}
+    \subitem {Shared Utils}, \hyperpage{53}
   \item {existDouble}
-    \subitem {Shared Utils}, \hyperpage{45}
+    \subitem {Shared Utils}, \hyperpage{53}
   \item {existI64}
-    \subitem {Shared Utils}, \hyperpage{45}
+    \subitem {Shared Utils}, \hyperpage{53}
   \item {existString}
-    \subitem {Shared Utils}, \hyperpage{46}
+    \subitem {Shared Utils}, \hyperpage{54}
   \item {existU64}
-    \subitem {Shared Utils}, \hyperpage{46}
+    \subitem {Shared Utils}, \hyperpage{54}
   \item {explore}
-    \subitem {CANDY::KmeansTree}, \hyperpage{299}
+    \subitem {CANDY::KmeansTree}, \hyperpage{319}
   \item {exportCentroids}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{387}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{409}
 
   \indexspace
 
   \item {findDataLoader}
-    \subitem {CANDY::DataLoaderTable}, \hyperpage{171}
+    \subitem {CANDY::DataLoaderTable}, \hyperpage{181}
   \item {findMeter}
-    \subitem {DIVERSE\_METER::MeterTable}, \hyperpage{306}
+    \subitem {DIVERSE\_METER::MeterTable}, \hyperpage{326}
   \item {findNN}
-    \subitem {CANDY::KmeansTree}, \hyperpage{299}
+    \subitem {CANDY::KmeansTree}, \hyperpage{319}
   \item {fineGrainedEncode}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{342}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{362}
   \item {fineTuneModel}
-    \subitem {CANDY::MLPHashingModel}, \hyperpage{311}
+    \subitem {CANDY::MLPHashingModel}, \hyperpage{331}
   \item {flush}
-    \subitem {BS::synced\_stream}, \hyperpage{392}
+    \subitem {BS::synced\_stream}, \hyperpage{414}
   \item {fromCArg}
-    \subitem {Shared Utils}, \hyperpage{47}
+    \subitem {Shared Utils}, \hyperpage{54}
   \item {fromFile}
-    \subitem {Shared Utils}, \hyperpage{47}
+    \subitem {Shared Utils}, \hyperpage{55}
   \item {fromString}
-    \subitem {Shared Utils}, \hyperpage{47}
+    \subitem {Shared Utils}, \hyperpage{55}
 
   \indexspace
 
   \item {generateArrival}
-    \subitem {INTELLI::IntelliTimeStampGenerator}, \hyperpage{276}
+    \subitem {INTELLI::IntelliTimeStampGenerator}, \hyperpage{296}
   \item {generateBucketedFlatIndexConfig}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{112}
-  \item {generic}, \hyperpage{62}
-    \subitem {genIncrementalAlphabet}, \hyperpage{62}
-    \subitem {genRandInt}, \hyperpage{63}
-    \subitem {genZipfInt}, \hyperpage{63}
-    \subitem {genZipfLut}, \hyperpage{64}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{122}
+  \item {generic}, \hyperpage{70}
+    \subitem {genIncrementalAlphabet}, \hyperpage{70}
+    \subitem {genRandInt}, \hyperpage{71}
+    \subitem {genZipfInt}, \hyperpage{71}
+    \subitem {genZipfLut}, \hyperpage{72}
   \item {genIncrementalAlphabet}
-    \subitem {generic}, \hyperpage{62}
+    \subitem {generic}, \hyperpage{70}
   \item {genRandInt}
-    \subitem {generic}, \hyperpage{63}
+    \subitem {generic}, \hyperpage{71}
   \item {genSmoothTimeStamp}
-    \subitem {time stamp}, \hyperpage{65}
+    \subitem {time stamp}, \hyperpage{73}
   \item {genZipfInt}
-    \subitem {generic}, \hyperpage{63}
+    \subitem {generic}, \hyperpage{71}
   \item {genZipfLut}
-    \subitem {generic}, \hyperpage{64}
+    \subitem {generic}, \hyperpage{72}
   \item {genZipfTimeStamp}
-    \subitem {time stamp}, \hyperpage{66}
+    \subitem {time stamp}, \hyperpage{74}
   \item {get}
-    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{313}
+    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{333}
   \item {get\_num\_blocks}
-    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{99}
+    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{109}
   \item {get\_tasks\_queued}
-    \subitem {BS::thread\_pool}, \hyperpage{397}
+    \subitem {BS::thread\_pool}, \hyperpage{419}
   \item {get\_tasks\_running}
-    \subitem {BS::thread\_pool}, \hyperpage{397}
+    \subitem {BS::thread\_pool}, \hyperpage{420}
   \item {get\_tasks\_total}
-    \subitem {BS::thread\_pool}, \hyperpage{397}
+    \subitem {BS::thread\_pool}, \hyperpage{420}
   \item {get\_thread\_count}
-    \subitem {BS::thread\_pool}, \hyperpage{397}
+    \subitem {BS::thread\_pool}, \hyperpage{420}
   \item {get\_total\_size}
-    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{99}
+    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{110}
   \item {getAllTensors}
-    \subitem {CANDY::IVFListBucket}, \hyperpage{281}
-    \subitem {CANDY::IVFListCell}, \hyperpage{284}
+    \subitem {CANDY::IVFListBucket}, \hyperpage{301}
+    \subitem {CANDY::IVFListCell}, \hyperpage{304}
   \item {getAllTensorsWithEncode}
-    \subitem {CANDY::IVFListBucket}, \hyperpage{281}
+    \subitem {CANDY::IVFListBucket}, \hyperpage{301}
   \item {getAvgCpu}
-    \subitem {INTELLI::MemoryTracker}, \hyperpage{303}
+    \subitem {INTELLI::MemoryTracker}, \hyperpage{323}
   \item {getAvgMem}
-    \subitem {INTELLI::MemoryTracker}, \hyperpage{303}
+    \subitem {INTELLI::MemoryTracker}, \hyperpage{323}
   \item {getCurMem}
-    \subitem {INTELLI::MemoryTracker}, \hyperpage{303}
+    \subitem {INTELLI::MemoryTracker}, \hyperpage{323}
   \item {getData}
-    \subitem {CANDY::AbstractDataLoader}, \hyperpage{79}
-    \subitem {CANDY::ExpFamilyDataLoader}, \hyperpage{206}
-    \subitem {CANDY::FVECSDataLoader}, \hyperpage{240}
-    \subitem {CANDY::HDF5DataLoader}, \hyperpage{243}
-    \subitem {CANDY::RandomDataLoader}, \hyperpage{378}
-    \subitem {CANDY::ZipfDataLoader}, \hyperpage{445}
+    \subitem {CANDY::AbstractDataLoader}, \hyperpage{87}
+    \subitem {CANDY::ExpFamilyDataLoader}, \hyperpage{217}
+    \subitem {CANDY::FVECSDataLoader}, \hyperpage{260}
+    \subitem {CANDY::HDF5DataLoader}, \hyperpage{263}
+    \subitem {CANDY::RandomDataLoader}, \hyperpage{400}
+    \subitem {CANDY::ZipfDataLoader}, \hyperpage{470}
   \item {getDouble}
-    \subitem {Shared Utils}, \hyperpage{48}
+    \subitem {Shared Utils}, \hyperpage{56}
   \item {getDoubleMap}
-    \subitem {Shared Utils}, \hyperpage{48}
+    \subitem {Shared Utils}, \hyperpage{56}
   \item {getI64}
-    \subitem {Shared Utils}, \hyperpage{48}
+    \subitem {Shared Utils}, \hyperpage{56}
   \item {getI64Map}
-    \subitem {Shared Utils}, \hyperpage{49}
+    \subitem {Shared Utils}, \hyperpage{57}
   \item {getIndex}
-    \subitem {CANDY::IndexTable}, \hyperpage{260}
+    \subitem {CANDY::IndexTable}, \hyperpage{280}
+  \item {getIndexStatistics}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{94}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{253}
   \item {getLatencyPercentage}
-    \subitem {INTELLI::UtilityFunctions}, \hyperpage{414}
+    \subitem {INTELLI::UtilityFunctions}, \hyperpage{438}
   \item {getMaxCpu}
-    \subitem {INTELLI::MemoryTracker}, \hyperpage{303}
+    \subitem {INTELLI::MemoryTracker}, \hyperpage{323}
   \item {getMaxMem}
-    \subitem {INTELLI::MemoryTracker}, \hyperpage{303}
+    \subitem {INTELLI::MemoryTracker}, \hyperpage{323}
+  \item {getMemoryReadCntMiss}
+    \subitem {The support classes for index approaches}, \hyperpage{31}
+  \item {getMemoryReadCntTotal}
+    \subitem {The support classes for index approaches}, \hyperpage{31}
+  \item {getMemoryWriteCntMiss}
+    \subitem {The support classes for index approaches}, \hyperpage{32}
+  \item {getMemoryWriteCntTotal}
+    \subitem {The support classes for index approaches}, \hyperpage{32}
   \item {getMinimumNumOfTensors}
-    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{287}
-    \subitem {CANDY::YinYangGraph}, \hyperpage{419}
+    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{307}
+    \subitem {CANDY::YinYangGraph}, \hyperpage{444}
   \item {getMinimumNumOfTensorsHamming}
-    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{287}
+    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{307}
   \item {getMinimumNumOfTensorsInsideBucket}
-    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{288}
+    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{308}
   \item {getMinimumNumOfTensorsInsideBucketHamming}
-    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{288}
+    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{308}
   \item {getMinimumTensorsUnderHamming}
-    \subitem {CANDY::IVFListBucket}, \hyperpage{281}
+    \subitem {CANDY::IVFListBucket}, \hyperpage{301}
   \item {getNeighbors}
-    \subitem {CANDY::KdTree}, \hyperpage{292}
-    \subitem {CANDY::KmeansTree}, \hyperpage{300}
+    \subitem {CANDY::KdTree}, \hyperpage{312}
+    \subitem {CANDY::KmeansTree}, \hyperpage{320}
   \item {getQuery}
-    \subitem {CANDY::AbstractDataLoader}, \hyperpage{79}
-    \subitem {CANDY::ExpFamilyDataLoader}, \hyperpage{206}
-    \subitem {CANDY::FVECSDataLoader}, \hyperpage{240}
-    \subitem {CANDY::HDF5DataLoader}, \hyperpage{243}
-    \subitem {CANDY::RandomDataLoader}, \hyperpage{378}
-    \subitem {CANDY::ZipfDataLoader}, \hyperpage{446}
+    \subitem {CANDY::AbstractDataLoader}, \hyperpage{87}
+    \subitem {CANDY::ExpFamilyDataLoader}, \hyperpage{217}
+    \subitem {CANDY::FVECSDataLoader}, \hyperpage{260}
+    \subitem {CANDY::HDF5DataLoader}, \hyperpage{263}
+    \subitem {CANDY::RandomDataLoader}, \hyperpage{400}
+    \subitem {CANDY::ZipfDataLoader}, \hyperpage{471}
   \item {getResultById}
-    \subitem {INTELLI::ThreadPerf}, \hyperpage{405}
-    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{410}
+    \subitem {INTELLI::ThreadPerf}, \hyperpage{428}
+    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{433}
   \item {getResultByName}
-    \subitem {INTELLI::ThreadPerf}, \hyperpage{405}
-    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{410}
+    \subitem {INTELLI::ThreadPerf}, \hyperpage{428}
+    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{433}
   \item {getStaicEnergyConsumption}
-    \subitem {DIVERSE\_METER::AbstractMeter}, \hyperpage{96}
+    \subitem {DIVERSE\_METER::AbstractMeter}, \hyperpage{106}
   \item {getStr}
-    \subitem {CANDY::CANDYObject}, \hyperpage{136}
+    \subitem {CANDY::CANDYObject}, \hyperpage{146}
   \item {getString}
-    \subitem {Shared Utils}, \hyperpage{49}
+    \subitem {Shared Utils}, \hyperpage{57}
   \item {getStrMap}
-    \subitem {Shared Utils}, \hyperpage{50}
+    \subitem {Shared Utils}, \hyperpage{57}
+  \item {getTensor}
+    \subitem {The support classes for index approaches}, \hyperpage{32}
   \item {getTensorByIndex}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{85}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{161}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{185}
-    \subitem {CANDY::DPGIndex}, \hyperpage{197}
-    \subitem {CANDY::FaissIndex}, \hyperpage{209}
-    \subitem {CANDY::FlannIndex}, \hyperpage{215}
-    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{221}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{228}
-    \subitem {CANDY::FlatIndex}, \hyperpage{234}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{322}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{352}
-    \subitem {CANDY::PQIndex}, \hyperpage{367}
-    \subitem {The support classes for index approaches}, \hyperpage{27}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{94}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{171}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{196}
+    \subitem {CANDY::DPGIndex}, \hyperpage{208}
+    \subitem {CANDY::FaissIndex}, \hyperpage{220}
+    \subitem {CANDY::FlannIndex}, \hyperpage{226}
+    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{232}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{239}
+    \subitem {CANDY::FlatIndex}, \hyperpage{245}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{342}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{372}
+    \subitem {CANDY::PQIndex}, \hyperpage{389}
+    \subitem {The support classes for index approaches}, \hyperpage{33}
+  \item {getTensorByStdIdx}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{253}
   \item {getTimeStamps}
-    \subitem {INTELLI::IntelliTimeStampGenerator}, \hyperpage{276}
+    \subitem {INTELLI::IntelliTimeStampGenerator}, \hyperpage{296}
   \item {getU64}
-    \subitem {Shared Utils}, \hyperpage{50}
+    \subitem {Shared Utils}, \hyperpage{58}
+    \subitem {The support classes for index approaches}, \hyperpage{33}
   \item {getUnblockQueryResult}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{177}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{188}
   \item {getVertex}
-    \subitem {CANDY::YinYangGraph\_ListCell}, \hyperpage{425}
+    \subitem {CANDY::YinYangGraph\_ListCell}, \hyperpage{450}
   \item {getVertexWithEncode}
-    \subitem {CANDY::YinYangGraph\_ListBucket}, \hyperpage{423}
+    \subitem {CANDY::YinYangGraph\_ListBucket}, \hyperpage{448}
   \item {greedySearchForKNearestTensor}
-    \subitem {CANDY::YinYangVertex}, \hyperpage{436}
+    \subitem {CANDY::YinYangVertex}, \hyperpage{461}
   \item {greedySearchForKNearestVertex}
-    \subitem {CANDY::YinYangVertex}, \hyperpage{436, 437}
+    \subitem {CANDY::YinYangVertex}, \hyperpage{461, 462}
   \item {greedySearchForNearestVertex}
-    \subitem {CANDY::YinYangVertex}, \hyperpage{437, 438}
+    \subitem {CANDY::YinYangVertex}, \hyperpage{462, 463}
 
   \indexspace
 
   \item {hash}
-    \subitem {CANDY::MLPBucketIdxModel}, \hyperpage{309}
-    \subitem {CANDY::MLPHashingModel}, \hyperpage{311}
+    \subitem {CANDY::MLPBucketIdxModel}, \hyperpage{329}
+    \subitem {CANDY::MLPHashingModel}, \hyperpage{331}
   \item {hijackConfig}
-    \subitem {CANDY::AbstractDataLoader}, \hyperpage{80}
-    \subitem {CANDY::ExpFamilyDataLoader}, \hyperpage{206}
-  \item {HNSWAlter}, \hyperpage{252}
-  \item {HostPara}, \hyperpage{258}
+    \subitem {CANDY::AbstractDataLoader}, \hyperpage{88}
+    \subitem {CANDY::ExpFamilyDataLoader}, \hyperpage{217}
+  \item {HNSWAlter}, \hyperpage{272}
+  \item {HostPara}, \hyperpage{278}
 
   \indexspace
 
   \item {imbalance\_factor}
-    \subitem {CANDY::Clustering}, \hyperpage{151}
-  \item {include/CANDY.h}, \hyperpage{449}
-  \item {include/CANDY/AbstractIndex.h}, \hyperpage{450}
-  \item {include/CANDY/BucketedFlatIndex.h}, \hyperpage{451}
-  \item {include/CANDY/BufferedCongestionDropIndex.h}, \hyperpage{452}
-  \item {include/CANDY/CANDYObject.h}, \hyperpage{453}
-  \item {include/CANDY/CongestionDropIndex.h}, \hyperpage{454}
+    \subitem {CANDY::Clustering}, \hyperpage{161}
+  \item {include/CANDY.h}, \hyperpage{473}
+  \item {include/CANDY/AbstractIndex.h}, \hyperpage{474}
+  \item {include/CANDY/BucketedFlatIndex.h}, \hyperpage{475}
+  \item {include/CANDY/BufferedCongestionDropIndex.h}, \hyperpage{476}
+  \item {include/CANDY/CANDYObject.h}, \hyperpage{477}
+  \item {include/CANDY/CongestionDropIndex.h}, \hyperpage{478}
   \item {include/CANDY/CongestionDropIndex/CongestionDropIndexWorker.h}, 
-		\hyperpage{455}
-  \item {include/CANDY/DistributedPartitionIndex.h}, \hyperpage{456}
+		\hyperpage{479}
+  \item {include/CANDY/DistributedPartitionIndex.h}, \hyperpage{480}
   \item {include/CANDY/DistributedPartitionIndex/DistributedIndexWorker.h}, 
-		\hyperpage{457}
-  \item {include/CANDY/DPGIndex.h}, \hyperpage{458}
-  \item {include/CANDY/FaissIndex.h}, \hyperpage{459}
-  \item {include/CANDY/FlatAMMIPIndex.h}, \hyperpage{459}
-  \item {include/CANDY/FlatAMMIPObjIndex.h}, \hyperpage{460}
-  \item {include/CANDY/FlatIndex.h}, \hyperpage{461}
-  \item {include/CANDY/HNSWNaiveIndex.h}, \hyperpage{462}
-  \item {include/CANDY/IndexTable.h}, \hyperpage{463}
-  \item {include/CANDY/NNDescentIndex.h}, \hyperpage{464}
-  \item {include/CANDY/OnlinePQIndex.h}, \hyperpage{465}
+		\hyperpage{481}
+  \item {include/CANDY/DPGIndex.h}, \hyperpage{482}
+  \item {include/CANDY/FaissIndex.h}, \hyperpage{483}
+  \item {include/CANDY/FlatAMMIPIndex.h}, \hyperpage{483}
+  \item {include/CANDY/FlatAMMIPObjIndex.h}, \hyperpage{484}
+  \item {include/CANDY/FlatIndex.h}, \hyperpage{485}
+  \item {include/CANDY/FlatSSDGPUIndex.h}, \hyperpage{486}
+  \item {include/CANDY/FlatSSDGPUIndex/DiskMemBuffer.h}, 
+		\hyperpage{487}
+  \item {include/CANDY/FlatSSDGPUIndex/SPDKSSD.h}, \hyperpage{488}
+  \item {include/CANDY/HNSWNaiveIndex.h}, \hyperpage{489}
+  \item {include/CANDY/IndexTable.h}, \hyperpage{490}
+  \item {include/CANDY/NNDescentIndex.h}, \hyperpage{490}
+  \item {include/CANDY/OnlinePQIndex.h}, \hyperpage{491}
   \item {include/CANDY/OnlinePQIndex/IVFTensorEncodingList.h}, 
-		\hyperpage{466}
+		\hyperpage{492}
   \item {include/CANDY/OnlinePQIndex/SimpleStreamClustering.h}, 
-		\hyperpage{467}
-  \item {include/CANDY/ParallelPartitionIndex.h}, \hyperpage{468}
+		\hyperpage{494}
+  \item {include/CANDY/ParallelPartitionIndex.h}, \hyperpage{495}
   \item {include/CANDY/ParallelPartitionIndex/ParallelIndexWorker.h}, 
-		\hyperpage{469}
-  \item {include/CANDY/YinYangGraphIndex.h}, \hyperpage{471}
+		\hyperpage{496}
+  \item {include/CANDY/YinYangGraphIndex.h}, \hyperpage{497}
   \item {include/CANDY/YinYangGraphIndex/YinYangGraph.h}, 
-		\hyperpage{472}
-  \item {include/CANDY/YinYangGraphSimpleIndex.h}, \hyperpage{473}
-  \item {include/CANDYPYTHON.h}, \hyperpage{474}
-  \item {include/DataLoader/AbstractDataLoader.h}, \hyperpage{475}
-  \item {include/DataLoader/DataLoaderTable.h}, \hyperpage{475}
-  \item {include/DataLoader/ExpFamilyDataLoader.h}, \hyperpage{477}
-  \item {include/DataLoader/FVECSDataLoader.h}, \hyperpage{478}
-  \item {include/DataLoader/HDF5DataLoader.h}, \hyperpage{479}
-  \item {include/DataLoader/RandomDataLoader.h}, \hyperpage{480}
-  \item {include/DataLoader/ZipfDataLoader.h}, \hyperpage{481}
-  \item {include/Utils/AbstractC20Thread.hpp}, \hyperpage{482}
-  \item {include/Utils/BS\_thread\_pool.hpp}, \hyperpage{483}
-  \item {include/Utils/C20Buffers.hpp}, \hyperpage{484}
-  \item {include/Utils/ConfigMap.hpp}, \hyperpage{485}
-  \item {include/Utils/IntelliTensorOP.hpp}, \hyperpage{486}
-  \item {include/Utils/IntelliTimeStampGenerator.h}, \hyperpage{487}
-  \item {include/Utils/Meters/AbstractMeter.hpp}, \hyperpage{488}
+		\hyperpage{498}
+  \item {include/CANDY/YinYangGraphSimpleIndex.h}, \hyperpage{500}
+  \item {include/CANDYPYTHON.h}, \hyperpage{501}
+  \item {include/DataLoader/AbstractDataLoader.h}, \hyperpage{501}
+  \item {include/DataLoader/DataLoaderTable.h}, \hyperpage{502}
+  \item {include/DataLoader/ExpFamilyDataLoader.h}, \hyperpage{503}
+  \item {include/DataLoader/FVECSDataLoader.h}, \hyperpage{504}
+  \item {include/DataLoader/HDF5DataLoader.h}, \hyperpage{505}
+  \item {include/DataLoader/RandomDataLoader.h}, \hyperpage{506}
+  \item {include/DataLoader/ZipfDataLoader.h}, \hyperpage{507}
+  \item {include/Utils/AbstractC20Thread.hpp}, \hyperpage{508}
+  \item {include/Utils/BS\_thread\_pool.hpp}, \hyperpage{509}
+  \item {include/Utils/C20Buffers.hpp}, \hyperpage{510}
+  \item {include/Utils/ConfigMap.hpp}, \hyperpage{511}
+  \item {include/Utils/IntelliTensorOP.hpp}, \hyperpage{512}
+  \item {include/Utils/IntelliTimeStampGenerator.h}, \hyperpage{513}
+  \item {include/Utils/Meters/AbstractMeter.hpp}, \hyperpage{514}
   \item {include/Utils/Meters/EspMeterUart/EspMeterUart.hpp}, 
-		\hyperpage{489}
-  \item {include/Utils/ThreadPerf.hpp}, \hyperpage{490}
-  \item {include/Utils/ThreadPerfPAPI.hpp}, \hyperpage{492}
+		\hyperpage{515}
+  \item {include/Utils/ThreadPerf.hpp}, \hyperpage{516}
+  \item {include/Utils/ThreadPerfPAPI.hpp}, \hyperpage{518}
   \item {index\_create}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{125}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{135}
   \item {index\_delete}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{125}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{135}
   \item {index\_deleteString}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{126}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{136}
   \item {index\_editCfgDouble}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{126}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{136}
   \item {index\_editCfgI64}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{127}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{137}
   \item {index\_editCfgStr}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{127}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{137}
   \item {index\_endHPC}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{127}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{137}
   \item {index\_init}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{128}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{138}
   \item {index\_insert}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{128}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{138}
   \item {index\_insertString}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{129}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{139}
   \item {index\_loadCfgFromFile}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{129}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{139}
   \item {index\_loadInitial}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{129}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{139}
   \item {index\_loadInitialString}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{130}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{140}
   \item {index\_offlineBuild}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{130}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{140}
   \item {index\_rawData}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{131}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{141}
   \item {index\_reset}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{131}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{141}
   \item {index\_revise}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{131}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{141}
   \item {index\_search}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{132}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{142}
   \item {index\_searchString}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{132}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{142}
   \item {index\_searchTensorAndStringList}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{133}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{143}
   \item {index\_setFrozenLevel}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{133}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{143}
   \item {index\_startHPC}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{133}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{143}
   \item {index\_waitPending}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{134}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{144}
   \item {init}
-    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{289}
-    \subitem {CANDY::MLPBucketIdxModel}, \hyperpage{309}
-    \subitem {CANDY::MLPHashingModel}, \hyperpage{311}
-    \subitem {CANDY::YinYangGraph}, \hyperpage{420}
-    \subitem {CANDY::YinYangVertex}, \hyperpage{438}
+    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{309}
+    \subitem {CANDY::MLPBucketIdxModel}, \hyperpage{329}
+    \subitem {CANDY::MLPHashingModel}, \hyperpage{331}
+    \subitem {CANDY::YinYangGraph}, \hyperpage{445}
+    \subitem {CANDY::YinYangVertex}, \hyperpage{463}
+    \subitem {The support classes for index approaches}, \hyperpage{33}
   \item {initEventsByCfg}
-    \subitem {INTELLI::ThreadPerf}, \hyperpage{406}
-    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{411}
+    \subitem {INTELLI::ThreadPerf}, \hyperpage{428}
+    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{434}
   \item {inlineMain}
-    \subitem {INTELLI::AbstractC20Thread}, \hyperpage{78}
-    \subitem {The support classes for index approaches}, \hyperpage{28}
+    \subitem {INTELLI::AbstractC20Thread}, \hyperpage{86}
+    \subitem {The support classes for index approaches}, \hyperpage{34}
   \item {insertRows}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{268}, 
-		\hyperpage{270}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{288}, 
+		\hyperpage{290}
   \item {insertSingleRowTensor}
-    \subitem {CANDY::YinYangGraphSimpleIndex}, \hyperpage{431}
+    \subitem {CANDY::YinYangGraphSimpleIndex}, \hyperpage{456}
   \item {insertStringObject}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{86}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{162}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{229}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{353}
-    \subitem {The support classes for index approaches}, \hyperpage{28}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{95}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{172}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{240}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{373}
+    \subitem {The support classes for index approaches}, \hyperpage{34}
   \item {insertTensor}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{86}
-    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{104}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{112}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{162}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{178}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{185}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{191}
-    \subitem {CANDY::DPGIndex}, \hyperpage{198}
-    \subitem {CANDY::FaissIndex}, \hyperpage{210}
-    \subitem {CANDY::FlannIndex}, \hyperpage{215}
-    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{221}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{229}
-    \subitem {CANDY::FlatIndex}, \hyperpage{235}
-    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{254}
-    \subitem {CANDY::IVFListCell}, \hyperpage{284}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{322}
-    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{336}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{342}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{353}
-    \subitem {CANDY::PQIndex}, \hyperpage{367}
-    \subitem {CANDY::YinYangGraph\_ListCell}, \hyperpage{425}
-    \subitem {CANDY::YinYangGraphIndex}, \hyperpage{429}
-    \subitem {CANDY::YinYangGraphSimpleIndex}, \hyperpage{432}
-    \subitem {The support classes for index approaches}, \hyperpage{29}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{95}
+    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{114}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{122}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{172}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{189}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{196}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{202}
+    \subitem {CANDY::DPGIndex}, \hyperpage{209}
+    \subitem {CANDY::FaissIndex}, \hyperpage{221}
+    \subitem {CANDY::FlannIndex}, \hyperpage{226}
+    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{232}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{240}
+    \subitem {CANDY::FlatIndex}, \hyperpage{246}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{253}
+    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{274}
+    \subitem {CANDY::IVFListCell}, \hyperpage{304}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{342}
+    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{356}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{362}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{373}
+    \subitem {CANDY::PQIndex}, \hyperpage{389}
+    \subitem {CANDY::YinYangGraph\_ListCell}, \hyperpage{450}
+    \subitem {CANDY::YinYangGraphIndex}, \hyperpage{453}
+    \subitem {CANDY::YinYangGraphSimpleIndex}, \hyperpage{457}
+    \subitem {The support classes for index approaches}, \hyperpage{35}
   \item {insertTensorInline}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{112}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{122}
   \item {insertTensorPtr}
-    \subitem {CANDY::IVFListCell}, \hyperpage{285}
+    \subitem {CANDY::IVFListCell}, \hyperpage{305}
   \item {insertTensorWithEncode}
-    \subitem {CANDY::IVFListBucket}, \hyperpage{282}
-    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{289}
-    \subitem {CANDY::YinYangGraph}, \hyperpage{420}
-    \subitem {CANDY::YinYangGraph\_ListBucket}, \hyperpage{423}
-  \item {INTELLI::AbstractC20Thread}, \hyperpage{77}
-    \subitem {inlineMain}, \hyperpage{78}
-  \item {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{116}
-    \subitem {append}, \hyperpage{117, 118}
-    \subitem {bufferSize}, \hyperpage{118}
-    \subitem {C20Buffer}, \hyperpage{117}
-    \subitem {data}, \hyperpage{119}
-    \subitem {size}, \hyperpage{119}
-  \item {INTELLI::ConfigMap}, \hyperpage{155}
-  \item {INTELLI::IntelliLog}, \hyperpage{260}
-  \item {INTELLI::IntelliLog\_FileProtector}, \hyperpage{261}
-  \item {INTELLI::IntelliTensorOP}, \hyperpage{261}
-    \subitem {appendRows}, \hyperpage{262, 263}
-    \subitem {appendRowsBufferMode}, \hyperpage{263, 264}
-    \subitem {deleteRow}, \hyperpage{264, 265}
-    \subitem {deleteRowBufferMode}, \hyperpage{265}
-    \subitem {deleteRows}, \hyperpage{266}
-    \subitem {deleteRowsBufferMode}, \hyperpage{267}
-    \subitem {editRows}, \hyperpage{267, 268}
-    \subitem {insertRows}, \hyperpage{268}, \hyperpage{270}
-    \subitem {l2Normalize}, \hyperpage{270}
-    \subitem {rowSampling}, \hyperpage{271}
-    \subitem {tensorFromFile}, \hyperpage{271}
-    \subitem {tensorFromFlatBin}, \hyperpage{271}
-    \subitem {tensorToFile}, \hyperpage{272}
-    \subitem {tensorToFlatBin}, \hyperpage{272}
-  \item {INTELLI::IntelliTimeStamp}, \hyperpage{273}
-  \item {INTELLI::IntelliTimeStampGenerator}, \hyperpage{274}
-    \subitem {generateArrival}, \hyperpage{276}
-    \subitem {getTimeStamps}, \hyperpage{276}
-    \subitem {setConfig}, \hyperpage{276}
-  \item {INTELLI::MemoryTracker}, \hyperpage{302}
-    \subitem {getAvgCpu}, \hyperpage{303}
-    \subitem {getAvgMem}, \hyperpage{303}
-    \subitem {getCurMem}, \hyperpage{303}
-    \subitem {getMaxCpu}, \hyperpage{303}
-    \subitem {getMaxMem}, \hyperpage{303}
-    \subitem {start}, \hyperpage{304}
-  \item {INTELLI::MicroDataSet}, \hyperpage{307}
-  \item {INTELLI::SPSCQueue$<$ T, Allocator $>$}, \hyperpage{388}
-  \item {INTELLI::ThreadPerf}, \hyperpage{402}
-    \subitem {getResultById}, \hyperpage{405}
-    \subitem {getResultByName}, \hyperpage{405}
-    \subitem {initEventsByCfg}, \hyperpage{406}
-    \subitem {resultToConfigMap}, \hyperpage{406}
-    \subitem {start}, \hyperpage{406}
-    \subitem {ThreadPerf}, \hyperpage{405}
-  \item {INTELLI::ThreadPerf::PerfPair}, \hyperpage{359}
-  \item {INTELLI::ThreadPerf::PerfTool}, \hyperpage{360}
-  \item {INTELLI::ThreadPerfPAPI}, \hyperpage{407}
-    \subitem {addPapiTag}, \hyperpage{409, 410}
-    \subitem {getResultById}, \hyperpage{410}
-    \subitem {getResultByName}, \hyperpage{410}
-    \subitem {initEventsByCfg}, \hyperpage{411}
-    \subitem {resultToConfigMap}, \hyperpage{411}
-    \subitem {start}, \hyperpage{411}
-    \subitem {ThreadPerfPAPI}, \hyperpage{409}
-  \item {INTELLI::UtilityFunctions}, \hyperpage{413}
-    \subitem {bind2Core}, \hyperpage{413}
-    \subitem {calculateRecall}, \hyperpage{414}
-    \subitem {getLatencyPercentage}, \hyperpage{414}
-    \subitem {saveTimeStampToFile}, \hyperpage{414}
-    \subitem {tensorListFromFile}, \hyperpage{415}
-    \subitem {tensorListToFile}, \hyperpage{415}
-  \item {INTELLITensorOP}, \hyperpage{273}
+    \subitem {CANDY::IVFListBucket}, \hyperpage{302}
+    \subitem {CANDY::IVFTensorEncodingList}, \hyperpage{309}
+    \subitem {CANDY::YinYangGraph}, \hyperpage{445}
+    \subitem {CANDY::YinYangGraph\_ListBucket}, \hyperpage{448}
+  \item {insertU64Object}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{96}
+  \item {INTELLI::AbstractC20Thread}, \hyperpage{85}
+    \subitem {inlineMain}, \hyperpage{86}
+  \item {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{126}
+    \subitem {append}, \hyperpage{127, 128}
+    \subitem {bufferSize}, \hyperpage{128}
+    \subitem {C20Buffer}, \hyperpage{127}
+    \subitem {data}, \hyperpage{129}
+    \subitem {size}, \hyperpage{129}
+  \item {INTELLI::ConfigMap}, \hyperpage{165}
+  \item {INTELLI::IntelliLog}, \hyperpage{280}
+  \item {INTELLI::IntelliLog\_FileProtector}, \hyperpage{281}
+  \item {INTELLI::IntelliTensorOP}, \hyperpage{281}
+    \subitem {appendRows}, \hyperpage{282, 283}
+    \subitem {appendRowsBufferMode}, \hyperpage{283, 284}
+    \subitem {deleteRow}, \hyperpage{284, 285}
+    \subitem {deleteRowBufferMode}, \hyperpage{285}
+    \subitem {deleteRows}, \hyperpage{286}
+    \subitem {deleteRowsBufferMode}, \hyperpage{287}
+    \subitem {editRows}, \hyperpage{287, 288}
+    \subitem {insertRows}, \hyperpage{288}, \hyperpage{290}
+    \subitem {l2Normalize}, \hyperpage{290}
+    \subitem {rowSampling}, \hyperpage{291}
+    \subitem {tensorFromFile}, \hyperpage{291}
+    \subitem {tensorFromFlatBin}, \hyperpage{291}
+    \subitem {tensorToFile}, \hyperpage{292}
+    \subitem {tensorToFlatBin}, \hyperpage{292}
+  \item {INTELLI::IntelliTimeStamp}, \hyperpage{293}
+  \item {INTELLI::IntelliTimeStampGenerator}, \hyperpage{294}
+    \subitem {generateArrival}, \hyperpage{296}
+    \subitem {getTimeStamps}, \hyperpage{296}
+    \subitem {setConfig}, \hyperpage{296}
+  \item {INTELLI::MemoryTracker}, \hyperpage{322}
+    \subitem {getAvgCpu}, \hyperpage{323}
+    \subitem {getAvgMem}, \hyperpage{323}
+    \subitem {getCurMem}, \hyperpage{323}
+    \subitem {getMaxCpu}, \hyperpage{323}
+    \subitem {getMaxMem}, \hyperpage{323}
+    \subitem {start}, \hyperpage{324}
+  \item {INTELLI::MicroDataSet}, \hyperpage{327}
+  \item {INTELLI::SPSCQueue$<$ T, Allocator $>$}, \hyperpage{410}
+  \item {INTELLI::ThreadPerf}, \hyperpage{425}
+    \subitem {getResultById}, \hyperpage{428}
+    \subitem {getResultByName}, \hyperpage{428}
+    \subitem {initEventsByCfg}, \hyperpage{428}
+    \subitem {resultToConfigMap}, \hyperpage{429}
+    \subitem {start}, \hyperpage{429}
+    \subitem {ThreadPerf}, \hyperpage{427}
+  \item {INTELLI::ThreadPerf::PerfPair}, \hyperpage{379}
+  \item {INTELLI::ThreadPerf::PerfTool}, \hyperpage{380}
+  \item {INTELLI::ThreadPerfPAPI}, \hyperpage{430}
+    \subitem {addPapiTag}, \hyperpage{432, 433}
+    \subitem {getResultById}, \hyperpage{433}
+    \subitem {getResultByName}, \hyperpage{433}
+    \subitem {initEventsByCfg}, \hyperpage{434}
+    \subitem {resultToConfigMap}, \hyperpage{434}
+    \subitem {start}, \hyperpage{434}
+    \subitem {ThreadPerfPAPI}, \hyperpage{432}
+  \item {INTELLI::UtilityFunctions}, \hyperpage{437}
+    \subitem {bind2Core}, \hyperpage{437}
+    \subitem {calculateRecall}, \hyperpage{438}
+    \subitem {getLatencyPercentage}, \hyperpage{438}
+    \subitem {saveTimeStampToFile}, \hyperpage{438}
+    \subitem {tensorListFromFile}, \hyperpage{440}
+    \subitem {tensorListToFile}, \hyperpage{440}
+  \item {INTELLITensorOP}, \hyperpage{293}
   \item {is\_paused}
-    \subitem {BS::thread\_pool}, \hyperpage{398}
+    \subitem {BS::thread\_pool}, \hyperpage{420}
 
   \indexspace
 
   \item {knnSearch}
-    \subitem {CANDY::KdTree}, \hyperpage{293}
-    \subitem {CANDY::KmeansTree}, \hyperpage{300}
+    \subitem {CANDY::KdTree}, \hyperpage{313}
+    \subitem {CANDY::KmeansTree}, \hyperpage{320}
 
   \indexspace
 
   \item {l2Normalize}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{270}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{290}
   \item {loadCentroids}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{387}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{409}
   \item {loadFrom}
-    \subitem {Shared Utils}, \hyperpage{50}
+    \subitem {Shared Utils}, \hyperpage{58}
   \item {loadInitialStringObject}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{87}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{163}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{354}
-    \subitem {The support classes for index approaches}, \hyperpage{29}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{96}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{173}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{374}
+    \subitem {The support classes for index approaches}, \hyperpage{36}
   \item {loadInitialTensor}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{88}
-    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{105}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{113}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{163}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{178}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{185}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{191}
-    \subitem {CANDY::DPGIndex}, \hyperpage{198}
-    \subitem {CANDY::FaissIndex}, \hyperpage{210}
-    \subitem {CANDY::FlannIndex}, \hyperpage{215}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{322}
-    \subitem {CANDY::OnlineIVFL2HIndex}, \hyperpage{331}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{342}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{354}
-    \subitem {CANDY::PQIndex}, \hyperpage{368}
-    \subitem {The support classes for index approaches}, \hyperpage{30}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{97}
+    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{115}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{123}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{173}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{189}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{196}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{202}
+    \subitem {CANDY::DPGIndex}, \hyperpage{209}
+    \subitem {CANDY::FaissIndex}, \hyperpage{221}
+    \subitem {CANDY::FlannIndex}, \hyperpage{226}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{342}
+    \subitem {CANDY::OnlineIVFL2HIndex}, \hyperpage{351}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{362}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{374}
+    \subitem {CANDY::PQIndex}, \hyperpage{390}
+    \subitem {The support classes for index approaches}, \hyperpage{36}
   \item {loadInitialTensorAndQueryDistribution}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{88}
-    \subitem {CANDY::OnlineIVFL2HIndex}, \hyperpage{332}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{97}
+    \subitem {CANDY::OnlineIVFL2HIndex}, \hyperpage{352}
   \item {loadInitialTensorUnblocked}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{178}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{189}
+  \item {loadInitialU64Object}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{98}
   \item {log}
-    \subitem {Log utils}, \hyperpage{56}
-  \item {Log utils}, \hyperpage{55}
-    \subitem {appendLogFile}, \hyperpage{56}
-    \subitem {log}, \hyperpage{56}
-    \subitem {openLogFile}, \hyperpage{57}
-    \subitem {setupLoggingFile}, \hyperpage{57}
+    \subitem {Log utils}, \hyperpage{64}
+  \item {Log utils}, \hyperpage{63}
+    \subitem {appendLogFile}, \hyperpage{64}
+    \subitem {log}, \hyperpage{64}
+    \subitem {openLogFile}, \hyperpage{65}
+    \subitem {setupLoggingFile}, \hyperpage{65}
 
   \indexspace
 
   \item {meanSplit}
-    \subitem {CANDY::KdTree}, \hyperpage{293}
+    \subitem {CANDY::KdTree}, \hyperpage{313}
   \item {MeterTable}
-    \subitem {DIVERSE\_METER::MeterTable}, \hyperpage{306}
+    \subitem {DIVERSE\_METER::MeterTable}, \hyperpage{326}
   \item {MicroDataSet}
-    \subitem {The Micro dataset}, \hyperpage{61}
+    \subitem {The Micro dataset}, \hyperpage{69}
   \item {ms}
-    \subitem {BS::timer}, \hyperpage{412}
+    \subitem {BS::timer}, \hyperpage{435}
   \item {multi\_future}
-    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{313}
+    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{333}
 
   \indexspace
 
   \item {nb\_neighbors}
-    \subitem {CANDY::HNSW}, \hyperpage{249}
+    \subitem {CANDY::HNSW}, \hyperpage{269}
   \item {nearestKVertexWithinMap}
-    \subitem {CANDY::YinYangVertexMap}, \hyperpage{442}
+    \subitem {CANDY::YinYangVertexMap}, \hyperpage{467}
   \item {nearestVertexWithinMap}
-    \subitem {CANDY::YinYangVertexMap}, \hyperpage{443}
+    \subitem {CANDY::YinYangVertexMap}, \hyperpage{468}
   \item {nearestVertexWithinMe}
-    \subitem {CANDY::YinYangVertexMap}, \hyperpage{443}
+    \subitem {CANDY::YinYangVertexMap}, \hyperpage{468}
   \item {neighbor\_range}
-    \subitem {CANDY::HNSW}, \hyperpage{249}
+    \subitem {CANDY::HNSW}, \hyperpage{269}
   \item {newAbstractIndex}
-    \subitem {The bottom tier of indexing alorithms}, \hyperpage{39}
+    \subitem {The bottom tier of indexing alorithms}, \hyperpage{46}
 
   \indexspace
 
   \item {offlineBuild}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{89}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{113}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{164}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{179}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{186}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{192}
-    \subitem {CANDY::DPGIndex}, \hyperpage{199}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{323}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{343}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{355}
-    \subitem {The support classes for index approaches}, \hyperpage{30}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{98}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{123}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{174}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{190}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{197}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{203}
+    \subitem {CANDY::DPGIndex}, \hyperpage{210}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{343}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{363}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{375}
+    \subitem {The support classes for index approaches}, \hyperpage{37}
   \item {offlineBuildUnblocked}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{179}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{190}
   \item {ONLINEIVF\_NEXT\_POW\_2}
-    \subitem {OnlineIVFLSHIndex.cpp}, \hyperpage{499}
-    \subitem {YinYangGraphIndex.cpp}, \hyperpage{501}
+    \subitem {OnlineIVFLSHIndex.cpp}, \hyperpage{525}
+    \subitem {YinYangGraphIndex.cpp}, \hyperpage{527}
   \item {ONLINEIVFL2H\_NEXT\_POW\_2}
-    \subitem {OnlineIVFL2HIndex.cpp}, \hyperpage{498}
+    \subitem {OnlineIVFL2HIndex.cpp}, \hyperpage{524}
   \item {OnlineIVFL2HIndex.cpp}
-    \subitem {ONLINEIVFL2H\_NEXT\_POW\_2}, \hyperpage{498}
+    \subitem {ONLINEIVFL2H\_NEXT\_POW\_2}, \hyperpage{524}
   \item {OnlineIVFLSHIndex.cpp}
-    \subitem {ONLINEIVF\_NEXT\_POW\_2}, \hyperpage{499}
+    \subitem {ONLINEIVF\_NEXT\_POW\_2}, \hyperpage{525}
   \item {openLogFile}
-    \subitem {Log utils}, \hyperpage{57}
+    \subitem {Log utils}, \hyperpage{65}
   \item {operator()}
-    \subitem {CANDY::DistanceQueryer}, \hyperpage{174}
+    \subitem {CANDY::DistanceQueryer}, \hyperpage{185}
   \item {operator[]}
-    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{314}
+    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{334}
   \item {Other common class or package under C++20 standard}, 
-		\hyperpage{53}
+		\hyperpage{61}
 
   \indexspace
 
   \item {parallelize\_loop}
-    \subitem {BS::thread\_pool}, \hyperpage{398, 399}
+    \subitem {BS::thread\_pool}, \hyperpage{420, 421}
+  \item {PlainDiskMemBufferOfTensor}, \hyperpage{380}
   \item {planeSplit}
-    \subitem {CANDY::KdTree}, \hyperpage{294}
+    \subitem {CANDY::KdTree}, \hyperpage{314}
   \item {prepare\_level\_tab}
-    \subitem {CANDY::HNSW}, \hyperpage{250}
+    \subitem {CANDY::HNSW}, \hyperpage{270}
   \item {print}
-    \subitem {BS::synced\_stream}, \hyperpage{390}
+    \subitem {BS::synced\_stream}, \hyperpage{412}
   \item {println}
-    \subitem {BS::synced\_stream}, \hyperpage{391}
+    \subitem {BS::synced\_stream}, \hyperpage{413}
   \item {push\_back}
-    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{314}
+    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{334}
   \item {push\_loop}
-    \subitem {BS::thread\_pool}, \hyperpage{400}
+    \subitem {BS::thread\_pool}, \hyperpage{422, 423}
   \item {push\_task}
-    \subitem {BS::thread\_pool}, \hyperpage{401}
+    \subitem {BS::thread\_pool}, \hyperpage{423}
 
   \indexspace
 
   \item {random\_level}
-    \subitem {CANDY::HNSW}, \hyperpage{250}
+    \subitem {CANDY::HNSW}, \hyperpage{270}
   \item {rawData}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{89}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{164}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{186}
-    \subitem {CANDY::DPGIndex}, \hyperpage{199}
-    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{223}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{229}
-    \subitem {CANDY::FlatIndex}, \hyperpage{235}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{323}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{355}
-    \subitem {CANDY::PQIndex}, \hyperpage{368}
-    \subitem {The support classes for index approaches}, \hyperpage{31}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{99}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{174}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{197}
+    \subitem {CANDY::DPGIndex}, \hyperpage{210}
+    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{234}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{240}
+    \subitem {CANDY::FlatIndex}, \hyperpage{246}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{343}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{375}
+    \subitem {CANDY::PQIndex}, \hyperpage{390}
+    \subitem {The support classes for index approaches}, \hyperpage{37}
   \item {registerNewDataLoader}
-    \subitem {CANDY::DataLoaderTable}, \hyperpage{172}
+    \subitem {CANDY::DataLoaderTable}, \hyperpage{182}
   \item {registerNewMeter}
-    \subitem {DIVERSE\_METER::MeterTable}, \hyperpage{306}
+    \subitem {DIVERSE\_METER::MeterTable}, \hyperpage{326}
   \item {reset}
-    \subitem {BS::thread\_pool}, \hyperpage{401}
+    \subitem {BS::thread\_pool}, \hyperpage{424}
+  \item {resetIndexStatistics}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{99}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{254}
   \item {resultToConfigMap}
-    \subitem {INTELLI::ThreadPerf}, \hyperpage{406}
-    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{411}
+    \subitem {INTELLI::ThreadPerf}, \hyperpage{429}
+    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{434}
   \item {reviseTensor}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{89}
-    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{105}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{114}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{164}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{186}
-    \subitem {CANDY::DPGIndex}, \hyperpage{199}
-    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{223}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{230}
-    \subitem {CANDY::FlatIndex}, \hyperpage{235}
-    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{255}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{323}
-    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{337}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{343}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{355}
-    \subitem {CANDY::PQIndex}, \hyperpage{368}
-    \subitem {The support classes for index approaches}, \hyperpage{31}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{99}
+    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{115}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{124}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{174}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{197}
+    \subitem {CANDY::DPGIndex}, \hyperpage{210}
+    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{234}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{241}
+    \subitem {CANDY::FlatIndex}, \hyperpage{246}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{255}
+    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{275}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{343}
+    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{357}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{363}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{375}
+    \subitem {CANDY::PQIndex}, \hyperpage{390}
+    \subitem {The support classes for index approaches}, 
+		\hyperpage{37, 38}
+  \item {reviseU64}
+    \subitem {The support classes for index approaches}, \hyperpage{38}
   \item {rowSampling}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{271}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{291}
 
   \indexspace
 
   \item {saveCentroidsToFile}
-    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{388}
+    \subitem {CANDY::SimpleStreamClustering}, \hyperpage{410}
   \item {saveTimeStampToFile}
-    \subitem {INTELLI::UtilityFunctions}, \hyperpage{414}
+    \subitem {INTELLI::UtilityFunctions}, \hyperpage{438}
   \item {search}
-    \subitem {CANDY::HNSW}, \hyperpage{250}
-    \subitem {CANDY::ProductQuantizer}, \hyperpage{375}
+    \subitem {CANDY::HNSW}, \hyperpage{270}
+    \subitem {CANDY::ProductQuantizer}, \hyperpage{397}
   \item {search\_bounded\_queue}
-    \subitem {CANDY::HNSW}, \hyperpage{252}
+    \subitem {CANDY::HNSW}, \hyperpage{272}
   \item {searchIndex}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{90}
-    \subitem {CANDY::FaissIndex}, \hyperpage{211}
-    \subitem {CANDY::FlannIndex}, \hyperpage{216}
-    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{223}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{230}
-    \subitem {CANDY::FlatIndex}, \hyperpage{236}
-    \subitem {CANDY::PQIndex}, \hyperpage{369}
-    \subitem {The support classes for index approaches}, \hyperpage{31}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{100}
+    \subitem {CANDY::FaissIndex}, \hyperpage{222}
+    \subitem {CANDY::FlannIndex}, \hyperpage{227}
+    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{234}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{241}
+    \subitem {CANDY::FlatIndex}, \hyperpage{247}
+    \subitem {CANDY::PQIndex}, \hyperpage{391}
+    \subitem {The support classes for index approaches}, \hyperpage{38}
   \item {searchLevel}
-    \subitem {CANDY::KdTree}, \hyperpage{294}
+    \subitem {CANDY::KdTree}, \hyperpage{314}
   \item {searchSingleRow}
-    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{106}
+    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{116}
   \item {searchStringObject}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{90}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{165}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{231}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{356}
-    \subitem {The support classes for index approaches}, \hyperpage{32}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{100}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{175}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{242}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{376}
+    \subitem {The support classes for index approaches}, \hyperpage{39}
   \item {searchTensor}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{91}
-    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{106}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{114}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{165}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{179}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{187}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{192}
-    \subitem {CANDY::DPGIndex}, \hyperpage{200}
-    \subitem {CANDY::FaissIndex}, \hyperpage{211}
-    \subitem {CANDY::FlannIndex}, \hyperpage{216}
-    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{224}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{231}
-    \subitem {CANDY::FlatIndex}, \hyperpage{236}
-    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{255}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{324}
-    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{337}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{344}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{356}
-    \subitem {CANDY::PQIndex}, \hyperpage{369}
-    \subitem {CANDY::YinYangGraphIndex}, \hyperpage{429}
-    \subitem {CANDY::YinYangGraphSimpleIndex}, \hyperpage{432}
-    \subitem {The support classes for index approaches}, \hyperpage{32}
-  \item {searchTensorAndStringObject}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{91}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{166}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{357}
-    \subitem {The support classes for index approaches}, \hyperpage{33}
-  \item {searchTensorUnblock}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{180}
-  \item {selectDivision}
-    \subitem {CANDY::KdTree}, \hyperpage{295}
-  \item {set\_nb\_neighbors}
-    \subitem {CANDY::HNSW}, \hyperpage{251}
-  \item {set\_probs}
-    \subitem {CANDY::HNSW}, \hyperpage{251}
-  \item {setCentroidsFrom}
-    \subitem {CANDY::ProductQuantizer}, \hyperpage{375}
-  \item {setConfig}
-    \subitem {CANDY::AbstractDataLoader}, \hyperpage{80}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{92}
-    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{107}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{115}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{166}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{180}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{187}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{192}
-    \subitem {CANDY::DPGIndex}, \hyperpage{200}
-    \subitem {CANDY::ExpFamilyDataLoader}, \hyperpage{207}
-    \subitem {CANDY::FaissIndex}, \hyperpage{211}
-    \subitem {CANDY::FlannIndex}, \hyperpage{217}
-    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{224}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{231}
-    \subitem {CANDY::FlatIndex}, \hyperpage{237}
-    \subitem {CANDY::FVECSDataLoader}, \hyperpage{240}
-    \subitem {CANDY::HDF5DataLoader}, \hyperpage{244}
-    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{256}
-    \subitem {CANDY::KdTree}, \hyperpage{295}
-    \subitem {CANDY::KmeansTree}, \hyperpage{301}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{324}
-    \subitem {CANDY::OnlineIVFL2HIndex}, \hyperpage{332}
-    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{338}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{344}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{357}
-    \subitem {CANDY::PQIndex}, \hyperpage{370}
-    \subitem {CANDY::RandomDataLoader}, \hyperpage{379}
-    \subitem {CANDY::YinYangGraphIndex}, \hyperpage{429}
-    \subitem {CANDY::YinYangGraphSimpleIndex}, \hyperpage{432}
-    \subitem {CANDY::ZipfDataLoader}, \hyperpage{446}
-    \subitem {DIVERSE\_METER::AbstractMeter}, \hyperpage{96}
-    \subitem {DIVERSE\_METER::EspMeterUart}, \hyperpage{203}
-    \subitem {DIVERSE\_METER::IntelMeter}, \hyperpage{278}
-    \subitem {INTELLI::IntelliTimeStampGenerator}, \hyperpage{276}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{101}
+    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{116}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{124}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{175}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{190}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{198}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{203}
+    \subitem {CANDY::DPGIndex}, \hyperpage{211}
+    \subitem {CANDY::FaissIndex}, \hyperpage{222}
+    \subitem {CANDY::FlannIndex}, \hyperpage{227}
+    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{235}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{242}
+    \subitem {CANDY::FlatIndex}, \hyperpage{247}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{255}
+    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{275}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{344}
+    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{357}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{364}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{376}
+    \subitem {CANDY::PQIndex}, \hyperpage{391}
+    \subitem {CANDY::YinYangGraphIndex}, \hyperpage{454}
+    \subitem {CANDY::YinYangGraphSimpleIndex}, \hyperpage{457}
     \subitem {The support classes for index approaches}, 
-		\hyperpage{33, 34}
+		\hyperpage{39, 40}
+  \item {searchTensorAndStringObject}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{101}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{176}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{377}
+    \subitem {The support classes for index approaches}, \hyperpage{40}
+  \item {searchTensorUnblock}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{191}
+  \item {searchU64Object}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{102}
+  \item {selectDivision}
+    \subitem {CANDY::KdTree}, \hyperpage{315}
+  \item {set\_nb\_neighbors}
+    \subitem {CANDY::HNSW}, \hyperpage{271}
+  \item {set\_probs}
+    \subitem {CANDY::HNSW}, \hyperpage{271}
+  \item {setCentroidsFrom}
+    \subitem {CANDY::ProductQuantizer}, \hyperpage{397}
+  \item {setConfig}
+    \subitem {CANDY::AbstractDataLoader}, \hyperpage{88}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{102}
+    \subitem {CANDY::BucketedFlatIndex}, \hyperpage{117}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{125}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{176}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{191}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{198}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{203}
+    \subitem {CANDY::DPGIndex}, \hyperpage{211}
+    \subitem {CANDY::ExpFamilyDataLoader}, \hyperpage{218}
+    \subitem {CANDY::FaissIndex}, \hyperpage{222}
+    \subitem {CANDY::FlannIndex}, \hyperpage{228}
+    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{235}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{242}
+    \subitem {CANDY::FlatIndex}, \hyperpage{248}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{256}
+    \subitem {CANDY::FVECSDataLoader}, \hyperpage{260}
+    \subitem {CANDY::HDF5DataLoader}, \hyperpage{264}
+    \subitem {CANDY::HNSWNaiveIndex}, \hyperpage{276}
+    \subitem {CANDY::KdTree}, \hyperpage{315}
+    \subitem {CANDY::KmeansTree}, \hyperpage{321}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{344}
+    \subitem {CANDY::OnlineIVFL2HIndex}, \hyperpage{352}
+    \subitem {CANDY::OnlineIVFLSHIndex}, \hyperpage{358}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{364}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{377}
+    \subitem {CANDY::PQIndex}, \hyperpage{392}
+    \subitem {CANDY::RandomDataLoader}, \hyperpage{401}
+    \subitem {CANDY::YinYangGraphIndex}, \hyperpage{454}
+    \subitem {CANDY::YinYangGraphSimpleIndex}, \hyperpage{457}
+    \subitem {CANDY::ZipfDataLoader}, \hyperpage{471}
+    \subitem {DIVERSE\_METER::AbstractMeter}, \hyperpage{106}
+    \subitem {DIVERSE\_METER::EspMeterUart}, \hyperpage{214}
+    \subitem {DIVERSE\_METER::IntelMeter}, \hyperpage{298}
+    \subitem {INTELLI::IntelliTimeStampGenerator}, \hyperpage{296}
+    \subitem {The support classes for index approaches}, 
+		\hyperpage{40, 41}
   \item {setConfigClass}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{92}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{102}
   \item {setFrozenLevel}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{93}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{115}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{167}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{180}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{188}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{193}
-    \subitem {CANDY::DPGIndex}, \hyperpage{201}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{325}
-    \subitem {CANDY::OnlinePQIndex}, \hyperpage{345}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{358}
-    \subitem {CANDY::PQIndex}, \hyperpage{370}
-    \subitem {The support classes for index approaches}, \hyperpage{34}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{103}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{125}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{177}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{191}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{199}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{204}
+    \subitem {CANDY::DPGIndex}, \hyperpage{212}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{345}
+    \subitem {CANDY::OnlinePQIndex}, \hyperpage{365}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{378}
+    \subitem {CANDY::PQIndex}, \hyperpage{392}
+    \subitem {The support classes for index approaches}, \hyperpage{41}
   \item {setParams}
-    \subitem {CANDY::FlannComponent}, \hyperpage{213}
-    \subitem {CANDY::KdTree}, \hyperpage{295}
-    \subitem {CANDY::KmeansTree}, \hyperpage{301}
+    \subitem {CANDY::FlannComponent}, \hyperpage{224}
+    \subitem {CANDY::KdTree}, \hyperpage{315}
+    \subitem {CANDY::KmeansTree}, \hyperpage{321}
   \item {setSeed}
-    \subitem {The Micro dataset}, \hyperpage{61}
+    \subitem {The Micro dataset}, \hyperpage{69}
   \item {setStaticPower}
-    \subitem {DIVERSE\_METER::AbstractMeter}, \hyperpage{96}
+    \subitem {DIVERSE\_METER::AbstractMeter}, \hyperpage{107}
   \item {setStr}
-    \subitem {CANDY::CANDYObject}, \hyperpage{137}
+    \subitem {CANDY::CANDYObject}, \hyperpage{147}
   \item {setTier}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{93}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{103}
   \item {setUperLayer}
-    \subitem {CANDY::YinYangVertex}, \hyperpage{439}
+    \subitem {CANDY::YinYangVertex}, \hyperpage{464}
   \item {setupLoggingFile}
-    \subitem {Log utils}, \hyperpage{57}
-  \item {Shared Utils}, \hyperpage{41}
-    \subitem {cloneInto}, \hyperpage{43}
-    \subitem {edit}, \hyperpage{44}
-    \subitem {exist}, \hyperpage{45}
-    \subitem {existDouble}, \hyperpage{45}
-    \subitem {existI64}, \hyperpage{45}
-    \subitem {existString}, \hyperpage{46}
-    \subitem {existU64}, \hyperpage{46}
-    \subitem {fromCArg}, \hyperpage{47}
-    \subitem {fromFile}, \hyperpage{47}
-    \subitem {fromString}, \hyperpage{47}
-    \subitem {getDouble}, \hyperpage{48}
-    \subitem {getDoubleMap}, \hyperpage{48}
-    \subitem {getI64}, \hyperpage{48}
-    \subitem {getI64Map}, \hyperpage{49}
-    \subitem {getString}, \hyperpage{49}
-    \subitem {getStrMap}, \hyperpage{50}
-    \subitem {getU64}, \hyperpage{50}
-    \subitem {loadFrom}, \hyperpage{50}
-    \subitem {toFile}, \hyperpage{51}
-    \subitem {toString}, \hyperpage{51}
-    \subitem {tryDouble}, \hyperpage{51}
-    \subitem {tryI64}, \hyperpage{52}
-    \subitem {tryString}, \hyperpage{52}
-    \subitem {tryU64}, \hyperpage{53}
+    \subitem {Log utils}, \hyperpage{65}
+  \item {Shared Utils}, \hyperpage{49}
+    \subitem {cloneInto}, \hyperpage{51}
+    \subitem {edit}, \hyperpage{51, 52}
+    \subitem {exist}, \hyperpage{53}
+    \subitem {existDouble}, \hyperpage{53}
+    \subitem {existI64}, \hyperpage{53}
+    \subitem {existString}, \hyperpage{54}
+    \subitem {existU64}, \hyperpage{54}
+    \subitem {fromCArg}, \hyperpage{54}
+    \subitem {fromFile}, \hyperpage{55}
+    \subitem {fromString}, \hyperpage{55}
+    \subitem {getDouble}, \hyperpage{56}
+    \subitem {getDoubleMap}, \hyperpage{56}
+    \subitem {getI64}, \hyperpage{56}
+    \subitem {getI64Map}, \hyperpage{57}
+    \subitem {getString}, \hyperpage{57}
+    \subitem {getStrMap}, \hyperpage{57}
+    \subitem {getU64}, \hyperpage{58}
+    \subitem {loadFrom}, \hyperpage{58}
+    \subitem {toFile}, \hyperpage{58}
+    \subitem {toString}, \hyperpage{59}
+    \subitem {tryDouble}, \hyperpage{59}
+    \subitem {tryI64}, \hyperpage{60}
+    \subitem {tryString}, \hyperpage{60}
+    \subitem {tryU64}, \hyperpage{61}
   \item {size}
-    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{314}
-    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{225}
-    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{232}
-    \subitem {CANDY::FlatIndex}, \hyperpage{237}
-    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{119}
+    \subitem {BS::multi\_future$<$ T $>$}, \hyperpage{334}
+    \subitem {CANDY::FlatAMMIPIndex}, \hyperpage{236}
+    \subitem {CANDY::FlatAMMIPObjIndex}, \hyperpage{243}
+    \subitem {CANDY::FlatIndex}, \hyperpage{248}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{256}
+    \subitem {INTELLI::C20Buffer$<$ dataType $>$}, \hyperpage{129}
+    \subitem {The support classes for index approaches}, \hyperpage{42}
   \item {sizeWithEncode}
-    \subitem {CANDY::IVFListBucket}, \hyperpage{282}
+    \subitem {CANDY::IVFListBucket}, \hyperpage{302}
   \item {splitClusters}
-    \subitem {CANDY::Clustering}, \hyperpage{152}
-  \item {src/CANDY/AbstractIndex.cpp}, \hyperpage{493}
-  \item {src/CANDY/BucketedFlatIndex.cpp}, \hyperpage{493}
-  \item {src/CANDY/BufferedCongestionDropIndex.cpp}, \hyperpage{494}
-  \item {src/CANDY/CongestionDropIndex.cpp}, \hyperpage{494}
+    \subitem {CANDY::Clustering}, \hyperpage{162}
+  \item {src/CANDY/AbstractIndex.cpp}, \hyperpage{519}
+  \item {src/CANDY/BucketedFlatIndex.cpp}, \hyperpage{519}
+  \item {src/CANDY/BufferedCongestionDropIndex.cpp}, \hyperpage{520}
+  \item {src/CANDY/CongestionDropIndex.cpp}, \hyperpage{520}
   \item {src/CANDY/CongestionDropIndex/CongestionDropIndexWorker.cpp}, 
-		\hyperpage{495}
-  \item {src/CANDY/DistributedPartitionIndex.cpp}, \hyperpage{495}
+		\hyperpage{521}
+  \item {src/CANDY/DistributedPartitionIndex.cpp}, \hyperpage{521}
   \item {src/CANDY/DistributedPartitionIndex/DistributedIndexWorker.cpp}, 
-		\hyperpage{495}
-  \item {src/CANDY/DPGIndex.cpp}, \hyperpage{496}
-  \item {src/CANDY/FlatAMMIPIndex.cpp}, \hyperpage{496}
-  \item {src/CANDY/FlatAMMIPObjIndex.cpp}, \hyperpage{496}
-  \item {src/CANDY/FlatIndex.cpp}, \hyperpage{497}
-  \item {src/CANDY/NNDescentIndex.cpp}, \hyperpage{497}
-  \item {src/CANDY/OnlineIVFL2HIndex.cpp}, \hyperpage{498}
-  \item {src/CANDY/OnlineIVFLSHIndex.cpp}, \hyperpage{498}
-  \item {src/CANDY/OnlinePQIndex.cpp}, \hyperpage{499}
-  \item {src/CANDY/ParallelPartitionIndex.cpp}, \hyperpage{500}
+		\hyperpage{521}
+  \item {src/CANDY/DPGIndex.cpp}, \hyperpage{522}
+  \item {src/CANDY/FlatAMMIPIndex.cpp}, \hyperpage{522}
+  \item {src/CANDY/FlatAMMIPObjIndex.cpp}, \hyperpage{522}
+  \item {src/CANDY/FlatIndex.cpp}, \hyperpage{523}
+  \item {src/CANDY/FlatSSDGPUIndex.cpp}, \hyperpage{523}
+  \item {src/CANDY/NNDescentIndex.cpp}, \hyperpage{523}
+  \item {src/CANDY/OnlineIVFL2HIndex.cpp}, \hyperpage{524}
+  \item {src/CANDY/OnlineIVFLSHIndex.cpp}, \hyperpage{525}
+  \item {src/CANDY/OnlinePQIndex.cpp}, \hyperpage{526}
+  \item {src/CANDY/ParallelPartitionIndex.cpp}, \hyperpage{526}
   \item {src/CANDY/ParallelPartitionIndex/ParallelIndexWorker.cpp}, 
-		\hyperpage{500}
-  \item {src/CANDY/YinYangGraphIndex.cpp}, \hyperpage{500}
-  \item {src/CANDY/YinYangGraphSimpleIndex.cpp}, \hyperpage{501}
+		\hyperpage{526}
+  \item {src/CANDY/YinYangGraphIndex.cpp}, \hyperpage{527}
+  \item {src/CANDY/YinYangGraphSimpleIndex.cpp}, \hyperpage{528}
   \item {start}
-    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{100}
-    \subitem {INTELLI::MemoryTracker}, \hyperpage{304}
-    \subitem {INTELLI::ThreadPerf}, \hyperpage{406}
-    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{411}
+    \subitem {BS::blocks$<$ T1, T2, T $>$}, \hyperpage{110}
+    \subitem {INTELLI::MemoryTracker}, \hyperpage{324}
+    \subitem {INTELLI::ThreadPerf}, \hyperpage{429}
+    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{434}
   \item {startHPC}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{93}
-    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{115}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{167}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{181}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{188}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{193}
-    \subitem {CANDY::DPGIndex}, \hyperpage{201}
-    \subitem {CANDY::NNDescentIndex}, \hyperpage{325}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{358}
-    \subitem {The support classes for index approaches}, \hyperpage{35}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{104}
+    \subitem {CANDY::BufferedCongestionDropIndex}, \hyperpage{125}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{177}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{192}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{199}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{204}
+    \subitem {CANDY::DPGIndex}, \hyperpage{212}
+    \subitem {CANDY::FlatSSDGPUIndex}, \hyperpage{257}
+    \subitem {CANDY::NNDescentIndex}, \hyperpage{345}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{378}
+    \subitem {The support classes for index approaches}, \hyperpage{42}
   \item {submit}
-    \subitem {BS::thread\_pool}, \hyperpage{402}
+    \subitem {BS::thread\_pool}, \hyperpage{424}
   \item {synced\_stream}
-    \subitem {BS::synced\_stream}, \hyperpage{390}
+    \subitem {BS::synced\_stream}, \hyperpage{412}
 
   \indexspace
 
-  \item {tensor operations}, \hyperpage{58}
+  \item {tensor operations}, \hyperpage{66}
+  \item {TensorCacheLine}, \hyperpage{414}
   \item {tensorFromFile}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{134}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{271}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{144}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{291}
   \item {tensorFromFlatBin}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{271}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{291}
   \item {tensorFromFVECS}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{134}
-    \subitem {CANDY::FVECSDataLoader}, \hyperpage{241}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{144}
+    \subitem {CANDY::FVECSDataLoader}, \hyperpage{261}
   \item {tensorFromHDF5}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{135}
-    \subitem {CANDY::HDF5DataLoader}, \hyperpage{244}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{145}
+    \subitem {CANDY::HDF5DataLoader}, \hyperpage{264}
   \item {tensorListFromFile}
-    \subitem {INTELLI::UtilityFunctions}, \hyperpage{415}
+    \subitem {INTELLI::UtilityFunctions}, \hyperpage{440}
   \item {tensorListToFile}
-    \subitem {INTELLI::UtilityFunctions}, \hyperpage{415}
+    \subitem {INTELLI::UtilityFunctions}, \hyperpage{440}
   \item {tensorToFile}
-    \subitem {CANDY::Candy\_Python}, \hyperpage{135}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{272}
+    \subitem {CANDY::Candy\_Python}, \hyperpage{145}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{292}
   \item {tensorToFlatBin}
-    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{272}
+    \subitem {INTELLI::IntelliTensorOP}, \hyperpage{292}
   \item {testStaticPower}
-    \subitem {DIVERSE\_METER::AbstractMeter}, \hyperpage{97}
-  \item {The bottom tier of indexing alorithms}, \hyperpage{36}
-    \subitem {newAbstractIndex}, \hyperpage{39}
-  \item {The data loaders of CANDY}, \hyperpage{35}
+    \subitem {DIVERSE\_METER::AbstractMeter}, \hyperpage{107}
+  \item {The bottom tier of indexing alorithms}, \hyperpage{44}
+    \subitem {newAbstractIndex}, \hyperpage{46}
+  \item {The data loaders of CANDY}, \hyperpage{42}
   \item {The main body of CANDY\textquotesingle{}s indexing approaches}, 
-		\hyperpage{36}
-  \item {The Micro dataset}, \hyperpage{60}
-    \subitem {MicroDataSet}, \hyperpage{61}
-    \subitem {setSeed}, \hyperpage{61}
+		\hyperpage{43}
+  \item {The Micro dataset}, \hyperpage{68}
+    \subitem {MicroDataSet}, \hyperpage{69}
+    \subitem {setSeed}, \hyperpage{69}
   \item {The support classes for index approaches}, \hyperpage{23}
-    \subitem {deleteStringObject}, \hyperpage{26}
-    \subitem {deleteTensor}, \hyperpage{27}
-    \subitem {endHPC}, \hyperpage{27}
-    \subitem {getTensorByIndex}, \hyperpage{27}
-    \subitem {inlineMain}, \hyperpage{28}
-    \subitem {insertStringObject}, \hyperpage{28}
-    \subitem {insertTensor}, \hyperpage{29}
-    \subitem {loadInitialStringObject}, \hyperpage{29}
-    \subitem {loadInitialTensor}, \hyperpage{30}
-    \subitem {offlineBuild}, \hyperpage{30}
-    \subitem {rawData}, \hyperpage{31}
-    \subitem {reviseTensor}, \hyperpage{31}
-    \subitem {searchIndex}, \hyperpage{31}
-    \subitem {searchStringObject}, \hyperpage{32}
-    \subitem {searchTensor}, \hyperpage{32}
-    \subitem {searchTensorAndStringObject}, \hyperpage{33}
-    \subitem {setConfig}, \hyperpage{33, 34}
-    \subitem {setFrozenLevel}, \hyperpage{34}
-    \subitem {startHPC}, \hyperpage{35}
+    \subitem {appendTensor}, \hyperpage{28}
+    \subitem {appendU64}, \hyperpage{28}
+    \subitem {deleteStringObject}, \hyperpage{28}
+    \subitem {deleteTensor}, \hyperpage{30}
+    \subitem {deleteU64}, \hyperpage{30}
+    \subitem {endHPC}, \hyperpage{31}
+    \subitem {getMemoryReadCntMiss}, \hyperpage{31}
+    \subitem {getMemoryReadCntTotal}, \hyperpage{31}
+    \subitem {getMemoryWriteCntMiss}, \hyperpage{32}
+    \subitem {getMemoryWriteCntTotal}, \hyperpage{32}
+    \subitem {getTensor}, \hyperpage{32}
+    \subitem {getTensorByIndex}, \hyperpage{33}
+    \subitem {getU64}, \hyperpage{33}
+    \subitem {init}, \hyperpage{33}
+    \subitem {inlineMain}, \hyperpage{34}
+    \subitem {insertStringObject}, \hyperpage{34}
+    \subitem {insertTensor}, \hyperpage{35}
+    \subitem {loadInitialStringObject}, \hyperpage{36}
+    \subitem {loadInitialTensor}, \hyperpage{36}
+    \subitem {offlineBuild}, \hyperpage{37}
+    \subitem {rawData}, \hyperpage{37}
+    \subitem {reviseTensor}, \hyperpage{37, 38}
+    \subitem {reviseU64}, \hyperpage{38}
+    \subitem {searchIndex}, \hyperpage{38}
+    \subitem {searchStringObject}, \hyperpage{39}
+    \subitem {searchTensor}, \hyperpage{39, 40}
+    \subitem {searchTensorAndStringObject}, \hyperpage{40}
+    \subitem {setConfig}, \hyperpage{40, 41}
+    \subitem {setFrozenLevel}, \hyperpage{41}
+    \subitem {size}, \hyperpage{42}
+    \subitem {startHPC}, \hyperpage{42}
   \item {The upper tier of indexing alorithms, can be container of other indexing ways}, 
-		\hyperpage{39}
+		\hyperpage{47}
   \item {thread\_pool}
-    \subitem {BS::thread\_pool}, \hyperpage{396}
+    \subitem {BS::thread\_pool}, \hyperpage{419}
   \item {ThreadPerf}
-    \subitem {INTELLI::ThreadPerf}, \hyperpage{405}
+    \subitem {INTELLI::ThreadPerf}, \hyperpage{427}
   \item {ThreadPerfPAPI}
-    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{409}
-  \item {time stamp}, \hyperpage{65}
-    \subitem {genSmoothTimeStamp}, \hyperpage{65}
-    \subitem {genZipfTimeStamp}, \hyperpage{66}
-  \item {time stamps}, \hyperpage{58}
+    \subitem {INTELLI::ThreadPerfPAPI}, \hyperpage{432}
+  \item {time stamp}, \hyperpage{73}
+    \subitem {genSmoothTimeStamp}, \hyperpage{73}
+    \subitem {genZipfTimeStamp}, \hyperpage{74}
+  \item {time stamps}, \hyperpage{66}
   \item {toFile}
-    \subitem {Shared Utils}, \hyperpage{51}
-  \item {TONY\_CL\_HOST::CLContainer}, \hyperpage{148}
+    \subitem {Shared Utils}, \hyperpage{58}
+  \item {TONY\_CL\_HOST::CLContainer}, \hyperpage{158}
   \item {toString}
-    \subitem {CANDY::YinYangVertex}, \hyperpage{439}
-    \subitem {Shared Utils}, \hyperpage{51}
+    \subitem {CANDY::YinYangVertex}, \hyperpage{464}
+    \subitem {Shared Utils}, \hyperpage{59}
   \item {train}
-    \subitem {CANDY::Clustering}, \hyperpage{152}
-    \subitem {CANDY::PQIndex}, \hyperpage{370}
-    \subitem {CANDY::ProductQuantizer}, \hyperpage{376}
+    \subitem {CANDY::Clustering}, \hyperpage{162}
+    \subitem {CANDY::PQIndex}, \hyperpage{392}
+    \subitem {CANDY::ProductQuantizer}, \hyperpage{398}
   \item {trainModel}
-    \subitem {CANDY::MLPBucketIdxModel}, \hyperpage{310}
-    \subitem {CANDY::MLPHashingModel}, \hyperpage{312}
+    \subitem {CANDY::MLPBucketIdxModel}, \hyperpage{330}
+    \subitem {CANDY::MLPHashingModel}, \hyperpage{332}
   \item {trainModelWithData}
-    \subitem {CANDY::OnlineIVFL2HIndex}, \hyperpage{333}
+    \subitem {CANDY::OnlineIVFL2HIndex}, \hyperpage{353}
   \item {tryDouble}
-    \subitem {Shared Utils}, \hyperpage{51}
+    \subitem {Shared Utils}, \hyperpage{59}
   \item {tryI64}
-    \subitem {Shared Utils}, \hyperpage{52}
+    \subitem {Shared Utils}, \hyperpage{60}
   \item {tryString}
-    \subitem {Shared Utils}, \hyperpage{52}
+    \subitem {Shared Utils}, \hyperpage{60}
   \item {tryToConnect}
-    \subitem {CANDY::YinYangVertex}, \hyperpage{439}
+    \subitem {CANDY::YinYangVertex}, \hyperpage{464}
   \item {tryU64}
-    \subitem {Shared Utils}, \hyperpage{53}
+    \subitem {Shared Utils}, \hyperpage{61}
 
   \indexspace
 
-  \item {VertexComparison}, \hyperpage{416}
-  \item {VisitedBitset}, \hyperpage{417}
+  \item {VertexComparison}, \hyperpage{441}
+  \item {VisitedBitset}, \hyperpage{441}
 
   \indexspace
 
   \item {waitPendingOperations}
-    \subitem {CANDY::AbstractIndex}, \hyperpage{94}
-    \subitem {CANDY::CongestionDropIndex}, \hyperpage{167}
-    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{181}
-    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{188}
-    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{193}
-    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{358}
+    \subitem {CANDY::AbstractIndex}, \hyperpage{104}
+    \subitem {CANDY::CongestionDropIndex}, \hyperpage{177}
+    \subitem {CANDY::DistributedIndexWorker}, \hyperpage{192}
+    \subitem {CANDY::DistributedPartitionIndex}, \hyperpage{199}
+    \subitem {CANDY::DIW\_RayWrapper}, \hyperpage{204}
+    \subitem {CANDY::ParallelPartitionIndex}, \hyperpage{378}
 
   \indexspace
 
   \item {YinYangGraphIndex.cpp}
-    \subitem {ONLINEIVF\_NEXT\_POW\_2}, \hyperpage{501}
+    \subitem {ONLINEIVF\_NEXT\_POW\_2}, \hyperpage{527}
 
 \end{theindex}

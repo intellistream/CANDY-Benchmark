@@ -27,6 +27,8 @@ var searchData=
   ['appendlogfile_34',['appendLogFile',['../group__INTELLI__UTIL__INTELLILOG.html#gaf41719446638b036da2b419ac2b70742',1,'INTELLI::IntelliLog_FileProtector']]],
   ['appendrows_35',['appendRows',['../classINTELLI_1_1IntelliTensorOP.html#a2bc8ee1f0c6179c7a6f30b236cf5a938',1,'INTELLI::IntelliTensorOP::appendRows(torch::Tensor *tHead, torch::Tensor *tTail)'],['../classINTELLI_1_1IntelliTensorOP.html#a6634f329eafefa6396b99d2acb5814ef',1,'INTELLI::IntelliTensorOP::appendRows(TensorPtr tHeadP, TensorPtr tTailP)']]],
   ['appendrowsbuffermode_36',['appendRowsBufferMode',['../classINTELLI_1_1IntelliTensorOP.html#a643849a864945f09a0139c4c63686413',1,'INTELLI::IntelliTensorOP::appendRowsBufferMode(torch::Tensor *tHead, torch::Tensor *tTail, int64_t *lastNNZ, int64_t customExpandSize=0)'],['../classINTELLI_1_1IntelliTensorOP.html#a02663a725ef60c4e1b38218c049e1eec',1,'INTELLI::IntelliTensorOP::appendRowsBufferMode(TensorPtr tHead, TensorPtr tTail, int64_t *lastNNZ, int64_t customExpandSize=0)']]],
-  ['arrivaltime_37',['arrivalTime',['../classINTELLI_1_1IntelliTimeStamp.html#a9c9b60ce4e623be69feef02b3311788d',1,'INTELLI::IntelliTimeStamp']]],
-  ['attachtensor_38',['attachTensor',['../classCANDY_1_1YinYangVertex.html#add9f23921a8690854224e1bad259d1b5',1,'CANDY::YinYangVertex']]]
+  ['appendtensor_37',['appendTensor',['../group__CANDY__lib__bottom__sub.html#gab1b8d9afa2228563553632cbe1eaed83',1,'CANDY::PlainDiskMemBufferTU']]],
+  ['appendu64_38',['appendU64',['../group__CANDY__lib__bottom__sub.html#gacbb9cf0fc77992eaec8fcc27a3cb489a',1,'CANDY::PlainDiskMemBufferTU']]],
+  ['arrivaltime_39',['arrivalTime',['../classINTELLI_1_1IntelliTimeStamp.html#a9c9b60ce4e623be69feef02b3311788d',1,'INTELLI::IntelliTimeStamp']]],
+  ['attachtensor_40',['attachTensor',['../classCANDY_1_1YinYangVertex.html#add9f23921a8690854224e1bad259d1b5',1,'CANDY::YinYangVertex']]]
 ];

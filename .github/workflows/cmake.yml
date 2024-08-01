@@ -24,9 +24,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt install gcc g++ cmake python3 pip
-     # - name: Install torch
+      # - name: Install torch
       #  run: |
-       #   sudo pip3 install torch==1.13.0 torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
+      #   sudo pip3 install torch==1.13.0 torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
       - name: Install torch
         run: |
           sudo pip3 install torch==1.13.0 torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu

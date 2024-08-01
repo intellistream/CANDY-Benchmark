@@ -65,7 +65,7 @@ void DPGIndex::nnDescent() {
           if (u1 < u2) {
             auto dist = calcDist(tensor[u1], tensor[u2]);
             auto neighborUpdated = updateLayer0Neighbor(u1, u2, dist),
-                 reverseNeighborUpdated = updateLayer0Neighbor(u2, u1, dist);
+                reverseNeighborUpdated = updateLayer0Neighbor(u2, u1, dist);
             counter.fetch_add(updateLayer0Neighbor(u1, u2, dist),
                               std::memory_order_relaxed);
             counter.fetch_add(updateLayer0Neighbor(u2, u1, dist),
@@ -118,7 +118,7 @@ bool DPGIndex::updateLayer0Neighbor(size_t i, size_t j, double dist) {
     std::push_heap(graphLayer0[i].pool.begin(), graphLayer0[i].pool.end());
     return true;
   } else if (dist < graphLayer0[i].pool.front().distance &&
-             !graphLayer0[i].neighborIdxSet.count(j)) {
+      !graphLayer0[i].neighborIdxSet.count(j)) {
     graphLayer0[i].neighborIdxSet.erase(graphLayer0[i].pool.front().id);
     graphLayer0[i].neighborIdxSet.insert(j);
     removeLayer1Neighbor(i, graphLayer0[i].pool.front().id);
@@ -154,7 +154,7 @@ void DPGIndex::removeLayer1Neighbor(size_t i, size_t j) {
 
 double DPGIndex::calcDist(const torch::Tensor &ta, const torch::Tensor &tb) {
   auto taPtr = ta.contiguous().data_ptr<float>(),
-       tbPtr = tb.contiguous().data_ptr<float>();
+      tbPtr = tb.contiguous().data_ptr<float>();
   double ans = 0;
   if (faissMetric == faiss::METRIC_L2) {
     for (size_t i = 0; i < vecDim; ++i) {
@@ -196,8 +196,8 @@ std::vector<std::pair<double, size_t>> DPGIndex::searchOnceInner(
         neighborIdxWithVisitFlag[item.second] = true;
         exit = false;
         for (auto &neighborIdxSet :
-             {graphLayer1[item.second].neighborIdxSet,
-              graphLayer1[item.second].reverseNeighborIdxSet})
+            {graphLayer1[item.second].neighborIdxSet,
+             graphLayer1[item.second].reverseNeighborIdxSet})
           for (auto id : neighborIdxSet)
             if (!neighborIdxWithVisitFlag.count(id)) {
               auto dist = calcDist(tensor[id], q);
@@ -257,7 +257,7 @@ void DPGIndex::parallelFor(size_t idxSize, std::function<void(size_t)> action) {
   for (size_t id = 0; id < parallelWorkers; ++id)
     threads[id] = std::make_shared<std::thread>([=]() {
       size_t threadBegin = id * itemPerThread,
-             threadEnd = std::min(idxSize, (id + 1) * itemPerThread);
+          threadEnd = std::min(idxSize, (id + 1) * itemPerThread);
       for (size_t i = threadBegin; i < threadEnd; ++i) action(i);
     });
   for (auto thread : threads) thread->join();

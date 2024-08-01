@@ -122,9 +122,10 @@ def DrawFigure2(xvalues, yvalues, legend_labels, x_label, y_label, y_min, y_max,
     plt.ylim(y_min, y_max)
     plt.grid(axis='y', color='gray', alpha=0.5, linewidth=0.5)
 
-    #plt.show()
+    # plt.show()
 
     fig.savefig(filename + ".pdf", bbox_inches='tight')
+
 
 # def DrawFigure2(xvalues, yvalues, legend_labels, x_label, y_label, y_min, y_max, filename, allow_legend):
 #     # you may change the figure size on your own.

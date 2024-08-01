@@ -4,23 +4,31 @@ A Lib and benchmark for AKNN. This project is compatable with
 libtorch
 
 ## Extra Cmake options (set by cmake -Dxxx=ON/OFF)
-- ENABLE_PAPI, this will enable PAPI-based perf tools (OFF by default) 
+
+- ENABLE_PAPI, this will enable PAPI-based perf tools (OFF by default)
     - you need first cd to thirdparty and run installPAPI.sh to enable PAPI support, or also set REBUILD_PAPI to ON
     - not used in C++ benchmark currently
 - ENABLE_HDF5, this will enable you to load data from HDF5 (OFF by default)
     - we have included the source code of hdf5 lib, no extra dependency
 - ENABLE_PYBIND, this will enable you to make python binds, i.e., PyRAINA (OFF by default)
-  - we have included the source code of pybind 11 in third party folder, please make sur it is complete
+    - we have included the source code of pybind 11 in third party folder, please make sur it is complete
+
 ## One-Key build examples with auto solving of dependencies
+
 - buildWithCuda.sh To build CANDY and PyCANDY with cuda support, make sure you have cuda installed before it
 - buildCPUOnly.sh This is a CPU-only version
 - After either one, you can run the following to add PyCANDY To your default python environment
+
 ```shell
  python3 setup.py install --user
 ```
+
 ### Where are the evaluation scripts
+
 See build/benchmark/scripts/rerunAll.sh after one-key build
+
 ## Manual build
+
 ### Requires G++11
 
 The default version of gcc/g++ on ubuntu 22.04 (jammy) is good enough.
@@ -127,6 +135,25 @@ pip3 install --ignore-installed torch==1.13.0 torchvision torchaudio --index-url
 
 *Note: Conflict between torch1.13.0+cpu and torchaudio+cpu may occur under python version > 3.10*
 
+### (Optional) Requires SPDK (contained source in this repo as third party)
+
+The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance,
+scalable, user-mode storage applications. It achieves high performance by moving all of the necessary drivers into
+userspace and operating in a polled mode instead of relying on interrupts, which avoids kernel context switches and
+eliminates interrupt handling overhead.
+
+#### How to build SPDK
+
+- cd to thirdparty and run cloneSPDK.sh, SPDK will be compiled and installed at default OS path
+    - Alternatively, set -DREBUILD_SPDK=ON to let CMAKE do this for you
+
+#### How to use SPDK in CANDY
+
+- set -DENABLE_SPDK=ON in cmake CANDY
+
+#### Known issues
+
+isa-l is disabled, as it conflicts with some other c++ libs
 
 ### (optional) Requires PAPI (contained source in this repo as third party)
 
@@ -304,4 +331,20 @@ cd ../figures
 You will find the figures then.
 
 ## Known issues
+
+### CUDA and torch
+
+For torch>=2.0, the header may require you to only use c++17 for tensor, please do either the following such that the
+nvcc works when include <torch.h>:
+
+- Downgrade torch into 1.13.0
+- Upgrade CUDA to 12.5 or above
+
+### How to run SPDK-related functions without sudo/root
+
+  ```shell
+   sudo setcap all+ep <your_app_name>
+   ./<your_app_name>
+   ```
+
 

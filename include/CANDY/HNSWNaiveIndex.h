@@ -20,7 +20,7 @@ namespace CANDY {
  * - is_NSW, whether initialized as an NSW index, default 0 (init as HNSW), I64
  */
 class HNSWNaiveIndex : public AbstractIndex {
-public:
+ public:
   HNSW hnsw;
   bool is_NSW;
 
@@ -41,7 +41,7 @@ public:
   int64_t adSampling_step = 32;
   float adSampling_epsilon0 = 1.0;
 
-  HNSWNaiveIndex(){};
+  HNSWNaiveIndex() {};
 
   /**
    * @brief set the index-specific config related to one index

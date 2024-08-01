@@ -16,22 +16,20 @@ void CANDY::HNSW::search(CANDY::DistanceQueryer &qdis, int k,
   if (num_entries == 1) {
     auto nearest = entry_point_;
     float d_nearest;
-    if(qdis.is_search && opt_mode_==OPT_LVQ){
-        if(nearest->code_final_ == nullptr) {
-            nearest->code_final_ = qdis.compute_code(nearest->id);
-        }
-        d_nearest = qdis(nearest->code_final_);
+    if (qdis.is_search && opt_mode_ == OPT_LVQ) {
+      if (nearest->code_final_ == nullptr) {
+        nearest->code_final_ = qdis.compute_code(nearest->id);
+      }
+      d_nearest = qdis(nearest->code_final_);
     } else {
-        d_nearest = qdis(nearest->id);
+      d_nearest = qdis(nearest->id);
     }
-
-
 
     for (int level = max_level_; level >= 1; level--) {
-      nearest = greedy_update_nearest(*this,qdis, level, nearest, d_nearest);
+      nearest = greedy_update_nearest(*this, qdis, level, nearest, d_nearest);
     }
 
-    int ef = efSearch > ((size_t)k) ? efSearch : k;
+    int ef = efSearch > ((size_t) k) ? efSearch : k;
     qdis.set_rank(true);
     if (search_bounded_queue) {
       CANDY::HNSW::MinimaxHeap candidates(ef);
@@ -133,7 +131,7 @@ int search_from_candidates(CANDY::HNSW &hnsw, CANDY::DistanceQueryer &qdis,
   }
   size_t nstep = 0;
   // then push candidates' neighbors into heap
-  int64_t visited_vertex=0;
+  int64_t visited_vertex = 0;
   while (candidates.size() > 0) {
     float d0 = 0.0;
     auto v0 = candidates.pop_min(&d0);
@@ -159,37 +157,37 @@ int search_from_candidates(CANDY::HNSW &hnsw, CANDY::DistanceQueryer &qdis,
       visited_vertex++;
       float d;
 
-      if(qdis.is_search && hnsw.opt_mode_ == OPT_LVQ){
-          if(v1->code_final_ == nullptr) {
-              v1->code_final_ = qdis.compute_code(v1->id);
-          }
-          d=qdis(v1->code_final_);
-      } else if(hnsw.opt_mode_==OPT_DCO){
-          if(nres==k) {
-              qdis.ads->set_threshold(D[0]);
-          } else {
-              qdis.ads->set_threshold(-1);
-          }
+      if (qdis.is_search && hnsw.opt_mode_ == OPT_LVQ) {
+        if (v1->code_final_ == nullptr) {
+          v1->code_final_ = qdis.compute_code(v1->id);
+        }
+        d = qdis(v1->code_final_);
+      } else if (hnsw.opt_mode_ == OPT_DCO) {
+        if (nres == k) {
+          qdis.ads->set_threshold(D[0]);
+        } else {
+          qdis.ads->set_threshold(-1);
+        }
 
-          d=qdis(v1->transformed);
-          //printf("%.2f ",d);
-          if(d==-1){
-              //nstep++;
-              continue;
-          }
+        d = qdis(v1->transformed);
+        //printf("%.2f ",d);
+        if (d == -1) {
+          //nstep++;
+          continue;
+        }
       } else {
-          d = qdis(v1->id);
+        d = qdis(v1->id);
       }
       if (nres < k) {
         // std::cout<<"pushing  "<<*v1<<" with dist= "<<d<<" to
         // heap"<<std::endl;
-            faiss::heap_push < faiss::CMax < float, CANDY::VertexPtr >> (++nres, D,
-                    I.data(), d, v1);
+        faiss::heap_push<faiss::CMax<float, CANDY::VertexPtr >>(++nres, D,
+                                                                I.data(), d, v1);
       } else if (d < D[0]) {
         // std::cout<<"pushing  "<<*v1<<" with dist= "<<d<<" to
         // heap"<<std::endl;
-            faiss::heap_replace_top < faiss::CMax < float, CANDY::VertexPtr >> (
-                    nres, D, I.data(), d, v1);
+        faiss::heap_replace_top<faiss::CMax<float, CANDY::VertexPtr >>(
+            nres, D, I.data(), d, v1);
       }
       candidates.push(v1, d);
     }
@@ -220,7 +218,7 @@ CANDY::VertexPtr greedy_update_nearest(CANDY::HNSW &hnsw,
     auto neighbors = nearest->neighbors;
     for (auto it = neighbors.begin() + begin;
          it != neighbors.end() && it != neighbors.begin() + end &&
-         begin < neighbors.size();
+             begin < neighbors.size();
          it++) {
       if (*it == nullptr) {
         break;
@@ -228,13 +226,13 @@ CANDY::VertexPtr greedy_update_nearest(CANDY::HNSW &hnsw,
       // INTELLI_INFO("FINDING NEAREST...");
       auto vertex = *it;
       float dis;
-      if(disq.is_search && hnsw.opt_mode_==OPT_LVQ){
-          if(vertex->code_final_ == nullptr){
-              vertex->code_final_ = disq.compute_code(vertex->id);
-          }
-          dis = disq(vertex->code_final_);
+      if (disq.is_search && hnsw.opt_mode_ == OPT_LVQ) {
+        if (vertex->code_final_ == nullptr) {
+          vertex->code_final_ = disq.compute_code(vertex->id);
+        }
+        dis = disq(vertex->code_final_);
       } else {
-          dis = disq(vertex->id);
+        dis = disq(vertex->id);
       }
       if (dis < d_nearest) {
         d_nearest = dis;
@@ -301,7 +299,7 @@ void CANDY::HNSW::add_without_lock(CANDY::DistanceQueryer &disq,
   for (level = assigned_level; level >= 0; level--) {
     add_links_starting_from(disq, pt_id, nearest, d_nearest, level, vt);
   }
-  if (assigned_level > (int)max_level_) {
+  if (assigned_level > (int) max_level_) {
     max_level_ = assigned_level;
     entry_point_ = pt_id;
   }
@@ -492,7 +490,7 @@ void search_neighbors_to_add(
     // hnsw.printNeighborsByPtr(currNode);
     for (auto it = neighbors.begin() + begin;
          it != neighbors.end() && it != neighbors.begin() + end &&
-         begin < neighbors.size();
+             begin < neighbors.size();
          it++) {
       auto nodeId = *it;
 
@@ -566,7 +564,7 @@ int CANDY::HNSW::getLevelsByPtr(INTELLI::TensorPtr idx) {
 
 size_t CANDY::HNSW::nb_neighbors(size_t layer_no) {
   return cum_nneighbor_per_level_[layer_no + 1] -
-         cum_nneighbor_per_level_[layer_no];
+      cum_nneighbor_per_level_[layer_no];
 }
 size_t CANDY::HNSW::cum_nb_neighbors(size_t layer_no) {
   return cum_nneighbor_per_level_[layer_no];
@@ -625,28 +623,21 @@ void CANDY::HNSW::set_mode(CANDY::HNSW::opt_mode_t opt_mode,
   opt_mode_ = opt_mode;
   faissMetric = metric;
   switch (opt_mode) {
-  case OPT_VANILLA:
-    INTELLI_INFO("NO DISTANCE OPTIMIZATION!");
-    break;
-  case OPT_LVQ:
-    INTELLI_INFO("USING LVQ!");
-    break;
-  case OPT_DCO:
-    INTELLI_INFO("USING DCO!");
-    break;
-  default:
-    INTELLI_ERROR("NO SUCH OPT: USING VANILLA!");
-    opt_mode_ = OPT_VANILLA;
+    case OPT_VANILLA:INTELLI_INFO("NO DISTANCE OPTIMIZATION!");
+      break;
+    case OPT_LVQ:INTELLI_INFO("USING LVQ!");
+      break;
+    case OPT_DCO:INTELLI_INFO("USING DCO!");
+      break;
+    default:INTELLI_ERROR("NO SUCH OPT: USING VANILLA!");
+      opt_mode_ = OPT_VANILLA;
   }
   switch (faissMetric) {
-  case faiss::METRIC_L2:
-    INTELLI_INFO("USING L2 DISTANCE!");
-    break;
-  case faiss::METRIC_INNER_PRODUCT:
-    INTELLI_INFO("USING IP DISTANCE!");
-    break;
-  default:
-    INTELLI_ERROR("NO SUCH METRIC: USING IP!");
-    faissMetric = faiss::METRIC_INNER_PRODUCT;
+    case faiss::METRIC_L2:INTELLI_INFO("USING L2 DISTANCE!");
+      break;
+    case faiss::METRIC_INNER_PRODUCT:INTELLI_INFO("USING IP DISTANCE!");
+      break;
+    default:INTELLI_ERROR("NO SUCH METRIC: USING IP!");
+      faissMetric = faiss::METRIC_INNER_PRODUCT;
   }
 }

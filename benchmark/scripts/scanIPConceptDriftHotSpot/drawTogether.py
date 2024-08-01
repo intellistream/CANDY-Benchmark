@@ -294,13 +294,13 @@ def main():
     # aRowVec=[100, 200]
     # add the algo tag here
     # algosVec = ['flat', 'LSH-H','flatAMMIP','flatAMMIPSMPPCA','PQ','IVFPQ','HNSW']
-    algosVec = ['flat', 'LSH-H', 'Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG']
+    algosVec = ['flat', 'LSH-H', 'Flann', 'PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent', 'DPG']
     # algosVec = ['flat', 'LSH-H']
     # algosVec = ['flat', 'onlinePQ']
     # algosVec=['incrementalRaw']
     # algosVec=[ 'pq']
     # algoDisp = ['BrutalForce', 'PQ']
-    algoDisp = ['Baseline', 'LSH','Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG']
+    algoDisp = ['Baseline', 'LSH', 'Flann', 'PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent', 'DPG']
     # algoDisp=['BrutalForce','LSH-H']
     # algoDisp=['PQ']
     # add the algo tag here

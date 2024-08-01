@@ -6,10 +6,12 @@ from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 import glob
 
+
 class CMakeExtension(Extension):
     def __init__(self, name, sourcedir=""):
         Extension.__init__(self, name, sources=[])
         self.sourcedir = os.path.abspath(sourcedir)
+
 
 class CMakeBuild(build_ext):
     def run(self):
@@ -39,29 +41,31 @@ class CMakeBuild(build_ext):
             threads = file.read().rstrip('\n')
         os.system('rm 1.txt')
         os.system('cd thirdparty&&./makeClean.sh&&./installPAPI.sh')
-        print(threads) 
+        print(threads)
         cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
                       '-DPYTHON_EXECUTABLE=' + sys.executable,
-                    '-DCMAKE_PREFIX_PATH='+torchCmake,
-                    '-DENABLE_HDF5=ON', 
-                    '-DENABLE_PYBIND=ON',
-                    '-DCMAKE_INSTALL_PREFIX=/usr/local/lib',
-                    '-DENABLE_PAPI=ON',
-                   ]
-        
+                      '-DCMAKE_PREFIX_PATH=' + torchCmake,
+                      '-DENABLE_HDF5=ON',
+                      '-DENABLE_PYBIND=ON',
+                      '-DCMAKE_INSTALL_PREFIX=/usr/local/lib',
+                      '-DENABLE_PAPI=ON',
+                      ]
+
         cfg = 'Debug' if self.debug else 'Release'
         cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
 
         build_args = ['--config', cfg]
-        build_args +=  ['--', '-j'+threads]
+        build_args += ['--', '-j' + threads]
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
-        subprocess.run(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp,check=True)
-        subprocess.run(['cmake', '--build', '.'] + build_args, cwd=self.build_temp,check=True)
+        subprocess.run(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, check=True)
+        subprocess.run(['cmake', '--build', '.'] + build_args, cwd=self.build_temp, check=True)
         # Now copy all *.so files from the build directory to the final installation directory
         so_files = glob.glob(os.path.join(self.build_temp, '*.so'))
         for file in so_files:
             shutil.copy(file, extdir)
+
+
 setup(
     name='PyCANDY',
     version='0.1',

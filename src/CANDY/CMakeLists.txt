@@ -20,6 +20,7 @@ add_sources(
         NNDescentIndex.cpp
         FlannIndex.cpp
         DPGIndex.cpp
+        Cuda/mm.cu
 )
 add_subdirectory(HashingModels)
 add_subdirectory(ParallelPartitionIndex)
@@ -32,4 +33,16 @@ add_subdirectory(FlannIndex)
 if (ENABLE_RAY)
     add_subdirectory(DistributedPartitionIndex)
     add_sources(DistributedPartitionIndex.cpp)
+endif ()
+if (ENABLE_SPDK)
+    add_sources(
+            FlatSSDGPUIndex.cpp
+    )
+    add_subdirectory(FlatSSDGPUIndex)
+endif ()
+if (CANDY_CUDA)
+    message(WARNING "Cuda feature is experimental, and it is enabled")
+    add_sources(
+            Cuda/mm.cu
+    )
 endif ()

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import sys
 
 import pytest
@@ -73,7 +75,7 @@ def test_cross_module_exceptions(msg):
 
 # TODO: FIXME
 @pytest.mark.xfail(
-    "env.MACOS and (env.PYPY or pybind11_tests.compiler_info.startswith('Homebrew Clang'))",
+    "env.MACOS and (env.PYPY or pybind11_tests.compiler_info.startswith('Homebrew Clang')) or sys.platform.startswith('emscripten')",
     raises=RuntimeError,
     reason="See Issue #2847, PR #2999, PR #4324",
 )

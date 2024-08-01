@@ -430,10 +430,10 @@ class ConfigMap {
   std::map<std::string, std::string> getStrMap() {
     return strMap;
   }
-    /**
- * @brief return the map of I64
- * @return the i64Map variable
-   */
+  /**
+* @brief return the map of I64
+* @return the i64Map variable
+ */
   std::map<std::string, int64_t> getI64Map() {
     return i64Map;
   }

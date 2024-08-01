@@ -1,5 +1,3 @@
-/*! \file OnlineInsert.cpp*/
-//
 // Created by tony on 06/01/24.
 //
 #include <iostream>
@@ -255,7 +253,10 @@ int main(int argc, char **argv) {
   briefOutCfg->edit("latencyOfQuery", queryLatency);
   briefOutCfg->edit("normalExit", (int64_t) 1);
   briefOutCfg->toFile("onlineInsert_result.csv");
+  auto indexStatistics = indexPtr->getIndexStatistics();
   std::cout << "brief results\n" << briefOutCfg->toString() << std::endl;
+  std::cout << "index statistics\n" << indexStatistics->toString() << std::endl;
+  indexStatistics->toFile("onlineInsert_indexStatistics.csv");
   UtilityFunctions::saveTimeStampToFile("onlineInsert_timestamps.csv", timeStamps);
   return 0;
 }

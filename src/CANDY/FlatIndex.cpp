@@ -8,6 +8,7 @@
 #include <time.h>
 #include <chrono>
 #include <assert.h>
+#include <map>
 bool CANDY::FlatIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   vecDim = cfg->tryI64("vecDim", 768, true);
@@ -25,9 +26,17 @@ bool CANDY::FlatIndex::insertTensor(torch::Tensor &t) {
 }
 
 bool CANDY::FlatIndex::deleteTensor(torch::Tensor &t, int64_t k) {
+  /* int64_t rows = t.size(0);
+   for (int64_t i = 0; i < rows; i++) {
+     auto rowI = t.slice(0, i, i + 1);
+     std::vector<faiss::idx_t> idxToDelete = searchIndex(rowI, k);
+     std::vector<int64_t> &int64Vector = reinterpret_cast<std::vector<int64_t> &>(idxToDelete);
+     INTELLI::IntelliTensorOP::deleteRowsBufferMode(&dbTensor, int64Vector, &lastNNZ);
+   }*/
   std::vector<faiss::idx_t> idxToDelete = searchIndex(t, k);
   std::vector<int64_t> &int64Vector = reinterpret_cast<std::vector<int64_t> &>(idxToDelete);
-  return INTELLI::IntelliTensorOP::deleteRowsBufferMode(&dbTensor, int64Vector, &lastNNZ);
+  INTELLI::IntelliTensorOP::deleteRowsBufferMode(&dbTensor, int64Vector, &lastNNZ);
+  return true;
 }
 
 bool CANDY::FlatIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {

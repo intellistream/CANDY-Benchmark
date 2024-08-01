@@ -7,6 +7,7 @@
 #include <DataLoader/ZipfDataLoader.h>
 #include <DataLoader/ExpFamilyDataLoader.h>
 #include <DataLoader/FVECSDataLoader.h>
+#include <DataLoader/RBTDataLoader.h>
 #include <include/hdf5_config.h>
 #if CANDY_HDF5 == 1
 #include <DataLoader/HDF5DataLoader.h>
@@ -36,6 +37,7 @@ CANDY::DataLoaderTable::DataLoaderTable() {
   loaderMap["beta"] = genExpFamilyLoader(cfgHijack, "beta");
   loaderMap["gaussian"] = genExpFamilyLoader(cfgHijack, "gaussian");
   loaderMap["poisson"] = genExpFamilyLoader(cfgHijack, "poisson");
+  loaderMap["rbt"] = newRBTDataLoader();
 #if CANDY_HDF5 == 1
   loaderMap["hdf5"] = newHDF5DataLoader();
 #endif

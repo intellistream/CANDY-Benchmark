@@ -50,7 +50,7 @@ matplotlib.rcParams['ytick.labelsize'] = TICK_FONT_SIZE
 matplotlib.rcParams['font.family'] = OPT_FONT_NAME
 matplotlib.rcParams['pdf.fonttype'] = 42
 dataset_vecDim_mapping = {
-    'WTE':768,
+    'WTE': 768,
     'DPR': 768,
     'SIFT': 128,
     'Enron': 1369,
@@ -307,8 +307,8 @@ def main():
     # srcBVec=['datasets/ECO/wm3.mtx',"datasets/DWAVE/dwb512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700b.mtx','datasets/RDB/rdb2048l.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcdb_small.mtx',"datasets/BUS/gemat1.mtx",]
     # aRowVec= [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
     # aRowVec = ['DPR','SIFT','Trevi','Glove','Msong','Sun']
-    #aRowVec = ['Glove', 'SIFT', 'Msong', 'Sun', 'DPR', 'Trevi']
-    aRowVec = ['DPR','WTE']
+    # aRowVec = ['Glove', 'SIFT', 'Msong', 'Sun', 'DPR', 'Trevi']
+    aRowVec = ['DPR', 'WTE']
     dataSetNames = aRowVec
     # aRowVec=[100, 200, 500, 1000]
     # add the algo tag here

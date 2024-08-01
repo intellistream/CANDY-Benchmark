@@ -81,7 +81,7 @@ def DrawFigure(x_values, y_values, legend_labels, x_label, y_label, filename, al
     bottom_base = np.zeros(len(y_values[0]))
     bars = [None] * (len(FIGURE_LABEL))
     for i in range(len(y_values)):
-        bars[i] = plt.bar(index*1.5 + width / 2, y_values[i], width, hatch=HATCH_PATTERNS[i], color=LINE_COLORS[i],
+        bars[i] = plt.bar(index * 1.5 + width / 2, y_values[i], width, hatch=HATCH_PATTERNS[i], color=LINE_COLORS[i],
                           label=FIGURE_LABEL[i], bottom=bottom_base, edgecolor='black', linewidth=3)
         bottom_base = np.array(y_values[i]) + bottom_base
 
@@ -118,11 +118,11 @@ def DrawFigure(x_values, y_values, legend_labels, x_label, y_label, filename, al
             leg.get_frame().set_edgecolor("black")
 
     # you may need to tune the xticks position to get the best figure.
-    plt.xticks(index*1.5 + 0.6 * width, x_values)
-    plt.xticks(rotation=30,fontsize=TICK_FONT_SIZE)
+    plt.xticks(index * 1.5 + 0.6 * width, x_values)
+    plt.xticks(rotation=30, fontsize=TICK_FONT_SIZE)
     plt.yticks(fontsize=TICK_FONT_SIZE)
-    #plt.ticklabel_format(axis="y", style="sci", scilimits=(0, 0), useMathText=True)
-    plt.ylim(0,100)
+    # plt.ticklabel_format(axis="y", style="sci", scilimits=(0, 0), useMathText=True)
+    plt.ylim(0, 100)
     plt.grid(axis='y', color='gray')
     figure.yaxis.set_major_locator(LinearLocator(3))
     # figure.yaxis.set_major_locator(LogLocator(base=10))

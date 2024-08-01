@@ -25,7 +25,7 @@ find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
 # Set Optimization Flags
-set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type")
+set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type -Wno-interference-size")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DNO_RACE_CHECK -DCANDY_DEBUG_MODE=1")
 set(CMAKE_CXX_FLAGS_RELEASE "-Wno-ignored-qualifiers -Wno-sign-compare -O3")
 set(PROJECT_BINARY_DIR_RAW ${PROJECT_BINARY_DIR})
@@ -47,6 +47,73 @@ option(ENABLE_PYBIND
         "Enable original pybind and build CANDY python"
         OFF
 )
+# Find CUDA package
+find_package(CUDA QUIET)
+
+# Check if CUDA is enabled
+if (CUDA_FOUND)
+    message(STATUS "CUDA found. Enabling CUDA support.")
+    message(STATUS "CUDA version: ${CUDA_VERSION_STRING}")
+    set(CANDY_CUDA 1)
+    enable_language(CUDA)
+
+    # Extract major and minor version numbers
+    string(REGEX MATCH "^([0-9]+)\\.([0-9]+)" CUDA_VERSION_MATCH ${CUDA_VERSION_STRING})
+    set(CUDA_VERSION_MAJOR ${CMAKE_MATCH_1})
+    set(CUDA_VERSION_MINOR ${CMAKE_MATCH_2})
+
+    # Determine CUDA standard based on version
+    if (CUDA_VERSION_MAJOR GREATER 12 OR (CUDA_VERSION_MAJOR EQUAL 12 AND CUDA_VERSION_MINOR GREATER_EQUAL 5))
+        set(CMAKE_CUDA_STANDARD 17)
+        message(STATUS "Allow c++ 17 in CUDA")
+    else ()
+        set(CMAKE_CUDA_STANDARD 14)
+        message(STATUS "Allow c++ 14 in CUDA")
+    endif ()
+    project(CANDY CXX CUDA)
+    # Add your CUDA-related configurations or targets here
+    # Example:
+    # cuda_add_executable(my_cuda_executable main.cu)
+else ()
+    message(STATUS "CUDA not found. Building without CUDA support.")
+    set(CANDY_CUDA 0)
+    # Handle the case where CUDA is not found
+endif ()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/cuda_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/cuda_config.h"
+)
+# spdk
+option(ENABLE_SPDK
+        "Enable SPDK support, pls first compile papi or set REBUILD_PAPI to ON"
+        OFF
+)
+# OPTIONAL PAPI
+if (NOT ENABLE_SPDK)
+    message(STATUS "I will NOT use SPDK ")
+    set(CANDY_SPDK 0)
+else ()
+    include(cmake/SPDK.cmake)
+    set(CANDY_SPDK 1)
+    message(STATUS "I will try to use SPDK for SSD, pls make sure your arch supports it")
+    option(REBUILD_SPDK
+            "Rebuild the SPDK lib"
+            OFF
+    )
+    if (REBUILD_SPDK)
+        build_spdk_libs(${PROJECT_SOURCE_DIR}/thirdparty)
+        message(STATUS "I have rebuilt SPDK")
+    endif ()
+    find_spdk_paths(${PROJECT_SOURCE_DIR}/thirdparty/spdk/build SPDK_INCLUDE_DIRS SPDK_LIBRARIES)
+    message(STATUS "SPDK LIB= " ${SPDK_LIBRARIES})
+    set(LIBRARIES ${LIBRARIES} ${SPDK_LIBRARIES})
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/spdk/build/include)
+endif ()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/spdk_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/spdk_config.h"
+)
+
 #OPTIONAL OPENCL
 if (NOT ENABLE_OPENCL)
     message(STATUS "I will NOT include opencl support ")
@@ -110,7 +177,6 @@ configure_file(
         "${PROJECT_SOURCE_DIR}/include/ray_config.h.in"
         "${PROJECT_BINARY_DIR}/include/ray_config.h"
 )
-#set(CMAKE_CUDA_ARCHITECTURES 55)
 # Set LOGGING_LEVEL Flag
 #option of hdf5
 if (NOT ENABLE_HDF5)
@@ -193,7 +259,7 @@ else ()
     install(TARGETS PyCANDY LIBRARY DESTINATION .)
     message(STATUS "Additional include torch_python: ${TORCH_PYTHON_LIBRARY}")
     set(CANDY_PYBIND 1)
-    set_property(TARGET PyCANDY  PROPERTY CXX_STANDARD 20)
+    set_property(TARGET PyCANDY PROPERTY CXX_STANDARD 20)
 endif ()
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/pybind_config.h.in"

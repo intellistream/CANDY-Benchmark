@@ -11,7 +11,7 @@ namespace CANDY {
 class AdSampling {
  public:
   AdSampling() = default;
-  AdSampling(int64_t d):dim(d){};
+  AdSampling(int64_t d) : dim(d) {};
   static torch::Tensor getTransformMatrix(int64_t dim) {
     torch::manual_seed(time(NULL));
     auto gaus = torch::randn({dim, dim});
@@ -19,19 +19,19 @@ class AdSampling {
     return u.matmul(vh);
   }
 
-  void set_transformed(torch::Tensor* tm){
-      transformMatrix = tm;
+  void set_transformed(torch::Tensor *tm) {
+    transformMatrix = tm;
   }
   torch::Tensor transform(torch::Tensor ta) {
     return ta.matmul(*transformMatrix);
   }
-  void set_threshold(float threshold){
-      threshold_ = threshold;
+  void set_threshold(float threshold) {
+    threshold_ = threshold;
   }
 
-  void set_step(size_t step, float epsilon){
-      samplingStep = step;
-      epsilon0 = epsilon;
+  void set_step(size_t step, float epsilon) {
+    samplingStep = step;
+    epsilon0 = epsilon;
   }
   float distanceCompute_L2(torch::Tensor ta, torch::Tensor tb) {
     auto taPtr = ta.contiguous().data_ptr<float>(), tbPtr = tb.contiguous().data_ptr<float>();
@@ -55,7 +55,7 @@ class AdSampling {
   float epsilon0 = 1.0; // recommended in [1.0,4.0], valid in in [0, +\infty)
 
   size_t dim;
-  torch::Tensor* transformMatrix;
+  torch::Tensor *transformMatrix;
   float threshold_;
   inline float ratio(const int &dim, const int &i) {
     if (i == dim) return 1.0;

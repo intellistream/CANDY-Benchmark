@@ -40,6 +40,8 @@ doc/
 benchmark/scripts/Downstream_Inference/bolt*
 benchmark/torchscripts/
 benchmark/torchscripts*
+thirdparty/spdk
+thirdparty/spdk_bk
 /.vscode
 PyCANDY.egg-info/
 dist/

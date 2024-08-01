@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import sys
 
 import pytest
@@ -365,6 +367,8 @@ def test_tuple(doc):
         Return a triple in reversed order
     """
     )
+
+    assert doc(m.empty_tuple) == """empty_tuple() -> tuple[()]"""
 
     assert m.rvalue_pair() == ("rvalue", "rvalue")
     assert m.lvalue_pair() == ("lvalue", "lvalue")
