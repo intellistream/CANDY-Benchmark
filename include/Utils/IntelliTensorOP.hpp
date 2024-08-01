@@ -199,15 +199,14 @@ class IntelliTensorOP {
  */
   static bool deleteRowBufferMode(torch::Tensor *tensor, int64_t rowIdx, int64_t *lastNNZ) {
     int64_t rowIndexToDelete = rowIdx;
-    if (rowIndexToDelete >= tensor->size(0) || *lastNNZ >= tensor->size(0) || rowIndexToDelete > *lastNNZ) {
+   /* if (rowIndexToDelete >= tensor->size(0) || *lastNNZ >= tensor->size(0) || rowIndexToDelete > *lastNNZ) {
       return false;
-    }
-
+    }*/
     // Get the number of rows and columns in the original tensor
     tensor->slice(/*dim=*/0, /*start=*/rowIndexToDelete, /*end=*/rowIndexToDelete + 1) =
         tensor->slice(0, *lastNNZ, *lastNNZ + 1);
     // Use the mask to create a new tensor without the specified row
-    tensor->slice(0, *lastNNZ, *lastNNZ + 1) = torch::zeros({(int64_t) 1, tensor->size(1)});
+    //tensor->slice(0, *lastNNZ, *lastNNZ + 1) = torch::zeros({(int64_t) 1, tensor->size(1)});
     if (*lastNNZ > 0) {
       *lastNNZ = *lastNNZ - 1;
     }
@@ -231,12 +230,8 @@ class IntelliTensorOP {
 * @return bool, whether the operation is successful
 */
   static bool deleteRowsBufferMode(torch::Tensor *tensor, std::vector<int64_t> &rowIdx, int64_t *lastNNZ) {
-    std::sort(rowIdx.begin(), rowIdx.end(), std::greater<int64_t>());
+    //std::sort(rowIdx.begin(), rowIdx.end(), std::greater<int64_t>());
     std::map<int64_t, int64_t> i64Map;
-    int64_t rowIndexMax = rowIdx[0];
-    if (rowIndexMax >= tensor->size(0) || *lastNNZ >= tensor->size(0) || rowIndexMax > *lastNNZ) {
-      return false;
-    }
     //int64_t deletedRows=0;
     for (int64_t value : rowIdx) {
       //std::cout<<value<<value-deletedRows<<std::endl;
