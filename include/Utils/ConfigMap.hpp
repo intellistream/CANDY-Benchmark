@@ -413,7 +413,8 @@ class ConfigMap {
     int64_t ru = defaultValue;
     if (this->existI64(key)) {
       ru = this->getI64(key);
-      // INTELLI_INFO(key + " = " + to_string(ru));
+      if(ru!=defaultValue)
+        INTELLI_INFO(key + " = " + to_string(ru));
     } else {
       if (showWarning) {
         //INTELLI_WARNING("Leaving " + key + " as blank, will use " + to_string(defaultValue) + " instead");
@@ -476,7 +477,8 @@ class ConfigMap {
     double ru = defaultValue;
     if (this->existDouble(key)) {
       ru = this->getDouble(key);
-      // INTELLI_INFO(key + " = " + to_string(ru));
+      if(ru!=defaultValue)
+        INTELLI_INFO(key + " = " + to_string(ru));
     } else {
       if (showWarning) {
         //     INTELLI_WARNING("Leaving " + key + " as blank, will use " + to_string(defaultValue) + " instead");

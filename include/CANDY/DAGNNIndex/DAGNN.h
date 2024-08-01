@@ -32,6 +32,8 @@ enum dynamic_action_num{
     decrease_cluster_expansion,
     increase_cluster_innerconnection_threshold,
     decrease_cluster_innerconnection_threshold,
+    increase_discardN,
+    decrease_discardN,
     increase_optimisticN,
     decrease_optimisticN,
     increase_discardClusterProp,
@@ -288,6 +290,7 @@ struct DynamicTuneHNSW{
         }
 
 
+
     };
 
     struct DRLStates {
@@ -413,7 +416,7 @@ struct DynamicTuneHNSW{
         }
         /// others
     };
-
+    bool is_datamining = true;
     int64_t vecDim;
     DAGNN::DistanceQueryer* disq = nullptr;
 
@@ -655,6 +658,7 @@ struct DynamicTuneHNSW{
 
 
 
+    void randomPickAction();
 };
 
 /**

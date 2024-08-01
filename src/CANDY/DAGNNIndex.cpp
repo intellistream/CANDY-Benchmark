@@ -15,12 +15,31 @@ bool CANDY::DAGNNIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     }
     auto M = cfg->tryI64("maxConnection", 32, true);
     DynamicTuneHNSW::DynamicTuneParams dp;
+
+    /// Setting config for DynamicTuneParams at initialization
+    dp.efConstruction = cfg->tryI64("efConstruction", 40, true);
+    dp.efSearch = cfg->tryI64("efSearch", 16, true);
+    dp.bottom_connections_upper_bound = cfg->tryI64("bottom_connections_upper_bound", 64, true);
+    dp.bottom_connections_lower_bound = cfg->tryI64("bottom_connections_lower_bound", 32, true);
+    dp.distance_computation_opt = cfg->tryI64("distance_computation_opt", 0, true);
+    dp.rng_alpha = cfg->tryDouble("rng_alpha", 1.0, true);
+    dp.clusterExpansionStep = cfg->tryI64("clusterExpansionStep", 2, true);
+    dp.clusterInnerConnectionThreshold = cfg->tryDouble("clusterInnerConnectionThreshold", 0.5, true);
+    dp.optimisticN = cfg->tryI64("optimisticN", 16, true);
+    dp.discardN = cfg->tryI64("discardN", 0, true);
     dp.discardClusterN = cfg->tryI64("discardClusterN", 32, true);
-    dp.degree_std_range = cfg->tryDouble("degree_std_range",1.5,true);
-    dp.optimisticN = cfg->tryI64("OptimisticN", 16, true);
-    printf("\ndiscardClusterN=%ld\n", dp.discardClusterN);
-    printf("\ndegree_std_range=%.2lf\n",dp.degree_std_range);
-    printf("\noptimisitcN=%ld\n", dp.optimisticN);
+    dp.discardClusterProp = cfg->tryDouble("discardClusterProp", 0.3, true);
+    dp.degree_std_range = cfg->tryDouble("degree_std_range", 1.5, true);
+    dp.degree_allow_range = cfg->tryDouble("degree_allow_range", 0.5, true);
+    dp.degree_lift_range = cfg->tryDouble("degree_lift_range", 1.75, true);
+    dp.sparsePreference = cfg->tryI64("sparsePreference", 1, true);
+    dp.neighborDistanceThreshold = cfg->tryDouble("neighborDistanceThreshold", 0.5, true);
+    dp.expiration_timestamp = cfg->tryI64("expiration_timestamp", 450, true);
+    dp.max_backtrack_steps = cfg->tryI64("max_backtrack_steps", 20, true);
+    dp.steps_above_avg = cfg->tryI64("steps_above_avg", 50, true);
+    dp.steps_above_max = cfg->tryI64("steps_above_max", 20, true);
+    dp.nb_navigation_paths = cfg->tryI64("nb_navigation_paths", 16, true);
+
     dagnn = new CANDY::DynamicTuneHNSW(M, vecDim, metric, dp);
     return true;
 }

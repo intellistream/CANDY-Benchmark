@@ -40,8 +40,20 @@ double combine_var(double old_sum, double new_sum, double old_var, double new_va
 
 }
 
+void CANDY::DynamicTuneHNSW::randomPickAction(){
+    std::mt19937 rng(114514);
+    std::uniform_int_distribution<int> dist(0, 10);
+
+    std::vector<size_t> numbers = {do_nothing, bad_link_cut_old, bad_link_cut_new, outwards_link_old, outwards_link_new, DEG_refine_old, DEG_refine_new,
+                                backtrack_candidate, intercluster_link, lift_cluster_center, lower_navigation_point};
+    int randomIndex = dist(rng);
+
+    size_t randomNum = numbers[randomIndex];
+    performAction(randomNum);
+}
+
 void CANDY::DynamicTuneHNSW::updateGlobalState() {
-    /// update value average
+    /// Updating global states from local states
     auto prev_ntotal = graphStates.global_stat.ntotal;
     auto new_ntotal = graphStates.time_local_stat.ntotal;
     /// Value
@@ -54,7 +66,6 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
 
         }
     }
-
     /// Connectivity
     {
         graphStates.global_stat.degree_sum = graphStates.time_local_stat.degree_sum_old + graphStates.time_local_stat.degree_sum_new;
@@ -73,14 +84,6 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
             printf("UPdated previous degree var %lf avg %lf, new data degree var %lf avg %lf\n", graphStates.time_local_stat.degree_variance_old, graphStates.time_local_stat.degree_sum_old/(prev_ntotal*1.0), graphStates.time_local_stat.degree_variance_new, graphStates.time_local_stat.degree_sum_new/(new_ntotal*1.0));
             printf("UPdated previous neighbor distance var %lf , new data neighbor distance var %lf\n", graphStates.time_local_stat.neighbor_distance_variance_old, graphStates.time_local_stat.neighbor_distance_variance_new);
         }
-
-    }
-
-
-
-
-
-    {
 
     }
 
@@ -105,43 +108,19 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
         }
     }
 
-
-    /// Hierarchy
-    {
-        if(graphStates.time_local_stat.old_ntotal>1000 && max_level>1) {
-            //printf("Collected vertices to adjust hierarchy:\n");
-            //graphStates.window_states.hierarchyVertices.print_all();
-            //hierarchyOptimizationDegradeWIndow(graphStates.window_states);
-            //hierarchyOptimizationLiftWIndow(graphStates.window_states);
-        }
-    }
-    /// Navigation
-    {
-        if(graphStates.time_local_stat.old_ntotal>1000 && max_level>1) {
-            if(verbose){
-                printf("Collected bad vertices to exploration navigate:\n");
-            }
-            //graphStates.window_states.hierarchyVertices.print_all();
-            //navigationBacktrackWindow(graphStates.window_states);
-        }
+    /// randomly pick a state to perform
+    if(is_datamining && graphStates.time_local_stat.old_ntotal > 1000){
+        randomPickAction();
     }
 
-    if(verbose) {
-        printf("All new vertices in window:\n");
-        graphStates.window_states.newVertices.print_all();
-    }
-    if(verbose) {
-        printf("All old vertices in window:\n");
-        graphStates.window_states.oldVertices.print_all();
-    }
-    if(graphStates.time_local_stat.old_ntotal>1000) {
-        if(verbose) {
-            printf("cutting and adding\n");
-        }
-        //cutEdgesWindow(graphStates.window_states, 0);
-        //cutEdgesWindow(graphStates.window_states, 1);
-        //linkEdgesWindow(graphStates.window_states, 0);
-    }
+//    if(graphStates.time_local_stat.old_ntotal>1000) {
+//        if(verbose) {
+//            printf("cutting and adding\n");
+//        }
+//        //cutEdgesWindow(graphStates.window_states, 0);
+//        //cutEdgesWindow(graphStates.window_states, 1);
+//        //linkEdgesWindow(graphStates.window_states, 0);
+//    }
     if(verbose) {
         printf("After cutting degree avg %lf var %lf, distance avg %lf var %lf\n",
                graphStates.global_stat.degree_sum / (graphStates.global_stat.ntotal * 1.0),
@@ -152,9 +131,6 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     graphStates.window_states.reset();
     //bd_stats.print();
     bd_stats.reset();
-    if(verbose){
-        printf("\n\n");
-    }
 }
 
 void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
@@ -2088,7 +2064,6 @@ void CANDY::DynamicTuneHNSW::linkClusterWindow(CANDY::DynamicTuneHNSW::WindowSta
 
 
 bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
-    printf("Performing action %ld\n", action_num);
     switch(action_num){
         case do_nothing:
             break;
@@ -2161,6 +2136,16 @@ bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
         case decrease_optimisticN:
             if(dynamicParams.optimisticN>0){
                 dynamicParams.optimisticN-=8;
+            }
+            break;
+        case increase_discardN:
+            if(dynamicParams.discardN<8){
+                dynamicParams.discardN+=1;
+            }
+            break;
+        case decrease_discardN:
+            if(dynamicParams.discardN>0){
+                dynamicParams.discardN-=1;
             }
             break;
         case increase_discardClusterProp:
