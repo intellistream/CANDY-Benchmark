@@ -93,7 +93,7 @@ bool CANDY::FlatSSDGPUIndex::deleteTensor(torch::Tensor &t, int64_t k) {
         dmBuffer.deleteTensor(idx[i], idx[i] + 1);
         i64Map[idx[i]]=1;
       }
-
+     // dmBuffer.deleteTensor(idx[i], idx[i] + 1);
     }
   }
   return true;

@@ -244,6 +244,7 @@ class IntelliTensorOP {
         deleteRowBufferMode(tensor, value, lastNNZ);
         i64Map[value]=1;
       }
+     // deleteRowBufferMode(tensor, value, lastNNZ);
       //deletedRows++;
     }
     return true;

@@ -310,14 +310,7 @@ bool PlainDiskMemBufferTU::appendU64(std::vector<uint64_t> &data) {
 
 bool PlainDiskMemBufferTU::deleteTensor(int64_t startPos, int64_t endPos) {
   int64_t delSize = endPos - startPos;
-  auto inMemTensor = torch::zeros({delSize, (int64_t) diskInfo.vecDim}).contiguous();
-  int64_t diskOffset;
-  /***
-   * @brief read the tail valid tensor
-   */
-  diskOffset = (diskInfo.vecCnt - delSize) * diskInfo.vecDim * sizeof(float) + 512 + tensorBegin;
-  ssdPtr->read(inMemTensor.data_ptr(), delSize * diskInfo.vecDim * sizeof(float), diskOffset, ssdQpair);
-  //std::cout<<"Tail tensor"<<inMemTensor;
+  auto inMemTensor = getTensor(diskInfo.vecCnt - delSize,diskInfo.vecCnt);
   reviseTensor(startPos, inMemTensor);
   diskInfo.vecCnt -= delSize;
   return true;
