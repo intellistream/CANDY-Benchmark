@@ -86,9 +86,14 @@ bool CANDY::FlatSSDGPUIndex::deleteTensor(torch::Tensor &t, int64_t k) {
 
   int64_t rows = t.size(0);
   auto idx = findTopKClosest(t, k, DCOBatchSize);
+  std::map<int64_t, int64_t> i64Map;
   for (int64_t i = 0; i < rows * k; i++) {
     if (idx[i] >= 0) {
-      dmBuffer.deleteTensor(idx[i], idx[i] + 1);
+      if(i64Map.count(idx[i])!=1) {
+        dmBuffer.deleteTensor(idx[i], idx[i] + 1);
+        i64Map[idx[i]]=1;
+      }
+
     }
   }
   return true;

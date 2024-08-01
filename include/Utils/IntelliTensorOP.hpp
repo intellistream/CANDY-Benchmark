@@ -232,6 +232,7 @@ class IntelliTensorOP {
 */
   static bool deleteRowsBufferMode(torch::Tensor *tensor, std::vector<int64_t> &rowIdx, int64_t *lastNNZ) {
     std::sort(rowIdx.begin(), rowIdx.end(), std::greater<int64_t>());
+    std::map<int64_t, int64_t> i64Map;
     int64_t rowIndexMax = rowIdx[0];
     if (rowIndexMax >= tensor->size(0) || *lastNNZ >= tensor->size(0) || rowIndexMax > *lastNNZ) {
       return false;
@@ -239,7 +240,10 @@ class IntelliTensorOP {
     //int64_t deletedRows=0;
     for (int64_t value : rowIdx) {
       //std::cout<<value<<value-deletedRows<<std::endl;
-      deleteRowBufferMode(tensor, value, lastNNZ);
+      if((i64Map.count(value) != 1)) {
+        deleteRowBufferMode(tensor, value, lastNNZ);
+        i64Map[value]=1;
+      }
       //deletedRows++;
     }
     return true;

@@ -296,8 +296,30 @@ int main(int argc, char **argv) {
       auto initialTensor = dataLoader->getDataAt(0, initialRows);
       gdIndex->loadInitialTensor(initialTensor);
     }
-    auto subADel = dataLoader->getDataAt((int64_t) 0, (int64_t) deleteRows);
-    gdIndex->deleteTensor(subADel);
+
+    startRow = 0;
+    endRow = startRow + batchSize;
+    aRows = deleteRows;
+    while (startRow < aRows) {
+
+      /**
+       * @brief now, the whole batch has arrived, compute
+       */
+      auto subA = dataLoader->getDataAt((int64_t) startRow , (int64_t) endRow );
+      gdIndex->deleteTensor(subA);
+
+      /**
+       * @brief update the indexes
+       */
+      startRow += batchSize;
+      endRow += batchSize;
+      if (endRow >= aRows) {
+        endRow = aRows;
+      }
+    }
+
+   /* auto subADel = dataLoader->getDataAt((int64_t) 0, (int64_t) deleteRows);
+    gdIndex->deleteTensor(subADel);*/
     auto subAInsert = dataLoader->getDataAt((int64_t) initialRows, (int64_t) (initialRows + streamSize));
     gdIndex->insertTensor(subAInsert);
 

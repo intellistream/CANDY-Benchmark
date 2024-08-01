@@ -8,6 +8,7 @@
 #include <time.h>
 #include <chrono>
 #include <assert.h>
+#include <map>
 bool CANDY::FlatIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   vecDim = cfg->tryI64("vecDim", 768, true);
