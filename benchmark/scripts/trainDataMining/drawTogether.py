@@ -152,7 +152,7 @@ def compareMethod(exeSpace, commonPathBase, resultPaths, csvTemplate, algos, dat
         # exit()
         if resultIsComplete:
             elapsedTime, incrementalBuild, incrementalSearch, recall, pendingWaitTime, l2Stall, l3Stall, totalStall, froVec = readResultVector(
-                dataSetName, resultPath)
+                dataSetName[i], resultPath)
             elapsedTimeAll.append(elapsedTime)
             incrementalBuildAll.append(incrementalBuild)
             incrementalSearchAll.append(incrementalSearch)
