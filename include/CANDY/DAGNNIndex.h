@@ -56,6 +56,16 @@ namespace CANDY {
          */
         virtual std::vector<torch::Tensor> getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k);
 
+        /**
+        * @brief delete a tensor, also online function
+        * @param t the tensor, some index needs to be single row
+        * @param k the number of nearest neighbors
+        * @return bool whether the deleting is successful
+        */
+        virtual bool deleteTensor(torch::Tensor &t, int64_t k = 1);
+
+        bool deleteTensorByIndex(torch::Tensor &t);
+
         DynamicTuneHNSW::GraphStates getState(){
             return dagnn->graphStates;
         }

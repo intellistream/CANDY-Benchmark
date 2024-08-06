@@ -427,6 +427,7 @@ struct DynamicTuneHNSW{
     faiss::IndexFlat* storage = nullptr;
     /// The graph neighbor structure. Use linkLists[idx] to locate a Nodes' neighbor list
     std::vector<Node*> linkLists;
+    std::vector<bool> deleteLists;
     std::vector<idx_t> entry_points;
     std::vector<uint64_t> last_visited;
     /// HNSW level assigning
@@ -434,7 +435,8 @@ struct DynamicTuneHNSW{
     /// cumulative number of neighbors stored per level
     std::vector<size_t> cum_nneighbor_per_level;
     size_t max_level = -1;
-
+    /// 0 for tombstone; 1 for global reconnect; 2 for local reconnect
+    int delete_mode = 0;
 
 
 
@@ -528,6 +530,7 @@ struct DynamicTuneHNSW{
             // use cum_nneighbor_per_level[new_node.level] to get total number of levels
             linkLists.push_back(new_node);
             last_visited.push_back(0);
+            deleteLists.push_back(false);
         }
     }
 
@@ -610,6 +613,8 @@ struct DynamicTuneHNSW{
     void navigationBacktrackWindow(WindowStates& window_states);
     void linkClusterWindow(WindowStates& window_states);
 
+    void deleteVector(idx_t n, float* x);
+    void deleteVectorByIndex(const std::vector<idx_t>& idx);
     /// use for debug
     void direct_link(idx_t x, idx_t y, size_t level) {
         auto node_x = linkLists[x];

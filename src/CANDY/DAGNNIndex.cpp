@@ -110,6 +110,15 @@ std::vector<torch::Tensor> CANDY::DAGNNIndex::getTensorByIndex(std::vector<faiss
     return ru;
 }
 
+bool CANDY::DAGNNIndex::deleteTensor(torch::Tensor &t, int64_t k) {
+
+    return true;
+}
+
+bool CANDY::DAGNNIndex::deleteTensorByIndex(torch::Tensor &t) {
+    return true;
+}
+
 
 
 

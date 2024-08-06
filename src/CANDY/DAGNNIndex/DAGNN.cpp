@@ -475,6 +475,9 @@ void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size
             if(vt.get(expansion)){
                 continue;
             }
+            if(deleteLists[expansion]){
+                continue;
+            }
             vt.set(expansion);
 
             auto exp_vector = get_vector(expansion);
@@ -525,9 +528,13 @@ void CANDY::DynamicTuneHNSW::candidate_select_base(DAGNN::DistanceQueryer& disq,
             if(vt.get(expansion)){
                 continue;
             }
+
+            if(deleteLists[expansion]){
+                continue;
+            }
             vt.set(expansion);
             float dis;
-            //TODO: MORE ON THIS
+
             if(optimistic_count<dynamicParams.optimisticN) {
                 dis= curr_distList[i];
                 optimistic_count++;
@@ -1119,6 +1126,10 @@ int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_
             }
 
             if(vt.get(v1)) {
+                continue;
+            }
+            // do not consider deleted vertices
+            if(deleteLists[v1]){
                 continue;
             }
 
@@ -2058,10 +2069,91 @@ void CANDY::DynamicTuneHNSW::linkClusterWindow(CANDY::DynamicTuneHNSW::WindowSta
             linkClusters(disq, it1->first, it2->first, vt);
         }
     }
-
-
 }
 
+void CANDY::DynamicTuneHNSW::deleteVector(CANDY::DynamicTuneHNSW::idx_t n, float *x) {
+    // global search for deleted node
+}
+
+void CANDY::DynamicTuneHNSW::deleteVectorByIndex(const std::vector<idx_t>& idx) {
+
+    if(delete_mode==0) {
+        // simple tombstone
+        for (size_t i = 0; i < idx.size(); i++) {
+            deleteLists[idx[i]] = true;
+        }
+    } else if (delete_mode == 1){
+        // global reconnect, need to re-insert to_delete's neighbors
+        for(size_t i=0; i<idx.size(); i++){
+            auto id = idx[i];
+            deleteLists[id]=true;
+            auto to_delete = linkLists[id];
+            // re-greedy-insert to_delete's neighbors, only for base level, we maintain the navigation point on upper levels
+            auto neighbors_base = to_delete->neighbors[0];
+            for(size_t n=0; n< nb_neighbors(0); n++){
+                auto nid = neighbors_base[n];
+                if(nid<0){
+                    break;
+                }
+
+                DAGNN::DistanceQueryer disq(vecDim);
+                DAGNN::VisitedTable vt(storage->ntotal);
+                auto node = linkLists[nid];
+                auto vector = get_vector(nid);
+                disq.set_query(vector);
+                auto nearest = entry_points[0];
+                auto entry_vector = get_vector(nearest);
+                auto dist_nearest = disq(entry_vector);
+                delete[] entry_vector;
+                std::priority_queue<CandidateCloser> candidates;
+                int64_t steps_taken = 0;
+                greedy_insert_base(disq, nearest, dist_nearest, candidates, steps_taken);
+
+                auto entry_base_level = CandidateCloser(dist_nearest, nearest);
+                candidates.push(entry_base_level);
+                link_from_base(disq, node->id,  nearest, dist_nearest, candidates, vt);
+
+                delete[] vector;
+            }
+        }
+    } else if (delete_mode == 2){
+        // local reconnect
+        // global reconnect, need to re-insert to_delete's neighbors
+        for(size_t i=0; i<idx.size(); i++){
+            auto id = idx[i];
+            deleteLists[id]=true;
+            auto to_delete = linkLists[id];
+            // local connect, re-insert using deleted vectexas entry, only for base level, we maintain the navigation point on upper levels
+            auto neighbors_base = to_delete->neighbors[0];
+            for(size_t n=0; n< nb_neighbors(0); n++){
+                auto nid = neighbors_base[n];
+                if(nid<0){
+                    break;
+                }
+
+                DAGNN::DistanceQueryer disq(vecDim);
+                DAGNN::VisitedTable vt(storage->ntotal);
+                auto node = linkLists[nid];
+                auto vector = get_vector(nid);
+                disq.set_query(vector);
+                auto nearest = entry_points[0];
+                auto entry_vector = get_vector(id);
+                auto dist_nearest = disq(entry_vector);
+                delete[] entry_vector;
+                std::priority_queue<CandidateCloser> candidates;
+                int64_t steps_taken = 0;
+                greedy_insert_base(disq, nearest, dist_nearest, candidates, steps_taken);
+
+                auto entry_base_level = CandidateCloser(dist_nearest, nearest);
+                candidates.push(entry_base_level);
+                link_from_base(disq, node->id,  nearest, dist_nearest, candidates, vt);
+
+                delete[] vector;
+            }
+        }
+    }
+
+}
 
 bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
     switch(action_num){
