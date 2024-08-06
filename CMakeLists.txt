@@ -23,6 +23,14 @@ set(LIBRARIES ${LIBRARIES} faiss)
 set(CMAKE_PREFIX_PATH "/usr/local/lib/python3.10/dist-packages/torch/share/cmake")
 SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/usr/include/boost")
 find_package(Torch REQUIRED)
+find_package(OpenMP REQUIRED)
+if (OPENMP_FOUND)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+    message(STATUS "OpenMP FOUND ")
+
+endif()
 #find_package(boost REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
@@ -93,6 +101,8 @@ configure_file(
         "${PROJECT_SOURCE_DIR}/include/papi_config.h.in"
         "${PROJECT_BINARY_DIR}/include/papi_config.h"
 )
+
+
 #options of ray
 if (NOT ENABLE_RAY)
     message(STATUS "I will NOT include ray or distributed features ")
@@ -174,6 +184,7 @@ target_include_directories(CANDY PUBLIC "thirdparty/papi_build/include")
 target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
 target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
 target_link_libraries(CANDY PUBLIC ${LIBRARIES})
+target_link_libraries(CANDY PUBLIC OpenMP::OpenMP_CXX)
 install(TARGETS CANDY LIBRARY DESTINATION .)
 #add_subdirectory(test)
 #Add benchmarks with command

@@ -103,7 +103,9 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
         for(idx_t i=prev_ntotal; i<prev_ntotal+new_ntotal;i++) {
             auto nb_connections = linkLists[i]->bottom_connections;
             if(nb_connections*1.0>degree_avg+dynamicParams.degree_std_range*std_dev+1 || nb_connections*1.0<degree_avg-dynamicParams.degree_std_range*std_dev-1) {
+                omp_set_lock(&state_lock);
                 graphStates.window_states.newVertices.insert(i, linkLists[i]);
+                omp_unset_lock(&state_lock);
             }
         }
     }
@@ -191,7 +193,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     /// adding
     {
         idx_t i1 = n;
-        for (size_t pt_level = hist.size() - 1; pt_level >= 0; pt_level--) {
+        for (int pt_level = hist.size() - 1; pt_level >= 0; pt_level--) {
             idx_t i0 = i1 - hist[pt_level];
 #pragma omp parallel if (i1>i0+50)
             {
@@ -215,7 +217,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
 
                     idx_t id = order[i];
                     disq.set_query(x + (id - n0) * vecDim);
-                    auto node = linkLists[i + n0];
+                    auto node = linkLists[id ];
                     last_visited[i + n0] = timestamp;
                     greedy_insert(disq, *node, vt, locks);
                 }
@@ -292,7 +294,9 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
         if(steps_taken - dynamicParams.steps_above_avg > graphStates.global_stat.steps_taken_avg
             || steps_taken - dynamicParams.steps_above_max > graphStates.global_stat.steps_taken_max) {
             auto far_node = linkLists[nearest];
+            omp_set_lock(&state_lock);
             graphStates.window_states.oldVertices.insert(nearest, far_node);
+            omp_unset_lock(&state_lock);
         }
         graphStates.time_local_stat.steps_taken_max = steps_taken;
 
@@ -333,8 +337,10 @@ void CANDY::DynamicTuneHNSW::greedy_insert_top(DAGNN::DistanceQueryer& disq, siz
             if(level == 1){
                 if(timestamp - last_visited[visiting]>dynamicParams.expiration_timestamp){
                     if(linkLists[visiting]->level==1){
+                        omp_set_lock(&state_lock);
                         //printf("timestamp: %ld, last_visited: %ld\n", timestamp, last_visited[visiting]);
                         graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
+                        omp_unset_lock(&state_lock);
                     }
                 }
             }
@@ -376,7 +382,9 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
             if(level == 1){
                 if(timestamp - last_visited[visiting]>dynamicParams.expiration_timestamp){
                     if(linkLists[visiting]->level==1){
+                        omp_set_lock(&state_lock);
                         graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
+                        omp_unset_lock(&state_lock);
                     }
                 }
             }
@@ -408,7 +416,9 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
         auto node = linkLists[nearest];
         last_visited[nearest] = timestamp;
         if(node->bottom_connections*1.0>degree_avg+dynamicParams.degree_std_range*std_dev+1 || node->bottom_connections*1.0<degree_avg-dynamicParams.degree_std_range*std_dev-1) {
+            omp_set_lock(&state_lock);
             graphStates.window_states.oldVertices.insert(node->id, node);
+            omp_unset_lock(&state_lock);
 
         }
         size_t nb_neighbor_level = nb_neighbors(0);
@@ -420,7 +430,9 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
             if(linkLists[visiting]->level==0) {
                 if(linkLists[visiting]->bottom_connections*1.0>degree_avg+dynamicParams.degree_lift_range*std_dev+1) {
                     //graphStates.window_states.oldVertices.remove(visiting);
+                    omp_set_lock(&state_lock);
                     graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
+                    omp_unset_lock(&state_lock);
                 }
             }
             auto vector = get_vector(visiting);
@@ -520,7 +532,9 @@ void CANDY::DynamicTuneHNSW::link_from_base(DAGNN::DistanceQueryer& disq, idx_t 
     double new_std_dev = std::sqrt(graphStates.time_local_stat.degree_variance_new);
     // /// TODO: Pre pruning to avoid further pruning
      if(current_degree<new_degree_avg-new_std_dev-1 || current_degree > new_degree_avg+new_std_dev+1) {
+         omp_set_lock(&state_lock);
          graphStates.window_states.newVertices.insert(idx, linkLists[idx]);
+         omp_unset_lock(&state_lock);
      }
     for(auto nei: neighbors) {
         add_link_base(disq, nei, idx, previous_degree, current_degree);
@@ -550,7 +564,9 @@ void CANDY::DynamicTuneHNSW::link_from_base_lock(DAGNN::DistanceQueryer& disq, i
     double new_std_dev = std::sqrt(graphStates.time_local_stat.degree_variance_new);
     // /// TODO: Pre pruning to avoid further pruning
     if(current_degree<new_degree_avg-new_std_dev-1 || current_degree > new_degree_avg+new_std_dev+1) {
+        omp_set_lock(&state_lock);
         graphStates.window_states.newVertices.insert(idx, linkLists[idx]);
+        omp_unset_lock(&state_lock);
     }
     omp_unset_lock(&locks[idx]);
     for(auto nei: neighbors) {

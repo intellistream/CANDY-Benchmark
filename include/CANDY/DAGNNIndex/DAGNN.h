@@ -118,7 +118,7 @@ struct BreakdownStats {
 */
 struct DynamicTuneHNSW{
     using idx_t = int64_t;
-    bool verbose = false;
+    bool verbose = true;
     uint64_t timestamp = 0;
     omp_lock_t state_lock;
     struct CandidateCloser {
@@ -417,7 +417,7 @@ struct DynamicTuneHNSW{
         }
         /// others
     };
-    bool is_datamining = true;
+    bool is_datamining = false;
     int64_t vecDim;
 
     DynamicTuneParams dynamicParams;
@@ -550,7 +550,7 @@ struct DynamicTuneHNSW{
     // add break down into 4 parts: greedy, candidate_add, prune and link
     void add(idx_t n, float* x);
 
-    void greedy_insert(DAGNN::DistanceQueryer& disq, Node& node,DAGNN::VisitedTable& vt,, std::vector<omp_lock_t>& locks);
+    void greedy_insert(DAGNN::DistanceQueryer& disq, Node& node,DAGNN::VisitedTable& vt, std::vector<omp_lock_t>& locks);
 
     void greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, int64_t& steps_taken);
 
