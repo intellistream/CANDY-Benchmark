@@ -120,6 +120,7 @@ struct DynamicTuneHNSW{
     using idx_t = int64_t;
     bool verbose = false;
     uint64_t timestamp = 0;
+    omp_lock_t state_lock;
     struct CandidateCloser {
         idx_t id=-1;
         float dist;
@@ -418,7 +419,6 @@ struct DynamicTuneHNSW{
     };
     bool is_datamining = true;
     int64_t vecDim;
-    DAGNN::DistanceQueryer* disq = nullptr;
 
     DynamicTuneParams dynamicParams;
     GraphStates graphStates;
@@ -445,8 +445,9 @@ struct DynamicTuneHNSW{
 
         vecDim = dim;
         graphStates.vecDim = dim;
+        omp_init_lock(&state_lock);
         set_default_probs(M, 1.0/log(M));
-        disq = new DAGNN::DistanceQueryer(metric,dim);
+        new DAGNN::DistanceQueryer(metric, dim);
         if(metric == DAGNN_METRIC_L2){
             storage = new faiss::IndexFlatL2(vecDim);
         } else {
@@ -549,7 +550,7 @@ struct DynamicTuneHNSW{
     // add break down into 4 parts: greedy, candidate_add, prune and link
     void add(idx_t n, float* x);
 
-    void greedy_insert(DAGNN::DistanceQueryer& disq, Node& node,DAGNN::VisitedTable& vt);
+    void greedy_insert(DAGNN::DistanceQueryer& disq, Node& node,DAGNN::VisitedTable& vt,, std::vector<omp_lock_t>& locks);
 
     void greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, int64_t& steps_taken);
 
@@ -559,7 +560,11 @@ struct DynamicTuneHNSW{
 
     void link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt);
 
+    void link_from_lock(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt, omp_lock_t* locks);
+
     void link_from_base(DAGNN::DistanceQueryer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt);
+
+    void link_from_base_lock(DAGNN::DistanceQueryer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt, omp_lock_t* locks);
 
     void candidate_select(DAGNN::DistanceQueryer& disq, size_t level, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt);
 
