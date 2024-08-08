@@ -92,6 +92,7 @@ void CANDY::DynamicTuneHNSW::removeDuplicateEdge(CANDY::DynamicTuneHNSW::idx_t s
             neighbor_src[i] = -2;
         }
     }
+    auto prev_degree = node_src->bottom_connections;
     auto previous_distance_avg = distance_sum/(node_src->bottom_connections*1.0);
     distance_sum = 0.0;
     int j=0;
@@ -106,10 +107,17 @@ void CANDY::DynamicTuneHNSW::removeDuplicateEdge(CANDY::DynamicTuneHNSW::idx_t s
         }
     }
     node_src->bottom_connections = j;
+    auto current_degree = node_src->bottom_connections;
     auto current_distance_avg = (distance_sum)/(node_src->bottom_connections*1.0);
     float old_variance = graphStates.global_stat.neighbor_distance_variance;
     auto old_sum = graphStates.global_stat.neighbor_distance_sum;
     auto n = graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
+    graphStates.global_stat.degree_variance = update_var_with_new_value(
+            n, graphStates.global_stat.degree_variance,graphStates.global_stat.degree_sum,
+            current_degree, prev_degree);
+    graphStates.global_stat.degree_sum+=(current_degree-prev_degree);
+
+
     graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
             n, graphStates.global_stat.neighbor_distance_variance,
             graphStates.global_stat.neighbor_distance_sum,
