@@ -3,6 +3,9 @@
 //
 #include<CANDY/DAGNNIndex/DAGNN.h>
 #include <faiss/utils/Heap.h>
+
+
+
 /// compute var after concerning Xn+1
 double add_zero_to_var(size_t n, double variance, double sum) {
     double old_avg = 0.0;
@@ -38,6 +41,80 @@ double combine_var(double old_sum, double new_sum, double old_var, double new_va
 
     return variance;
 
+}
+
+void CANDY::DynamicTuneHNSW::changeEdge(CANDY::DynamicTuneHNSW::idx_t src, CANDY::DynamicTuneHNSW::idx_t old_dest,
+                                        CANDY::DynamicTuneHNSW::idx_t new_dest, float distance) {
+    auto node_src = linkLists[src];
+    auto neighbor_src = node_src->neighbors[0];
+    auto distance_src = node_src->distances[0];
+    double distance_sum = 0.0;
+    double previous_distance;
+    for(int i=0; i< nb_neighbors(0); i++){
+        if(neighbor_src[i]==-1){
+            break;
+        }
+        distance_sum += distance_src[i];
+        if(neighbor_src[i]==old_dest){
+            previous_distance = distance_src[i];
+            neighbor_src[i] = new_dest;
+            distance_src[i]=distance;
+        }
+    }
+    /// no degree change, only update neighbor distance metric;
+    auto previous_distance_avg = distance_sum/(node_src->bottom_connections*1.0);
+    auto current_distance_avg = (distance_sum-previous_distance+distance)/(node_src->bottom_connections*1.0);
+    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+    auto n = graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
+    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+            n, graphStates.global_stat.neighbor_distance_variance,
+            graphStates.global_stat.neighbor_distance_sum,
+            current_distance_avg, previous_distance_avg);
+    graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
+
+}
+
+void CANDY::DynamicTuneHNSW::removeDuplicateEdge(CANDY::DynamicTuneHNSW::idx_t src) {
+    auto node_src = linkLists[src];
+    auto neighbor_src = node_src->neighbors[0];
+    auto distance_src = node_src->distances[0];
+    double distance_sum = 0.0;
+    std::unordered_set<idx_t> has;
+    for(int i=0; i<nb_neighbors(0); i++){
+        if(neighbor_src[i]==-1){
+            break;
+        }
+        distance_sum += distance_src[i];
+        if(!has.contains(neighbor_src[i])){
+            has.insert(neighbor_src[i]);
+        } else {
+            neighbor_src[i] = -2;
+        }
+    }
+    auto previous_distance_avg = distance_sum/(node_src->bottom_connections*1.0);
+    distance_sum = 0.0;
+    int j=0;
+    for(int i=0; i<nb_neighbors(0); i++){
+        if(neighbor_src[i]==-1){
+            break;
+        }
+        if(neighbor_src[i]!=-2){
+            distance_sum += distance_src[i];
+            neighbor_src[j] = neighbor_src[i];
+            distance_src[j++] = distance_src[i];
+        }
+    }
+    node_src->bottom_connections = j;
+    auto current_distance_avg = (distance_sum)/(node_src->bottom_connections*1.0);
+    float old_variance = graphStates.global_stat.neighbor_distance_variance;
+    auto old_sum = graphStates.global_stat.neighbor_distance_sum;
+    auto n = graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
+    graphStates.global_stat.neighbor_distance_variance = update_var_with_new_value(
+            n, graphStates.global_stat.neighbor_distance_variance,
+            graphStates.global_stat.neighbor_distance_sum,
+            current_distance_avg, previous_distance_avg);
+    graphStates.global_stat.neighbor_distance_sum += (current_distance_avg - previous_distance_avg);
 }
 
 void CANDY::DynamicTuneHNSW::randomPickAction(){
@@ -111,8 +188,9 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     }
 
     /// randomly pick a state to perform
+    printf("ntotal%ld = old %ld + new %ld before perfoming actions\n", graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal, graphStates.global_stat.ntotal, graphStates.time_local_stat.ntotal);
     if(is_datamining && graphStates.time_local_stat.old_ntotal > 1000){
-        randomPickAction();
+        //randomPickAction();
     }
 
 //    if(graphStates.time_local_stat.old_ntotal>1000) {
@@ -144,7 +222,9 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     idx_t n0 = storage->ntotal;
     storage->add(n,x);
     if(n0>0){
+        printf("ntotal%ld = old %ld + new %ld before forwarding\n", graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal, graphStates.global_stat.ntotal, graphStates.time_local_stat.ntotal);
         graphStates.forward();
+        printf("ntotal%ld = old %ld + new %ld after forwarding\n", graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal, graphStates.global_stat.ntotal, graphStates.time_local_stat.ntotal);
     }
     std::vector<idx_t> order(n);
     std::vector<idx_t> hist;
@@ -230,6 +310,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
         omp_destroy_lock(&locks[i]);
     }
     updateGlobalState();
+    printf("ntotal%ld = old %ld + new %ld after updating global states\n", graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal, graphStates.global_stat.ntotal, graphStates.time_local_stat.ntotal);
 
 
 
@@ -1345,7 +1426,7 @@ void CANDY::DynamicTuneHNSW::cutEdgesBase(idx_t src) {
         node->bottom_connections = i;
     }
 
-    auto n=graphStates.global_stat.ntotal;
+    auto n=graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
     omp_set_lock(&state_lock);
     graphStates.global_stat.degree_variance = update_var_with_new_value(
         n, graphStates.global_stat.degree_variance,graphStates.global_stat.degree_sum,

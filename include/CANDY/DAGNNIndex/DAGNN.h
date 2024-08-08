@@ -118,7 +118,7 @@ struct BreakdownStats {
 */
 struct DynamicTuneHNSW{
     using idx_t = int64_t;
-    bool verbose = true;
+    bool verbose = false;
     uint64_t timestamp = 0;
     omp_lock_t state_lock;
     struct CandidateCloser {
@@ -669,6 +669,41 @@ struct DynamicTuneHNSW{
 
 
     void randomPickAction();
+
+    /// would check if y is in x's neighbors at the bottom level
+    bool hasEdge(idx_t x, idx_t y) {
+        auto node_x = linkLists[x];
+        auto node_y = linkLists[y];
+        auto neighbor_y = node_y->neighbors[0];
+        auto neighbor_x = node_x->neighbors[0];
+        for (int i = 0; i < nb_neighbors(0); i++) {
+            if (neighbor_x[i] == y) {
+                return true;
+            }
+            if (neighbor_x[i] == -1) {
+                break;
+            }
+        }
+        return false;
+    }
+
+    void changeEdge(idx_t src, idx_t old_dest, idx_t new_dest, float distance);
+
+    void removeDuplicateEdge(idx_t src);
+
+    bool amendEdge(idx_t src, idx_t dest, float distance){
+        auto node_src = linkLists[src];
+        auto neighbor_src = node_src->neighbors[0];
+        auto distance_src = node_src->distances[0];
+        for(int i=0; i<nb_neighbors(0); i++){
+            if(neighbor_src[i]<0){
+                neighbor_src[i] = dest;
+                distance_src[i] = distance;
+                return true;
+            }
+        }
+        return false;
+    }
 };
 
 /**
