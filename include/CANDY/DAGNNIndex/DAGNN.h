@@ -605,6 +605,8 @@ struct DynamicTuneHNSW{
     void cutEdgesWindow(WindowStates& window_states, int64_t mode);
     void swapEdgesWindow(WindowStates& window_states, int64_t mode);
     void linkEdgesWindow(WindowStates& window_states, int64_t mode);
+    bool improveEdges(idx_t vertex1, idx_t vertex2, float dist12);
+    bool improveEdges(idx_t vertex1, idx_t vertex2, idx_t vertex3, idx_t vertex4, float total_gain, const uint8_t steps);
 
     /// Action set III: Hierarchy optimization
     void liftClusterCenter(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt);
@@ -704,6 +706,26 @@ struct DynamicTuneHNSW{
         }
         return false;
     }
+
+
+//    bool checkRNG(idx_t vertex_index, idx_t target_index, float vertex_target_distance){
+//        auto vertex = linkLists[vertex_index];
+//        auto target = linkLists[target_index];
+//        auto neighbors = vertex->neighbors[0];
+//        auto target_neighbors = target->neighbors[0];
+//        auto distances = vertex->distances[0];
+//        auto target_distances = target->distances[0];
+//
+//        for(int i=0; i<nb_neighbors(0); i++){
+//            if(neighbors[i]==-1){
+//                return dynamicParams.sparsePreference;
+//            }
+//            if(neighbors[i]==-2){
+//                continue;
+//            }
+//
+//        }
+//    }
 };
 
 /**

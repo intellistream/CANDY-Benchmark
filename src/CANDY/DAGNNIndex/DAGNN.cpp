@@ -1590,7 +1590,205 @@ void CANDY::DynamicTuneHNSW::cutEdgesWindow(WindowStates& window_states, int64_t
 
 
 void CANDY::DynamicTuneHNSW::swapEdgesWindow(WindowStates& window_states, int64_t mode) {
+    ordered_map vertices;
+    if(mode == 1){
+        vertices = window_states.newVertices;
+    } else {
+        vertices = window_states.oldVertices;
+    }
 
+    auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
+    auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
+    DAGNN::DistanceQueryer disq(vecDim);
+
+    for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++){
+        auto vertex1 = it->second;
+        auto vertex1_idx = vertex1->id;
+        auto vertex1_distances = vertex1->distances[0];
+        auto vertex1_neighbors = vertex1->neighbors[0];
+
+        auto success = false;
+        for(int i=0; i< nb_neighbors(0); i++){
+            if(vertex1_neighbors[i]==-1){
+                break;
+            }
+            if(vertex1_neighbors[i]==-2){
+                continue;
+            }
+            auto vertex2_idx = vertex1_neighbors[i];
+            if(hasEdge(vertex1_idx, vertex2_idx) && hasEdge(vertex2_idx, vertex1_idx)){
+
+            }
+        }
+
+    }
+}
+/// called by swapEdgesWindow
+
+bool CANDY::DynamicTuneHNSW::improveEdges(idx_t vertex1, idx_t vertex2, float dist12){
+    // remove edge between vertex1 and vertex2 by adding temp self-loop
+    changeEdge(vertex1, vertex2, vertex1, 0.f);
+    changeEdge(vertex2, vertex1, vertex2, 0.f);
+    if(improveEdges(vertex1, vertex2, vertex1, vertex2, dist12, 0)){
+    } else {
+        //should undo, to see if needed
+        return false;
+    }
+    return true;
+}
+
+bool CANDY::DynamicTuneHNSW::improveEdges(idx_t vertex1, idx_t vertex2, idx_t vertex3, idx_t vertex4, float total_gain, const uint8_t steps){
+    DAGNN::DistanceQueryer disq(vecDim);
+    DAGNN::VisitedTable vt(graphStates.global_stat.ntotal+graphStates.time_local_stat.ntotal);
+    {
+     auto vertex2_vector = get_vector(vertex2);
+     std::vector<idx_t> entry_vertex_indices={vertex3, vertex4};
+     std::vector<idx_t> top_list(25);
+     std::vector<float> entry_vertex_distances(25);
+
+     disq.set_query(vertex2_vector);
+     search(disq, 25, entry_vertex_indices.data(), entry_vertex_distances.data(), vt);
+
+     // find a good vertex3 from vertex2's wanna-be nearest neighbors
+     float best_gain = total_gain;
+     float dist23 = std::numeric_limits<float>::lowest();
+     float dist34 = std::numeric_limits<float>::lowest();
+
+     for(int i=0; i<top_list.size(); i++){
+         idx_t new_vertex3 = top_list[i];
+         float dist2n3 = entry_vertex_distances[i];
+         if(vertex1!=new_vertex3 && vertex2!=new_vertex3 && !hasEdge(vertex2, new_vertex3) && !hasEdge(vertex2, new_vertex3)){
+             auto nv3 = linkLists[new_vertex3];
+             auto nv3_neighbors = nv3->neighbors[0];
+             auto nv3_distances=  nv3->distances[0];
+             for(int j=0; j< nb_neighbors(0); j++){
+                 if(nv3_neighbors[i]==-1){
+                     break;
+                 }
+                 if(nv3_neighbors[i]==-2){
+                     continue;
+                 }
+                 idx_t new_vertex4 = nv3_neighbors[i];
+                 // link (2, newv3) and cut (newv3, newv4)
+                 // gain = -dist(2, newv3) +
+                 auto gain = total_gain - dist2n3+nv3_distances[j];
+                 if(best_gain < gain && new_vertex4!=vertex2){
+                     best_gain = gain;
+                     vertex3 = new_vertex3;
+                     vertex4 = new_vertex4;
+                     dist23 = dist2n3;
+                     dist34 = nv3_distances[j];
+                 }
+             }
+         }
+     }
+     // no new_vertex3 found
+     if(dist23 == std::numeric_limits<float>::lowest()){
+         return false;
+     }
+     total_gain = total_gain - dist23+dist34;
+     changeEdge(vertex2, vertex2, vertex3, dist23);
+     changeEdge(vertex3, vertex4, vertex2, dist23);
+     changeEdge(vertex4, vertex3, vertex4, 0.f);
+
+
+
+     delete[] vertex2_vector;
+    }
+    // 2. try to connect vertex1 with vertex4
+    {
+        if(vertex1 == vertex4){
+            std::vector<idx_t> entry_vertex_indices = {vertex2, vertex3};
+            auto vertex4_vector = get_vector(vertex4);
+            disq.set_query(vertex4_vector);
+            std::vector<idx_t> top_list(25);
+            std::vector<float> entry_vertex_distances(25);
+            search(disq, 25, entry_vertex_indices.data(), entry_vertex_distances.data(), vt);
+
+            float best_gain = 0;
+            idx_t best_selected_neighbor = 0;
+            float best_old_neighbor_dist = 0;
+            float best_new_neighbor_dist = 0;
+            idx_t best_good_vertex = 0;
+            float best_good_vertex_dist = 0;
+            for(int i=0; i<top_list.size(); i++){
+                auto good_vertex = top_list[i];
+                if(vertex4!=good_vertex && !hasEdge(vertex4, good_vertex)&& !hasEdge(good_vertex, vertex4)){
+                    auto good_vertex_dist = entry_vertex_distances[i];
+                    auto gv = linkLists[good_vertex];
+                    auto gv_neighbors = gv->neighbors[0];
+                    auto gv_distances = gv->distances[0];
+                    for(int j=0; j< nb_neighbors(0); j++){
+                        if(gv_neighbors[j]==-1){
+                            break;
+                        }
+                        if(gv_neighbors[j]==-2){
+                            continue;
+                        }
+                        auto selected_neighbor = gv_neighbors[j];
+                        if(vertex4!=selected_neighbor && !hasEdge(vertex4, selected_neighbor) && !hasEdge(selected_neighbor, vertex4)){
+                            auto factor = 1;
+                            auto old_neighbor_dist = gv_distances[j];
+                            auto selected_neighbor_vector = get_vector(selected_neighbor);
+                            auto new_neighbor_dist = disq.distance(vertex4_vector, selected_neighbor_vector);
+                            delete[] selected_neighbor_vector;
+                            // cut (good_vertex, selected_neighbor) and link(good_vertex, vector_4) and link(vector4, selected_neighbor)
+                            float new_gain = total_gain + old_neighbor_dist*factor - good_vertex_dist-new_neighbor_dist;
+                            if(best_gain<new_gain){
+                                best_gain = new_gain;
+                                best_selected_neighbor = selected_neighbor;
+                                best_old_neighbor_dist = old_neighbor_dist;
+                                best_new_neighbor_dist = new_neighbor_dist;
+                                best_good_vertex = good_vertex;
+                                best_good_vertex_dist = good_vertex_dist;
+                            }
+                        }
+                    }
+                }
+            }
+           if(best_gain > 0 ){
+               // vertex4 == vertex1 so this has two self-loops
+               changeEdge(vertex4, vertex4, best_good_vertex, best_good_vertex_dist);
+               changeEdge(vertex4, vertex4, best_selected_neighbor, best_new_neighbor_dist);
+
+               changeEdge(best_good_vertex, best_selected_neighbor, vertex4, best_good_vertex_dist);
+               changeEdge(best_selected_neighbor, best_good_vertex, vertex4, best_new_neighbor_dist);
+               return true;
+           }
+        } else {
+            if(!hasEdge(vertex1, vertex4) && !hasEdge(vertex4, vertex1)){
+                auto v1_vector = get_vector(vertex1);
+                auto v4_vector = get_vector(vertex4);
+                auto dist14 = disq.distance(v1_vector, v4_vector);
+                delete[] v1_vector;
+                delete[] v4_vector;
+                if(total_gain - dist14>0){
+                    std::vector<idx_t> entry_vertex_indices={vertex2, vertex3};
+                    /// TODO: check has path
+                    changeEdge(vertex1, vertex1, vertex4, dist14);
+                    changeEdge(vertex4, vertex4, vertex1, dist14);
+                    return true;
+                }
+
+            }
+        }
+    }
+    // Rest are directly from DEG original impl by keeping on
+    // 3. maxtimum path length
+    if(steps > 10){
+        return false;
+    }
+    // 4. swap vertex1 and vertex4 each second round to give each a fair chance.
+    if(steps%2 == 1){
+        idx_t temp = vertex1;
+        vertex1 = vertex4;
+        vertex4 = vertex1;
+    }
+    // 5. early stop
+    if(total_gain<0){
+        return false;
+    }
+    return improveEdges(vertex1, vertex4, vertex2, vertex3,total_gain, steps+1);
 }
 
 void CANDY::DynamicTuneHNSW::linkEdgesWindow(WindowStates& window_states, int64_t mode) {
