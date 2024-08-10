@@ -370,7 +370,7 @@ struct DynamicTuneHNSW{
             hierarchyVertices.max_size = hierarchyWindowSize;
         }
         void reset() {
-            newVertices.clear();
+            //newVertices.clear();
             oldVertices.clear();
             hierarchyVertices.clear();
         }
@@ -417,7 +417,7 @@ struct DynamicTuneHNSW{
         }
         /// others
     };
-    bool is_datamining = false;
+    bool is_datamining = true;
     int64_t vecDim;
 
     DynamicTuneParams dynamicParams;

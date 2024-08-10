@@ -126,7 +126,7 @@ void CANDY::DynamicTuneHNSW::removeDuplicateEdge(CANDY::DynamicTuneHNSW::idx_t s
 }
 
 void CANDY::DynamicTuneHNSW::randomPickAction(){
-    std::mt19937 rng(114514);
+    std::mt19937 rng(std::time(nullptr));
     std::uniform_int_distribution<int> dist(0, 10);
 
     std::vector<size_t> numbers = {do_nothing, bad_link_cut_old, bad_link_cut_new, outwards_link_old, outwards_link_new, DEG_refine_old, DEG_refine_new,
@@ -134,6 +134,7 @@ void CANDY::DynamicTuneHNSW::randomPickAction(){
     int randomIndex = dist(rng);
 
     size_t randomNum = numbers[randomIndex];
+    printf("performing %ld\n", randomNum);
     performAction(randomNum);
 }
 
@@ -185,20 +186,23 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     {
         auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
         auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
-        for(idx_t i=prev_ntotal; i<prev_ntotal+new_ntotal;i++) {
-            auto nb_connections = linkLists[i]->bottom_connections;
-            if(nb_connections*1.0>degree_avg+dynamicParams.degree_std_range*std_dev+1 || nb_connections*1.0<degree_avg-dynamicParams.degree_std_range*std_dev-1) {
-                omp_set_lock(&state_lock);
-                graphStates.window_states.newVertices.insert(i, linkLists[i]);
-                omp_unset_lock(&state_lock);
+        if(graphStates.global_stat.ntotal >1000) {
+            for (idx_t i = prev_ntotal; i < prev_ntotal + new_ntotal; i++) {
+                auto nb_connections = linkLists[i]->bottom_connections;
+                if (nb_connections * 1.0 > degree_avg + dynamicParams.degree_std_range * std_dev + 1 ||
+                    nb_connections * 1.0 < degree_avg - dynamicParams.degree_std_range * std_dev - 1) {
+                    omp_set_lock(&state_lock);
+                    graphStates.window_states.newVertices.insert(i, linkLists[i]);
+                    omp_unset_lock(&state_lock);
+                }
             }
         }
     }
 
     /// randomly pick a state to perform
-    printf("ntotal%ld = old %ld + new %ld before perfoming actions\n", graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal, graphStates.global_stat.ntotal, graphStates.time_local_stat.ntotal);
+
     if(is_datamining && graphStates.time_local_stat.old_ntotal > 1000){
-        //randomPickAction();
+        randomPickAction();
     }
 
 //    if(graphStates.time_local_stat.old_ntotal>1000) {
@@ -230,9 +234,9 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     idx_t n0 = storage->ntotal;
     storage->add(n,x);
     if(n0>0){
-        printf("ntotal%ld = old %ld + new %ld before forwarding\n", graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal, graphStates.global_stat.ntotal, graphStates.time_local_stat.ntotal);
+
         graphStates.forward();
-        printf("ntotal%ld = old %ld + new %ld after forwarding\n", graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal, graphStates.global_stat.ntotal, graphStates.time_local_stat.ntotal);
+
     }
     std::vector<idx_t> order(n);
     std::vector<idx_t> hist;
@@ -318,7 +322,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
         omp_destroy_lock(&locks[i]);
     }
     updateGlobalState();
-    printf("ntotal%ld = old %ld + new %ld after updating global states\n", graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal, graphStates.global_stat.ntotal, graphStates.time_local_stat.ntotal);
+   
 
 
 
@@ -1704,6 +1708,7 @@ bool CANDY::DynamicTuneHNSW::improveEdges(idx_t vertex1, idx_t vertex2, idx_t ve
             std::vector<idx_t> top_list(25);
             std::vector<float> entry_vertex_distances(25);
             search(disq, 25, entry_vertex_indices.data(), entry_vertex_distances.data(), vt);
+            delete[] vertex4_vector;
 
             float best_gain = 0;
             idx_t best_selected_neighbor = 0;
@@ -2099,9 +2104,12 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
 
     //Replace long links within cluster with an bi-directional edge to another cluster to allow possible fast transportation
     size_t count = 0;
+    size_t overlapping_count = 0;
     while(!edges_src.empty() && !edges_dest.empty() && count < dynamicParams.nb_navigation_paths){
         auto edge_src = edges_src.top();
         auto edge_dest = edges_dest.top();
+        edges_src.pop();
+        edges_dest.pop();
 
         // Plan1: (n1,n2) & (n3, n4) -> (n1,n4) & (n3,n2) with some conditions
         // Plan2: (n1,n2) & (n3,n4) -> (n1,n3) & (n2, n4)
@@ -2120,6 +2128,11 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
         auto idx_3 = edge_dest.idx;
         if(node_1_id == node_3_id || node_1_id == node_4_id || node_2_id == node_3_id || node_2_id == node_4_id){
             // overlapping so continue
+            overlapping_count++;
+            if(overlapping_count>16){
+                // likely to be in the same cluster
+                break;
+            }
             continue;
         }
         auto node_1 = linkLists[node_1_id];
@@ -2228,7 +2241,7 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
         }
         auto n = graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
         if(plan_1) {
-            printf("executing plan A:\n");
+            printf("executing plan 1:\n");
             // (n1,n2)(n3,n4)->(n1,n4)(n2,n3)
             //node1
             {
@@ -2483,6 +2496,8 @@ void CANDY::DynamicTuneHNSW::linkClusterWindow(CANDY::DynamicTuneHNSW::WindowSta
             DAGNN::VisitedTable vt(graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal);
             linkClusters(disq, it1->first, it2->first, vt);
         }
+        it1++;
+        it2++;
     }
 }
 
