@@ -29,7 +29,7 @@
 #include <memory>
 #include <vector>
 #include <Utils/ConfigMap.hpp>
-
+#define gettid() syscall(SYS_gettid)
 #define PERF_ERROR(n) printf(n)
 namespace INTELLI {
 /**

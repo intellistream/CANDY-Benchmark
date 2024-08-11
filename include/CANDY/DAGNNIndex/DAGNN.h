@@ -360,7 +360,7 @@ struct DynamicTuneHNSW{
         size_t oldWindowSize = 50;
         size_t newWindowSize = 100;
         size_t hierarchyWindowSize = 15;
-
+	size_t last_action = 0;
         ordered_map oldVertices;
         ordered_map newVertices;
         ordered_map hierarchyVertices;
@@ -414,8 +414,23 @@ struct DynamicTuneHNSW{
             time_local_stat.steps_expansion_sum = 0;
             time_local_stat.steps_taken_sum = 0;
             time_local_stat.steps_taken_max = 0;
-        }
+	}
         /// others
+	
+	        void print() {
+               std::ofstream outfile("states.csv", std::ios_base::app);
+               if (!outfile.is_open()){
+                       std::cerr << "Failed to open states.csv" << std::endl;
+                       return;
+               }
+               // Write GlobalGraphStats
+               outfile << global_stat.ntotal << "," << global_stat.degree_sum << "," << global_stat.degree_variance << ","<< global_stat.neighbor_distance_sum<< "," << global_stat.neighbor_distance_variance << "," << global_stat.steps_taken_max << "," << global_stat.steps_taken_avg << "," << global_stat.steps_expansion_average << ",";
+               // Write BatchDataStates
+               outfile << time_local_stat.ntotal << "," << time_local_stat.old_ntotal << "," << time_local_stat.degree_sum_new << "," << time_local_stat.degree_variance_new << "," << time_local_stat.degree_variance_old << "," << time_local_stat.degree_sum_old << "," << time_local_stat.neighbor_distance_sum_new << "," << time_local_stat.neighbor_distance_variance_new << "," << time_local_stat.neighbor_distance_sum_old << "," << time_local_stat.neighbor_distance_variance_old << "," << time_local_stat.steps_taken_sum << "," << time_local_stat.steps_taken_max << "," << time_local_stat.steps_expansion_sum << ",";
+               // Write WindowStates
+               outfile << window_states.get_count(0) << "," << window_states.get_count(1) << "," << window_states.get_count(2)<<","<<window_states.last_action;                                                 outfile << std::endl;
+               outfile.close();
+       }
     };
     bool is_datamining = true;
     int64_t vecDim;

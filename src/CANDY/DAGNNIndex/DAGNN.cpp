@@ -134,7 +134,7 @@ void CANDY::DynamicTuneHNSW::randomPickAction(){
     int randomIndex = dist(rng);
 
     size_t randomNum = numbers[randomIndex];
-    printf("performing %ld\n", randomNum);
+    //printf("performing %ld\n", randomNum);
     performAction(randomNum);
 }
 
@@ -321,7 +321,9 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     for (idx_t i = 0; i < n0+n; i++) {
         omp_destroy_lock(&locks[i]);
     }
+    graphStates.print();
     updateGlobalState();
+    graphStates.print();
    
 
 
@@ -2241,7 +2243,7 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
         }
         auto n = graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal;
         if(plan_1) {
-            printf("executing plan 1:\n");
+            //printf("executing plan 1:\n");
             // (n1,n2)(n3,n4)->(n1,n4)(n2,n3)
             //node1
             {
@@ -2349,7 +2351,7 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
             }
         } else if(plan_2){
             // (n1,n2)(n3,n4)->(n1,n3)&(n2,n4)
-            printf("executing plan 2\n");
+            //printf("executing plan 2\n");
             //node1
             {
                 auto previous_distance = node_1->distances[0][idx_1];
@@ -2455,7 +2457,7 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
                 }
             }
         } else{
-             printf("no plan to execute\n");
+             //printf("no plan to execute\n");
 
         }
 
@@ -2586,6 +2588,7 @@ void CANDY::DynamicTuneHNSW::deleteVectorByIndex(const std::vector<idx_t>& idx) 
 }
 
 bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
+	graphStates.window_states.last_action = action_num;
     switch(action_num){
         case do_nothing:
             break;
