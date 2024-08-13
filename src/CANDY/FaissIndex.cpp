@@ -8,6 +8,7 @@
 #include <faiss/IndexNNDescent.h>
 #include <faiss/IndexLSH.h>
 #include <faiss/IndexNSG.h>
+#include <faiss/IndexVanama.h>
 
 bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
@@ -24,6 +25,10 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE HNSWFlat");
     auto M = cfg->tryI64("maxConnection", 32, true);
     index = new faiss::IndexHNSWFlat(vecDim, M, faissMetric);
+  } else if (index_type == "Vanama") {
+      INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE VanamaFlat");
+      auto M = cfg->tryI64("maxConnection", 32, true);
+      index = new faiss::IndexVanamaFlat(vecDim, M, faissMetric);
   } else if (index_type == "PQ") {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE PQ");
     // number of bits in PQ
