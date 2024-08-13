@@ -824,7 +824,7 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
             //printf("v1=%f v2=%f v1_v2=%f\n", v1.dist,v2.dist,dist_v1_v2);
             delete[] v2_vector;
             // from DiskANN Vanama
-            if(dist_v1_v2 < (dist_v1_q /dynamicParams.rng_alpha)){
+            if(dist_v1_v2*dynamicParams.rng_alpha < dist_v1_q ){
                 rng_good = false;
                 break;
             }
@@ -2624,12 +2624,12 @@ bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
             hierarchyOptimizationDegradeWIndow(graphStates.window_states);
             break;
         case increase_rng_alpha:
-            if(dynamicParams.rng_alpha<0.95) {
+            if(dynamicParams.rng_alpha<1.5) {
                 dynamicParams.rng_alpha += 0.05;
             }
             break;
         case decrease_rng_alpha:
-            if(dynamicParams.rng_alpha>0.55){
+            if(dynamicParams.rng_alpha>1){
                 dynamicParams.rng_alpha-=0.05;
             }
             break;

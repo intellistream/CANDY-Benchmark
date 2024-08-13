@@ -187,7 +187,7 @@ def main():
     fields = {
         "efConstruction":[20,40,60,80,100,120],
         "efSearch":[8,16,24,32,48,64],
-        "rng_alpha":[0.5,0.6,0.7,0.75,0.8,0.85,0.9,0.95,1.0],
+        "rng_alpha":[1.0,1.1,1.2,1.3,1.4,1.5],
         "clusterExpansionStep":[1,2,3],
         "optimisticN":[0,8,16,32,48,64,96],
         "discardN":[0,1,2,4,6,8],
