@@ -21,6 +21,7 @@ add_sources(
         FlannIndex.cpp
         DPGIndex.cpp
         LSHAPGIndex.cpp
+        DEGIndex.cpp
 )
 add_subdirectory(HashingModels)
 add_subdirectory(ParallelPartitionIndex)
