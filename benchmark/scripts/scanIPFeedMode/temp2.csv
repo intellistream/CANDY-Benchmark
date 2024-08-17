@@ -1,7 +1,7 @@
 key,value,type
 vecDim,768,I64
 vecVolume,100000,I64
-batchSize,2000,I64
+batchSize,50000,I64
 metricType,IP,String
 DCOBatchSize,5000,I64
 ammAlgo,crs,String
