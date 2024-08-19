@@ -17,7 +17,44 @@ bool fileExists(const std::string &filename) {
     std::ifstream file(filename);
     return file.good(); // Returns true if the file is open and in a good state
 }
+static inline int64_t s_timeOutSeconds = -1;
 
+static inline void earlyTerminateTimerCallBack() {
+  INTELLI_ERROR(
+      "Force to terminate due to timeout in " + std::to_string(s_timeOutSeconds) + "seconds");
+  /*if (indexPtr->isHPCStarted) {
+    indexPtr->endHPC();
+  }*/
+  auto briefOutCfg = newConfigMap();
+  double latency95 = 0;
+  briefOutCfg->edit("throughput", (int64_t) 0);
+  briefOutCfg->edit("recall", (int64_t) 0);
+  briefOutCfg->edit("throughputByElements", (int64_t) 0);
+  briefOutCfg->edit("95%latency(Insert)", latency95);
+  briefOutCfg->edit("pendingWrite", latency95);
+  briefOutCfg->edit("latencyOfQuery", (int64_t) 0);
+  briefOutCfg->edit("normalExit", (int64_t) 0);
+  briefOutCfg->toFile("onlineInsert_result.csv");
+  std::cout << "brief results\n" << briefOutCfg->toString() << std::endl;
+  //UtilityFunctions::saveTimeStampToFile("onlineInsert_timestamps.csv", timeStamps);
+  exit(-1);
+}
+static inline void timerCallback(union sigval v) {
+  earlyTerminateTimerCallBack();
+}
+static inline void setEarlyTerminateTimer(int64_t seconds) {
+  struct sigevent sev;
+  memset(&sev, 0, sizeof(struct sigevent));
+  sev.sigev_notify = SIGEV_THREAD;
+  sev.sigev_notify_function = timerCallback;
+  struct itimerspec its;
+  its.it_value.tv_sec = seconds;
+  its.it_value.tv_nsec = 0;
+  its.it_interval.tv_sec = seconds;
+  its.it_interval.tv_nsec = 0;
+  timer_create(CLOCK_REALTIME, &sev, &timerid);
+  timer_settime(timerid, 0, &its, nullptr);
+}
 int main(int argc, char **argv){
 
     /**
@@ -174,7 +211,8 @@ int main(int argc, char **argv){
     std::string probeName = groundTruthPrefix + "/" + std::to_string(indexResults.size() - 1) + ".rbt";
     double recall = 0.0;
     int64_t groundTruthRedo = inMap->tryI64("groundTruthRedo", 1, true);
-
+    CANDY::IndexTable indexTable2;
+    auto gdIndex = indexTable2.getIndex("faiss");
     if (fileExists(probeName) && (groundTruthRedo == 0)) {
         INTELLI_INFO("Ground truth exists, so I load it");
         auto gdResults = UtilityFunctions::tensorListFromFile(groundTruthPrefix, indexResults.size());
@@ -185,8 +223,8 @@ int main(int argc, char **argv){
         auto gdMap = newConfigMap();
         gdMap->loadFrom(*inMap);
         gdMap->edit("faissIndexTag", "flat");
-        CANDY::IndexTable indexTable2;
-        auto gdIndex = indexTable2.getIndex("faiss");
+
+
         gdIndex->setConfig(gdMap);
         if (initialRows > 0) {
             gdIndex->loadInitialTensor(dataTensorInitial);
@@ -241,18 +279,20 @@ int main(int argc, char **argv){
 
         auto reinsert_start = std::chrono::high_resolution_clock::now();
         for(int j=0; j<deleteRows; j++){
-            indexPtr->insertTensor(dataTensorALl.slice(0, toDeleteIdx[j], toDeleteIdx[j]+1));
+            auto temp = dataTensorAll.slice(0, toDeleteIdx[j], toDeleteIdx[j]+1);
+            indexPtr->insertTensor(temp);
         }
         auto reinsert_end = chronoElapsedTime(reinsert_start);
 
-        
+
         auto update_search_start=std::chrono::high_resolution_clock::now();
 
 
         // Now for the recall
         gdIndex->deleteTensorByIndex(toDeleteIdx);
         for(int j=0; j<deleteRows; j++){
-            gdIndex->insertTensor(dataTensorALl.slice(0, toDeleteIdx[j], toDeleteIdx[j]+1));
+            auto temp = dataTensorAll.slice(0, toDeleteIdx[j], toDeleteIdx[j]+1);
+            gdIndex->insertTensor(temp);
         }
 
 
