@@ -84,3 +84,18 @@ std::vector<torch::Tensor> CANDY::FlatIndex::searchTensor(torch::Tensor &q, int6
   auto idx = searchIndex(q, k);
   return getTensorByIndex(idx, k);
 }
+
+bool CANDY::FlatIndex::deleteTensorByIndex(std::vector<faiss::idx_t> &idx){
+    std::vector<torch::Tensor> tensors(idx.size());
+
+    for(int i=0; i<idx.size(); i++){
+        auto temp = dbTensor.slice(0, idx[i], idx[i]+1);
+        tensors[i] = temp;
+    }
+    for(int i=0; i<idx.size(); i++){
+        if(!deleteTensor(tensors[i])){
+            return false;
+        };
+    }
+    return true;
+}

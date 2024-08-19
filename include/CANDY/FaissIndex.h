@@ -97,6 +97,20 @@ class FaissIndex : public AbstractIndex {
    * @return a vector of tensors, each tensor represent KNN results of one query in idx
    */
   virtual std::vector<torch::Tensor> getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k);
+
+    /**
+   * @brief delete a tensor
+   * @param t the tensor, recommend single row
+   * @param k the number of nearest neighbors
+   * @return bool whether the deleting is successful
+   */
+    virtual bool deleteTensor(torch::Tensor &t, int64_t k = 1);
+    /**
+     * @bool delete tensors whose indices are from idx
+     * @param idx the indices of vectors to be deleted
+     * @return bool whether the deleting is successful
+     */
+    virtual bool deleteTensorByIndex(std::vector<faiss::idx_t> &idx);
 };
 
 /**

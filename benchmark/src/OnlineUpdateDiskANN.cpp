@@ -265,10 +265,13 @@ int main(int argc, char **argv){
     std::uniform_int_distribution<int64_t> dist(0, dataTensorAll.size(0)-1);
     while(cycle<numberCycles){
         std::vector<int64_t> toDeleteIdx(deleteRows);
+        torch::Tensor tensors = torch::zeros({deleteRows, inMap->tryI64("vecDim", 768, true)});
         //randomly pick idxes to delete
         for(int j=0; j<deleteRows; j++) {
             rng.seed(std::time(nullptr));
             toDeleteIdx[j] = dist(rng);
+            auto temp = dataTensorAll.slice(0, toDeleteIdx[j], toDeleteIdx[j]+1);
+            tensors.slice(0, j, j+1) = temp;
         }
         auto delete_start = std::chrono::high_resolution_clock::now();
         if(!indexPtr->deleteTensorByIndex(toDeleteIdx)){
@@ -279,29 +282,35 @@ int main(int argc, char **argv){
 
         auto reinsert_start = std::chrono::high_resolution_clock::now();
         for(int j=0; j<deleteRows; j++){
-            auto temp = dataTensorAll.slice(0, toDeleteIdx[j], toDeleteIdx[j]+1);
+            auto temp = tensors.slice(0, j,j+1);
             indexPtr->insertTensor(temp);
         }
         auto reinsert_end = chronoElapsedTime(reinsert_start);
 
 
         auto update_search_start=std::chrono::high_resolution_clock::now();
+        auto update_index_results = indexPtr->searchTensor(tensors, ANNK);
+        auto update_search_end = chronoElapsedTime(update_search_start);
 
 
         // Now for the recall
         gdIndex->deleteTensorByIndex(toDeleteIdx);
         for(int j=0; j<deleteRows; j++){
-            auto temp = dataTensorAll.slice(0, toDeleteIdx[j], toDeleteIdx[j]+1);
+            auto temp = tensors.slice(0, j,j+1);
             gdIndex->insertTensor(temp);
         }
+        auto update_gd_results = gdIndex->searchTensor(tensors, ANNK);
 
+        recall = UtilityFunctions::calculateRecall(update_gd_results, update_index_results);
 
-
-
+        briefOutCfg->edit("deleteLatency"+std::to_string(cycle), delete_end);
+        briefOutCfg->edit("reinsertLatency"+std::to_string(cycle), reinsert_end);
+        briefOutCfg->edit("researchLatency"+std::to_string(cycle), update_search_end);
+        briefOutCfg->edit("recall"+std::to_string(cycle), recall);
         cycle++;
     }
 
 
-
+    std::cout << "brief results\n" << briefOutCfg->toString() << std::endl;
     briefOutCfg->toFile("onlineInsert_result.csv");
 }
