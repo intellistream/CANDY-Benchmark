@@ -55,7 +55,9 @@ bool CANDY::AbstractIndex::deleteTensor(torch::Tensor &t, int64_t k) {
   assert(k > 0);
   return false;
 }
-
+bool CANDY::AbstractIndex::deleteTensorByIndex(std::vector<faiss::idx_t> &idx){
+    return false;
+}
 bool CANDY::AbstractIndex::deleteStringObject(torch::Tensor &t, int64_t k) {
   assert(t.size(1));
   assert(k > 0);

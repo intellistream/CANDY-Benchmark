@@ -93,6 +93,12 @@ class AbstractIndex {
   virtual bool deleteTensor(torch::Tensor &t, int64_t k = 1);
 
   /**
+   * @bool delete tensors whose indices are from idx
+   * @param idx the indices of vectors to be deleted
+   * @return bool whether the deleting is successful
+   */
+  virtual bool deleteTensorByIndex(std::vector<faiss::idx_t> &idx);
+  /**
    * @brief revise a tensor
    * @param t the tensor to be revised
    * @param w the revised value
