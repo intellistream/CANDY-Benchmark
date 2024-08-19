@@ -127,15 +127,23 @@ void CANDY::DynamicTuneHNSW::removeDuplicateEdge(CANDY::DynamicTuneHNSW::idx_t s
 
 void CANDY::DynamicTuneHNSW::randomPickAction(){
     std::mt19937 rng(std::time(nullptr));
-    std::uniform_int_distribution<int> dist(0, 10);
+    std::uniform_real_distribution<double> probDist(0.0, 1.0);
+    std::uniform_int_distribution<int> firstRange(0, 10);
+    std::uniform_int_distribution<int> secondRange(11, 46);
 
-    std::vector<size_t> numbers = {do_nothing, bad_link_cut_old, bad_link_cut_new, outwards_link_old, outwards_link_new, DEG_refine_old, DEG_refine_new,
-                                backtrack_candidate, intercluster_link, lift_cluster_center, lower_navigation_point};
-    int randomIndex = dist(rng);
 
-    size_t randomNum = numbers[randomIndex];
+    double p = probDist(rng);
+    int selectedNumber;
+    if (p < 0.7) {
+
+        selectedNumber = firstRange(rng);
+    } else {
+
+        selectedNumber = secondRange(rng);
+    }
+
     //printf("performing %ld\n", randomNum);
-    performAction(randomNum);
+    performAction(selectedNumber);
 }
 
 void CANDY::DynamicTuneHNSW::updateGlobalState() {
