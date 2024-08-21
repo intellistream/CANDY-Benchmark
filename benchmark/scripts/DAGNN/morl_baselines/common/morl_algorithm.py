@@ -182,7 +182,7 @@ class MOPolicy(ABC):
 class MOAgent(ABC):
     """An MORL Agent, can contain one or multiple MOPolicies. Contains helpers to extract features from the environment, setup logging etc."""
 
-    def __init__(self, env: Optional[gym.Env], device: Union[th.device, str] = "auto", seed: Optional[int] = None) -> None:
+    def __init__(self, device: Union[th.device, str] = "auto", seed: Optional[int] = None) -> None:
         """Initializes the agent.
 
         Args:
@@ -190,7 +190,14 @@ class MOAgent(ABC):
             device: (str): The device to use for training. Can be "auto", "cpu" or "cuda".
             seed: (int): The seed to use for the random number generator
         """
-        self.extract_env_info(env)
+        #self.extract_env_info(env)
+        self.observation_shape = (26,)
+        self.observation_dim = 26
+
+        self.action_shape = (45,)
+        self.action_dim = 45
+
+        self.reward_dim = 3
         self.device = th.device("cuda" if th.cuda.is_available() else "cpu") if device == "auto" else device
 
         self.global_step = 0
@@ -198,31 +205,31 @@ class MOAgent(ABC):
         self.seed = seed
         self.np_random = np.random.default_rng(self.seed)
 
-    def extract_env_info(self, env: Optional[gym.Env]) -> None:
-        """Extracts all the features of the environment: observation space, action space, ...
+    # def extract_env_info(self, env: Optional[gym.Env]) -> None:
+    #     """Extracts all the features of the environment: observation space, action space, ...
 
-        Args:
-            env (gym.Env): The environment
-        """
-        # Sometimes, the environment is not instantiated at the moment the MORL algorithms is being instantiated.
-        # So env can be None. It is the responsibility of the implemented MORLAlgorithm to call this method in those cases
-        if env is not None:
-            self.env = env
-            if isinstance(self.env.observation_space, spaces.Discrete):
-                self.observation_shape = (1,)
-                self.observation_dim = self.env.unwrapped.observation_space.n
-            else:
-                self.observation_shape = self.env.unwrapped.observation_space.shape
-                self.observation_dim = self.env.unwrapped.observation_space.shape[0]
+    #     Args:
+    #         env (gym.Env): The environment
+    #     """
+    #     # Sometimes, the environment is not instantiated at the moment the MORL algorithms is being instantiated.
+    #     # So env can be None. It is the responsibility of the implemented MORLAlgorithm to call this method in those cases
+    #     if env is not None:
+    #         self.env = env
+    #         if isinstance(self.env.observation_space, spaces.Discrete):
+    #             self.observation_shape = (1,)
+    #             self.observation_dim = self.env.unwrapped.observation_space.n
+    #         else:
+    #             self.observation_shape = self.env.unwrapped.observation_space.shape
+    #             self.observation_dim = self.env.unwrapped.observation_space.shape[0]
 
-            self.action_space = env.unwrapped.action_space
-            if isinstance(self.env.unwrapped.action_space, (spaces.Discrete, spaces.MultiBinary)):
-                self.action_shape = (1,)
-                self.action_dim = self.env.unwrapped.action_space.n
-            else:
-                self.action_shape = self.env.unwrapped.action_space.shape
-                self.action_dim = self.env.unwrapped.action_space.shape[0]
-            self.reward_dim = self.env.unwrapped.reward_space.shape[0]
+    #         self.action_space = env.unwrapped.action_space
+    #         if isinstance(self.env.unwrapped.action_space, (spaces.Discrete, spaces.MultiBinary)):
+    #             self.action_shape = (1,)
+    #             self.action_dim = self.env.unwrapped.action_space.n
+    #         else:
+    #             self.action_shape = self.env.unwrapped.action_space.shape
+    #             self.action_dim = self.env.unwrapped.action_space.shape[0]
+    #         self.reward_dim = self.env.unwrapped.reward_space.shape[0]
 
     @abstractmethod
     def get_config(self) -> dict:

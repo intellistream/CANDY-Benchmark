@@ -86,7 +86,7 @@ class Envelope(MOPolicy, MOAgent):
 
     def __init__(
         self,
-        env,
+        #env,
         learning_rate: float = 3e-4,
         initial_epsilon: float = 0.01,
         final_epsilon: float = 0.01,
@@ -147,7 +147,7 @@ class Envelope(MOPolicy, MOAgent):
             device: The device to use for training.
             group: The wandb group to use for logging.
         """
-        MOAgent.__init__(self, env, device=device, seed=seed)
+        MOAgent.__init__(self,  device=device, seed=seed)
         MOPolicy.__init__(self, device)
         self.learning_rate = learning_rate
         self.initial_epsilon = initial_epsilon
@@ -197,9 +197,9 @@ class Envelope(MOPolicy, MOAgent):
                 action_dtype=np.uint8,
             )
 
-        self.log = log
-        if log:
-            self.setup_wandb(project_name, experiment_name, wandb_entity, group)
+        self.log = False
+        #if log:
+            #self.setup_wandb(project_name, experiment_name, wandb_entity, group)
 
     @override
     def get_config(self):
@@ -390,7 +390,7 @@ class Envelope(MOPolicy, MOAgent):
         Returns: an integer representing the action to take.
         """
         if self.np_random.random() < self.epsilon:
-            return self.env.action_space.sample()
+            return np.random.randint(self.action_dim)
         else:
             return self.max_action(obs, w)
 
@@ -539,7 +539,7 @@ class Envelope(MOPolicy, MOAgent):
                 break
 
             if self.global_step < self.learning_starts:
-                action = self.env.action_space.sample()
+                action = np.random.randint(self.action_dim)
             else:
                 action = self.act(th.as_tensor(obs).float().to(self.device), tensor_w)
 
