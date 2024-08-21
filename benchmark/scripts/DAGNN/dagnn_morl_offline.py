@@ -103,20 +103,14 @@ if(initialRows > 0 ):
     dagnn.loadInitialTensor(dataTensorInitial)
 
 reset_num_timesteps = True
-eval_freq: int = 10000
-num_eval_weights_for_front: int = 100
-num_eval_episodes_for_front: int = 5
-num_eval_weights_for_eval: int = 50
-reset_learning_starts: bool = False
-verbose: bool = False    
+
 
 agent.global_step = 0 if reset_num_timesteps else agent.global_step
 agent.num_episodes = 0 if reset_num_timesteps else agent.num_episodes
-if reset_learning_starts:  # Resets epsilon-greedy exploration
-    agent.learning_starts = agent.global_step
+
 
 num_episodes = 0
-eval_weights = equally_spaced_weights(agent.reward_dim, n=num_eval_weights_for_front)
+
 print("3.1 Stream now!!!")
 start = time.perf_counter()
 processOld = 0
