@@ -70,6 +70,14 @@ namespace CANDY {
             return dagnn->graphStates;
         }
 
+        void setTraining(bool is_training){
+            dagnn->is_training = is_training;
+        }
+
+        int64_t getReward(){
+            return dagnn->graphStates.window_states.last_search_latency;
+        }
+
         bool performAction(const size_t action_num){
             return dagnn->performAction(action_num);
         }

@@ -40,7 +40,10 @@ bool CANDY::DAGNNIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     dp.steps_above_max = cfg->tryI64("steps_above_max", 20, true);
     dp.nb_navigation_paths = cfg->tryI64("nb_navigation_paths", 16, true);
 
+
     dagnn = new CANDY::DynamicTuneHNSW(M, vecDim, metric, dp);
+    dagnn->is_training = cfg->tryI64("is_training", 1, true);
+    dagnn->is_datamining = cfg->tryI64("is_datamining", 1, true);
     return true;
 }
 

@@ -127,19 +127,19 @@ void CANDY::DynamicTuneHNSW::removeDuplicateEdge(CANDY::DynamicTuneHNSW::idx_t s
 
 void CANDY::DynamicTuneHNSW::randomPickAction(){
     std::mt19937 rng(std::time(nullptr));
-    std::uniform_real_distribution<double> probDist(0.0, 1.0);
+    //std::uniform_real_distribution<double> probDist(0.0, 1.0);
     std::uniform_int_distribution<int> firstRange(0, 10);
-    std::uniform_int_distribution<int> secondRange(11, 46);
+    //std::uniform_int_distribution<int> secondRange(11, 46);
 
 
-    double p = probDist(rng);
+    //double p = probDist(rng);
     int selectedNumber;
-    if (p < 0.7) {
+    if (1) {
 
         selectedNumber = firstRange(rng);
     } else {
 
-        selectedNumber = secondRange(rng);
+        //selectedNumber = secondRange(rng);
     }
 
     //printf("performing %ld\n", randomNum);
@@ -333,7 +333,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
         omp_destroy_lock(&locks[i]);
     }
     omp_destroy_lock(&state_lock);
-    if(is_datamining){
+    if(is_datamining || is_training){
         // recording insertion stat
         graphStates.window_states.last_insertion_latency = chronoElapsedTime(insertion_start);
         // recording search stat
@@ -2674,39 +2674,51 @@ bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
 	graphStates.window_states.last_action = action_num;
     switch(action_num){
         case do_nothing:
+            printf("do nothing\n");
             break;
         case bad_link_cut_old:
+            printf("bad link cut old\n");
             cutEdgesWindow(graphStates.window_states, 0);
             break;
         case bad_link_cut_new:
+            printf("bad link cut new\n");
             cutEdgesWindow(graphStates.window_states, 1);
             break;
         case outwards_link_old:
+            printf("outwards link old\n");
             linkEdgesWindow(graphStates.window_states, 0);
             break;
         case outwards_link_new:
+            printf("outwards link new\n");
             linkEdgesWindow(graphStates.window_states,1);
             break;
         case DEG_refine_old:
+            printf("DEG old\n");
             swapEdgesWindow(graphStates.window_states, 0);
             break;
         case DEG_refine_new:
+            printf("DEG new\n");
             swapEdgesWindow(graphStates.window_states,1);
             break;
         case backtrack_candidate:
+            printf("backtrack candidate\n");
             navigationBacktrackWindow(graphStates.window_states);
             break;
         case intercluster_link:
+            printf("intercluster link\n");
             linkClusterWindow(graphStates.window_states);
 
             break;
         case lift_cluster_center:
+            printf("lift cluster center\n");
             hierarchyOptimizationLiftWIndow(graphStates.window_states);
             break;
         case lower_navigation_point:
+            printf("lower navigation point\n");
             hierarchyOptimizationDegradeWIndow(graphStates.window_states);
             break;
         case increase_rng_alpha:
+            printf("increase rng alpha\n");
             if(dynamicParams.rng_alpha<1.5) {
                 dynamicParams.rng_alpha += 0.05;
             }
@@ -2885,5 +2897,6 @@ bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
         default:
             return false;
     }
+    printf("action complete!\n");
     return true;
 }

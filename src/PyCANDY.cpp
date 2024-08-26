@@ -195,7 +195,9 @@ PYBIND11_MODULE(PyCANDY, m) {
         .def("searchIndex", &DAGNNIndex::searchIndex)
         .def("searchTensor", &DAGNNIndex::searchTensor)
         .def("getState", &DAGNNIndex::getState)
-        .def("performAction", &DAGNNIndex::performAction);
+        .def("performAction", &DAGNNIndex::performAction)
+        .def("getReward", &DAGNNIndex::getReward)
+        .def("setTraining", &DAGNNIndex::setTraining);
 
 
   /**

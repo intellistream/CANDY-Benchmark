@@ -202,8 +202,10 @@ struct DynamicTuneHNSW{
                     id_set.erase(smallest_id);
                     evictions++;
                 }
-                data_map.emplace(id, node);
-                id_set.insert(id); // Update id_set for uniqueness check
+                if(data_map.size()<max_size) {
+                    data_map.emplace(id, node);
+                    id_set.insert(id); // Update id_set for uniqueness check
+                }
             }
         }
 
@@ -435,7 +437,8 @@ struct DynamicTuneHNSW{
                outfile.close();
        }
     };
-    bool is_datamining = true;
+    bool is_datamining = false;
+    bool is_training = true;
     size_t datamining_search_select = 20;
     size_t datamining_search_annk = 25;
     int64_t vecDim;
