@@ -1,5 +1,8 @@
 import PyCANDY
 import time
+
+import torch
+
 from intelli_timestamp_generator import *
 import numpy as np
 import collections
@@ -46,3 +49,24 @@ if __name__ == "__main__":
         #average_return, discounted_cost, _ = eval_policy(policy, args.env, args.seed, mean, std, args.constraint_threshold, discount=args.discount)
         #eval_log.write(f'{t + 1},{average_return},{discounted_cost}\n')
         #eval_log.flush()
+
+        # self.actor = Actor(state_dim, action_dim, max_action).to(device)
+        # self.actor_optimizer = torch.optim.Adam(self.actor.parameters(), lr=3e-4)
+        #
+        # self.reward_critic = Double_Critic(state_dim, action_dim).to(device)
+        # self.reward_critic_target = copy.deepcopy(self.reward_critic)
+        # self.reward_critic_optimizer = torch.optim.Adam(self.reward_critic.parameters(), lr=3e-4)
+        #
+        # self.cost_critic = Critic(state_dim, action_dim).to(device)
+        # self.cost_critic_target = copy.deepcopy(self.cost_critic)
+        # self.cost_critic_optimizer = torch.optim.Adam(self.cost_critic.parameters(), lr=3e-4)
+        #
+        # self.vae = VAE(state_dim, action_dim, latent_dim, max_action).to(device)
+        # self.vae_optimizer = torch.optim.Adam(self.vae.parameters())
+
+    torch.save(policy.actor, "./models/actor.pt")
+    torch.save(policy.cost_critic, "./models/cost_critic.pt")
+    torch.save(policy.cost_critic_target, "./models/cost_critic_target.pt")
+    torch.save(policy.reward_critic, "./models/reward_critic.pt")
+    torch.save(policy.reward_critic_target, "./models/reward_critic_target.pt")
+    torch.save(policy.vae, "./models/vae.pt")
