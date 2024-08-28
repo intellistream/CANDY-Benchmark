@@ -209,9 +209,10 @@ class CPQ(object):
         self.total_it += 1
 
         # Sample replay buffer / batch
-        state, action, next_state, reward, not_done = replay_buffer.sample(batch_size)
-        cost = torch.sum(torch.abs(action), axis=1).reshape(-1, 1)
-
+        state, action, next_state, reward, not_done, cost= replay_buffer.sample(batch_size)
+        cost = cost.reshape(-1,1)
+        #cost = torch.sum(torch.abs(action), axis=1).reshape(-1, 1)
+        temp_action = action.clone()
         # Reward Critic Training
         with torch.no_grad():
             next_action, _, _ = self.actor(next_state)
