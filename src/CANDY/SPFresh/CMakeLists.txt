@@ -1,0 +1,16 @@
+add_sources(
+        BKT/BKTIndex.cpp
+        Common/CommonUtils.cpp
+        Common/NeighborhoodGraph.cpp
+        Common/DistanceUtils.cpp
+        VectorIndex.cpp
+        VectorSet.cpp
+        MetadataSet.cpp
+        MultiIndexScan.cpp
+        ResultIterator.cpp
+        Helper/Concurrent.cpp
+        Helper/CommonHelper.cpp
+        Helper/VectorSetReader.cpp
+        Common/IQuantizer.cpp
+        Helper/ArgumentsParser.cpp
+)

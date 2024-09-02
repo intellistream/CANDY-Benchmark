@@ -25,6 +25,7 @@
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
 #include <CANDY/DEGIndex.h>
+#include <CANDY/BKTIndex.h>
 #if CANDY_CL == 1
 //#include <CPPAlgos/CLMMCPPAlgo.h>
 #endif
@@ -55,6 +56,7 @@ CANDY::IndexTable::IndexTable() {
   indexMap["DPG"] = newDPGIndex();
   indexMap["LSHAPG"] = newLSHAPGIndex();
   indexMap["DEG"] = newDEGIndex();
+  indexMap["BKT"] = newBKTIndex();
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif
