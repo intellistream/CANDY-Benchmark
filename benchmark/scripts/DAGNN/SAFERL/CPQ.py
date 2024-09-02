@@ -10,7 +10,7 @@ from torch.distributions.transforms import TanhTransform
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("device="+str(device))
-print(torch.cuda.get_device_name(torch.cuda.current_device()))
+#print(torch.cuda.get_device_name(torch.cuda.current_device()))
 MEAN_MIN = -9.0
 MEAN_MAX = 9.0
 LOG_STD_MIN = -5
@@ -200,6 +200,8 @@ class CPQ(object):
 
         self.total_it = 0
 
+        self.total_samples = 0
+
     def select_action(self, state):
         with torch.no_grad():
             state = torch.FloatTensor(state.reshape(1, -1)).to(device)
@@ -208,6 +210,7 @@ class CPQ(object):
 
     def train(self, replay_buffer, batch_size=100):
         self.total_it += 1
+        self.total_samples += batch_size
 
         # Sample replay buffer / batch
         state, action, next_state, reward, not_done, cost= replay_buffer.sample(batch_size)
@@ -277,8 +280,20 @@ class CPQ(object):
         with torch.no_grad():
             next_action, _, _ = self.actor(next_state)
             target_Qc = self.cost_critic_target(next_state, next_action)
-            target_Qc = cost + not_done * self.discount * target_Qc
+            #if(self.total_it%100==0):
+                #print("cost")
+                #print(cost)
+                #print("target")
+                #print(target_Qc)
+            target_Qc = (cost + (self.total_it-1)* target_Qc)/self.total_it
+            #if(self.total_it%100==0):
+                #print("updated")
+                #print(target_Qc)
+        
         current_Qc = self.cost_critic(state, action)
+        #if(self.total_it%100==0):
+            #print("current Qc")
+            #print(current_Qc)
 
         td_qc_loss = F.mse_loss(current_Qc, target_Qc)
 
@@ -328,7 +343,7 @@ class CPQ(object):
         for param, target_param in zip(self.cost_critic.parameters(), self.cost_critic_target.parameters()):
             target_param.data.copy_(self.tau * param.data + (1 - self.tau) * target_param.data)
 
-        if self.total_it % 5000 == 0:
+        if self.total_it % 500 == 0:
             print(f'mean qr value is {qr_pi.mean()}')
             print(f'mean qc value is {qc_pi.mean()}')
             print(f'mean weight is {weight.mean()}')
