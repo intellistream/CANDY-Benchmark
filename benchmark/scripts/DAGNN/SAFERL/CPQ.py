@@ -9,7 +9,8 @@ from torch.distributions.transformed_distribution import TransformedDistribution
 from torch.distributions.transforms import TanhTransform
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+print("device="+str(device))
+print(torch.cuda.get_device_name(torch.cuda.current_device()))
 MEAN_MIN = -9.0
 MEAN_MAX = 9.0
 LOG_STD_MIN = -5

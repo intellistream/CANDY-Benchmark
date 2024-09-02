@@ -79,7 +79,7 @@ class ReplayBuffer(object):
         self.next_state = replace_nan_with_column_mean(next_state)
         self.reward = np.loadtxt("offline/rewards.csv", delimiter=',',skiprows=1).reshape(-1, 1)
         self.not_done = 1. - np.loadtxt("offline/terminated.csv", delimiter=',',skiprows=1).reshape(-1, 1)
-        self.costs = np.loadtxt("offline/constraints.csv", delimiter=',',skiprows=1)
+        self.costs = -np.loadtxt("offline/constraints.csv", delimiter=',',skiprows=1)
 
         # Determine the size of the dataset
         self.size = self.state.shape[0]

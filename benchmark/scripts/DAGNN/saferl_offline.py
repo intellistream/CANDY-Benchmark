@@ -1,4 +1,4 @@
-import PyCANDY
+#import PyCANDY
 import time
 
 import torch
@@ -14,13 +14,13 @@ from SAFERL.utils import ReplayBuffer
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--eval_freq", default=5e3, type=int)  # How often (time steps) we evaluate
+    parser.add_argument("--eval_freq", default=100, type=int)  # How often (time steps) we evaluate
     parser.add_argument("--max_timesteps", default=1e6, type=int)  # Max time steps to run environment
     parser.add_argument("--batch_size", default=256, type=int)  # Batch size for both actor and critic
     parser.add_argument("--discount", default=0.99, type=float)  # Discount factor
     parser.add_argument("--tau", default=0.005)  # Target network update rate
     parser.add_argument("--normalize", default=True)
-    parser.add_argument("--constraint_threshold", default=0.9, type=float)
+    parser.add_argument("--constraint_threshold", default=-0.93, type=float)
     parser.add_argument("--alpha", default=10)
     parser.add_argument("--save_model", action="store_true")  # Save model and optimizer parameters
     args = parser.parse_args()
@@ -64,9 +64,9 @@ if __name__ == "__main__":
         # self.vae = VAE(state_dim, action_dim, latent_dim, max_action).to(device)
         # self.vae_optimizer = torch.optim.Adam(self.vae.parameters())
 
-    torch.save(policy.actor, "./models/actor.pt")
-    torch.save(policy.cost_critic, "./models/cost_critic.pt")
-    torch.save(policy.cost_critic_target, "./models/cost_critic_target.pt")
-    torch.save(policy.reward_critic, "./models/reward_critic.pt")
-    torch.save(policy.reward_critic_target, "./models/reward_critic_target.pt")
-    torch.save(policy.vae, "./models/vae.pt")
+    torch.save(policy.actor, "./models/actor"+str(args.constraint_threshold)+".pt")
+    torch.save(policy.cost_critic, "./models/cost_critic"+str(args.constraint_threshold)+".pt")
+    torch.save(policy.cost_critic_target, "./models/cost_critic_target"+str(args.constraint_threshold)+".pt")
+    torch.save(policy.reward_critic, "./models/reward_critic"+str(args.constraint_threshold)+".pt")
+    torch.save(policy.reward_critic_target, "./models/reward_critic_target"+str(args.constraint_threshold)+".pt")
+    torch.save(policy.vae, "./models/vae"+str(args.constraint_threshold)+".pt")
