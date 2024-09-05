@@ -98,6 +98,7 @@ namespace CANDY::DAGNN{
         std::vector<float> dis;
         typedef faiss::CMax<float, int64_t> HC;
         explicit MinimaxHeap(int n) : n(n), k(0), nvalid(0), ids(n), dis(n) {}
+        ~MinimaxHeap(){};
         void push(int64_t i, float v) {
             if (k == n) {
                 if (v >= dis[0]) {

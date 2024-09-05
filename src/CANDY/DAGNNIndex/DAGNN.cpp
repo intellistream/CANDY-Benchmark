@@ -128,7 +128,7 @@ void CANDY::DynamicTuneHNSW::removeDuplicateEdge(CANDY::DynamicTuneHNSW::idx_t s
 void CANDY::DynamicTuneHNSW::randomPickAction(){
     std::mt19937 rng(std::time(nullptr));
     //std::uniform_real_distribution<double> probDist(0.0, 1.0);
-    std::uniform_int_distribution<int> firstRange(0, 10);
+    std::uniform_int_distribution<int> firstRange(0, 8);
     //std::uniform_int_distribution<int> secondRange(11, 46);
 
 
@@ -150,6 +150,7 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
     /// Updating global states from local states
     auto prev_ntotal = graphStates.global_stat.ntotal;
     auto new_ntotal = graphStates.time_local_stat.ntotal;
+    //printf("hierarchy vertices evictions:%ld\n", graphStates.window_states.hierarchyVertices.evictions);
     /// Value
     {
         for(int64_t d=0; d<vecDim; d++) {
@@ -332,7 +333,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     for (idx_t i = 0; i < n0+n; i++) {
         omp_destroy_lock(&locks[i]);
     }
-    omp_destroy_lock(&state_lock);
+
     if(is_datamining || is_training){
         // recording insertion stat
         graphStates.window_states.last_insertion_latency = chronoElapsedTime(insertion_start);
@@ -406,6 +407,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
 
     graphStates.print();
     updateGlobalState();
+
     graphStates.print();
    
 
@@ -512,16 +514,17 @@ void CANDY::DynamicTuneHNSW::greedy_insert_top(DAGNN::DistanceQueryer& disq, siz
             if(visiting < 0) {
                 break;
             }
+            omp_set_lock(&state_lock);
             if(level == 1){
                 if(timestamp - last_visited[visiting]>dynamicParams.expiration_timestamp){
                     if(linkLists[visiting]->level==1){
-                        omp_set_lock(&state_lock);
-                        //printf("timestamp: %ld, last_visited: %ld\n", timestamp, last_visited[visiting]);
+
                         graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
-                        omp_unset_lock(&state_lock);
+
                     }
                 }
             }
+            omp_unset_lock(&state_lock);
 
             auto vector = get_vector(visiting);
 
@@ -557,15 +560,18 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
             if(visiting < 0) {
                 break;
             }
+            omp_set_lock(&state_lock);
             if(level == 1){
                 if(timestamp - last_visited[visiting]>dynamicParams.expiration_timestamp){
                     if(linkLists[visiting]->level==1){
-                        omp_set_lock(&state_lock);
+
                         graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
-                        omp_unset_lock(&state_lock);
+
                     }
                 }
             }
+            omp_unset_lock(&state_lock);
+
             auto vector = get_vector(visiting);
 
             auto dist = disq(vector);
@@ -605,14 +611,16 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
             if(visiting < 0) {
                 break;
             }
+            omp_set_lock(&state_lock);
             if(linkLists[visiting]->level==0) {
                 if(linkLists[visiting]->bottom_connections*1.0>degree_avg+dynamicParams.degree_lift_range*std_dev+1) {
                     //graphStates.window_states.oldVertices.remove(visiting);
-                    omp_set_lock(&state_lock);
+
                     graphStates.window_states.hierarchyVertices.insert(visiting, linkLists[visiting]);
-                    omp_unset_lock(&state_lock);
+
                 }
             }
+            omp_unset_lock(&state_lock);
             auto vector = get_vector(visiting);
             auto dist = disq(vector);
 
@@ -1705,8 +1713,9 @@ void CANDY::DynamicTuneHNSW::swapEdgesWindow(WindowStates& window_states, int64_
                 continue;
             }
             auto vertex2_idx = vertex1_neighbors[i];
+            auto dist12 = vertex1_distances[i];
             if(hasEdge(vertex1_idx, vertex2_idx) && hasEdge(vertex2_idx, vertex1_idx)){
-
+                    improveEdges(vertex1_idx, vertex2_idx, dist12);
             }
         }
 
@@ -2692,14 +2701,14 @@ bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
             printf("outwards link new\n");
             linkEdgesWindow(graphStates.window_states,1);
             break;
-        case DEG_refine_old:
-            printf("DEG old\n");
-            swapEdgesWindow(graphStates.window_states, 0);
-            break;
-        case DEG_refine_new:
-            printf("DEG new\n");
-            swapEdgesWindow(graphStates.window_states,1);
-            break;
+//        case DEG_refine_old:
+//            printf("DEG old\n");
+//            swapEdgesWindow(graphStates.window_states, 0);
+//            break;
+//        case DEG_refine_new:
+//            printf("DEG new\n");
+//            swapEdgesWindow(graphStates.window_states,1);
+//            break;
         case backtrack_candidate:
             printf("backtrack candidate\n");
             navigationBacktrackWindow(graphStates.window_states);

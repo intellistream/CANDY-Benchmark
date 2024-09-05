@@ -43,7 +43,7 @@ bool CANDY::DAGNNIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
 
     dagnn = new CANDY::DynamicTuneHNSW(M, vecDim, metric, dp);
     dagnn->is_training = cfg->tryI64("is_training", 1, true);
-    dagnn->is_datamining = cfg->tryI64("is_datamining", 1, true);
+    dagnn->is_datamining = cfg->tryI64("is_datamining", 0, true);
     return true;
 }
 

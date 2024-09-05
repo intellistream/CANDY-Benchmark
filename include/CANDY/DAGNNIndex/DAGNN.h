@@ -20,8 +20,8 @@ enum dynamic_action_num{
     bad_link_cut_new,
     outwards_link_old,
     outwards_link_new,
-    DEG_refine_old,
-    DEG_refine_new,
+    //DEG_refine_old,
+    //DEG_refine_new,
     backtrack_candidate,
     intercluster_link,
     lift_cluster_center,
@@ -178,7 +178,7 @@ struct DynamicTuneHNSW{
 
 
     struct ordered_map {
-        std::map<idx_t, Node*> data_map;        // Using std::map for ordering by id
+        std::unordered_map<idx_t, Node*> data_map;        // Using std::map for ordering by id
         std::unordered_set<idx_t> id_set;      // To maintain uniqueness of ids
         size_t max_size;
         size_t evictions = 0;
@@ -195,15 +195,17 @@ struct DynamicTuneHNSW{
             } else {
                 // Insert new Node
                 if (data_map.size() >= max_size) {
+                    return;
                     // Remove the smallest (first) element in the map
                     auto smallest_it = data_map.begin();
-                    int smallest_id = smallest_it->first;
+                    std::advance(smallest_it, max_size/2);
+                    auto smallest_id = smallest_it->first;
                     data_map.erase(smallest_it);
                     id_set.erase(smallest_id);
                     evictions++;
                 }
                 if(data_map.size()<max_size) {
-                    data_map.emplace(id, node);
+                    data_map[id]=node;
                     id_set.insert(id); // Update id_set for uniqueness check
                 }
             }
@@ -277,7 +279,7 @@ struct DynamicTuneHNSW{
         double neighborDistanceThreshold = 0.5;
         std::vector<float> routeDrifts;
 
-        size_t expiration_timestamp = 450;
+        size_t expiration_timestamp = 1500;
 
         size_t max_backtrack_steps = 20;
         size_t steps_above_avg = 50;
@@ -361,7 +363,7 @@ struct DynamicTuneHNSW{
     struct WindowStates : DRLStates {
         size_t oldWindowSize = 50;
         size_t newWindowSize = 100;
-        size_t hierarchyWindowSize = 15;
+        size_t hierarchyWindowSize = 30;
 	size_t last_action = 0;
     size_t last_insertion_latency = 0;
     size_t last_search_latency = 0;
