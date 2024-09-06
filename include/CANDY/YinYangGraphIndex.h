@@ -14,6 +14,7 @@
 #include <faiss/IndexFlat.h>
 #include <CANDY/AbstractIndex.h>
 #include <CANDY/YinYangGraphIndex/YinYangGraph.h>
+#include <CANDY/FlatIndex.h>
 namespace CANDY {
 
 /**
@@ -22,43 +23,30 @@ namespace CANDY {
  */
 /**
  * @class YinYangGraphIndex CANDY/YinYangGraphIndex.h
- * @brief The class of indexing using a yinyang graph, first use LSH to roughly locate the range of a tensor, then
- * search it in the linked yinyanggraph
+ * @brief The class of indexing using a yinyang graph, store data as brutal force does, and preserve similarity in another tensor
  * @todo implement the delete and revise later
- * @note currently single thread
+ * @note currently single thread, not yet on SSD or GPU
+ * @note current heuristics
+ * - gaurantee adjecent connectivity, p_{i,i+1}>0, p_{i-1,i}>0
+ * - control the #edges as HNSW does, but simpler shrinking
+ * - optional using attention function to insert, rather than using raw data
  * @note config parameters
  * - vecDim, the dimension of vectors, default 768, I64
  * - maxConnection, the max number of connections in the yinyang graph (for yang vertex of data), default 256, I64
- * - candidateTimes, the times of k to determine minimum candidates, default 1 ,I64
- * - numberOfBuckets, the number of first titer buckets, default 4096, I64, suggest 2^n
- * - encodeLen, the length of LSH encoding, in bytes, default 1, I64
  * - metricType, the type of AKNN metric, default L2, String
- * - lshMatrixType, the type of lsh matrix, default gaussian, String
-    * - gaussian means a N(0,1) LSH matrix
-    * - random means a random matrix where each value ranges from -0.5~0.5
- * - useCRS, whether or not use column row sampling in projecting the vector, 0 (No), I64
-    * - further trade off of accuracy v.s. efficiency
- * - CRSDim, the dimension which are not pruned by crs, 1/10 of vecDim, I64
- * - redoCRSIndices, whether or not re-generate the indices of CRS, 0 (No), I64
+ * - skeletonRows, the number of skeleton rows in the initial construction, default -1, I64,( the same as loadInitialTensor)
  */
-class YinYangGraphIndex : public AbstractIndex {
+class YinYangGraphIndex : public FlatIndex {
  protected:
-  INTELLI::ConfigMapPtr myCfg = nullptr;
+  torch::Tensor similarityTensor,rowNNZTensor;
   CANDY::YinYangGraph yyg;
   // torch::Tensor dbTensor;
-  int64_t vecDim = 0;
-  int64_t maxConnection = 0;
-  int64_t numberOfBuckets = 4096;
+  int64_t maxConnection = 256;
   int64_t encodeLen = 1;
   int64_t candidateTimes = 1;
-  int64_t useCRS = 0;
-  int64_t CRSDim = 1;
-  int64_t bucketsLog2 = 0;
-  int64_t redoCRSIndices = 0;
+  int64_t skeletonRows = 1000;
   std::string lshMatrixType = "gaussian";
-  std::vector<uint8_t> encodeSingleRow(torch::Tensor &tensor, uint64_t *bucket);
-  torch::Tensor rotationMatrix, crsIndices;
-  torch::Tensor randomProjection(torch::Tensor &a);
+
   /**
   * @brief to generate the sampling indices of crs
   */
@@ -93,14 +81,7 @@ class YinYangGraphIndex : public AbstractIndex {
    * @return std::vector<torch::Tensor> the result tensor for each row of query
    */
   virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
-  /**
-    * @brief thw column row sampling to compute approximate matrix multiplication
-    * @param A the left side matrix
-    * @param B the right side matrix
-    * @param idx the indices of sampling
-    * @param _crsDim the dimension of preserved dimensions
-    */
-  static torch::Tensor crsAmm(torch::Tensor &A, torch::Tensor &B, torch::Tensor &indices);
+
 };
 
 /**
