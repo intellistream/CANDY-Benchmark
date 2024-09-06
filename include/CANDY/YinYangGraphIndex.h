@@ -50,10 +50,9 @@ class YinYangGraphIndex : public FlatIndex {
   std::string lshMatrixType = "gaussian";
   int64_t cudaDevice = -1;
   int64_t DCOBatchSize = -1;
-  /**
-  * @brief to generate the sampling indices of crs
-  */
-  void genCrsIndices(void);
+  int64_t lastNNZSim = -1;
+  int64_t lastNNZRow = -1;
+
   //initialVolume = 1000, expandStep = 100;
   /**
    * @brief the distance function pointer member
@@ -85,12 +84,33 @@ class YinYangGraphIndex : public FlatIndex {
   static torch::Tensor distanceL2(torch::Tensor &db, torch::Tensor &query, int64_t cudaDev, YinYangGraphIndex *idx);
 
   /**
-  * @brief The iniline load the initial tensors of a data base
+  * @brief The inline load the initial tensors of a data base
   * @note This will set up the skeleton of similarity matrix, no attention computation, but just the similarity
   * @param t the tensor, some index need to be single row
   * @return bool whether the loading is successful
   */
   bool loadInitialTensorInline(torch::Tensor &t);
+
+  /**
+   * @brief inline function of inserting a single row tensor
+   * @param t the tensor, in single rows
+   * @return bool whether the insertion is successful
+   */
+   bool insertTensorSingle(torch::Tensor &t,int64_t maxIter);
+
+  /**
+   * @brief inline function of searching a single row tensor
+   * @param t the tensor, in single rows
+   * @param maxIter, the max iterartions
+   * @return int64_t the idx
+   */
+   int64_t searchSingleRowIdx(torch::Tensor &t,int64_t maxIter=1000);
+  /**
+  * @brief inline function of collecting data rows according to index
+  * @param idx, the index tensor sized 1xn
+  * @return the nxD data tensor
+  */
+   torch::Tensor collectDataRows(torch::Tensor &idx);
  public:
   int64_t gpuComputingUs = 0;
   int64_t gpuCommunicationUs = 0;
@@ -101,6 +121,14 @@ class YinYangGraphIndex : public FlatIndex {
   ~YinYangGraphIndex() {
 
   }
+
+  /**
+  * @brief load the initial tensors of a data base, use this BEFORE @ref insertTensor
+  * @note This is majorly an offline function, and may be different from @ref insertTensor for some indexes
+  * @param t the tensor, some index need to be single row
+  * @return bool whether the loading is successful
+  */
+  virtual bool loadInitialTensor(torch::Tensor &t);
   /**
    * @brief set the index-specific config related to one index
    * @param cfg the config of this class
@@ -127,6 +155,14 @@ class YinYangGraphIndex : public FlatIndex {
    * @return the statistics results in ConfigMapPtr
    */
   virtual INTELLI::ConfigMapPtr getIndexStatistics(void);
+  /**
+ * @brief to generate the compressed similarity mask of k
+ * @param t the tensor,
+ * @param cols the number of cols to preserve in results
+ * @param circle whether or not create a circle inside
+ * @return the int64_t result at the same device as t
+ */
+   torch::Tensor genCompressedSimilarityMask (torch::Tensor &t,int64_t cols,bool circle =true);
 };
 
 /**
