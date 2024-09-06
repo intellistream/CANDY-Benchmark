@@ -21,11 +21,12 @@ namespace CANDY {
  * @ingroup  CANDY_lib_bottom The main body and interfaces of library function
  * @{
  */
+class YinYangGraphIndex;
 /**
  * @class YinYangGraphIndex CANDY/YinYangGraphIndex.h
  * @brief The class of indexing using a yinyang graph, store data as brutal force does, and preserve similarity in another tensor
  * @todo implement the delete and revise later
- * @note currently single thread, not yet on SSD or GPU
+ * @note currently single thread, not yet on SSD
  * @note current heuristics
  * - gaurantee adjecent connectivity, p_{i,i+1}>0, p_{i-1,i}>0
  * - control the #edges as HNSW does, but simpler shrinking
@@ -34,7 +35,8 @@ namespace CANDY {
  * - vecDim, the dimension of vectors, default 768, I64
  * - maxConnection, the max number of connections in the yinyang graph (for yang vertex of data), default 256, I64
  * - metricType, the type of AKNN metric, default L2, String
- * - skeletonRows, the number of skeleton rows in the initial construction, default -1, I64,( the same as loadInitialTensor)
+ * - cudaDevice, the cuda device for DCO, default -1 (none), I64
+ * - DCOBatchSize, the batch size of internal distance comparison operation (DCO), default equal to -1, I64
  */
 class YinYangGraphIndex : public FlatIndex {
  protected:
@@ -46,13 +48,52 @@ class YinYangGraphIndex : public FlatIndex {
   int64_t candidateTimes = 1;
   int64_t skeletonRows = 1000;
   std::string lshMatrixType = "gaussian";
-
+  int64_t cudaDevice = -1;
+  int64_t DCOBatchSize = -1;
   /**
   * @brief to generate the sampling indices of crs
   */
   void genCrsIndices(void);
   //initialVolume = 1000, expandStep = 100;
+  /**
+   * @brief the distance function pointer member
+   * @note will select largest distance during the following sorting, please convert if your distance is 'minimal'
+   * @param db The data base tensor, sized [n*vecDim] to be scanned
+   * @param query The query tensor, sized [q*vecDim] to be scanned
+   * @param cudaDev The id of cuda device, -1 means no cuda
+   * @param idx the pointer to index
+   * @return The distance tensor, must sized [q*n] and remain in cpu
+   */
+  torch::Tensor (*distanceFunc)(torch::Tensor &db, torch::Tensor &query, int64_t cudaDev, YinYangGraphIndex *idx);
+  /**
+   * @brief the distance function of inner product
+   * @param db The data base tensor, sized [n*vecDim] to be scanned
+   * @param query The query tensor, sized [q*vecDim] to be scanned
+   * @param cudaDev The id of cuda device, -1 means no cuda
+   * @param idx the pointer to index
+   * @return The distance tensor, must sized [q*n], will in GPU if cuda is valid
+   */
+  static torch::Tensor distanceIP(torch::Tensor &db, torch::Tensor &query, int64_t cudaDev, YinYangGraphIndex *idx);
+  /**
+   * @brief the distance function of L2
+   * @param db The data base tensor, sized [n*vecDim] to be scanned
+   * @param query The query tensor, sized [q*vecDim] to be scanned
+   * @param cudaDev The id of cuda device, -1 means no cuda
+   * @param idx the pointer to index
+   * @return The distance tensor, must sized [q*n], will in GPU if cuda is valid
+   */
+  static torch::Tensor distanceL2(torch::Tensor &db, torch::Tensor &query, int64_t cudaDev, YinYangGraphIndex *idx);
+
+  /**
+  * @brief The iniline load the initial tensors of a data base
+  * @note This will set up the skeleton of similarity matrix, no attention computation, but just the similarity
+  * @param t the tensor, some index need to be single row
+  * @return bool whether the loading is successful
+  */
+  bool loadInitialTensorInline(torch::Tensor &t);
  public:
+  int64_t gpuComputingUs = 0;
+  int64_t gpuCommunicationUs = 0;
   YinYangGraphIndex() {
 
   }
@@ -81,7 +122,11 @@ class YinYangGraphIndex : public FlatIndex {
    * @return std::vector<torch::Tensor> the result tensor for each row of query
    */
   virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
-
+  /**
+   * @brief to get the internal statistics of this index
+   * @return the statistics results in ConfigMapPtr
+   */
+  virtual INTELLI::ConfigMapPtr getIndexStatistics(void);
 };
 
 /**
