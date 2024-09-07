@@ -37,6 +37,7 @@ class YinYangGraphIndex;
  * - metricType, the type of AKNN metric, default L2, String
  * - cudaDevice, the cuda device for DCO, default -1 (none), I64
  * - DCOBatchSize, the batch size of internal distance comparison operation (DCO), default equal to -1, I64
+ * - useAttention, whether or not use attention rather than raw vector, default 1, I64
  */
 class YinYangGraphIndex : public FlatIndex {
  protected:
@@ -52,6 +53,7 @@ class YinYangGraphIndex : public FlatIndex {
   int64_t DCOBatchSize = -1;
   int64_t lastNNZSim = -1;
   int64_t lastNNZRow = -1;
+  int64_t useAttention = 1;
 
   //initialVolume = 1000, expandStep = 100;
   /**
@@ -97,6 +99,12 @@ class YinYangGraphIndex : public FlatIndex {
    * @return bool whether the insertion is successful
    */
    bool insertTensorSingle(torch::Tensor &t,int64_t maxIter);
+  /**
+  * @brief inline function of inserting a batch of row tensors
+  * @param t the tensor, in single rows
+  * @return bool whether the insertion is successful
+  */
+    bool insertTensorBatch(torch::Tensor &t,int64_t maxIter,int64_t cudaDev);
 
   /**
    * @brief inline function of searching a single row tensor
@@ -114,6 +122,7 @@ class YinYangGraphIndex : public FlatIndex {
  public:
   int64_t gpuComputingUs = 0;
   int64_t gpuCommunicationUs = 0;
+  int64_t cpuComputingUs = 0;
   YinYangGraphIndex() {
 
   }
