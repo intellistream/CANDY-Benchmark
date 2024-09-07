@@ -45,6 +45,7 @@ class YinYangGraphIndex : public FlatIndex {
   CANDY::YinYangGraph yyg;
   // torch::Tensor dbTensor;
   int64_t maxConnection = 256;
+  int64_t maxIteration = 1000;
   int64_t encodeLen = 1;
   int64_t candidateTimes = 1;
   int64_t skeletonRows = 1000;

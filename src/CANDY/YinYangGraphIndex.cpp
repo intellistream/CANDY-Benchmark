@@ -23,6 +23,7 @@ bool CANDY::YinYangGraphIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     maxConnection = 4;
   }
   candidateTimes = cfg->tryI64("candidateTimes", 1, true);
+  maxIteration = cfg->tryI64("maxIteration", 1000, true);
   skeletonRows = cfg->tryI64("skeletonRows",5000, true);
   rowNNZTensor = torch::zeros({initialVolume, 1}, torch::kInt64);
   similarityTensor = torch::zeros({initialVolume, maxConnection}, torch::kInt64);
@@ -50,7 +51,7 @@ bool CANDY::YinYangGraphIndex::insertTensor(torch::Tensor &t) {
     auto tempTensor = t.slice(0, startPos, endPos);
 
   }*/
-  insertTensorBatch(t,1000,cudaDevice);
+  insertTensorBatch(t,maxIteration,cudaDevice);
   return true;
 }
 
@@ -61,7 +62,7 @@ std::vector<torch::Tensor> CANDY::YinYangGraphIndex::searchTensor(torch::Tensor 
   for(int64_t i=0;i<rows;i++) {
     ru[i] = torch::zeros({k, vecDim});
     auto qi = q.slice(0, i, i + 1);
-    auto maxSimRow = searchSingleRowIdx(qi, 1000);
+    auto maxSimRow = searchSingleRowIdx(qi, maxIteration);
     auto candidateIdx = similarityTensor.slice(0,maxSimRow,maxSimRow+1);
     auto collectedRows = collectDataRows(candidateIdx);
     auto candidateDistance = distanceFunc(collectedRows, q, -1, this);
