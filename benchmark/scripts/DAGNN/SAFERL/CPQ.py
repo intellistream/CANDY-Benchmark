@@ -224,9 +224,10 @@ class CPQ(object):
             # Soft Clipped Double Q-learning
             target_Qr = torch.min(target_Qr1, target_Qr2)
             target_Qc = self.cost_critic_target(next_state, next_action)
+            #weight = torch.where(target_Qc > self.threshold, 0.0, 1.0) # average Qr version
             weight = torch.where(target_Qc > self.threshold, 0.95, 1.0)
-            #target_Qr = reward + not_done * 0.99 * target_Qr * weight
-            target_Qr = (reward + (self.total_it-1)*target_Qr*weight*not_done)/self.total_it
+            target_Qr = reward + not_done * 0.99 * target_Qr * weight
+            #target_Qr = (reward + (self.total_it-1)*target_Qr*weight*not_done)/self.total_it #average Qr version
         current_Qr1, current_Qr2 = self.reward_critic(state, action)
 
         td_qr_loss = F.mse_loss(current_Qr1, target_Qr) + F.mse_loss(current_Qr2, target_Qr)
@@ -286,6 +287,7 @@ class CPQ(object):
                 #print(cost)
                 #print("target")
                 #print(target_Qc)
+            #target_Qc = cost + not_done * self.discount * target_Qc    
             target_Qc = (cost + (self.total_it-1)* target_Qc)/self.total_it
             #if(self.total_it%100==0):
                 #print("updated")
