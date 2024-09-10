@@ -17,7 +17,7 @@ def replace_nan_with_column_mean(array):
     return array
 
 class ReplayBuffer(object):
-    def __init__(self, state_dim, action_dim, max_size=int(1e6)):
+    def __init__(self, state_dim, action_dim, max_size=int(40000)):
         self.max_size = max_size
         self.ptr = 0
         self.size = 0
@@ -68,18 +68,18 @@ class ReplayBuffer(object):
     def convert_csv(self):
         # Read CSV files into numpy arrays
 
-        state = np.loadtxt("offline/observations.csv", delimiter=',',skiprows=1)
-        self.state = replace_nan_with_column_mean(state)
-        action = np.loadtxt("offline/actions.csv", delimiter=',',skiprows=1, dtype=int)
+        state = np.loadtxt("offline/observations.csv", delimiter=',')
+        self.state = replace_nan_with_column_mean(state)[::2]
+        action = np.loadtxt("offline/actions.csv", delimiter=',',dtype=int)
         one_hot_matrix = np.eye(9)
 
         # Transform the original array to a (144000, 9) array
-        self.action = one_hot_matrix[action]
-        next_state = np.loadtxt("offline/next_observations.csv", delimiter=',',skiprows=1)
-        self.next_state = replace_nan_with_column_mean(next_state)
-        self.reward = np.loadtxt("offline/rewards.csv", delimiter=',',skiprows=1).reshape(-1, 1)
-        self.not_done = 1. - np.loadtxt("offline/terminated.csv", delimiter=',',skiprows=1).reshape(-1, 1)
-        self.costs = -np.loadtxt("offline/constraints.csv", delimiter=',',skiprows=1)
+        self.action = one_hot_matrix[action][::2]
+        next_state = np.loadtxt("offline/next_observations.csv", delimiter=',')
+        self.next_state = replace_nan_with_column_mean(next_state)[::2]
+        self.reward = -np.loadtxt("offline/rewards.csv", delimiter=',').reshape(-1, 1)[::2]
+        self.not_done = 1. - np.loadtxt("offline/terminated.csv", delimiter=',').reshape(-1, 1)[::2]
+        self.costs = -np.loadtxt("offline/constraints.csv", delimiter=',')[::2]
 
         # Determine the size of the dataset
         self.size = self.state.shape[0]
