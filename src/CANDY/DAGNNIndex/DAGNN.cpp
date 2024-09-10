@@ -333,7 +333,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     for (idx_t i = 0; i < n0+n; i++) {
         omp_destroy_lock(&locks[i]);
     }
-
+    // acquire recall and latency before action
     if(is_datamining || is_training){
         // recording insertion stat
         graphStates.window_states.last_insertion_latency = chronoElapsedTime(insertion_start);
@@ -407,6 +407,76 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
 
     graphStates.print();
     updateGlobalState();
+    // acquire recall and latency after action
+    if(is_datamining || is_training){
+        // recording insertion stat
+        graphStates.window_states.last_insertion_latency = chronoElapsedTime(insertion_start);
+        // recording search stat
+        std::random_device rd;  // Seed
+        std::mt19937 gen(rd()); // Mersenne Twister generator
+        std::uniform_int_distribution<> dist(0, storage->ntotal - 1);
+
+        std::vector<int> selected_numbers;
+        std::vector<faiss::idx_t> ru_gt(datamining_search_annk * datamining_search_select);
+        std::vector<float> distance_gt(datamining_search_annk * datamining_search_select);
+
+        std::vector<faiss::idx_t> ru_dagnn(datamining_search_annk * datamining_search_select);
+        std::vector<float> distance_dagnn(datamining_search_annk * datamining_search_select);
+        // Randomly pick unique numbers and search
+        // acquire groundtruth using flatindex
+        while (selected_numbers.size() < datamining_search_select) {
+            int num = dist(gen);
+            auto to_search = get_vector(num);
+            storage->search(1, to_search, datamining_search_annk, distance_gt.data()+datamining_search_annk*selected_numbers.size(), ru_gt.data()+datamining_search_annk*selected_numbers.size());
+            delete[] to_search;
+            selected_numbers.push_back(num);
+        }
+        size_t search_lat = 0;
+        for(size_t i=0; i<selected_numbers.size(); i++){
+            int num = selected_numbers[i];
+            DAGNN::DistanceQueryer disq(vecDim);
+            DAGNN::VisitedTable vt(storage->ntotal);
+            auto to_search = get_vector(num);
+            disq.set_query(to_search);
+
+            auto search_start = std::chrono::high_resolution_clock::now();
+            search(disq, datamining_search_annk, ru_dagnn.data()+datamining_search_annk*i, distance_dagnn.data()+datamining_search_annk*i, vt);
+            search_lat += chronoElapsedTime(search_start);
+            delete[] to_search;
+        }
+        graphStates.window_states.last_search_latency = search_lat;
+
+        // calculate recall
+        int true_positive = 0;
+        int false_negative = 0;
+        for(size_t i=0; i<selected_numbers.size(); i++){
+            for(size_t j=0; j<datamining_search_annk; j++){
+                auto exist = false;
+                auto temp = ru_dagnn[i*datamining_search_annk + j];
+                for(size_t k=0; k<datamining_search_annk; k++){
+                    auto gt = ru_gt[i*datamining_search_annk+k];
+                    if(temp==gt){
+                        exist = true;
+                        break;
+                    }
+                }
+                if(exist){
+                    true_positive++;
+                } else {
+                    false_negative++;
+                }
+            }
+        }
+        graphStates.window_states.last_recall = (true_positive*1.0)/((true_positive+false_negative)*1.0);
+
+
+
+
+
+
+
+    }
+
 
     graphStates.print();
    
