@@ -14,8 +14,6 @@ message(STATUS "TORCH_CMAKE_PREFIX_PATH: ${TORCH_CMAKE_PREFIX_PATH}")
 
 set(CMAKE_PREFIX_PATH "${TORCH_CMAKE_PREFIX_PATH}")
 
-cmake_policy(SET CMP0135 NEW)
-
 # Custom CMake find instructions and macros
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include(cmake/macros.cmake)
