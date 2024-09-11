@@ -66,7 +66,7 @@ class ReplayBuffer(object):
 
 
     def convert_csv(self):
-        # Read CSV files into numpy arrays
+        # Read CSV files into numpy arraysq
 
         state = np.loadtxt("offline/observations.csv", delimiter=',')
         self.state = replace_nan_with_column_mean(state)[::2]

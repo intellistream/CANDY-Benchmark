@@ -28,7 +28,7 @@ if __name__ == "__main__":
         os.makedirs("./results")
     if args.save_model and not os.path.exists("./models"):
         os.makedirs("./models")
-    state_dim =26
+    state_dim =21
     action_dim = 9
     max_action = 8
     policy = CPQ(state_dim, action_dim, max_action, discount=args.discount,threshold=args.constraint_threshold, alpha=args.alpha)
