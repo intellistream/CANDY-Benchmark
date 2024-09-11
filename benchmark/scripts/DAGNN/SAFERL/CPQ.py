@@ -287,8 +287,8 @@ class CPQ(object):
             #print(cost)
             #print("target")
             #print(target_Qc)
-            #target_Qc = cost + not_done * self.discount * target_Qc
-            target_Qc = (cost + (self.total_it-1)* target_Qc)/self.total_it
+            target_Qc = cost + not_done * self.discount * target_Qc
+            #target_Qc = (cost + (self.total_it-1)* target_Qc)/self.total_it
             #if(self.total_it%100==0):
             #print("updated")
             #print(target_Qc)

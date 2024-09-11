@@ -29,8 +29,8 @@ if __name__ == "__main__":
     if args.save_model and not os.path.exists("./models"):
         os.makedirs("./models")
     state_dim =21
-    action_dim = 9
-    max_action = 8
+    action_dim = 1
+    max_action = 1
     policy = CPQ(state_dim, action_dim, max_action, discount=args.discount,threshold=args.constraint_threshold, alpha=args.alpha)
     replay_buffer = ReplayBuffer(state_dim, action_dim)
     replay_buffer.convert_csv()
