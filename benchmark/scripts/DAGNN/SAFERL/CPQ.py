@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.distributions import Normal
 from torch.distributions.transformed_distribution import TransformedDistribution
-from torch.distributions.transforms import TanhTransform
+from torch.distributions.transforms import SigmoidTransform
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("device="+str(device))
@@ -42,16 +42,19 @@ class Actor(nn.Module):
         sigma = torch.exp(log_sigma)
 
         a_distribution = TransformedDistribution(
-            Normal(mu, sigma), TanhTransform(cache_size=1)
+            Normal(mu, sigma), SigmoidTransform(cache_size=1)
         )
-        a_tanh_mode = torch.tanh(mu)
-        return a_distribution, a_tanh_mode
+
+        #a_tanh_mode = torch.tanh(mu)
+        a_sigmoid_mode = torch.sigmoid(mu)
+        return a_distribution, a_sigmoid_mode
 
     def forward(self, state):
-        a_dist, a_tanh_mode = self._get_outputs(state)
+        #a_dist, a_tanh_mode = self._get_outputs(state)
+        a_dist, a_sigmoid_mode = self._get_outputs(state)
         action = a_dist.rsample()
         logp_pi = a_dist.log_prob(action).sum(axis=-1)
-        return action, logp_pi, a_tanh_mode
+        return action, logp_pi, a_sigmoid_mode
 
     def get_log_density(self, state, action):
         a_dist, _ = self._get_outputs(state)
@@ -146,7 +149,8 @@ class VAE(nn.Module):
 
         a = F.relu(self.d1(torch.cat([state, z], 1)))
         a = F.relu(self.d2(a))
-        return self.max_action * torch.tanh(self.d3(a))
+        #return self.max_action * torch.tanh(self.d3(a))
+        return self.max_action*torch.sigmoid(self.d3(a))
 
 
 class CPQ(object):
