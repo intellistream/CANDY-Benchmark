@@ -209,7 +209,7 @@ class CPQ(object):
     def select_action(self, state):
         with torch.no_grad():
             state = torch.FloatTensor(state.reshape(1, -1)).to(device)
-            _, _, action = self.actor(state)
+            action, _, _ = self.actor(state)
         return action.cpu().data.numpy().flatten()
 
     def train(self, replay_buffer, batch_size=100):
