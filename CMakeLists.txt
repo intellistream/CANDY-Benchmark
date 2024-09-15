@@ -4,6 +4,8 @@ project(CANDY CXX)
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_RULE_MESSAGES OFF)
 
+add_definitions(-w)
+
 EXECUTE_PROCESS(COMMAND /usr/bin/python3 -c "import torch;print(torch.utils.cmake_prefix_path)"
         TIMEOUT 5
         OUTPUT_VARIABLE TORCH_CMAKE_PREFIX_PATH
