@@ -30,7 +30,7 @@ TEST_CASE("Test HNSWiNDEX", "[short]") {
 
 }
 
-TEST_CASE("Test HNSWIndex", "") {
+TEST_CASE("Test HNSWIndex delete", "[short]") {
   CANDY::HNSWNaiveIndex hnswIdx;
   INTELLI::ConfigMapPtr cfg = newConfigMap();
   cfg->edit("vecDim", (int64_t) 10);
