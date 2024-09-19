@@ -50,7 +50,7 @@ namespace faiss{
     using storage_idx_t = HNSW::storage_idx_t;
     using NodeDistFarther = HNSW::NodeDistFarther;
 
-    HNSWStats hnsw_stats;
+    HNSWStats mnru_stats;
 
 
     namespace {
@@ -408,7 +408,7 @@ namespace faiss{
         FAISS_THROW_IF_NOT(k > 0);
         FAISS_THROW_IF_NOT_MSG(
                 storage,
-                "Please use IndexHNSWFlat (or variants) instead of IndexHNSW directly");
+                "Please use IndexMNRUFlat (or variants) instead of IndexMNRU directly");
         const SearchParametersHNSW* params = nullptr;
 
         int efSearch = main_index.efSearch;
@@ -450,20 +450,6 @@ namespace faiss{
                     nreorder += stats.nreorder;
                     maxheap_reorder(k, simi, idxi);
 
-                    if (reconstruct_from_neighbors &&
-                        reconstruct_from_neighbors->k_reorder != 0) {
-                        int k_reorder = reconstruct_from_neighbors->k_reorder;
-                        if (k_reorder == -1 || k_reorder > k)
-                            k_reorder = k;
-
-                        nreorder += reconstruct_from_neighbors->compute_distances(
-                                k_reorder, idxi, x + i * d, simi);
-
-                        // sort top k_reorder
-                        maxheap_heapify(
-                                k_reorder, simi, idxi, simi, idxi, k_reorder);
-                        maxheap_reorder(k_reorder, simi, idxi);
-                    }
                 }
             }
             InterruptCallback::check();
@@ -476,13 +462,13 @@ namespace faiss{
             }
         }
 
-        hnsw_stats.combine({n1, n2, n3, ndis, nreorder});
+        mnru_stats.combine({n1, n2, n3, ndis, nreorder});
     }
 
     void IndexMNRU::train(idx_t n, const float* x) {
         FAISS_THROW_IF_NOT_MSG(
                 storage,
-                "Please use IndexHNSWFlat (or variants) instead of IndexHNSW directly");
+                "Please use IndexMNRUFlat (or variants) instead of IndexMNRU directly");
         // hnsw structure does not require training
         storage->train(n, x);
         is_trained = true;
@@ -491,7 +477,7 @@ namespace faiss{
     void IndexMNRU::add(idx_t n, const float* x) {
         FAISS_THROW_IF_NOT_MSG(
                 storage,
-                "Please use IndexHNSWFlat (or variants) instead of IndexHNSW directly");
+                "Please use IndexMNRUFlat (or variants) instead of IndexMNRU directly");
         FAISS_THROW_IF_NOT(is_trained);
         int n0 = ntotal;
         storage->add(n, x);
@@ -542,246 +528,6 @@ namespace faiss{
 
     void IndexMNRU::reconstruct(idx_t key, float* recons) const {
         storage->reconstruct(key, recons);
-    }
-
-    /**************************************************************
- * ReconstructFromNeighbors implementation
- **************************************************************/
-
-    ReconstructFromNeighbors::ReconstructFromNeighbors(
-            const IndexMNRU& index,
-            size_t k,
-            size_t nsq)
-            : index(index), k(k), nsq(nsq) {
-        M = index.main_index.nb_neighbors(0);
-        FAISS_ASSERT(k <= 256);
-        code_size = k == 1 ? 0 : nsq;
-        ntotal = 0;
-        d = index.d;
-        FAISS_ASSERT(d % nsq == 0);
-        dsub = d / nsq;
-        k_reorder = -1;
-    }
-
-    void ReconstructFromNeighbors::reconstruct(
-            storage_idx_t i,
-            float* x,
-            float* tmp) const {
-        const HNSW& hnsw = index.main_index;
-        size_t begin, end;
-        hnsw.neighbor_range(i, 0, &begin, &end);
-
-        if (k == 1 || nsq == 1) {
-            const float* beta;
-            if (k == 1) {
-                beta = codebook.data();
-            } else {
-                int idx = codes[i];
-                beta = codebook.data() + idx * (M + 1);
-            }
-
-            float w0 = beta[0]; // weight of image itself
-            index.storage->reconstruct(i, tmp);
-
-            for (int l = 0; l < d; l++)
-                x[l] = w0 * tmp[l];
-
-            for (size_t j = begin; j < end; j++) {
-                storage_idx_t ji = hnsw.neighbors[j];
-                if (ji < 0)
-                    ji = i;
-                float w = beta[j - begin + 1];
-                index.storage->reconstruct(ji, tmp);
-                for (int l = 0; l < d; l++)
-                    x[l] += w * tmp[l];
-            }
-        } else if (nsq == 2) {
-            int idx0 = codes[2 * i];
-            int idx1 = codes[2 * i + 1];
-
-            const float* beta0 = codebook.data() + idx0 * (M + 1);
-            const float* beta1 = codebook.data() + (idx1 + k) * (M + 1);
-
-            index.storage->reconstruct(i, tmp);
-
-            float w0;
-
-            w0 = beta0[0];
-            for (int l = 0; l < dsub; l++)
-                x[l] = w0 * tmp[l];
-
-            w0 = beta1[0];
-            for (int l = dsub; l < d; l++)
-                x[l] = w0 * tmp[l];
-
-            for (size_t j = begin; j < end; j++) {
-                storage_idx_t ji = hnsw.neighbors[j];
-                if (ji < 0)
-                    ji = i;
-                index.storage->reconstruct(ji, tmp);
-                float w;
-                w = beta0[j - begin + 1];
-                for (int l = 0; l < dsub; l++)
-                    x[l] += w * tmp[l];
-
-                w = beta1[j - begin + 1];
-                for (int l = dsub; l < d; l++)
-                    x[l] += w * tmp[l];
-            }
-        } else {
-            std::vector<const float*> betas(nsq);
-            {
-                const float* b = codebook.data();
-                const uint8_t* c = &codes[i * code_size];
-                for (int sq = 0; sq < nsq; sq++) {
-                    betas[sq] = b + (*c++) * (M + 1);
-                    b += (M + 1) * k;
-                }
-            }
-
-            index.storage->reconstruct(i, tmp);
-            {
-                int d0 = 0;
-                for (int sq = 0; sq < nsq; sq++) {
-                    float w = *(betas[sq]++);
-                    int d1 = d0 + dsub;
-                    for (int l = d0; l < d1; l++) {
-                        x[l] = w * tmp[l];
-                    }
-                    d0 = d1;
-                }
-            }
-
-            for (size_t j = begin; j < end; j++) {
-                storage_idx_t ji = hnsw.neighbors[j];
-                if (ji < 0)
-                    ji = i;
-
-                index.storage->reconstruct(ji, tmp);
-                int d0 = 0;
-                for (int sq = 0; sq < nsq; sq++) {
-                    float w = *(betas[sq]++);
-                    int d1 = d0 + dsub;
-                    for (int l = d0; l < d1; l++) {
-                        x[l] += w * tmp[l];
-                    }
-                    d0 = d1;
-                }
-            }
-        }
-    }
-
-    void ReconstructFromNeighbors::reconstruct_n(
-            storage_idx_t n0,
-            storage_idx_t ni,
-            float* x) const {
-//#pragma omp parallel
-        {
-            std::vector<float> tmp(index.d);
-//#pragma omp for
-            for (storage_idx_t i = 0; i < ni; i++) {
-                reconstruct(n0 + i, x + i * index.d, tmp.data());
-            }
-        }
-    }
-
-    size_t ReconstructFromNeighbors::compute_distances(
-            size_t n,
-            const idx_t* shortlist,
-            const float* query,
-            float* distances) const {
-        std::vector<float> tmp(2 * index.d);
-        size_t ncomp = 0;
-        for (int i = 0; i < n; i++) {
-            if (shortlist[i] < 0)
-                break;
-            reconstruct(shortlist[i], tmp.data(), tmp.data() + index.d);
-            distances[i] = fvec_L2sqr(query, tmp.data(), index.d);
-            ncomp++;
-        }
-        return ncomp;
-    }
-
-    void ReconstructFromNeighbors::get_neighbor_table(storage_idx_t i, float* tmp1)
-    const {
-        const HNSW& hnsw = index.main_index;
-        size_t begin, end;
-        hnsw.neighbor_range(i, 0, &begin, &end);
-        size_t d = index.d;
-
-        index.storage->reconstruct(i, tmp1);
-
-        for (size_t j = begin; j < end; j++) {
-            storage_idx_t ji = hnsw.neighbors[j];
-            if (ji < 0)
-                ji = i;
-            index.storage->reconstruct(ji, tmp1 + (j - begin + 1) * d);
-        }
-    }
-
-/// called by add_codes
-    void ReconstructFromNeighbors::estimate_code(
-            const float* x,
-            storage_idx_t i,
-            uint8_t* code) const {
-        // fill in tmp table with the neighbor values
-        std::unique_ptr<float[]> tmp1(new float[d * (M + 1) + (d * k)]);
-        float* tmp2 = tmp1.get() + d * (M + 1);
-
-        // collect coordinates of base
-        get_neighbor_table(i, tmp1.get());
-
-        for (size_t sq = 0; sq < nsq; sq++) {
-            int d0 = sq * dsub;
-
-            {
-                FINTEGER ki = k, di = d, m1 = M + 1;
-                FINTEGER dsubi = dsub;
-                float zero = 0, one = 1;
-
-                sgemm_("N",
-                       "N",
-                       &dsubi,
-                       &ki,
-                       &m1,
-                       &one,
-                       tmp1.get() + d0,
-                       &di,
-                       codebook.data() + sq * (m1 * k),
-                       &m1,
-                       &zero,
-                       tmp2,
-                       &dsubi);
-            }
-
-            float min = HUGE_VAL;
-            int argmin = -1;
-            for (size_t j = 0; j < k; j++) {
-                float dis = fvec_L2sqr(x + d0, tmp2 + j * dsub, dsub);
-                if (dis < min) {
-                    min = dis;
-                    argmin = j;
-                }
-            }
-            code[sq] = argmin;
-        }
-    }
-
-    void ReconstructFromNeighbors::add_codes(size_t n, const float* x) {
-        if (k == 1) { // nothing to encode
-            ntotal += n;
-            return;
-        }
-        codes.resize(codes.size() + code_size * n);
-//#pragma omp parallel for
-        for (int i = 0; i < n; i++) {
-            estimate_code(
-                    x + i * index.d,
-                    ntotal + i,
-                    codes.data() + (ntotal + i) * code_size);
-        }
-        ntotal += n;
-        FAISS_ASSERT(codes.size() == ntotal * code_size);
     }
 
     IndexMNRUFlat::IndexMNRUFlat() {
