@@ -438,11 +438,26 @@ namespace faiss{
                     float* simi = distances + i * k;
                     dis->set_query(x + i * d);
 
+                    std::vector<idx_t> backup_results(k);
+                    std::vector<float> backup_distances(k);
+
                     maxheap_heapify(k, simi, idxi);
+
+                    maxheap_heapify(k, backup_distances.data(), backup_results.data());
 
                     // dual index search
                     HNSWStats stats = main_index.search(*dis, k, idxi, simi, vt, params);
-                    backup_index.search(*dis, k, idxi, simi, vt, params);
+                    backup_index.search(*dis, k, backup_results.data(), backup_distances.data(), vt, params);
+                    // merge results
+                    for(size_t i=0; i<backup_distances.size();i++){
+                        float dis = backup_distances[i];
+                        auto idx = backup_results[i];
+                        if(dis<simi[0]) {
+                            faiss::maxheap_replace_top(k, simi, idxi, dis, idx);
+                        }
+                    }
+
+
                     n1 += stats.n1;
                     n2 += stats.n2;
                     n3 += stats.n3;
@@ -496,6 +511,7 @@ namespace faiss{
             VisitedTable vt(ntotal);
             std::unique_ptr<DistanceComputer> dis(
                     storage_distance_computer(storage));
+            dis->set_query(entry_vector);
             main_index.search(*dis, ntotal, labels.data(), distances.data(),vt);
             std::vector<bool> present(ntotal);
             for(size_t i=0; i<ntotal; i++){
@@ -508,6 +524,7 @@ namespace faiss{
                     unreachables.push_back(i);
                 }
             }
+            delete[] entry_vector;
             printf("Found %ld unreachable vectors!\n", unreachables.size());
             std::vector<float> unreachable_vectors(d*unreachables.size());
             for(size_t i=0; i<unreachables.size(); i++){
