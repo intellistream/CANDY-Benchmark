@@ -169,11 +169,9 @@ struct Res//the result of knns
 
 inline float cal_inner_product(float* v1, float* v2, int dim)
 {
-#if (defined __AVX2__ && defined __USE__AVX2__ZX__)
-	return faiss::fvec_inner_product_avx512(v1, v2, dim);
-#else
-	return calIp_fast(v1, v2, dim);
-#endif
+
+  return calIp_fast(v1, v2, dim);
+
 }
 
 inline float cal_lengthSquare(float* v1, int dim)
@@ -187,34 +185,13 @@ inline float cal_lengthSquare(float* v1, int dim)
 extern int _g_dist_mes;
 inline float cal_dist(float* v1, float* v2, int dim)
 {
-  if(_g_dist_mes==1) {
-    return 1.0-cal_inner_product(v1,v2,dim);
-  }
-#ifdef USE_SQRDIST
-	#if (defined __AVX2__ && defined __USE__AVX2__ZX__)
-		return faiss::fvec_L2sqr_avx512(v1, v2, dim);
-	#else
-		return calL2Sqr_fast(v1, v2, dim);
-	#endif
-#else
-	#if (defined __AVX2__ && defined __USE__AVX2__ZX__)
-		return sqrt(faiss::fvec_L2sqr_avx512(v1, v2, dim));
-	#else
-		return sqrt(calL2Sqr_fast(v1, v2, dim));
-	#endif
-#endif
+  return calL2Sqr_fast(v1, v2, dim);
 	
 }
 
 inline float cal_distSqrt(float* v1, float* v2, int dim)
 {
-#if (defined __AVX2__ && defined __USE__AVX2__ZX__)
-	return sqrt(faiss::fvec_L2sqr_avx512(v1, v2, dim));
-#else
-	return sqrt(calL2Sqr_fast(v1, v2, dim));
-#endif
-	//return sqrt(calL2Sqr_fast(v1, v2, dim));
-	
+  return calL2Sqr_fast(v1, v2, dim);
 }
 
 template <class T>

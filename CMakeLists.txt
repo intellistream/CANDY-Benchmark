@@ -15,6 +15,8 @@ include(cmake/default.cmake)
 #gcc 10 g++10
 # First compile faiss before anything else
 #set(CMAKE_CXX_FLAGS "-fno-openmp")
+#test avx2
+
 add_subdirectory(thirdparty/faiss)
 
 # Set specific options for Faiss compilation
@@ -29,6 +31,33 @@ set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DNO_RACE_CHECK -DCANDY_DEBUG_MODE=1")
 set(CMAKE_CXX_FLAGS_RELEASE "-Wno-ignored-qualifiers -Wno-sign-compare -O3")
 set(PROJECT_BINARY_DIR_RAW ${PROJECT_BINARY_DIR})
+
+# Valid values are "generic", "avx2", "avx512".
+
+detect_avx512_support(AVX512_AVAILABLE)
+# Use AVX-512 based on the result
+if(AVX512_AVAILABLE)
+    message(STATUS "AVX-512 support detected.")
+    set(CANDY_AVX512 1)
+    set(CANDY_AVX2 1)
+else()
+    message(STATUS "AVX-512 support NOT detected.")
+    detect_avx2_support(AVX2_AVAILABLE)
+    if(AVX2_AVAILABLE)
+        message(STATUS "AVX-2 support detected.")
+        set(CANDY_AVX2 1)
+    else ()
+        message(STATUS "AVX-2 support not detected.")
+        set(CANDY_AVX2 0)
+        set(CANDY_AVX512 0)
+    endif ()
+endif()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/simd_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/simd_config.h"
+)
+
+
 #set(CMAKE_CUDA_STANDARD 11)
 #set(CMAKE_CUDA_FLAGS "-std=c++11")
 option(ENABLE_OPENCL
