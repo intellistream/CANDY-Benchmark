@@ -165,7 +165,7 @@ double DPGIndex::calcDist(const torch::Tensor &ta, const torch::Tensor &tb) {
     //for (size_t i = 0; i < vecDim; ++i) ans -= taPtr[i] * tbPtr[i];
     // Calculate the inner (dot) product
     auto inner_product = torch::dot(ta, tb);
-    ans = inner_product.item<float>();
+    ans = -inner_product.item<float>();
     // Convert the result back to float and return
   }
   return ans;
