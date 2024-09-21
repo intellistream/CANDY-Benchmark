@@ -32,14 +32,17 @@ namespace CANDY {
  * - SPTAGThreads, the number of involved threads, default 1, I64
  * - SPTAGNumberOfInitialDynamicPivots, Specifies the number of pivots used for partitioning the data into clusters during tree construction (relevant for BKT). Pivots are the points that the algorithm uses to split the data into clusters., DEFAULT 32, I64
  * - SPTAGMaxCheck,  The number of nodes to examine during a query. This affects the trade-off between query speed and accuracy. A higher value means more nodes are checked, resulting in better accuracy but slower queries., Default 8192. I64
- * - SPTAGNumOfTress, The number of trees to build, default 1, I64
- * -
+ * - SPTAGGraphNeighborhoodSize,  Defines the size of the neighborhood graph during graph construction. This is used for neighbor search in the proximity graph. Default 32 I64
+ * - SPTAGGraphNeighborhoodScale,   This parameter controls the scale of how the neighborhood size grows as the algorithm progresses through different stages of tree construction. Default 2.0, DOUBLE
+ * - SPTAGRefineIterations, The number of iterations used during graph refinement. Refinement improves the quality of the nearest neighbor graph by updating the edges iteratively. dEFAULT 3, I64
  */
 class SPTAGIndex : public FlatIndex {
  protected:
   std::shared_ptr<SPTAG::VectorIndex> sptag;
   int64_t SPTAGThreads = 1;
   bool isInitialized = true;
+  int64_t SPTAGNumberOfInitialDynamicPivots,SPTAGMaxCheck,SPTAGGraphNeighborhoodSize,SPTAGRefineIterations;
+  double SPTAGGraphNeighborhoodScale;
  public:
   SPTAGIndex() {
 

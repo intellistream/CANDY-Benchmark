@@ -22,7 +22,17 @@ bool CANDY::SPTAGIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     INTELLI_INFO("Using l2 for SPTAG");
   }
   SPTAGThreads = cfg->tryI64("SPTAGThreads",1,false);
+  SPTAGNumberOfInitialDynamicPivots = cfg->tryI64("SPTAGNumberOfInitialDynamicPivots",32,false);
+  SPTAGMaxCheck = cfg->tryI64("SPTAGMaxCheck",8192,false);
+  SPTAGGraphNeighborhoodSize =  cfg->tryI64("SPTAGGraphNeighborhoodSize",32,false);
+  SPTAGGraphNeighborhoodScale = cfg->tryDouble("SPTAGGraphNeighborhoodScale",2.0,false);
+  SPTAGRefineIterations = cfg->tryI64("SPTAGRefineIterations",3,false);
   sptag->SetParameter("NumberOfThreads", std::to_string(SPTAGThreads));
+  sptag->SetParameter("NumberOfInitialDynamicPivots", std::to_string(SPTAGNumberOfInitialDynamicPivots));
+  sptag->SetParameter("MaxCheck", std::to_string(SPTAGMaxCheck));
+  sptag->SetParameter("GraphNeighborhoodSize", std::to_string(SPTAGGraphNeighborhoodSize));
+  sptag->SetParameter("GraphNeighborhoodScale", std::to_string(SPTAGGraphNeighborhoodScale));
+  sptag->SetParameter("RefineIterations", std::to_string(SPTAGRefineIterations));
   isInitialized = false;
   return true;
 }
