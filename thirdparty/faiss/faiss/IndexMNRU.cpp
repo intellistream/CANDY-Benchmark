@@ -512,10 +512,15 @@ namespace faiss{
             std::unique_ptr<DistanceComputer> dis(
                     storage_distance_computer(storage));
             dis->set_query(entry_vector);
+            main_index.search_bounded_queue=false;
             main_index.search(*dis, ntotal, labels.data(), distances.data(),vt);
+            main_index.search_bounded_queue=true;
             std::vector<bool> present(ntotal);
             for(size_t i=0; i<ntotal; i++){
                 auto idx = labels[i];
+//                if(present[idx]==true){
+//                    printf("overlapping for %ld!\n", idx);
+//                }
                 present[idx]=true;
             }
             std::vector<idx_t> unreachables;
