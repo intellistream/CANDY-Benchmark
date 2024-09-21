@@ -1,8 +1,8 @@
 
 cmake_minimum_required(VERSION 3.14)
 project(CANDY CXX)
-
-
+set(CMAKE_VERBOSE_MAKEFILE OFF)
+set(CMAKE_RULE_MESSAGES OFF)
 # Custom CMake find instructions and macros
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include(cmake/macros.cmake)
@@ -27,7 +27,7 @@ find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
 # Set Optimization Flags
-set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type")
+set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type -Wno-interference-size")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DNO_RACE_CHECK -DCANDY_DEBUG_MODE=1")
 set(CMAKE_CXX_FLAGS_RELEASE "-Wno-ignored-qualifiers -Wno-sign-compare -O3")
 set(PROJECT_BINARY_DIR_RAW ${PROJECT_BINARY_DIR})
@@ -72,10 +72,15 @@ option(ENABLE_HDF5
         "Enable load data from hdf5 file"
         OFF
 )
+option(ENABLE_SPTAG
+        "Integrate SPTAG LIBS"
+        OFF
+)
 option(ENABLE_PYBIND
         "Enable original pybind and build CANDY python"
         OFF
 )
+
 #OPTIONAL OPENCL
 if (NOT ENABLE_OPENCL)
     message(STATUS "I will NOT include opencl support ")
@@ -155,7 +160,31 @@ configure_file(
         "${PROJECT_SOURCE_DIR}/include/hdf5_config.h.in"
         "${PROJECT_BINARY_DIR}/include/hdf5_config.h"
 )
+# Set SPTAG build directory
+set(SPTAG_BUILD_DIR ${CMAKE_BINARY_DIR}/SPTAG_build)
 
+# Configure build output directories specifically for SPTAG
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
+if (NOT ENABLE_SPTAG)
+    message(STATUS "I will NOT include SPTAG LIBS")
+    set(CANDY_SPTAG 0)
+else ()
+    set(CANDY_SPTAG 1)
+    message(STATUS "I will include support for SPTAG")
+    add_subdirectory(thirdparty/SPTAG)
+    set(LIBRARIES ${LIBRARIES}  SPTAGLib)
+endif ()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/sptag_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/sptag_config.h"
+)
+
+# Reset output directories for the rest of your project
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 message(STATUS "CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS}")
 message(STATUS "CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG}")
@@ -195,6 +224,9 @@ set_property(TARGET CANDY PROPERTY CXX_STANDARD 20)
 target_include_directories(CANDY PUBLIC "include")
 target_include_directories(CANDY PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(CANDY PUBLIC "thirdparty/papi_build/include")
+target_include_directories(CANDY PUBLIC "thirdparty/")
+target_include_directories(CANDY PUBLIC "thirdparty/SPTAG")
+target_include_directories(CANDY PUBLIC "thirdparty/SPTAG/AnnService")
 target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
 target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
 target_link_libraries(CANDY PUBLIC ${LIBRARIES})

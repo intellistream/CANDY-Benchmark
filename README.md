@@ -56,10 +56,10 @@ jammy may crash down your older version
 
 Please do not install the python3 from jammy!!! Keep it raw is safer!!!
 
-### Requires BLAS and LAPACK
+### Requires BLAS, LAPACK, boost and swig
 
 ```shell
-sudo apt install liblapack-dev libblas-dev
+sudo apt install liblapack-dev libblas-dev libboost-all-dev swig
 ```
 
 ### (Optional) Install graphviz
