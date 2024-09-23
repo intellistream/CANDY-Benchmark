@@ -1,7 +1,6 @@
 # CANDY
 
-A Lib and benchmark for AKNN. This project is compatable with
-libtorch
+A Lib and benchmark for AKNN. This project is compatable with libtorch
 
 ## Extra Cmake options (set by cmake -Dxxx=ON/OFF)
 - ENABLE_PAPI, this will enable PAPI-based perf tools (OFF by default) 
@@ -72,7 +71,7 @@ pip install torchviz
 ### Requires Torch
 
 You may refer to https://pytorch.org/get-started/locally/ for mor details, following are the minimal requirements
-DO NOT USE CONADA!!!!!
+DO NOT USE CONDA!!!!!
 
 #### (Optional) Cuda-based torch
 

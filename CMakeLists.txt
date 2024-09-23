@@ -23,6 +23,8 @@ add_subdirectory(thirdparty/faiss)
 #target_compile_options(faiss PRIVATE "-fno-openmp")
 set(LIBRARIES ${LIBRARIES} faiss)
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules" ${CMAKE_MODULE_PATH})
+
 find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})

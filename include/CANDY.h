@@ -79,7 +79,7 @@
 * - remember to add a test bench, you can refer to FlatIndexTest.cpp at test/SystemTest for example
 * @section subsec_edit_test How to add a single point test
 * - follow and copy the SimpleTest.cpp to create your own, say A.cpp
-* - register A.cpp to test/CMakeLists.txt, please follow how we deal with the SketchTest.cpp
+* - register A.cpp to test/FindTorch.cmake, please follow how we deal with the SketchTest.cpp
 * - assuming you have made A.cpp into a_test, append  ./a_test "--success" to the last row of .github/workflows/cmake.yml
 *
 * @section python_doc Python Documents

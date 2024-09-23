@@ -1,4 +1,4 @@
-# CMakeLists.txt -- Build system for the pybind11 test suite
+# FindTorch.cmake -- Build system for the pybind11 test suite
 #
 # Copyright (c) 2015 Wenzel Jakob <wenzel@inf.ethz.ch>
 #
