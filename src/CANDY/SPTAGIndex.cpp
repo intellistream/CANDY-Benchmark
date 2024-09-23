@@ -11,15 +11,15 @@
 
 bool CANDY::SPTAGIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   FlatIndex::setConfig(cfg);
-  if(faissMetric == faiss::METRIC_INNER_PRODUCT) {
     sptag = SPTAG::VectorIndex::CreateInstance(SPTAG::IndexAlgoType::BKT,
-                                               static_cast<SPTAG::VectorValueType>(SPTAG::DistCalcMethod::InnerProduct));
+                                               SPTAG::VectorValueType::Float);
+  if(faissMetric == faiss::METRIC_INNER_PRODUCT) {
     INTELLI_INFO("Using inner product for SPTAG");
+    sptag->SetParameter("DistCalcMethod", SPTAG::Helper::Convert::ConvertToString(SPTAG::DistCalcMethod::InnerProduct));
   }
   else {
-    sptag = SPTAG::VectorIndex::CreateInstance(SPTAG::IndexAlgoType::BKT,
-                                               static_cast<SPTAG::VectorValueType>(SPTAG::DistCalcMethod::L2));
     INTELLI_INFO("Using l2 for SPTAG");
+      sptag->SetParameter("DistCalcMethod", SPTAG::Helper::Convert::ConvertToString(SPTAG::DistCalcMethod::L2));
   }
   SPTAGThreads = cfg->tryI64("SPTAGThreads",1,false);
   SPTAGNumberOfInitialDynamicPivots = cfg->tryI64("SPTAGNumberOfInitialDynamicPivots",32,false);
@@ -77,6 +77,7 @@ std::vector<torch::Tensor> CANDY::SPTAGIndex::searchTensor(torch::Tensor &q, int
     // Store the result indices in the output tensor
     for (int64_t j = 0; j < k; ++j) {
       auto tempIdx = query_result.GetResult(j)->VID;
+        printf("%ld%ld=%ld\n", i,j,tempIdx);
       ru[i].slice(0, j, j + 1) = dbTensor.slice(0, tempIdx, tempIdx + 1);
     }
   }
