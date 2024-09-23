@@ -36,22 +36,22 @@ namespace SPTAG
 
         class LoggerHolder
         {
-#if ((defined(_MSVC_LANG) && _MSVC_LANG >= 	202002L) || __cplusplus >= 	202002L)
-        private:
-            std::atomic<std::shared_ptr<Logger>> m_logger;
-        public:
-            LoggerHolder(std::shared_ptr<Logger> logger) : m_logger(logger) {}
-
-            void SetLogger(std::shared_ptr<Logger> p_logger)
-            {
-                m_logger = p_logger;
-            }
-
-            std::shared_ptr<Logger> GetLogger()
-            {
-                return m_logger;
-            }
-#else
+//#if ((defined(_MSVC_LANG) && _MSVC_LANG >= 	202002L) || __cplusplus >= 	202002L)
+//        private:
+//            std::atomic<std::shared_ptr<Logger>> m_logger;
+//        public:
+//            LoggerHolder(std::shared_ptr<Logger> logger) : m_logger(logger) {}
+//
+//            void SetLogger(std::shared_ptr<Logger> p_logger)
+//            {
+//                m_logger = p_logger;
+//            }
+//
+//            std::shared_ptr<Logger> GetLogger()
+//            {
+//                return m_logger;
+//            }
+//#else
         private:
             std::shared_ptr<Logger> m_logger;
         public:
@@ -66,7 +66,7 @@ namespace SPTAG
             {
                 return std::atomic_load(&m_logger);
             }
-#endif
+//#endif
         };
 
 
