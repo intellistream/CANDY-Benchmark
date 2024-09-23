@@ -46,7 +46,10 @@ echo "Build CANDY and PyCandy"
 # Step 1: Configure the project
 export CUDACXX=/usr/local/cuda/bin/nvcc
 mkdir build 
-cd build &&cmake -DCMAKE_PREFIX_PATH=`python3 -c 'import torch;print(torch.utils.cmake_prefix_path)'` -DENABLE_HDF5=ON -DENABLE_PYBIND=ON -DCMAKE_INSTALL_PREFIX=/usr/local/lib -DENABLE_PAPI=ON -DREBUILD_PAPI=ON ..
+cd build &&cmake -DCMAKE_PREFIX_PATH=$(python3 -c 'import torch;print(torch.utils.cmake_prefix_path)') \
+                 -DENABLE_HDF5=ON -DENABLE_PYBIND=ON \
+                 -DCMAKE_INSTALL_PREFIX=/usr/local/lib \
+                 -DENABLE_PAPI=ON -DREBUILD_PAPI=ON ..
 
 # Step 2: Determine the maximum number of threads
 max_threads=$(nproc)

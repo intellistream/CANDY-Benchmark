@@ -1,11 +1,16 @@
 # FindTorch.cmake
-# Locate the Torch library
-# This module defines
-#  TORCH_FOUND        - system has Torch
-#  TORCH_INCLUDE_DIRS - the Torch include directories
-#  TORCH_LIBRARIES    - link these to use Torch
-#  TORCH_VERSION      - the Torch version found
+# Locate the Torch library using Python
 
+# Use Python to locate the torch CMake prefix path if Torch_DIR is not already set
+if (NOT Torch_DIR)
+    execute_process(
+            COMMAND python3 -c "import torch; print(torch.utils.cmake_prefix_path)"
+            OUTPUT_VARIABLE Torch_DIR
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+endif()
+
+# Check if the required directories exist for Torch headers and libraries
 find_path(TORCH_INCLUDE_DIR
         NAMES torch/torch.h
         HINTS ${Torch_DIR} ENV Torch_DIR
@@ -16,26 +21,17 @@ find_library(TORCH_LIBRARY
         HINTS ${Torch_DIR} ENV Torch_DIR
         PATH_SUFFIXES lib)
 
-find_library(TORCH_PYTHON_LIBRARY
-        NAMES torch_python
-        HINTS ${Torch_DIR} ENV Torch_DIR
-        PATH_SUFFIXES lib)
-
-if (TORCH_INCLUDE_DIR AND TORCH_LIBRARY AND TORCH_PYTHON_LIBRARY)
+# If both the include directory and library are found, mark Torch as found
+if (TORCH_INCLUDE_DIR AND TORCH_LIBRARY)
     set(TORCH_FOUND TRUE)
-    set(TORCH_LIBRARIES ${TORCH_LIBRARY} ${TORCH_PYTHON_LIBRARY})
     set(TORCH_INCLUDE_DIRS ${TORCH_INCLUDE_DIR})
+    set(TORCH_LIBRARIES ${TORCH_LIBRARY})
 else()
     set(TORCH_FOUND FALSE)
 endif()
 
-# Optional: Get the PyTorch version
-if (TORCH_FOUND)
-    execute_process(
-            COMMAND python3 -c "import torch; print(torch.__version__)"
-            OUTPUT_VARIABLE TORCH_VERSION
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-endif()
+# Output the found paths for debugging purposes
+message(STATUS "Torch include directory: ${TORCH_INCLUDE_DIR}")
+message(STATUS "Torch libraries: ${TORCH_LIBRARIES}")
 
-mark_as_advanced(TORCH_INCLUDE_DIR TORCH_LIBRARY TORCH_PYTHON_LIBRARY)
+mark_as_advanced(TORCH_INCLUDE_DIR TORCH_LIBRARY)

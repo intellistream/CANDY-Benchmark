@@ -2,13 +2,6 @@
 cmake_minimum_required(VERSION 3.14)
 project(CANDY CXX)
 
-
-# Custom CMake find instructions and macros
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
-include(cmake/macros.cmake)
-include(cmake/default.cmake)
-
-
 # C++ Standard
 #set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -17,13 +10,17 @@ include(cmake/default.cmake)
 #set(CMAKE_CXX_FLAGS "-fno-openmp")
 #test avx2
 
+
+# Custom CMake find instructions and macros
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
+include(cmake/macros.cmake)
+include(cmake/default.cmake)
+
 add_subdirectory(thirdparty/faiss)
 
 # Set specific options for Faiss compilation
 #target_compile_options(faiss PRIVATE "-fno-openmp")
 set(LIBRARIES ${LIBRARIES} faiss)
-
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules" ${CMAKE_MODULE_PATH})
 
 find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
