@@ -30,7 +30,8 @@
 *.exe
 *.out
 *.app
-*build
+/build
+thirdparty/papi_build
 __pycache*/
 doc/
 /cmake-build-debug/
