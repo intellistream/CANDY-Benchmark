@@ -21,6 +21,12 @@ find_library(TORCH_LIBRARY
         HINTS ${Torch_DIR} ENV Torch_DIR
         PATH_SUFFIXES lib)
 
+# Add search for the torch_python library if you need Python bindings
+find_library(TORCH_PYTHON_LIBRARY
+        NAMES torch_python
+        HINTS ${Torch_DIR} ENV Torch_DIR
+        PATH_SUFFIXES lib)
+
 # If both the include directory and library are found, mark Torch as found
 if (TORCH_INCLUDE_DIR AND TORCH_LIBRARY)
     set(TORCH_FOUND TRUE)
@@ -30,8 +36,16 @@ else()
     set(TORCH_FOUND FALSE)
 endif()
 
+# If torch_python is needed, check if it was found
+if (TORCH_PYTHON_LIBRARY)
+    message(STATUS "Torch Python library found: ${TORCH_PYTHON_LIBRARY}")
+    set(TORCH_LIBRARIES ${TORCH_LIBRARIES} ${TORCH_PYTHON_LIBRARY})
+else()
+    message(WARNING "Torch Python library NOT found.")
+endif()
+
 # Output the found paths for debugging purposes
 message(STATUS "Torch include directory: ${TORCH_INCLUDE_DIR}")
 message(STATUS "Torch libraries: ${TORCH_LIBRARIES}")
 
-mark_as_advanced(TORCH_INCLUDE_DIR TORCH_LIBRARY)
+mark_as_advanced(TORCH_INCLUDE_DIR TORCH_LIBRARY TORCH_PYTHON_LIBRARY)

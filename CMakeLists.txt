@@ -73,7 +73,7 @@ option(ENABLE_HDF5
 )
 option(ENABLE_PYBIND
         "Enable original pybind and build CANDY python"
-        OFF
+        ON
 )
 #OPTIONAL OPENCL
 if (NOT ENABLE_OPENCL)
@@ -205,24 +205,27 @@ set_property(TARGET benchmark PROPERTY CXX_STANDARD 20)
 #Add tests (based on GTest suits)
 #include(GoogleTest)
 
-if (ENABLE_UNIT_TESTS)
-    add_subdirectory(test)
-endif ()
-
 if (NOT ENABLE_PYBIND)
     message(STATUS "I will NOT build original python package PyCANDY")
     set(CANDY_PYBIND 0)
 else ()
-    message(STATUS "I will  build original python package PyCANDY")
+    message(STATUS "I will build original python package PyCANDY")
     add_subdirectory(thirdparty/pybind11)
-    pybind11_add_module(PyCANDY ${PROJECT_SOURCE_DIR}/src/PyCANDY.cpp)
-    find_library(TORCH_PYTHON_LIBRARY torch_python PATH "${TORCH_INSTALL_PREFIX}/lib")
-    target_link_libraries(PyCANDY PUBLIC ${LIBRARIES} CANDY ${TORCH_PYTHON_LIBRARY})
-    install(TARGETS PyCANDY LIBRARY DESTINATION .)
-    message(STATUS "Additional include torch_python: ${TORCH_PYTHON_LIBRARY}")
+
+    # Ensure that torch_python library is found and linked if available
+    if (TORCH_PYTHON_LIBRARY)
+        message(STATUS "Linking PyCANDY with Torch Python Library")
+        pybind11_add_module(PyCANDY ${PROJECT_SOURCE_DIR}/src/PyCANDY.cpp)
+        target_link_libraries(PyCANDY PUBLIC ${LIBRARIES} CANDY ${TORCH_PYTHON_LIBRARY})
+        install(TARGETS PyCANDY LIBRARY DESTINATION .)
+    else()
+        message(WARNING "Torch Python library not found, PyCANDY may not work properly.")
+    endif()
+
     set(CANDY_PYBIND 1)
-    set_property(TARGET PyCANDY  PROPERTY CXX_STANDARD 20)
+    set_property(TARGET PyCANDY PROPERTY CXX_STANDARD 20)
 endif ()
+
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/pybind_config.h.in"
         "${PROJECT_BINARY_DIR}/include/pybind_config.h"
