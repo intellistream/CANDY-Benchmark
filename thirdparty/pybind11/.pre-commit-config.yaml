@@ -58,7 +58,7 @@ repos:
   - id: cmake-format
     additional_dependencies: [pyyaml]
     types: [file]
-    files: (\.cmake|FindTorch.cmake)(.in)?$
+    files: (\.cmake|CMakeLists.txt)(.in)?$
 
 # Standard hooks
 - repo: https://github.com/pre-commit/pre-commit-hooks
