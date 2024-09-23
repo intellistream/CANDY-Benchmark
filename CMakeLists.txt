@@ -218,13 +218,14 @@ else ()
         pybind11_add_module(PyCANDY ${PROJECT_SOURCE_DIR}/src/PyCANDY.cpp)
         target_link_libraries(PyCANDY PUBLIC ${LIBRARIES} CANDY ${TORCH_PYTHON_LIBRARY})
         install(TARGETS PyCANDY LIBRARY DESTINATION .)
-    else()
-        message(WARNING "Torch Python library not found, PyCANDY may not work properly.")
-    endif()
 
-    set(CANDY_PYBIND 1)
-    set_property(TARGET PyCANDY PROPERTY CXX_STANDARD 20)
-endif ()
+        # Apply property settings only if PyCANDY is created
+        set_property(TARGET PyCANDY PROPERTY CXX_STANDARD 20)
+    else()
+        message(WARNING "Torch Python library not found, PyCANDY will not be built.")
+        set(CANDY_PYBIND 0)
+    endif()
+endif()
 
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/pybind_config.h.in"
