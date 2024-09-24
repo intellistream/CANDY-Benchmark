@@ -4,3 +4,4 @@ torch
 datasets==2.14.3
 numpy>=1.25.0
 nltk==3.8.1
+fsspec==2023.9.2
