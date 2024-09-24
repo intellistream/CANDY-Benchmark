@@ -53,4 +53,3 @@ max_threads=$(nproc)
 
 # Step 3: Build the project using the maximum number of threads
 cmake --build . --parallel $max_threads
-
