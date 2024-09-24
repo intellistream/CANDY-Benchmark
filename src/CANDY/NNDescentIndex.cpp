@@ -138,7 +138,7 @@ double NNDescentIndex::calcDist(const torch::Tensor &ta,
   } else {
     //for (size_t i = 0; i < vecDim; ++i) ans -= taPtr[i] * tbPtr[i];
     // Calculate the inner (dot) product
-    auto inner_product = torch::dot(ta, tb);
+    auto inner_product = torch::matmul(ta, tb.t());
     ans = -inner_product.item<float>();
     // Convert the result back to float and return
   }
