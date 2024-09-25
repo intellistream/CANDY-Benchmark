@@ -85,11 +85,19 @@ When developing in CLion, you must manually configure:
 
 1. **CMake Prefix Path:**
 
+
+### Requires BLAS, LAPACK, boost and swig
+
+```shell
+sudo apt install liblapack-dev libblas-dev libboost-all-dev swig
+```
+
   - Run the following command in your terminal to get the CMake prefix path:
 
     ```shell
     python3 -c 'import torch; print(torch.utils.cmake_prefix_path)'
     ```
+
 
   - Copy the output path and set it in CLion's CMake settings as:
 
