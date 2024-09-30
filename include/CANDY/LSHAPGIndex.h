@@ -75,6 +75,12 @@ public:
     */
     virtual bool insertTensor(torch::Tensor &t);
     /**
+    * @brief delete a tensor
+    * @param t the tensor, accept multiple rows
+    * @return bool whether the insertion is successful
+    */
+    virtual bool deleteTensor(torch::Tensor &t);
+    /**
     * @brief search the k-NN of a query tensor, return their index
     * @param t the tensor, allow multiple rows
     * @param k the returned neighbors

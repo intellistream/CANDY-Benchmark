@@ -88,6 +88,14 @@ if(id==107){
 		return neighbors[out].id;
 	}
 
+	inline bool erase(int pId)
+	{
+		auto it = std::find_if(neighbors, neighbors + out, [pId](const Res& r) {return r.id == pId; });
+		if (it == neighbors + out) return false;
+		std::swap(*it, neighbors[--out]);
+		std::make_heap(neighbors, neighbors + out);
+		return true;
+	}
 
 	inline bool isFull(int maxT_) {
 		return out > maxT_;
@@ -161,6 +169,7 @@ public:
 	std::atomic<size_t> compCostConstruction{ 0 };
 	std::atomic<size_t> pruningConstruction{ 0 };
     void appendTensor(torch::Tensor &t,Preprocess* prep);
+	bool deleteTensorByIndex(int64_t idx);
     void appendHash(float **newData,int64_t oldSize,int64_t newSize);
 	float indexingTime = 0.0f;
 	std::unordered_set<uint64_t> foundEdges;

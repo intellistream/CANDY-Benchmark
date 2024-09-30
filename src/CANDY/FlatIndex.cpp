@@ -76,6 +76,14 @@ std::vector<torch::Tensor> CANDY::FlatIndex::getTensorByIndex(std::vector<faiss:
   }
   return ru;
 }
+
+bool CANDY::FlatIndex::deleteTensorByIndex(int64_t idx) {
+  if (idx < 0 || idx > lastNNZ) {
+    return false;
+  }
+  return INTELLI::IntelliTensorOP::deleteRow(&dbTensor, idx);
+}
+
 torch::Tensor CANDY::FlatIndex::rawData() {
   return dbTensor.slice(0, 0, lastNNZ + 1).contiguous();
 }

@@ -895,6 +895,51 @@ void divGraph::appendTensor(torch::Tensor &t, Preprocess *prep){
   }
 
 }
+
+bool divGraph::deleteTensorByIndex(int64_t idx){
+  if (idx>=N){
+    return false;
+  }
+
+  auto new_linkLists = std::vector<Node2*>(N - 1);
+  auto new_linkListBase = std::vector<Res>((N-1)*unitL);
+  
+  // update new_linkLists and new_linkListBase
+  for (size_t i = 0; i < N; i++) {
+    if (i == idx) {
+      auto neighbor_num = linkLists[i]->size();
+      for (size_t j = 0; j < neighbor_num; j++) {
+        auto& neighbor = linkLists[i]->getNeighbor(j);
+        linkLists[neighbor.id]->erase(idx);
+      }
+      continue;
+    }
+    new_linkLists[i] = linkLists[i];
+    new_linkListBase[i] = linkListBase[i];
+  }
+
+  // update HashTables
+  for (size_t i = 0; i < L; i++) {
+    auto& hashTable = hashTables[i];
+    // auto& hash_lock = hash_locks_[i];
+    // hash_lock.lock();
+    auto it = hashTable.begin();
+    while (it != hashTable.end()) {
+      if (it->second >= idx) {
+        if (it->second > idx) {
+          // hashTable[getZ]
+        }
+        it = hashTable.erase(it);
+      } else {
+      }
+    }
+    // hash_lock.unlock();
+  }
+
+  N = N-1;
+  return true;
+}
+
 void divGraph::refine()
 {
   Res* rnns = new Res[N * maxT + 1];
