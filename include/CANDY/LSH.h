@@ -68,8 +68,10 @@ public:
      * @param t the data tensor
      * @return bool whether the deleting is successful
      */
-    bool deleteTensor(const torch::Tensor &t);
+    bool deleteTensor(const torch::Tensor &t, int64_t k = 1);
 };
+
+#define newLSHIndex std::make_shared<CANDY::LSHAPGIndex>
 
 }
 

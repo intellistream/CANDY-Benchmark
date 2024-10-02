@@ -118,8 +118,8 @@ vector<INTELLI::TensorPtr> LSH::searchTensor(const torch::Tensor &q, int64_t k) 
     return result_tensor;
 }
 
-bool LSH::deleteTensor(const torch::Tensor &t) {
-    auto delete_index = searchIndex(t, 1);
+bool LSH::deleteTensor(const torch::Tensor &t, int64_t k) {
+    auto delete_index = searchIndex(t, k);
 
     for (size_t i = 0; i < delete_index.size(); i++) {
         if (delete_index[i] != -1) {
