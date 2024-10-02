@@ -62,7 +62,7 @@ public:
      * @param k the returned neighbors
      * @return std::vector<INTELLI::TensorPtr> the result tensor for each row of query
      */
-    std::vector<INTELLI::TensorPtr> searchTensor(const torch::Tensor &q, int64_t k);
+    std::vector<torch::Tensor> searchTensor(const torch::Tensor &q, int64_t k);
     /**
      * @brief delete the tensors of a data base
      * @param t the data tensor

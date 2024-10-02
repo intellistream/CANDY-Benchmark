@@ -101,15 +101,25 @@ bool LSH::insertTensor(const torch::Tensor &t) {
     return true;
 }
 
-vector<INTELLI::TensorPtr> LSH::searchTensor(const torch::Tensor &q, int64_t k) {
+std::vector<torch::Tensor> LSH::searchTensor(const torch::Tensor &q, int64_t k) {
+    auto query_num = q.size(0);
     auto result = searchIndex(q, k);
 
-    vector<INTELLI::TensorPtr> result_tensor;
+    vector<INTELLI::TensorPtr> result_tensor_ptr;
     for (size_t i = 0; i < result.size(); i++) {
         if (result[i] == -1) {
-            result_tensor.push_back(nullptr);
+            result_tensor_ptr.push_back(nullptr);
         } else {
-            result_tensor.push_back(tensorDatabase[result[i]]);
+            result_tensor_ptr.push_back(tensorDatabase[result[i]]);
+        }
+    }
+
+    vector<torch::Tensor> result_tensor(query_num);
+    for (size_t i = 0; i < query_num; i++) {
+        result_tensor[i] = torch::zeros({k, vecDim});
+        for (size_t j = 0; j < k; j++) {
+            if (result_tensor_ptr[i * k + j] == nullptr) break;
+            result_tensor[i].slice(0, j, j + 1) = *result_tensor_ptr[i * k + j];
         }
     }
 
