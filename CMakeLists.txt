@@ -3,6 +3,19 @@ cmake_minimum_required(VERSION 3.14)
 project(CANDY CXX)
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_RULE_MESSAGES OFF)
+
+EXECUTE_PROCESS(COMMAND /usr/bin/python3 -c "import torch;print(torch.utils.cmake_prefix_path)"
+        TIMEOUT 5
+        OUTPUT_VARIABLE TORCH_CMAKE_PREFIX_PATH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+
+message(STATUS "TORCH_CMAKE_PREFIX_PATH: ${TORCH_CMAKE_PREFIX_PATH}")
+
+set(CMAKE_PREFIX_PATH "${TORCH_CMAKE_PREFIX_PATH}")
+
+cmake_policy(SET CMP0135 NEW)
+
 # Custom CMake find instructions and macros
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include(cmake/macros.cmake)
