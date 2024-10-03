@@ -12,7 +12,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <cstring>
-
+#include<iostream>
 #include <algorithm>
 #include <memory>
 
@@ -192,9 +192,9 @@ void IndexPQ::search(
         FAISS_THROW_IF_NOT_MSG(!params->sel, "selector not supported");
         search_type = params->search_type;
     }
-
+	search_type=ST_PQ;
     if (search_type == ST_PQ) { // Simple PQ search
-
+	std::cout<<"STPQ"<<std::endl;
         if (metric_type == METRIC_L2) {
             float_maxheap_array_t res = {
                     size_t(n), size_t(k), labels, distances};
@@ -225,7 +225,7 @@ void IndexPQ::search(
     } else { // code-to-code distances
 
         std::unique_ptr<uint8_t[]> q_codes(new uint8_t[n * pq.code_size]);
-
+	std::cout<<"code to code dist"<<std::endl;
         if (!encode_signs) {
             pq.compute_codes(x, q_codes.get(), n);
         } else {

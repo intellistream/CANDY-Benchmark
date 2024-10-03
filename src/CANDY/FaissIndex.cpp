@@ -37,7 +37,7 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   } else if (index_type == "PQ") {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE PQ");
     // number of bits in PQ
-    //auto nbits = cfg->tryI64("encodeLenBits", bytes * 8, true);
+    auto nbits = cfg->tryI64("encodeLenBits", bytes * 8, true);
     bool is_online = cfg->tryI64("isOnlinePQ", 0, true);
     if (is_online == 1) {
       INTELLI_INFO("INITIALIZE AS ONLINE PQ!");
@@ -46,11 +46,11 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     auto M = cfg->tryI64("subQuantizers", 8, true);
 
     if (vecDim == 420 || vecDim == 100) {
-      index = new faiss::IndexPQ(is_online, vecDim + 4, M, (vecDim+4)/M, faissMetric);
+      index = new faiss::IndexPQ(is_online, vecDim + 4, M, nbits, faissMetric);
     } else if (vecDim == 1369) {
-      index = new faiss::IndexPQ(is_online, vecDim + 7, M, (vecDim+7)/M, faissMetric);
+      index = new faiss::IndexPQ(is_online, vecDim + 7, M, nbits, faissMetric);
     } else {
-      index = new faiss::IndexPQ(is_online, vecDim, M, (vecDim/M), faissMetric);
+      index = new faiss::IndexPQ(is_online, vecDim, M, nbits, faissMetric);
     }
   } else if (index_type == "IVFPQ") {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE IVFPQ");
