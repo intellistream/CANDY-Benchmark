@@ -37,7 +37,7 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   } else if (index_type == "PQ") {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE PQ");
     // number of bits in PQ
-    auto nbits = cfg->tryI64("encodeLenBits", bytes * 8, true);
+    //auto nbits = cfg->tryI64("encodeLenBits", bytes * 8, true);
     bool is_online = cfg->tryI64("isOnlinePQ", 0, true);
     if (is_online == 1) {
       INTELLI_INFO("INITIALIZE AS ONLINE PQ!");
@@ -46,11 +46,11 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     auto M = cfg->tryI64("subQuantizers", 8, true);
 
     if (vecDim == 420 || vecDim == 100) {
-      index = new faiss::IndexPQ(is_online, vecDim + 4, M, nbits, faissMetric);
+      index = new faiss::IndexPQ(is_online, vecDim + 4, M, (vecDim+4)/M, faissMetric);
     } else if (vecDim == 1369) {
-      index = new faiss::IndexPQ(is_online, vecDim + 7, M, nbits, faissMetric);
+      index = new faiss::IndexPQ(is_online, vecDim + 7, M, (vecDim+7)/M, faissMetric);
     } else {
-      index = new faiss::IndexPQ(is_online, vecDim, M, nbits, faissMetric);
+      index = new faiss::IndexPQ(is_online, vecDim, M, (vecDim/M), faissMetric);
     }
   } else if (index_type == "IVFPQ") {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE IVFPQ");
@@ -60,13 +60,13 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     // Hard-coded for msong and glove
     if (vecDim == 420 || vecDim == 100) {
       faiss::IndexFlat *quantizer = new faiss::IndexFlat(vecDim + 4, faissMetric);
-      index = new faiss::IndexIVFPQ(quantizer, vecDim + 4, nlist, M, nbits);
+      index = new faiss::IndexIVFPQ(quantizer, vecDim + 4, nlist, M, (vecDim+4)/M);
     } else if (vecDim == 1369) {
       faiss::IndexFlat *quantizer = new faiss::IndexFlat(vecDim + 7, faissMetric);
-      index = new faiss::IndexIVFPQ(quantizer, vecDim + 7, nlist, M, nbits);
+      index = new faiss::IndexIVFPQ(quantizer, vecDim + 7, nlist, M, (vecDim+7)/M);
     } else {
       faiss::IndexFlat *quantizer = new faiss::IndexFlat(vecDim, faissMetric);
-      index = new faiss::IndexIVFPQ(quantizer, vecDim, nlist, M, nbits);
+      index = new faiss::IndexIVFPQ(quantizer, vecDim, nlist, M, (vecDim)/M);
     }
   } else if (index_type == "NNDescent") {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE NNDescent");
@@ -196,7 +196,8 @@ bool CANDY::FaissIndex::insertTensor(torch::Tensor &t) {
 std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndex(torch::Tensor q, int64_t k) {
 
   auto queryData = q.contiguous().data_ptr<float>();
-  int64_t querySize = q.size(0);
+	std::cout<<"tiny wait"<<std::endl; 
+ int64_t querySize = q.size(0);
 
   if (index_type == "IVFPQ" || index_type == "PQ") {
     INTELLI_INFO("IMCOMPATIBLE DIMENSIONS: PADDING ZEROS FOR PQ and IVFPQ");
@@ -205,6 +206,7 @@ std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndex(torch::Tensor q, int64_
       q_temp.slice(1, 0, vecDim) = q;
       q_temp = q_temp.nan_to_num(0.0);
       auto queryData_padding = q_temp.contiguous().data_ptr<float>();
+	std::cout<<"tiny wait"<<std::endl;
       std::vector<faiss::idx_t> ru(k * querySize);
       std::vector<float> distance(k * querySize);
       index->search(querySize, queryData_padding, k, distance.data(), ru.data());
