@@ -242,7 +242,7 @@ std::vector<torch::Tensor> CANDY::FaissIndex::getTensorByIndex(std::vector<faiss
     ru[i] = torch::zeros({k, vecDim});
     for (int64_t j = 0; j < k; j++) {
       int64_t tempIdx = idx[i * k + j];
-      printf("%ld%ld=%ld\n", i,j,tempIdx);
+      //printf("%ld%ld=%ld\n", i,j,tempIdx);
       float tempSlice[vecDim];
 //            if(index_type=="FaissIVFPQ" || index_type == "FaissPQ"){
 //                if(vecDim=100 || vecDim == 420){

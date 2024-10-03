@@ -185,7 +185,7 @@ void IndexPQ::search(
 
     const SearchParametersPQ* params = nullptr;
     Search_type_t search_type = this->search_type;
-
+	std::cout<<"search_type="<<search_type<<std::endl;
     if (iparams) {
         params = dynamic_cast<const SearchParametersPQ*>(iparams);
         FAISS_THROW_IF_NOT_MSG(params, "invalid search params");
@@ -194,7 +194,6 @@ void IndexPQ::search(
     }
 	search_type=ST_PQ;
     if (search_type == ST_PQ) { // Simple PQ search
-	std::cout<<"STPQ"<<std::endl;
         if (metric_type == METRIC_L2) {
             float_maxheap_array_t res = {
                     size_t(n), size_t(k), labels, distances};
