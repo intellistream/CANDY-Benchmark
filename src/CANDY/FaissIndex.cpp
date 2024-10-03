@@ -60,13 +60,13 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     // Hard-coded for msong and glove
     if (vecDim == 420 || vecDim == 100) {
       faiss::IndexFlat *quantizer = new faiss::IndexFlat(vecDim + 4, faissMetric);
-      index = new faiss::IndexIVFPQ(quantizer, vecDim + 4, nlist, M, (vecDim+4)/M);
+      index = new faiss::IndexIVFPQ(quantizer, vecDim + 4, nlist, M, nbits);
     } else if (vecDim == 1369) {
       faiss::IndexFlat *quantizer = new faiss::IndexFlat(vecDim + 7, faissMetric);
-      index = new faiss::IndexIVFPQ(quantizer, vecDim + 7, nlist, M, (vecDim+7)/M);
+      index = new faiss::IndexIVFPQ(quantizer, vecDim + 7, nlist, M, nbits);
     } else {
       faiss::IndexFlat *quantizer = new faiss::IndexFlat(vecDim, faissMetric);
-      index = new faiss::IndexIVFPQ(quantizer, vecDim, nlist, M, (vecDim)/M);
+      index = new faiss::IndexIVFPQ(quantizer, vecDim, nlist, M, nbits);
     }
   } else if (index_type == "NNDescent") {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE NNDescent");
