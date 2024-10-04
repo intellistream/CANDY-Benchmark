@@ -12,7 +12,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <cstring>
-
+#include<iostream>
 #include <algorithm>
 #include <memory>
 
@@ -185,16 +185,15 @@ void IndexPQ::search(
 
     const SearchParametersPQ* params = nullptr;
     Search_type_t search_type = this->search_type;
-
+	std::cout<<"search_type="<<search_type<<std::endl;
     if (iparams) {
         params = dynamic_cast<const SearchParametersPQ*>(iparams);
         FAISS_THROW_IF_NOT_MSG(params, "invalid search params");
         FAISS_THROW_IF_NOT_MSG(!params->sel, "selector not supported");
         search_type = params->search_type;
     }
-
+	search_type=ST_PQ;
     if (search_type == ST_PQ) { // Simple PQ search
-
         if (metric_type == METRIC_L2) {
             float_maxheap_array_t res = {
                     size_t(n), size_t(k), labels, distances};
@@ -225,7 +224,7 @@ void IndexPQ::search(
     } else { // code-to-code distances
 
         std::unique_ptr<uint8_t[]> q_codes(new uint8_t[n * pq.code_size]);
-
+	std::cout<<"code to code dist"<<std::endl;
         if (!encode_signs) {
             pq.compute_codes(x, q_codes.get(), n);
         } else {
