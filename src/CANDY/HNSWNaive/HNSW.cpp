@@ -45,6 +45,87 @@ void CANDY::HNSW::search(CANDY::DistanceQueryer &qdis, int k,
   return;
 }
 
+bool CANDY::HNSW::delete_vertex(CANDY::DistanceQueryer &qdis,
+                                std::vector<CANDY::VertexPtr> &I, float *D,
+                                CANDY::VisitedTable &vt) {
+  if (entry_point_ == nullptr) {
+    return false;
+  }
+
+  // search for the nearest neighbor (almost itself)
+  qdis.set_search(true);
+  qdis.set_rank(false);
+  auto nearest = entry_point_;
+  float d_nearest;
+  if(qdis.is_search && opt_mode_==OPT_LVQ){
+    if(nearest->code_final_ == nullptr) {
+      nearest->code_final_ = qdis.compute_code(nearest->id);
+    }
+    d_nearest = qdis(nearest->code_final_);
+  } else {
+    d_nearest = qdis(nearest->id);
+  }
+
+  for (int level = max_level_; level >= 1; level--) {
+    nearest = greedy_update_nearest(*this,qdis, level, nearest, d_nearest);
+    
+    if (fabs(d_nearest) < 1e-6) {
+      break;
+    }
+  }
+
+  qdis.set_rank(true);
+  if (search_bounded_queue) {
+    CANDY::HNSW::MinimaxHeap candidates(efSearch);
+    candidates.push(nearest, d_nearest);
+    search_from_candidates(*this, qdis, 1, I, D, candidates, vt, 0, 0);
+  } else {
+  }
+  vt.advance();
+
+  if (I[0] == nullptr || D[0] > 1e-6) {
+    return false;
+  }
+
+  // remove the vertex from the graph
+  auto vertex = I[0];
+  ntotal--;
+
+  if (opt_mode_ == OPT_LVQ) {
+    auto del_data = vertex->id->contiguous().data_ptr<float>();
+    for (int64_t i = 0; i < vecDim_; i++) {
+      auto div = (mean_[i] - del_data[i]) / ntotal;
+      mean_[i] += div;
+    }
+  }
+
+  if (vertex == entry_point_) {
+    max_level_ = -1;
+
+    for (auto& v : vertex->linkedBy) {
+      if (v != nullptr && v->level > max_level_) {
+        max_level_ = v->level;
+        entry_point_ = v;
+      }
+    }
+
+    if (entry_point_ == vertex) {
+      entry_point_ = nullptr;
+    }
+  }
+
+  for (auto v : vertex->linkedBy) {
+    for (auto& neighbor : v->neighbors) {
+      if (neighbor == vertex) {
+        neighbor.reset();
+      }
+    }
+  }
+
+  vertex.reset();
+  return true;
+}
+
 std::priority_queue<CANDY::HNSW::Node>
 search_from_candidates_unbounded(CANDY::HNSW &hnsw, CANDY::HNSW::Node &node,
                                  CANDY::DistanceQueryer &qdis, size_t ef,
@@ -374,6 +455,7 @@ void add_link(CANDY::HNSW &hnsw, CANDY::DistanceQueryer &disq,
       return;
     }
   }
+  dest->linkedBy.push_back(src);
   // with slots to add link
   if (nlist[end - 1] == nullptr) {
     size_t i = end;

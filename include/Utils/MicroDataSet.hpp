@@ -15,7 +15,8 @@
 #include <random>
 #include <cmath>
 #include <iostream>
-#include <algorithm>
+#include <algorithm>    // std::sort
+
 using namespace std;
 namespace INTELLI {
 /**

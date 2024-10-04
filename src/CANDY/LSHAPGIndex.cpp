@@ -85,4 +85,13 @@ bool LSHAPGIndex::insertTensor(torch::Tensor &t) {
   return true;
 }
 
+bool LSHAPGIndex::deleteTensor(torch::Tensor &t) {
+    auto results = searchIndex(t, 1);
+    for(auto &i:results){
+        divG->deleteTensorByIndex(i);
+        flatBuffer.deleteTensorByIndex(i);
+    }
+    return true;
+}
+
 }

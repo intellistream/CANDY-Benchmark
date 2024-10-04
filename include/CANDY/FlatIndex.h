@@ -98,6 +98,12 @@ class FlatIndex : public AbstractIndex {
    */
   virtual std::vector<torch::Tensor> getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k);
   /**
+   * @brief delete a tensor by index
+   * @param idx the index
+   * @return a vector of tensors, each tensor represent KNN results of one query in idx
+   */
+  virtual bool deleteTensorByIndex(int64_t idx);
+  /**
    * @brief return the rawData of tensor
    * @return The raw data stored in tensor
    */

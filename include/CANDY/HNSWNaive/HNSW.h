@@ -31,6 +31,7 @@ public:
   INTELLI::TensorPtr transformed = nullptr;
   int level;
   std::vector<std::shared_ptr<HNSWVertex>> neighbors;
+  std::vector<std::shared_ptr<HNSWVertex>> linkedBy;
   uint8_t visno;
   HNSWVertex(INTELLI::TensorPtr id, int level, int num_neighbors)
       : level(level) {
@@ -239,6 +240,15 @@ public:
    */
   void search(DistanceQueryer &qdis, int k, std::vector<VertexPtr> &I, float *D,
               VisitedTable &vt);
+  /**
+   * @brief delete a vertex from the HNSW structure
+   * @param qdis distance queryer init with the query to be searched
+   * @param I results for vectors
+   * @param D results for distances
+   * @param vt vistied table
+   */
+  bool delete_vertex(DistanceQueryer &qdis, std::vector<VertexPtr> &I, float *D,
+                     VisitedTable &vt);
   int getLevelsByTensor(torch::Tensor &t);
   int getLevelsByPtr(INTELLI::TensorPtr idx);
   /**

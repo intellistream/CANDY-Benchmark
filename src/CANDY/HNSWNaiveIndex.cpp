@@ -32,8 +32,45 @@ bool CANDY::HNSWNaiveIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
 }
 
 bool CANDY::HNSWNaiveIndex::deleteTensor(torch::Tensor &t, int64_t k) {
-  // TODO: impl
-  return false;
+  size_t n = t.size(0);
+
+  CANDY::DistanceQueryer disq(vecDim);
+  disq.set_mode(opt_mode_, faissMetric);
+  disq.set_search(true);
+  if (disq.opt_mode_ == OPT_LVQ) {
+    disq.mean_ = &hnsw.mean_;
+  }
+  if(disq.opt_mode_ == OPT_DCO){
+      disq.ads->set_transformed(&hnsw.transformMatrix);
+      disq.ads->set_step(adSampling_step,adSampling_epsilon0);
+  }
+
+  CANDY::VisitedTable vt;
+
+  if (is_NSW) {
+    // TODO: impl
+    return false;
+  } else {
+    for (size_t i = 0; i < n; i++) {
+      auto query = t.slice(0, i, i + 1);
+      if(disq.opt_mode_ == OPT_DCO){
+        disq.set_query(query);
+
+        auto transformed = disq.ads->transform(query);
+        disq.transformed = transformed;
+      } else {
+        disq.set_query(query);
+      }
+
+      auto D = std::vector<float>(k);
+      auto I = std::vector<CANDY::VertexPtr>(k);
+
+      hnsw.delete_vertex(disq, I, D.data(), vt);
+    }
+  }
+
+  ntotal -= n;
+  return true;
 }
 
 bool CANDY::HNSWNaiveIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
