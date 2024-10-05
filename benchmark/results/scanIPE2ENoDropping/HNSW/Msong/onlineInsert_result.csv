@@ -1,0 +1,8 @@
+key,value,type
+latencyOfQuery,51253,U64
+normalExit,1,I64
+pendingWrite,560127923,I64
+95%latency(Insert),66562709.000000,Double
+recall,1.000000,Double
+throughput,304.868031,Double
+throughputByElements,128044.572974,Double
