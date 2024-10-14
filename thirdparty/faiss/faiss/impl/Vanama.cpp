@@ -444,12 +444,18 @@ void greedy_update_nearest(
         for (size_t i = begin; i < end; i++) {
             vanama.bd_stat.steps_greedy = vanama.bd_stat.steps_greedy + 1;
             storage_idx_t v = vanama.neighbors[i];
+            if(vanama.isDeleted[v]) {
+                printf("removed from candidates greedy %d\n", vanama.neighbors[i]);
+                continue;
+            }
             if (v < 0)
                 break;
             float dis = qdis(v);
             if (dis < d_nearest) {
                 nearest = v;
                 d_nearest = dis;
+
+                //printf("greedy updated %lu %d\n", i, nearest.id);
             }
         }
         if (nearest == prev_nearest) {
@@ -513,6 +519,7 @@ void Vanama::add_with_locks(
         VisitedTable& vt) {
     //  greedy search on upper levels
 
+    //isDeleted[pt_id]=false;
     storage_idx_t nearest;
     //#pragma omp critical
     {
@@ -543,7 +550,6 @@ void Vanama::add_with_locks(
         add_links_starting_from(
                 ptdis, pt_id, nearest, d_nearest, level, locks.data(), vt);
     }
-
     omp_unset_lock(&locks[pt_id]);
 
     if (pt_level > max_level) {
@@ -584,6 +590,7 @@ int search_from_candidates(
     const IDSelector* sel = params ? params->sel : nullptr;
 
     for (int i = 0; i < candidates.size(); i++) {
+        if (vanama.isDeleted[candidates.ids[i]]){ continue;}
         idx_t v1 = candidates.ids[i];
         float d = candidates.dis[i];
         FAISS_ASSERT(v1 >= 0);
@@ -641,6 +648,8 @@ int search_from_candidates(
         // the following version processes 4 neighbors at a time
         size_t jmax = begin;
         for (size_t j = begin; j < end; j++) {
+            if(vanama.isDeleted[vanama.neighbors[j]]){ continue;}
+
             int v1 = vanama.neighbors[j];
             if (v1 < 0)
                 break;
@@ -667,6 +676,7 @@ int search_from_candidates(
 
         for (size_t j = begin; j < jmax; j++) {
             int v1 = vanama.neighbors[j];
+            if(vanama.isDeleted[vanama.neighbors[j]]){ continue;}
             vanama.bd_stat.steps_iterating_search =
                     vanama.bd_stat.steps_iterating_search + 1;
             bool vget = vt.get(v1);
@@ -735,11 +745,15 @@ std::priority_queue<Vanama::Node> search_from_candidate_unbounded(
     while (!candidates.empty()) {
         float d0;
         storage_idx_t v0;
+
         std::tie(d0, v0) = candidates.top();
 
         if (d0 > top_candidates.top().first) {
             break;
         }
+
+        if(vanama.isDeleted[top_candidates.top().second] || vanama.isDeleted[candidates.top().second]){continue; }
+
 
         candidates.pop();
 
@@ -777,6 +791,8 @@ std::priority_queue<Vanama::Node> search_from_candidate_unbounded(
         size_t jmax = begin;
         for (size_t j = begin; j < end; j++) {
             int v1 = vanama.neighbors[j];
+            if(vanama.isDeleted[vanama.neighbors[j]]){continue;}
+
             if (v1 < 0)
                 break;
 
@@ -804,6 +820,7 @@ std::priority_queue<Vanama::Node> search_from_candidate_unbounded(
         for (size_t j = begin; j < jmax; j++) {
             int v1 = vanama.neighbors[j];
 
+            if(vanama.isDeleted[v1]){continue;}
             bool vget = vt->get(v1);
             vt->set(v1);
             saved_j[counter] = v1;
@@ -847,7 +864,7 @@ std::priority_queue<Vanama::Node> search_from_candidate_unbounded(
 } // anonymous namespace
 
 HNSWStats Vanama::search(
-        DistanceComputer& qdis,
+        DistanceComputer&  qdis,
         int k,
         idx_t* I,
         float* D,
@@ -855,6 +872,7 @@ HNSWStats Vanama::search(
         const SearchParametersHNSW* params) const {
     HNSWStats stats;
     if (entry_point == -1) {
+        printf("removed from candidates entrypoint\n");
         return stats;
     }
     if (upper_beam == 1) {
@@ -864,14 +882,22 @@ HNSWStats Vanama::search(
         auto start = std::chrono::high_resolution_clock::now();
         for (int level = max_level; level >= 1; level--) {
             greedy_update_nearest(*this, qdis, level, nearest, d_nearest);
+            if(isDeleted[nearest]) {
+                continue;
+            }
         }
         bd_stat.time_greedy_search += chronoElapsedTime(start);
 
         int ef = std::max(efSearch, k);
         if (search_bounded_queue) { // this is the most common branch
             MinimaxHeap candidates(ef);
-
-            candidates.push(nearest, d_nearest);
+            if (!isDeleted[nearest]) {
+                //printf("cand push %d", nearest.id);
+                candidates.push(nearest, d_nearest);
+            } else {
+                //printf("Skipping deleted node in candidates. %d\n", nearest);
+            }
+            //candidates.push(nearest, d_nearest);
             start = std::chrono::high_resolution_clock::now();
             search_from_candidates(
                     *this, qdis, k, I, D, candidates, vt, stats, 0, 0, params);
@@ -894,7 +920,9 @@ HNSWStats Vanama::search(
             while (!top_candidates.empty()) {
                 float d;
                 storage_idx_t label;
+                if(isDeleted[top_candidates.top().second]){ top_candidates.pop(); continue;}
                 std::tie(d, label) = top_candidates.top();
+
                 faiss::maxheap_push(++nres, D, I, d, label);
                 top_candidates.pop();
             }
@@ -961,6 +989,7 @@ void Vanama::search_level_0(
         int nres = 0;
 
         for (int j = 0; j < nprobe; j++) {
+            if(vanama.isDeleted[nearest_i[j]]){continue;}
             storage_idx_t cj = nearest_i[j];
 
             if (cj < 0)
@@ -992,6 +1021,7 @@ void Vanama::search_level_0(
 
         MinimaxHeap candidates(candidates_size);
         for (int j = 0; j < nprobe; j++) {
+            if(isDeleted[nearest_i[j]]){continue;}
             storage_idx_t cj = nearest_i[j];
 
             if (cj < 0)

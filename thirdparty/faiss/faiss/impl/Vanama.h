@@ -124,6 +124,8 @@ struct Vanama {
     /// internal storage of vectors (32 bits: this is expensive)
     using storage_idx_t = int32_t;
 
+    mutable std::vector<bool> isDeleted;
+
     typedef std::pair<float, storage_idx_t> Node;
 
     mutable struct Vanama_breakdown_stats bd_stat;

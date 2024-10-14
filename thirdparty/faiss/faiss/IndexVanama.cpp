@@ -227,7 +227,7 @@ void vanama_add_vertices(
                     if (interrupt) {
                         continue;
                     }
-
+                    vanama.isDeleted.push_back(false);
                     vanama.add_with_locks(*dis, pt_level, pt_id, locks, vt);
 
               //      if (prev_display >= 0 && i - i0 > prev_display + 10000) {
@@ -362,7 +362,7 @@ void IndexVanama::search(
     }
 
     hnsw_stats.combine({n1, n2, n3, ndis, nreorder});
-    vanama.bd_stat.print();
+    //vanama.bd_stat.print();
 }
 
 void IndexVanama::add(idx_t n, const float* x) {
@@ -375,7 +375,7 @@ void IndexVanama::add(idx_t n, const float* x) {
     ntotal = storage->ntotal;
     vanama.bd_stat.reset();
     vanama_add_vertices(*this, n0, n, x, verbose, vanama.levels.size() == ntotal);
-    vanama.bd_stat.print();
+    //vanama.bd_stat.print();
 }
 
 void IndexVanama::reset() {
@@ -632,6 +632,77 @@ void IndexVanama::permute_entries(const idx_t* perm) {
     vanama.permute_entries(perm);
 }
 
+//     void IndexVanama::deleteVector(const float* x) {
+//
+//     float distance;
+//     idx_t label;
+//     search(1, x, 1, &distance, &label, nullptr);  //n=1, k=1
+//
+//     if (distance==0) {
+//         // storage[label].
+//         // node.isDeleted = true;
+//         printf("vector found during deletion %ld \n", label);
+//         // size_t start = vanama.offsets[label];
+//         // size_t end = vanama.offsets[label + 1];
+//         if(vanama.entry_point.id == label) {
+//             vanama.entry_point.isDeleted=true;
+//             printf("set entrypoint deleted\n");
+//             //greedy_update_nearest(*this, ptdis, level, nearest, d_nearest);
+//         }
+//         size_t start, end;
+//
+//         // For each layer, we retrieve the neighbors and check if the label needs to be deleted
+//         for (int layer_no = 0; layer_no <= vanama.max_level; ++layer_no) {
+//             vanama.neighbor_range(label, layer_no, &start, &end);  // Get neighbors for the current layer
+//
+//             // Loop over all neighbors of the given label
+//             for (size_t idx = start; idx < end; ++idx) {
+//                 storage_idx_t neighbor = vanama.neighbors[idx];  // Get the current neighbor
+//
+//                 // Get the range of neighbors for this neighbor at the same layer
+//                 size_t neighborStart, neighborEnd;
+//                 vanama.neighbor_range(neighbor, layer_no, &neighborStart, &neighborEnd);
+//
+//                 // Loop over the neighbors of the neighbor
+//                 for (size_t nIdx = neighborStart; nIdx < neighborEnd; ++nIdx) {
+//                     // If the original label is found in the neighbor's neighbors, mark it as deleted
+//                     if (vanama.neighbors[nIdx] == label) {
+//                         vanama.neighbors[nIdx].isDeleted = true;
+//                         //std::cout << "Marked label " << vanama.neighbors[nIdx].id << " as deleted in neighbor "<< neighbor << "'s neighbor list at layer " << layer_no << std::endl;
+//                         break;
+//                     }
+//                 }
+//             }
+//         }
+//
+//
+//         // // Loop over all neighbors of the given label
+//         // for (size_t idx = start; idx < end; ++idx) {
+//         //     storage_idx_t neighbor = vanama.neighbors[idx];  // Get the current neighbor
+//         //
+//         //     // Get the range of neighbors for this neighbor
+//         //     size_t neighborStart = vanama.offsets[neighbor];
+//         //     size_t neighborEnd = vanama.offsets[neighbor + 1];
+//         //
+//         //     for (size_t nIdx = neighborStart; nIdx < neighborEnd; ++nIdx) { //nbrs of neighbour
+//         //
+//         //         if (vanama.neighbors[nIdx] == label) {
+//         //             // Mark it as deleted
+//         //             vanama.neighbors[nIdx].isDeleted = true;
+//         //             //std::cout << "Marked label " << label << " as deleted in neighbor " << neighbor << "'s neighbor list." << std::endl;
+//         //         }
+//         //     }
+//         // }
+//     } else {
+//         std::cerr << "no vector found" << std::endl;
+//     }
+// }
+
+    void IndexVanama::deleteVectorByIndex(const std::vector<idx_t>& indices) {
+    for (const auto& idx : indices) {
+        vanama.isDeleted[idx] = true;
+    }
+}
 /**************************************************************
  * ReconstructFromNeighbors implementation
  **************************************************************/

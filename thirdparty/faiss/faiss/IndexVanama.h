@@ -70,7 +70,7 @@ struct ReconstructFromNeighborsbd {
 struct IndexVanama : Index {
     typedef Vanama::storage_idx_t storage_idx_t;
 
-    // the link strcuture
+    // the link structure
     Vanama vanama;
 
     // the sequential storage
@@ -136,9 +136,13 @@ struct IndexVanama : Index {
     void link_singletons();
 
     void permute_entries(const idx_t* perm);
+
+    void deleteVectorByIndex(const std::vector<idx_t>& indices);
+
+    //void deleteVector(const float* x);
 };
 
-/** Flat index topped with with a Vanama structure to access elements
+/** Flat index topped  with a Vanama structure to access elements
  *  more efficiently.
  */
 
