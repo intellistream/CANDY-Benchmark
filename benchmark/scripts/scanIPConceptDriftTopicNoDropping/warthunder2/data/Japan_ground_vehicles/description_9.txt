@@ -1,2 +1,0 @@
-Description of Type_94: 
-The Isuzu Type 94 is an anti-air truck fitting a Type 98 (20 mm) on a Type 94 truck. This was done as a measure to get the easiest solution of motorizing anti-air to provide air cover for tank and infantry units alike, without having to develop a whole new vehicle for it. Having the gun already deployed on the back of the truck increases the response time of the vehicle rather than having the gun towed behind it. The wheels of the gun mount are mounted on the back of the cab in case it has to be dismounted from the truck.

@@ -1,3 +1,0 @@
-Description of KV-1_(ZiS-5): 
-The KV-1 (ZiS-5) is a rank III Soviet heavy tank 
-with a battle rating of 4.7 (AB/RB/SB). It was introduced during the Closed Beta Test for Ground Forces before Update 1.41. This KV-1 introduces a new armament, the ZiS-5, that has a much stronger punch than the L-11 from its predecessor while retaining the same armour.

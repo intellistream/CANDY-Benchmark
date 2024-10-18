@@ -1,3 +1,0 @@
-Description of T-34-85: 
-The T-34-85 is a rank IV Soviet medium tank 
-with a battle rating of 5.7 (AB/RB/SB). It was introduced during the Closed Beta Test for Ground Forces before Update 1.41. Though similar to the T-34-85 (D-5T), it has an improved gun and a full crew for combat efficiency.

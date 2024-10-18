@@ -1,2 +1,0 @@
-Usage of A-20G-25: 
-The A-20G-25 possesses a fairly standard loadout of 6 x 12.7 mm machine guns like many regular fighters in the U.S tech tree. However, unlike the fighters, the machine guns on the A-20 are mounted solely in the nose. This allows for a much more focused cone of fire at range since convergence is not a significant factor, meaning that the A-20G will have an easier time hitting targets, but hardened ground targets like light and medium tanks will be easier to kill due to the fact that bullets are not converging from an angle, increasing penetration.

@@ -1,3 +1,0 @@
-Description of F-84B-26: 
-The F-84B-26 Thunderjet is a rank V American strike aircraft 
-with a battle rating of 6.7 (AB), 7.0 (RB), and 7.7 (SB). It was introduced in Update 1.39. The F-84B-26 is known for its versatile payload and decent top speed, but lacklustre in terms of acceleration. The Thunderjet does well at destroying ground targets, given the quantity and quality of payload.

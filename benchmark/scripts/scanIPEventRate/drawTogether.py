@@ -100,6 +100,9 @@ def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixT
     if (algoTag == 'LSHAPG'):
         editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "LSHAPG")
         editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'SPTAG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "SPTAG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
     exeTag = "onlineInsert"
     # prepare new file
     os.system("rm -rf " + exePath + "*.rbt")
@@ -268,13 +271,13 @@ def main():
     aRowVec = [50, 100, 500, 1000, 2000, 4000, 5000]
     # aRowVec=[100, 200, 500, 1000]
     # add the algo tag here
-    algosVec = ['flat', 'LSH-H', 'Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG','LSHAPG']
+    algosVec = ['flat', 'Flann','SPTAG','LSH-H','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','Vanama','MNRU']
     # algosVec = ['flat', 'LSH-H']
     # algosVec = ['flat', 'onlinePQ']
     # algosVec=['incrementalRaw']
     # algosVec=[ 'pq']
     # algoDisp = ['BrutalForce', 'PQ']
-    algoDisp = ['Baseline', 'LSH','Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG','LSHAPG']
+    algoDisp = ['Baseline', 'Flann','SPTAG','LSH','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','freshDiskAnn','MNRU']
     # algoDisp = ['BrutalForce', 'LSH-H']
     # algoDisp=['BrutalForce']
     # algoDisp=['PQ']
@@ -318,30 +321,34 @@ def main():
     # groupBar2.DrawFigure(dataSetNames, np.log(thrAll), methodTags, "Datasets", "elements/ms", 5, 15, figPath + "sec4_1_e2e_static_lazy_throughput_log", True)
     groupLine.DrawFigureYLog(periodAll, incrementalBuildAll / 1000,
                              methodTags,
-                             "EventRate", r'95% Latency of insert (ms)', 0, 1,
-                             figPath + "/" + "scanIPEventRate_lat_INSERT_feedMode",
+                             "Event Rate", r'95% Latency of insert (ms)', 0, 1,
+                             figPath + "/" + "scanIPEventRate_lat_INSERT",
                              True)
     groupLine.DrawFigureYLog(periodAll, pendingWaitTimeAll / 1000,
                              methodTags,
-                             "EventRate", r'Pending wait for insert (ms)', 0, 1,
-                             figPath + "/" + "scanIPEventRate_lat_pending_feedMode",
+                             "Event Rate", r'Pending wait for insert (ms)', 0, 1,
+                             figPath + "/" + "scanIPEventRate_lat_pending",
                              True)
     groupLine.DrawFigureYLog(periodAll, incrementalSearchAll / 1000,
                              methodTags,
-                             "EventRate", r'Latency of search (ms)', 0, 1,
-                             figPath + "/" + "scanIPEventRate_lat_search_feedMode",
+                             "Event Rate", r'Latency of search (ms)', 0, 1,
+                             figPath + "/" + "scanIPEventRate_lat_search",
                              True)
     groupLine.DrawFigureYLog(periodAll, (incrementalSearchAll + pendingWaitTimeAll) / 1000,
                              methodTags,
-                             "EventRate", r'Latency of query (ms)', 0, 1,
-                             figPath + "/" + "scanIPEventRate_lat_instant_search",
-                             True)
+                             "Event Rate", r'Latency of query (ms)', 0, 1,
+                             figPath + "/" + "scanIPEventRate_lat_instant",
+                             False)
     groupLine.DrawFigureYnormal(periodAll, recall,
                                 methodTags,
-                                "EventRate", r'recall@10', 0, 1,
-                                figPath + "/" + "scanIPEventRate_recall_feedMode",
+                                "Event Rate", r'recall@10', 0, 1,
+                                figPath + "/" + "scanIPEventRate_recall",
                                 True)
 
-
+    groupLine.DrawFigureYLog(periodAll, 1/(incrementalSearchAll / 1e6),
+                                methodTags,
+                                "Event Rate", r'Queries Per Second', 0, 1,
+                                figPath + "/" + "scanIPEventRate_qps",
+                                False)
 if __name__ == "__main__":
     main()

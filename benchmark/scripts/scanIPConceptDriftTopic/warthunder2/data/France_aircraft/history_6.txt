@@ -1,2 +1,0 @@
-History of D.500: 
-In 1930, the French Air Ministry issued a new specification, C1, for a new fighter to replace the obsolete NiD-62 fighters then in service with the French Air force. Several companies rushed to develop an aircraft for the specification, including the French manufacturer Dewoitine. They designed an all-metal interceptor with fixed landing gear, and submitted their proposal, named D.500, to the Air Ministry. The aircraft performed its first flight on June 18th of 1932, and in November of 1933, the Air Ministry ordered an initial batch of 60 fighters.

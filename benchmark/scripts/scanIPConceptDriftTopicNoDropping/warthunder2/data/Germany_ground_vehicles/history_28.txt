@@ -1,2 +1,0 @@
-History of Sd.Kfz.251/10: 
-Developed on the basis of the unarmored Sd.Kfz.11 halftrack, the Sd.Kfz.251 entered service with the Wehrmacht in 1939 and was intended as the primary transportation vehicle for the Panzergrenadier units of the German army. As such, the vehicle was intended to taxi troops into battle and protect them from small arms fire and shrapnel. By the end of the war, over 15,000 units of the Sd.Kfz.251 were built.

@@ -1,3 +1,0 @@
-Description of Re.2001_serie_1: 
-The Re.2001 serie 1 is a rank II Italian fighter 
-with a battle rating of 3.0 (AB/RB) and 2.3 (SB). It was introduced in Update 1.85 "Supersonic". The Re.2001 serie 1 is a lot like the C. 202, other than having different, slower-to-lower/retract landing gear, a different engine that overheats a bit more quickly, and worse armour. The Re.2001 is also a tad more manoeuvrable, with a turn time (upgraded) of 18 seconds, versus the C. 202's upgraded turn time of 21.4 seconds. Additionally, the Re.2001 has a worse climb rate and is slower. Thanks to all of this, the Re.2001 should be played similarly to the C. 202. Just be careful, as you have worse armour.

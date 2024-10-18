@@ -56,7 +56,12 @@ dataset_vecDim_mapping = {
     'Sun': 512,
     'Trevi': 4096,
     'Glove': 100,
-    'Msong': 420
+    'Msong': 420,
+    'COCO-I': 768,
+    'COCO-C': 768,
+    'COCO-A': 768,
+    'COCO-F': 768,
+    'REDDIT': 768
 }
 dataset_dataPath_mapping = {
     'DPR': 'datasets/DPR/DPR100KC4.fvecs',
@@ -66,6 +71,11 @@ dataset_dataPath_mapping = {
     'Trevi': 'datasets/hdf5/trevi/trevi.hdf5',
     'Glove': 'datasets/hdf5/glove/glove.hdf5',
     'Msong': 'datasets/hdf5/msong/msong.hdf5',
+    'COCO-I': 'datasets/coco/data_image.fvecs',
+    'COCO-C': 'datasets/coco/data_captions.fvecs',
+    'COCO-A': 'datasets/coco/data_append.fvecs',
+    'COCO-F': 'datasets/coco/data_shuffle.fvecs',
+    'REDDIT': 'datasets/reddit/data_reddit.fvecs',
 }
 dataset_queryPath_mapping = {
     'DPR': 'datasets/DPR/DPR10KC4Q.fvecs',
@@ -75,6 +85,11 @@ dataset_queryPath_mapping = {
     'Trevi': 'datasets/hdf5/trevi/trevi.hdf5',
     'Glove': 'datasets/hdf5/glove/glove.hdf5',
     'Msong': 'datasets/hdf5/msong/msong.hdf5',
+    'COCO-I': 'datasets/coco/query_image.fvecs',
+    'COCO-C': 'datasets/coco/query_captions.fvecs',
+    'COCO-A': 'datasets/coco/query_shuffle.fvecs',
+    'COCO-F': 'datasets/coco/query_shuffle.fvecs',
+    'REDDIT': 'datasets/reddit/query_reddit.fvecs',
 }
 dataset_dataLoaderTag_mapping = {
     'DPR': 'fvecs',
@@ -84,6 +99,11 @@ dataset_dataLoaderTag_mapping = {
     'Trevi': 'hdf5',
     'Glove': 'hdf5',
     'Msong': 'hdf5',
+    'COCO-I': "fvecs",
+    'COCO-C': "fvecs",
+    'COCO-A': "fvecs",
+    'COCO-F': "fvecs",
+    'REDDIT': "fvecs"
 }
 
 
@@ -138,6 +158,9 @@ def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixT
         editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
     if (algoTag == 'LSHAPG'):
         editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "LSHAPG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'SPTAG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "SPTAG")
         editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
     exeTag = "onlineInsert"
     # prepare new file
@@ -308,19 +331,18 @@ def main():
     # srcAVec=['datasets/ECO/wm2.mtx',"datasets/DWAVE/dwa512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700a.mtx','datasets/RDB/rdb2048.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcda_small.mtx',"datasets/BUS/gemat1.mtx",]
     # srcBVec=['datasets/ECO/wm3.mtx',"datasets/DWAVE/dwb512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700b.mtx','datasets/RDB/rdb2048l.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcdb_small.mtx',"datasets/BUS/gemat1.mtx",]
     # aRowVec= [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
-    # aRowVec = ['DPR','SIFT','Trevi','Glove','Msong','Sun']
-    aRowVec = ['Glove', 'SIFT', 'Msong', 'Sun', 'DPR', 'Trevi']
+    aRowVec = ['Glove','SIFT','Msong','Sun','DPR','REDDIT','Trevi']
     dataSetNames = aRowVec
     # aRowVec=[100, 200, 500, 1000]
     # add the algo tag here
     # algosVec = ['flat', 'LSH-H','flatAMMIP','flatAMMIPSMPPCA','PQ','IVFPQ','HNSW']
-    algosVec = ['flat', 'LSH-H', 'Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG','LSHAPG']
+    algosVec = ['flat', 'Flann','SPTAG','LSH-H','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','Vanama','MNRU']
     # algosVec = ['flat', 'LSH-H']
     # algosVec = ['flat', 'onlinePQ']
     # algosVec=['incrementalRaw']
     # algosVec=[ 'pq']
     # algoDisp = ['BrutalForce', 'PQ']
-    algoDisp = ['Baseline', 'LSH','Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG','LSHAPG']
+    algoDisp = ['Baseline', 'Flann','SPTAG','LSH','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','freshDiskAnn','MNRU']
     # algoDisp = ['BrutalForce', 'LSH-H','AMM(CRS)','AMM(PCA)','PQ','IVFPQ','HNSW']
     # algoDisp = ['BrutalForce', 'LSH-H']
     # algoDisp=['BrutalForce']
@@ -377,6 +399,7 @@ def main():
     df.to_csv(figPath + "/e2e_latency.csv", float_format='%.2f')
     df = pd.DataFrame(recall, columns=dataSetNames, index=algoDisp)
     df.to_csv(figPath + "/e2e_recall.csv", float_format='%.2f')
+    print(df)
     totalQuery = (incrementalSearchAll + pendingWaitTimeAll) / 1000
     df = pd.DataFrame(pendingWaitTimeAll / 10 / totalQuery, columns=dataSetNames, index=algoDisp)
     df.to_csv(figPath + "/e2e_pw_propotion.csv", float_format='%.2f')
@@ -386,7 +409,8 @@ def main():
     df.to_csv(figPath + "/e2e_vs_propotion.csv", float_format='%.2f')
     df = pd.DataFrame(incrementalSearchAll / 1e6, columns=dataSetNames, index=algoDisp)
     df.to_csv(figPath + "/e2e_vs_value.csv", float_format='%.2f')
-
+    df = pd.DataFrame(1/(incrementalSearchAll / 1e6), columns=dataSetNames, index=algoDisp)
+    df.to_csv(figPath + "/e2e_qps_value.csv", float_format='%.2f')
 
 if __name__ == "__main__":
     main()

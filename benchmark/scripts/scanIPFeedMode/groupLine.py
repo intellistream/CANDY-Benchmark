@@ -15,11 +15,11 @@ import matplotlib.patches as patches
 OPT_FONT_NAME = 'Helvetica'
 TICK_FONT_SIZE = 32
 LABEL_FONT_SIZE = 30
-LEGEND_FONT_SIZE = 32
+LEGEND_FONT_SIZE = 28
 LABEL_FP = FontProperties(style='normal', size=LABEL_FONT_SIZE)
 LEGEND_FP = FontProperties(style='normal', size=LEGEND_FONT_SIZE)
 TICK_FP = FontProperties(style='normal', size=TICK_FONT_SIZE)
-MARKERS = ['s', 'o', '^', 'v', '+', '*', 'h', 'x', 'p', '1', '2', 'o', '+', '|']
+MARKERS = ['s', 'o', '^', 'v', '+', '*', 'h', 'x', 'p', '1', '2', 'o', '+', '|','3']
 COLOR_MAP = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22',
              '#17becf', '#1f77b4']
 # you may want to change the patterns for different figures
@@ -205,7 +205,7 @@ def DrawFigureYnormal(xvalues, yvalues, legend_labels, x_label, y_label, y_min, 
                    prop=LEGEND_FP,
                    loc='upper center',
                    ncol=1,
-                   bbox_to_anchor=(-0.375, 1.0), shadow=False,
+                   bbox_to_anchor=(-0.37, 1.0), shadow=False,
                    columnspacing=0.1,
                    frameon=True, borderaxespad=0, handlelength=1.2,
                    handletextpad=0.1,
@@ -245,7 +245,7 @@ def DrawFigureYLog(xvalues, yvalues, legend_labels, x_label, y_label, y_min, y_m
         '#FF8C00', '#FFE4C4', '#00FFFF', '#E0FFFF',
         '#FF6347', '#98FB98', '#800080', '#FFD700',
         '#7CFC00', '#8A2BE2', '#FF4500', '#20B2AA',
-        '#B0E0E6', '#00000F', '#00FF7F'
+        '#B0E0E6', '#00000F', '#00FF7F','#FF0700'
     ]
     FIGURE_LABEL = legend_labels
 
@@ -265,7 +265,7 @@ def DrawFigureYLog(xvalues, yvalues, legend_labels, x_label, y_label, y_min, y_m
                    prop=LEGEND_FP,
                    loc='upper center',
                    ncol=1,
-                   bbox_to_anchor=(-0.4, 0.7), shadow=False,
+                   bbox_to_anchor=(-0.37, 1.0), shadow=False,
                    columnspacing=0.1,
                    frameon=True, borderaxespad=0, handlelength=1.2,
                    handletextpad=0.1,
