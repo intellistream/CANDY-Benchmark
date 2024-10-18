@@ -117,12 +117,12 @@ sudo apt install liblapack-dev libblas-dev libboost-all-dev swig
 
 Evaluation scripts are located under `benchmark/scripts`.
 
-To run an evaluation (e.g., scanning the number of elements in matrix A's row):
+To run an evaluation (e.g., scanning the dimensions):
 
 ```shell
-cd build/benchmark/scripts/scanARow
+cd build/benchmark/scripts/scanIPDimensions
 sudo ls  # Required for perf events
-python3 drawTogether.py
+python3 drawTogether.py 2
 cd ../figures
 ```
 
