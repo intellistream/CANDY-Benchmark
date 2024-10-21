@@ -160,6 +160,14 @@ class AbstractIndex {
   */
   virtual bool loadInitialStringObject(torch::Tensor &t, std::vector<std::string> &strs);
   /**
+* @brief load the initial tensors of a data base along with its string objects, use this BEFORE @ref insertTensor
+* @note This is majorly an offline function, and may be different from @ref insertTensor for some indexes
+* @param t the tensor, some index need to be single row
+ *  * @param u64s the corresponding list of uint64_t
+* @return bool whether the loading is successful
+*/
+  virtual bool loadInitialU64Object(torch::Tensor &t, std::vector<uint64_t> &u64s);
+  /**
    * @brief insert a string object
    * @note This is majorly an online function
    * @param t the tensor, some index need to be single row
@@ -167,7 +175,14 @@ class AbstractIndex {
    * @return bool whether the insertion is successful
    */
   virtual bool insertStringObject(torch::Tensor &t, std::vector<std::string> &strs);
-
+  /**
+  * @brief insert a u64 object
+  * @note This is majorly an online function
+  * @param t the tensor, some index need to be single row
+  * @param u64s the corresponding list of u64
+  * @return bool whether the insertion is successful
+  */
+  virtual bool insertU64Object(torch::Tensor &t, std::vector<uint64_t> &u64s);
   /**
    * @brief  delete tensor along with its corresponding string object
    * @note This is majorly an online function
@@ -176,7 +191,14 @@ class AbstractIndex {
    * @return bool whether the delet is successful
    */
   virtual bool deleteStringObject(torch::Tensor &t, int64_t k = 1);
-
+  /**
+   * @brief  delete tensor along with its corresponding U64 object
+   * @note This is majorly an online function
+   * @param t the tensor, some index need to be single row
+   * @param k the number of nearest neighbors
+   * @return bool whether the delet is successful
+   */
+  virtual bool deleteU64Object(torch::Tensor &t, int64_t k = 1);
   /**
  * @brief search the k-NN of a query tensor, return the linked string objects
  * @param t the tensor, allow multiple rows
@@ -184,6 +206,13 @@ class AbstractIndex {
  * @return std::vector<std::vector<std::string>> the result object for each row of query
  */
   virtual std::vector<std::vector<std::string>> searchStringObject(torch::Tensor &q, int64_t k);
+  /**
+* @brief search the k-NN of a query tensor, return the linked U64 objects
+* @param t the tensor, allow multiple rows
+* @param k the returned neighbors
+* @return std::vector<std::vector<std::string>> the result object for each row of query
+*/
+  virtual std::vector<std::vector<uint64_t >> searchU64Object(torch::Tensor &q, int64_t k);
   /**
  * @brief search the k-NN of a query tensor, return the linked string objects and original tensors
  * @param t the tensor, allow multiple rows
@@ -202,6 +231,16 @@ class AbstractIndex {
   * @return bool whether the loading is successful
   */
   virtual bool loadInitialTensorAndQueryDistribution(torch::Tensor &t, torch::Tensor &query);
+  /**
+   * @brief to reset the internal statistics of this index
+   * @return whether the reset is executed
+   */
+  virtual bool resetIndexStatistics(void);
+  /**
+   * @brief to get the internal statistics of this index
+   * @return the statistics results in ConfigMapPtr
+   */
+  virtual INTELLI::ConfigMapPtr getIndexStatistics(void);
 };
 
 /**
