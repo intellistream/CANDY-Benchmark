@@ -24,3 +24,20 @@ torch::Tensor CANDY::AbstractDataLoader::getData() {
 torch::Tensor CANDY::AbstractDataLoader::getQuery() {
   return torch::rand({1, 1});
 }
+
+torch::Tensor CANDY::AbstractDataLoader::getDataAt(int64_t startPos, int64_t endPos) {
+  auto ru = getData();
+  return ru.slice(0, startPos, endPos).nan_to_num(0);
+}
+torch::Tensor CANDY::AbstractDataLoader::getQueryAt(int64_t startPos, int64_t endPos) {
+  auto ru = getQuery();
+  return ru.slice(0, startPos, endPos).nan_to_num(0);
+}
+int64_t CANDY::AbstractDataLoader::size() {
+  auto ru = getData();
+  return ru.size(0);
+}
+int64_t CANDY::AbstractDataLoader::getDimension() {
+  auto ru = getData();
+  return ru.size(1);
+}

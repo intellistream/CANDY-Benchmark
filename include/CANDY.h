@@ -58,6 +58,12 @@
 * - initialRows, the rows of initially loaded tensors, I64, default 0 (streaming at the begining)
 * - waitPendingWrite, wether or not wait for pending writes before start a query, I64, default 0 (NOT)
 * see also @ref DataLoaderTable, @ref IndexTable
+* * @subsection subsec_onlineCUD The online create, update, delete benchmark (Still working, not support all ANNS)
+* This is an upgraded version of onlineInsert @ref subsec_onlineInsert, which will firstly construct AKNN, then delete some tensor, and
+* finally conduct the insert, the usage is
+* ./onlineCUD <name of config file>
+* @note additional parameters compared with onlineInsert
+* - deleteRows, the number of rows you want to delete before insert, I64, default 0
 * @subsection subsec_multiRW The sequential multiple Read write  benchmark
 * This benchmark program evaluates the inserting latency and recall of a specified index, but with multiple RW sequences
 * ./multiRW <name of config file>

@@ -237,7 +237,6 @@ install(TARGETS CANDY LIBRARY DESTINATION .)
 #add_subdirectory(test)
 #Add benchmarks with command
 add_subdirectory(benchmark)
-set_property(TARGET benchmark PROPERTY CXX_STANDARD 20)
 #Add tests (based on GTest suits)
 #include(GoogleTest)
 
