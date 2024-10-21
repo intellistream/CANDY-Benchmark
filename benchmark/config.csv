@@ -1,8 +1,0 @@
-key,value,type
-vecDim,768,I64
-vecVolume,1000000,I64
-batchSize,100000,I64
-querySize,2,I64
-indexTag,parallelPartition,String
-parallelWorkers,10,I64
-staticDataSet,1,I64
