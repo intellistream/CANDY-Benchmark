@@ -57,10 +57,13 @@ dataset_vecDim_mapping = {
     'Sun': 512,
     'Trevi': 4096,
     'Glove': 100,
-    'Msong': 420
+    'Msong': 420,
+    'COCO-.05': 768,
+    'COCO-.8': 768,
+    'COCO-C': 768,
 }
 dataset_dataPath_mapping = {
-    'WTE': 'datasets/DPR/data_50000.fvecs',
+    'WTE': 'results/scanIPConceptDriftHotSpot/driftData/data_0.8.fvecs',
     'DPR': 'datasets/DPR/DPR100KC4.fvecs',
     'SIFT': 'datasets/fvecs/sift1M/sift/sift_base.fvecs',
     'Enron': 'datasets/hdf5/enron/enron.hdf5',
@@ -68,9 +71,13 @@ dataset_dataPath_mapping = {
     'Trevi': 'datasets/hdf5/trevi/trevi.hdf5',
     'Glove': 'datasets/hdf5/glove/glove.hdf5',
     'Msong': 'datasets/hdf5/msong/msong.hdf5',
+    'COCO-.05': 'results/scanMultiModalPropotion/multiModalProp/data_0.05.fvecs',
+    'COCO-.8': 'results/scanMultiModalPropotion/multiModalProp/data_0.8.fvecs',
+    'COCO-I': 'datasets/coco/data_image.fvecs',
+    'COCO-C': 'datasets/coco/data_captions.fvecs',
 }
 dataset_queryPath_mapping = {
-    'WTE': 'datasets/DPR/query_50000.fvecs',
+    'WTE': 'results/scanIPConceptDriftHotSpot/driftData/query_0.8.fvecs',
     'SIFT': 'datasets/fvecs/sift1M/sift/sift_query.fvecs',
     'DPR': 'datasets/DPR/DPR10KC4Q.fvecs',
     'Enron': 'datasets/hdf5/enron/enron.hdf5',
@@ -78,6 +85,9 @@ dataset_queryPath_mapping = {
     'Trevi': 'datasets/hdf5/trevi/trevi.hdf5',
     'Glove': 'datasets/hdf5/glove/glove.hdf5',
     'Msong': 'datasets/hdf5/msong/msong.hdf5',
+    'COCO-.05': 'results/scanMultiModalPropotion/multiModalProp/query_0.05.fvecs',
+    'COCO-.8': 'results/scanMultiModalPropotion/multiModalProp/query_0.8.fvecs',
+    'COCO-C': 'datasets/coco/query_captions.fvecs',
 }
 dataset_dataLoaderTag_mapping = {
     'WTE': 'fvecs',
@@ -88,8 +98,10 @@ dataset_dataLoaderTag_mapping = {
     'Trevi': 'hdf5',
     'Glove': 'hdf5',
     'Msong': 'hdf5',
+    'COCO-.05': 'fvecs',
+    'COCO-.8': 'fvecs',
+    'COCO-C': 'fvecs',
 }
-
 
 def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixTagRaw="null"):
     # resultFolder="periodTests"
@@ -318,7 +330,7 @@ def main():
     # aRowVec= [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
     # aRowVec = ['DPR','SIFT','Trevi','Glove','Msong','Sun']
     #aRowVec = ['Glove', 'SIFT', 'Msong', 'Sun', 'DPR', 'Trevi']
-    aRowVec = ['DPR','WTE']
+    aRowVec = ['DPR','WTE','COCO-.8']
     dataSetNames = aRowVec
     # aRowVec=[100, 200, 500, 1000]
     # add the algo tag here
@@ -383,19 +395,20 @@ def main():
     groupBar2.DrawFigure(dataSetNames, recall, methodTags, "Datasets", r'recall @10', 5, 15, figPath + "/e2e_recall_10",
                          False)
     df = pd.DataFrame((incrementalSearchAll + pendingWaitTimeAll) / 1e6, columns=dataSetNames, index=algoDisp)
-    df.to_csv(figPath + "/e2e_latency_ML.csv", float_format='%.2f')
+    df.to_csv(figPath + "/e2e_latency_DCO.csv", float_format='%.2f')
     df = pd.DataFrame(recall, columns=dataSetNames, index=algoDisp)
-    df.to_csv(figPath + "/e2e_recall_ML.csv", float_format='%.2f')
+    df.to_csv(figPath + "/e2e_recall_DCO.csv", float_format='%.2f')
     totalQuery = (incrementalSearchAll + pendingWaitTimeAll) / 1000
     df = pd.DataFrame(pendingWaitTimeAll / 10 / totalQuery, columns=dataSetNames, index=algoDisp)
-    df.to_csv(figPath + "/e2e_pw_propotion_ML.csv", float_format='%.2f')
+    df.to_csv(figPath + "/e2e_pw_propotion_DCO.csv", float_format='%.2f')
     df = pd.DataFrame(pendingWaitTimeAll / 1e6, columns=dataSetNames, index=algoDisp)
-    df.to_csv(figPath + "/e2e_pw_value_ML.csv", float_format='%.2f')
+    df.to_csv(figPath + "/e2e_pw_value_DCO.csv", float_format='%.2f')
     df = pd.DataFrame(incrementalSearchAll / 10 / totalQuery, columns=dataSetNames, index=algoDisp)
-    df.to_csv(figPath + "/e2e_vs_propotion_ML.csv", float_format='%.2f')
+    df.to_csv(figPath + "/e2e_vs_propotion_DCO.csv", float_format='%.2f')
     df = pd.DataFrame(incrementalSearchAll / 1e6, columns=dataSetNames, index=algoDisp)
-    df.to_csv(figPath + "/e2e_vs_value_ML.csv", float_format='%.2f')
-
+    df.to_csv(figPath + "/e2e_vs_value_DCO.csv", float_format='%.2f')
+    df = pd.DataFrame(1/(incrementalSearchAll / 1e6), columns=dataSetNames, index=algoDisp)
+    df.to_csv(figPath + "/e2e_qps_value_DCO.csv", float_format='%.2f')
 
 if __name__ == "__main__":
     main()

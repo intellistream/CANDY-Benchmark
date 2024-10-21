@@ -1,0 +1,8 @@
+--2024-09-22 23:41:03--  http://images.cocodataset.org/zips/train2017.zip
+Resolving images.cocodataset.org (images.cocodataset.org)... 52.217.111.36, 54.231.224.217, 3.5.29.71, ...
+Connecting to images.cocodataset.org (images.cocodataset.org)|52.217.111.36|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 19336861798 (18G) [application/zip]
+Saving to: ‘train2017.zip’
+
+train2017.zip          2%[                       ] 501.11M  42.0 B/s    eta 235d   

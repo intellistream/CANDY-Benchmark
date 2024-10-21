@@ -117,12 +117,12 @@ sudo apt install liblapack-dev libblas-dev libboost-all-dev swig
 
 Evaluation scripts are located under `benchmark/scripts`.
 
-To run an evaluation (e.g., scanning the number of elements in matrix A's row):
+To run an evaluation (e.g., scanning the dimensions):
 
 ```shell
-cd build/benchmark/scripts/scanARow
+cd build/benchmark/scripts/scanIPDimensions
 sudo ls  # Required for perf events
-python3 drawTogether.py
+python3 drawTogether.py 2
 cd ../figures
 ```
 
@@ -282,16 +282,16 @@ sudo apt-get install python3 python3-pip
 - **With CUDA**:
 
   ```shell
-  pip3 install torch==1.13.0 torchvision torchaudio
+  pip3 install torch==2.4.0 torchvision torchaudio
   ```
 
 - **Without CUDA**:
 
   ```shell
-  pip3 install --ignore-installed torch==1.13.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+  pip3 install --ignore-installed torch==2.4.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
   ```
 
-**Note**: Conflict between `torch1.13.0+cpu` and `torchaudio+cpu` may occur with Python versions > 3.10.
+**Note**: Conflict between `torch2.4.0+cpu` and `torchaudio+cpu` may occur with Python versions > 3.10.
 
 ### PAPI Support (Optional)
 

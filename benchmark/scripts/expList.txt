@@ -1,16 +1,17 @@
 downloadDataSet
 DPRDataset
+redditDataSet
 scanIPEndToEnd
-scanL2EndToEnd
 scanIPEndToEndNoDropping
-scanIPConceptDriftTopic
-scanIPConceptDriftHotSpot
-scanL2EndToEndDistance
-scanIPEndToEndML
 scanIPDimensions
 scanIPVecVolume
 scanIPFeedMode
 scanIPEventRate
+scanIPConceptDriftHotSpot
+scanMultiModalPropotion
+scanIPEndToEndML
+scanIPEndToEndComp
+stdRun
 
 
 

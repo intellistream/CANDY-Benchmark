@@ -1,5 +1,5 @@
 key,value,type
-vecDim,512,I64
+vecDim,4096,I64
 vecVolume,100000,I64
 batchSize,4000,I64
 metricType,IP,String
@@ -42,3 +42,5 @@ waitPendingWrite,1,I64
 congestionDrop,1,I64
 isOnlinePQ,0,I64
 singleWorkerOpt,1,I64
+flannIndexTag,1,I64
+expandStep,4000,I64

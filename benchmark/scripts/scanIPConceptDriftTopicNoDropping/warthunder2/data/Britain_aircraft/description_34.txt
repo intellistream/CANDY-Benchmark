@@ -1,3 +1,0 @@
-Description of Tempest_Mk_V_(Vickers_P): 
-The Tempest Mk V (Vickers P) is a rank II British strike aircraft 
-with a battle rating of 3.3 (AB), 3.7 (RB), and 4.0 (SB). It was introduced in Update 1.37. It is a dive fighter refitted to be a tank hunter. Since it's not as well suited for fighting planes, it is designated as attacker instead, with all the priveleges of attacker, such as air spawn. It is also placed much lower in BR than it's fighter equivalent, due to only having anti-tank ammunition and semi-automatic cannons.

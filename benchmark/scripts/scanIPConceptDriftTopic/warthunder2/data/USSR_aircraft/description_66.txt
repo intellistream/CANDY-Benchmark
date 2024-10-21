@@ -1,3 +1,0 @@
-Description of IL-2_M-82: 
-The IL-2 M-82 is a premium gift rank II Soviet strike aircraft 
-with a battle rating of 2.7 (AB/RB/SB). It was introduced during Update "Starfighters" as a reward for World War Mode Season 3: Road to the West. This unique IL-2 variant is fitted with a Shvetsov M-82 engine rather than the standard Mikulin AM-38, and also benefits from having a rear gunner. Its poor flight performance and low top speed make it lacklustre in an air-to-air role, but its effective weapons and great secondary payload options make it a highly effective ground attacker in both air and mixed battles.

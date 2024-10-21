@@ -1,3 +1,0 @@
-Description of Fw_190_D-13: 
-The Fw 190 D-13 is a premium gift rank IV German fighter 
-with a battle rating of 5.7 (AB), 5.0 (RB), and 5.3 (SB). It has been in the game since the start of the Open Beta Test prior to Update 1.27. The Fw 190 D-13 is very similar to the Fw 190 D-12 in the German tech tree, with the only difference being the 20 mm MG 151 "Motorkanone" firing through the centre of the propeller, rather than the 30 mm Mk 108 cannon on the D-12.

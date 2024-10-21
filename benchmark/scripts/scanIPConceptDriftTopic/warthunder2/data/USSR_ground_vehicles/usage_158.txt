@@ -1,2 +1,0 @@
-Usage of T-80UK: 
-The T-80UK is a command variant of the T-80U. As such, the playstyle will not change much. The most notable difference between the two tanks is the soft-kill active protection system, which will disrupt the guidance of any ATGMs headed in the direction of the tank, provided the turret is facing the launching vehicle.

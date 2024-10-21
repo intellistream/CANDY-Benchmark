@@ -1,2 +1,0 @@
-History of Nashorn: 
-In 1942, the German tank destroyers equipped with 75 mm guns (Marder & StuG IIIs) became ineffective following the arrival of uparmoured Soviet KV heavy tanks on the Eastern front. To quickly answer that situation, the German command mandated an interim vehicle to be proposed before the arrival of a properly designed heavy Panzerjäger. The interim solution was to rely upon the newly developed anti-tank cannons whose calibre had proven very effective even against heavily armoured targets.

@@ -41,7 +41,7 @@ sudo apt install -y liblapack-dev libblas-dev
 sudo apt-get install -y graphviz libboost-all-dev swig
 sudo apt-get install -y libcudnn8 libcudnn8-dev
 pip install matplotlib pandas==2.0.0
-pip install torch>=1.13.0
+pip install torch==2.4.0
 echo "Build CANDY and PyCandy"
 # Step 1: Configure the project
 export CUDACXX=/usr/local/cuda/bin/nvcc
