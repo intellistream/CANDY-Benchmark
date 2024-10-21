@@ -1,2 +1,0 @@
-History of AMX-13_DCA_40: 
-The need for a SPAAG emerged in the 1950s for the French Army when the only AA vehicles left over from WW2 (M16 half-tracks mainly) became underpowered and thus obsolete. Several projects were launched using Bofors guns. Among them was the AMX-13 DCA canon de 40 mm using the hull of the AMX-13 on which was installed a specially designed SAMM S 980 turret housing the 40 mm Bofors L/70 gun. The turret offered good protection for the crew, 360° traverse and a 90° elevation angle. The Mle51 T1 gun fired 240 rounds per minute at 993 m/s.

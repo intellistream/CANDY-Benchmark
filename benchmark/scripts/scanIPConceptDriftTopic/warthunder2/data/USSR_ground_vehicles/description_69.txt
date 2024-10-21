@@ -1,3 +1,0 @@
-Description of BM-31-12: 
-The BM-31-12, also known as "Andryusha", is a premium gift rank III Soviet tank destroyer 
-with a battle rating of 4.0 (AB/RB/SB). It was introduced in Update "Sky Guardians" as a reward for the 2023 Legend of Victory event. A highly unusual vehicle, reminiscent of its smaller brother, the BM-13N. Not only is its truck-based configuration not the most common, but it also uses 12 x 300 mm M-31-UK rockets as its main armament, has limited traverse, has only 2 crew members, and a gun depression of +8°. The last is somewhat compensated by its ability to lean forwards with a hydropneumatic suspension system usually found on higher rank vehicles. Its gameplay is best compared with its smaller sibling, the BM-13N "Katyusha".

@@ -1,3 +1,0 @@
-Usage of T-2_Early: 
-This aircraft doesn't have any countermeasures (like flares, RWR). Any aircraft with air-to-air missiles will pose a threat to you. Although you can use rockets instead of flares, their effect is very limited. Moreover, the T-2 has no IRST system. Any plane with SARH missiles will pose a threat to you (F-4C, MiG-21, F-8E). Unless you see the other side firing missiles at you, you will not be able to detect the launch before being hit.
-Offensively, the damage caused by the JM61A1 gun is seriously insufficient. The gun's shooting axis is off centre, near the lower left position.

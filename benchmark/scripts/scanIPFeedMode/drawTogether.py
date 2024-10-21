@@ -100,6 +100,9 @@ def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixT
     if (algoTag == 'LSHAPG'):
         editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "LSHAPG")
         editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'SPTAG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "SPTAG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
     exeTag = "onlineInsert"
     # prepare new file
     os.system("rm -rf " + exePath + "*.rbt")
@@ -268,13 +271,14 @@ def main():
     aRowVec = [200, 500, 1000, 2000, 3000, 4000, 5000, 25000, 50000]
     # aRowVec=[100, 200, 500, 1000]
     # add the algo tag here
-    algosVec = ['flat', 'LSH-H', 'Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG','LSHAPG']
+    # algosVec = ['flat', 'LSH-H','flatAMMIP','flatAMMIPSMPPCA','PQ','IVFPQ','HNSW']
+    algosVec = ['flat', 'Flann','SPTAG','LSH-H','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','Vanama','MNRU']
     # algosVec = ['flat', 'LSH-H']
     # algosVec = ['flat', 'onlinePQ']
     # algosVec=['incrementalRaw']
     # algosVec=[ 'pq']
     # algoDisp = ['BrutalForce', 'PQ']
-    algoDisp = ['Baseline', 'LSH','Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG','LSHAPG']
+    algoDisp = ['Baseline', 'Flann','SPTAG','LSH','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','freshDiskAnn','MNRU']
     # algoDisp = ['BrutalForce', 'LSH-H']
     # algoDisp=['BrutalForce']
     # algoDisp=['PQ']
@@ -320,17 +324,17 @@ def main():
                              methodTags,
                              "Batch Size (rows)", r'95% Latency of insert (ms)', 0, 1,
                              figPath + "/" + "scanIPEventRateFaissHalf_lat_INSERT_feedMode",
-                             True)
+                             False)
     groupLine.DrawFigureYLog(periodAll, pendingWaitTimeAll / 1000,
                              methodTags,
                              "Batch Size (rows)", r'Pending wait for insert (ms)', 0, 1,
                              figPath + "/" + "scanIPEventRateFaissHalf_lat_pending_feedMode",
-                             True)
+                             False)
     groupLine.DrawFigureYLog(periodAll, incrementalSearchAll / 1000,
                              methodTags,
                              "Batch Size (rows)", r'Latency of search (ms)', 0, 1,
                              figPath + "/" + "scanIPEventRateFaissHalf_lat_search_feedMode",
-                             True)
+                             False)
     groupLine.DrawFigureYLog(periodAll, (incrementalSearchAll + pendingWaitTimeAll) / 1000,
                              methodTags,
                              "Batch Size (rows)", r'Latency of query (ms)', 0, 1,
@@ -341,7 +345,12 @@ def main():
                                 "Batch Size (rows)", r'recall@10', 0, 1,
                                 figPath + "/" + "scanIPEventRateFaissHalf_recall_feedMode",
                                 True)
-
+    groupLine.DrawFigureYLog(periodAll, 1/(incrementalSearchAll / 1e6),
+                                methodTags,
+                                "Batch Size (rows)", r'Queries Per Second', 0, 1,
+                                figPath + "/" + "scanIPEventRateFaissHalf_qps_feedMode",
+                                False)
+   
 
 if __name__ == "__main__":
     main()

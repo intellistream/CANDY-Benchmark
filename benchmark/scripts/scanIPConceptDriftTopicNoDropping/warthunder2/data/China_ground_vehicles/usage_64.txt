@@ -1,2 +1,0 @@
-Usage of T-69_II_G: 
-The T-69 II G is best played as a midfielder. It is better for close to medium range combat than the ZTZ59D1, since the mobility is noticeably better and the turret rotation speed is literally twice as good (20 deg/s max vs. 10 deg/s max). Rushing headfirst into combat is still not optimal since it lags behind in these two parameters compared to Leopards, AMX-30s, or Type 74s. On the other hand, the lack of a thermal sight makes long distance sniping more difficult than with the 59D1.

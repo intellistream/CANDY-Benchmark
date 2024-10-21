@@ -1,3 +1,0 @@
-Description of Bf_109_E-4: 
-The Bf 109 E-4 is a rank II German fighter 
-with a battle rating of 3.0 (AB/RB/SB). It was introduced in Update 1.53 "Firestorm". The differences from its predecessor are little in quantity, though they have a drastic effect in-game. The E-4 is slightly heavier, but thanks to better surface polishing and a +150 hp WEP, it is faster than the E-3. The greatest advantage though is the installation of MG FF/M cannons with minengeschoße.

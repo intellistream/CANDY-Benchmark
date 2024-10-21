@@ -1,3 +1,0 @@
-Description of SU-57: 
-The SU-57 is a premium rank I Soviet tank destroyer 
-with a battle rating of 2.3 (AB/RB/SB). It was introduced in Update 1.49 "Weapons of Victory". The vehicle is similar to the American 75 mm GMC M3 by mounting a gun on the back of a half-track. The 57 mm gun can nearly penetrate most tanks at its battle rating range, nearly 100 mm at 500 meters away with regular AP rounds.
