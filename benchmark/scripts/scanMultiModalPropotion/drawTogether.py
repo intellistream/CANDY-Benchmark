@@ -427,10 +427,5 @@ def main():
                                 "Prop. of Images", r'Queries Per Second', 0, 1,
                                 figPath + "/" + "scanIPMMP_qps",
                                 False)
-    groupLine.DrawViolinFigure(periodAll,  1/(incrementalSearchAll / 1e6),
-                                methodTags,
-                                "Prop. of Images", r'Queries Per Second', 0, 1,
-                                figPath + "/" + "scanIPMMP_qps_vio",
-                                False)
 if __name__ == "__main__":
     main()

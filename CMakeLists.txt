@@ -1,6 +1,9 @@
 
 cmake_minimum_required(VERSION 3.14)
 project(CANDY CXX)
+include (cmake/FindCuda.cmake)
+include (cmake/FindTorch.cmake)
+find_package(Torch REQUIRED)
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_RULE_MESSAGES OFF)
 # Custom CMake find instructions and macros
@@ -22,8 +25,6 @@ add_subdirectory(thirdparty/faiss)
 # Set specific options for Faiss compilation
 #target_compile_options(faiss PRIVATE "-fno-openmp")
 set(LIBRARIES ${LIBRARIES} faiss)
-
-find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
 # Set Optimization Flags
@@ -211,6 +212,8 @@ endforeach ()
 message(STATUS " Libraries: ${LIBRARIES}")
 #add_subdirectory(pytorchNN)
 # Add Source Code
+
+
 add_subdirectory(src)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)

@@ -20,12 +20,6 @@ if (BUILD_BENCHMARKS)
     include_directories("include/")
     add_executable(benchmark "src/Benchmark.cpp")
     target_link_libraries(benchmark CANDY)
-    add_executable(ft "src/faissTest.cpp")
-    target_link_libraries(ft CANDY)
-    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/src/runFt.sh
-            DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-    add_executable(tt "src/torchTest.cpp")
-    target_link_libraries(tt CANDY)
     add_executable(onlineInsert "src/OnlineInsert.cpp")
     target_link_libraries(onlineInsert CANDY)
     add_executable(offlineBuild "src/OfflineBuild.cpp")
@@ -69,9 +63,6 @@ if (BUILD_BENCHMARKS)
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pythonTest.py
             DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
     #file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/torchscripts DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config.csv
-            DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-
     #     set_target_properties(benchmarkPCA PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/scripts/PCA)
     #     set_target_properties(benchmarkCCA PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/scripts/CCA)
     #set_target_properties(step1AMME2ESaveMtxToPt PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/torchscripts/VQ)
