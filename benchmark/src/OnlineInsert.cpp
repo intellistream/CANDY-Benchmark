@@ -257,5 +257,8 @@ int main(int argc, char **argv) {
   briefOutCfg->toFile("onlineInsert_result.csv");
   std::cout << "brief results\n" << briefOutCfg->toString() << std::endl;
   UtilityFunctions::saveTimeStampToFile("onlineInsert_timestamps.csv", timeStamps);
+  auto indexStatistics = indexPtr->getIndexStatistics();
+  std::cout << "index statistics\n" << indexStatistics->toString() << std::endl;
+  indexStatistics->toFile("onlineInsert_indexStatistics.csv");
   return 0;
 }
