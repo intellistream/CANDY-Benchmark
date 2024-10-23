@@ -22,6 +22,7 @@ add_sources(
         DPGIndex.cpp
         LSHAPGIndex.cpp
         FlatGPUIndex.cpp
+        MatrixGraphIndex.cpp
 )
 add_subdirectory(HashingModels)
 add_subdirectory(ParallelPartitionIndex)
