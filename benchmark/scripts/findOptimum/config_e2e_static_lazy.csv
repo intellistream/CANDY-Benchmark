@@ -16,7 +16,8 @@ efConstruction,40,I64
 efSearch,16,I64
 rng_alpha,1.0,Double
 clusterExpansionStep,2,I64
-is_datamining,1,I64
+is_datamining,0,I64
+is_greedy,1,I64
 hnswid,0,I64
 optimisticN,16,I64
 discardN,0,I64
