@@ -10,8 +10,8 @@ useSeparateQuery,0,I64
 dataLoaderTag,hdf5,String
 staticDataSet,0,I64
 ANNK,25,I64
-dataPath,datasets/hdf5/sun/sun.hdf5,String
-queryPath,datasets/hdf5/sun/sun.hdf5,String
+dataPath,datasets/fvecs/sift1M/sift/sift_base.fvecs,String
+queryPath,datasets/fvecs/sift1M/sift/sift_base.fvecs,String
 efConstruction,40,I64
 efSearch,16,I64
 rng_alpha,1.0,Double
