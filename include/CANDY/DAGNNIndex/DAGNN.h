@@ -174,6 +174,8 @@ struct DynamicTuneHNSW{
         bool operator<(const Node& obj1) const {
             return bottom_connections<obj1.bottom_connections;
         }
+
+
     };
 
 
@@ -246,6 +248,8 @@ struct DynamicTuneHNSW{
         bool contains(idx_t id) const {
             return id_set.find(id) != id_set.end();
         }
+
+
     };
 
 
@@ -399,6 +403,25 @@ struct DynamicTuneHNSW{
         GlobalGraphStats global_stat;
         BatchDataStates time_local_stat;
         WindowStates window_states;
+        GraphStates()=default;
+
+        GraphStates(const GraphStates& other):
+        vecDim(other.vecDim),
+        global_stat(other.global_stat),
+        time_local_stat(other.time_local_stat)
+        {
+            window_states.oldWindowSize = other.window_states.oldWindowSize;
+            window_states.newWindowSize = other.window_states.newWindowSize;
+            window_states.hierarchyWindowSize=other.window_states.hierarchyWindowSize;
+            window_states.last_action = other.window_states.last_action;
+            window_states.last_insertion_latency = other.window_states.last_insertion_latency;
+            window_states.last_search_latency = other.window_states.last_search_latency;
+            window_states.last_recall = other.window_states.last_recall;
+            window_states.init();
+            // outside this function we will add pointers to copied' nodes to order_maps
+
+
+        }
         void init() {
             global_stat.value_average.resize(vecDim,0.0);
             global_stat.value_variance.resize(vecDim, 0.0);
@@ -421,26 +444,41 @@ struct DynamicTuneHNSW{
             time_local_stat.steps_expansion_sum = 0;
             time_local_stat.steps_taken_sum = 0;
             time_local_stat.steps_taken_max = 0;
-	}
+	    }
         /// others
 	
-	        void print() {
-               std::ofstream outfile("states.csv", std::ios_base::app);
-               if (!outfile.is_open()){
-                       std::cerr << "Failed to open states.csv" << std::endl;
-                       return;
-               }
-               // Write GlobalGraphStats
-               outfile << global_stat.ntotal << "," << global_stat.degree_sum << "," << global_stat.degree_variance << ","<< global_stat.neighbor_distance_sum<< "," << global_stat.neighbor_distance_variance << "," << global_stat.steps_taken_max << "," << global_stat.steps_taken_avg << "," << global_stat.steps_expansion_average << ",";
-               // Write BatchDataStates
-               outfile << time_local_stat.ntotal << "," << time_local_stat.old_ntotal << "," << time_local_stat.degree_sum_new << "," << time_local_stat.degree_variance_new << "," << time_local_stat.degree_variance_old << "," << time_local_stat.degree_sum_old << "," << time_local_stat.neighbor_distance_sum_new << "," << time_local_stat.neighbor_distance_variance_new << "," << time_local_stat.neighbor_distance_sum_old << "," << time_local_stat.neighbor_distance_variance_old << "," << time_local_stat.steps_taken_sum << "," << time_local_stat.steps_taken_max << "," << time_local_stat.steps_expansion_sum << ",";
-               // Write WindowStates
-               outfile << window_states.get_count(0) << "," << window_states.get_count(1) << "," << window_states.get_count(2)<<","<<window_states.last_action<<","<<window_states.last_insertion_latency<<","<<window_states.last_search_latency<<","<<window_states.last_recall;                                                 outfile << std::endl;
-               outfile.close();
+        void print() {
+            std::ofstream outfile("states.csv", std::ios_base::app);
+            if (!outfile.is_open()){
+                std::cerr << "Failed to open states.csv" << std::endl;
+                return;
+            }
+            // Write GlobalGraphStats
+            outfile << global_stat.ntotal << "," << global_stat.degree_sum << "," << global_stat.degree_variance << ","<< global_stat.neighbor_distance_sum<< "," << global_stat.neighbor_distance_variance << "," << global_stat.steps_taken_max << "," << global_stat.steps_taken_avg << "," << global_stat.steps_expansion_average << ",";
+            // Write BatchDataStates
+            outfile << time_local_stat.ntotal << "," << time_local_stat.old_ntotal << "," << time_local_stat.degree_sum_new << "," << time_local_stat.degree_variance_new << "," << time_local_stat.degree_variance_old << "," << time_local_stat.degree_sum_old << "," << time_local_stat.neighbor_distance_sum_new << "," << time_local_stat.neighbor_distance_variance_new << "," << time_local_stat.neighbor_distance_sum_old << "," << time_local_stat.neighbor_distance_variance_old << "," << time_local_stat.steps_taken_sum << "," << time_local_stat.steps_taken_max << "," << time_local_stat.steps_expansion_sum << ",";
+            // Write WindowStates
+            outfile << window_states.get_count(0) << "," << window_states.get_count(1) << "," << window_states.get_count(2)<<","<<window_states.last_action<<","<<window_states.last_insertion_latency<<","<<window_states.last_search_latency<<","<<window_states.last_recall;                                                 outfile << std::endl;
+            outfile.close();
        }
+       void print(size_t action_num) {
+            std::ofstream outfile("states"+std::to_string(action_num)+".csv", std::ios_base::app);
+            if (!outfile.is_open()){
+                std::cerr << "Failed to open states.csv" << std::endl;
+                return;
+            }
+            // Write GlobalGraphStats
+            outfile << global_stat.ntotal << "," << global_stat.degree_sum << "," << global_stat.degree_variance << ","<< global_stat.neighbor_distance_sum<< "," << global_stat.neighbor_distance_variance << "," << global_stat.steps_taken_max << "," << global_stat.steps_taken_avg << "," << global_stat.steps_expansion_average << ",";
+            // Write BatchDataStates
+            outfile << time_local_stat.ntotal << "," << time_local_stat.old_ntotal << "," << time_local_stat.degree_sum_new << "," << time_local_stat.degree_variance_new << "," << time_local_stat.degree_variance_old << "," << time_local_stat.degree_sum_old << "," << time_local_stat.neighbor_distance_sum_new << "," << time_local_stat.neighbor_distance_variance_new << "," << time_local_stat.neighbor_distance_sum_old << "," << time_local_stat.neighbor_distance_variance_old << "," << time_local_stat.steps_taken_sum << "," << time_local_stat.steps_taken_max << "," << time_local_stat.steps_expansion_sum << ",";
+            // Write WindowStates
+            outfile << window_states.get_count(0) << "," << window_states.get_count(1) << "," << window_states.get_count(2)<<","<<window_states.last_action<<","<<window_states.last_insertion_latency<<","<<window_states.last_search_latency<<","<<window_states.last_recall;                                                 outfile << std::endl;
+            outfile.close();
+        }
     };
     bool is_datamining = false;
-    bool is_training = true;
+    bool is_training = false;
+    bool is_greedy = false;
     size_t datamining_search_select = 20;
     size_t datamining_search_annk = 25;
     int64_t vecDim;
@@ -466,8 +504,6 @@ struct DynamicTuneHNSW{
 
 
     DynamicTuneHNSW(const int64_t M, const int64_t dim, const DAGNN::dagnn_metric_t metric, const DynamicTuneParams setting) {
-
-
         vecDim = dim;
         graphStates.vecDim = dim;
         omp_init_lock(&state_lock);
@@ -485,6 +521,99 @@ struct DynamicTuneHNSW{
 
         assert(storage);
     }
+
+    DynamicTuneHNSW(const DynamicTuneHNSW& other):
+        vecDim(other.vecDim),
+        dynamicParams(other.dynamicParams),
+        graphStates(other.graphStates),
+        bd_stats(other.bd_stats),
+        storage(other.storage),
+        deleteLists(other.deleteLists),
+        entry_points(other.entry_points),
+        last_visited(other.last_visited),
+        assign_probs(other.assign_probs),
+        cum_nneighbor_per_level(other.cum_nneighbor_per_level),
+        max_level(other.max_level),
+        delete_mode(other.delete_mode){
+        omp_init_lock(&state_lock);
+        // copy linkLists
+        linkLists.reserve(other.linkLists.size());
+        for (const Node* node : other.linkLists) {
+            if (node) {
+                linkLists.push_back(new Node(*node));
+            } else {
+                linkLists.push_back(nullptr);
+            }
+        }
+
+        // copy ordered_map with id
+        // oldVertices
+        for (const auto& id : other.graphStates.window_states.oldVertices.id_set) {
+            auto node = linkLists[id];
+            graphStates.window_states.oldVertices.insert(id, node);
+        }
+        // newVertices
+        for (const auto& id : other.graphStates.window_states.newVertices.id_set) {
+            auto node = linkLists[id];
+            graphStates.window_states.newVertices.insert(id, node);
+        }
+        // hierarchyVertices
+        for (const auto& id : other.graphStates.window_states.hierarchyVertices.id_set) {
+            auto node = linkLists[id];
+            graphStates.window_states.hierarchyVertices.insert(id, node);
+        }
+
+    }
+
+    DynamicTuneHNSW& operator=(const DynamicTuneHNSW& other){
+        if(this!=&other){
+            vecDim = other.vecDim;
+            dynamicParams = other.dynamicParams;
+            graphStates = other.graphStates;
+            bd_stats = other.bd_stats;
+            storage = other.storage;
+            deleteLists = other.deleteLists;
+            entry_points = other.entry_points;
+            last_visited = other.last_visited;
+            assign_probs = other.assign_probs;
+            cum_nneighbor_per_level = other.cum_nneighbor_per_level;
+            max_level = other.max_level;
+            delete_mode = other.delete_mode;
+            omp_init_lock(&state_lock);
+            linkLists.reserve(other.linkLists.size());
+            for (const Node* node : other.linkLists) {
+                if (node) {
+                    linkLists.push_back(new Node(*node));
+                } else {
+                    linkLists.push_back(nullptr);
+                }
+            }
+            // copy ordered_map with id
+            // oldVertices
+            for (const auto& id : other.graphStates.window_states.oldVertices.id_set) {
+                auto node = linkLists[id];
+                graphStates.window_states.oldVertices.insert(id, node);
+            }
+            // newVertices
+            for (const auto& id : other.graphStates.window_states.newVertices.id_set) {
+                auto node = linkLists[id];
+                graphStates.window_states.newVertices.insert(id, node);
+            }
+            // hierarchyVertices
+            for (const auto& id : other.graphStates.window_states.hierarchyVertices.id_set) {
+                auto node = linkLists[id];
+                graphStates.window_states.hierarchyVertices.insert(id, node);
+            }
+        }
+        return *this;
+    };
+
+    ~DynamicTuneHNSW(){
+            for (Node* node : linkLists) {
+                delete node;
+            }
+    };
+
 
     float* get_vector(const idx_t i) const {
         assert(i<storage->ntotal);

@@ -214,29 +214,14 @@ void CANDY::DynamicTuneHNSW::updateGlobalState() {
         randomPickAction();
     }
 
-//    if(graphStates.time_local_stat.old_ntotal>1000) {
-//        if(verbose) {
-//            printf("cutting and adding\n");
-//        }
-//        //cutEdgesWindow(graphStates.window_states, 0);
-//        //cutEdgesWindow(graphStates.window_states, 1);
-//        //linkEdgesWindow(graphStates.window_states, 0);
-//    }
-    if(verbose) {
-        printf("After cutting degree avg %lf var %lf, distance avg %lf var %lf\n",
-               graphStates.global_stat.degree_sum / (graphStates.global_stat.ntotal * 1.0),
-               graphStates.global_stat.degree_variance,
-               graphStates.global_stat.neighbor_distance_sum / (graphStates.global_stat.ntotal * 1.0),
-               graphStates.global_stat.neighbor_distance_variance);
-    }
-    graphStates.window_states.reset();
-    //bd_stats.print();
+    //graphStates.window_states.reset();
+
     bd_stats.reset();
 }
 
 void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     // here params are already set or updated
-
+    graphStates.window_states.reset();
     auto insertion_start = std::chrono::high_resolution_clock::now();
     assert(n>0);
     assert(x);
@@ -333,153 +318,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
     for (idx_t i = 0; i < n0+n; i++) {
         omp_destroy_lock(&locks[i]);
     }
-    // acquire recall and latency before action
-    if(is_datamining || is_training){
-        // recording insertion stat
-        graphStates.window_states.last_insertion_latency = chronoElapsedTime(insertion_start);
-        // recording search stat
-        std::random_device rd;  // Seed
-        std::mt19937 gen(rd()); // Mersenne Twister generator
-        std::uniform_int_distribution<> dist(0, storage->ntotal - 1);
-
-        std::vector<int> selected_numbers;
-        std::vector<faiss::idx_t> ru_gt(datamining_search_annk * datamining_search_select);
-        std::vector<float> distance_gt(datamining_search_annk * datamining_search_select);
-
-        std::vector<faiss::idx_t> ru_dagnn(datamining_search_annk * datamining_search_select);
-        std::vector<float> distance_dagnn(datamining_search_annk * datamining_search_select);
-        // Randomly pick unique numbers and search
-        // acquire groundtruth using flatindex
-        while (selected_numbers.size() < datamining_search_select) {
-            int num = dist(gen);
-            auto to_search = get_vector(num);
-            storage->search(1, to_search, datamining_search_annk, distance_gt.data()+datamining_search_annk*selected_numbers.size(), ru_gt.data()+datamining_search_annk*selected_numbers.size());
-            delete[] to_search;
-            selected_numbers.push_back(num);
-        }
-        size_t search_lat = 0;
-        for(size_t i=0; i<selected_numbers.size(); i++){
-            int num = selected_numbers[i];
-            DAGNN::DistanceQueryer disq(vecDim);
-            DAGNN::VisitedTable vt(storage->ntotal);
-            auto to_search = get_vector(num);
-            disq.set_query(to_search);
-
-            auto search_start = std::chrono::high_resolution_clock::now();
-            search(disq, datamining_search_annk, ru_dagnn.data()+datamining_search_annk*i, distance_dagnn.data()+datamining_search_annk*i, vt);
-            search_lat += chronoElapsedTime(search_start);
-            delete[] to_search;
-        }
-        graphStates.window_states.last_search_latency = search_lat;
-
-        // calculate recall
-        int true_positive = 0;
-        int false_negative = 0;
-        for(size_t i=0; i<selected_numbers.size(); i++){
-            for(size_t j=0; j<datamining_search_annk; j++){
-                auto exist = false;
-                auto temp = ru_dagnn[i*datamining_search_annk + j];
-                for(size_t k=0; k<datamining_search_annk; k++){
-                    auto gt = ru_gt[i*datamining_search_annk+k];
-                    if(temp==gt){
-                        exist = true;
-                        break;
-                    }
-                }
-                if(exist){
-                    true_positive++;
-                } else {
-                    false_negative++;
-                }
-            }
-        }
-        graphStates.window_states.last_recall = (true_positive*1.0)/((true_positive+false_negative)*1.0);
-
-
-
-
-
-
-
-    }
-
-
-
-    graphStates.print();
-    updateGlobalState();
-    // acquire recall and latency after action
-    if(is_datamining || is_training){
-        // recording insertion stat
-        graphStates.window_states.last_insertion_latency = chronoElapsedTime(insertion_start);
-        // recording search stat
-        std::random_device rd;  // Seed
-        std::mt19937 gen(rd()); // Mersenne Twister generator
-        std::uniform_int_distribution<> dist(0, storage->ntotal - 1);
-
-        std::vector<int> selected_numbers;
-        std::vector<faiss::idx_t> ru_gt(datamining_search_annk * datamining_search_select);
-        std::vector<float> distance_gt(datamining_search_annk * datamining_search_select);
-
-        std::vector<faiss::idx_t> ru_dagnn(datamining_search_annk * datamining_search_select);
-        std::vector<float> distance_dagnn(datamining_search_annk * datamining_search_select);
-        // Randomly pick unique numbers and search
-        // acquire groundtruth using flatindex
-        while (selected_numbers.size() < datamining_search_select) {
-            int num = dist(gen);
-            auto to_search = get_vector(num);
-            storage->search(1, to_search, datamining_search_annk, distance_gt.data()+datamining_search_annk*selected_numbers.size(), ru_gt.data()+datamining_search_annk*selected_numbers.size());
-            delete[] to_search;
-            selected_numbers.push_back(num);
-        }
-        size_t search_lat = 0;
-        for(size_t i=0; i<selected_numbers.size(); i++){
-            int num = selected_numbers[i];
-            DAGNN::DistanceQueryer disq(vecDim);
-            DAGNN::VisitedTable vt(storage->ntotal);
-            auto to_search = get_vector(num);
-            disq.set_query(to_search);
-
-            auto search_start = std::chrono::high_resolution_clock::now();
-            search(disq, datamining_search_annk, ru_dagnn.data()+datamining_search_annk*i, distance_dagnn.data()+datamining_search_annk*i, vt);
-            search_lat += chronoElapsedTime(search_start);
-            delete[] to_search;
-        }
-        graphStates.window_states.last_search_latency = search_lat;
-
-        // calculate recall
-        int true_positive = 0;
-        int false_negative = 0;
-        for(size_t i=0; i<selected_numbers.size(); i++){
-            for(size_t j=0; j<datamining_search_annk; j++){
-                auto exist = false;
-                auto temp = ru_dagnn[i*datamining_search_annk + j];
-                for(size_t k=0; k<datamining_search_annk; k++){
-                    auto gt = ru_gt[i*datamining_search_annk+k];
-                    if(temp==gt){
-                        exist = true;
-                        break;
-                    }
-                }
-                if(exist){
-                    true_positive++;
-                } else {
-                    false_negative++;
-                }
-            }
-        }
-        graphStates.window_states.last_recall = (true_positive*1.0)/((true_positive+false_negative)*1.0);
-
-
-
-
-
-
-
-    }
-
-
-    graphStates.print();
-   
+    graphStates.window_states.last_insertion_latency = chronoElapsedTime(insertion_start);
 
 
 
@@ -2753,23 +2592,23 @@ bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
 	graphStates.window_states.last_action = action_num;
     switch(action_num){
         case do_nothing:
-            printf("do nothing\n");
+            //printf("do nothing\n");
             break;
         case bad_link_cut_old:
-            printf("bad link cut old\n");
+            //printf("bad link cut old\n");
             cutEdgesWindow(graphStates.window_states, 0);
             break;
         case bad_link_cut_new:
-            printf("bad link cut new\n");
+            //printf("bad link cut new\n");
             cutEdgesWindow(graphStates.window_states, 1);
             break;
         case outwards_link_old:
-            printf("outwards link old\n");
+            //printf("outwards link old\n");
             linkEdgesWindow(graphStates.window_states, 0);
             break;
         case outwards_link_new:
-            printf("outwards link new\n");
-            linkEdgesWindow(graphStates.window_states,1);
+            //printf("outwards link new\n");
+            //linkEdgesWindow(graphStates.window_states,1);
             break;
 //        case DEG_refine_old:
 //            printf("DEG old\n");
@@ -2780,20 +2619,20 @@ bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
 //            swapEdgesWindow(graphStates.window_states,1);
 //            break;
         case backtrack_candidate:
-            printf("backtrack candidate\n");
+            //printf("backtrack candidate\n");
             navigationBacktrackWindow(graphStates.window_states);
             break;
         case intercluster_link:
-            printf("intercluster link\n");
+            //printf("intercluster link\n");
             linkClusterWindow(graphStates.window_states);
 
             break;
         case lift_cluster_center:
-            printf("lift cluster center\n");
+            //printf("lift cluster center\n");
             hierarchyOptimizationLiftWIndow(graphStates.window_states);
             break;
         case lower_navigation_point:
-            printf("lower navigation point\n");
+            //printf("lower navigation point\n");
             hierarchyOptimizationDegradeWIndow(graphStates.window_states);
             break;
         case increase_rng_alpha:
@@ -2976,6 +2815,6 @@ bool CANDY::DynamicTuneHNSW::performAction(const size_t action_num) {
         default:
             return false;
     }
-    printf("action complete!\n");
+    //printf("action complete!\n");
     return true;
 }
