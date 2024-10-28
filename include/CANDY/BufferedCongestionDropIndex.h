@@ -13,7 +13,7 @@
 #include <Utils/IntelliTensorOP.hpp>
 #include <CANDY/AbstractIndex.h>
 #include <CANDY/CongestionDropIndex.h>
-#include <CANDY/BucketedFlatIndex.h>
+#include "CANDY/BucketedFlatIndex/BucketedFlatIndex.h"
 #include <stdint.h>
 #include <vector>
 #include <stddef.h>

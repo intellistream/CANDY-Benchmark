@@ -1,7 +1,7 @@
 add_sources(
         CANDYObject.cpp
         AbstractIndex.cpp
-        BucketedFlatIndex.cpp
+        BucketedFlatIndex/BucketedFlatIndex.cpp
         BufferedCongestionDropIndex.cpp
         FlatIndex.cpp
         FlatAMMIPIndex.cpp
@@ -23,7 +23,6 @@ add_sources(
         LSHAPGIndex.cpp
         FlatGPUIndex.cpp
 )
-add_subdirectory(HashingModels)
 add_subdirectory(ParallelPartitionIndex)
 add_subdirectory(PQIndex)
 add_subdirectory(OnlinePQIndex)

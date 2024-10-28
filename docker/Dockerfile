@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --allow-change-held-packages \
     graphviz \
     python3 \
     python3-pip \
+    gdb\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

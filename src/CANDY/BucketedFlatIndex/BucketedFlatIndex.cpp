@@ -3,7 +3,7 @@
 // Created by tony on 25/05/23.
 //
 
-#include "CANDY/BucketedFlatIndex.h"
+#include "CANDY/BucketedFlatIndex/BucketedFlatIndex.h"
 #include "Utils/UtilityFunctions.h"
 #include <time.h>
 #include <chrono>

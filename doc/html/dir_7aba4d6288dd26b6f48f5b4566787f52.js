@@ -3,7 +3,7 @@ var dir_7aba4d6288dd26b6f48f5b4566787f52 =
     [ "CongestionDropIndex", "dir_588b355435e79af888a14ee240496be4.html", "dir_588b355435e79af888a14ee240496be4" ],
     [ "DistributedPartitionIndex", "dir_2f1b2d617d67141e21f3d0efc4e938ae.html", "dir_2f1b2d617d67141e21f3d0efc4e938ae" ],
     [ "FlannIndex", "dir_3659ba27275b6369a939ad21c88b4eba.html", "dir_3659ba27275b6369a939ad21c88b4eba" ],
-    [ "HashingModels", "dir_55a14a6577944cff6f9205bc13cc259b.html", "dir_55a14a6577944cff6f9205bc13cc259b" ],
+    [ "HashingModel", "dir_55a14a6577944cff6f9205bc13cc259b.html", "dir_55a14a6577944cff6f9205bc13cc259b" ],
     [ "HNSWNaive", "dir_e3984887bd1e041dadccf7ddc637bacf.html", "dir_e3984887bd1e041dadccf7ddc637bacf" ],
     [ "OnlinePQIndex", "dir_381d5fce047912b1d49ff682278e1854.html", "dir_381d5fce047912b1d49ff682278e1854" ],
     [ "ParallelPartitionIndex", "dir_81d4aa2633f44d83ab07f2ebec9c1d39.html", "dir_81d4aa2633f44d83ab07f2ebec9c1d39" ],

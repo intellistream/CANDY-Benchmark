@@ -2,7 +2,7 @@
 // Created by tony on 04/04/24.
 //
 
-#include <CANDY/HashingModels/MLPHashingModel.h>
+#include <CANDY/BucketedFlatIndex/HashingModel/MLPHashingModel.h>
 #include <cmath>
 namespace CANDY {
 torch::Tensor MLPHashingModel::custom_loss_function(torch::Tensor output1,

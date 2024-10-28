@@ -6,15 +6,15 @@
 #ifndef CANDY_INCLUDE_CANDY_BucketedFlatIndex_H_
 #define CANDY_INCLUDE_CANDY_BucketedFlatIndex_H_
 
-#include <Utils/AbstractC20Thread.hpp>
-#include <Utils/ConfigMap.hpp>
+#include "Utils/AbstractC20Thread.hpp"
+#include "Utils/ConfigMap.hpp"
 #include <memory>
 #include <vector>
-#include <Utils/IntelliTensorOP.hpp>
-#include <faiss/IndexFlat.h>
-#include <CANDY/AbstractIndex.h>
-#include <CANDY/FlatIndex.h>
-#include <CANDY/HashingModels/MLPBucketIdxModel.h>
+#include "Utils/IntelliTensorOP.hpp"
+#include "faiss/faiss/IndexFlat.h"
+#include "CANDY/AbstractIndex.h"
+#include "CANDY/FlatIndex.h"
+#include "CANDY/HashingModels/MLPBucketIdxModel.h"
 namespace CANDY {
 
 /**
