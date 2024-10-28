@@ -98,6 +98,6 @@ typedef std::shared_ptr<class CANDY::ZipfDataLoader> ZipfDataLoaderPtr;
 /**
  * @}
  */
-} // CANDY
+} // Algorithms
 
 #endif //CANDY_INCLUDE_MATRIXLOADER_ZipfDataLoader_H_

@@ -43,4 +43,4 @@ CANDY::DataLoaderTable::DataLoaderTable() {
 #endif
 }
 
-} // CANDY
+} // Algorithms

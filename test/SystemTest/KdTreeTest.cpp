@@ -4,8 +4,8 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include <CANDY/FlannIndex/KdTree.h>
-#include <CANDY/FlannIndex/Kmeans.h>
+#include <Algorithms/FlannIndex/KdTree.h>
+#include <Algorithms/FlannIndex/Kmeans.h>
 using namespace std;
 TEST_CASE("Test KDTreebuild", "[short]") {
   auto kd = new CANDY::KmeansTree();

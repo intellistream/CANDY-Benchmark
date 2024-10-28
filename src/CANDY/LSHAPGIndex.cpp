@@ -1,7 +1,7 @@
 //
 // Created by Isshin on 2024/5/31.
 //
-#include <CANDY/LSHAPGIndex.h>
+#include <Algorithms/LSHAPGIndex.h>
 int _lsh_UB=0;
 int _G_COST=0;
 int _g_dist_mes=0;

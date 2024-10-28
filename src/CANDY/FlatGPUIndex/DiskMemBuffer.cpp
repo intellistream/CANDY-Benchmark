@@ -1,7 +1,7 @@
 //
 // Created by tony on 24/07/24.
 //
-#include <CANDY/FlatGPUIndex/DiskMemBuffer.h>
+#include <Algorithms/FlatGPUIndex/DiskMemBuffer.h>
 #include <c10/util/Logging.h>
 namespace CANDY {
 void PlainMemBufferTU::init(int64_t vecDim,

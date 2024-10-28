@@ -2,27 +2,27 @@
 // Created by tony on 25/05/23.
 //
 
-#include "CANDY/BucketedFlatIndex/BucketedFlatIndex.h"
-#include <CANDY/BufferedCongestionDropIndex.h>
-#include <CANDY/CongestionDropIndex.h>
-#include <CANDY/DPGIndex.h>
-#include <CANDY/FaissIndex.h>
-#include <CANDY/FlannIndex.h>
-#include <CANDY/FlatAMMIPIndex.h>
-#include <CANDY/FlatAMMIPObjIndex.h>
-#include <CANDY/FlatIndex.h>
-#include <CANDY/HNSWNaiveIndex.h>
-#include <CANDY/IndexTable.h>
-#include <CANDY/LSHAPGIndex.h>
-#include <CANDY/NNDescentIndex.h>
-#include <CANDY/OnlineIVFL2HIndex.h>
-#include <CANDY/OnlineIVFLSHIndex.h>
-#include <CANDY/OnlinePQIndex.h>
-#include <CANDY/PQIndex.h>
-#include <CANDY/ParallelPartitionIndex.h>
-#include <CANDY/YinYangGraphIndex.h>
-#include <CANDY/FlatGPUIndex.h>
-#include <CANDY/YinYangGraphSimpleIndex.h>
+#include "Algorithms/BucketedFlatIndex/BucketedFlatIndex.h"
+#include <Algorithms/BufferedCongestionDropIndex.h>
+#include <Algorithms/CongestionDropIndex.h>
+#include <Algorithms/DPGIndex.h>
+#include <Algorithms/FaissIndex.h>
+#include <Algorithms/FlannIndex.h>
+#include <Algorithms/FlatAMMIPIndex.h>
+#include <Algorithms/FlatAMMIPObjIndex.h>
+#include <Algorithms/FlatIndex.h>
+#include <Algorithms/HNSWNaiveIndex.h>
+#include <Algorithms/IndexTable.h>
+#include <Algorithms/LSHAPGIndex.h>
+#include <Algorithms/NNDescentIndex.h>
+#include <Algorithms/OnlineIVFL2HIndex.h>
+#include <Algorithms/OnlineIVFLSHIndex.h>
+#include <Algorithms/OnlinePQIndex.h>
+#include <Algorithms/PQIndex.h>
+#include <Algorithms/ParallelPartitionIndex.h>
+#include <Algorithms/YinYangGraphIndex.h>
+#include <Algorithms/FlatGPUIndex.h>
+#include <Algorithms/YinYangGraphSimpleIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
 #include <include/sptag_config.h>
@@ -30,10 +30,10 @@
 //#include <CPPAlgos/CLMMCPPAlgo.h>
 #endif
 #if CANDY_RAY == 1
-#include <CANDY/DistributedPartitionIndex.h>
+#include <Algorithms/DistributedPartitionIndex.h>
 #endif
 #if CANDY_SPTAG == 1
-#include <CANDY/SPTAGIndex.h>
+#include <Algorithms/SPTAGIndex.h>
 #endif
 namespace CANDY {
 CANDY::IndexTable::IndexTable() {
@@ -69,4 +69,4 @@ CANDY::IndexTable::IndexTable() {
   indexMap["SPTAG"] = newSPTAGIndex();
 #endif
 }
-}  // namespace CANDY
+}  // namespace Algorithms

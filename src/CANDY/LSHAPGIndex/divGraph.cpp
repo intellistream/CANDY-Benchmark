@@ -1,8 +1,8 @@
 //
 // Created by tony on 01/06/24.
 //
-#include <CANDY/LSHAPGIndex/basis.h>
-#include <CANDY/LSHAPGIndex/divGraph.h>
+#include <Algorithms/LSHAPGIndex/basis.h>
+#include <Algorithms/LSHAPGIndex/divGraph.h>
 #include <queue>
 #include <functional>
 #include <unordered_set>

@@ -8,7 +8,7 @@
 #include "catch.hpp"
 #include <CANDY.h>
 #include <iostream>
-#include <CANDY/OnlinePQIndex/SimpleStreamClustering.h>
+#include <Algorithms/OnlinePQIndex/SimpleStreamClustering.h>
 using namespace std;
 using namespace INTELLI;
 using namespace torch;

@@ -1,4 +1,4 @@
-#include <CANDY/OnlinePQIndex/IVFTensorEncodingList.h>
+#include <Algorithms/OnlinePQIndex/IVFTensorEncodingList.h>
 #include <Utils/IntelliLog.h>
 #include <algorithm>
 void CANDY::IVFListCell::insertTensorPtr(INTELLI::TensorPtr tp) {

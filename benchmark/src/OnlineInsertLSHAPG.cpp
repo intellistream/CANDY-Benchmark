@@ -9,7 +9,7 @@
 #include <signal.h>
 #include <time.h>
 #include <unistd.h>
-#include <CANDY/LSHAPGIndex.h>
+#include <Algorithms/LSHAPGIndex.h>
 using namespace INTELLI;
 static inline CANDY::AbstractIndexPtr indexPtr = nullptr;
 static inline std::vector<INTELLI::IntelliTimeStampPtr> timeStamps;

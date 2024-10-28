@@ -9,7 +9,7 @@
 #include <iostream>
 #include <CANDY.h>
 #include <faiss/IndexFlat.h>
-#include <CANDY/YinYangGraphIndex/YinYangGraph.h>
+#include <Algorithms/YinYangGraphIndex/YinYangGraph.h>
 using namespace std;
 using namespace INTELLI;
 using namespace torch;

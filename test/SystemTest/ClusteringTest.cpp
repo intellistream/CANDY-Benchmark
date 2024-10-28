@@ -9,7 +9,7 @@
 #include "catch.hpp"
 #include <iostream>
 #include <CANDY.h>
-#include <CANDY/Clustering.h>
+#include <Algorithms/Clustering.h>
 #include <faiss/IndexFlat.h>
 using namespace std;
 using namespace INTELLI;

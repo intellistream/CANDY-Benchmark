@@ -1,5 +1,5 @@
-#include <CANDY/LSHAPGIndex/Preprocess.h>
-#include <CANDY/LSHAPGIndex/basis.h>
+#include <Algorithms/LSHAPGIndex/Preprocess.h>
+#include <Algorithms/LSHAPGIndex/basis.h>
 #include <fstream>
 #include <assert.h>
 #include <random>

@@ -3,7 +3,7 @@
 // Created by honeta on 21/02/24.
 //
 
-#include <CANDY/NNDescentIndex.h>
+#include <Algorithms/NNDescentIndex.h>
 
 namespace CANDY {
 void NNDescentIndex::nnDescent() {
@@ -352,4 +352,4 @@ bool NNDescentIndex::offlineBuild(torch::Tensor &t) {
   nnDescent();
   return true;
 }
-}  // namespace CANDY
+}  // namespace Algorithms

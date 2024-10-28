@@ -21,9 +21,9 @@ namespace CANDY {
 * @brief  The python bounding functions
  * @ingroup
 * @note
-* - Please first run torch.ops.load_library("<the path of CANDY's library>")
-* - In this simple bounding, we just access CANDY index class and its configuration by name tag, there is some c++ hash table in the backend to do this
-* - Please add the prefix "torch.ops.CANDY." when calling the following fucntions, see also benchmark/pythonTest.py
+* - Please first run torch.ops.load_library("<the path of Algorithms's library>")
+* - In this simple bounding, we just access Algorithms index class and its configuration by name tag, there is some c++ hash table in the backend to do this
+* - Please add the prefix "torch.ops.Algorithms." when calling the following fucntions, see also benchmark/pythonTest.py
 */
 class Candy_Python {
  public:
@@ -32,7 +32,7 @@ class Candy_Python {
 /**
 * @brief The c++ bindings to creat an index at backend
 * @param name the name of this index
-* @param type the type of this index, keep the same as that in CANDY::IndexTable
+* @param type the type of this index, keep the same as that in Algorithms::IndexTable
 * @return tensor 1x1, [1] for success
 */
   torch::Tensor index_create(string name, string type) {
@@ -318,7 +318,7 @@ class Candy_Python {
 *
 * @brief The c++ bindings to creat an dataLoader at backend
 * @param name the name of this dataLoader
-* @param type the type of this dataLoader, keep the same as that in CANDY::IndexTable
+* @param type the type of this dataLoader, keep the same as that in Algorithms::IndexTable
 * @return tensor 1x1, [1] for success
 */
   torch::Tensor dataLoader_create(string name, string type) {
@@ -447,7 +447,7 @@ class Candy_Python {
 */
   torch::Tensor tensorFromHDF5(string name, string attr) {
 #if CANDY_HDF5 == 1
-    return CANDY::HDF5DataLoader::tensorFromHDF5(name, attr);
+    return Algorithms::HDF5DataLoader::tensorFromHDF5(name, attr);
 #else
     return torch::zeros({1, 1});
 #endif

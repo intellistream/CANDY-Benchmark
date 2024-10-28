@@ -3,7 +3,7 @@
 // Created by tony on 25/05/23.
 //
 
-#include <CANDY/DistributedPartitionIndex.h>
+#include <Algorithms/DistributedPartitionIndex.h>
 #include <Utils/UtilityFunctions.h>
 #include <time.h>
 #include <chrono>
@@ -17,7 +17,7 @@ bool CANDY::DistributedPartitionIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   distributedWorkers = cfg->tryI64("distributedWorkers", 1, true);
   workers = std::vector<DistributedIndexWorkerPtr>((size_t) distributedWorkers);
   fineGrainedDistributedInsert = cfg->tryI64("fineGrainedDistributedInsert", 0, true);
-  //reduceQueue=std::make_shared<INTELLI::SPSCQueue<CANDY::TensorListIdxPair>>((size_t)(distributedWorkers*10));
+  //reduceQueue=std::make_shared<INTELLI::SPSCQueue<Algorithms::TensorListIdxPair>>((size_t)(distributedWorkers*10));
   vecDim = cfg->tryI64("vecDim", 768, true);
   sharedBuild = cfg->tryI64("sharedBuild", 1, true);
   for (size_t i = 0; i < (size_t) distributedWorkers; i++) {

@@ -1,7 +1,7 @@
 //
 // Created by Isshin on 2024/1/16.
 //
-#include <CANDY/HNSWNaive/HNSW.h>
+#include <Algorithms/HNSWNaive/HNSW.h>
 #include <Utils/UtilityFunctions.h>
 #include <cmath>
 

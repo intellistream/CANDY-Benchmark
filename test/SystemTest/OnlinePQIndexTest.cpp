@@ -8,7 +8,7 @@
 #include "catch.hpp"
 #include <CANDY.h>
 #include <iostream>
-#include <CANDY/OnlinePQIndex/SimpleStreamClustering.h>
+#include <Algorithms/OnlinePQIndex/SimpleStreamClustering.h>
 using namespace std;
 using namespace INTELLI;
 using namespace torch;
@@ -18,7 +18,7 @@ using namespace CANDY;
 int a = 0;
 torch::manual_seed(114514);
 auto db = torch::rand({6, 4});
-CANDY::SimpleStreamClusteringPtr sp=newSimpleStreamClustering();
+Algorithms::SimpleStreamClusteringPtr sp=newSimpleStreamClustering();
 sp->buildCentroids(db,
     2,
     1000,

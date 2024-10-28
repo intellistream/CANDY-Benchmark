@@ -7,7 +7,7 @@ var annotated_dup =
       [ "synced_stream", "classBS_1_1synced__stream.html", "classBS_1_1synced__stream" ],
       [ "timer", "classBS_1_1timer.html", "classBS_1_1timer" ]
     ] ],
-    [ "CANDY", null, [
+    [ "Algorithms", null, [
       [ "FLANN", null, [
         [ "BranchStruct", "structCANDY_1_1FLANN_1_1BranchStruct.html", "structCANDY_1_1FLANN_1_1BranchStruct" ],
         [ "DistanceIndex", "structCANDY_1_1FLANN_1_1DistanceIndex.html", "structCANDY_1_1FLANN_1_1DistanceIndex" ],

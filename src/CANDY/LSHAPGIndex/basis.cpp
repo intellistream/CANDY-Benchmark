@@ -1,4 +1,4 @@
-#include <CANDY/LSHAPGIndex/basis.h>
+#include <Algorithms/LSHAPGIndex/basis.h>
 #include <cmath>
 #include <vector>
 #include <random>

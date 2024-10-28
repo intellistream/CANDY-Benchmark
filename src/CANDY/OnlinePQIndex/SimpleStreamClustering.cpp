@@ -2,7 +2,7 @@
 // Created by tony on 11/01/24.
 //
 
-#include <CANDY/OnlinePQIndex/SimpleStreamClustering.h>
+#include <Algorithms/OnlinePQIndex/SimpleStreamClustering.h>
 #include <Utils/IntelliLog.h>
 bool CANDY::SimpleStreamClustering::buildCentroids(torch::Tensor &trainSet,
                                                    int64_t k,

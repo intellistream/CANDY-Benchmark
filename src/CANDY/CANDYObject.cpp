@@ -2,7 +2,7 @@
 // Created by tony on 19/03/24.
 //
 
-#include <CANDY/CANDYObject.h>
+#include <Algorithms/CANDYObject.h>
 
 namespace CANDY {
 void CANDYObject::setStr(std::string str) {
@@ -13,4 +13,4 @@ std::string CANDYObject::getStr() {
   return objStr;
 }
 
-} // CANDY
+} // Algorithms

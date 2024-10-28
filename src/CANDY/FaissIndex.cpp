@@ -1,7 +1,7 @@
 //
 // Created by Isshin on 2024/1/30.
 //
-#include <CANDY/FaissIndex.h>
+#include <Algorithms/FaissIndex.h>
 #include <faiss/IndexHNSW.h>
 #include <faiss/IndexIVFPQ.h>
 #include <faiss/IndexPQ.h>

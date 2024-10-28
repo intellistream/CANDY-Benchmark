@@ -109,6 +109,6 @@ typedef std::shared_ptr<class CANDY::AbstractDataLoader> AbstractDataLoaderPtr;
 /**
  * @}
  */
-} // CANDY
+} // Algorithms
 
 #endif //CANDY_INCLUDE_MATRIXLOADER_AbstractDataLoader_H_

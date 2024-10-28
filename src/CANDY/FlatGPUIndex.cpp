@@ -8,13 +8,13 @@
 
 #include <Utils/UtilityFunctions.h>
 
-#include <CANDY/FlatGPUIndex.h>
+#include <Algorithms/FlatGPUIndex.h>
 #include <Utils/UtilityFunctions.h>
 #include <time.h>
 #include <chrono>
 #include <assert.h>
 #include <Utils/IntelliLog.h>
-#include <CANDY/CANDYObject.h>
+#include <Algorithms/CANDYObject.h>
 #include <vector>
 #include <algorithm>
 #include <utility>

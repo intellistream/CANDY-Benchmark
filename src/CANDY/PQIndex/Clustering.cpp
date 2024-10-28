@@ -1,12 +1,12 @@
 //
 // Created by Isshin on 2024/1/8.
 //
-#include <CANDY/PQIndex/Clustering.h>
+#include <Algorithms/PQIndex/Clustering.h>
 #include <faiss/utils/random.h>
 #include <faiss/utils/utils.h>
 #include <iostream>
 /*
-bool CANDY::Clustering::setConfig(INTELLI::ConfigMapPtr cfg) {
+bool Algorithms::Clustering::setConfig(INTELLI::ConfigMapPtr cfg) {
   assert(cfg);
   vecDim_ = cfg->tryI64("vecDim", 768, true);
   k_ = cfg->tryI64("ANNK", 256, true);

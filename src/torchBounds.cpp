@@ -17,7 +17,7 @@ std::map<std::string, INTELLI::ConfigMapPtr> torchBounding_cfgMap;
 *
 * @brief The c++ bindings to creat an index at backend
 * @param name the name of this index
-* @param type the type of this index, keep the same as that in CANDY::IndexTable
+* @param type the type of this index, keep the same as that in Algorithms::IndexTable
 * @return tensor 1x1, [1] for success
 */
 torch::Tensor CANDY_index_create(string name, string type) {
@@ -387,7 +387,7 @@ std::map<std::string, INTELLI::ConfigMapPtr> torchBounding_cfgDlMap;
 *
 * @brief The c++ bindings to creat an dataLoader at backend
 * @param name the name of this dataLoader
-* @param type the type of this dataLoader, keep the same as that in CANDY::IndexTable
+* @param type the type of this dataLoader, keep the same as that in Algorithms::IndexTable
 * @return tensor 1x1, [1] for success
 */
 torch::Tensor CANDY_dataLoader_create(string name, string type) {
@@ -516,7 +516,7 @@ torch::Tensor CANDY_tensorFromFVECS(string name) {
 */
 torch::Tensor CANDY_tensorFromHDF5(string name, string attr) {
 #if CANDY_HDF5 == 1
-  return CANDY::HDF5DataLoader::tensorFromHDF5(name, attr);
+  return Algorithms::HDF5DataLoader::tensorFromHDF5(name, attr);
 #else
   return torch::zeros({1, 1});
 #endif

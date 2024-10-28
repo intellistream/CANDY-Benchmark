@@ -3,7 +3,7 @@
 // Created by tony on 25/05/23.
 //
 
-#include <CANDY/CongestionDropIndex.h>
+#include <Algorithms/CongestionDropIndex.h>
 #include <Utils/UtilityFunctions.h>
 #include <time.h>
 #include <chrono>
@@ -22,7 +22,7 @@ bool CANDY::CongestionDropIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   workers = std::vector<CongestionDropIndexWorkerPtr>((size_t) parallelWorkers);
   reduceQueue = std::vector<TensorListIdxQueuePtr>(parallelWorkers);
   fineGrainedParallelInsert = cfg->tryI64("fineGrainedParallelInsert", 0, true);
-  //reduceQueue=std::make_shared<INTELLI::SPSCQueue<CANDY::TensorListIdxPair>>((size_t)(parallelWorkers*10));
+  //reduceQueue=std::make_shared<INTELLI::SPSCQueue<Algorithms::TensorListIdxPair>>((size_t)(parallelWorkers*10));
   vecDim = cfg->tryI64("vecDim", 768, true);
   sharedBuild = cfg->tryI64("sharedBuild", 1, true);
   singleWorkerOpt = cfg->tryI64("singleWorkerOpt", 1, true);

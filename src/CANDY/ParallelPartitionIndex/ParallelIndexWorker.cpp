@@ -3,7 +3,7 @@
 // Created by tony on 25/05/23.
 //
 
-#include <CANDY/ParallelPartitionIndex/ParallelIndexWorker.h>
+#include <Algorithms/ParallelPartitionIndex/ParallelIndexWorker.h>
 #include <Utils/UtilityFunctions.h>
 #include <time.h>
 #include <chrono>
@@ -201,7 +201,7 @@ bool CANDY::ParallelIndexWorker::setConfig(INTELLI::ConfigMapPtr cfg) {
   insertStrQueue = std::make_shared<INTELLI::SPSCQueue<CANDY::TensorStrPair>>((size_t) parallelWorker_queueSize);
   deleteStrQueue = std::make_shared<INTELLI::SPSCQueue<CANDY::TensorIdxPair>>((size_t) parallelWorker_queueSize);
   singleWorkerOpt = cfg->tryI64("singleWorkerOpt", 0, true);
-  // reduceStrQueue = std::make_shared<INTELLI::SPSCQueue<CANDY::TensorStrVecPair>>((size_t) parallelWorker_queueSize);
+  // reduceStrQueue = std::make_shared<INTELLI::SPSCQueue<Algorithms::TensorStrVecPair>>((size_t) parallelWorker_queueSize);
   congestionDrop = cfg->tryI64("congestionDrop", 0, true);
   return true;
 }

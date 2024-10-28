@@ -2,7 +2,7 @@
 // Created by tony on 31/01/24.
 //
 
-#include <CANDY/YinYangGraphIndex/YinYangGraph.h>
+#include <Algorithms/YinYangGraphIndex/YinYangGraph.h>
 #include <cfloat>
 #include <queue>
 #include <Utils/IntelliLog.h>
@@ -125,16 +125,16 @@ struct VertexComparison {
     return a.first > b.first;
   }
 };
-/*std::vector<YinYangVertexPtr> CANDY::YinYangVertex::greedySearchForKNearestVertex(CANDY::YinYangVertexPtr src,
-                                                                                  CANDY::YinYangVertexPtr entryPoint,
+/*std::vector<YinYangVertexPtr> Algorithms::YinYangVertex::greedySearchForKNearestVertex(Algorithms::YinYangVertexPtr src,
+                                                                                  Algorithms::YinYangVertexPtr entryPoint,
                                                                                   int64_t k,
                                                                                   bool ignoreYin,
                                                                                   bool forceTheSameLevel,
-                                                                                  CANDY::floatDistanceFunction_t df) {
+                                                                                  Algorithms::floatDistanceFunction_t df) {
   auto queryTensor=*src->tensorSummary;
   std::vector<YinYangVertexPtr> result ((size_t)k, nullptr);
 
-  YinYangVertexPtr startVertex=CANDY::YinYangVertex::greedySearchForNearestVertex(src,entryPoint,df);
+  YinYangVertexPtr startVertex=Algorithms::YinYangVertex::greedySearchForNearestVertex(src,entryPoint,df);
   size_t sizeToBeFilled=k-1;
   if(ignoreYin&&(startVertex->isYang== false)) {
     sizeToBeFilled=k;

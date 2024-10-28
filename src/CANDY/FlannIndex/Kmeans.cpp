@@ -1,7 +1,7 @@
 //
 // Created by Isshin on 2024/3/23.
 //
-#include <CANDY/FlannIndex/Kmeans.h>
+#include <Algorithms/FlannIndex/Kmeans.h>
 bool CANDY::KmeansTree::setConfig(INTELLI::ConfigMapPtr cfg) {
 
   vecDim = cfg->tryI64("vecDim", 768, true);

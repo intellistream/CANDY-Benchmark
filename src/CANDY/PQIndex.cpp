@@ -2,7 +2,7 @@
 // Created by Isshin on 2024/1/8.
 //
 
-#include <CANDY/PQIndex.h>
+#include <Algorithms/PQIndex.h>
 #include <faiss/IndexFlat.h>
 #include <faiss/utils/distances.h>
 #include <iostream>

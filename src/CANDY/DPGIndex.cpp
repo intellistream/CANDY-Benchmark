@@ -3,7 +3,7 @@
 // Created by honeta on 04/04/24.
 //
 
-#include <CANDY/DPGIndex.h>
+#include <Algorithms/DPGIndex.h>
 
 namespace CANDY {
 void DPGIndex::nnDescent() {
@@ -407,4 +407,4 @@ bool DPGIndex::offlineBuild(torch::Tensor &t) {
   parallelFor(graphLayer1.size(), [&](size_t i) { buildLayer1(i); });
   return true;
 }
-}  // namespace CANDY
+}  // namespace Algorithms

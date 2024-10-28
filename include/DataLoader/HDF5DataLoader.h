@@ -100,6 +100,6 @@ typedef std::shared_ptr<class CANDY::HDF5DataLoader> HDF5DataLoaderPtr;
 /**
  * @}
  */
-} // CANDY
+} // Algorithms
 
 #endif //CANDY_INCLUDE_MATRIXLOADER_HDF5DataLoader_H_

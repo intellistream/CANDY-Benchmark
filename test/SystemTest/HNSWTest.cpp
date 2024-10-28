@@ -2,8 +2,8 @@
 // Created by Isshin on 2024/1/18.
 //
 #define CATCH_CONFIG_MAIN
-#include <CANDY/HNSWNaive/HNSW.h>
-#include <CANDY/HNSWNaiveIndex.h>
+#include <Algorithms/HNSWNaive/HNSW.h>
+#include <Algorithms/HNSWNaiveIndex.h>
 #include "catch.hpp"
 #include <CANDY.h>
 

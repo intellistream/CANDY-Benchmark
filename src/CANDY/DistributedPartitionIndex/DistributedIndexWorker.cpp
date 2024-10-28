@@ -3,7 +3,7 @@
 // Created by tony on 25/05/23.
 //
 
-#include <CANDY/DistributedPartitionIndex/DistributedIndexWorker.h>
+#include <Algorithms/DistributedPartitionIndex/DistributedIndexWorker.h>
 #include <Utils/UtilityFunctions.h>
 #include <time.h>
 #include <chrono>

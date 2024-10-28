@@ -94,6 +94,6 @@ typedef std::shared_ptr<class CANDY::RandomDataLoader> RandomDataLoaderPtr;
 /**
  * @}
  */
-} // CANDY
+} // Algorithms
 
 #endif //CANDY_INCLUDE_MATRIXLOADER_RandomDataLoader_H_

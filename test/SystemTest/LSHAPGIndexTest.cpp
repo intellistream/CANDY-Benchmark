@@ -8,8 +8,8 @@
 #include "catch.hpp"
 #include <CANDY.h>
 #include <iostream>
-#include <CANDY/LSHAPGIndex.h>
-#include <CANDY/FlatAMMIPIndex.h>
+#include <Algorithms/LSHAPGIndex.h>
+#include <Algorithms/FlatAMMIPIndex.h>
 using namespace std;
 using namespace INTELLI;
 using namespace torch;

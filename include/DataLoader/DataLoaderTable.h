@@ -91,6 +91,6 @@ class DataLoaderTable {
 /**
  * @}
  */
-} // CANDY
+} // Algorithms
 
 #endif //INTELLISTREAM_INCLUDE_DataLOADER_DataLOADERTABLE_H_

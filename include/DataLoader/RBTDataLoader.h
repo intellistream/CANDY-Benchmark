@@ -140,6 +140,6 @@ typedef std::shared_ptr<class CANDY::RBTDataLoader> RBTDataLoaderPtr;
 /**
  * @}
  */
-} // CANDY
+} // Algorithms
 
 #endif //CANDY_INCLUDE_MATRIXLOADER_RBTDataLoader_H_

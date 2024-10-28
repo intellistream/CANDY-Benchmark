@@ -2,7 +2,7 @@
 // Created by tony on 04/04/24.
 //
 
-#include <CANDY/BucketedFlatIndex/HashingModel/MLPBucketIdxModel.h>
+#include <Algorithms/BucketedFlatIndex/HashingModel/MLPBucketIdxModel.h>
 #include <cmath>
 namespace CANDY {
 torch::Tensor MLPBucketIdxModel::custom_loss_function(torch::Tensor output1,
@@ -102,4 +102,4 @@ void MLPBucketIdxModel::trainModel(torch::Tensor &x1, torch::Tensor &x2, torch::
 torch::Tensor MLPBucketIdxModel::hash(torch::Tensor input) {
   return model.forward(input);
 }
-} // CANDY
+} // Algorithms

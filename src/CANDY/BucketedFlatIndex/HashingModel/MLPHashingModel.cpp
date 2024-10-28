@@ -2,7 +2,7 @@
 // Created by tony on 04/04/24.
 //
 
-#include <CANDY/BucketedFlatIndex/HashingModel/MLPHashingModel.h>
+#include <Algorithms/BucketedFlatIndex/HashingModel/MLPHashingModel.h>
 #include <cmath>
 namespace CANDY {
 torch::Tensor MLPHashingModel::custom_loss_function(torch::Tensor output1,
@@ -175,4 +175,4 @@ void MLPHashingModel::fineTuneModel(torch::Tensor &x1,
 torch::Tensor MLPHashingModel::hash(torch::Tensor input) {
   return model.forward(input);
 }
-} // CANDY
+} // Algorithms

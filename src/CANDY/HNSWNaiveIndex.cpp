@@ -1,7 +1,7 @@
 //
 // Created by Isshin on 2024/1/16.
 //
-#include <CANDY/HNSWNaiveIndex.h>
+#include <Algorithms/HNSWNaiveIndex.h>
 
 bool CANDY::HNSWNaiveIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);

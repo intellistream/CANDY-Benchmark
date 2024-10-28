@@ -3,7 +3,7 @@
 // Created by tony on 25/05/23.
 //
 
-#include <CANDY/ParallelPartitionIndex.h>
+#include <Algorithms/ParallelPartitionIndex.h>
 #include <Utils/UtilityFunctions.h>
 #include <time.h>
 #include <chrono>
@@ -23,7 +23,7 @@ bool CANDY::ParallelPartitionIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   reduceQueue = std::vector<TensorListIdxQueuePtr>(parallelWorkers);
   reduceStrQueue = std::vector<TensorStrVecQueuePtr>(parallelWorkers);
   fineGrainedParallelInsert = cfg->tryI64("fineGrainedParallelInsert", 0, true);
-  //reduceQueue=std::make_shared<INTELLI::SPSCQueue<CANDY::TensorListIdxPair>>((size_t)(parallelWorkers*10));
+  //reduceQueue=std::make_shared<INTELLI::SPSCQueue<Algorithms::TensorListIdxPair>>((size_t)(parallelWorkers*10));
   vecDim = cfg->tryI64("vecDim", 768, true);
   sharedBuild = cfg->tryI64("sharedBuild", 1, true);
   for (size_t i = 0; i < (size_t) parallelWorkers; i++) {

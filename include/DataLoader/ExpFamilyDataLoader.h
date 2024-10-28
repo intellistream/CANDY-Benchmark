@@ -121,6 +121,6 @@ typedef std::shared_ptr<class CANDY::ExpFamilyDataLoader> ExpFamilyDataLoaderPtr
 /**
  * @}
  */
-} // CANDY
+} // Algorithms
 
 #endif //CANDY_INCLUDE_MATRIXLOADER_ExpFamilyDataLoader_H_

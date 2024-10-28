@@ -6,7 +6,7 @@
 // Created by tony on 25/05/23.
 //
 
-#include <CANDY/YinYangGraphSimpleIndex.h>
+#include <Algorithms/YinYangGraphSimpleIndex.h>
 #include <Utils/UtilityFunctions.h>
 #include <time.h>
 #include <chrono>

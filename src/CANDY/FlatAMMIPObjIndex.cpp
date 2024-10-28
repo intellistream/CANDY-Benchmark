@@ -3,13 +3,13 @@
 // Created by tony on 25/05/23.
 //
 
-#include <CANDY/FlatAMMIPObjIndex.h>
+#include <Algorithms/FlatAMMIPObjIndex.h>
 #include <Utils/UtilityFunctions.h>
 #include <time.h>
 #include <chrono>
 #include <assert.h>
 #include <Utils/IntelliLog.h>
-#include <CANDY/CANDYObject.h>
+#include <Algorithms/CANDYObject.h>
 bool CANDY::FlatAMMIPObjIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   if (faissMetric != faiss::METRIC_INNER_PRODUCT) {

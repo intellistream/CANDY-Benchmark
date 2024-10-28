@@ -107,6 +107,6 @@ typedef std::shared_ptr<class CANDY::FVECSDataLoader> FVECSDataLoaderPtr;
 /**
  * @}
  */
-} // CANDY
+} // Algorithms
 
 #endif //CANDY_INCLUDE_MATRIXLOADER_FVECSDataLoader_H_
