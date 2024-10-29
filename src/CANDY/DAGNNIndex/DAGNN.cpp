@@ -502,7 +502,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
 }
 
 void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken){
-    auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
+    auto degree_avg = graphStates.global_stat.ntotal==0?0:graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
     auto std_dev = std::sqrt(graphStates.global_stat.degree_variance);
     for(;;) {
         idx_t prev_nearest = nearest;
@@ -1573,7 +1573,7 @@ void CANDY::DynamicTuneHNSW::cutEdgesWindow(WindowStates& window_states, int64_t
                     current_degree, prev_degree);
                 graphStates.global_stat.degree_sum+=(current_degree-prev_degree);
 
-                auto current_distance_avg = current_distance_sum/(current_degree*1.0);
+                auto current_distance_avg = current_degree==0?0:current_distance_sum/(current_degree*1.0);
                 auto previous_distance_avg = previous_distance_sum/(prev_degree*1.0);
                 float old_variance = graphStates.global_stat.neighbor_distance_variance;
                 auto old_sum = graphStates.global_stat.neighbor_distance_sum;
