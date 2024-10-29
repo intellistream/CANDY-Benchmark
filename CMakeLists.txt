@@ -56,18 +56,7 @@ option(ENABLE_OPENCL
         "Enable opencl support"
         OFF
 )
-option(ENABLE_RAY
-        "Enable the distributed computing powered by ray"
-        OFF
-)
-option(ENABLE_HDF5
-        "Enable load data from hdf5 file"
-        OFF
-)
-option(ENABLE_SPTAG
-        "Integrate SPTAG LIBS"
-        OFF
-)
+
 option(ENABLE_PYBIND
         "Enable original pybind and build CANDY python"
         OFF
@@ -135,22 +124,6 @@ endif ()
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/ray_config.h.in"
         "${PROJECT_BINARY_DIR}/include/ray_config.h"
-)
-#set(CMAKE_CUDA_ARCHITECTURES 55)
-# Set LOGGING_LEVEL Flag
-#option of hdf5
-if (NOT ENABLE_HDF5)
-    message(STATUS "I will NOT include support for HDF5 file ")
-    set(CANDY_HDF5 0)
-else ()
-    set(CANDY_HDF5 1)
-    message(STATUS "I will include support for HDF5 file, please make sure hdf5 works")
-    add_subdirectory(thirdparty/hdf5-1.14.3)
-    set(LIBRARIES ${LIBRARIES} hdf5-static)
-endif ()
-configure_file(
-        "${PROJECT_SOURCE_DIR}/include/hdf5_config.h.in"
-        "${PROJECT_BINARY_DIR}/include/hdf5_config.h"
 )
 
 # Reset output directories for the rest of your project
