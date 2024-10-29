@@ -9,7 +9,3 @@ add_sources(
 )
 add_subdirectory(ParallelPartitionIndex)
 add_subdirectory(CongestionDropIndex)
-if (ENABLE_RAY)
-    add_subdirectory(DistributedPartitionIndex)
-    add_sources(DistributedPartitionIndex.cpp)
-endif ()
