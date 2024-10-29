@@ -65,20 +65,20 @@ class ReplayBuffer(object):
 
 
 
-    def convert_csv(self):
+    def convert_csv(self, path="offline/"):
         # Read CSV files into numpy arraysq
 
-        state = np.loadtxt("offline/observations.csv", delimiter=',')
+        state = np.loadtxt(path+"observations.csv", delimiter=',')
         self.state = replace_nan_with_column_mean(state)[::2]
-        action = np.loadtxt("offline/actions.csv", delimiter=',',dtype=int)/8
+        action = np.loadtxt(path+"actions.csv", delimiter=',',dtype=int)/8
 
         # Transform the original array to a (144000, 9) array
-        self.action = action.reshape(-1,1)[::2]
-        next_state = np.loadtxt("offline/next_observations.csv", delimiter=',')
+        self.action = action.reshape(-1,1)[1::2]
+        next_state = np.loadtxt(path+"next_observations.csv", delimiter=',')
         self.next_state = replace_nan_with_column_mean(next_state)[::2]
-        self.reward = -np.loadtxt("offline/rewards.csv", delimiter=',').reshape(-1, 1)[::2]
-        self.not_done = 1. - np.loadtxt("offline/terminated.csv", delimiter=',').reshape(-1, 1)[::2]
-        self.costs = -np.loadtxt("offline/constraints.csv", delimiter=',')[::2]
+        self.reward = -np.loadtxt(path+"rewards.csv", delimiter=',').reshape(-1, 1)[1::2]
+        self.not_done = 1. - np.loadtxt(path+"terminated.csv", delimiter=',').reshape(-1, 1)[1::2]
+        self.costs = -np.loadtxt(path+"constraints.csv", delimiter=',')[1::2]
 
         # Determine the size of the dataset
 
