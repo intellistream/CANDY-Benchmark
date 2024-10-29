@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CANDY: CANDY::FlatIndex Class Reference</title>
+<title>CANDY: CANDY::KNNSearch Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,16 +98,16 @@ $(document).ready(function(){initNavTree('classCANDY_1_1FlatIndex.html',''); ini
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classCANDY_1_1FlatIndex-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CANDY::FlatIndex Class Reference<div class="ingroups"><a class="el" href="group__CANDY__lib.html">The main body of CANDY's indexing approaches</a> &raquo; <a class="el" href="group__CANDY__lib__bottom.html">The bottom tier of indexing alorithms</a></div></div>  </div>
+<div class="title">CANDY::KNNSearch Class Reference<div class="ingroups"><a class="el" href="group__CANDY__lib.html">The main body of CANDY's indexing approaches</a> &raquo; <a class="el" href="group__CANDY__lib__bottom.html">The bottom tier of indexing alorithms</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>The class of a flat index approach, using brutal force management.  
  <a href="classCANDY_1_1FlatIndex.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="FlatIndex_8h_source.html">CANDY/FlatIndex.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="FlatIndex_8h_source.html">CANDY/KNNSearch.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for CANDY::FlatIndex:</div>
+Inheritance diagram for CANDY::KNNSearch:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCANDY_1_1FlatIndex__inherit__graph.png" border="0" usemap="#aCANDY_1_1FlatIndex_inherit__map" alt="Inheritance graph"/></div>
 <map name="aCANDY_1_1FlatIndex_inherit__map" id="aCANDY_1_1FlatIndex_inherit__map">
@@ -116,7 +116,7 @@ Inheritance diagram for CANDY::FlatIndex:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
-Collaboration diagram for CANDY::FlatIndex:</div>
+Collaboration diagram for CANDY::KNNSearch:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCANDY_1_1FlatIndex__coll__graph.png" border="0" usemap="#aCANDY_1_1FlatIndex_coll__map" alt="Collaboration graph"/></div>
 <map name="aCANDY_1_1FlatIndex_coll__map" id="aCANDY_1_1FlatIndex_coll__map">
@@ -263,7 +263,7 @@ config parameters<ul>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool CANDY::FlatIndex::deleteTensor </td>
+          <td class="memname">bool CANDY::KNNSearch::deleteTensor </td>
           <td>(</td>
           <td class="paramtype">torch::Tensor &amp;&#160;</td>
           <td class="paramname"><em>t</em>, </td>
@@ -311,7 +311,7 @@ config parameters<ul>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; torch::Tensor &gt; CANDY::FlatIndex::getTensorByIndex </td>
+          <td class="memname">std::vector&lt; torch::Tensor &gt; CANDY::KNNSearch::getTensorByIndex </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; faiss::idx_t &gt; &amp;&#160;</td>
           <td class="paramname"><em>idx</em>, </td>
@@ -359,7 +359,7 @@ config parameters<ul>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool CANDY::FlatIndex::insertTensor </td>
+          <td class="memname">bool CANDY::KNNSearch::insertTensor </td>
           <td>(</td>
           <td class="paramtype">torch::Tensor &amp;&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
@@ -396,7 +396,7 @@ config parameters<ul>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">torch::Tensor CANDY::FlatIndex::rawData </td>
+          <td class="memname">torch::Tensor CANDY::KNNSearch::rawData </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -426,7 +426,7 @@ config parameters<ul>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool CANDY::FlatIndex::reviseTensor </td>
+          <td class="memname">bool CANDY::KNNSearch::reviseTensor </td>
           <td>(</td>
           <td class="paramtype">torch::Tensor &amp;&#160;</td>
           <td class="paramname"><em>t</em>, </td>
@@ -474,7 +474,7 @@ config parameters<ul>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; faiss::idx_t &gt; CANDY::FlatIndex::searchIndex </td>
+          <td class="memname">std::vector&lt; faiss::idx_t &gt; CANDY::KNNSearch::searchIndex </td>
           <td>(</td>
           <td class="paramtype">torch::Tensor&#160;</td>
           <td class="paramname"><em>q</em>, </td>
@@ -522,7 +522,7 @@ config parameters<ul>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; torch::Tensor &gt; CANDY::FlatIndex::searchTensor </td>
+          <td class="memname">std::vector&lt; torch::Tensor &gt; CANDY::KNNSearch::searchTensor </td>
           <td>(</td>
           <td class="paramtype">torch::Tensor &amp;&#160;</td>
           <td class="paramname"><em>q</em>, </td>
@@ -570,7 +570,7 @@ config parameters<ul>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool CANDY::FlatIndex::setConfig </td>
+          <td class="memname">bool CANDY::KNNSearch::setConfig </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__INTELLI__UTIL__CONFIGS.html#gaeb9674f6f5860b687d73f618962dfcea">INTELLI::ConfigMapPtr</a>&#160;</td>
           <td class="paramname"><em>cfg</em></td><td>)</td>
@@ -607,7 +607,7 @@ config parameters<ul>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual int64_t CANDY::FlatIndex::size </td>
+          <td class="memname">virtual int64_t CANDY::KNNSearch::size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -626,15 +626,15 @@ config parameters<ul>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>include/CANDY/<a class="el" href="FlatIndex_8h_source.html">FlatIndex.h</a></li>
-<li>src/CANDY/<a class="el" href="FlatIndex_8cpp.html">FlatIndex.cpp</a></li>
+<li>include/CANDY/<a class="el" href="FlatIndex_8h_source.html">KNNSearch.h</a></li>
+<li>src/CANDY/<a class="el" href="FlatIndex_8cpp.html">KNNSearch.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>CANDY</b></li><li class="navelem"><a class="el" href="classCANDY_1_1FlatIndex.html">FlatIndex</a></li>
+    <li class="navelem"><b>CANDY</b></li><li class="navelem"><a class="el" href="classCANDY_1_1FlatIndex.html">KNNSearch</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

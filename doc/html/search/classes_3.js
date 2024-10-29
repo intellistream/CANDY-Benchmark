@@ -1,8 +1,8 @@
 var searchData=
 [
   ['c20buffer_687',['C20Buffer',['../classINTELLI_1_1C20Buffer.html',1,'INTELLI']]],
-  ['candy_5fpython_688',['Candy_Python',['../classCANDY_1_1Candy__Python.html',1,'CANDY']]],
-  ['candyobject_689',['CANDYObject',['../classCANDY_1_1CANDYObject.html',1,'CANDY']]],
+  ['candy_5fpython_688',['Candy_Python',['../classCANDY_1_1Candy__Python.html',1,'Algorithms']]],
+  ['candyobject_689',['CANDYObject',['../classCANDY_1_1CANDYObject.html',1,'Algorithms']]],
   ['cl_5fchar16_690',['cl_char16',['../unioncl__char16.html',1,'']]],
   ['cl_5fchar2_691',['cl_char2',['../unioncl__char2.html',1,'']]],
   ['cl_5fchar4_692',['cl_char4',['../unioncl__char4.html',1,'']]],
@@ -48,10 +48,10 @@ var searchData=
   ['cl_5fushort4_732',['cl_ushort4',['../unioncl__ushort4.html',1,'']]],
   ['cl_5fushort8_733',['cl_ushort8',['../unioncl__ushort8.html',1,'']]],
   ['clcontainer_734',['CLContainer',['../classTONY__CL__HOST_1_1CLContainer.html',1,'TONY_CL_HOST']]],
-  ['clustering_735',['Clustering',['../classCANDY_1_1Clustering.html',1,'CANDY']]],
-  ['clusteringiterationstats_736',['ClusteringIterationStats',['../structCANDY_1_1ClusteringIterationStats.html',1,'CANDY']]],
-  ['clusteringparameters_737',['ClusteringParameters',['../classCANDY_1_1ClusteringParameters.html',1,'CANDY']]],
+  ['clustering_735',['Clustering',['../classCANDY_1_1Clustering.html',1,'Algorithms']]],
+  ['clusteringiterationstats_736',['ClusteringIterationStats',['../structCANDY_1_1ClusteringIterationStats.html',1,'Algorithms']]],
+  ['clusteringparameters_737',['ClusteringParameters',['../classCANDY_1_1ClusteringParameters.html',1,'Algorithms']]],
   ['configmap_738',['ConfigMap',['../classINTELLI_1_1ConfigMap.html',1,'INTELLI']]],
-  ['congestiondropindex_739',['CongestionDropIndex',['../classCANDY_1_1CongestionDropIndex.html',1,'CANDY']]],
-  ['congestiondropindexworker_740',['CongestionDropIndexWorker',['../classCANDY_1_1CongestionDropIndexWorker.html',1,'CANDY']]]
+  ['congestiondropindex_739',['CongestionDropIndex',['../classCANDY_1_1CongestionDropIndex.html',1,'Algorithms']]],
+  ['congestiondropindexworker_740',['CongestionDropIndexWorker',['../classCANDY_1_1CongestionDropIndexWorker.html',1,'Algorithms']]]
 ];

@@ -11,15 +11,6 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include(cmake/macros.cmake)
 include(cmake/default.cmake)
 
-
-# C++ Standard
-#set(CMAKE_CXX_STANDARD 20)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#gcc 10 g++10
-# First compile faiss before anything else
-#set(CMAKE_CXX_FLAGS "-fno-openmp")
-#test avx2
-
 add_subdirectory(thirdparty/faiss)
 
 # Set specific options for Faiss compilation
@@ -65,18 +56,7 @@ option(ENABLE_OPENCL
         "Enable opencl support"
         OFF
 )
-option(ENABLE_RAY
-        "Enable the distributed computing powered by ray"
-        OFF
-)
-option(ENABLE_HDF5
-        "Enable load data from hdf5 file"
-        OFF
-)
-option(ENABLE_SPTAG
-        "Integrate SPTAG LIBS"
-        OFF
-)
+
 option(ENABLE_PYBIND
         "Enable original pybind and build CANDY python"
         OFF
@@ -144,42 +124,6 @@ endif ()
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/ray_config.h.in"
         "${PROJECT_BINARY_DIR}/include/ray_config.h"
-)
-#set(CMAKE_CUDA_ARCHITECTURES 55)
-# Set LOGGING_LEVEL Flag
-#option of hdf5
-if (NOT ENABLE_HDF5)
-    message(STATUS "I will NOT include support for HDF5 file ")
-    set(CANDY_HDF5 0)
-else ()
-    set(CANDY_HDF5 1)
-    message(STATUS "I will include support for HDF5 file, please make sure hdf5 works")
-    add_subdirectory(thirdparty/hdf5-1.14.3)
-    set(LIBRARIES ${LIBRARIES} hdf5-static)
-endif ()
-configure_file(
-        "${PROJECT_SOURCE_DIR}/include/hdf5_config.h.in"
-        "${PROJECT_BINARY_DIR}/include/hdf5_config.h"
-)
-# Set SPTAG build directory
-set(SPTAG_BUILD_DIR ${CMAKE_BINARY_DIR}/SPTAG_build)
-
-# Configure build output directories specifically for SPTAG
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
-if (NOT ENABLE_SPTAG)
-    message(STATUS "I will NOT include SPTAG LIBS")
-    set(CANDY_SPTAG 0)
-else ()
-    set(CANDY_SPTAG 1)
-    message(STATUS "I will include support for SPTAG")
-    add_subdirectory(thirdparty/SPTAG)
-    set(LIBRARIES ${LIBRARIES}  SPTAGLib)
-endif ()
-configure_file(
-        "${PROJECT_SOURCE_DIR}/include/sptag_config.h.in"
-        "${PROJECT_BINARY_DIR}/include/sptag_config.h"
 )
 
 # Reset output directories for the rest of your project

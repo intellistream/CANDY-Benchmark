@@ -1,5 +1,5 @@
 \hypertarget{classCANDY_1_1FlatIndex}{}\doxysection{CANDY\+::Flat\+Index Class Reference}
-\label{classCANDY_1_1FlatIndex}\index{CANDY::FlatIndex@{CANDY::FlatIndex}}
+\label{classCANDY_1_1FlatIndex}\index{CANDY::KNNSearch@{CANDY::KNNSearch}}
 
 
 The class of a flat index approach, using brutal force management.  
@@ -92,8 +92,8 @@ config parameters
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classCANDY_1_1FlatIndex_a5302cde90e75103b7402033596fabe08}\label{classCANDY_1_1FlatIndex_a5302cde90e75103b7402033596fabe08}} 
-\index{CANDY::FlatIndex@{CANDY::FlatIndex}!deleteTensor@{deleteTensor}}
-\index{deleteTensor@{deleteTensor}!CANDY::FlatIndex@{CANDY::FlatIndex}}
+\index{CANDY::KNNSearch@{CANDY::KNNSearch}!deleteTensor@{deleteTensor}}
+\index{deleteTensor@{deleteTensor}!CANDY::KNNSearch@{CANDY::KNNSearch}}
 \doxysubsubsection{\texorpdfstring{deleteTensor()}{deleteTensor()}}
 {\footnotesize\ttfamily bool CANDY\+::\+Flat\+Index\+::delete\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{int64\+\_\+t}]{k = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
@@ -116,8 +116,8 @@ bool whether the deleting is successful
 Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a56adc37171b02a9e667f10e35c0682d8}{CANDY\+::\+Abstract\+Index}}.
 
 \mbox{\Hypertarget{classCANDY_1_1FlatIndex_ac43417e20eb7653d7f74c91295274e36}\label{classCANDY_1_1FlatIndex_ac43417e20eb7653d7f74c91295274e36}} 
-\index{CANDY::FlatIndex@{CANDY::FlatIndex}!getTensorByIndex@{getTensorByIndex}}
-\index{getTensorByIndex@{getTensorByIndex}!CANDY::FlatIndex@{CANDY::FlatIndex}}
+\index{CANDY::KNNSearch@{CANDY::KNNSearch}!getTensorByIndex@{getTensorByIndex}}
+\index{getTensorByIndex@{getTensorByIndex}!CANDY::KNNSearch@{CANDY::KNNSearch}}
 \doxysubsubsection{\texorpdfstring{getTensorByIndex()}{getTensorByIndex()}}
 {\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Flat\+Index\+::get\+Tensor\+By\+Index (\begin{DoxyParamCaption}\item[{std\+::vector$<$ faiss\+::idx\+\_\+t $>$ \&}]{idx,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
@@ -140,8 +140,8 @@ a vector of tensors, each tensor represent KNN results of one query in idx
 Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_abed787ede5e68179978545d80e35deec}{CANDY\+::\+Abstract\+Index}}.
 
 \mbox{\Hypertarget{classCANDY_1_1FlatIndex_a80608780f9aac45e9298a90731056fcf}\label{classCANDY_1_1FlatIndex_a80608780f9aac45e9298a90731056fcf}} 
-\index{CANDY::FlatIndex@{CANDY::FlatIndex}!insertTensor@{insertTensor}}
-\index{insertTensor@{insertTensor}!CANDY::FlatIndex@{CANDY::FlatIndex}}
+\index{CANDY::KNNSearch@{CANDY::KNNSearch}!insertTensor@{insertTensor}}
+\index{insertTensor@{insertTensor}!CANDY::KNNSearch@{CANDY::KNNSearch}}
 \doxysubsubsection{\texorpdfstring{insertTensor()}{insertTensor()}}
 {\footnotesize\ttfamily bool CANDY\+::\+Flat\+Index\+::insert\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
@@ -162,8 +162,8 @@ bool whether the insertion is successful
 Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a10e65ecee21528fe6df84114b61110d4}{CANDY\+::\+Abstract\+Index}}.
 
 \mbox{\Hypertarget{classCANDY_1_1FlatIndex_a44c1a243c76f7a54b5c01c57aba83ff2}\label{classCANDY_1_1FlatIndex_a44c1a243c76f7a54b5c01c57aba83ff2}} 
-\index{CANDY::FlatIndex@{CANDY::FlatIndex}!rawData@{rawData}}
-\index{rawData@{rawData}!CANDY::FlatIndex@{CANDY::FlatIndex}}
+\index{CANDY::KNNSearch@{CANDY::KNNSearch}!rawData@{rawData}}
+\index{rawData@{rawData}!CANDY::KNNSearch@{CANDY::KNNSearch}}
 \doxysubsubsection{\texorpdfstring{rawData()}{rawData()}}
 {\footnotesize\ttfamily torch\+::\+Tensor CANDY\+::\+Flat\+Index\+::raw\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
@@ -179,8 +179,8 @@ The raw data stored in tensor
 Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a2e1e1353dec39fc9eab887d97975448e}{CANDY\+::\+Abstract\+Index}}.
 
 \mbox{\Hypertarget{classCANDY_1_1FlatIndex_a503565d2118cc8e5c70bb9356a9ffcb7}\label{classCANDY_1_1FlatIndex_a503565d2118cc8e5c70bb9356a9ffcb7}} 
-\index{CANDY::FlatIndex@{CANDY::FlatIndex}!reviseTensor@{reviseTensor}}
-\index{reviseTensor@{reviseTensor}!CANDY::FlatIndex@{CANDY::FlatIndex}}
+\index{CANDY::KNNSearch@{CANDY::KNNSearch}!reviseTensor@{reviseTensor}}
+\index{reviseTensor@{reviseTensor}!CANDY::KNNSearch@{CANDY::KNNSearch}}
 \doxysubsubsection{\texorpdfstring{reviseTensor()}{reviseTensor()}}
 {\footnotesize\ttfamily bool CANDY\+::\+Flat\+Index\+::revise\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{t,  }\item[{torch\+::\+Tensor \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
@@ -203,8 +203,8 @@ bool whether the revising is successful
 Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a90e72adba27ddcf8c71180f557bb78d5}{CANDY\+::\+Abstract\+Index}}.
 
 \mbox{\Hypertarget{classCANDY_1_1FlatIndex_a1b1113af83b973be31c34994a5e87f11}\label{classCANDY_1_1FlatIndex_a1b1113af83b973be31c34994a5e87f11}} 
-\index{CANDY::FlatIndex@{CANDY::FlatIndex}!searchIndex@{searchIndex}}
-\index{searchIndex@{searchIndex}!CANDY::FlatIndex@{CANDY::FlatIndex}}
+\index{CANDY::KNNSearch@{CANDY::KNNSearch}!searchIndex@{searchIndex}}
+\index{searchIndex@{searchIndex}!CANDY::KNNSearch@{CANDY::KNNSearch}}
 \doxysubsubsection{\texorpdfstring{searchIndex()}{searchIndex()}}
 {\footnotesize\ttfamily std\+::vector$<$ faiss\+::idx\+\_\+t $>$ CANDY\+::\+Flat\+Index\+::search\+Index (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
@@ -227,8 +227,8 @@ std\+::vector$<$faiss\+::idx\+\_\+t$>$ the index, follow faiss\textquotesingle{}
 Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a60e0f58c72ffbf47342b4c4b4091a573}{CANDY\+::\+Abstract\+Index}}.
 
 \mbox{\Hypertarget{classCANDY_1_1FlatIndex_ac9ab4989ff2215d81fb1dc7c7d22ed6c}\label{classCANDY_1_1FlatIndex_ac9ab4989ff2215d81fb1dc7c7d22ed6c}} 
-\index{CANDY::FlatIndex@{CANDY::FlatIndex}!searchTensor@{searchTensor}}
-\index{searchTensor@{searchTensor}!CANDY::FlatIndex@{CANDY::FlatIndex}}
+\index{CANDY::KNNSearch@{CANDY::KNNSearch}!searchTensor@{searchTensor}}
+\index{searchTensor@{searchTensor}!CANDY::KNNSearch@{CANDY::KNNSearch}}
 \doxysubsubsection{\texorpdfstring{searchTensor()}{searchTensor()}}
 {\footnotesize\ttfamily std\+::vector$<$ torch\+::\+Tensor $>$ CANDY\+::\+Flat\+Index\+::search\+Tensor (\begin{DoxyParamCaption}\item[{torch\+::\+Tensor \&}]{q,  }\item[{int64\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
@@ -251,8 +251,8 @@ std\+::vector$<$torch\+::\+Tensor$>$ the result tensor for each row of query
 Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a39069fe9cb1f16910695c091b768dbe8}{CANDY\+::\+Abstract\+Index}}.
 
 \mbox{\Hypertarget{classCANDY_1_1FlatIndex_a67e201cac16e382a9735fc671a04ff26}\label{classCANDY_1_1FlatIndex_a67e201cac16e382a9735fc671a04ff26}} 
-\index{CANDY::FlatIndex@{CANDY::FlatIndex}!setConfig@{setConfig}}
-\index{setConfig@{setConfig}!CANDY::FlatIndex@{CANDY::FlatIndex}}
+\index{CANDY::KNNSearch@{CANDY::KNNSearch}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!CANDY::KNNSearch@{CANDY::KNNSearch}}
 \doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
 {\footnotesize\ttfamily bool CANDY\+::\+Flat\+Index\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__INTELLI__UTIL__CONFIGS_gaeb9674f6f5860b687d73f618962dfcea}{INTELLI\+::\+Config\+Map\+Ptr}}}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
@@ -273,8 +273,8 @@ bool whether the configuration is successful
 Reimplemented from \mbox{\hyperlink{classCANDY_1_1AbstractIndex_a01f91296bd41aa55dd6a4c6465cc3a19}{CANDY\+::\+Abstract\+Index}}.
 
 \mbox{\Hypertarget{classCANDY_1_1FlatIndex_ae598008bed9612befba457d842bb098b}\label{classCANDY_1_1FlatIndex_ae598008bed9612befba457d842bb098b}} 
-\index{CANDY::FlatIndex@{CANDY::FlatIndex}!size@{size}}
-\index{size@{size}!CANDY::FlatIndex@{CANDY::FlatIndex}}
+\index{CANDY::KNNSearch@{CANDY::KNNSearch}!size@{size}}
+\index{size@{size}!CANDY::KNNSearch@{CANDY::KNNSearch}}
 \doxysubsubsection{\texorpdfstring{size()}{size()}}
 {\footnotesize\ttfamily virtual int64\+\_\+t CANDY\+::\+Flat\+Index\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 

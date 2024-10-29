@@ -14,15 +14,15 @@ bool CANDY::FVECSDataLoader::generateData(std::string fname) {
         "conflict dimension in" + fname);
     return false;
   }
-  A = INTELLI::IntelliTensorOP::rowSampling(dataTensor, vecVolume);
+  A = INTELLI::TensorOP::rowSampling(dataTensor, vecVolume);
   if (normalizeTensor) {
-    A = INTELLI::IntelliTensorOP::l2Normalize(A);
+    A = INTELLI::TensorOP::l2Normalize(A);
   }
   return true;
 }
 bool CANDY::FVECSDataLoader::generateQuery(std::string fname) {
   if (!useSeparateQuery) {
-    B = INTELLI::IntelliTensorOP::rowSampling(A, querySize);
+    B = INTELLI::TensorOP::rowSampling(A, querySize);
     B = (1 - queryNoiseFraction) * B + queryNoiseFraction * torch::rand({querySize, vecDim});
     return true;
   } else {
@@ -36,9 +36,9 @@ bool CANDY::FVECSDataLoader::generateQuery(std::string fname) {
       return false;
     }
     if (normalizeTensor) {
-      queryTensor = INTELLI::IntelliTensorOP::l2Normalize(queryTensor);
+      queryTensor = INTELLI::TensorOP::l2Normalize(queryTensor);
     }
-    B = INTELLI::IntelliTensorOP::rowSampling(queryTensor, querySize);
+    B = INTELLI::TensorOP::rowSampling(queryTensor, querySize);
     return true;
   }
   return false;

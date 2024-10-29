@@ -41,8 +41,8 @@ int main(int argc, char **argv) {
   auto queryTensor = dataLoader->getQuery();
   torch::Tensor buildTensor = torch::zeros({dataTensor.size(0) + queryTensor.size(0), dataTensor.size(1)});
   int64_t lastNNZ = -1;
-  INTELLI::IntelliTensorOP::appendRowsBufferMode(&buildTensor, &dataTensor, &lastNNZ);
-  INTELLI::IntelliTensorOP::appendRowsBufferMode(&buildTensor, &queryTensor, &lastNNZ);
+  INTELLI::TensorOP::appendRowsBufferMode(&buildTensor, &dataTensor, &lastNNZ);
+  INTELLI::TensorOP::appendRowsBufferMode(&buildTensor, &queryTensor, &lastNNZ);
   INTELLI_INFO(
       "Demension =" + std::to_string(dataTensor.size(1)) + ",#data=" + std::to_string(dataTensor.size(0)));
 

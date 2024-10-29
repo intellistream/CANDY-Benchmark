@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "CANDY", "index.html", [
+  [ "Algorithms", "index.html", [
     [ "Introduction", "index.html", [
       [ "data format", "index.html#supported", null ],
       [ "Built-in name tags", "index.html#sec_name_index", [

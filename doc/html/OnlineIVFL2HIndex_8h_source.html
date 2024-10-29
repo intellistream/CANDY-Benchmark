@@ -109,10 +109,10 @@ $(document).ready(function(){initNavTree('OnlineIVFL2HIndex_8h_source.html','');
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="ConfigMap_8hpp.html">Utils/ConfigMap.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="IntelliTensorOP_8hpp.html">Utils/IntelliTensorOP.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="IntelliTensorOP_8hpp.html">Utils/TensorOP.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;faiss/IndexFlat.h&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="AbstractIndex_8h.html">CANDY/AbstractIndex.h</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="FlatIndex_8h.html">CANDY/FlatIndex.h</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="FlatIndex_8h.html">CANDY/KNNSearch.h</a>&gt;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;CANDY/OnlineIVFLSHIndex.h&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="IVFTensorEncodingList_8h.html">CANDY/OnlinePQIndex/IVFTensorEncodingList.h</a>&gt;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;faiss/VectorTransform.h&gt;</span></div>
@@ -124,7 +124,7 @@ $(document).ready(function(){initNavTree('OnlineIVFL2HIndex_8h_source.html','');
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <a class="code" href="group__CANDY__lib__bottom__sub.html#ga23606f290228bd2dd6128d494fbc5b45">MLPHashingModelPtr</a> myMLModel = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keyword">virtual</span> torch::Tensor randomProjection(torch::Tensor &amp;a);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  int64_t buildingSamples = -1, buildingANNK = 10;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <a class="code" href="classCANDY_1_1FlatIndex.html">FlatIndex</a> trainIndex;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <a class="code" href="classCANDY_1_1FlatIndex.html">KNNSearch</a> trainIndex;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keywordtype">double</span> positiveSampleRatio = 0.1;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classCANDY_1_1OnlineIVFL2HIndex.html#ad559cbb013803dcccb2da202c1766ad9">trainModelWithData</a>(torch::Tensor &amp;t);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; <span class="keyword">public</span>:</div>
@@ -149,10 +149,10 @@ $(document).ready(function(){initNavTree('OnlineIVFL2HIndex_8h_source.html','');
 <div class="ttc" id="aAbstractC20Thread_8hpp_html"><div class="ttname"><a href="AbstractC20Thread_8hpp.html">AbstractC20Thread.hpp</a></div></div>
 <div class="ttc" id="aAbstractIndex_8h_html"><div class="ttname"><a href="AbstractIndex_8h.html">AbstractIndex.h</a></div></div>
 <div class="ttc" id="aConfigMap_8hpp_html"><div class="ttname"><a href="ConfigMap_8hpp.html">ConfigMap.hpp</a></div></div>
-<div class="ttc" id="aFlatIndex_8h_html"><div class="ttname"><a href="FlatIndex_8h.html">FlatIndex.h</a></div></div>
+<div class="ttc" id="aFlatIndex_8h_html"><div class="ttname"><a href="FlatIndex_8h.html">KNNSearch.h</a></div></div>
 <div class="ttc" id="aIVFTensorEncodingList_8h_html"><div class="ttname"><a href="IVFTensorEncodingList_8h.html">IVFTensorEncodingList.h</a></div></div>
-<div class="ttc" id="aIntelliTensorOP_8hpp_html"><div class="ttname"><a href="IntelliTensorOP_8hpp.html">IntelliTensorOP.hpp</a></div></div>
-<div class="ttc" id="aclassCANDY_1_1FlatIndex_html"><div class="ttname"><a href="classCANDY_1_1FlatIndex.html">CANDY::FlatIndex</a></div><div class="ttdoc">The class of a flat index approach, using brutal force management.</div><div class="ttdef"><b>Definition:</b> FlatIndex.h:31</div></div>
+<div class="ttc" id="aIntelliTensorOP_8hpp_html"><div class="ttname"><a href="IntelliTensorOP_8hpp.html">TensorOP.hpp</a></div></div>
+<div class="ttc" id="aclassCANDY_1_1FlatIndex_html"><div class="ttname"><a href="classCANDY_1_1FlatIndex.html">CANDY::KNNSearch</a></div><div class="ttdoc">The class of a flat index approach, using brutal force management.</div><div class="ttdef"><b>Definition:</b> KNNSearch.h:31</div></div>
 <div class="ttc" id="aclassCANDY_1_1OnlineIVFL2HIndex_html"><div class="ttname"><a href="classCANDY_1_1OnlineIVFL2HIndex.html">CANDY::OnlineIVFL2HIndex</a></div><div class="ttdoc">A L2H (learning 2 hash) indexing, using 2-tier IVF List to manage buckets. The base tier is hamming e...</div><div class="ttdef"><b>Definition:</b> OnlineIVFL2HIndex.h:51</div></div>
 <div class="ttc" id="aclassCANDY_1_1OnlineIVFL2HIndex_html_a1ad72dd1c11c05f254ec7ac6198c2852"><div class="ttname"><a href="classCANDY_1_1OnlineIVFL2HIndex.html#a1ad72dd1c11c05f254ec7ac6198c2852">CANDY::OnlineIVFL2HIndex::setConfig</a></div><div class="ttdeci">virtual bool setConfig(INTELLI::ConfigMapPtr cfg)</div><div class="ttdoc">set the index-specific config related to one index</div><div class="ttdef"><b>Definition:</b> OnlineIVFL2HIndex.cpp:48</div></div>
 <div class="ttc" id="aclassCANDY_1_1OnlineIVFL2HIndex_html_ab24cba33125e368200449cfa4090019c"><div class="ttname"><a href="classCANDY_1_1OnlineIVFL2HIndex.html#ab24cba33125e368200449cfa4090019c">CANDY::OnlineIVFL2HIndex::loadInitialTensor</a></div><div class="ttdeci">virtual bool loadInitialTensor(torch::Tensor &amp;t)</div><div class="ttdoc">load the initial tensors of a data base, use this BEFORE insertTensor</div><div class="ttdef"><b>Definition:</b> OnlineIVFL2HIndex.cpp:171</div></div>

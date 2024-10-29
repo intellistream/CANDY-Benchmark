@@ -8,10 +8,10 @@
 #include <torch/torch.h>
 #include <Utils/ConfigMap.hpp>
 #include <Utils/IntelliLog.h>
-#include <CANDY/AbstractIndex.h>
+#include <Algorithms/AbstractIndex.h>
 #include <DataLoader/DataLoaderTable.h>
 #include <DataLoader/RBTDataLoader.h>
-#include <CANDY/IndexTable.h>
+#include <Algorithms/IndexTable.h>
 #include <include/papi_config.h>
 #if CANDY_PAPI == 1
 #include <Utils/ThreadPerfPAPI.hpp>

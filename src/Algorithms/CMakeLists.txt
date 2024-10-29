@@ -1,0 +1,11 @@
+add_sources(
+        AbstractIndex.cpp
+        BucketedFlatIndex/BucketedFlatIndex.cpp
+        BufferedCongestionDropIndex.cpp
+        KNNSearch.cpp
+        ParallelPartitionIndex.cpp
+        IndexTable.cpp
+        CongestionDropIndex.cpp
+)
+add_subdirectory(ParallelPartitionIndex)
+add_subdirectory(CongestionDropIndex)

@@ -1,4 +1,4 @@
-/*! \file CANDY.h*/
+/*! \file Algorithms.h*/
 //
 // Created by tony on 22/12/23.
 //
@@ -22,7 +22,7 @@
     * - not support compression yet
 * @section sec_name_index Built-in name tags
 * @subsection subsec_tag_index Of index approaches (Please go to class @ref IndexTable for more details)
- * - flat @ref FlatIndex
+ * - flat @ref KNNSearch
  * - parallelPartition @ref ParallelPartitionIndex
  * - onlinePQ @ref OnlinePQIndex
  * - onlineIVFLSH @ref OnlineIVFLSHIndex
@@ -70,8 +70,8 @@
 * @note additional parameters compared with @ref subsec_onlineInsert
 * - numberOfRWSeq, the number of RW sequences, will divide both data base tensor and query tensor by this factor, I64, default 1
 * @section subsec_extend_cpp_operator How to extend a index algorithm (pure static c++ based)
-* - go to the src/CANDY and include/CANDY
-* - copy the example class, such as FlatIndex, rename it, and implement your own index class
+* - go to the src/Algorithms and include/Algorithms
+* - copy the example class, such as KNNSearch, rename it, and implement your own index class
 *  - copy the cpp and h
 *  - rename the cpp and h
 *  - automatically conduct the IDE-full-replace over the template by your own name in cpp and h
@@ -80,8 +80,8 @@
     *  very well and can always keep it!!!
 *  - @warning  This copy-and-replace policy will also prevent from wrong parameter types of interface functions, please
 *  DO KEEP THE INTERFACE PARAMETER UNDER THE SAME TYPE!!!!!!!!!!!
-* - register our class with a tag to src/CANDY/IndexTable.cpp
-* - edit the CMakelist.txt at src/CANDY to include your new algo and recompile
+* - register our class with a tag to src/Algorithms/IndexTable.cpp
+* - edit the CMakelist.txt at src/Algorithms to include your new algo and recompile
 * - remember to add a test bench, you can refer to FlatIndexTest.cpp at test/SystemTest for example
 * @section subsec_edit_test How to add a single point test
 * - follow and copy the SimpleTest.cpp to create your own, say A.cpp
@@ -103,7 +103,7 @@
 /**
  * @subsection code_stru_dataloader DataLoader
  * This folder contains the loader  under different generation rules
- * @defgroup CANDY_DataLOADER The data loaders of CANDY
+ * @defgroup CANDY_DataLOADER The data loaders of Algorithms
  * @{
  * We define the generation classes of DATA. here
  **/
@@ -114,16 +114,16 @@
 /**
 * @subsection code_stru_cppalgo BODY
 * This folder contains the main body
-* @defgroup CANDY_lib The main body of CANDY's indexing approaches
+* @defgroup CANDY_lib The main body of Algorithms's indexing approaches
 * @{
 **/
-#include <CANDY/IndexTable.h>
+#include <Algorithms/IndexTable.h>
 /**
 * @defgroup   CANDY_lib_bottom The bottom tier of indexing alorithms
 * @{
 **/
-#include <CANDY/AbstractIndex.h>
-#include <CANDY/FlatIndex.h>
+#include <Algorithms/AbstractIndex.h>
+#include <Algorithms/KNNSearch.hpp>
 
 /**
  * @}
@@ -134,10 +134,10 @@
 * @defgroup   CANDY_lib_container The upper tier of indexing alorithms, can be container of other indexing ways
 * @{
 **/
-#include <CANDY/ParallelPartitionIndex.h>
+#include <Algorithms/ParallelPartitionIndex.h>
 #include <include/ray_config.h>
 #if CANDY_RAY == 1
-#include <CANDY/DistributedPartitionIndex.h>
+#include <Algorithms/DistributedPartitionIndex.h>
 #endif
 /**
  * @}
@@ -150,7 +150,7 @@
 /**
 * @subsection code_stru_dataloader DL
 * This folder contains the dataloader
-* @defgroup  CANDY_DataLOADER The data loader of CANDY
+* @defgroup  CANDY_DataLOADER The data loader of Algorithms
 * @{
 * We define the data loader classes . here
 **/
@@ -191,7 +191,7 @@
 #include <Utils/IntelliLog.h>
 #include <Utils/UtilityFunctions.h>
 //#include <Utils/BS_thread_pool.hpp>
-#include <Utils/IntelliTensorOP.hpp>
+#include <Utils/TensorOP.hpp>
 #include <Utils/IntelliTimeStampGenerator.h>
 
 /**

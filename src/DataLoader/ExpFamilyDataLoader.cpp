@@ -38,7 +38,7 @@ torch::Tensor CANDY::ExpFamilyDataLoader::generateData() {
     ru = generateExp();
   }
   if (normalizeTensor) {
-    ru = INTELLI::IntelliTensorOP::l2Normalize(ru);
+    ru = INTELLI::TensorOP::l2Normalize(ru);
   }
   return ru;
 }

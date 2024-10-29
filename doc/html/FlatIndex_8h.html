@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CANDY: include/CANDY/FlatIndex.h File Reference</title>
+<title>CANDY: include/CANDY/KNNSearch.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -96,18 +96,18 @@ $(document).ready(function(){initNavTree('FlatIndex_8h.html',''); initResizable(
   <div class="summary">
 <a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
-<div class="title">FlatIndex.h File Reference</div>  </div>
+<div class="title">KNNSearch.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="AbstractC20Thread_8hpp_source.html">Utils/AbstractC20Thread.hpp</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="ConfigMap_8hpp_source.html">Utils/ConfigMap.hpp</a>&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;<a class="el" href="IntelliTensorOP_8hpp_source.html">Utils/IntelliTensorOP.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="IntelliTensorOP_8hpp_source.html">Utils/TensorOP.hpp</a>&gt;</code><br />
 <code>#include &lt;faiss/IndexFlat.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="AbstractIndex_8h_source.html">CANDY/AbstractIndex.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
-Include dependency graph for FlatIndex.h:</div>
+Include dependency graph for KNNSearch.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="FlatIndex_8h__incl.png" border="0" usemap="#ainclude_2CANDY_2FlatIndex_8h" alt=""/></div>
 <map name="ainclude_2CANDY_2FlatIndex_8h" id="ainclude_2CANDY_2FlatIndex_8h">
@@ -172,16 +172,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1FlatIndex.html">CANDY::FlatIndex</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1FlatIndex.html">CANDY::KNNSearch</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class of a flat index approach, using brutal force management.  <a href="classCANDY_1_1FlatIndex.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaeba1cacdce4f2ebea1f3c1d7a002aa92"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom.html#gaeba1cacdce4f2ebea1f3c1d7a002aa92">newFlatIndex</a>&#160;&#160;&#160;std::make_shared&lt;<a class="el" href="classCANDY_1_1FlatIndex.html">CANDY::FlatIndex</a>&gt;</td></tr>
-<tr class="memdesc:gaeba1cacdce4f2ebea1f3c1d7a002aa92"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Macro) To creat a new FlatIndex shared pointer. <br /></td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom.html#gaeba1cacdce4f2ebea1f3c1d7a002aa92">newFlatIndex</a>&#160;&#160;&#160;std::make_shared&lt;<a class="el" href="classCANDY_1_1FlatIndex.html">CANDY::KNNSearch</a>&gt;</td></tr>
+<tr class="memdesc:gaeba1cacdce4f2ebea1f3c1d7a002aa92"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Macro) To creat a new KNNSearch shared pointer. <br /></td></tr>
 <tr class="separator:gaeba1cacdce4f2ebea1f3c1d7a002aa92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga41a534e197cdbfaf6f4e911c2efdf876"><td class="memItemLeft" align="right" valign="top">
-typedef std::shared_ptr&lt; class <a class="el" href="classCANDY_1_1FlatIndex.html">CANDY::FlatIndex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom.html#ga41a534e197cdbfaf6f4e911c2efdf876">CANDY::FlatIndexPtr</a></td></tr>
-<tr class="memdesc:ga41a534e197cdbfaf6f4e911c2efdf876"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class to describe a shared pointer to <a class="el" href="classCANDY_1_1FlatIndex.html">FlatIndex</a>. <br /></td></tr>
+typedef std::shared_ptr&lt; class <a class="el" href="classCANDY_1_1FlatIndex.html">CANDY::KNNSearch</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom.html#ga41a534e197cdbfaf6f4e911c2efdf876">CANDY::FlatIndexPtr</a></td></tr>
+<tr class="memdesc:ga41a534e197cdbfaf6f4e911c2efdf876"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class to describe a shared pointer to <a class="el" href="classCANDY_1_1FlatIndex.html">KNNSearch</a>. <br /></td></tr>
 <tr class="separator:ga41a534e197cdbfaf6f4e911c2efdf876"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
@@ -189,7 +189,7 @@ typedef std::shared_ptr&lt; class <a class="el" href="classCANDY_1_1FlatIndex.ht
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_7aba4d6288dd26b6f48f5b4566787f52.html">CANDY</a></li><li class="navelem"><a class="el" href="FlatIndex_8h.html">FlatIndex.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_7aba4d6288dd26b6f48f5b4566787f52.html">CANDY</a></li><li class="navelem"><a class="el" href="FlatIndex_8h.html">KNNSearch.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

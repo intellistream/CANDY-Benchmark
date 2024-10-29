@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('HNSWNaiveIndex_8h_source.html',''); in
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef CANDY_HNSWNAIVEINDEX_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define CANDY_HNSWNAIVEINDEX_H</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="AbstractIndex_8h.html">CANDY/AbstractIndex.h</a>&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="FlatIndex_8h.html">CANDY/FlatIndex.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="FlatIndex_8h.html">CANDY/KNNSearch.h</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;CANDY/HNSWNaive/HNSW.h&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>CANDY {</div>
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classCANDY_1_1HNSWNaiveIndex.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCANDY_1_1HNSWNaiveIndex.html">HNSWNaiveIndex</a> : <span class="keyword">public</span> <a class="code" href="classCANDY_1_1AbstractIndex.html">AbstractIndex</a> {</div>
@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('HNSWNaiveIndex_8h_source.html',''); in
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keywordtype">bool</span> is_NSW;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keywordtype">bool</span> is_local_lvq = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <a class="code" href="classCANDY_1_1FlatIndex.html">FlatIndex</a> *storage = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <a class="code" href="classCANDY_1_1FlatIndex.html">KNNSearch</a> *storage = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <a class="code" href="group__INTELLI__UTIL__CONFIGS.html#gaeb9674f6f5860b687d73f618962dfcea">INTELLI::ConfigMapPtr</a> myCfg = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="keyword">typedef</span> int64_t opt_mode_t;</div>
@@ -147,9 +147,9 @@ $(document).ready(function(){initNavTree('HNSWNaiveIndex_8h_source.html',''); in
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// CANDY_HNSWNAIVEINDEX_H</span></div>
 <div class="ttc" id="aAbstractIndex_8h_html"><div class="ttname"><a href="AbstractIndex_8h.html">AbstractIndex.h</a></div></div>
-<div class="ttc" id="aFlatIndex_8h_html"><div class="ttname"><a href="FlatIndex_8h.html">FlatIndex.h</a></div></div>
+<div class="ttc" id="aFlatIndex_8h_html"><div class="ttname"><a href="FlatIndex_8h.html">KNNSearch.h</a></div></div>
 <div class="ttc" id="aclassCANDY_1_1AbstractIndex_html"><div class="ttname"><a href="classCANDY_1_1AbstractIndex.html">CANDY::AbstractIndex</a></div><div class="ttdoc">The abstract class of an index approach.</div><div class="ttdef"><b>Definition:</b> AbstractIndex.h:26</div></div>
-<div class="ttc" id="aclassCANDY_1_1FlatIndex_html"><div class="ttname"><a href="classCANDY_1_1FlatIndex.html">CANDY::FlatIndex</a></div><div class="ttdoc">The class of a flat index approach, using brutal force management.</div><div class="ttdef"><b>Definition:</b> FlatIndex.h:31</div></div>
+<div class="ttc" id="aclassCANDY_1_1FlatIndex_html"><div class="ttname"><a href="classCANDY_1_1FlatIndex.html">CANDY::KNNSearch</a></div><div class="ttdoc">The class of a flat index approach, using brutal force management.</div><div class="ttdef"><b>Definition:</b> KNNSearch.h:31</div></div>
 <div class="ttc" id="aclassCANDY_1_1HNSWNaiveIndex_html"><div class="ttname"><a href="classCANDY_1_1HNSWNaiveIndex.html">CANDY::HNSWNaiveIndex</a></div><div class="ttdoc">The class of a HNSW index approach, store the data in each vertex.</div><div class="ttdef"><b>Definition:</b> HNSWNaiveIndex.h:22</div></div>
 <div class="ttc" id="aclassCANDY_1_1HNSWNaiveIndex_html_a207097f85e75a0da3f5b6744fe997c39"><div class="ttname"><a href="classCANDY_1_1HNSWNaiveIndex.html#a207097f85e75a0da3f5b6744fe997c39">CANDY::HNSWNaiveIndex::deleteTensor</a></div><div class="ttdeci">virtual bool deleteTensor(torch::Tensor &amp;t, int64_t k=1)</div><div class="ttdoc">delete a tensor</div><div class="ttdef"><b>Definition:</b> HNSWNaiveIndex.cpp:34</div></div>
 <div class="ttc" id="aclassCANDY_1_1HNSWNaiveIndex_html_a45ae9145af990d53065a2701f7bbcae5"><div class="ttname"><a href="classCANDY_1_1HNSWNaiveIndex.html#a45ae9145af990d53065a2701f7bbcae5">CANDY::HNSWNaiveIndex::searchTensor</a></div><div class="ttdeci">virtual std::vector&lt; torch::Tensor &gt; searchTensor(torch::Tensor &amp;q, int64_t k)</div><div class="ttdoc">search the k-NN of a query tensor, return the result tensors</div><div class="ttdef"><b>Definition:</b> HNSWNaiveIndex.cpp:110</div></div>

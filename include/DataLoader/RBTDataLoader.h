@@ -7,7 +7,7 @@
 #define CANDY_INCLUDE_DATALOADER_RBTDataLoader_H_
 
 #include <Utils/ConfigMap.hpp>
-#include <Utils/IntelliTensorOP.hpp>
+#include <Utils/TensorOP.hpp>
 #include <assert.h>
 //#include <torch/torch.h>
 #include <memory>
@@ -140,6 +140,6 @@ typedef std::shared_ptr<class CANDY::RBTDataLoader> RBTDataLoaderPtr;
 /**
  * @}
  */
-} // CANDY
+} // Algorithms
 
 #endif //CANDY_INCLUDE_MATRIXLOADER_RBTDataLoader_H_

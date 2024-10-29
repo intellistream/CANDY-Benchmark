@@ -66,7 +66,7 @@ setup(
     name='PyCANDY',
     version='0.1',
     author='Your Name',
-    description='A simple python version of CANDY benchmark built with Pybind11 and CMake',
+    description='A simple python version of Algorithms benchmark built with Pybind11 and CMake',
     long_description='',
     ext_modules=[CMakeExtension('.')],
     cmdclass={
