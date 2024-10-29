@@ -6,11 +6,7 @@
 #include <Algorithms/BufferedCongestionDropIndex.h>
 #include <Algorithms/CongestionDropIndex.h>
 #include <Algorithms/FlatIndex.h>
-#include <Algorithms/HNSWNaiveIndex.h>
-#include <Algorithms/IndexTable.h>
-#include <Algorithms/OnlineIVFL2HIndex.h>
-#include <Algorithms/OnlineIVFLSHIndex.h>
-#include <Algorithms/OnlinePQIndex.h>
+#include <Algorithms/IndexTable.h
 #include <Algorithms/ParallelPartitionIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
@@ -26,11 +22,6 @@ CANDY::IndexTable::IndexTable() {
   indexMap["flat"] = newFlatIndex();
   indexMap["bucketedFlat"] = newBucketedFlatIndex();
   indexMap["parallelPartition"] = newParallelPartitionIndex();
-  indexMap["onlinePQ"] = newOnlinePQIndex();
-  indexMap["onlineIVFLSH"] = newOnlineIVFLSHIndex();
-  indexMap["onlineIVFL2H"] = newOnlineIVFL2HIndex();
-  indexMap["PQ"] = newPQIndex();
-  indexMap["HNSWNaive"] = newHNSWNaiveIndex();
   indexMap["congestionDrop"] = newCongestionDropIndex();
   indexMap["bufferedCongestionDrop"] = newBufferedCongestionDropIndex();
 #if CANDY_CL == 1

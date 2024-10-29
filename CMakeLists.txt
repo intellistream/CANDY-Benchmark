@@ -161,26 +161,6 @@ configure_file(
         "${PROJECT_SOURCE_DIR}/include/hdf5_config.h.in"
         "${PROJECT_BINARY_DIR}/include/hdf5_config.h"
 )
-# Set SPTAG build directory
-set(SPTAG_BUILD_DIR ${CMAKE_BINARY_DIR}/SPTAG_build)
-
-# Configure build output directories specifically for SPTAG
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
-if (NOT ENABLE_SPTAG)
-    message(STATUS "I will NOT include SPTAG LIBS")
-    set(CANDY_SPTAG 0)
-else ()
-    set(CANDY_SPTAG 1)
-    message(STATUS "I will include support for SPTAG")
-    add_subdirectory(thirdparty/SPTAG)
-    set(LIBRARIES ${LIBRARIES}  SPTAGLib)
-endif ()
-configure_file(
-        "${PROJECT_SOURCE_DIR}/include/sptag_config.h.in"
-        "${PROJECT_BINARY_DIR}/include/sptag_config.h"
-)
 
 # Reset output directories for the rest of your project
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
