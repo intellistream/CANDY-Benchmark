@@ -8,7 +8,7 @@ echo "Docker container is running. You can connect via SSH with:"
 echo "ssh root@<remote_server_ip> -p 2222"
 
 # Get the container ID or name
-container_name="docker_candy"  # Default container name; adjust if it differs in your case
+container_name="docker_candy-1"  # Default container name; adjust if it differs in your case
 
 # Wait for the container to start
 sleep 5  # Wait to ensure that container is properly up

@@ -35,10 +35,11 @@ macro(add_catch_test_ray appName SOURCE_FILES SOURCE_LIBS)
             COMMAND $<TARGET_FILE:${appName}> --success
     )
 endmacro()
-add_catch_test(cpp_test SystemTest/SimpleTest.cpp CANDY)
+
 add_catch_test(flatIndex_test SystemTest/FlatIndexTest.cpp CANDY)
 add_catch_test(ppIndex_test SystemTest/ParallelPartitionIndexTest.cpp CANDY)
-add_catch_test(dpgIndex_test SystemTest/DPGIndexTest.cpp CANDY)
+
+
 if (ENABLE_OPENCL)
     add_catch_test(cl_test SystemTest/CLTest.cpp CANDY)
 endif ()

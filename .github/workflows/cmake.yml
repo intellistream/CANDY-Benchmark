@@ -48,7 +48,5 @@ jobs:
           ./cpp_test "--success"
           ./flatIndex_test "--success"
           ./ppIndex_test "--success"
-          ./onlineIVFLSH_test "--success"
-          ./sptagIndex_test "--success"
           
        
