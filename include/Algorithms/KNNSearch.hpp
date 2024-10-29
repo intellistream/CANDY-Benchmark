@@ -1,4 +1,4 @@
-/*! \file FlatIndex.h*/
+/*! \file KNNSearch.h*/
 //
 // Created by tony on 04/01/24.
 //
@@ -10,7 +10,7 @@
 #include <Utils/ConfigMap.hpp>
 #include <memory>
 #include <vector>
-#include <Utils/IntelliTensorOP.hpp>
+#include <Utils/TensorOP.hpp>
 #include <faiss/IndexFlat.h>
 #include <Algorithms/AbstractIndex.h>
 namespace CANDY {
@@ -20,7 +20,7 @@ namespace CANDY {
  * @{
  */
 /**
- * @class FlatIndex Algorithms/FlatIndex.h
+ * @class KNNSearch Algorithms/KNNSearch.h
  * @brief The class of a flat index approach, using brutal force management
  * @note currently single thread
  * @note config parameters
@@ -28,18 +28,18 @@ namespace CANDY {
  * - initialVolume, the initial volume of inline database tensor, default 1000, I64
  * - expandStep, the step of expanding inline database, default 100, I64
  */
-class FlatIndex : public AbstractIndex {
+class KNNSearch : public AbstractIndex {
  protected:
   INTELLI::ConfigMapPtr myCfg = nullptr;
   torch::Tensor dbTensor;
   int64_t lastNNZ = 0;
   int64_t vecDim = 0, initialVolume = 1000, expandStep = 100;
  public:
-  FlatIndex() {
+  KNNSearch() {
 
   }
 
-  ~FlatIndex() {
+  ~KNNSearch() {
 
   }
 
@@ -114,16 +114,16 @@ class FlatIndex : public AbstractIndex {
 /**
  * @ingroup  CANDY_lib_bottom
  * @typedef FlatIndexPtr
- * @brief The class to describe a shared pointer to @ref  FlatIndex
+ * @brief The class to describe a shared pointer to @ref  KNNSearch
 
  */
-typedef std::shared_ptr<class CANDY::FlatIndex> FlatIndexPtr;
+typedef std::shared_ptr<class CANDY::KNNSearch> FlatIndexPtr;
 /**
  * @ingroup  CANDY_lib_bottom
  * @def newFlatIndex
- * @brief (Macro) To creat a new @ref  FlatIndex shared pointer.
+ * @brief (Macro) To creat a new @ref  KNNSearch shared pointer.
  */
-#define newFlatIndex std::make_shared<CANDY::FlatIndex>
+#define newFlatIndex std::make_shared<CANDY::KNNSearch>
 }
 /**
  * @}

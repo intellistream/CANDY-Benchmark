@@ -10,7 +10,7 @@
 #include "Utils/ConfigMap.hpp"
 #include <memory>
 #include <vector>
-#include "Utils/IntelliTensorOP.hpp"
+#include "Utils/TensorOP.hpp"
 #include "faiss/faiss/IndexFlat.h"
 #include "Algorithms/AbstractIndex.h"
 #include "Algorithms/KNNSearch.hpp"
@@ -23,7 +23,7 @@ namespace CANDY {
  */
 /**
  * @class BucketedFlatIndex Algorithms/BucketedFlatIndex.h
- * @brief The class of splitting similar vectors into fixed number of buckets, each bucket is managed by @ref FlatIndex
+ * @brief The class of splitting similar vectors into fixed number of buckets, each bucket is managed by @ref KNNSearch
  * @note currently single thread
  * @note config parameters
  * - vecDim, the dimension of vectors, default 768, I64

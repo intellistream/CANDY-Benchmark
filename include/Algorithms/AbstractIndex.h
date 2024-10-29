@@ -10,7 +10,7 @@
 #include <Utils/ConfigMap.hpp>
 #include <memory>
 #include <vector>
-#include <Utils/IntelliTensorOP.hpp>
+#include <Utils/TensorOP.hpp>
 #include <faiss/IndexFlat.h>
 #include <tuple>
 namespace CANDY {

@@ -272,7 +272,7 @@ torch::Tensor CANDY::BucketedFlatIndex::searchSingleRow(torch::Tensor &q, uint64
   int64_t lastNNZ = -1;
   if (testTensors > 0) {
     auto getTensor = buckets[bktIdx]->rawData();
-    INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &getTensor, &lastNNZ);
+    INTELLI::TensorOP::appendRowsBufferMode(&dbTensor, &getTensor, &lastNNZ);
     // //std::cout<<"append\n"<<getTensor<<std::endl;
   }
   while (testTensors < (uint64_t) minimumNum
@@ -282,7 +282,7 @@ torch::Tensor CANDY::BucketedFlatIndex::searchSingleRow(torch::Tensor &q, uint64
       //  //std::cout<<"try bucket (left)"<<bktIdx-leftExpand<<"size "<<getSize<<std::endl;
       if (getSize > 0) {
         auto getTensor = buckets[bktIdx - leftExpand]->rawData();
-        INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &getTensor, &lastNNZ);
+        INTELLI::TensorOP::appendRowsBufferMode(&dbTensor, &getTensor, &lastNNZ);
         testTensors += getTensor.size(0);
         // //std::cout<<"append LEFT\n"<<getTensor<<std::endl;
       }
@@ -298,7 +298,7 @@ torch::Tensor CANDY::BucketedFlatIndex::searchSingleRow(torch::Tensor &q, uint64
       //  //std::cout<<"try bucket (right)"<<bktIdx+rightExpand<<"size "<<getSize<<std::endl;
       if (getSize > 0) {
         auto getTensor = buckets[bktIdx + rightExpand]->rawData();
-        INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &getTensor, &lastNNZ);
+        INTELLI::TensorOP::appendRowsBufferMode(&dbTensor, &getTensor, &lastNNZ);
         testTensors += getTensor.size(0);
         // //std::cout<<"append right\n"<<getTensor<<std::endl;
       }

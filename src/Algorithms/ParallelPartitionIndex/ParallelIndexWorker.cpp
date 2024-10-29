@@ -289,7 +289,7 @@ std::vector<torch::Tensor> CANDY::ParallelIndexWorker::searchTensor(torch::Tenso
       for (size_t i = 0; i < qLen; i++) {
         ru[i] = torch::zeros({k, vecDim});
         if (ingestedVectors >= 1) {
-          INTELLI::IntelliTensorOP::editRows(&ru[i], &ruTemp[i], 0);
+          INTELLI::TensorOP::editRows(&ru[i], &ruTemp[i], 0);
           //ru[i].slice(0,0,ingestedVectors)=ruTemp[i];
         }
       }
@@ -352,7 +352,7 @@ std::vector<std::vector<std::string>> CANDY::ParallelIndexWorker::searchStringOb
     for (size_t i = 0; i < qLen; i++) {
       ru[i] = std::vector<std::string>(k);
       if (ingestedVectors >= 1) {
-        //INTELLI::IntelliTensorOP::editRows(&ru[i], &ruTemp[i], 0);
+        //INTELLI::TensorOP::editRows(&ru[i], &ruTemp[i], 0);
         std::copy(ruTemp[i].begin(), ruTemp[i].end(), ru[i].begin());
         //ru[i].slice(0,0,ingestedVectors)=ruTemp[i];
       }
@@ -380,9 +380,9 @@ std::tuple<std::vector<torch::Tensor>,
       ruS[i] = std::vector<std::string>(k);
       ruV[i] = torch::zeros({k, vecDim});
       if (ingestedVectors >= 1) {
-        //INTELLI::IntelliTensorOP::editRows(&ru[i], &ruTemp[i], 0);
+        //INTELLI::TensorOP::editRows(&ru[i], &ruTemp[i], 0);
         std::copy(ruTempS[i].begin(), ruTempS[i].end(), ruS[i].begin());
-        INTELLI::IntelliTensorOP::editRows(&ruV[i], &ruTempV[i], 0);
+        INTELLI::TensorOP::editRows(&ruV[i], &ruTempV[i], 0);
         //ru[i].slice(0,0,ingestedVectors)=ruTemp[i];
       }
     }

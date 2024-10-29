@@ -3,7 +3,7 @@
 //
 
 #include <DataLoader/RBTDataLoader.h>
-#include <Utils/IntelliTensorOP.hpp>
+#include <Utils/TensorOP.hpp>
 #include <iostream>
 #include <fstream>
 #include <Utils/IntelliLog.h>
@@ -47,7 +47,7 @@ int64_t CANDY::RBTDataLoader::getDimension() {
 }
 
 int64_t CANDY::RBTDataLoader::createRBT(std::string fname,torch::Tensor &t){
-  if(INTELLI::IntelliTensorOP::tensorToFile(&t,fname)) {
+  if(INTELLI::TensorOP::tensorToFile(&t, fname)) {
     return true;
   }
   return false;

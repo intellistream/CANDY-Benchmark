@@ -10,7 +10,7 @@
 #include <Utils/ConfigMap.hpp>
 #include <memory>
 #include <vector>
-#include <Utils/IntelliTensorOP.hpp>
+#include <Utils/TensorOP.hpp>
 #include <Algorithms/AbstractIndex.h>
 #include <Algorithms/ParallelPartitionIndex/ParallelIndexWorker.h>
 namespace CANDY {

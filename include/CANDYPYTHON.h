@@ -238,7 +238,7 @@ class Candy_Python {
 * @return tensor 1x1, [1] for success
 */
   torch::Tensor tensorToFile(torch::Tensor A, std::string fname) {
-    if (IntelliTensorOP::tensorToFile(&A, fname)) {
+    if (TensorOP::tensorToFile(&A, fname)) {
       return torch::zeros({1, 1}) + 1.0;
     }
     return torch::zeros({1, 1});
@@ -250,7 +250,7 @@ class Candy_Python {
 */
   torch::Tensor tensorFromFile(std::string fname) {
     torch::Tensor A;
-    if (IntelliTensorOP::tensorFromFile(&A, fname)) {
+    if (TensorOP::tensorFromFile(&A, fname)) {
       return A;
     }
     return torch::zeros({1, 1});

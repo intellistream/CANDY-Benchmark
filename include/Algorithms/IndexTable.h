@@ -23,7 +23,7 @@ namespace CANDY {
 * - (optional) call @ref addIndex for new algo
 * - find a loader by @ref getIndex using its tag
 * @note default tags (String)
- * - flat @ref FlatIndex
+ * - flat @ref KNNSearch
  * - parallelPartition @ref ParallelPartitionIndex
  * - onlinePQ @ref OnlinePQIndex
  * - onlineIVFLSH @ref OnlineIVFLSHIndex

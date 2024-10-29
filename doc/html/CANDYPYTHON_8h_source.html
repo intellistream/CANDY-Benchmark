@@ -227,14 +227,14 @@ $(document).ready(function(){initNavTree('CANDYPYTHON_8h_source.html',''); initR
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  }</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
 <div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="classCANDY_1_1Candy__Python.html#ac79d1566097d3373116ca2602393ba49">  240</a></span>&#160;  torch::Tensor <a class="code" href="classCANDY_1_1Candy__Python.html#ac79d1566097d3373116ca2602393ba49">tensorToFile</a>(torch::Tensor A, std::string fname) {</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span> (IntelliTensorOP::tensorToFile(&amp;A, fname)) {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span> (TensorOP::tensorToFile(&amp;A, fname)) {</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;      <span class="keywordflow">return</span> torch::zeros({1, 1}) + 1.0;</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    }</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordflow">return</span> torch::zeros({1, 1});</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;  }</div>
 <div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="classCANDY_1_1Candy__Python.html#aef626a6cbdb9bea890bb209313915f42">  251</a></span>&#160;  torch::Tensor <a class="code" href="classCANDY_1_1Candy__Python.html#aef626a6cbdb9bea890bb209313915f42">tensorFromFile</a>(std::string fname) {</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    torch::Tensor A;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">if</span> (IntelliTensorOP::tensorFromFile(&amp;A, fname)) {</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">if</span> (TensorOP::tensorFromFile(&amp;A, fname)) {</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      <span class="keywordflow">return</span> A;</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    }</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordflow">return</span> torch::zeros({1, 1});</div>

@@ -155,7 +155,7 @@ int main(int argc, char **argv) {
     if(inMap->tryI64("loadQueryDistribution",0, false)==1) {
       INTELLI_WARNING("The distribution of query is also loaded");
       for (; qTemp.size(0) < dataTensorInitial.size(0);) {
-        INTELLI::IntelliTensorOP::appendRows(&qTemp, &queryTensor);
+        INTELLI::TensorOP::appendRows(&qTemp, &queryTensor);
       }
     }*/
     auto initialTensor = dataLoader->getDataAt(0, initialRows);

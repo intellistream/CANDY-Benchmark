@@ -66,7 +66,7 @@ std::vector<torch::Tensor> CANDY::CongestionDropIndexWorker::searchTensor(torch:
         for (size_t i = 0; i < qLen; i++) {
             ru[i] = torch::zeros({k, vecDim});
             if (ingestedVectors >= 1) {
-                INTELLI::IntelliTensorOP::editRows(&ru[i], &ruTemp[i], 0);
+                INTELLI::TensorOP::editRows(&ru[i], &ruTemp[i], 0);
                 //ru[i].slice(0,0,ingestedVectors)=ruTemp[i];
             }
         }

@@ -113,7 +113,7 @@ Built-in name tags</h1>
 <h2><a class="anchor" id="subsec_tag_index"></a>
 Of index approaches (Please go to class @ref IndexTable for more details)</h2>
 <ul>
-<li>flat FlatIndex</li>
+<li>flat KNNSearch</li>
 <li>parallelPartition ParallelPartitionIndex</li>
 <li>onlinePQ OnlinePQIndex</li>
 <li>onlineIVFLSH OnlineIVFLSHIndex</li>
@@ -164,7 +164,7 @@ The sequential multiple Read write  benchmark</h2>
 How to extend a index algorithm (pure static c++ based)</h1>
 <ul>
 <li>go to the src/CANDY and include/CANDY</li>
-<li>copy the example class, such as FlatIndex, rename it, and implement your own index class<ul>
+<li>copy the example class, such as KNNSearch, rename it, and implement your own index class<ul>
 <li>copy the cpp and h</li>
 <li>rename the cpp and h</li>
 <li>automatically conduct the IDE-full-replace over the template by your own name in cpp and h</li>

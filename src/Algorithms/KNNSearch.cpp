@@ -1,4 +1,4 @@
-/*! \file FlatIndex.cpp*/
+/*! \file KNNSearch.cpp*/
 //
 // Created by tony on 25/05/23.
 //
@@ -8,7 +8,7 @@
 #include <time.h>
 #include <chrono>
 #include <assert.h>
-bool CANDY::FlatIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
+bool CANDY::KNNSearch::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   vecDim = cfg->tryI64("vecDim", 768, true);
   initialVolume = cfg->tryI64("initialVolume", 1000, true);
@@ -17,20 +17,20 @@ bool CANDY::FlatIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   lastNNZ = -1;
   return true;
 }
-void CANDY::FlatIndex::reset() {
+void CANDY::KNNSearch::reset() {
   lastNNZ = -1;
 }
-bool CANDY::FlatIndex::insertTensor(torch::Tensor &t) {
-  return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+bool CANDY::KNNSearch::insertTensor(torch::Tensor &t) {
+  return INTELLI::TensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
 }
 
-bool CANDY::FlatIndex::deleteTensor(torch::Tensor &t, int64_t k) {
+bool CANDY::KNNSearch::deleteTensor(torch::Tensor &t, int64_t k) {
   std::vector<faiss::idx_t> idxToDelete = searchIndex(t, k);
   std::vector<int64_t> &int64Vector = reinterpret_cast<std::vector<int64_t> &>(idxToDelete);
-  return INTELLI::IntelliTensorOP::deleteRowsBufferMode(&dbTensor, int64Vector, &lastNNZ);
+  return INTELLI::TensorOP::deleteRowsBufferMode(&dbTensor, int64Vector, &lastNNZ);
 }
 
-bool CANDY::FlatIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
+bool CANDY::KNNSearch::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
   if (t.size(0) > w.size(0) || t.size(1) != w.size(1)) {
     return false;
   }
@@ -46,12 +46,12 @@ bool CANDY::FlatIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
     indexFlat.search(1, queryData, 1, &distance, &idx);
     if (0 <= idx && idx <= lastNNZ) {
       auto rowW = w.slice(0, i, i + 1);
-      INTELLI::IntelliTensorOP::editRows(&dbTensor, &rowW, (int64_t) idx);
+      INTELLI::TensorOP::editRows(&dbTensor, &rowW, (int64_t) idx);
     }
   }
   return true;
 }
-std::vector<faiss::idx_t> CANDY::FlatIndex::searchIndex(torch::Tensor q, int64_t k) {
+std::vector<faiss::idx_t> CANDY::KNNSearch::searchIndex(torch::Tensor q, int64_t k) {
   faiss::IndexFlat indexFlat(vecDim, faissMetric); // call constructor
   float *dbData = dbTensor.contiguous().data_ptr<float>();
   float *queryData = q.contiguous().data_ptr<float>();
@@ -63,7 +63,7 @@ std::vector<faiss::idx_t> CANDY::FlatIndex::searchIndex(torch::Tensor q, int64_t
   return ru;
 }
 
-std::vector<torch::Tensor> CANDY::FlatIndex::getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k) {
+std::vector<torch::Tensor> CANDY::KNNSearch::getTensorByIndex(std::vector<faiss::idx_t> &idx, int64_t k) {
   int64_t tensors = idx.size() / k;
   std::vector<torch::Tensor> ru(tensors);
 
@@ -76,11 +76,11 @@ std::vector<torch::Tensor> CANDY::FlatIndex::getTensorByIndex(std::vector<faiss:
   }
   return ru;
 }
-torch::Tensor CANDY::FlatIndex::rawData() {
+torch::Tensor CANDY::KNNSearch::rawData() {
   return dbTensor.slice(0, 0, lastNNZ + 1).contiguous();
 }
 
-std::vector<torch::Tensor> CANDY::FlatIndex::searchTensor(torch::Tensor &q, int64_t k) {
+std::vector<torch::Tensor> CANDY::KNNSearch::searchTensor(torch::Tensor &q, int64_t k) {
   auto idx = searchIndex(q, k);
   return getTensorByIndex(idx, k);
 }

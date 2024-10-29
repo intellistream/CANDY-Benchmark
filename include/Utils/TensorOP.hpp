@@ -1,4 +1,4 @@
-/*! \file IntelliTensorOP.hpp*/
+/*! \file TensorOP.hpp*/
 #ifndef _UTILS_IntelliTensorOP_H_
 #define _UTILS_IntelliTensorOP_H_
 #pragma once
@@ -39,10 +39,10 @@ typedef std::shared_ptr<torch::Tensor> TensorPtr;
  * @brief The common tensor functions packed in class
  * @note Most are static functions
  */
-class IntelliTensorOP {
+class TensorOP {
  public:
-  IntelliTensorOP() {}
-  ~IntelliTensorOP() {}
+  TensorOP() {}
+  ~TensorOP() {}
   /**
    * @brief delete a row of a tensor
    * @param t the tensor pointer

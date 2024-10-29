@@ -103,10 +103,10 @@ $(document).ready(function(){initNavTree('BucketedFlatIndex_8h.html',''); initRe
 <code>#include &lt;<a class="el" href="ConfigMap_8hpp_source.html">Utils/ConfigMap.hpp</a>&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;<a class="el" href="IntelliTensorOP_8hpp_source.html">Utils/IntelliTensorOP.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="IntelliTensorOP_8hpp_source.html">Utils/TensorOP.hpp</a>&gt;</code><br />
 <code>#include &lt;faiss/IndexFlat.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="AbstractIndex_8h_source.html">CANDY/AbstractIndex.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="FlatIndex_8h_source.html">CANDY/FlatIndex.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="FlatIndex_8h_source.html">CANDY/KNNSearch.h</a>&gt;</code><br />
 <code>#include &lt;CANDY/HashingModels/MLPBucketIdxModel.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for BucketedFlatIndex.h:</div>
@@ -160,7 +160,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCANDY_1_1BucketedFlatIndex.html">CANDY::BucketedFlatIndex</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class of splitting similar vectors into fixed number of buckets, each bucket is managed by <a class="el" href="classCANDY_1_1FlatIndex.html">FlatIndex</a>.  <a href="classCANDY_1_1BucketedFlatIndex.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class of splitting similar vectors into fixed number of buckets, each bucket is managed by <a class="el" href="classCANDY_1_1FlatIndex.html">KNNSearch</a>.  <a href="classCANDY_1_1BucketedFlatIndex.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6f64676821dfcc5d14310470ede40eb9"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CANDY__lib__bottom.html#ga6f64676821dfcc5d14310470ede40eb9">newBucketedFlatIndex</a>&#160;&#160;&#160;std::make_shared&lt;<a class="el" href="classCANDY_1_1BucketedFlatIndex.html">CANDY::BucketedFlatIndex</a>&gt;</td></tr>

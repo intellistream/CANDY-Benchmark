@@ -12,7 +12,7 @@
 //#include <ATen/ATen.h>
 //#include <Common/Types.h>
 #include <Utils/IntelliTimeStampGenerator.h>
-#include <Utils/IntelliTensorOP.hpp>
+#include <Utils/TensorOP.hpp>
 #include <vector>
 #include <torch/torch.h>
 #include <filesystem>
@@ -187,7 +187,7 @@ class UtilityFunctions {
 
     for (size_t i = 0; i < tensorVec.size(); i++) {
       std::string fileName = folderName + "/" + std::to_string(i) + ".rbt";
-      IntelliTensorOP::tensorToFile(&tensorVec[i], fileName);
+      TensorOP::tensorToFile(&tensorVec[i], fileName);
     }
     return true;
   }
@@ -203,7 +203,7 @@ class UtilityFunctions {
     std::vector<torch::Tensor> ru((size_t) tensors);
     for (uint64_t i = 0; i < tensors; i++) {
       std::string fileName = folderName + "/" + std::to_string(i) + ".rbt";
-      IntelliTensorOP::tensorFromFile(&ru[i], fileName);
+      TensorOP::tensorFromFile(&ru[i], fileName);
     }
     return ru;
   }

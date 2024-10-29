@@ -22,7 +22,7 @@
     * - not support compression yet
 * @section sec_name_index Built-in name tags
 * @subsection subsec_tag_index Of index approaches (Please go to class @ref IndexTable for more details)
- * - flat @ref FlatIndex
+ * - flat @ref KNNSearch
  * - parallelPartition @ref ParallelPartitionIndex
  * - onlinePQ @ref OnlinePQIndex
  * - onlineIVFLSH @ref OnlineIVFLSHIndex
@@ -71,7 +71,7 @@
 * - numberOfRWSeq, the number of RW sequences, will divide both data base tensor and query tensor by this factor, I64, default 1
 * @section subsec_extend_cpp_operator How to extend a index algorithm (pure static c++ based)
 * - go to the src/Algorithms and include/Algorithms
-* - copy the example class, such as FlatIndex, rename it, and implement your own index class
+* - copy the example class, such as KNNSearch, rename it, and implement your own index class
 *  - copy the cpp and h
 *  - rename the cpp and h
 *  - automatically conduct the IDE-full-replace over the template by your own name in cpp and h
@@ -191,7 +191,7 @@
 #include <Utils/IntelliLog.h>
 #include <Utils/UtilityFunctions.h>
 //#include <Utils/BS_thread_pool.hpp>
-#include <Utils/IntelliTensorOP.hpp>
+#include <Utils/TensorOP.hpp>
 #include <Utils/IntelliTimeStampGenerator.h>
 
 /**
