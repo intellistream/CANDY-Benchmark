@@ -128,6 +128,7 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
         }
         // record previous state
         dagnn->graphStates.print();
+        dagnn->updateGlobalState();
         // find the best action
         size_t best_action = 0;
         size_t best_latency = dagnn->graphStates.window_states.last_search_latency;
