@@ -1,7 +1,7 @@
 //
 // Created by Isshin on 2024/3/25.
 //
-#include<CANDY/FlannIndex.h>
+#include<Algorithms/FlannIndex.h>
 #include<faiss/utils/distances.h>
 #include <Utils/UtilityFunctions.h>
 

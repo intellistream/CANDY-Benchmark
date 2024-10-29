@@ -4,7 +4,7 @@
 
 #ifndef CANDY_FLANNCOMPONENT_H
 #define CANDY_FLANNCOMPONENT_H
-#include<CANDY/FlannIndex/FlannUtils.h>
+#include<Algorithms/FlannIndex/FlannUtils.h>
 #define FLANN_AUTO 0
 #define FLANN_KDTREE 1
 #define FLANN_KMEANS 2

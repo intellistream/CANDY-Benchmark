@@ -21,7 +21,6 @@
 #include <Algorithms/PQIndex.h>
 #include <Algorithms/ParallelPartitionIndex.h>
 #include <Algorithms/YinYangGraphIndex.h>
-#include <Algorithms/FlatGPUIndex.h>
 #include <Algorithms/YinYangGraphSimpleIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
@@ -58,7 +57,6 @@ CANDY::IndexTable::IndexTable() {
   indexMap["Flann"] = newFlannIndex();
   indexMap["DPG"] = newDPGIndex();
   indexMap["LSHAPG"] = newLSHAPGIndex();
-  indexMap["flatGPU"] = newFlatGPUIndex();
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif

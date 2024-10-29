@@ -4,8 +4,8 @@
 
 #ifndef CANDY_FLANNINDEX_H
 #define CANDY_FLANNINDEX_H
-#include<CANDY/FlannIndex/KdTree.h>
-#include<CANDY/FlannIndex/Kmeans.h>
+#include<Algorithms/FlannIndex/KdTree.h>
+#include<Algorithms/FlannIndex/Kmeans.h>
 #include <Algorithms/AbstractIndex.h>
 
 namespace CANDY {
