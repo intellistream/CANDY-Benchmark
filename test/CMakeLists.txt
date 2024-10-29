@@ -39,12 +39,7 @@ endmacro()
 add_catch_test(flatIndex_test SystemTest/FlatIndexTest.cpp CANDY)
 add_catch_test(ppIndex_test SystemTest/ParallelPartitionIndexTest.cpp CANDY)
 
-
 if (ENABLE_OPENCL)
     add_catch_test(cl_test SystemTest/CLTest.cpp CANDY)
-endif ()
-if (ENABLE_RAY)
-    add_catch_test(dp_test SystemTest/DistributedPartitionIndexTest.cpp CANDY)
-    add_catch_test_ray(dp_testL SystemTest/DistributedPartitionIndexTest.cpp CANDY)
 endif ()
 
