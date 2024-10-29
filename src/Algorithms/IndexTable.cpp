@@ -5,21 +5,17 @@
 #include "Algorithms/BucketedFlatIndex/BucketedFlatIndex.h"
 #include <Algorithms/BufferedCongestionDropIndex.h>
 #include <Algorithms/CongestionDropIndex.h>
-#include <Algorithms/DPGIndex.h>
 #include <Algorithms/FlatAMMIPIndex.h>
 #include <Algorithms/FlatAMMIPObjIndex.h>
 #include <Algorithms/FlatIndex.h>
 #include <Algorithms/HNSWNaiveIndex.h>
 #include <Algorithms/IndexTable.h>
-#include <Algorithms/LSHAPGIndex.h>
 #include <Algorithms/NNDescentIndex.h>
 #include <Algorithms/OnlineIVFL2HIndex.h>
 #include <Algorithms/OnlineIVFLSHIndex.h>
 #include <Algorithms/OnlinePQIndex.h>
 #include <Algorithms/PQIndex.h>
 #include <Algorithms/ParallelPartitionIndex.h>
-#include <Algorithms/YinYangGraphIndex.h>
-#include <Algorithms/YinYangGraphSimpleIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
 #include <include/sptag_config.h>
@@ -51,7 +47,6 @@ CANDY::IndexTable::IndexTable() {
   indexMap["congestionDrop"] = newCongestionDropIndex();
   indexMap["bufferedCongestionDrop"] = newBufferedCongestionDropIndex();
   indexMap["nnDescent"] = newNNDescentIndex();
-  indexMap["DPG"] = newDPGIndex();
   indexMap["LSHAPG"] = newLSHAPGIndex();
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();

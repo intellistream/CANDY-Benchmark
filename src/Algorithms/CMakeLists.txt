@@ -13,25 +13,16 @@ add_sources(
         IndexTable.cpp
         PQIndex.cpp
         HNSWNaiveIndex.cpp
-        YinYangGraphIndex.cpp
-        YinYangGraphSimpleIndex.cpp
         CongestionDropIndex.cpp
         NNDescentIndex.cpp
-        DPGIndex.cpp
-        LSHAPGIndex.cpp
 )
 add_subdirectory(ParallelPartitionIndex)
 add_subdirectory(PQIndex)
 add_subdirectory(OnlinePQIndex)
 add_subdirectory(HNSWNaive)
-add_subdirectory(YinYangGraphIndex)
 add_subdirectory(CongestionDropIndex)
 add_subdirectory(FlannIndex)
-add_subdirectory(LSHAPGIndex)
 if (ENABLE_RAY)
     add_subdirectory(DistributedPartitionIndex)
     add_sources(DistributedPartitionIndex.cpp)
-endif ()
-if (ENABLE_SPTAG)
-    add_sources(SPTAGIndex.cpp)
 endif ()
