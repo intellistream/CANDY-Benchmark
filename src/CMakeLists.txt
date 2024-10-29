@@ -1,6 +1,6 @@
 add_subdirectory(Utils)
 
-add_subdirectory(CANDY)
+add_subdirectory(Algorithms)
 add_subdirectory(DataLoader)
 #gcc options
 if (DEFINED ENV{CANDY_CL})
