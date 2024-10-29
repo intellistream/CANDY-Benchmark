@@ -5,8 +5,8 @@
 #include "Algorithms/BucketedFlatIndex/BucketedFlatIndex.h"
 #include <Algorithms/BufferedCongestionDropIndex.h>
 #include <Algorithms/CongestionDropIndex.h>
-#include <Algorithms/FlatIndex.h>
-#include <Algorithms/IndexTable.h
+#include <Algorithms/KNNSearch.hpp>
+#include <Algorithms/IndexTable.h>
 #include <Algorithms/ParallelPartitionIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>

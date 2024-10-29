@@ -13,7 +13,7 @@
 #include "Utils/IntelliTensorOP.hpp"
 #include "faiss/faiss/IndexFlat.h"
 #include "Algorithms/AbstractIndex.h"
-#include "Algorithms/FlatIndex.h"
+#include "Algorithms/KNNSearch.hpp"
 #include "HashingModel/MLPBucketIdxModel.h"
 namespace CANDY {
 

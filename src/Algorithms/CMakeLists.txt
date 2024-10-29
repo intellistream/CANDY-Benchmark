@@ -2,7 +2,7 @@ add_sources(
         AbstractIndex.cpp
         BucketedFlatIndex/BucketedFlatIndex.cpp
         BufferedCongestionDropIndex.cpp
-        FlatIndex.cpp
+        KNNSearch.cpp
         ParallelPartitionIndex.cpp
         IndexTable.cpp
         CongestionDropIndex.cpp

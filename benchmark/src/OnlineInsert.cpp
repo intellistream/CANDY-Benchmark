@@ -24,9 +24,6 @@ static inline int64_t s_timeOutSeconds = -1;
 static inline void earlyTerminateTimerCallBack() {
   INTELLI_ERROR(
       "Force to terminate due to timeout in " + std::to_string(s_timeOutSeconds) + "seconds");
-  /*if (indexPtr->isHPCStarted) {
-    indexPtr->endHPC();
-  }*/
   auto briefOutCfg = newConfigMap();
   double latency95 = 0;
   briefOutCfg->edit("throughput", (int64_t) 0);
@@ -66,7 +63,6 @@ int main(int argc, char **argv) {
    * @brief 1. load the configs
    */
   INTELLI::ConfigMapPtr inMap = newConfigMap();
-  //size_t incrementalBuildTime = 0, incrementalSearchTime = 0;
   if (inMap->fromCArg(argc, argv) == false) {
     if (argc >= 2) {
       std::string fileName = "";
@@ -141,14 +137,6 @@ int main(int argc, char **argv) {
   }
   INTELLI_INFO("3.0 Load initial tensor!");
   if (initialRows > 0) {
-
-    /*auto qTemp=queryTensor.clone();
-    if(inMap->tryI64("loadQueryDistribution",0, false)==1) {
-      INTELLI_WARNING("The distribution of query is also loaded");
-      for (; qTemp.size(0) < dataTensorInitial.size(0);) {
-        INTELLI::IntelliTensorOP::appendRows(&qTemp, &queryTensor);
-      }
-    }*/
     indexPtr->loadInitialTensor(dataTensorInitial);
   }
   auto start = std::chrono::high_resolution_clock::now();

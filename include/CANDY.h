@@ -123,7 +123,7 @@
 * @{
 **/
 #include <Algorithms/AbstractIndex.h>
-#include <Algorithms/FlatIndex.h>
+#include <Algorithms/KNNSearch.hpp>
 
 /**
  * @}

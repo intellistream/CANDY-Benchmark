@@ -3,7 +3,7 @@
 // Created by tony on 25/05/23.
 //
 
-#include <Algorithms/FlatIndex.h>
+#include <Algorithms/KNNSearch.hpp>
 #include <Utils/UtilityFunctions.h>
 #include <time.h>
 #include <chrono>
