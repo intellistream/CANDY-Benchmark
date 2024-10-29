@@ -14,7 +14,7 @@
 #include "faiss/faiss/IndexFlat.h"
 #include "Algorithms/AbstractIndex.h"
 #include "Algorithms/FlatIndex.h"
-#include "Algorithms/BucketedFlatIndex/HashingModel/MLPBucketIdxModel.h"
+#include "HashingModel/MLPBucketIdxModel.h"
 namespace CANDY {
 
 /**
