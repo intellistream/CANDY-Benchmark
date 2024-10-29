@@ -1,4 +1,4 @@
-add_subdirectory(HashingModel)
+add_subdirectory(../../HashingModel)
 add_sources(
         BucketedFlatIndex.cpp
 )

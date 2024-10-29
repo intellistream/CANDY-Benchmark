@@ -13,12 +13,10 @@ add_sources(
         IndexTable.cpp
         PQIndex.cpp
         HNSWNaiveIndex.cpp
-        FaissIndex.cpp
         YinYangGraphIndex.cpp
         YinYangGraphSimpleIndex.cpp
         CongestionDropIndex.cpp
         NNDescentIndex.cpp
-        FlannIndex.cpp
         DPGIndex.cpp
         LSHAPGIndex.cpp
 )

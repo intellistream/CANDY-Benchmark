@@ -17,7 +17,9 @@
 #include <Algorithms/OnlineIVFLSHIndex.h>
 #include <Algorithms/OnlinePQIndex/IVFTensorEncodingList.h>
 #include <faiss/VectorTransform.h>
-#include <Algorithms/HashingModels/MLPHashingModel.h>
+#include <HashingModel/MLPBucketIdxModel.h>
+#include <HashingModel/MLPHashingModel.h>
+
 namespace CANDY {
 
 /**

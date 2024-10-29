@@ -6,8 +6,6 @@
 #include <Algorithms/BufferedCongestionDropIndex.h>
 #include <Algorithms/CongestionDropIndex.h>
 #include <Algorithms/DPGIndex.h>
-#include <Algorithms/FaissIndex.h>
-#include <Algorithms/FlannIndex.h>
 #include <Algorithms/FlatAMMIPIndex.h>
 #include <Algorithms/FlatAMMIPObjIndex.h>
 #include <Algorithms/FlatIndex.h>
@@ -48,13 +46,11 @@ CANDY::IndexTable::IndexTable() {
   indexMap["PQ"] = newPQIndex();
   indexMap["HNSWNaive"] = newHNSWNaiveIndex();
   indexMap["NSW"] = newNSWIndex();
-  indexMap["faiss"] = newFaissIndex();
   indexMap["yinYang"] = newYinYangGraphIndex();
   indexMap["yinYangSimple"] = newYinYangGraphSimpleIndex();
   indexMap["congestionDrop"] = newCongestionDropIndex();
   indexMap["bufferedCongestionDrop"] = newBufferedCongestionDropIndex();
   indexMap["nnDescent"] = newNNDescentIndex();
-  indexMap["Flann"] = newFlannIndex();
   indexMap["DPG"] = newDPGIndex();
   indexMap["LSHAPG"] = newLSHAPGIndex();
 #if CANDY_CL == 1
