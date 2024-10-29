@@ -7,6 +7,3 @@ add_sources(
         ExpFamilyDataLoader.cpp
         RBTDataLoader.cpp
 )
-if (ENABLE_HDF5)
-    add_sources(HDF5DataLoader.cpp)
-endif ()
