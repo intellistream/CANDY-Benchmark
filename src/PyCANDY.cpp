@@ -88,7 +88,35 @@ AbstractDataLoaderPtr creatDataLoader(std::string nameTag) {
   }
   return ru;
 }
-
+static bool existRow(torch::Tensor base, torch::Tensor row) {
+  for (int64_t i = 0; i < base.size(0); i++) {
+    auto tensor1 = base[i].contiguous();
+    auto tensor2 = row.contiguous();
+    //std::cout<<"base: "<<tensor1<<std::endl;
+    //std::cout<<"query: "<<tensor2<<std::endl;
+    if (torch::equal(tensor1, tensor2)) {
+      return true;
+    }
+  }
+  return false;
+}
+double recallOfTensorList(std::vector<torch::Tensor> groundTruth, std::vector<torch::Tensor> prob) {
+  int64_t truePositives = 0;
+  int64_t falseNegatives = 0;
+  for (size_t i = 0; i < prob.size(); i++) {
+    auto gdI = groundTruth[i];
+    auto probI = prob[i];
+    for (int64_t j = 0; j < probI.size(0); j++) {
+      if (existRow(gdI, probI[j])) {
+        truePositives++;
+      } else {
+        falseNegatives++;
+      }
+    }
+  }
+  double recall = static_cast<double>(truePositives) / (truePositives + falseNegatives);
+  return recall;
+}
 PYBIND11_MODULE(PyCANDY, m) {
   /**
    * @brief export the configmap class
@@ -152,6 +180,7 @@ PYBIND11_MODULE(PyCANDY, m) {
   m.def("appendTensorToRBT", &CANDY::RBTDataLoader::appendTensorToRBT, "Append tensor to an RBT file");
   m.def("readRowsFromRBT", &CANDY::RBTDataLoader::readRowsFromRBT, "read certain rows form RBT file");
   m.def("getSizesFromRBT", &CANDY::RBTDataLoader::getSizesFromRBT, "get the sizes of RBT file");
+  m.def("recallOfTensorList", &recallOfTensorList, "calculate the recall");
   /**
    * @brief perf
    */
