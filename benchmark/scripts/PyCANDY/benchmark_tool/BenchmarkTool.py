@@ -27,6 +27,40 @@ class BenchmarkTool:
         indexTag = self.configMap.get("indexTag", 'flat')
         print(f"Data loader initialized with tag: {dataLoaderTag}")
         self.dataLoader = candy.createDataLoader(dataLoaderTag)
+        self.isRef = isRef
+        if(isRef==1):
+            self.indexPtr =  candy.createIndex(refTag)
+            print("This is just a ref")
+        else:
+            self.indexPtr =  candy.createIndex(indexTag)
+        self.indexPtr.setConfig(configMap)
+        self.dataLoader.setConfig(configMap)
+         # 配置数据加载器
+        return self.configMap
+    def refFlag(self):
+        return self.isRef
+    def loadConfigFromDict(self, dict,isRef=0,refTag ='flat'):
+        """
+        从Python字典读取内容并将其加载为配置字典。
+        
+        :param dict: Dic - python字典
+        :param isRef: int - 是否用作参照而非评估
+        :para, refTag: str - 如果用作参照，启动哪一个算法作为基线
+        :return: dict - 配置内容的字典表示
+        """
+        # 创建一个配置映射对象并从文件加载配置
+        configMap = candy.dictToConfigMap(dict)
+        self.configMapRaw = configMap
+        # 将配置映射对象转换为字典
+        self.configMap = candy.configMapToDict(configMap)
+        self.indexPtr = None
+        # 打印或返回配置字典以便进一步处理
+        print("Loaded configuration:", self.configMap)
+        dataLoaderTag = self.configMap.get("dataLoaderTag", "random")
+        indexTag = self.configMap.get("indexTag", 'flat')
+        print(f"Data loader initialized with tag: {dataLoaderTag}")
+        self.dataLoader = candy.createDataLoader(dataLoaderTag)
+        self.isRef = isRef
         if(isRef==1):
             self.indexPtr =  candy.createIndex(refTag)
             print("This is just a ref")
