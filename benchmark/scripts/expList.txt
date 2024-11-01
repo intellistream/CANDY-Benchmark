@@ -1,6 +1,7 @@
 downloadDataSet
 DPRDataset
 redditDataSet
+cocoDataset
 scanIPEndToEnd
 scanIPEndToEndNoDropping
 scanIPDimensions
