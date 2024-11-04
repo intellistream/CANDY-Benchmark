@@ -26,7 +26,8 @@ bool CANDY::FlatGPUIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     distanceFunc = distanceL2;
   }
   vecDim = cfg->tryI64("vecDim", 768, true);
-  memBufferSize = cfg->tryI64("memBufferSize", 1000, true);
+  int64_t  vecVolume = cfg->tryI64("vecVolume", 1000, true);
+  memBufferSize = cfg->tryI64("memBufferSize", vecVolume+1000, true);
   sketchSize = cfg->tryI64("sketchSize", 10, true);
   DCOBatchSize = cfg->tryI64("DCOBatchSize", memBufferSize, true);
   if (torch::cuda::is_available()) {
