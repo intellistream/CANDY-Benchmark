@@ -42,6 +42,8 @@ class BenchmarkThread(QThread):
         eventRate = int(self.config_map.get("eventRateTps", 1000))
         deleteRows = int(self.config_map.get("deleteRows", -1))
         querySize = int(self.config_map.get("querySize", 100))
+        vecVolume = int(self.config_map.get("memBufferSize",10000 ))
+        memBufferSize = int(self.config_map.get("memBufferSize",vecVolume ))
         self.querySize = querySize
         self.deleteRows = deleteRows
         annk = int(self.config_map.get("ANNK", 10))
@@ -120,6 +122,7 @@ class BenchMarkMainWindow(QMainWindow):
                 "result": "Final Result",
                 "toggle_output": "Show/Hide Intermediate Output",
                 "index_tag":"Name of Algo",
+                "cuda_idx":"Cuda device id",
                 "event_rate":"Event Rate"
             },
             "中文": {
@@ -141,7 +144,8 @@ class BenchMarkMainWindow(QMainWindow):
                 "result": "最终结果",
                 "toggle_output": "显示/隐藏中间输出",
                 "index_tag":"算法名称",
-                "Event Rate":"事件速率"
+                "Event Rate":"事件速率",
+                "cuda_idx":"Cuda设备号",
             }
         }
         self.current_language = "English"
@@ -189,7 +193,7 @@ class BenchMarkMainWindow(QMainWindow):
         self.event_rate_input = QLineEdit("-1")
         self.batch_size_input = QLineEdit("4000")
         self.idx_tag_input = QLineEdit("flat")
-        
+        self.cuda_input = QLineEdit("-1")
         self.param_frame_layout.addRow(self.enable_random_checkbox)
         self.param_frame_layout.addRow(self.languages[self.current_language]["index_tag"], self.idx_tag_input)
         self.param_frame_layout.addRow(self.languages[self.current_language]["vec_volume"], self.vec_volume_input)
@@ -201,6 +205,7 @@ class BenchMarkMainWindow(QMainWindow):
         self.param_frame_layout.addRow(self.languages[self.current_language]["query_size"], self.query_size_input)
         self.param_frame_layout.addRow(self.languages[self.current_language]["annk"], self.annk_input)
         self.param_frame_layout.addRow(self.languages[self.current_language]["batch_size"], self.batch_size_input)
+        self.param_frame_layout.addRow(self.languages[self.current_language]["cuda_idx"], self.cuda_input)
 
         # Toggle button for parameter section
         self.toggle_button = QPushButton("Show/Hide Parameters")
@@ -361,6 +366,7 @@ class BenchMarkMainWindow(QMainWindow):
             "ANNK": int(self.annk_input.text()),
             "batchSize": int(self.batch_size_input.text()),
             "indexTag": (self.idx_tag_input.text()),
+            "cudaDevice":int(self.cuda_input.text())
         }
         if(self.enable_random_checkbox.isChecked()):
             params['dataLoaderTag']=str('random')
@@ -402,6 +408,8 @@ class BenchMarkMainWindow(QMainWindow):
             self.annk_input.setText(str(params["ANNK"]))
         if "batchSize" in params:
             self.batch_size_input.setText(str(params["batchSize"]))
+        if "cudaDevice" in params:
+            self.cuda_input.setText(str(params["cudaDevice"]))
 
     
     def displayConfigInTable(self, config_dict):

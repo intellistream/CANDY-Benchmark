@@ -1,6 +1,6 @@
 
 cmake_minimum_required(VERSION 3.14)
-project(CANDY CXX)
+project(CANDYBENCH CXX)
 include (cmake/FindCuda.cmake)
 include (cmake/FindTorch.cmake)
 find_package(Torch REQUIRED)
@@ -78,7 +78,7 @@ option(ENABLE_SPTAG
         OFF
 )
 option(ENABLE_PYBIND
-        "Enable original pybind and build CANDY python"
+        "Enable original pybind and build CANDYBENCH python"
         OFF
 )
 
@@ -221,19 +221,19 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 # Add Library
 get_sources(CANDY_SOURCE_FILES)
 get_headers(CANDY_HEADER_FILES)
-add_library(CANDY SHARED ${CANDY_SOURCE_FILES} ${CANDY_HEADER_FILES} ${CMAKE_CURRENT_BINARY_DIR})
+add_library(CANDYBENCH SHARED ${CANDY_SOURCE_FILES} ${CANDY_HEADER_FILES} ${CMAKE_CURRENT_BINARY_DIR})
 
-set_property(TARGET CANDY PROPERTY CXX_STANDARD 20)
-target_include_directories(CANDY PUBLIC "include")
-target_include_directories(CANDY PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
-target_include_directories(CANDY PUBLIC "thirdparty/papi_build/include")
-target_include_directories(CANDY PUBLIC "thirdparty/")
-target_include_directories(CANDY PUBLIC "thirdparty/SPTAG")
-target_include_directories(CANDY PUBLIC "thirdparty/SPTAG/AnnService")
-target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
-target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
-target_link_libraries(CANDY PUBLIC ${LIBRARIES})
-install(TARGETS CANDY LIBRARY DESTINATION .)
+set_property(TARGET CANDYBENCH PROPERTY CXX_STANDARD 20)
+target_include_directories(CANDYBENCH PUBLIC "include")
+target_include_directories(CANDYBENCH PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/papi_build/include")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/SPTAG")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/SPTAG/AnnService")
+target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
+target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
+target_link_libraries(CANDYBENCH PUBLIC ${LIBRARIES})
+install(TARGETS CANDYBENCH LIBRARY DESTINATION .)
 #add_subdirectory(test)
 #Add benchmarks with command
 add_subdirectory(benchmark)
@@ -252,7 +252,7 @@ else ()
     add_subdirectory(thirdparty/pybind11)
     pybind11_add_module(PyCANDY ${PROJECT_SOURCE_DIR}/src/PyCANDY.cpp)
     find_library(TORCH_PYTHON_LIBRARY torch_python PATH "${TORCH_INSTALL_PREFIX}/lib")
-    target_link_libraries(PyCANDY PUBLIC ${LIBRARIES} CANDY ${TORCH_PYTHON_LIBRARY})
+    target_link_libraries(PyCANDY PUBLIC ${LIBRARIES} CANDYBENCH ${TORCH_PYTHON_LIBRARY})
     install(TARGETS PyCANDY LIBRARY DESTINATION .)
     message(STATUS "Additional include torch_python: ${TORCH_PYTHON_LIBRARY}")
     set(CANDY_PYBIND 1)
@@ -262,7 +262,7 @@ configure_file(
         "${PROJECT_SOURCE_DIR}/include/pybind_config.h.in"
         "${PROJECT_BINARY_DIR}/include/pybind_config.h"
 )
-install(DIRECTORY "include" DESTINATION "/CANDY" COMPONENT CANDY)
+install(DIRECTORY "include" DESTINATION "/CANDY" COMPONENT CANDYBENCH)
 # copy scripts
 file(GLOB allCopyFiles "${PROJECT_SOURCE_DIR}/scripts/*")
 file(COPY ${allCopyFiles} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/benchmark/scripts)

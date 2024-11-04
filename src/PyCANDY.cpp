@@ -117,11 +117,13 @@ double recallOfTensorList(std::vector<torch::Tensor> groundTruth, std::vector<to
   double recall = static_cast<double>(truePositives) / (truePositives + falseNegatives);
   return recall;
 }
+#define COMPILED_TIME (__DATE__ " " __TIME__)
 PYBIND11_MODULE(PyCANDY, m) {
   /**
    * @brief export the configmap class
    */
   m.attr("__version__") = "0.1.2";  // Set the version of the module
+  m.attr("__compiled_time__") = COMPILED_TIME;  // Set the compile time of the module
   py::class_<INTELLI::ConfigMap, std::shared_ptr<INTELLI::ConfigMap>>(m, "ConfigMap")
       .def(py::init<>())
       .def("edit", py::overload_cast<const std::string &, int64_t>(&INTELLI::ConfigMap::edit))
