@@ -1273,6 +1273,9 @@ void CANDY::DynamicTuneHNSW::greedy_search_upper(DAGNN::DistanceQueryer& disq, s
             auto vector = get_vector(visiting);
 
             auto dist = disq(vector);
+            if(is_greedy||is_training||is_datamining){
+                num_dco+=1;
+            }
             //printf("trying to %ld with dist = %.2f on level%ld\n", visiting, dist, level);
             if(dist < dist_nearest) {
                 nearest = visiting;
@@ -1300,6 +1303,9 @@ void CANDY::DynamicTuneHNSW::greedy_search_base(DAGNN::DistanceQueryer& disq, id
             }
             auto vector = get_vector(visiting);
             auto dist = disq(vector);
+            if(is_greedy||is_training||is_datamining){
+                num_dco+=1;
+            }
 
             //printf("trying to %ld with dist = %.2f on level 0 \n", visiting, dist);
             if(dist < dist_nearest) {
@@ -1358,6 +1364,9 @@ int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_
             auto v1_vector = get_vector(v1);
             //float d1 = v0_distList[j];
             float d1=disq(v1_vector);
+            if(is_greedy||is_training||is_datamining){
+                num_dco+=1;
+            }
             //float d1_d0 = disq.distance(v1_vector, v0_vector);
             //float d0=disq(v0_vector);
             //printf("v1=%ld d0=%f d1=%f d1_d0=%f\n", v1, d0, d1, d1_d0);

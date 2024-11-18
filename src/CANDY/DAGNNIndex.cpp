@@ -62,13 +62,9 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
 
     dagnn->add(data_size, new_data);
     // used for states recording during batch dataset collection
-
+    dagnn->datamining_search_select = dagnn->storage->ntotal;
     if(dagnn->is_greedy && dagnn->storage->ntotal>1000){
         {
-            std::random_device rd;
-            std::mt19937 gen(rd());
-            std::uniform_int_distribution<> dist(0, dagnn->storage->ntotal - 1);
-
             std::vector<int> selected_numbers;
             std::vector<faiss::idx_t> ru_gt(dagnn->datamining_search_annk * dagnn->datamining_search_select);
             std::vector<float> distance_gt(dagnn->datamining_search_annk * dagnn->datamining_search_select);
@@ -77,16 +73,18 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
             std::vector<float> distance_dagnn(dagnn->datamining_search_annk * dagnn->datamining_search_select);
             // Randomly pick unique numbers and search
             // acquire groundtruth using flatindex
-            while (selected_numbers.size() < dagnn->datamining_search_select) {
-                int num = dist(gen);
+            int num=0;
+            while (num<dagnn->storage->ntotal) {
                 auto to_search = dagnn->get_vector(num);
                 dagnn->storage->search(1, to_search, dagnn->datamining_search_annk,
                                        distance_gt.data() + dagnn->datamining_search_annk * selected_numbers.size(),
                                        ru_gt.data() + dagnn->datamining_search_annk * selected_numbers.size());
                 delete[] to_search;
                 selected_numbers.push_back(num);
+                num++;
             }
             size_t search_lat = 0;
+            dagnn->num_dco = 0;
             for (size_t i = 0; i < selected_numbers.size(); i++) {
                 int num = selected_numbers[i];
                 DAGNN::DistanceQueryer disq(vecDim);
@@ -101,6 +99,7 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
                 delete[] to_search;
             }
             dagnn->graphStates.window_states.last_search_latency = search_lat;
+            dagnn->graphStates.window_states.last_dco_nums = dagnn->num_dco;
 
             // calculate recall
             int true_positive = 0;
@@ -132,23 +131,18 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
         // find the best action
         size_t best_action = 0;
         size_t best_latency = dagnn->graphStates.window_states.last_search_latency;
+        size_t best_dco = dagnn->graphStates.window_states.last_dco_nums;
 
         for(size_t action = 0; action < 9; action++){
             auto dagnn_copy = new DynamicTuneHNSW(*dagnn);
             // before action record
+            dagnn_copy->datamining_search_select = dagnn_copy->storage->ntotal;
             dagnn_copy->graphStates.print(action);
             dagnn_copy->updateGlobalState();
-
             // try to perform action
             dagnn_copy->performAction(action);
-
-
             // after action record
             {
-                std::random_device rd;
-                std::mt19937 gen(rd());
-                std::uniform_int_distribution<> dist(0, dagnn_copy->storage->ntotal - 1);
-
                 std::vector<int> selected_numbers;
                 std::vector<faiss::idx_t> ru_gt(
                         dagnn_copy->datamining_search_annk * dagnn_copy->datamining_search_select);
@@ -161,8 +155,8 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
                         dagnn_copy->datamining_search_annk * dagnn_copy->datamining_search_select);
                 // Randomly pick unique numbers and search
                 // acquire groundtruth using flatindex
-                while (selected_numbers.size() < dagnn_copy->datamining_search_select) {
-                    int num = dist(gen);
+                int num=0;
+                while (num<dagnn_copy->storage->ntotal) {
                     auto to_search = dagnn->get_vector(num);
                     dagnn_copy->storage->search(1, to_search, dagnn_copy->datamining_search_annk,
                                                 distance_gt.data() +
@@ -171,8 +165,11 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
                                                 dagnn_copy->datamining_search_annk * selected_numbers.size());
                     delete[] to_search;
                     selected_numbers.push_back(num);
+                    num++;
                 }
                 size_t search_lat = 0;
+                dagnn_copy->num_dco = 0;
+                dagnn_copy->is_greedy = 1;
                 for (size_t i = 0; i < selected_numbers.size(); i++) {
                     int num = selected_numbers[i];
                     DAGNN::DistanceQueryer disq(vecDim);
@@ -188,6 +185,7 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
                     delete[] to_search;
                 }
                 dagnn_copy->graphStates.window_states.last_search_latency = search_lat;
+                dagnn_copy->graphStates.window_states.last_dco_nums = dagnn_copy->num_dco;
 
                 // calculate recall
                 int true_positive = 0;
@@ -214,8 +212,12 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
                         (true_positive * 1.0) / ((true_positive + false_negative) * 1.0);
             }
             dagnn_copy->graphStates.print(action);
-            if(dagnn_copy->graphStates.window_states.last_search_latency < best_latency){
-                best_latency = dagnn_copy->graphStates.window_states.last_search_latency;
+//            if(dagnn_copy->graphStates.window_states.last_search_latency < best_latency){
+//                best_latency = dagnn_copy->graphStates.window_states.last_search_latency;
+//                best_action = action;
+//            }
+            if(dagnn_copy->graphStates.window_states.last_dco_nums < best_dco){
+                best_dco = dagnn_copy->graphStates.window_states.last_dco_nums;
                 best_action = action;
             }
             delete dagnn_copy;
@@ -225,9 +227,7 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
 
         // record action after best action
         {
-            std::random_device rd;
-            std::mt19937 gen(rd());
-            std::uniform_int_distribution<> dist(0, dagnn->storage->ntotal - 1);
+
 
             std::vector<int> selected_numbers;
             std::vector<faiss::idx_t> ru_gt(dagnn->datamining_search_annk * dagnn->datamining_search_select);
@@ -237,16 +237,18 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
             std::vector<float> distance_dagnn(dagnn->datamining_search_annk * dagnn->datamining_search_select);
             // Randomly pick unique numbers and search
             // acquire groundtruth using flatindex
-            while (selected_numbers.size() < dagnn->datamining_search_select) {
-                int num = dist(gen);
+            int num=0;
+            while (num<dagnn->storage->ntotal) {
                 auto to_search = dagnn->get_vector(num);
                 dagnn->storage->search(1, to_search, dagnn->datamining_search_annk,
                                        distance_gt.data() + dagnn->datamining_search_annk * selected_numbers.size(),
                                        ru_gt.data() + dagnn->datamining_search_annk * selected_numbers.size());
                 delete[] to_search;
                 selected_numbers.push_back(num);
+                num++;
             }
             size_t search_lat = 0;
+            dagnn->num_dco = 0;
             for (size_t i = 0; i < selected_numbers.size(); i++) {
                 int num = selected_numbers[i];
                 DAGNN::DistanceQueryer disq(vecDim);
@@ -261,6 +263,7 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
                 delete[] to_search;
             }
             dagnn->graphStates.window_states.last_search_latency = search_lat;
+            dagnn->graphStates.window_states.last_dco_nums = dagnn->num_dco;
 
             // calculate recall
             int true_positive = 0;
@@ -294,9 +297,7 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
         if (dagnn->is_datamining || dagnn->is_training) {
             // recording insertion stat
             // recording search stat
-            std::random_device rd;
-            std::mt19937 gen(rd());
-            std::uniform_int_distribution<> dist(0, dagnn->storage->ntotal - 1);
+
 
             std::vector<int> selected_numbers;
             std::vector<faiss::idx_t> ru_gt(dagnn->datamining_search_annk * dagnn->datamining_search_select);
@@ -306,16 +307,18 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
             std::vector<float> distance_dagnn(dagnn->datamining_search_annk * dagnn->datamining_search_select);
             // Randomly pick unique numbers and search
             // acquire groundtruth using flatindex
-            while (selected_numbers.size() < dagnn->datamining_search_select) {
-                int num = dist(gen);
+            int num=0;
+            while (num<dagnn->storage->ntotal) {
                 auto to_search = dagnn->get_vector(num);
                 dagnn->storage->search(1, to_search, dagnn->datamining_search_annk,
                                 distance_gt.data() + dagnn->datamining_search_annk * selected_numbers.size(),
                                 ru_gt.data() + dagnn->datamining_search_annk * selected_numbers.size());
                 delete[] to_search;
                 selected_numbers.push_back(num);
+                num++;
             }
             size_t search_lat = 0;
+            dagnn->num_dco = 0;
             for (size_t i = 0; i < selected_numbers.size(); i++) {
                 int num = selected_numbers[i];
                 DAGNN::DistanceQueryer disq(vecDim);
@@ -330,6 +333,7 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
                 delete[] to_search;
             }
             dagnn->graphStates.window_states.last_search_latency = search_lat;
+            dagnn->graphStates.window_states.last_dco_nums = dagnn->num_dco;
 
             // calculate recall
             int true_positive = 0;
@@ -363,9 +367,8 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
         // acquire recall and latency after action
         if (dagnn->is_datamining || dagnn->is_training) {
             // recording search stat
-            std::random_device rd;
-            std::mt19937 gen(rd());
-            std::uniform_int_distribution<> dist(0, dagnn->storage->ntotal - 1);
+
+
 
             std::vector<int> selected_numbers;
             std::vector<faiss::idx_t> ru_gt(dagnn->datamining_search_annk * dagnn->datamining_search_select);
@@ -375,16 +378,18 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
             std::vector<float> distance_dagnn(dagnn->datamining_search_annk * dagnn->datamining_search_select);
             // Randomly pick unique numbers and search
             // acquire groundtruth using flatindex
-            while (selected_numbers.size() < dagnn->datamining_search_select) {
-                int num = dist(gen);
+            int num=0;
+            while (num<dagnn->storage->ntotal) {
                 auto to_search = dagnn->get_vector(num);
                 dagnn->storage->search(1, to_search, dagnn->datamining_search_annk,
                                 distance_gt.data() + dagnn->datamining_search_annk * selected_numbers.size(),
                                 ru_gt.data() + dagnn->datamining_search_annk * selected_numbers.size());
                 delete[] to_search;
                 selected_numbers.push_back(num);
+                num++;
             }
             size_t search_lat = 0;
+            dagnn->num_dco = 0;
             for (size_t i = 0; i < selected_numbers.size(); i++) {
                 int num = selected_numbers[i];
                 DAGNN::DistanceQueryer disq(vecDim);
@@ -399,6 +404,7 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
                 delete[] to_search;
             }
             dagnn->graphStates.window_states.last_search_latency = search_lat;
+            dagnn->graphStates.window_states.last_dco_nums = dagnn->num_dco;
 
             // calculate recall
             int true_positive = 0;

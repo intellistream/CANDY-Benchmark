@@ -371,6 +371,7 @@ struct DynamicTuneHNSW{
 	size_t last_action = 0;
     size_t last_insertion_latency = 0;
     size_t last_search_latency = 0;
+    size_t last_dco_nums = 0;
     float last_recall = 0;
         ordered_map oldVertices;
         ordered_map newVertices;
@@ -416,6 +417,7 @@ struct DynamicTuneHNSW{
             window_states.last_action = other.window_states.last_action;
             window_states.last_insertion_latency = other.window_states.last_insertion_latency;
             window_states.last_search_latency = other.window_states.last_search_latency;
+            window_states.last_dco_nums = other.window_states.last_dco_nums;
             window_states.last_recall = other.window_states.last_recall;
             window_states.init();
             // outside this function we will add pointers to copied' nodes to order_maps
@@ -458,7 +460,7 @@ struct DynamicTuneHNSW{
             // Write BatchDataStates
             outfile << time_local_stat.ntotal << "," << time_local_stat.old_ntotal << "," << time_local_stat.degree_sum_new << "," << time_local_stat.degree_variance_new << "," << time_local_stat.degree_variance_old << "," << time_local_stat.degree_sum_old << "," << time_local_stat.neighbor_distance_sum_new << "," << time_local_stat.neighbor_distance_variance_new << "," << time_local_stat.neighbor_distance_sum_old << "," << time_local_stat.neighbor_distance_variance_old << "," << time_local_stat.steps_taken_sum << "," << time_local_stat.steps_taken_max << "," << time_local_stat.steps_expansion_sum << ",";
             // Write WindowStates
-            outfile << window_states.get_count(0) << "," << window_states.get_count(1) << "," << window_states.get_count(2)<<","<<window_states.last_action<<","<<window_states.last_insertion_latency<<","<<window_states.last_search_latency<<","<<window_states.last_recall;                                                 outfile << std::endl;
+            outfile << window_states.get_count(0) << "," << window_states.get_count(1) << "," << window_states.get_count(2)<<","<<window_states.last_action<<","<<window_states.last_insertion_latency<<","<<window_states.last_search_latency<<","<<window_states.last_dco_nums<<","<<window_states.last_recall;                                                 outfile << std::endl;
             outfile.close();
        }
        void print(size_t action_num) {
@@ -472,13 +474,14 @@ struct DynamicTuneHNSW{
             // Write BatchDataStates
             outfile << time_local_stat.ntotal << "," << time_local_stat.old_ntotal << "," << time_local_stat.degree_sum_new << "," << time_local_stat.degree_variance_new << "," << time_local_stat.degree_variance_old << "," << time_local_stat.degree_sum_old << "," << time_local_stat.neighbor_distance_sum_new << "," << time_local_stat.neighbor_distance_variance_new << "," << time_local_stat.neighbor_distance_sum_old << "," << time_local_stat.neighbor_distance_variance_old << "," << time_local_stat.steps_taken_sum << "," << time_local_stat.steps_taken_max << "," << time_local_stat.steps_expansion_sum << ",";
             // Write WindowStates
-            outfile << window_states.get_count(0) << "," << window_states.get_count(1) << "," << window_states.get_count(2)<<","<<window_states.last_action<<","<<window_states.last_insertion_latency<<","<<window_states.last_search_latency<<","<<window_states.last_recall;                                                 outfile << std::endl;
+            outfile << window_states.get_count(0) << "," << window_states.get_count(1) << "," << window_states.get_count(2)<<","<<window_states.last_action<<","<<window_states.last_insertion_latency<<","<<window_states.last_search_latency<<","<<window_states.last_dco_nums<<","<<window_states.last_recall;                                                 outfile << std::endl;
             outfile.close();
         }
     };
     bool is_datamining = false;
     bool is_training = false;
     bool is_greedy = false;
+    uint64_t num_dco = 0; // used as reward
     size_t datamining_search_select = 20;
     size_t datamining_search_annk = 25;
     int64_t vecDim;
