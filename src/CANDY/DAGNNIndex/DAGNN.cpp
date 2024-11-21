@@ -142,7 +142,7 @@ void CANDY::DynamicTuneHNSW::randomPickAction(){
         //selectedNumber = secondRange(rng);
     }
 
-    //printf("performing %ld\n", randomNum);
+    printf("performing %ld\n", selectedNumber);
     performAction(selectedNumber);
 }
 
