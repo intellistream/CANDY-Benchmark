@@ -22,6 +22,7 @@ add_sources(
         DPGIndex.cpp
         LSHAPGIndex.cpp
         FlatGPUIndex.cpp
+        GravistarIndex.cpp
 )
 add_subdirectory(HashingModels)
 add_subdirectory(ParallelPartitionIndex)
@@ -33,6 +34,7 @@ add_subdirectory(CongestionDropIndex)
 add_subdirectory(FlannIndex)
 add_subdirectory(LSHAPGIndex)
 add_subdirectory(FlatGPUIndex)
+add_subdirectory(Gravistar)
 if (ENABLE_RAY)
     add_subdirectory(DistributedPartitionIndex)
     add_sources(DistributedPartitionIndex.cpp)
