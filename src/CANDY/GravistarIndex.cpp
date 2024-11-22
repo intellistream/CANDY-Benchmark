@@ -20,14 +20,16 @@
 #include <utility>
 bool CANDY::GravistarIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
+  int64_t distanceMode = 0;
   distanceFunc = distanceIP;
   if (faissMetric != faiss::METRIC_INNER_PRODUCT) {
     INTELLI_WARNING("Switch to L2");
     distanceFunc = distanceL2;
+    distanceMode = 1;
   }
   vecDim = cfg->tryI64("vecDim", 768, true);
-  int64_t  vecVolume = cfg->tryI64("vecVolume", 1000, true);
-  memBufferSize = cfg->tryI64("memBufferSize", vecVolume+1000, true);
+  //int64_t  vecVolume = cfg->tryI64("vecVolume", 1000, true);
+  memBufferSize = cfg->tryI64("memBufferSize", vecDim, true);
   sketchSize = cfg->tryI64("sketchSize", 10, true);
   DCOBatchSize = cfg->tryI64("DCOBatchSize", memBufferSize, true);
   if (torch::cuda::is_available()) {
@@ -50,6 +52,9 @@ bool CANDY::GravistarIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     ammType = 0;
   }
   dmBuffer.init(vecDim, memBufferSize, 0, 0, 0);
+  root = newGravistar();
+  root->init(vecDim,memBufferSize,0,0,0);
+  root->setConstraints(cudaDevice,distanceMode,DCOBatchSize,&graviStatistics);
   return true;
 }
 bool CANDY::GravistarIndex::startHPC() {
@@ -64,34 +69,13 @@ void CANDY::GravistarIndex::reset() {
 
 }
 bool CANDY::GravistarIndex::insertTensor(torch::Tensor &t) {
-  if (t.size(0) > memBufferSize && memBufferSize > 0) {
-    int64_t total_vectors = t.size(0);
-    for (int64_t startPos = 0; startPos < total_vectors; startPos += memBufferSize) {
-      int64_t endPos = std::min(startPos + memBufferSize, total_vectors);
-      auto tempTensor = t.slice(0, startPos, endPos);
-      dmBuffer.appendTensor(tempTensor);
-    }
-    return true;
-  } else {
-    return dmBuffer.appendTensor(t);
-  }
 
-}
-
-bool CANDY::GravistarIndex::deleteTensor(torch::Tensor &t, int64_t k) {
-
-  int64_t rows = t.size(0);
-  auto idx = findTopKClosest(t, k, DCOBatchSize);
-  std::map<int64_t, int64_t> i64Map;
-  for (int64_t i = 0; i < rows * k; i++) {
-    if (idx[i] >= 0) {
-      if(i64Map.count(idx[i])!=1) {
-        dmBuffer.deleteTensor(idx[i], idx[i] + 1);
-        i64Map[idx[i]]=1;
-      }
-     // dmBuffer.deleteTensor(idx[i], idx[i] + 1);
-    }
-  }
+ int64_t rows = t.size(0);
+ for(int64_t i=0;i<rows;i++){
+   auto rowI = t.slice(0,i,i+1);
+   auto newRoot = root->insertTensor(rowI,root);
+   root = newRoot;
+ }
   return true;
 }
 static
@@ -117,18 +101,19 @@ void mergeTopKVec(std::vector<std::vector<std::pair<float, int64_t>>> &topK,
   }
 }
 std::vector<int64_t> CANDY::GravistarIndex::findTopKClosest(const torch::Tensor &query,
+                                                            torch::Tensor data,
                                                              int64_t top_k,
                                                              int64_t batch_size
 ) {
   std::vector<std::vector<std::pair<float, int64_t>>> topK;
-  int64_t total_vectors = dmBuffer.size();
+  int64_t total_vectors = data.size(0);
   int64_t queryRows = query.size(0);
   //torch::Tensor transposed_query = query.t();
   for (int64_t startPos = 0; startPos < total_vectors; startPos += batch_size) {
     int64_t endPos = std::min(startPos + batch_size, total_vectors);
 
     // Load batch using getTensor
-    torch::Tensor dbBatch = dmBuffer.getTensor(startPos, endPos);
+    torch::Tensor dbBatch = data.slice(0,startPos, endPos);
     //std::cout<<"DB data:\n"<<dbBatch<<std::endl;
     // Compute distances
     torch::Tensor distances = distanceFunc(dbBatch, query, cudaDevice, this);
@@ -174,6 +159,7 @@ std::vector<int64_t> CANDY::GravistarIndex::findTopKClosest(const torch::Tensor 
   }
   return topKIndices;
 }
+/*
 bool CANDY::GravistarIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
   if (t.size(0) > w.size(0) || t.size(1) != w.size(1)) {
     return false;
@@ -189,7 +175,7 @@ bool CANDY::GravistarIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
     }
   }
   return true;
-}
+}*/
 bool CANDY::GravistarIndex::resetIndexStatistics() {
   dmBuffer.clearStatistics();
   gpuComputingUs = 0;
@@ -225,20 +211,31 @@ INTELLI::ConfigMapPtr CANDY::GravistarIndex::getIndexStatistics() {
 }
 
 std::vector<torch::Tensor> CANDY::GravistarIndex::searchTensor(torch::Tensor &q, int64_t k) {
-  auto idx = findTopKClosest(q, k, DCOBatchSize);
-  //std::cout<<"sorting idx"<<std::endl;
 
-  return getTensorByStdIdx(idx, k);
+  int64_t rows = q.size(0);
+  std::vector<torch::Tensor> ru(rows);
+  for(int64_t i=0;i<rows;i++){
+    ru[i] = torch::zeros({k, vecDim});
+    auto rowI = q.slice(0,i,i+1);
+    auto gs = root->findGravistar(rowI,DCOBatchSize,root);
+    auto rootData = root->getTensor(0,root->size());
+    std::cout<<"tensor at root"<<rootData<<std::endl;
+    std::cout<<"root property"<<root->isLastTier()<<std::endl;
+    auto data = gs->getTensor(0,gs->size());
+    auto idx = findTopKClosest(q,data, k, DCOBatchSize);
+    ru[i]=getTensorByStdIdx(idx,k,data)[0];
+  }
+  return ru;
 }
 
-std::vector<torch::Tensor> CANDY::GravistarIndex::getTensorByStdIdx(std::vector<int64_t> &idx, int64_t k) {
+std::vector<torch::Tensor> CANDY::GravistarIndex::getTensorByStdIdx(std::vector<int64_t> &idx, int64_t k,torch::Tensor data){
   int64_t tensors = idx.size() / k;
   std::vector<torch::Tensor> ru(tensors);
   for (int64_t i = 0; i < tensors; i++) {
     ru[i] = torch::zeros({k, vecDim});
     for (int64_t j = 0; j < k; j++) {
       int64_t tempIdx = idx[i * k + j];
-      if (tempIdx >= 0) { ru[i].slice(0, j, j + 1) = dmBuffer.getTensor(tempIdx, tempIdx + 1); }
+      if (tempIdx >= 0) { ru[i].slice(0, j, j + 1) = data.slice(0,tempIdx, tempIdx + 1); }
     }
   }
   return ru;

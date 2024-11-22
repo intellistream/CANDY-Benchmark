@@ -117,7 +117,7 @@ bool PlainMemBufferTU::reviseTensorInline(int64_t startPos, torch::Tensor &t) {
     return true;
   }
   else{
-    LOG(ERROR) << "Out of memory buffer";
+    LOG(ERROR) << "Out of memory buffer"+std::to_string(endPos)+":"+std::to_string(cacheT.endPos);
     return  false;
   }
 

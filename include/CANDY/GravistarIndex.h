@@ -41,17 +41,18 @@ class GravistarIndex : public AbstractIndex {
   int64_t memBufferSize = 1000;
   int64_t vecDim = 768;
   int64_t cudaDevice = -1;
-
+  GravistarPtr root = nullptr;
   // Main function to process batches and find top_k closest vectors
-  std::vector<int64_t> findTopKClosest(const torch::Tensor &query, int64_t top_k, int64_t batch_size);
+  std::vector<int64_t> findTopKClosest(const torch::Tensor &query, torch::Tensor data, int64_t top_k, int64_t batch_size);
   // torch::Tensor myMMInline(torch::Tensor &a, torch::Tensor &b, int64_t ss = 10);
   /**
   * @brief return a vector of tensors according to some index
   * @param idx the index, follow faiss's style, allow the KNN index of multiple queries
   * @param k the returned neighbors, i.e., will be the number of rows of each returned tensor
+   * @param data the data tensor
   * @return a vector of tensors, each tensor represent KNN results of one query in idx
   */
-  virtual std::vector<torch::Tensor> getTensorByStdIdx(std::vector<int64_t> &idx, int64_t k);
+  virtual std::vector<torch::Tensor> getTensorByStdIdx(std::vector<int64_t> &idx, int64_t k,torch::Tensor data);
   /**
    * @brief the distance function pointer member
    * @note will select largest distance during the following sorting, please convert if your distance is 'minimal'
@@ -85,7 +86,7 @@ class GravistarIndex : public AbstractIndex {
   GravistarIndex() {
 
   }
-
+ GravistarStatitics graviStatistics;
   ~GravistarIndex() {
 
   }
@@ -125,7 +126,7 @@ class GravistarIndex : public AbstractIndex {
    * @param k the number of nearest neighbors
    * @return bool whether the deleting is successful
    */
-  virtual bool deleteTensor(torch::Tensor &t, int64_t k = 1);
+  //virtual bool deleteTensor(torch::Tensor &t, int64_t k = 1);
 
   /**
    * @brief revise a tensor
@@ -133,7 +134,7 @@ class GravistarIndex : public AbstractIndex {
    * @param w the revised value
    * @return bool whether the revising is successful
    */
-  virtual bool reviseTensor(torch::Tensor &t, torch::Tensor &w);
+  //virtual bool reviseTensor(torch::Tensor &t, torch::Tensor &w);
   /**
    * @brief search the k-NN of a query tensor, return their index
    * @param t the tensor, allow multiple rows
