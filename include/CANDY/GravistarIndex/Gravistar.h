@@ -97,7 +97,9 @@ class Gravistar: public std::enable_shared_from_this<Gravistar>{
     * @return
     */
    bool isLastTier(void);
-
+   int64_t  capacity(void) {
+     return bufferSize;
+   }
   // Main function to process batches and find top_k closest vectors
   std::vector<int64_t> findTopKClosest(const torch::Tensor &query, int64_t top_k, int64_t batch_size,GravistarPtr root);
 

@@ -72,7 +72,7 @@ GravistarPtr CANDY::Gravistar::insertTensor(torch::Tensor &t,GravistarPtr root) 
   /**
    * @brief insert to this one
    */
-  if(starProb->size()<bufferSize){
+  if(starProb->size()<starProb->capacity()){
     starProb->dmBuffer.appendTensor(t);
     return rootRu;
   }
@@ -123,14 +123,29 @@ GravistarPtr CANDY::Gravistar::insertTensor(torch::Tensor &t,GravistarPtr root) 
       /**
        * @brief form a new star and return new root
        */
+       auto summaryStar = newGravistar();
+       summaryStar->init(vecDim,1,0,0,0);
+       summaryStar->setConstraints(cudaDevice,distanceMode,batchSize,statisticsInfo);
+      summaryStar->downTiers[0]=root;
+      summaryStar->dmBuffer.appendTensor(summary);
+
       newUpptier = newGravistar();
+      newUpptier->init(vecDim,bufferSize,0,0,0);
+      newUpptier->setConstraints(cudaDevice,distanceMode,batchSize,statisticsInfo);
+      newUpptier->downTiers[0]=summaryStar;
+      newUpptier->dmBuffer.appendTensor(summary);
+      newUpptier->setToLastTier(false);
+      rootRu = newUpptier;
+      root->setToLastTier(false);
+     /* newUpptier = newGravistar();
       newUpptier->init(vecDim,bufferSize,0,0,0);
       newUpptier->setConstraints(cudaDevice,distanceMode,batchSize,statisticsInfo);
       newUpptier->downTiers[newUpptier->size()]=root;
       newUpptier->dmBuffer.appendTensor(summary);
       newUpptier->setToLastTier(false);
       rootRu = newUpptier;
-      root->setToLastTier(false);
+      root->setToLastTier(false);*/
+
     }
     else{
       INTELLI_INFO("Find position at upper");
@@ -164,13 +179,13 @@ GravistarPtr  CANDY::Gravistar::findGravistar(torch::Tensor &t,int64_t _batchSiz
     int64_t positionNumber = idx[0];
     if(positionNumber< this->size()) {
       currentGravistar = downTiers[positionNumber];
-      INTELLI_WARNING("Go down");
+    //  INTELLI_WARNING("Go down");
     }
     else if(this->size()<=positionNumber&&positionNumber<this->size()+root->size()) {
       goBackToRoot++;
       if(goBackToRoot<maxGoBackToRoot){
         currentGravistar = root->downTiers[positionNumber- this->size()];
-        INTELLI_WARNING("Go back to root");
+      //  INTELLI_WARNING("Go back to root");
       }
       else {
         currentGravistar = downTiers[0];
@@ -178,7 +193,7 @@ GravistarPtr  CANDY::Gravistar::findGravistar(torch::Tensor &t,int64_t _batchSiz
     }
     else {
       currentGravistar = upperTier->downTiers[positionNumber- this->size()-root->size()];
-      INTELLI_WARNING("Go left");
+    //  INTELLI_WARNING("Go left");
       if(currentGravistar==sharedThis) {
         currentGravistar = downTiers[0];
       }
