@@ -219,8 +219,8 @@ std::vector<torch::Tensor> CANDY::GravistarIndex::searchTensor(torch::Tensor &q,
     auto rowI = q.slice(0,i,i+1);
     auto gs = root->findGravistar(rowI,DCOBatchSize,root);
     auto rootData = root->getTensor(0,root->size());
-    std::cout<<"tensor at root"<<rootData<<std::endl;
-    std::cout<<"root property"<<root->isLastTier()<<std::endl;
+    /*std::cout<<"tensor at root"<<rootData<<std::endl;
+    std::cout<<"root property"<<root->isLastTier()<<std::endl;*/
     auto data = gs->getTensor(0,gs->size());
     auto idx = findTopKClosest(q,data, k, DCOBatchSize);
     ru[i]=getTensorByStdIdx(idx,k,data)[0];

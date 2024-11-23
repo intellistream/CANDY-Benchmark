@@ -95,7 +95,7 @@ GravistarPtr CANDY::Gravistar::insertTensor(torch::Tensor &t,GravistarPtr root) 
      * @brief even the root is filled now, should summarize root and create new root
      */
     if(newUpptier==root && newUpptier->size()>bufferSize-1) {
-      INTELLI_INFO("Should create new root now");
+     // INTELLI_INFO("Should create new root now");
       /**
        * @brief calculate the approximate center of collapsed gravistar
        */
@@ -119,7 +119,7 @@ GravistarPtr CANDY::Gravistar::insertTensor(torch::Tensor &t,GravistarPtr root) 
       else {
         statisticsInfo->cpuComputingUs+=compTime;
       }
-      std::cout<<"Summarize "<<fullTensor<<"as "<<summary<<std::endl;
+     // std::cout<<"Summarize "<<fullTensor<<"as "<<summary<<std::endl;
       /**
        * @brief form a new star and return new root
        */
@@ -148,7 +148,7 @@ GravistarPtr CANDY::Gravistar::insertTensor(torch::Tensor &t,GravistarPtr root) 
 
     }
     else{
-      INTELLI_INFO("Find position at upper");
+     // INTELLI_INFO("Find position at upper");
     }
     newStar->dmBuffer.appendTensor(t);
     newStar ->upperTier = newUpptier;
