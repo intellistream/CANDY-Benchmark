@@ -75,6 +75,9 @@ bool CANDY::GravistarIndex::insertTensor(torch::Tensor &t) {
    auto rowI = t.slice(0,i,i+1);
    auto newRoot = root->insertTensor(rowI,root);
    root = newRoot;
+
+  // INTELLI_INFO("Done row "+std::to_string(i));
+
  }
   return true;
 }
@@ -209,7 +212,12 @@ INTELLI::ConfigMapPtr CANDY::GravistarIndex::getIndexStatistics() {
   }
   return cfg;
 }
-
+bool CANDY::GravistarIndex::loadInitialTensor(torch::Tensor &t){
+  /*INTELLI_INFO("Build skeleton start");
+  root->buildSkeleton(t);
+  INTELLI_INFO("Build skeleton done");*/
+  return insertTensor(t);
+}
 std::vector<torch::Tensor> CANDY::GravistarIndex::searchTensor(torch::Tensor &q, int64_t k) {
 
   int64_t rows = q.size(0);
@@ -218,10 +226,20 @@ std::vector<torch::Tensor> CANDY::GravistarIndex::searchTensor(torch::Tensor &q,
     ru[i] = torch::zeros({k, vecDim});
     auto rowI = q.slice(0,i,i+1);
     auto gs = root->findGravistar(rowI,DCOBatchSize,root);
-    auto rootData = root->getTensor(0,root->size());
+    //auto rootData = root->getTensor(0,root->size());
     /*std::cout<<"tensor at root"<<rootData<<std::endl;
     std::cout<<"root property"<<root->isLastTier()<<std::endl;*/
     auto data = gs->getTensor(0,gs->size());
+    while(data.size(0)<k) {
+      INTELLI_WARNING("Only have "+ to_string(data.size(0)));
+      auto x0 = (data.mean(0, /*keepdim=*/true)+rowI)/2; // [1, m]
+      gs = root->findGravistar(x0,DCOBatchSize,root);
+      //auto rootData = root->getTensor(0,root->size());
+      /*std::cout<<"tensor at root"<<rootData<<std::endl;
+      std::cout<<"root property"<<root->isLastTier()<<std::endl;*/
+      auto dataAppend = gs->getTensor(0,gs->size());
+      data =  torch::cat({data, dataAppend}, 0);
+    }
     auto idx = findTopKClosest(q,data, k, DCOBatchSize);
     ru[i]=getTensorByStdIdx(idx,k,data)[0];
   }

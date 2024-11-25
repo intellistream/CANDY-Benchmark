@@ -61,13 +61,14 @@ torch::Tensor compute_gravi_approximation(const torch::Tensor& a) {
   return b;
 }
 
-GravistarPtr CANDY::Gravistar::insertTensor(torch::Tensor &t,GravistarPtr root) {
+GravistarPtr CANDY::Gravistar::insertTensor(torch::Tensor &tx,GravistarPtr root) {
  /* if (t.size(0)+dmBuffer.size() > bufferSize) {
     return false;
   } else {
     return dmBuffer.appendTensor(t);
   }*/
   auto rootRu =root;
+  auto t = tx;
   GravistarPtr starProb = findGravistar(t,batchSize,root);
   /**
    * @brief insert to this one
@@ -177,14 +178,17 @@ GravistarPtr  CANDY::Gravistar::findGravistar(torch::Tensor &t,int64_t _batchSiz
   while (!currentGravistar->isLastTier()) {
     auto idx = currentGravistar->findTopKClosest(t,1,_batchSize,root);
     int64_t positionNumber = idx[0];
-    if(positionNumber< this->size()) {
-      currentGravistar = downTiers[positionNumber];
-    //  INTELLI_WARNING("Go down");
+    if(positionNumber< currentGravistar->size()) {
+      currentGravistar = currentGravistar->downTiers[positionNumber];
+      while(currentGravistar->capacity()==1) {
+        currentGravistar=currentGravistar->downTiers[0];
+      }
+      //INTELLI_WARNING("Go down");
     }
-    else if(this->size()<=positionNumber&&positionNumber<this->size()+root->size()) {
+    else if(currentGravistar->size()<=positionNumber&&positionNumber<currentGravistar->size()+root->size()) {
       goBackToRoot++;
       if(goBackToRoot<maxGoBackToRoot){
-        currentGravistar = root->downTiers[positionNumber- this->size()];
+        currentGravistar = root->downTiers[positionNumber- currentGravistar->size()];
       //  INTELLI_WARNING("Go back to root");
       }
       else {
@@ -192,7 +196,7 @@ GravistarPtr  CANDY::Gravistar::findGravistar(torch::Tensor &t,int64_t _batchSiz
       }
     }
     else {
-      currentGravistar = upperTier->downTiers[positionNumber- this->size()-root->size()];
+      currentGravistar = upperTier->downTiers[positionNumber- currentGravistar->size()-root->size()];
     //  INTELLI_WARNING("Go left");
       if(currentGravistar==sharedThis) {
         currentGravistar = downTiers[0];
@@ -313,7 +317,82 @@ std::vector<int64_t> CANDY::Gravistar::findTopKClosest(const torch::Tensor &quer
   }
   return topKIndices;
 }
+torch::Tensor  CANDY::Gravistar::clusterRowsIncrementally(const torch::Tensor& data, int64_t n_clusters, int64_t batch_size){
+  // Check that the input is a 2D tensor
+  if (data.dim() != 2) {
+    throw std::invalid_argument("Input tensor must be 2D");
+  }
 
+  // Variables to store centroids and cluster assignments
+  torch::Tensor centroids = torch::randn({n_clusters, data.size(1)}, data.options()); // Random initialization
+  torch::Tensor cluster_counts = torch::zeros({n_clusters}, data.options().dtype(torch::kInt64));
+
+  // Allocate space for cluster assignments
+  std::vector<std::vector<torch::Tensor>> clusters(n_clusters);
+
+  // Incrementally process the data in batches
+  int64_t num_rows = data.size(0);
+  for (int64_t start = 0; start < num_rows; start += batch_size) {
+    // Get the batch
+    int64_t end = std::min(start + batch_size, num_rows);
+    torch::Tensor batch = data.index({torch::arange(start, end)});
+    // Compute distances to centroids
+    torch::Tensor dists =distanceFunc(batch,centroids,cudaDevice,statisticsInfo).t();
+
+       // torch::cdist(batch, centroids); // Shape: [batch_size, n_clusters]
+    torch::Tensor cluster_indices = std::get<1>(torch::max(dists, 1)); // Assign each row to the nearest centroid
+    if (cudaDevice > -1 && torch::cuda::is_available()) {
+      auto tStart2 = std::chrono::high_resolution_clock::now();
+      // Move tensors to GPU 1
+      auto device = torch::Device(torch::kCPU);
+      cluster_indices = cluster_indices.to(device);
+      statisticsInfo->gpuCommunicationUs+= chronoElapsedTime(tStart2);
+    }
+    // Update clusters and centroids incrementally
+    for (int64_t i = 0; i < batch.size(0); ++i) {
+      auto cluster_idx = cluster_indices[i].item<int64_t>();
+      clusters[cluster_idx].push_back(batch[i].unsqueeze(0)); // Add the row to the corresponding cluster
+
+      // Update centroid incrementally
+      centroids[cluster_idx] = (centroids[cluster_idx] * cluster_counts[cluster_idx].item<float>() + batch[i]) /
+          (cluster_counts[cluster_idx].item<float>() + 1.0);
+      cluster_counts[cluster_idx] += 1;
+    }
+  }
+
+  // Combine rows in each cluster into a single tensor
+  /*std::vector<torch::Tensor> result;
+  for (int64_t i = 0; i < n_clusters; ++i) {
+    if (!clusters[i].empty()) {
+      result.push_back(torch::cat(clusters[i], 0)); // Concatenate all rows in the cluster
+    } else {
+      result.push_back(torch::empty({0, data.size(1)}, data.options())); // Empty tensor for empty clusters
+    }
+  }*/
+
+  return centroids;
+}
+void CANDY::Gravistar::buildSkeleton(torch::Tensor &data) {
+  auto td=data;
+
+  auto clusters = clusterRowsIncrementally(td,bufferSize,batchSize);
+  int64_t rows = clusters.size(0);
+  for (int64_t i=0;i<rows;i++){
+    auto rowI = clusters.slice(0,i,i+1);
+    auto summaryStar = newGravistar();
+    auto slots = newGravistar();
+    summaryStar->init(vecDim,1,0,0,0);
+    summaryStar->setConstraints(cudaDevice,distanceMode,batchSize,statisticsInfo);
+    slots->init(vecDim,batchSize,0,0,0);
+    slots->setConstraints(cudaDevice,distanceMode,batchSize,statisticsInfo);
+    summaryStar->downTiers[0]=slots;
+    summaryStar->dmBuffer.appendTensor(rowI);
+    summaryStar->setToLastTier(false);
+    this->downTiers[i]=summaryStar;
+    this->dmBuffer.appendTensor(rowI);
+  }
+  this->setToLastTier(false);
+}
 torch::Tensor CANDY::Gravistar::distanceIP(torch::Tensor db,
                                               torch::Tensor query,
                                               int64_t cudaDev,

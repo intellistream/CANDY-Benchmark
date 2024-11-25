@@ -23,6 +23,7 @@ add_sources(
         LSHAPGIndex.cpp
         FlatGPUIndex.cpp
         GravistarIndex.cpp
+        HNSWTensorIndex.cpp
 )
 add_subdirectory(HashingModels)
 add_subdirectory(ParallelPartitionIndex)

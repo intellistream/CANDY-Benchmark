@@ -12,6 +12,7 @@
 #include <CANDY/FlatAMMIPObjIndex.h>
 #include <CANDY/FlatIndex.h>
 #include <CANDY/HNSWNaiveIndex.h>
+#include <CANDY/HNSWTensorIndex.h>
 #include <CANDY/IndexTable.h>
 #include <CANDY/LSHAPGIndex.h>
 #include <CANDY/GravistarIndex.h>
@@ -61,6 +62,7 @@ CANDY::IndexTable::IndexTable() {
   indexMap["LSHAPG"] = newLSHAPGIndex();
   indexMap["flatGPU"] = newFlatGPUIndex();
   indexMap["graviStar"] = newGravistarIndex();
+  indexMap["HNSWTensor"] = newHNSWTensorIndex();
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif

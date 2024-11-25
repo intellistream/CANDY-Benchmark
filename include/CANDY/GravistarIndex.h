@@ -112,7 +112,13 @@ class GravistarIndex : public AbstractIndex {
    * @return bool whether the configuration is successful
    */
   virtual bool setConfig(INTELLI::ConfigMapPtr cfg);
-
+  /**
+  * @brief load the initial tensors of a data base, use this BEFORE @ref insertTensor
+  * @note This is majorly an offline function, and may be different from @ref insertTensor for some indexes
+  * @param t the tensor, some index need to be single row
+  * @return bool whether the loading is successful
+  */
+  virtual bool loadInitialTensor(torch::Tensor &t);
   /**
    * @brief insert a tensor
    * @param t the tensor, accept multiple rows

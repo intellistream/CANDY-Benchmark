@@ -48,6 +48,7 @@ class Gravistar: public std::enable_shared_from_this<Gravistar>{
    * @return the tensor
    */
   torch::Tensor constructGravityField(GravistarPtr root);
+ torch::Tensor clusterRowsIncrementally(const torch::Tensor& data, int64_t n_clusters, int64_t batch_size);
  public:
   Gravistar() {}
   ~Gravistar() {}
@@ -58,6 +59,7 @@ class Gravistar: public std::enable_shared_from_this<Gravistar>{
    */
   GravistarPtr upperTier;
   std::vector<GravistarPtr>downTiers;
+  void buildSkeleton(torch::Tensor& data);
   /**
    * @brief init everything
    * @param _vecDim The dimension of vectors
