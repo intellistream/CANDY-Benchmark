@@ -32,7 +32,8 @@ bool CANDY::HNSWTensorIndex::insertTensor(torch::Tensor &t) {
   auto n = t.size(0);
   for (int64_t i=0;i<n;i++) {
     auto rowI = t.slice(0,i,i+1);
-    hnsw.add(rowI);
+    hnsw.add(rowI.squeeze());
+   // std::cout<<"Load row"+ to_string(i)<<std::endl;
   }
   ntotal += n;
   return true;

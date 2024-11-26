@@ -41,24 +41,32 @@ class HNSWTensorSim {
 
   /// Retrieves the similarity tensor for inspection
   torch::Tensor getSimilarityTensor() const;
-
  private:
-  int64_t numElements_; ///< Maximum number of elements in the graph
-  int64_t maxDegree_; ///< Maximum number of neighbors per node
-  int64_t efConstruction_; ///< Number of candidates to evaluate during graph construction
-  float levelMultiplier_; ///< Probability multiplier for determining node levels
-  int64_t currentNodeCount_; ///< Current number of nodes in the graph
-  std::vector<torch::Tensor> vectors_; ///< List of vectors in the graph
-  torch::Tensor similarityTensor_; ///< 2D tensor representing the graph's adjacency list
+  int64_t numElements_; ///< Maximum number of elements
+  int64_t maxDegree_; ///< Maximum degree for a node
+  int64_t efConstruction_; ///< Parameter for controlling construction phase
+  float levelMultiplier_; ///< Multiplier for determining levels
+  int64_t currentNodeCount_; ///< Current number of nodes
+  int64_t maxLevel_; ///< Maximum level in the hierarchy
+  std::vector<torch::Tensor> vectors_; ///< Stored vectors
+  torch::Tensor similarityTensor_; ///< Adjacency list as a 2D tensor
+  std::vector<torch::Tensor> layerVectors_; ///< Vector of tensors, each containing the nodes in a layer
 
-  /// Generates a random level for a node
+  /// Generate a random level for a node
   int64_t randomLevel();
 
-  /// Adds a new node to the graph and connects it to its neighbors
-  void addNode(int64_t id);
+  /// Add a node to the graph
+  void addNode(int64_t id, int64_t level);
 
-  /// Searches for neighbors of a query vector within a specific layer of the graph
-  std::priority_queue<std::pair<float, int64_t>, std::vector<std::pair<float, int64_t>>, std::less<>> searchLayer(const torch::Tensor& query, int64_t ef);
+  /// Search within a specific layer
+  std::priority_queue<std::pair<float, int64_t>, std::vector<std::pair<float, int64_t>>, std::greater<>> searchLayer(
+      const torch::Tensor& query, int64_t entryPointId, int64_t ef, int64_t layer);
+
+  /// Shrink connections to maintain the max degree
+  std::vector<int64_t> shrinkConnections(const std::vector<std::pair<float, int64_t>>& candidates);
+
+  /// Get neighbors for a node
+  std::vector<int64_t> getNeighbors(int64_t id);
 };
 
 }
