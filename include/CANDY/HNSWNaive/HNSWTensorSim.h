@@ -67,6 +67,8 @@ class HNSWTensorSim {
 
   /// Get neighbors for a node
   std::vector<int64_t> getNeighbors(int64_t id);
+
+  void add_link(int64_t src, int64_t dest, int64_t level);
 };
 
 }

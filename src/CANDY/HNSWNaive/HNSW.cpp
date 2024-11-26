@@ -348,6 +348,7 @@ void CANDY::HNSW::add_links_starting_from(CANDY::DistanceQueryer &disq,
     add_link(*this, disq, nei, pt_id, level);
   }
 }
+
 void add_link(CANDY::HNSW &hnsw, CANDY::DistanceQueryer &disq,
               CANDY::VertexPtr src, CANDY::VertexPtr dest, int level) {
   size_t begin, end;
@@ -414,6 +415,7 @@ void add_link(CANDY::HNSW &hnsw, CANDY::DistanceQueryer &disq,
   }
   return;
 }
+
 void hnsw_shrink_neighbor_list(
     CANDY::DistanceQueryer &disq,
     std::priority_queue<CANDY::HNSW::NodeDistCloser> &resultSet_prev,

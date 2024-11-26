@@ -30,6 +30,90 @@ int64_t HNSWTensorSim::randomLevel() {
   return level;
 }
 
+void HNSWTensorSim::add_link(int64_t src, int64_t dest, int64_t level) {
+    for(int64_t j=0; j<maxDegree_; j++){
+        if(similarityTensor_[src][j].item<int64_t>()==-1){
+            break; // in case of deletion
+        }
+        if(similarityTensor_[src][j].item<int64_t>()==dest){
+            return; // check repetition
+        }
+    }
+
+    if(similarityTensor_[src][maxDegree_-1].item<int64_t>()==-1){
+        int64_t i=maxDegree_;
+        while(i>0){
+            if(similarityTensor_[src][i-1].item<int64_t>()!=-1){
+                break;
+            }
+            i--;
+        }
+        // if there is empty slot
+        similarityTensor_[src][i]=dest;
+        return;
+    }
+
+    // need to prune some neighbors
+    auto innerProduct = [](const torch::Tensor& a, const torch::Tensor& b) {
+        return torch::dot(a, b).item<float>();
+    };
+    // maintain candidates as a maxheap
+    std::priority_queue<std::pair<float, int64_t>, std::vector<std::pair<float, int64_t>>, std::greater<>> topCandidates;
+    topCandidates.emplace(innerProduct(vectors_[src], vectors_[dest]), dest);
+    for(int64_t j=0; j<maxDegree_; j++){
+        if(similarityTensor_[src][j].item<int64_t>()==-1){
+            continue;
+        }
+        auto nei = similarityTensor_[src][j].item<int64_t>();
+        topCandidates.emplace(innerProduct(vectors_[src], vectors_[nei]), nei);
+    }
+
+    // prune
+    std::vector<int64_t>  tempList;
+    while(!topCandidates.empty()){
+        auto v1 = topCandidates.top().second;
+        auto dist_v1_q = topCandidates.top().first;
+        topCandidates.pop();
+        bool rng_ok = true;
+
+        for(auto v2 : tempList){
+            auto dist_v1_v2 = innerProduct(vectors_[v1], vectors_[v2]);
+            if(dist_v1_v2 < dist_v1_q){
+                // v1 can be visited from q->v2->v1 with little effort
+                rng_ok = false;
+                break;
+            }
+        }
+        if(rng_ok){
+            tempList.push_back(v1);
+            if(tempList.size()>=maxDegree_){
+                return;
+            }
+        }
+    }
+
+
+
+
+
+
+
+    int64_t i=0;
+    for(i=0; i<tempList.size(); i++){
+        similarityTensor_[src][i] = tempList[i];
+    }
+    while(i<maxDegree_){
+        similarityTensor_[src][i]=-1;
+        i++;
+    }
+    return;
+
+
+
+
+
+}
+
 /**
  * @brief Add a vector to the HNSW graph.
  */
@@ -81,16 +165,18 @@ void HNSWTensorSim::add(const torch::Tensor& vector) {
     auto connections = shrinkConnections(candidateList);
 
     for (size_t i = 0; i < connections.size(); ++i) {
-      similarityTensor_[id][(int64_t)i] = connections[i];
+      //similarityTensor_[id][(int64_t)i] = connections[i];
+      add_link(id, connections[i], level);
     }
 
     for (int64_t neighbor : connections) {
-      for (int64_t j = 0; j < maxDegree_; ++j) {
-        if (similarityTensor_[neighbor][j].item<int64_t>() == -1) {
-          similarityTensor_[neighbor][j] = id;
-          break;
-        }
-      }
+        add_link(neighbor, id, level);
+//      for (int64_t j = 0; j < maxDegree_; ++j) {
+//        if (similarityTensor_[neighbor][j].item<int64_t>() == -1) {
+//          similarityTensor_[neighbor][j] = id;
+//          break;
+//        }
+//      }
     }
   }
 }
