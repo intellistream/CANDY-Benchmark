@@ -15,6 +15,7 @@ void HNSWTensorSim::init(int64_t numElements, int64_t maxDegree, int64_t efConst
   levelMultiplier_=levelMultiplier;
   currentNodeCount_=0;
   similarityTensor_ = torch::full({numElements_, maxDegree_}, -1, torch::kInt64);
+  layerTensor_ = torch::full({numElements_}, -1, torch::kInt64); // 1D Tensor for layer information
   maxLevel_ = 0;
 }
 
@@ -92,13 +93,6 @@ void HNSWTensorSim::add_link(int64_t src, int64_t dest, int64_t level) {
             }
         }
     }
-
-
-
-
-
-
-
     int64_t i=0;
     for(i=0; i<tempList.size(); i++){
         similarityTensor_[src][i] = tempList[i];
@@ -108,12 +102,11 @@ void HNSWTensorSim::add_link(int64_t src, int64_t dest, int64_t level) {
         i++;
     }
     return;
-
-
-
-
-
 }
+
+/**
+ * @brief Add a vector to the HNSW graph.
+ */
 
 /**
  * @brief Add a vector to the HNSW graph.
@@ -127,30 +120,25 @@ void HNSWTensorSim::add(const torch::Tensor& vector) {
   vectors_.push_back(vector);
 
   int64_t nodeLevel = randomLevel();
+
+  layerTensor_[id] = nodeLevel; // Record the layer for this node
   if (nodeLevel > maxLevel_) {
     maxLevel_ = nodeLevel;
-    layerVectors_.resize(maxLevel_ + 1);
+    entryPointId_ = id;
+  }
+  //std::cout<<"ID="<<id<<"level = "<<nodeLevel<<std::endl;
+  if (id == 1) {
+    similarityTensor_[0][0] = 1;
+    similarityTensor_[1][0] = 0;
+    return; // No need to connect the first node
   }
 
-  if (layerVectors_.size() <= nodeLevel) {
-    layerVectors_.resize(nodeLevel + 1);
-  }
-
-  if (layerVectors_[nodeLevel].numel() == 0) {
-    layerVectors_[nodeLevel] = torch::tensor({id}, torch::kInt64);
-  } else {
-    layerVectors_[nodeLevel] = torch::cat({layerVectors_[nodeLevel], torch::tensor({id}, torch::kInt64)});
-  }
-
-  if (id == 0) {
-    return;
-  }
-
-  int64_t entryPointId = 0;
+  int64_t entryPointId = entryPointId_;
   for (int64_t level = maxLevel_; level > nodeLevel; --level) {
     auto candidates = searchLayer(vector, entryPointId, 1, level);
     if (!candidates.empty()) {
       entryPointId = candidates.top().second;
+      //std::cout<<"candidate size "<<candidates.size()<<std::endl;
     }
   }
 
@@ -166,22 +154,20 @@ void HNSWTensorSim::add(const torch::Tensor& vector) {
     auto connections = shrinkConnections(candidateList);
 
     for (size_t i = 0; i < connections.size(); ++i) {
-      //similarityTensor_[id][(int64_t)i] = connections[i];
-      add_link(id, connections[i], level);
+      add_link(id,connections[i],0);
     }
 
     for (int64_t neighbor : connections) {
-        add_link(neighbor, id, level);
-//      for (int64_t j = 0; j < maxDegree_; ++j) {
-//        if (similarityTensor_[neighbor][j].item<int64_t>() == -1) {
-//          similarityTensor_[neighbor][j] = id;
-//          break;
-//        }
-//      }
+      add_link(neighbor,id,0);
+      /*for (int64_t j = 0; j < maxDegree_; ++j) {
+        if (similarityTensor_[neighbor][j].item<int64_t>() == -1) {
+          similarityTensor_[neighbor][j] = id;
+          break;
+        }
+      }*/
     }
   }
 }
-
 /**
  * @brief Perform a single-query search.
  */
@@ -190,15 +176,18 @@ std::vector<int64_t> HNSWTensorSim::search(const torch::Tensor& query, int64_t k
     return {};
   }
 
-  int64_t entryPointId = 0;
-  for (int64_t level = maxLevel_; level > 0; --level) {
+  int64_t entryPointId = entryPointId_;
+  int64_t level;
+  for (level = maxLevel_; level > 0; --level) {
     auto candidates = searchLayer(query, entryPointId, 1, level);
+   // std::cout<<"Layer"+std::to_string(level)+",candidates="+std::to_string(candidates.size())<<std::endl;
     if (!candidates.empty()) {
       entryPointId = candidates.top().second;
     }
   }
 
-  auto candidates = searchLayer(query, entryPointId, k, 0);
+
+  auto candidates = searchLayer(query, entryPointId, k, level);
   std::vector<int64_t> result;
   while (!candidates.empty()) {
     result.push_back(candidates.top().second);
@@ -216,7 +205,11 @@ std::vector<torch::Tensor> HNSWTensorSim::multiQuerySearch(const torch::Tensor& 
   std::vector<torch::Tensor> results;
   for (int64_t i = 0; i < n; ++i) {
     auto resultIds = search(queries[i], k);
-    std::vector<torch::Tensor> neighbors;
+   // std::cout<<resultIds.size()<<std::endl;
+    /*for (auto id : resultIds) {
+     std::cout<<vectors_[id]<<std::endl;
+    }*/
+   std::vector<torch::Tensor> neighbors;
     for (auto id : resultIds) {
       neighbors.push_back(vectors_[id]);
     }
@@ -227,7 +220,8 @@ std::vector<torch::Tensor> HNSWTensorSim::multiQuerySearch(const torch::Tensor& 
 
 /**
  * @brief Search within a specific layer.
- */std::priority_queue<std::pair<float, int64_t>, std::vector<std::pair<float, int64_t>>, std::greater<>> HNSWTensorSim::searchLayer(
+ */
+std::priority_queue<std::pair<float, int64_t>, std::vector<std::pair<float, int64_t>>, std::greater<>> HNSWTensorSim::searchLayer(
     const torch::Tensor& query, int64_t entryPointId, int64_t ef, int64_t layer) {
   std::priority_queue<std::pair<float, int64_t>, std::vector<std::pair<float, int64_t>>, std::greater<>> topCandidates;
   std::unordered_set<int64_t> visited;
@@ -244,28 +238,64 @@ std::vector<torch::Tensor> HNSWTensorSim::multiQuerySearch(const torch::Tensor& 
     auto current = candidates.top();
     candidates.pop();
 
-    topCandidates.emplace(current);
-    if (topCandidates.size() > ef) {
-      topCandidates.pop();
+    auto furthest = topCandidates.empty()
+                    ? std::make_pair(std::numeric_limits<float>::lowest(), static_cast<int64_t>(-1))
+                    : topCandidates.top();
+    if (topCandidates.size() >= ef && current.first < furthest.first) {
+      break;
     }
 
-    // Get nodes in the current layer
-    const auto& layerNodes = layerVectors_[layer];
-   // auto layerNodesAccessor = layerNodes.accessor<int64_t, 1>();
+    auto neighbors = getNeighbors(current.second, layer);
+    if(neighbors.size()!=0) {
+    //  std::cout<<"Neighbor len="+std::to_string(neighbors.size());
+    }
 
-    for (int64_t i = 0; i < layerNodes.size(0); ++i) {
-      int64_t neighbor = layerNodes[i].item<int64_t>();
+    for (int64_t neighbor : neighbors) {
       if (visited.count(neighbor)) {
         continue;
       }
       visited.insert(neighbor);
+
       float similarity = innerProduct(query, vectors_[neighbor]);
       candidates.emplace(similarity, neighbor);
+
+      if (topCandidates.size() < ef || similarity > furthest.first) {
+        topCandidates.emplace(similarity, neighbor);
+        if (topCandidates.size() > ef) {
+          topCandidates.pop();
+        }
+      }
     }
   }
 
   return topCandidates;
 }
+
+/**
+ * @brief Get neighbors for a node in a specific layer.
+ */
+std::vector<int64_t> HNSWTensorSim::getNeighbors(int64_t id, int64_t layer) {
+  std::vector<int64_t> neighbors;
+ /* if (layerTensor_[id].item<int64_t>() != layer) {
+    return neighbors; // Node does not belong to the specified layer
+  }*/
+  for (int64_t i = 0; i < maxDegree_; ++i) {
+    int64_t neighbor = similarityTensor_[id][i].item<int64_t>();
+    if (neighbor != -1) {
+      //std::cout<<"expect layer "+std::to_string(layer)+",  get"+std::to_string(layerTensor_[neighbor].item<int64_t>() )<<std::endl;
+      if(layerTensor_[neighbor].item<int64_t>() != layer){
+
+      }
+      else {
+        neighbors.push_back(neighbor);
+      }
+
+    }
+
+  }
+  return neighbors;
+}
+
 /**
  * @brief Shrink connections to maintain the max degree.
  */
@@ -279,6 +309,7 @@ std::vector<int64_t> HNSWTensorSim::shrinkConnections(const std::vector<std::pai
   }
   return connections;
 }
+
 
 /**
  * @brief Retrieve the similarity tensor for inspection.

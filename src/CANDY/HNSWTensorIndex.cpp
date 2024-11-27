@@ -15,7 +15,7 @@ bool CANDY::HNSWTensorIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   if (metricType == "dot" || metricType == "IP" || metricType == "cossim") {
       faissMetric = faiss::METRIC_INNER_PRODUCT;
   }
-  hnsw.init(vecVolume,M_,M_*2,0.5);
+  hnsw.init(vecVolume,M_,M_*2,0);
   return true;
 }
 

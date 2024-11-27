@@ -50,8 +50,8 @@ class HNSWTensorSim {
   int64_t maxLevel_; ///< Maximum level in the hierarchy
   std::vector<torch::Tensor> vectors_; ///< Stored vectors
   torch::Tensor similarityTensor_; ///< Adjacency list as a 2D tensor
-  std::vector<torch::Tensor> layerVectors_; ///< Vector of tensors, each containing the nodes in a layer
-
+  torch::Tensor layerTensor_; ///< 1D tensor where each element represents the layer of the corresponding node
+  int64_t entryPointId_=0;
   /// Generate a random level for a node
   int64_t randomLevel();
 
@@ -65,8 +65,8 @@ class HNSWTensorSim {
   /// Shrink connections to maintain the max degree
   std::vector<int64_t> shrinkConnections(const std::vector<std::pair<float, int64_t>>& candidates);
 
-  /// Get neighbors for a node
-  std::vector<int64_t> getNeighbors(int64_t id);
+  /// Get neighbors for a node in a specific layer
+  std::vector<int64_t> getNeighbors(int64_t id, int64_t layer);
 
   void add_link(int64_t src, int64_t dest, int64_t level);
 };

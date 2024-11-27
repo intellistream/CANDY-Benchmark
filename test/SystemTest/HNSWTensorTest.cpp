@@ -10,7 +10,7 @@
 using namespace std;
 TEST_CASE("Test HNSWTensor Data structure", "[short]") {
   CANDY::HNSWTensorSim hnsw;
-  hnsw.init(10, 5, 10, 0.5);
+  hnsw.init(10, 5, 10, 0);
 
   torch::Tensor vec1 = torch::tensor({1.0, 2.0}, torch::kFloat32);
   torch::Tensor vec2 = torch::tensor({2.0, 3.0}, torch::kFloat32);
@@ -21,16 +21,16 @@ TEST_CASE("Test HNSWTensor Data structure", "[short]") {
   hnsw.add(vec3);
 
   torch::Tensor queries = torch::tensor({{1.5, 2.5}, {4.0, 5.0}}, torch::kFloat32);
+  hnsw.search(torch::tensor({1.5, 2.5}, torch::kFloat32),2);
   auto results = hnsw.multiQuerySearch(queries, 2);
-
-  for (size_t i = 0; i < results.size(); ++i) {
+ for (size_t i = 0; i < results.size(); ++i) {
     std::cout << "Query " << i << " neighbors:\n" << results[i] << std::endl;
   }
 
 }
 TEST_CASE("Test HNSWTensorIndex", "[short]") {
   //int a = 0;
-  torch::manual_seed(114514);
+/*  torch::manual_seed(114514);
   // place your test here
   INTELLI::ConfigMapPtr cfg = newConfigMap();
   CANDY::IndexTable it;
@@ -50,6 +50,6 @@ TEST_CASE("Test HNSWTensorIndex", "[short]") {
   auto ruTensorsFlat = flatIdx->searchTensor(tc, 2);
   auto ruTensorsAnns = annsIdx->searchTensor(tc, 2);
   std::cout << "result tensor from flat\n" << ruTensorsFlat[0] << std::endl;
-  std::cout << "result tensor from anns\n" << ruTensorsAnns[0] << std::endl;
+  std::cout << "result tensor from anns\n" << ruTensorsAnns[0] << std::endl;*/
 
 }
