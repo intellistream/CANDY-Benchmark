@@ -15,6 +15,7 @@ void HNSWTensorSim::init(int64_t numElements, int64_t maxDegree, int64_t efConst
   levelMultiplier_=levelMultiplier;
   currentNodeCount_=0;
   similarityTensor_ = torch::full({numElements_, maxDegree_}, -1, torch::kInt64);
+  maxLevel_ = 0;
 }
 
 /**
