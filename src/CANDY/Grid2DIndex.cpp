@@ -33,7 +33,8 @@ bool CANDY::Grid2DIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   numberOfGrids = cfg->tryI64("numberOfGrids", 100, true);
   if (torch::cuda::is_available()) {
     cudaDevice = cfg->tryI64("cudaDevice", -1, true);
-    INTELLI_INFO("Cuda is detected. and use this cuda device for DCO:" + std::to_string(cudaDevice));
+    cudaDeviceInference =  cfg->tryI64("cudaDeviceInference", -1, true);
+    INTELLI_INFO("Cuda is detected. and use this cuda device for DCO:" + std::to_string(cudaDevice)+", this one for inference "+std::to_string(cudaDeviceInference));
   }
   if (DCOBatchSize > memBufferSize && memBufferSize > 0) {
     INTELLI_WARNING("DCO batch size is not recommended to exceed mem buffer size.");
@@ -178,6 +179,65 @@ std::vector<int64_t> CANDY::Grid2DIndex::findTopKClosest(const torch::Tensor &qu
   }
   return topKIndices;
 }
+
+std::vector<int64_t> CANDY::Grid2DIndex::findTopKClosest(const torch::Tensor &query, torch::Tensor &db,
+                                                         int64_t top_k,
+                                                         int64_t batch_size
+) {
+  std::vector<std::vector<std::pair<float, int64_t>>> topK;
+  int64_t total_vectors = db.size(0);
+  int64_t queryRows = query.size(0);
+  //torch::Tensor transposed_query = query.t();
+  for (int64_t startPos = 0; startPos < total_vectors; startPos += batch_size) {
+    int64_t endPos = std::min(startPos + batch_size, total_vectors);
+
+    // Load batch using getTensor
+    torch::Tensor dbBatch = db.slice(0,startPos,endPos);
+    //std::cout<<"DB data:\n"<<dbBatch<<std::endl;
+    // Compute distances
+    torch::Tensor distances = distanceFunc(dbBatch, query, cudaDevice, this);
+    // torch::matmul(dbBatch, transposed_query);
+    //std::cout<<"distance :\n"<<distances.t()<<std::endl;
+    auto tStartTopK = std::chrono::high_resolution_clock::now();
+    // Use torch::topk to get the top_k smallest distances and their indices
+    auto topk_result = torch::topk(distances, top_k, /*dim=*/1, /*largest=*/true, /*sorted=*/true);
+
+    // std::cout<<"top k :\n"<<std::get<0>(topk_result)<<std::endl;
+    // Extract top_k distances and indices
+    torch::Tensor topk_distances = std::get<0>(topk_result);
+    torch::Tensor topk_indices = std::get<1>(topk_result) + startPos;
+    gpuComputingUs += chronoElapsedTime(tStartTopK);
+    //
+    if (cudaDevice > -1 && torch::cuda::is_available()) {
+      auto tStart = std::chrono::high_resolution_clock::now();
+      topk_distances = topk_distances.to(torch::kCPU);
+      topk_indices = topk_indices.to(torch::kCPU);
+      gpuCommunicationUs += chronoElapsedTime(tStart);
+    }
+    // Create a vector of (distance, index) pairs
+    std::vector<std::vector<std::pair<float, int64_t>>> batchResults(queryRows);
+    for (int64_t i = 0; i < queryRows; i++) {
+      for (int64_t j = 0; j < top_k; j++) {
+        batchResults[i].emplace_back(topk_distances[i][j].item<float>(), topk_indices[i][j].item<int64_t>());
+      }
+    }
+    // Merge current batch results with topK
+    if (topK.empty()) {
+      topK = std::move(batchResults);
+    } else {
+      mergeTopKVec(topK, batchResults, top_k);
+    }
+  }
+
+  // Extract indices from the topK vector
+  std::vector<int64_t> topKIndices(top_k * queryRows);
+  for (int64_t i = 0; i < queryRows; i++) {
+    for (int64_t j = 0; j < top_k; j++) {
+      topKIndices[i * top_k + j] = topK[i][j].second;
+    }
+  }
+  return topKIndices;
+}
 bool CANDY::Grid2DIndex::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
   if (t.size(0) > w.size(0) || t.size(1) != w.size(1)) {
     return false;
@@ -229,10 +289,48 @@ INTELLI::ConfigMapPtr CANDY::Grid2DIndex::getIndexStatistics() {
 }
 
 std::vector<torch::Tensor> CANDY::Grid2DIndex::searchTensor(torch::Tensor &q, int64_t k) {
-  auto idx = findTopKClosest(q, k, DCOBatchSize);
+ /* auto idx = findTopKClosest(q, k, DCOBatchSize);
   //std::cout<<"sorting idx"<<std::endl;
 
-  return getTensorByStdIdx(idx, k);
+  return getTensorByStdIdx(idx, k);*/
+  auto  decodeBatch = generateGridCode(q);
+  int64_t tensors = q.size(0) / k;
+  std::vector<torch::Tensor> ru(tensors);
+  for (int64_t i = 0; i < tensors; i++) {
+    auto qi = q.slice(0,i,i+1);
+    ru[i] = torch::zeros({k, vecDim});
+    auto codeITensor = decodeBatch[i];
+    int64_t x = codeITensor[0].item<int64_t>();
+    int64_t y = codeITensor[1].item<int64_t>();
+
+    /*auto gridXy = gridStore.getExactGridUnit(x,y);
+    if(gridXy!= nullptr) {
+        auto idxTensor = gridXy->data_;
+        auto candidateTensor = dmBuffer.selectIndicies(idxTensor);
+
+        //std::cout<<"get candidate as"<<candidateTensor<< "In grid"<<codeITensor<<std::endl;
+        if(candidateTensor.size(0)<k) {
+          INTELLI_ERROR("No enough data for query"+ std::to_string(i));
+        }
+        else {
+          auto idxVec = findTopKClosest(qi,candidateTensor,k,DCOBatchSize);
+          auto idxTensorInCandidate =  torch::tensor(idxVec, torch::kInt64);
+          auto idxTensorInFullCollection = idxTensor.index_select(0, idxTensorInCandidate);
+          ru[i] = dmBuffer.selectIndicies(idxTensorInFullCollection);
+        }*/
+      auto idxTensor = gridStore.getApproximateIndiciesUntilK(x,y,k);
+      auto candidateTensor = dmBuffer.selectIndicies(idxTensor);
+      auto idxVec = findTopKClosest(qi,candidateTensor,k,DCOBatchSize);
+      auto idxTensorInCandidate =  torch::tensor(idxVec, torch::kInt64);
+      auto idxTensorInFullCollection = idxTensor.index_select(0, idxTensorInCandidate);
+      ru[i] = dmBuffer.selectIndicies(idxTensorInFullCollection);
+    /*else {
+      INTELLI_ERROR("No such grid for query"+ std::to_string(i)+ ",needs "+to_string(x)+","+to_string(y));
+    }*/
+
+
+    }
+  return ru;
 }
 
 std::vector<torch::Tensor> CANDY::Grid2DIndex::getTensorByStdIdx(std::vector<int64_t> &idx, int64_t k) {
@@ -324,10 +422,7 @@ bool CANDY::Grid2DIndex::insertTensor2Grid(torch::Tensor &t) {
   for (int64_t startPos = 0; startPos < total_vectors; startPos += batch_size) {
     int64_t endPos = std::min(startPos + batch_size, total_vectors);
     torch::Tensor dbBatch = t.slice(0,startPos,endPos);
-    auto decodeBatch =mlFitter.forward(dbBatch);
-    decodeBatch = INTELLI::IntelliTensorOP::l2Normalize(decodeBatch);
-    decodeBatch = (decodeBatch+1.0)/2.0*numberOfGrids;
-    decodeBatch = torch::round(decodeBatch).to(torch::kInt64);
+    auto  decodeBatch = generateGridCode(dbBatch);
     /**
      * @brief add to plain data store
      */
@@ -349,3 +444,28 @@ bool CANDY::Grid2DIndex::insertTensor2Grid(torch::Tensor &t) {
   }
   return true;
   }
+
+  torch::Tensor CANDY::Grid2DIndex::generateGridCode(torch::Tensor &t) {
+    auto dbBatch =t;
+    if (cudaDeviceInference > -1 && torch::cuda::is_available()) {
+      // Move tensors to GPU 1
+      auto tStart0 = std::chrono::high_resolution_clock::now();
+      auto device = torch::Device(torch::kCUDA, cudaDeviceInference);
+      dbBatch = dbBatch.to(device);
+      gpuCommunicationUs += chronoElapsedTime(tStart0);
+    }
+    auto tStart1 = std::chrono::high_resolution_clock::now();
+    auto decodeBatch =mlFitter.forward(dbBatch);
+    decodeBatch = INTELLI::IntelliTensorOP::l2Normalize(decodeBatch);
+    decodeBatch = (decodeBatch+1.0)/2.0*numberOfGrids;
+    decodeBatch = torch::round(decodeBatch).to(torch::kInt64);
+    gpuComputingUs += chronoElapsedTime(tStart1);
+    if (cudaDeviceInference > -1 && torch::cuda::is_available()) {
+      // Move tensors to GPU 1
+      auto tStart2 = std::chrono::high_resolution_clock::now();
+      auto device = torch::Device(torch::kCPU);
+      decodeBatch = decodeBatch.to(device).to(torch::kInt64);;
+      gpuCommunicationUs += chronoElapsedTime(tStart2);
+    }
+    return  decodeBatch;
+}

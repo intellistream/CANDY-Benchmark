@@ -93,6 +93,12 @@ class PlainMemBufferTU {
   ~PlainMemBufferTU() {}
   //SPDKSSD *ssdPtr = nullptr;
   /**
+   * @brief select rows according to idx
+   * @param idx the index int64_T, flattened tensor
+   * @return
+   */
+  torch::Tensor selectIndicies(torch::Tensor &idx);
+  /**
    * @brief get the total count of times in terms of memory read
    * @return the count of times
    */

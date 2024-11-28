@@ -68,7 +68,14 @@ class Grid2DOfTensor {
   * @return the vector of grid units
   */
   std::vector<GridUnitOfTensorPtr> getApproximateGridUnitsSquare(int64_t x,int64_t y,int64_t extension,int64_t skipExact=1);
-
+  /**
+  * @brief get the approximate indicies at the square near  [x,y] until we have at least k results
+  * @param x the first coordinate
+  * @param y the second coordinate
+  * @param k the expected number of data indicies
+  * @return the indicies tensor sized >=k
+  */
+  torch::Tensor getApproximateIndiciesUntilK(int64_t x,int64_t y,int64_t k);
 };
 /**
  * @}

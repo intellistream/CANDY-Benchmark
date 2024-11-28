@@ -90,7 +90,7 @@ void MLPGravastarModel::trainModel(torch::Tensor &x1, int64_t logout) {
 }
 
 torch::Tensor MLPGravastarModel::forward(torch::Tensor &input) {
-  torch::Device device(torch::kCPU); // or torch::kCPU
+ /* torch::Device device(torch::kCPU); // or torch::kCPU
   torch::Device deviceInference(torch::kCPU); // or torch::kCPU
   if (cudaDevInference > -1 && torch::cuda::is_available()) {
     // Move tensors to GPU 1
@@ -98,7 +98,8 @@ torch::Tensor MLPGravastarModel::forward(torch::Tensor &input) {
   }
   auto tin = input.to(deviceInference);
   auto ru = model.forward(tin);
-  return ru.to(input.device());
+  return ru.to(input.device());*/
+  return model.forward(input);
 }
 
 }

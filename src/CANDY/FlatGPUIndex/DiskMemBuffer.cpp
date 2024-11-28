@@ -46,7 +46,12 @@ void PlainMemBufferTU::clearStatistics() {
   memoryReadCntTotal = 0;
   memoryReadCntMiss = 0;
 }
-
+torch::Tensor PlainMemBufferTU::selectIndicies(torch::Tensor &idx) {
+  // Concatenate all tensors in idx into a single tensor
+  torch::Tensor flattened_indices = idx.squeeze();
+  // Gather rows based on indices
+  return cacheT.buffer.index_select(0, flattened_indices);
+}
 int64_t PlainMemBufferTU::size() {
   return diskInfo.vecCnt;
 }

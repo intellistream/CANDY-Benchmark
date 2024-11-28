@@ -66,5 +66,89 @@ std::vector<GridUnitOfTensorPtr> Grid2DOfTensor::getApproximateGridUnitsSquare(i
   }
   return results;
 }
+torch::Tensor CANDY::Grid2DOfTensor::getApproximateIndiciesUntilK(int64_t x, int64_t y, int64_t k) {
+  if (numberOfGrids_ <= 0) {
+    throw std::runtime_error("Grid2DOfTensor is not initialized.");
+  }
+
+  torch::Tensor collectedIndices = torch::empty({0}, torch::kInt64); // Initialize an empty tensor for indices
+  int64_t extension = 0;
+
+  // Start scanning from the central cell (x, y)
+  while (collectedIndices.size(0) < k) {
+    // For the current extension, scan the new border cells only
+    int64_t xMin = std::max(x - extension, int64_t(0));
+    int64_t xMax = std::min(x + extension, numberOfGrids_ - 1);
+    int64_t yMin = std::max(y - extension, int64_t(0));
+    int64_t yMax = std::min(y + extension, numberOfGrids_ - 1);
+
+    // Scan top and bottom borders of the square
+    if (extension > 0) {
+      for (int64_t i = xMin; i <= xMax; ++i) {
+        // Top border (yMin)
+        if (yMin < numberOfGrids_) {
+          for (const auto& gridUnit : dataGrid[i]) {
+            if (gridUnit->idx_ == yMin && gridUnit->data_.defined()) {
+              collectedIndices = torch::cat({collectedIndices, gridUnit->data_}, 0);
+              if (collectedIndices.size(0) >= k) {
+                return collectedIndices;
+              }
+            }
+          }
+        }
+
+        // Bottom border (yMax)
+        if (yMax < numberOfGrids_ && yMax != yMin) { // Avoid double scan if yMax == yMin
+          for (const auto& gridUnit : dataGrid[i]) {
+            if (gridUnit->idx_ == yMax && gridUnit->data_.defined()) {
+              collectedIndices = torch::cat({collectedIndices, gridUnit->data_}, 0);
+              if (collectedIndices.size(0) >= k) {
+                return collectedIndices;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Scan left and right borders of the square
+    for (int64_t j = yMin; j <= yMax; ++j) {
+      // Left border (xMin)
+      if (xMin < numberOfGrids_) {
+        for (const auto& gridUnit : dataGrid[xMin]) {
+          if (gridUnit->idx_ == j && gridUnit->data_.defined()) {
+            collectedIndices = torch::cat({collectedIndices, gridUnit->data_}, 0);
+            if (collectedIndices.size(0) >= k) {
+              return collectedIndices;
+            }
+          }
+        }
+      }
+
+      // Right border (xMax)
+      if (xMax < numberOfGrids_ && xMax != xMin) { // Avoid double scan if xMax == xMin
+        for (const auto& gridUnit : dataGrid[xMax]) {
+          if (gridUnit->idx_ == j && gridUnit->data_.defined()) {
+            collectedIndices = torch::cat({collectedIndices, gridUnit->data_}, 0);
+            if (collectedIndices.size(0) >= k) {
+              return collectedIndices;
+            }
+          }
+        }
+      }
+    }
+
+    // Increment extension for the next layer
+    ++extension;
+
+    // Break if we've exceeded all possible grid cells
+    if (extension > numberOfGrids_) {
+      break;
+    }
+  }
+
+  // Ensure we return at least `k` elements or all available indices
+  return collectedIndices;
+}
 
 } // CANDY

@@ -52,10 +52,12 @@ class Grid2DIndex : public AbstractIndex {
   int64_t memBufferSize = 1000;
   int64_t vecDim = 768;
   int64_t cudaDevice = -1;
+  int64_t cudaDeviceInference = -1;
   int64_t numberOfGrids = 100;
 
   // Main function to process batches and find top_k closest vectors
   std::vector<int64_t> findTopKClosest(const torch::Tensor &query, int64_t top_k, int64_t batch_size);
+  std::vector<int64_t> findTopKClosest(const torch::Tensor &query, torch::Tensor &db,int64_t top_k, int64_t batch_size);
   // torch::Tensor myMMInline(torch::Tensor &a, torch::Tensor &b, int64_t ss = 10);
   /**
   * @brief return a vector of tensors according to some index
@@ -92,8 +94,12 @@ class Grid2DIndex : public AbstractIndex {
    * @return The distance tensor, must sized [q*n], will in GPU if cuda is valid
    */
   static torch::Tensor distanceL2(torch::Tensor db, torch::Tensor query, int64_t cudaDev, Grid2DIndex *idx);
-
-
+  /**
+   * @brief generate the grid code of t
+   * @param t the data tensor
+   * @return the grid int64_t tensor, sized NX2, located at cpu
+   */
+  torch::Tensor generateGridCode(torch::Tensor &t);
   /**
    * @brief insert a tensor to grid
    * @param t the tensor, accept multiple rows
