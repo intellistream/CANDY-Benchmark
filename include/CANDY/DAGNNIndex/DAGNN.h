@@ -273,7 +273,7 @@ struct DynamicTuneHNSW{
         int64_t clusterExpansionStep = 2;
 
         double clusterInnerConnectionThreshold = 0.5;
-        int64_t optimisticN = 16;
+        int64_t optimisticN = 0;
         size_t discardN = 0;
         size_t discardClusterN =32;
         double discardClusterProp=0.3;

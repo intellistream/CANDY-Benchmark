@@ -3,6 +3,17 @@
 //
 #include <CANDY/DAGNNIndex.h>
 
+void CANDY::DAGNNIndex::stat_degree(){
+    size_t counts = 0;
+    for(auto i=0; i<dagnn->storage->ntotal; i++){
+        size_t begin, end;
+        auto node = dagnn->linkLists[i];
+        counts+=node->bottom_connections;
+    }
+    printf("degree average = %lf\n", counts*1.0/(dagnn->storage->ntotal*1.0));
+}
+
+
 bool CANDY::DAGNNIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     AbstractIndex::setConfig(cfg);
     vecDim = cfg->tryI64("vecDim", 768, true);
@@ -25,7 +36,7 @@ bool CANDY::DAGNNIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     dp.rng_alpha = cfg->tryDouble("rng_alpha", 1.0, true);
     dp.clusterExpansionStep = cfg->tryI64("clusterExpansionStep", 2, true);
     dp.clusterInnerConnectionThreshold = cfg->tryDouble("clusterInnerConnectionThreshold", 0.5, true);
-    dp.optimisticN = cfg->tryI64("optimisticN", 16, true);
+    dp.optimisticN = cfg->tryI64("optimisticN", 0, true);
     dp.discardN = cfg->tryI64("discardN", 0, true);
     dp.discardClusterN = cfg->tryI64("discardClusterN", 32, true);
     dp.discardClusterProp = cfg->tryDouble("discardClusterProp", 0.3, true);
@@ -475,17 +486,19 @@ std::vector<faiss::idx_t> CANDY::DAGNNIndex::searchIndex(torch::Tensor q, int64_
         dagnn->search(*disq, k, ru.data()+i*k, distance.data()+i*k, vt);
 
     }
-    printf("DAGNN SEARCH DCO = %ld\n", dagnn->num_dco);
-    printf("DAGNN SEARCH DCO TIME = %ld\n", dagnn->time_dco);
+//    printf("DAGNN SEARCH DCO = %ld\n", dagnn->num_dco);
+//    printf("DAGNN SEARCH DCO TIME = %ld\n", dagnn->time_dco);
+//
+//    printf("DAGNN UPPER DCO = %ld\n", dagnn->num_dco_upper);
+//    printf("DAGNN UPPER DCO TIME = %ld\n", dagnn->time_dco_upper);
+//
+//    printf("DAGNN BASE DCO = %ld\n", dagnn->num_dco_base);
+//    printf("DAGNN BASE DCO TIME = %ld\n", dagnn->time_dco_base);
+//
+//    printf("DAGNN EXPANSION DCO = %ld\n", dagnn->num_dco_expansion);
+//    printf("DAGNN EXPANSION DCO TIME = %ld\n", dagnn->time_dco_expansion);
 
-    printf("DAGNN UPPER DCO = %ld\n", dagnn->num_dco_upper);
-    printf("DAGNN UPPER DCO TIME = %ld\n", dagnn->time_dco_upper);
-
-    printf("DAGNN BASE DCO = %ld\n", dagnn->num_dco_base);
-    printf("DAGNN BASE DCO TIME = %ld\n", dagnn->time_dco_base);
-
-    printf("DAGNN EXPANSION DCO = %ld\n", dagnn->num_dco_expansion);
-    printf("DAGNN EXPANSION DCO TIME = %ld\n", dagnn->time_dco_expansion);
+    //stat_degree();
     // for(int64_t i=0; i<querySize; i++) {
     //     printf("result for %ldth query\n", i);
     //     for(int64_t j=0; j<k; j++) {

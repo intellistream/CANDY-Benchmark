@@ -13,7 +13,7 @@ namespace CANDY {
         int64_t vecDim;
 
 
-
+        void stat_degree();
         DAGNNIndex()= default;
         /**
         * @brief set the index-specific config related to one index

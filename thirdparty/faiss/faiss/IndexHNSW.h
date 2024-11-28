@@ -102,6 +102,22 @@ struct IndexHNSW : Index {
 
     void reset() override;
 
+    void stat_degree() const{
+        size_t counts = 0;
+        for(auto i=0; i<ntotal; i++){
+            size_t begin, end;
+            hnsw.neighbor_range(i, 0, &begin, &end);
+            size_t j= begin;
+            for(j=begin; j<end; j++){
+                if(hnsw.neighbors[j]==-1){
+                    break;
+                }
+            }
+            counts+=j-begin;
+        }
+        printf("degree average =%lf\n", counts*1.0/(ntotal*1.0));
+    }
+
     void shrink_level_0_neighbors(int size);
 
     /** Perform search only on level 0, given the starting points for

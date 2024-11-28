@@ -54,6 +54,12 @@ struct HNSW {
     /// internal storage of vectors (32 bits: this is expensive)
     using storage_idx_t = int32_t;
 
+    mutable size_t num_dco_greedy = 0;
+    mutable size_t time_dco_greedy = 0;
+
+    mutable size_t num_dco_expansion = 0;
+    mutable size_t time_dco_expansion = 0;
+
     typedef std::pair<float, storage_idx_t> Node;
 
     /** Heap structure that allows fast
@@ -228,6 +234,8 @@ struct HNSW {
             int max_size);
 
     void permute_entries(const idx_t* map);
+
+
 };
 
 struct HNSWStats {

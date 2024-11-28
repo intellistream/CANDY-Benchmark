@@ -310,6 +310,12 @@ void IndexHNSW::search(
     idx_t check_period =
             InterruptCallback::get_period_hint(hnsw.max_level * d * efSearch);
 
+
+    hnsw.num_dco_greedy = 0;
+    hnsw.time_dco_greedy = 0;
+    hnsw.num_dco_expansion = 0;
+    hnsw.time_dco_expansion = 0;
+
     for (idx_t i0 = 0; i0 < n; i0 += check_period) {
         idx_t i1 = std::min(i0 + check_period, n);
 
@@ -361,6 +367,15 @@ void IndexHNSW::search(
         }
     }
 
+//    printf("HNSW num DCO=%ld\n", hnsw.num_dco_greedy+hnsw.num_dco_expansion);
+//    printf("HNSW time DCO=%ld\n", hnsw.time_dco_expansion+hnsw.time_dco_greedy);
+//
+//    printf("HNSW greedy num DCO=%ld\n", hnsw.num_dco_greedy);
+//    printf("HNSW greedy time DCO=%ld\n", hnsw.time_dco_greedy);
+//
+//    printf("HNSW expansion num DCO=%ld\n", hnsw.num_dco_expansion);
+//    printf("HNSW expansion time DCO=%ld\n", hnsw.time_dco_expansion);
+    //stat_degree();
     hnsw_stats.combine({n1, n2, n3, ndis, nreorder});
 }
 

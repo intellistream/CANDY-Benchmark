@@ -79,11 +79,13 @@ namespace CANDY::DAGNN{
         bool get(int64_t idx) { return visited_[idx] == visno; }
 
         void advance() {
+            visno++;
             if (visno > 250) {
-                visno = 0;
+                memset(visited_.data(), 0, sizeof(visited_[0]) * visited_.size());
+                visno = 1;
                 return;
             }
-            visno++;
+
         }
         ~VisitedTable(){};
     };
