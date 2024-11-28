@@ -3,7 +3,7 @@
 //
 
 #include <CANDY/Grid2DIndex/Grid2DOfTensor.h>
-
+#include <Utils/IntelliLog.h>
 namespace CANDY {
 void Grid2DOfTensor::init(int64_t numberOfGrids) {
   numberOfGrids_ = numberOfGrids;
@@ -11,19 +11,22 @@ void Grid2DOfTensor::init(int64_t numberOfGrids) {
 }
 int64_t Grid2DOfTensor::insertItemToGrid(int64_t x,int64_t y,int64_t item){
   if(x>=numberOfGrids_||y>=numberOfGrids_){
+    INTELLI_INFO("invalid grid");
     return -1;
   }
   auto rowGrids = dataGrid[x];
   for (auto gridXy:rowGrids){
     if(gridXy->idx_==y) {
       gridXy->data_ =  torch::cat({gridXy->data_, torch::tensor({item}, torch::kInt64)});
+      //INTELLI_INFO("Hit the same grid "+ to_string(x)+":"+ to_string(y)+"Cnt= "+ to_string(gridXy->data_.size(0)));
       return 1;
     }
   }
   auto newGridUnit = newGridUnitOfTensor();
   newGridUnit->idx_=y;
   newGridUnit->data_=torch::tensor({item}, torch::kInt64);
-  rowGrids.push_back(newGridUnit);
+  dataGrid[x].push_back(newGridUnit);
+  INTELLI_INFO("create new grid "+ to_string(x)+","+ to_string(y));
   return 1;
 }
 

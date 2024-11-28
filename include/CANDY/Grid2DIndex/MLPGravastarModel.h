@@ -38,8 +38,9 @@ class MLPGravastarModel {
     torch::Tensor forward(torch::Tensor x) {
       // Pass the input through the input layer followed by a ReLU activation
       x = torch::tanh(inputLayer->forward(x));
+      x = outputLayer->forward(x);
       // Pass the result through the output layer
-      return torch::tanh(x);
+      return x;
     }
   };
   int64_t cudaDev = -1, hiddenLayerDim = 0, MLTrainBatchSize = 64, MLTrainEpochs = 10,cudaDevInference = -1;
@@ -55,8 +56,8 @@ class MLPGravastarModel {
    * @param outputDim the dimension of model ending output
    * @param extraConfig optional extra configs
    * @note accepted configurations
-   * - cudaDev the cuda device to build model, I64, default -1 (cpu only)
-   * - cudaDevInference the cuda device for inference, I64, default -1 (cpu only)
+   * - cudaDevice the cuda device to build model, I64, default -1 (cpu only)
+   * - cudaDeviceInference the cuda device for inference, I64, default -1 (cpu only)
    * - learningRate the learning rate for training, Double, default 0.01
    * - hiddenLayerDim the dimension of hidden layer, I64, default the same as output layer
    * - MLTrainBatchSize the batch size of ML training, I64, default 64

@@ -11,16 +11,17 @@ torch::Tensor MLPGravastarModel::customLoss(torch::Tensor yOut,torch::Tensor yEx
   auto compIp = yOut;
   auto normalizedOri = INTELLI::IntelliTensorOP::l2Normalize(originalIp);
   auto normalizedSurface = INTELLI::IntelliTensorOP::l2Normalize(compIp);
+
   return torch::mse_loss(normalizedSurface, normalizedOri);
 }
 void  MLPGravastarModel::init(int64_t inputDim, int64_t outputDim, INTELLI::ConfigMapPtr extraConfig) {
   if (extraConfig != nullptr) {
-    cudaDev = extraConfig->tryI64("cudaDev", -1, true);
-    cudaDevInference =  extraConfig->tryI64("cudaDevInference", -1, true);
+    cudaDev = extraConfig->tryI64("cudaDevice", -1, true);
+    cudaDevInference =  extraConfig->tryI64("cudaDeviceInference", -1, true);
     MLTrainBatchSize = extraConfig->tryI64("MLTrainBatchSize", 128, true);
     learningRate = extraConfig->tryDouble("learningRate", 0.01, true);
-    hiddenLayerDim = extraConfig->tryI64("hiddenLayerDim", outputDim, true);
-    MLTrainEpochs = extraConfig->tryI64("MLTrainEpochs", 30, true);
+    hiddenLayerDim = extraConfig->tryI64("hiddenLayerDim", inputDim/2, true);
+    MLTrainEpochs = extraConfig->tryI64("MLTrainEpochs", 10, true);
   }
   model.init(inputDim, hiddenLayerDim, outputDim);
 }
@@ -73,13 +74,13 @@ void MLPGravastarModel::trainModel(torch::Tensor &x1, int64_t logout) {
       optimizer.zero_grad(); // Zero gradients (do this once per batch, not per micro-batch)
       loss.backward(); // Accumulate gradients over all micro-batches
       total_loss += loss.item<double>();
-      if (mb % batchDiv == 1&&logout) {
-        LOG(INFO) << "Epoch [" << (epoch + 1) << "/" << MLTrainEpochs << "], Done batch " << mb<<"/"<<num_micro_batches
+      /*if (mb % batchDiv == 1) {
+        std::cout << "Epoch [" << (epoch + 1) << "/" << MLTrainEpochs << "], Done batch " << mb<<"/"<<num_micro_batches
                   << std::endl;
-      }
+      }*/
     }
-    if (epoch % epochDiv == 1&&logout) {
-      LOG(INFO) << "Epoch [" << (epoch + 1) << "/" << MLTrainEpochs << "], Loss: " << (total_loss / num_micro_batches)
+    if (logout) {
+      std::cout << "Epoch [" << (epoch + 1) << "/" << MLTrainEpochs << "], Loss: " << (total_loss / num_micro_batches)
                 << std::endl;
     }
     // Optimization step (after processing all micro-batches)
@@ -89,7 +90,15 @@ void MLPGravastarModel::trainModel(torch::Tensor &x1, int64_t logout) {
 }
 
 torch::Tensor MLPGravastarModel::forward(torch::Tensor &input) {
-  return model.forward((input));
+  torch::Device device(torch::kCPU); // or torch::kCPU
+  torch::Device deviceInference(torch::kCPU); // or torch::kCPU
+  if (cudaDevInference > -1 && torch::cuda::is_available()) {
+    // Move tensors to GPU 1
+    deviceInference = torch::Device(torch::kCUDA, cudaDevInference);
+  }
+  auto tin = input.to(deviceInference);
+  auto ru = model.forward(tin);
+  return ru.to(input.device());
 }
 
 }

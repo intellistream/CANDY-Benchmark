@@ -26,6 +26,7 @@
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
 #include <include/sptag_config.h>
+#include <CANDY/Grid2DIndex.h>
 #if CANDY_CL == 1
 //#include <CPPAlgos/CLMMCPPAlgo.h>
 #endif
@@ -59,6 +60,7 @@ CANDY::IndexTable::IndexTable() {
   indexMap["DPG"] = newDPGIndex();
   indexMap["LSHAPG"] = newLSHAPGIndex();
   indexMap["flatGPU"] = newFlatGPUIndex();
+  indexMap["grid2D"] = newGrid2DIndex();
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif
