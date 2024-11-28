@@ -5,6 +5,14 @@
 #include <faiss/utils/Heap.h>
 
 
+#define chronoElapsedTime(start)                               \
+    std::chrono::duration_cast<std::chrono::microseconds>(     \
+            std::chrono::high_resolution_clock::now() - start) \
+            .count()
+
+/* Wrap the distance computer into one that negates the
+   distances. This makes supporting INNER_PRODUCE search easier */
+
 
 /// compute var after concerning Xn+1
 double add_zero_to_var(size_t n, double variance, double sum) {
@@ -287,7 +295,8 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
 #pragma omp parallel if (i1>i0+50)
             {
                 DAGNN::VisitedTable vt(n0 + n);
-                DAGNN::DistanceQueryer disq(vecDim);
+                std::unique_ptr<faiss::DistanceComputer> disq(
+                        storage_distance_computer(storage));
 #pragma omp for schedule(static)
                 for (idx_t i = i0; i < i1; i++) {
                     // update measure
@@ -305,10 +314,10 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
                     omp_unset_lock(&state_lock);
 
                     idx_t id = order[i];
-                    disq.set_query(x + (id - n0) * vecDim);
+                    disq->set_query(x + (id - n0) * vecDim);
                     auto node = linkLists[id ];
                     last_visited[i + n0] = timestamp;
-                    greedy_insert(disq, *node, vt, locks);
+                    greedy_insert(*disq, *node, vt, locks);
                 }
             }
             i1 = i0;
@@ -326,7 +335,7 @@ void CANDY::DynamicTuneHNSW::add(idx_t n, float* x) {
 
 
 
-void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::DynamicTuneHNSW::Node& node, DAGNN::VisitedTable& vt, std::vector<omp_lock_t>& locks){
+void CANDY::DynamicTuneHNSW::greedy_insert(faiss::DistanceComputer& disq, CANDY::DynamicTuneHNSW::Node& node, DAGNN::VisitedTable& vt, std::vector<omp_lock_t>& locks){
     /// Greedy Phase
     idx_t nearest = -1;
     auto assigned_level = node.level;
@@ -350,9 +359,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
         printf("changing max level to %ld\n", max_level);
     }
     nearest = entry_points[0];
-    auto vector = get_vector(nearest);
-    float dist_nearest = disq(vector);
-    delete[] vector;
+    float dist_nearest = disq(nearest);
     if(assigned_level>0) {
         //printf("%ld with level=%ld\n", node.id, assigned_level);
     }
@@ -408,7 +415,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert(DAGNN::DistanceQueryer& disq, CANDY::
 
 
 
-void CANDY::DynamicTuneHNSW::greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, int64_t& steps_taken){
+void CANDY::DynamicTuneHNSW::greedy_insert_top(faiss::DistanceComputer& disq, size_t level, idx_t& nearest, float& dist_nearest, int64_t& steps_taken){
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
@@ -435,9 +442,8 @@ void CANDY::DynamicTuneHNSW::greedy_insert_top(DAGNN::DistanceQueryer& disq, siz
             }
             omp_unset_lock(&state_lock);
 
-            auto vector = get_vector(visiting);
 
-            auto dist = disq(vector);
+            auto dist = disq(visiting);
             //printf("trying to %ld with dist = %.2f on level%ld\n", visiting, dist, level);
             if(dist < dist_nearest) {
                 nearest = visiting;
@@ -446,7 +452,6 @@ void CANDY::DynamicTuneHNSW::greedy_insert_top(DAGNN::DistanceQueryer& disq, siz
                 bd_stats.steps_greedy++;
               //  printf("stepping to %ld with dist = %.2f on level%ld\n", visiting, dist, level);
             }
-            delete[] vector;
         }
         // out condition
         if(nearest == prev_nearest) {
@@ -455,7 +460,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_top(DAGNN::DistanceQueryer& disq, siz
     }
 }
 
-void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken){
+void CANDY::DynamicTuneHNSW::greedy_insert_upper(faiss::DistanceComputer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken){
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
@@ -481,9 +486,8 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
             }
             omp_unset_lock(&state_lock);
 
-            auto vector = get_vector(visiting);
 
-            auto dist = disq(vector);
+            auto dist = disq(visiting);
             //printf("trying to %ld with dist = %.2f on level%ld\n", visiting, dist, level);
             if(dist < dist_nearest) {
                 nearest = visiting;
@@ -492,7 +496,6 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
                 bd_stats.steps_greedy++;
                 //printf("stepping to %ld with dist = %.2f on level%ld\n", visiting, dist, level);
             }
-            delete[] vector;
         }
         // out condition
         if(nearest == prev_nearest) {
@@ -501,7 +504,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_upper(DAGNN::DistanceQueryer& disq, s
     }
 }
 
-void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken){
+void CANDY::DynamicTuneHNSW::greedy_insert_base(faiss::DistanceComputer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken){
     auto degree_avg = graphStates.global_stat.ntotal==0?0:graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
     auto std_dev = std::sqrt(graphStates.global_stat.degree_variance);
     for(;;) {
@@ -530,8 +533,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
                 }
             }
             omp_unset_lock(&state_lock);
-            auto vector = get_vector(visiting);
-            auto dist = disq(vector);
+            auto dist = disq(visiting);
 
             if(dist < dist_nearest) {
                 nearest = visiting;
@@ -539,7 +541,6 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
                 steps_taken += 1;
                 bd_stats.steps_greedy_base++;
             }
-            delete[] vector;
         }
         // out condition
         if(nearest == prev_nearest) {
@@ -548,7 +549,7 @@ void CANDY::DynamicTuneHNSW::greedy_insert_base(DAGNN::DistanceQueryer& disq, id
     }
 }
 /// We need the nearest point to consult while linking
-void CANDY::DynamicTuneHNSW::link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt){
+void CANDY::DynamicTuneHNSW::link_from(faiss::DistanceComputer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt){
     /// Candidate phase
     priority_queue<CandidateFarther> selection;
     candidate_select(disq, level, selection, candidates, vt);
@@ -574,7 +575,7 @@ void CANDY::DynamicTuneHNSW::link_from(DAGNN::DistanceQueryer& disq, idx_t idx, 
 
 }
 
-void CANDY::DynamicTuneHNSW::link_from_lock(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt, omp_lock_t* locks){
+void CANDY::DynamicTuneHNSW::link_from_lock(faiss::DistanceComputer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt, omp_lock_t* locks){
     /// Candidate phase
     priority_queue<CandidateFarther> selection;
     candidate_select(disq, level, selection, candidates, vt);
@@ -605,7 +606,7 @@ void CANDY::DynamicTuneHNSW::link_from_lock(DAGNN::DistanceQueryer& disq, idx_t 
 }
 
 /// We need the nearest point to consult while linking
-void CANDY::DynamicTuneHNSW::link_from_base(DAGNN::DistanceQueryer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt){
+void CANDY::DynamicTuneHNSW::link_from_base(faiss::DistanceComputer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt){
     /// Candidate phase
     priority_queue<CandidateFarther> selection;
     candidate_select_base(disq, selection, candidates, vt);
@@ -637,7 +638,7 @@ void CANDY::DynamicTuneHNSW::link_from_base(DAGNN::DistanceQueryer& disq, idx_t 
 
 }
 
-void CANDY::DynamicTuneHNSW::link_from_base_lock(DAGNN::DistanceQueryer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt, omp_lock_t* locks){
+void CANDY::DynamicTuneHNSW::link_from_base_lock(faiss::DistanceComputer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt, omp_lock_t* locks){
     /// Candidate phase
     priority_queue<CandidateFarther> selection;
     candidate_select_base(disq, selection, candidates, vt);
@@ -674,7 +675,7 @@ void CANDY::DynamicTuneHNSW::link_from_base_lock(DAGNN::DistanceQueryer& disq, i
 }
 
 
-void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size_t level,  std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates,  DAGNN::VisitedTable& vt){
+void CANDY::DynamicTuneHNSW::candidate_select(faiss::DistanceComputer& disq, size_t level,  std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates,  DAGNN::VisitedTable& vt){
     /// candidates might contain long-edge from greedy phase
     if(!candidates.empty()){
         selection.emplace(candidates.top().dist, candidates.top().id);
@@ -704,10 +705,9 @@ void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size
             }
             vt.set(expansion);
 
-            auto exp_vector = get_vector(expansion);
-            float dis = disq(exp_vector);
+            float dis = disq(expansion);
             bd_stats.steps_expansion++;
-            delete[] exp_vector;
+
 
             //float dis=curr_distList[i];
 
@@ -725,7 +725,7 @@ void CANDY::DynamicTuneHNSW::candidate_select(DAGNN::DistanceQueryer& disq, size
 
 }
 
-void CANDY::DynamicTuneHNSW::candidate_select_base(DAGNN::DistanceQueryer& disq, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates,  DAGNN::VisitedTable& vt){
+void CANDY::DynamicTuneHNSW::candidate_select_base(faiss::DistanceComputer& disq, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates,  DAGNN::VisitedTable& vt){
     /// candidates might contain long-edge from greedy phase
     if(!candidates.empty()){
         selection.emplace(candidates.top().dist, candidates.top().id);
@@ -763,10 +763,8 @@ void CANDY::DynamicTuneHNSW::candidate_select_base(DAGNN::DistanceQueryer& disq,
                 dis= curr_distList[i];
                 optimistic_count++;
             } else {
-                auto exp_vector = get_vector(expansion);
-                dis = disq(exp_vector);
+                dis = disq(expansion);
                 bd_stats.steps_expansion_base++;
-                delete[] exp_vector;
             }
 
             //float dis=curr_distList[i];
@@ -785,7 +783,7 @@ void CANDY::DynamicTuneHNSW::candidate_select_base(DAGNN::DistanceQueryer& disq,
 }
 
 
-void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  std::priority_queue<CandidateCloser>& candidates){
+void CANDY::DynamicTuneHNSW::prune(faiss::DistanceComputer& disq,size_t level,  std::priority_queue<CandidateCloser>& candidates){
     /// default version, selectively transfer candidates to output and then copy output to candidates
     int M = nb_neighbors(level);
 
@@ -814,22 +812,18 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
         float dist_v1_q = -v1.dist;
 
         bool rng_good=true;
-        auto v1_vector = get_vector(v1.id);
         for(auto v2: output){
-            auto v2_vector = get_vector(v2.id);
 
-            float dist_v1_v2 = disq.distance(v1_vector, v2_vector);
+            float dist_v1_v2 = disq.symmetric_dis(v1.id, v2.id);
             bd_stats.steps_pruning++;
             i++;
             //printf("v1=%f v2=%f v1_v2=%f\n", v1.dist,v2.dist,dist_v1_v2);
-            delete[] v2_vector;
             // from DiskANN Vanama
             if(dist_v1_v2*dynamicParams.rng_alpha < dist_v1_q ){
                 rng_good = false;
                 break;
             }
         }
-        delete[] v1_vector;
 
         if(rng_good){
             output.emplace_back(v1);
@@ -854,7 +848,7 @@ void CANDY::DynamicTuneHNSW::prune(DAGNN::DistanceQueryer& disq,size_t level,  s
     //printf("avg distance %f with size %d\n", dis_sum/count, count);
 }
 
-void CANDY::DynamicTuneHNSW::prune_base(DAGNN::DistanceQueryer& disq, std::priority_queue<CandidateCloser>& candidates){
+void CANDY::DynamicTuneHNSW::prune_base(faiss::DistanceComputer& disq, std::priority_queue<CandidateCloser>& candidates){
     /// default version, selectively transfer candidates to output and then copy output to candidates
     int level = 0;
     int M = nb_neighbors(level);
@@ -880,21 +874,18 @@ void CANDY::DynamicTuneHNSW::prune_base(DAGNN::DistanceQueryer& disq, std::prior
         float dist_v1_q = -v1.dist;
 
         bool rng_good=true;
-        auto v1_vector = get_vector(v1.id);
         for(auto v2: output){
-            auto v2_vector = get_vector(v2.id);
 
-            float dist_v1_v2 = disq.distance(v1_vector, v2_vector);
+            float dist_v1_v2 = disq.symmetric_dis(v1.id, v2.id);
             bd_stats.steps_pruning_base++;
             //printf("v1=%f v2=%f v1_v2=%f\n", v1.dist,v2.dist,dist_v1_v2);
-            delete[] v2_vector;
+
             // from DiskANN Vanama
             if(dist_v1_v2 < (dist_v1_q / dynamicParams.rng_alpha)){
                 rng_good = false;
                 break;
             }
         }
-        delete[] v1_vector;
 
         if(rng_good){
             output.emplace_back(v1);
@@ -921,7 +912,7 @@ void CANDY::DynamicTuneHNSW::prune_base(DAGNN::DistanceQueryer& disq, std::prior
 void breakpoint() {
     return;
 }
-void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level) {
+void CANDY::DynamicTuneHNSW::add_link(faiss::DistanceComputer& disq, idx_t src, idx_t dest, size_t level) {
     if(src==dest) {
         return;
     }
@@ -940,12 +931,9 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
 
         (*src_linkList)[i] = dest;
         /// TODO: weighted edges
-        auto src_vec = get_vector(src);
-        auto dest_vec = get_vector(dest);
 
-        (*src_dist)[i] = disq.distance(src_vec, dest_vec);
-        delete[] src_vec;
-        delete[] dest_vec;
+        (*src_dist)[i] = disq.symmetric_dis(src, dest);
+
 
 
         int64_t prev_degree = i;
@@ -999,12 +987,10 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
         return;
     }
     std::priority_queue<CandidateCloser> final_neighbors;
-    auto src_vector=get_vector(src);
-    auto dest_vector = get_vector(dest);
 
-    final_neighbors.emplace(disq.distance(src_vector, dest_vector), dest);
-    delete[] src_vector;
-    delete[] dest_vector;
+
+    final_neighbors.emplace(disq.symmetric_dis(src, dest), dest);
+
     double current_distance_sum = 0.0;
     double previous_distance_sum = 0.0;
     for(size_t i=0; i<nb_neighbors_level; i++) {
@@ -1074,7 +1060,7 @@ void CANDY::DynamicTuneHNSW::add_link(DAGNN::DistanceQueryer& disq, idx_t src, i
     }
 }
 
-void CANDY::DynamicTuneHNSW::add_link_base(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, int64_t& prev_degree, int64_t& current_degree) {
+void CANDY::DynamicTuneHNSW::add_link_base(faiss::DistanceComputer& disq, idx_t src, idx_t dest, int64_t& prev_degree, int64_t& current_degree) {
     if(src==dest) {
         return;
     }
@@ -1093,13 +1079,10 @@ void CANDY::DynamicTuneHNSW::add_link_base(DAGNN::DistanceQueryer& disq, idx_t s
         //printf("updating links for %ld: ", src);
 
         (*src_linkList)[i] = dest;
-        /// TODO: weighted edges
-        auto src_vec = get_vector(src);
-        auto dest_vec = get_vector(dest);
 
-        (*src_dist)[i] = disq.distance(src_vec, dest_vec);
-        delete[] src_vec;
-        delete[] dest_vec;
+
+        (*src_dist)[i] = disq.symmetric_dis(src, dest);
+
 
 
         prev_degree = i;
@@ -1151,12 +1134,10 @@ void CANDY::DynamicTuneHNSW::add_link_base(DAGNN::DistanceQueryer& disq, idx_t s
         return;
     }
     std::priority_queue<CandidateCloser> final_neighbors;
-    auto src_vector=get_vector(src);
-    auto dest_vector = get_vector(dest);
 
-    final_neighbors.emplace(disq.distance(src_vector, dest_vector), dest);
-    delete[] src_vector;
-    delete[] dest_vector;
+
+    final_neighbors.emplace(disq.symmetric_dis(src, dest), dest);
+
     double current_distance_sum = 0.0;
     double previous_distance_sum = 0.0;
     for(size_t i=0; i<nb_neighbors_level; i++) {
@@ -1228,16 +1209,16 @@ void CANDY::DynamicTuneHNSW::add_link_base(DAGNN::DistanceQueryer& disq, idx_t s
     }
 }
 
-void CANDY::DynamicTuneHNSW::search(DAGNN::DistanceQueryer &disq, idx_t annk, idx_t* results, float* distances, DAGNN::VisitedTable& vt) {
+void CANDY::DynamicTuneHNSW::search(faiss::DistanceComputer& disq, idx_t annk, idx_t* results, float* distances, DAGNN::VisitedTable& vt) {
     if(entry_points.empty()) {
         printf(" EMPTY INDEX!\n");
         return;
     }
 
     auto nearest = entry_points[0];
-    auto nearest_vec = get_vector(nearest);
-    float d_nearest = disq(nearest_vec);
-    delete[] nearest_vec;
+
+    float d_nearest = disq(nearest);
+
 
     for(size_t l=max_level; l>=1; l--) {
         std::priority_queue<CandidateCloser> candidates_greedy;
@@ -1245,7 +1226,7 @@ void CANDY::DynamicTuneHNSW::search(DAGNN::DistanceQueryer &disq, idx_t annk, id
 
     }
     std::priority_queue<CandidateCloser> candidates_greedy;
-    greedy_search_base(disq,nearest,d_nearest,candidates_greedy);
+    //greedy_search_base(disq,nearest,d_nearest,candidates_greedy);
     int64_t efSearch = annk>dynamicParams.efSearch? annk:dynamicParams.efSearch;
     DAGNN::MinimaxHeap candidates(efSearch);
 
@@ -1256,7 +1237,7 @@ void CANDY::DynamicTuneHNSW::search(DAGNN::DistanceQueryer &disq, idx_t annk, id
 
 }
 
-void CANDY::DynamicTuneHNSW::greedy_search_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates){
+void CANDY::DynamicTuneHNSW::greedy_search_upper(faiss::DistanceComputer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates){
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
@@ -1270,19 +1251,21 @@ void CANDY::DynamicTuneHNSW::greedy_search_upper(DAGNN::DistanceQueryer& disq, s
                 break;
             }
 
-            auto vector = get_vector(visiting);
+            auto start = std::chrono::high_resolution_clock::now();
+            auto dist = disq(visiting);
+            auto temp = chronoElapsedTime(start);
+            time_dco+= temp;
+            time_dco_upper += temp;
+            num_dco+=1;
+            num_dco_upper+=1;
 
-            auto dist = disq(vector);
-            if(is_greedy||is_training||is_datamining){
-                num_dco+=1;
-            }
             //printf("trying to %ld with dist = %.2f on level%ld\n", visiting, dist, level);
             if(dist < dist_nearest) {
                 nearest = visiting;
                 dist_nearest = dist;
                 //printf("stepping to %ld with dist = %.2f on level%ld\n", visiting, dist, level);
             }
-            delete[] vector;
+
         }
         // out condition
         if(nearest == prev_nearest) {
@@ -1291,7 +1274,7 @@ void CANDY::DynamicTuneHNSW::greedy_search_upper(DAGNN::DistanceQueryer& disq, s
     }
 }
 
-void CANDY::DynamicTuneHNSW::greedy_search_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates){
+void CANDY::DynamicTuneHNSW::greedy_search_base(faiss::DistanceComputer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates){
     for(;;) {
         idx_t prev_nearest = nearest;
         auto node = linkLists[nearest];
@@ -1301,11 +1284,14 @@ void CANDY::DynamicTuneHNSW::greedy_search_base(DAGNN::DistanceQueryer& disq, id
             if(visiting < 0) {
                 break;
             }
-            auto vector = get_vector(visiting);
-            auto dist = disq(vector);
-            if(is_greedy||is_training||is_datamining){
-                num_dco+=1;
-            }
+
+            auto start = std::chrono::high_resolution_clock::now();
+            auto dist = disq(visiting);
+            auto temp= chronoElapsedTime(start);
+            time_dco+=temp;
+            time_dco_base+=temp;
+            num_dco+=1;
+            num_dco_base+=1;
 
             //printf("trying to %ld with dist = %.2f on level 0 \n", visiting, dist);
             if(dist < dist_nearest) {
@@ -1313,7 +1299,7 @@ void CANDY::DynamicTuneHNSW::greedy_search_base(DAGNN::DistanceQueryer& disq, id
                 dist_nearest = dist;
                 //printf("stepping to %ld with dist = %.2f on level 0 \n", visiting, dist);
             }
-            delete[] vector;
+
         }
         // out condition
         if(nearest == prev_nearest) {
@@ -1322,7 +1308,7 @@ void CANDY::DynamicTuneHNSW::greedy_search_base(DAGNN::DistanceQueryer& disq, id
     }
 }
 
-int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t annk, idx_t* results, float* distances,DAGNN::MinimaxHeap& candidates, DAGNN::VisitedTable& vt) {
+int CANDY::DynamicTuneHNSW::candidate_search(faiss::DistanceComputer& disq, size_t level, idx_t annk, idx_t* results, float* distances,DAGNN::MinimaxHeap& candidates, DAGNN::VisitedTable& vt) {
     idx_t nres = 0;
 
     int nstep = 0;
@@ -1344,44 +1330,104 @@ int CANDY::DynamicTuneHNSW::candidate_search(DAGNN::DistanceQueryer& disq, size_
         auto nb_neighbors_level = nb_neighbors(level);
         auto v0_linkList = linkLists[v0]->neighbors[level];
         auto v0_vector=get_vector(v0);
-        auto v0_distList = linkLists[v0]->distances[level];
-        for(size_t j=0; j<nb_neighbors_level; j++) {
-            idx_t v1 = v0_linkList[j];
-            //printf("stepping to %ld\n", v1);
-            if(v1<0) {
-                break;
-            }
 
-            if(vt.get(v1)) {
-                continue;
-            }
-            // do not consider deleted vertices
-            if(deleteLists[v1]){
-                continue;
-            }
+        //
+//        for(size_t j=0; j<nb_neighbors_level; j++) {
+//            idx_t v1 = v0_linkList[j];
+//            //printf("stepping to %ld\n", v1);
+//            if(v1<0) {
+//                break;
+//            }
+//            auto vget = vt.get(v1);
+//            if(vget) {
+//                continue;
+//            }
+//            // do not consider deleted vertices
+//            if(deleteLists[v1]){
+//                continue;
+//            }
+//
+//            vt.set(v1);
+//
+//            //saved_vectors[counter] = get_vector(v1);
+//
+//            //float d1 = v0_distList[j];
+//            auto start = std::chrono::high_resolution_clock::now();
+//            float d1=disq(v1);
+//            auto temp = chronoElapsedTime(start);
+//            time_dco+=temp;
+//            time_dco_expansion+=temp;
+//
+//            num_dco+=1;
+//            num_dco_expansion+=1;
+//            //float d1_d0 = disq.distance(v1_vector, v0_vector);
+//            //float d0=disq(v0_vector);
+//            //printf("v1=%ld d0=%f d1=%f d1_d0=%f\n", v1, d0, d1, d1_d0);
+//
+//
+//            if(nres<annk) {
+//                faiss::maxheap_push(++nres, distances, results, d1, v1);
+//            } else if(d1<distances[0]) {
+//                faiss::maxheap_replace_top(nres, distances, results, d1, v1);
+//            }
+//            candidates.push(v1,d1);
+//
+//        }
 
+
+        int counter = 0;
+        size_t saved_j[4];
+
+        auto add_to_heap = [&](const size_t idx, const float dis) {
+                if (nres < annk) {
+                    faiss::maxheap_push(++nres, distances, results, dis, idx);
+                } else if (dis < distances[0]) {
+                    faiss::maxheap_replace_top(nres, distances, results, dis, idx);
+                }
+            candidates.push(idx, dis);
+        };
+
+        for (size_t j = 0; j < linkLists[v0]->bottom_connections; j++) {
+            int v1 = v0_linkList[j];
+
+            bool vget = vt.get(v1);
             vt.set(v1);
-            auto v1_vector = get_vector(v1);
-            //float d1 = v0_distList[j];
-            float d1=disq(v1_vector);
-            if(is_greedy||is_training||is_datamining){
-                num_dco+=1;
-            }
-            //float d1_d0 = disq.distance(v1_vector, v0_vector);
-            //float d0=disq(v0_vector);
-            //printf("v1=%ld d0=%f d1=%f d1_d0=%f\n", v1, d0, d1, d1_d0);
+            saved_j[counter] = v1;
+            counter += vget ? 0 : 1;
 
-            delete[] v1_vector;
-            if(nres<annk) {
-                faiss::maxheap_push(++nres, distances, results, d1, v1);
-            } else if(d1<distances[0]) {
-                faiss::maxheap_replace_top(nres, distances, results, d1, v1);
-            }
-            candidates.push(v1,d1);
+            if (counter == 4) {
+                float dis[4];
+                num_dco_expansion+=4;
+                auto start = std::chrono::high_resolution_clock::now();
+                disq.distances_batch_4(
+                        saved_j[0],
+                        saved_j[1],
+                        saved_j[2],
+                        saved_j[3],
+                        dis[0],
+                        dis[1],
+                        dis[2],
+                        dis[3]);
+                time_dco_expansion += chronoElapsedTime(start);
 
+                for (size_t id4 = 0; id4 < 4; id4++) {
+                    add_to_heap(saved_j[id4], dis[id4]);
+                }
+
+                counter = 0;
+            }
         }
-        delete[] v0_vector;
+
+        for (size_t icnt = 0; icnt < counter; icnt++) {
+            num_dco_expansion +=1;
+            auto start = std::chrono::high_resolution_clock::now();
+            float dis = disq(saved_j[icnt]);
+            time_dco_expansion+= chronoElapsedTime(start);
+            add_to_heap(saved_j[icnt], dis);
+        }
+
         nstep++;
+        delete[] v0_vector;
         if(nstep>dynamicParams.efSearch && nstep>annk) {
             break;
         }
@@ -1614,7 +1660,8 @@ void CANDY::DynamicTuneHNSW::swapEdgesWindow(WindowStates& window_states, int64_
 
     auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
     auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
-    DAGNN::DistanceQueryer disq(vecDim);
+    std::unique_ptr<faiss::DistanceComputer> disq(
+            storage_distance_computer(storage));
 
     for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++){
         auto vertex1 = it->second;
@@ -1654,7 +1701,8 @@ bool CANDY::DynamicTuneHNSW::improveEdges(idx_t vertex1, idx_t vertex2, float di
 }
 
 bool CANDY::DynamicTuneHNSW::improveEdges(idx_t vertex1, idx_t vertex2, idx_t vertex3, idx_t vertex4, float total_gain, const uint8_t steps){
-    DAGNN::DistanceQueryer disq(vecDim);
+    std::unique_ptr<faiss::DistanceComputer> disq(
+            storage_distance_computer(storage));
     DAGNN::VisitedTable vt(graphStates.global_stat.ntotal+graphStates.time_local_stat.ntotal);
     {
      auto vertex2_vector = get_vector(vertex2);
@@ -1662,8 +1710,8 @@ bool CANDY::DynamicTuneHNSW::improveEdges(idx_t vertex1, idx_t vertex2, idx_t ve
      std::vector<idx_t> top_list(25);
      std::vector<float> entry_vertex_distances(25);
 
-     disq.set_query(vertex2_vector);
-     search(disq, 25, entry_vertex_indices.data(), entry_vertex_distances.data(), vt);
+     disq->set_query(vertex2_vector);
+     search(*disq, 25, entry_vertex_indices.data(), entry_vertex_distances.data(), vt);
 
      // find a good vertex3 from vertex2's wanna-be nearest neighbors
      float best_gain = total_gain;
@@ -1716,10 +1764,10 @@ bool CANDY::DynamicTuneHNSW::improveEdges(idx_t vertex1, idx_t vertex2, idx_t ve
         if(vertex1 == vertex4){
             std::vector<idx_t> entry_vertex_indices = {vertex2, vertex3};
             auto vertex4_vector = get_vector(vertex4);
-            disq.set_query(vertex4_vector);
+            disq->set_query(vertex4_vector);
             std::vector<idx_t> top_list(25);
             std::vector<float> entry_vertex_distances(25);
-            search(disq, 25, entry_vertex_indices.data(), entry_vertex_distances.data(), vt);
+            search(*disq, 25, entry_vertex_indices.data(), entry_vertex_distances.data(), vt);
             delete[] vertex4_vector;
 
             float best_gain = 0;
@@ -1746,9 +1794,7 @@ bool CANDY::DynamicTuneHNSW::improveEdges(idx_t vertex1, idx_t vertex2, idx_t ve
                         if(vertex4!=selected_neighbor && !hasEdge(vertex4, selected_neighbor) && !hasEdge(selected_neighbor, vertex4)){
                             auto factor = 1;
                             auto old_neighbor_dist = gv_distances[j];
-                            auto selected_neighbor_vector = get_vector(selected_neighbor);
-                            auto new_neighbor_dist = disq.distance(vertex4_vector, selected_neighbor_vector);
-                            delete[] selected_neighbor_vector;
+                            auto new_neighbor_dist = disq->symmetric_dis(vertex4, selected_neighbor);
                             // cut (good_vertex, selected_neighbor) and link(good_vertex, vector_4) and link(vector4, selected_neighbor)
                             float new_gain = total_gain + old_neighbor_dist*factor - good_vertex_dist-new_neighbor_dist;
                             if(best_gain<new_gain){
@@ -1774,11 +1820,8 @@ bool CANDY::DynamicTuneHNSW::improveEdges(idx_t vertex1, idx_t vertex2, idx_t ve
            }
         } else {
             if(!hasEdge(vertex1, vertex4) && !hasEdge(vertex4, vertex1)){
-                auto v1_vector = get_vector(vertex1);
-                auto v4_vector = get_vector(vertex4);
-                auto dist14 = disq.distance(v1_vector, v4_vector);
-                delete[] v1_vector;
-                delete[] v4_vector;
+
+                auto dist14 = disq->symmetric_dis(vertex1, vertex4);
                 if(total_gain - dist14>0){
                     std::vector<idx_t> entry_vertex_indices={vertex2, vertex3};
                     /// TODO: check has path
@@ -1817,7 +1860,8 @@ void CANDY::DynamicTuneHNSW::linkEdgesWindow(WindowStates& window_states, int64_
     }
     auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
     auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
-    DAGNN::DistanceQueryer disq(vecDim);
+    std::unique_ptr<faiss::DistanceComputer> disq(
+            storage_distance_computer(storage));
     for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++) {
         auto node = it->second;
         // only processing those with too few edges
@@ -1861,8 +1905,8 @@ void CANDY::DynamicTuneHNSW::linkEdgesWindow(WindowStates& window_states, int64_
                 // add outward edges
                 auto nexus = linkLists[to_add.dest];
                 for(int64_t i=0; i<nexus->bottom_connections; i++) {
-                    auto dest_vector = get_vector(nexus->neighbors[0][i]);
-                    auto dist = disq.distance(node_vector, dest_vector);
+                    //auto dest_vector = get_vector(nexus->neighbors[0][i]);
+                    auto dist = disq->symmetric_dis(nexus->id, nexus->neighbors[0][i]);
                     if(dist<current_distance_avg) {
                         node->neighbors[0][node->bottom_connections] = nexus->neighbors[0][i];
                         node->distances[0][node->bottom_connections] = dist;
@@ -1873,12 +1917,12 @@ void CANDY::DynamicTuneHNSW::linkEdgesWindow(WindowStates& window_states, int64_
                         current_distance_avg = current_distance_sum/(current_degree*1.0);
                         if(current_degree >= degree_avg+dynamicParams.degree_allow_range*std_dev) {
 
-                            delete[] dest_vector;
+                            //delete[] dest_vector;
                             break;
                         }
                     }
 
-                    delete[] dest_vector;
+                    //delete[] dest_vector;
                 }
             }
         }
@@ -1900,7 +1944,7 @@ void CANDY::DynamicTuneHNSW::linkEdgesWindow(WindowStates& window_states, int64_
 
 }
 
-void CANDY::DynamicTuneHNSW::liftClusterCenter(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt){
+void CANDY::DynamicTuneHNSW::liftClusterCenter(faiss::DistanceComputer& disq, idx_t src, DAGNN::VisitedTable& vt){
     auto node = linkLists[src];
     if(node->level!=0){
         printf("unable to lift this node up from level>0\n");
@@ -1909,9 +1953,7 @@ void CANDY::DynamicTuneHNSW::liftClusterCenter(DAGNN::DistanceQueryer& disq, idx
     auto vector = get_vector(src);
     disq.set_query(vector);
     auto nearest = entry_points[0];
-    auto entry_vector = get_vector(nearest);
-    auto dist_nearest = disq(entry_vector);
-    delete[] entry_vector;
+    auto dist_nearest = disq(nearest);
     // lift the node from 0 to level 1
     int64_t steps_taken = 0;
 
@@ -1937,7 +1979,7 @@ void CANDY::DynamicTuneHNSW::liftClusterCenter(DAGNN::DistanceQueryer& disq, idx
     delete[] vector;
 }
 
-void CANDY::DynamicTuneHNSW::degradeNavigationPoint(DAGNN::DistanceQueryer& disq, CANDY::DynamicTuneHNSW::idx_t src, DAGNN::VisitedTable& vt) {
+void CANDY::DynamicTuneHNSW::degradeNavigationPoint(faiss::DistanceComputer& disq, CANDY::DynamicTuneHNSW::idx_t src, DAGNN::VisitedTable& vt) {
     auto node = linkLists[src];
     if(node->level!=1){
         printf("unable to degrade node from level other than 1!\n");
@@ -1957,11 +1999,7 @@ void CANDY::DynamicTuneHNSW::degradeNavigationPoint(DAGNN::DistanceQueryer& disq
     while(left<right){
         auto left_node = linkLists[node->neighbors[1][left]];
         auto right_node = linkLists[node->neighbors[1][right]];
-        auto left_vector=get_vector(node->neighbors[1][left]);
-        auto right_vector=get_vector(node->neighbors[1][right]);
-        auto dist = disq.distance(left_vector, right_vector);
-        delete[] left_vector;
-        delete[] right_vector;
+        auto dist = disq.symmetric_dis(node->neighbors[1][left], node->neighbors[1][right]);
 
         int left_idx = 0;
         int right_idx = 0;
@@ -2021,7 +2059,8 @@ void CANDY::DynamicTuneHNSW::degradeNavigationPoint(DAGNN::DistanceQueryer& disq
 }
 
 void CANDY::DynamicTuneHNSW::hierarchyOptimizationDegradeWIndow(WindowStates& window_states){
-    DAGNN::DistanceQueryer disq(vecDim);
+    std::unique_ptr<faiss::DistanceComputer> disq(
+            storage_distance_computer(storage));
     std::vector<idx_t> degraded;
     auto vertices =window_states.hierarchyVertices;
     for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++){
@@ -2030,7 +2069,7 @@ void CANDY::DynamicTuneHNSW::hierarchyOptimizationDegradeWIndow(WindowStates& wi
             continue;
         }
         DAGNN::VisitedTable vt(graphStates.global_stat.ntotal+graphStates.time_local_stat.ntotal);
-        degradeNavigationPoint(disq, node->id, vt);
+        degradeNavigationPoint(*disq, node->id, vt);
         degraded.push_back(node->id);
     }
     for(size_t i=0; i<degraded.size(); i++){
@@ -2041,7 +2080,8 @@ void CANDY::DynamicTuneHNSW::hierarchyOptimizationDegradeWIndow(WindowStates& wi
 }
 
 void CANDY::DynamicTuneHNSW::hierarchyOptimizationLiftWIndow(WindowStates& window_states){
-    DAGNN::DistanceQueryer disq(vecDim);
+    std::unique_ptr<faiss::DistanceComputer> disq(
+            storage_distance_computer(storage));
     std::vector<idx_t> lifted;
     auto vertices =window_states.hierarchyVertices;
     for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++){
@@ -2050,7 +2090,7 @@ void CANDY::DynamicTuneHNSW::hierarchyOptimizationLiftWIndow(WindowStates& windo
             continue;
         }
         DAGNN::VisitedTable vt(graphStates.global_stat.ntotal+graphStates.time_local_stat.ntotal);
-        liftClusterCenter(disq, node->id, vt);
+        liftClusterCenter(*disq, node->id, vt);
         lifted.push_back(node->id);
     }
     for(size_t i=0; i<lifted.size(); i++){
@@ -2059,15 +2099,13 @@ void CANDY::DynamicTuneHNSW::hierarchyOptimizationLiftWIndow(WindowStates& windo
 
 }
 
-void CANDY::DynamicTuneHNSW::backtrackCandidate(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt){
+void CANDY::DynamicTuneHNSW::backtrackCandidate(faiss::DistanceComputer& disq, idx_t src, DAGNN::VisitedTable& vt){
     auto entry_point = entry_points[0];
     auto entry_vector = get_vector(entry_point);
-    auto src_vector = get_vector(src);
     disq.set_query(entry_vector);
     auto backtracking = src;
-    auto dist_backtracking = disq(src_vector);
+    auto dist_backtracking = disq(src);
     int step_taken = 0;
-    delete[] src_vector;
     std::priority_queue<CandidateCloser> candidates;
     size_t nb_neighbor_level = nb_neighbors(0);
 
@@ -2079,9 +2117,8 @@ void CANDY::DynamicTuneHNSW::backtrackCandidate(DAGNN::DistanceQueryer& disq, id
             if(visiting<0){
                 break;
             }
-            auto vector = get_vector(visiting);
-            auto dist = disq(vector);
-            delete[] vector;
+            auto dist = disq(visiting);
+
             if(dist<dist_backtracking){
                 backtracking = visiting;
                 dist_backtracking = dist;
@@ -2102,7 +2139,7 @@ void CANDY::DynamicTuneHNSW::backtrackCandidate(DAGNN::DistanceQueryer& disq, id
 
 }
 
-void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, DAGNN::VisitedTable& vt){
+void CANDY::DynamicTuneHNSW::linkClusters(faiss::DistanceComputer& disq, idx_t src, idx_t dest, DAGNN::VisitedTable& vt){
     if(src==dest){
         //printf("Do not attempt to link within one cluster for this set of actions!\n");
         return;
@@ -2228,20 +2265,12 @@ void CANDY::DynamicTuneHNSW::linkClusters(DAGNN::DistanceQueryer& disq, idx_t sr
             count++;
             continue;
         }
-        auto vector_1 = get_vector(node_1_id);
-        auto vector_2 = get_vector(node_2_id);
-        auto vector_3 = get_vector(node_3_id);
-        auto vector_4 = get_vector(node_4_id);
 
-        auto length14 = disq.distance(vector_1, vector_4);
-        auto length23 = disq.distance(vector_2, vector_3);
-        auto length13 = disq.distance(vector_1, vector_3);
-        auto length24 = disq.distance(vector_2, vector_4);
+        auto length14 = disq.symmetric_dis(node_1_id, node_4_id);
+        auto length23 = disq.symmetric_dis(node_2_id, node_3_id);
+        auto length13 = disq.symmetric_dis(node_1_id, node_3_id);
+        auto length24 = disq.symmetric_dis(node_2_id, node_4_id);
 
-        delete[] vector_1;
-        delete[] vector_2;
-        delete[] vector_3;
-        delete[] vector_4;
 
         if(plan_1 && plan_2){
             // choose a plan that brings less total distance
@@ -2484,19 +2513,21 @@ void CANDY::DynamicTuneHNSW::navigationBacktrackWindow(WindowStates& window_stat
     auto vertices =window_states.oldVertices;
     auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
     auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
-    DAGNN::DistanceQueryer disq(vecDim);
+    std::unique_ptr<faiss::DistanceComputer> disq(
+            storage_distance_computer(storage));
     for(auto it = vertices.data_map.begin(); it!=vertices.data_map.end(); it++){
         auto node = it->second;
         if(node->bottom_connections*1.0>degree_avg+dynamicParams.degree_std_range*std_dev+1) {
             continue;
         }
         DAGNN::VisitedTable vt(graphStates.global_stat.ntotal+graphStates.time_local_stat.ntotal);
-        backtrackCandidate(disq, node->id, vt);
+        backtrackCandidate(*disq, node->id, vt);
     }
 }
 
 void CANDY::DynamicTuneHNSW::linkClusterWindow(CANDY::DynamicTuneHNSW::WindowStates &window_states) {
-    DAGNN::DistanceQueryer disq(vecDim);
+    std::unique_ptr<faiss::DistanceComputer> disq(
+            storage_distance_computer(storage));
     auto degree_avg = graphStates.global_stat.degree_sum/(graphStates.global_stat.ntotal*1.0);
     auto std_dev= std::sqrt(graphStates.global_stat.degree_variance);
     auto it1 = window_states.oldVertices.data_map.begin();
@@ -2506,7 +2537,7 @@ void CANDY::DynamicTuneHNSW::linkClusterWindow(CANDY::DynamicTuneHNSW::WindowSta
         auto node2 = it2->second;
         if(node1->bottom_connections<degree_avg-dynamicParams.degree_allow_range*std_dev-1 || node2->bottom_connections<degree_avg-dynamicParams.degree_allow_range*std_dev-1) {
             DAGNN::VisitedTable vt(graphStates.global_stat.ntotal + graphStates.time_local_stat.ntotal);
-            linkClusters(disq, it1->first, it2->first, vt);
+            linkClusters(*disq, it1->first, it2->first, vt);
         }
         it1++;
         it2++;
@@ -2538,22 +2569,21 @@ void CANDY::DynamicTuneHNSW::deleteVectorByIndex(const std::vector<idx_t>& idx) 
                     break;
                 }
 
-                DAGNN::DistanceQueryer disq(vecDim);
+                std::unique_ptr<faiss::DistanceComputer> disq(
+                        storage_distance_computer(storage));
                 DAGNN::VisitedTable vt(storage->ntotal);
                 auto node = linkLists[nid];
                 auto vector = get_vector(nid);
-                disq.set_query(vector);
+                disq->set_query(vector);
                 auto nearest = entry_points[0];
-                auto entry_vector = get_vector(nearest);
-                auto dist_nearest = disq(entry_vector);
-                delete[] entry_vector;
+                auto dist_nearest = (*disq)(nearest);
                 std::priority_queue<CandidateCloser> candidates;
                 int64_t steps_taken = 0;
-                greedy_insert_base(disq, nearest, dist_nearest, candidates, steps_taken);
+                greedy_insert_base(*disq, nearest, dist_nearest, candidates, steps_taken);
 
                 auto entry_base_level = CandidateCloser(dist_nearest, nearest);
                 candidates.push(entry_base_level);
-                link_from_base(disq, node->id,  nearest, dist_nearest, candidates, vt);
+                link_from_base(*disq, node->id,  nearest, dist_nearest, candidates, vt);
 
                 delete[] vector;
             }
@@ -2573,22 +2603,21 @@ void CANDY::DynamicTuneHNSW::deleteVectorByIndex(const std::vector<idx_t>& idx) 
                     break;
                 }
 
-                DAGNN::DistanceQueryer disq(vecDim);
+                std::unique_ptr<faiss::DistanceComputer> disq(
+                        storage_distance_computer(storage));
                 DAGNN::VisitedTable vt(storage->ntotal);
                 auto node = linkLists[nid];
                 auto vector = get_vector(nid);
-                disq.set_query(vector);
+                disq->set_query(vector);
                 auto nearest = entry_points[0];
-                auto entry_vector = get_vector(id);
-                auto dist_nearest = disq(entry_vector);
-                delete[] entry_vector;
+                auto dist_nearest = (*disq)(nearest);
                 std::priority_queue<CandidateCloser> candidates;
                 int64_t steps_taken = 0;
-                greedy_insert_base(disq, nearest, dist_nearest, candidates, steps_taken);
+                greedy_insert_base(*disq, nearest, dist_nearest, candidates, steps_taken);
 
                 auto entry_base_level = CandidateCloser(dist_nearest, nearest);
                 candidates.push(entry_base_level);
-                link_from_base(disq, node->id,  nearest, dist_nearest, candidates, vt);
+                link_from_base(*disq, node->id,  nearest, dist_nearest, candidates, vt);
 
                 delete[] vector;
             }

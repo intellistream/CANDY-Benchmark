@@ -12,8 +12,11 @@
 #include <faiss/IndexFlat.h>
 #include <omp.h>
 #include <boost/math/constants/constants.hpp>
+#include <faiss/impl/DistanceComputer.h>
 #define chronoElapsedTime(start) std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - start).count()
 namespace CANDY{
+
+
 enum dynamic_action_num{
     do_nothing,
     bad_link_cut_old,
@@ -482,6 +485,18 @@ struct DynamicTuneHNSW{
     bool is_training = false;
     bool is_greedy = false;
     uint64_t num_dco = 0; // used as reward
+    uint64_t time_dco = 0;
+
+    uint64_t num_dco_upper = 0;
+    uint64_t time_dco_upper = 0;
+
+    uint64_t num_dco_base = 0;
+    uint64_t time_dco_base = 0;
+
+    uint64_t num_dco_expansion = 0;
+    uint64_t time_dco_expansion = 0;
+
+
     size_t datamining_search_select = 20;
     size_t datamining_search_annk = 25;
     int64_t vecDim;
@@ -493,6 +508,8 @@ struct DynamicTuneHNSW{
     faiss::IndexFlat* storage = nullptr;
     /// The graph neighbor structure. Use linkLists[idx] to locate a Nodes' neighbor list
     std::vector<Node*> linkLists;
+
+
     std::vector<bool> deleteLists;
     std::vector<idx_t> entry_points;
     std::vector<uint64_t> last_visited;
@@ -511,7 +528,6 @@ struct DynamicTuneHNSW{
         graphStates.vecDim = dim;
         omp_init_lock(&state_lock);
         set_default_probs(M, 1.0/log(M));
-        new DAGNN::DistanceQueryer(metric, dim);
         if(metric == DAGNN_METRIC_L2){
             storage = new faiss::IndexFlatL2(vecDim);
         } else {
@@ -707,45 +723,45 @@ struct DynamicTuneHNSW{
     // add break down into 4 parts: greedy, candidate_add, prune and link
     void add(idx_t n, float* x);
 
-    void greedy_insert(DAGNN::DistanceQueryer& disq, Node& node,DAGNN::VisitedTable& vt, std::vector<omp_lock_t>& locks);
+    void greedy_insert(faiss::DistanceComputer& disq, Node& node,DAGNN::VisitedTable& vt, std::vector<omp_lock_t>& locks);
 
-    void greedy_insert_top(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, int64_t& steps_taken);
+    void greedy_insert_top(faiss::DistanceComputer& disq, size_t level, idx_t& nearest, float& dist_nearest, int64_t& steps_taken);
 
-    void greedy_insert_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken);
+    void greedy_insert_upper(faiss::DistanceComputer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken);
 
-    void greedy_insert_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken);
+    void greedy_insert_base(faiss::DistanceComputer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates, int64_t& steps_taken);
 
-    void link_from(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt);
+    void link_from(faiss::DistanceComputer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt);
 
-    void link_from_lock(DAGNN::DistanceQueryer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt, omp_lock_t* locks);
+    void link_from_lock(faiss::DistanceComputer& disq, idx_t idx, size_t level, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt, omp_lock_t* locks);
 
-    void link_from_base(DAGNN::DistanceQueryer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt);
+    void link_from_base(faiss::DistanceComputer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt);
 
-    void link_from_base_lock(DAGNN::DistanceQueryer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt, omp_lock_t* locks);
+    void link_from_base_lock(faiss::DistanceComputer& disq, idx_t idx, idx_t nearest, float dist_nearest, std::priority_queue<CandidateCloser>& candidates,DAGNN::VisitedTable& vt, omp_lock_t* locks);
 
-    void candidate_select(DAGNN::DistanceQueryer& disq, size_t level, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt);
+    void candidate_select(faiss::DistanceComputer& disq, size_t level, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt);
 
-    void candidate_select_base(DAGNN::DistanceQueryer& disq, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt);
+    void candidate_select_base(faiss::DistanceComputer& disq, std::priority_queue<CandidateFarther> selection, std::priority_queue<CandidateCloser>& candidates, DAGNN::VisitedTable& vt);
 
-    void prune(DAGNN::DistanceQueryer& disq,size_t level, std::priority_queue<CandidateCloser>& candidates);
+    void prune(faiss::DistanceComputer& disq,size_t level, std::priority_queue<CandidateCloser>& candidates);
 
-    void prune_base(DAGNN::DistanceQueryer& disq, std::priority_queue<CandidateCloser>& candidates);
+    void prune_base(faiss::DistanceComputer& disq, std::priority_queue<CandidateCloser>& candidates);
 
     void link(size_t level, idx_t entry, std::priority_queue<CandidateCloser>& candidates);
 
-    void add_link(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, size_t level);
+    void add_link(faiss::DistanceComputer& disq, idx_t src, idx_t dest, size_t level);
 
-    void add_link_base(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, int64_t& prev_degree, int64_t& current_degree);
+    void add_link_base(faiss::DistanceComputer& disq, idx_t src, idx_t dest, int64_t& prev_degree, int64_t& current_degree);
 
-    void search(DAGNN::DistanceQueryer& disq, idx_t annk, idx_t* results, float* distances, DAGNN::VisitedTable& vt);
+    void search(faiss::DistanceComputer& disq, idx_t annk, idx_t* results, float* distances, DAGNN::VisitedTable& vt);
 
-    void greedy_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t entry, float dist_nearest, std::priority_queue<CandidateCloser>& candidates);
+    void greedy_search(faiss::DistanceComputer& disq, size_t level, idx_t entry, float dist_nearest, std::priority_queue<CandidateCloser>& candidates);
 
-    void greedy_search_upper(DAGNN::DistanceQueryer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
+    void greedy_search_upper(faiss::DistanceComputer& disq, size_t level, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
 
-    void greedy_search_base(DAGNN::DistanceQueryer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
+    void greedy_search_base(faiss::DistanceComputer& disq, idx_t& nearest, float& dist_nearest, std::priority_queue<CandidateCloser>& candidates);
 
-    int candidate_search(DAGNN::DistanceQueryer& disq, size_t level, idx_t annk, idx_t* results, float* distances,DAGNN::MinimaxHeap& candidates,DAGNN::VisitedTable& vt);
+    int candidate_search(faiss::DistanceComputer& disq, size_t level, idx_t annk, idx_t* results, float* distances,DAGNN::MinimaxHeap& candidates,DAGNN::VisitedTable& vt);
 
     void cutEdgesBase(idx_t src);
 
@@ -766,14 +782,14 @@ struct DynamicTuneHNSW{
     bool improveEdges(idx_t vertex1, idx_t vertex2, idx_t vertex3, idx_t vertex4, float total_gain, const uint8_t steps);
 
     /// Action set III: Hierarchy optimization
-    void liftClusterCenter(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt);
-    void degradeNavigationPoint(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt);
+    void liftClusterCenter(faiss::DistanceComputer& disq, idx_t src, DAGNN::VisitedTable& vt);
+    void degradeNavigationPoint(faiss::DistanceComputer& disq, idx_t src, DAGNN::VisitedTable& vt);
     void hierarchyOptimizationDegradeWIndow(WindowStates& window_states);
     void hierarchyOptimizationLiftWIndow(WindowStates& window_states);
 
     /// Action set II: Explorative navigation
-    void backtrackCandidate(DAGNN::DistanceQueryer& disq, idx_t src, DAGNN::VisitedTable& vt);
-    void linkClusters(DAGNN::DistanceQueryer& disq, idx_t src, idx_t dest, DAGNN::VisitedTable& vt);
+    void backtrackCandidate(faiss::DistanceComputer& disq, idx_t src, DAGNN::VisitedTable& vt);
+    void linkClusters(faiss::DistanceComputer& disq, idx_t src, idx_t dest, DAGNN::VisitedTable& vt);
     void navigationBacktrackWindow(WindowStates& window_states);
     void linkClusterWindow(WindowStates& window_states);
 
@@ -865,6 +881,8 @@ struct DynamicTuneHNSW{
     }
 
 
+
+
 //    bool checkRNG(idx_t vertex_index, idx_t target_index, float vertex_target_distance){
 //        auto vertex = linkLists[vertex_index];
 //        auto target = linkLists[target_index];
@@ -883,6 +901,58 @@ struct DynamicTuneHNSW{
 //
 //        }
 //    }
+
+        struct NegativeDistanceComputer : faiss::DistanceComputer {
+            /// owned by this
+            DistanceComputer* basedis;
+            using idx_t = int64_t;
+
+            explicit NegativeDistanceComputer(DistanceComputer* basedis)
+                    : basedis(basedis) {}
+
+            void set_query(const float* x) override {
+                basedis->set_query(x);
+            }
+
+            /// compute distance of vector i to current query
+            float operator()(idx_t i) override {
+                return -(*basedis)(i);
+            }
+
+            void distances_batch_4(
+                    const idx_t idx0,
+                    const idx_t idx1,
+                    const idx_t idx2,
+                    const idx_t idx3,
+                    float& dis0,
+                    float& dis1,
+                    float& dis2,
+                    float& dis3) override {
+                basedis->distances_batch_4(
+                        idx0, idx1, idx2, idx3, dis0, dis1, dis2, dis3);
+                dis0 = -dis0;
+                dis1 = -dis1;
+                dis2 = -dis2;
+                dis3 = -dis3;
+            }
+
+            /// compute distance between two stored vectors
+            float symmetric_dis(idx_t i, idx_t j) override {
+                return -basedis->symmetric_dis(i, j);
+            }
+
+            virtual ~NegativeDistanceComputer() {
+                delete basedis;
+            }
+        };
+
+        faiss::DistanceComputer* storage_distance_computer(const faiss::Index* storage) {
+            if (is_similarity_metric(storage->metric_type)) {
+                return new NegativeDistanceComputer(storage->get_distance_computer());
+            } else {
+                return storage->get_distance_computer();
+            }
+        }
 };
 
 /**

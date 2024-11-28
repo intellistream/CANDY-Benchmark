@@ -95,13 +95,14 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
             dagnn->num_dco = 0;
             for (size_t i = 0; i < selected_numbers.size(); i++) {
                 int num = selected_numbers[i];
-                DAGNN::DistanceQueryer disq(vecDim);
+                std::unique_ptr<faiss::DistanceComputer> disq(
+                        dagnn->storage_distance_computer(dagnn->storage));
                 DAGNN::VisitedTable vt(dagnn->storage->ntotal);
                 auto to_search = dagnn->get_vector(num);
-                disq.set_query(to_search);
+                disq->set_query(to_search);
 
                 auto search_start = std::chrono::high_resolution_clock::now();
-                dagnn->search(disq, dagnn->datamining_search_annk, ru_dagnn.data() + dagnn->datamining_search_annk * i,
+                dagnn->search(*disq, dagnn->datamining_search_annk, ru_dagnn.data() + dagnn->datamining_search_annk * i,
                               distance_dagnn.data() + dagnn->datamining_search_annk * i, vt);
                 search_lat += chronoElapsedTime(search_start);
                 delete[] to_search;
@@ -177,13 +178,14 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
                 dagnn_copy->is_greedy = 1;
                 for (size_t i = 0; i < selected_numbers.size(); i++) {
                     int num = selected_numbers[i];
-                    DAGNN::DistanceQueryer disq(vecDim);
+                    std::unique_ptr<faiss::DistanceComputer> disq(
+                            dagnn->storage_distance_computer(dagnn->storage));
                     DAGNN::VisitedTable vt(dagnn_copy->storage->ntotal);
                     auto to_search = dagnn_copy->get_vector(num);
-                    disq.set_query(to_search);
+                    disq->set_query(to_search);
 
                     auto search_start = std::chrono::high_resolution_clock::now();
-                    dagnn_copy->search(disq, dagnn_copy->datamining_search_annk,
+                    dagnn_copy->search(*disq, dagnn_copy->datamining_search_annk,
                                        ru_dagnn.data() + dagnn_copy->datamining_search_annk * i,
                                        distance_dagnn.data() + dagnn_copy->datamining_search_annk * i, vt);
                     search_lat += chronoElapsedTime(search_start);
@@ -254,13 +256,14 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
             dagnn->num_dco = 0;
             for (size_t i = 0; i < selected_numbers.size(); i++) {
                 int num = selected_numbers[i];
-                DAGNN::DistanceQueryer disq(vecDim);
+                std::unique_ptr<faiss::DistanceComputer> disq(
+                        dagnn->storage_distance_computer(dagnn->storage));
                 DAGNN::VisitedTable vt(dagnn->storage->ntotal);
                 auto to_search = dagnn->get_vector(num);
-                disq.set_query(to_search);
+                disq->set_query(to_search);
 
                 auto search_start = std::chrono::high_resolution_clock::now();
-                dagnn->search(disq, dagnn->datamining_search_annk, ru_dagnn.data() + dagnn->datamining_search_annk * i,
+                dagnn->search(*disq, dagnn->datamining_search_annk, ru_dagnn.data() + dagnn->datamining_search_annk * i,
                               distance_dagnn.data() + dagnn->datamining_search_annk * i, vt);
                 search_lat += chronoElapsedTime(search_start);
                 delete[] to_search;
@@ -332,13 +335,14 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
             dagnn->num_dco = 0;
             for (size_t i = 0; i < selected_numbers.size(); i++) {
                 int num = selected_numbers[i];
-                DAGNN::DistanceQueryer disq(vecDim);
+                std::unique_ptr<faiss::DistanceComputer> disq(
+                        dagnn->storage_distance_computer(dagnn->storage));
                 DAGNN::VisitedTable vt(dagnn->storage->ntotal);
                 auto to_search = dagnn->get_vector(num);
-                disq.set_query(to_search);
+                disq->set_query(to_search);
 
                 auto search_start = std::chrono::high_resolution_clock::now();
-                dagnn->search(disq, dagnn->datamining_search_annk, ru_dagnn.data() + dagnn->datamining_search_annk * i,
+                dagnn->search(*disq, dagnn->datamining_search_annk, ru_dagnn.data() + dagnn->datamining_search_annk * i,
                        distance_dagnn.data() + dagnn->datamining_search_annk * i, vt);
                 search_lat += chronoElapsedTime(search_start);
                 delete[] to_search;
@@ -401,13 +405,14 @@ bool CANDY::DAGNNIndex::insertTensor(torch::Tensor &t) {
             dagnn->num_dco = 0;
             for (size_t i = 0; i < selected_numbers.size(); i++) {
                 int num = selected_numbers[i];
-                DAGNN::DistanceQueryer disq(vecDim);
+                std::unique_ptr<faiss::DistanceComputer> disq(
+                        dagnn->storage_distance_computer(dagnn->storage));
                 DAGNN::VisitedTable vt(dagnn->storage->ntotal);
                 auto to_search = dagnn->get_vector(num);
-                disq.set_query(to_search);
+                disq->set_query(to_search);
 
                 auto search_start = std::chrono::high_resolution_clock::now();
-                dagnn->search(disq, dagnn->datamining_search_annk, ru_dagnn.data() + dagnn->datamining_search_annk * i,
+                dagnn->search(*disq, dagnn->datamining_search_annk, ru_dagnn.data() + dagnn->datamining_search_annk * i,
                        distance_dagnn.data() + dagnn->datamining_search_annk * i, vt);
                 search_lat += chronoElapsedTime(search_start);
                 delete[] to_search;
@@ -451,14 +456,36 @@ std::vector<faiss::idx_t> CANDY::DAGNNIndex::searchIndex(torch::Tensor q, int64_
 
     std::vector<faiss::idx_t> ru(k*querySize);
     std::vector<float> distance(k*querySize);
-    DAGNN::DistanceQueryer disq(vecDim);
+    std::unique_ptr<faiss::DistanceComputer> disq(
+            dagnn->storage_distance_computer(dagnn->storage));
+    dagnn->num_dco = 0;
+    dagnn->time_dco = 0;
+    dagnn->num_dco_expansion = 0;
+    dagnn->num_dco_base = 0;
+    dagnn->num_dco_upper = 0;
+
+    dagnn->time_dco_expansion=0;
+    dagnn->time_dco_base=0;
+    dagnn->time_dco_upper=0;
 
     for(int64_t i=0; i<querySize; i++) {
-        disq.set_query(queryData+i*vecDim);
+        disq->set_query(queryData+i*vecDim);
         DAGNN::VisitedTable vt(dagnn->storage->ntotal);
-        dagnn->search(disq, k, ru.data()+i*k, distance.data()+i*k, vt);
+
+        dagnn->search(*disq, k, ru.data()+i*k, distance.data()+i*k, vt);
 
     }
+    printf("DAGNN SEARCH DCO = %ld\n", dagnn->num_dco);
+    printf("DAGNN SEARCH DCO TIME = %ld\n", dagnn->time_dco);
+
+    printf("DAGNN UPPER DCO = %ld\n", dagnn->num_dco_upper);
+    printf("DAGNN UPPER DCO TIME = %ld\n", dagnn->time_dco_upper);
+
+    printf("DAGNN BASE DCO = %ld\n", dagnn->num_dco_base);
+    printf("DAGNN BASE DCO TIME = %ld\n", dagnn->time_dco_base);
+
+    printf("DAGNN EXPANSION DCO = %ld\n", dagnn->num_dco_expansion);
+    printf("DAGNN EXPANSION DCO TIME = %ld\n", dagnn->time_dco_expansion);
     // for(int64_t i=0; i<querySize; i++) {
     //     printf("result for %ldth query\n", i);
     //     for(int64_t j=0; j<k; j++) {
