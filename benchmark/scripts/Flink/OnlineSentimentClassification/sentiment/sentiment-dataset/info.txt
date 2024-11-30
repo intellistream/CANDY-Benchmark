@@ -1,0 +1,40 @@
+The dataset consists of disaster-related images with a set of five sentiment annotations per image.
+Each image file is designated one line in the annotation file (annotations.csv), where the columns use the following header format: A#.Q#.#.
+
+Q = Question
+A = Annotator
+# = Number
+
+For example, the column "A1.Q3.2" corresponds to the answer of annotator 1 on question 3 for option 2.
+Use the information below to decode the header information contained in the annotation file.
+Questions 1 and 2 use a Likert scale ranging from 1 to 9.
+Questions 3, 4, and 5 are checkbox-style questions where active checkboxes are encoded as 1, and inactive checkboxes are encoded as 0.
+
+Q1: Your evoked emotion after seeing this picture is? (Likert 1-9: 1-very negative, 5-neutral, 9-very positive)
+Q2: Confronted with the picture, you are feeling? (Likert 1-9: 1-calm/relaxed, 9-excited/stimulated)
+Q3: Which one(s) of the following major emotion keywords best describe your evoked emotion after seeing this picture? (Choose at least one or more keywords that are suitable)
+    Q3.1: Joy
+    Q3.2: Sadness
+    Q3.3: Fear
+    Q3.4: Disgust
+    Q3.5: Anger
+    Q3.6: Surprise
+    Q3.7: Neutral
+Q4: Select the specific emotion keywords that can describe your evoked emotion after seeing this picture? (Choose all the keywords that are relevant to your emotion)   
+    Q4.1: Anger( anger, angry, disgust, boiling with anger)          
+    Q4.2: Anxiety (anxiety, fear, nervousness)
+    Q4.3: Craving (hunger, desire, a situation of hunger)             
+    Q4.4: Emphatic pain ( pain, empathic pain, shock
+    Q4.5: Fear (fear, feeling scared, extreme fear
+    Q4.6: Horror (shock, horror, feeling scared)
+    Q4.7: Joy (happiness, extreme happiness, love)                    
+    Q4.8: Relief (relief, deep relief, sense of narrow escape)
+    Q4.9: Sadness (sadness, extreme sadness, sympathy)
+Q5: What kind of information of the image influences your evoked emotion the most?
+    Q5.1: Human facial expression, post or gesture
+    Q5.2: Image color, contrast, saturation, etc.
+    Q5.3: Image background (scene, landmark, etc.)
+    Q5.4: Objects in image (gadgets, clothes, animals, etc.)
+    Q5.5: Texts in image
+    Q5.6: Emoji sticker
+    Q5.7: Halo effect

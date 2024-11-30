@@ -43,6 +43,8 @@ benchmark/torchscripts/
 benchmark/torchscripts*
 /.vscode
 PyCANDY.egg-info/
+benchmark/scripts/Flink/OnlineSentimentClassification/model.pth
+benchmark/scripts/Flink/OnlineSentimentClassification/__pycache__
 dist/
 commit_info
 commit.sh

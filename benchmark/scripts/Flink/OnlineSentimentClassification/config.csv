@@ -1,0 +1,5 @@
+key,value,type
+vecDim,768,I64
+indexTag,flat,String
+encodeLen,3,I64
+numberOfBuckets,8192,I64
