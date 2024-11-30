@@ -13,8 +13,12 @@ The injected text knowledge comes sequentially with verification query in the da
 ## To run
 First, prepare the model by 
 ```shell
-wget https://datasets.simula.no/downloads/image-sentiment/sentiment.zip
+mkdir sentiment && cd sentiment &&
+wget https://datasets.simula.no/downloads/image-sentiment/sentiment.zip &&
 unzip *.zip
+```
+Then 
+```
 python3 prepareModel.py
 ``` 
 After there is model.pth, run
