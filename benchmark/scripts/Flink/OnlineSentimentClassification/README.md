@@ -1,11 +1,11 @@
 # OnlineSentimentClassification
 ## Overview
 This application conducts Online Sentiment Classification based on flink, the application looks like this:
- - input: the sentence in data stream
+ - input: the sentences in data stream
  - output: the sentiment
 
 The DAG is straight forward:
-<data stream>-> <encoder> -> <reference knowledge> -> output
+|data stream|-> |encoder| -> |reference knowledge| -> output
 Where reference knowledge is using CANDY as Flink plug in.
 
 The model is a multimodal one, but it has never trained for classifyiing text before, so we inject the text knowledge, i.e., labeled sentences, to it by using CANDY without finetuning the model.
