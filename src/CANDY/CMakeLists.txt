@@ -4,18 +4,18 @@ add_sources(
         BucketedFlatIndex.cpp
         BufferedCongestionDropIndex.cpp
         FlatIndex.cpp
-        FlatAMMIPIndex.cpp
-        FlatAMMIPObjIndex.cpp
-        ParallelPartitionIndex.cpp
+        #FlatAMMIPIndex.cpp
+        #FlatAMMIPObjIndex.cpp
+        #ParallelPartitionIndex.cpp
         OnlinePQIndex.cpp
-        OnlineIVFLSHIndex.cpp
-        OnlineIVFL2HIndex.cpp
+        #OnlineIVFLSHIndex.cpp
+        #OnlineIVFL2HIndex.cpp
         IndexTable.cpp
-        PQIndex.cpp
+        #PQIndex.cpp
         HNSWNaiveIndex.cpp
         FaissIndex.cpp
-        YinYangGraphIndex.cpp
-        YinYangGraphSimpleIndex.cpp
+        #YinYangGraphIndex.cpp
+        #YinYangGraphSimpleIndex.cpp
         CongestionDropIndex.cpp
         NNDescentIndex.cpp
         FlannIndex.cpp
@@ -25,10 +25,10 @@ add_sources(
 )
 add_subdirectory(HashingModels)
 add_subdirectory(ParallelPartitionIndex)
-add_subdirectory(PQIndex)
+#add_subdirectory(PQIndex)
 add_subdirectory(OnlinePQIndex)
 add_subdirectory(HNSWNaive)
-add_subdirectory(YinYangGraphIndex)
+#add_subdirectory(YinYangGraphIndex)
 add_subdirectory(CongestionDropIndex)
 add_subdirectory(FlannIndex)
 add_subdirectory(LSHAPGIndex)
@@ -38,5 +38,5 @@ if (ENABLE_RAY)
     add_sources(DistributedPartitionIndex.cpp)
 endif ()
 if (ENABLE_SPTAG)
-    add_sources(SPTAGIndex.cpp)
+ #   add_sources(SPTAGIndex.cpp)
 endif ()
