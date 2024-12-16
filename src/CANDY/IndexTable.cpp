@@ -23,8 +23,10 @@
 #include <CANDY/YinYangGraphIndex.h>
 #include <CANDY/FlatGPUIndex.h>
 #include <CANDY/YinYangGraphSimpleIndex.h>
+#include <CANDY/ThresholdIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
+
 #include <include/sptag_config.h>
 #if CANDY_CL == 1
 //#include <CPPAlgos/CLMMCPPAlgo.h>
@@ -57,8 +59,11 @@ CANDY::IndexTable::IndexTable() {
   indexMap["nnDescent"] = newNNDescentIndex();
   indexMap["Flann"] = newFlannIndex();
   indexMap["DPG"] = newDPGIndex();
+  indexMap["threshold"] = newThresholdIndex();
+
   indexMap["LSHAPG"] = newLSHAPGIndex();
   indexMap["flatGPU"] = newFlatGPUIndex();
+
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif

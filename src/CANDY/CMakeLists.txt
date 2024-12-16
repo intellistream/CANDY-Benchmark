@@ -20,6 +20,7 @@ add_sources(
         NNDescentIndex.cpp
         FlannIndex.cpp
         DPGIndex.cpp
+        ThresholdIndex.cpp
         LSHAPGIndex.cpp
         FlatGPUIndex.cpp
 )

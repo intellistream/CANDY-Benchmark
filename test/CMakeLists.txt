@@ -35,6 +35,9 @@ macro(add_catch_test_ray appName SOURCE_FILES SOURCE_LIBS)
             COMMAND $<TARGET_FILE:${appName}> --success
     )
 endmacro()
+
+
+
 add_catch_test(hnsw_test SystemTest/HNSWTest.cpp CANDYBENCH)
 add_catch_test(cpp_test SystemTest/SimpleTest.cpp CANDYBENCH)
 add_catch_test(flatIndex_test SystemTest/FlatIndexTest.cpp CANDYBENCH)
@@ -49,10 +52,12 @@ add_catch_test(yinYangSimple_test SystemTest/YinYangGraphSimpleIndexTest.cpp CAN
 add_catch_test(nnDescent_test SystemTest/NNDescentIndexTest.cpp CANDYBENCH)
 add_catch_test(kdTree_test SystemTest/KdTreeTest.cpp CANDYBENCH)
 add_catch_test(dpgIndex_test SystemTest/DPGIndexTest.cpp CANDYBENCH)
+#add_catch_test(threshold_test SystemTest/ThresholdTest.cpp CANDY)
 add_catch_test(lshAPGIndex_test SystemTest/LSHAPGIndexTest.cpp CANDYBENCH)
 if (ENABLE_SPTAG)
     add_catch_test(sptagIndex_test SystemTest/SPTAGIndexTest.cpp CANDYBENCH)
 endif ()
+
 
 if (ENABLE_OPENCL)
     add_catch_test(cl_test SystemTest/CLTest.cpp CANDYBENCH)
