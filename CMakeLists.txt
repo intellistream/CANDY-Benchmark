@@ -1,8 +1,11 @@
 
 cmake_minimum_required(VERSION 3.14)
-project(CANDY CXX)
-
-
+project(CANDYBENCH CXX)
+include (cmake/FindCuda.cmake)
+include (cmake/FindTorch.cmake)
+find_package(Torch REQUIRED)
+set(CMAKE_VERBOSE_MAKEFILE OFF)
+set(CMAKE_RULE_MESSAGES OFF)
 # Custom CMake find instructions and macros
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include(cmake/macros.cmake)
@@ -15,20 +18,47 @@ include(cmake/default.cmake)
 #gcc 10 g++10
 # First compile faiss before anything else
 #set(CMAKE_CXX_FLAGS "-fno-openmp")
+#test avx2
+
 add_subdirectory(thirdparty/faiss)
 
 # Set specific options for Faiss compilation
 #target_compile_options(faiss PRIVATE "-fno-openmp")
 set(LIBRARIES ${LIBRARIES} faiss)
-
-find_package(Torch REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
 # Set Optimization Flags
-set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type")
+set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type -Wno-interference-size")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DNO_RACE_CHECK -DCANDY_DEBUG_MODE=1")
 set(CMAKE_CXX_FLAGS_RELEASE "-Wno-ignored-qualifiers -Wno-sign-compare -O3")
 set(PROJECT_BINARY_DIR_RAW ${PROJECT_BINARY_DIR})
+
+# Valid values are "generic", "avx2", "avx512".
+
+detect_avx512_support(AVX512_AVAILABLE)
+# Use AVX-512 based on the result
+if(AVX512_AVAILABLE)
+    message(STATUS "AVX-512 support detected.")
+    set(CANDY_AVX512 1)
+    set(CANDY_AVX2 1)
+else()
+    message(STATUS "AVX-512 support NOT detected.")
+    detect_avx2_support(AVX2_AVAILABLE)
+    if(AVX2_AVAILABLE)
+        message(STATUS "AVX-2 support detected.")
+        set(CANDY_AVX2 1)
+    else ()
+        message(STATUS "AVX-2 support not detected.")
+        set(CANDY_AVX2 0)
+        set(CANDY_AVX512 0)
+    endif ()
+endif()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/simd_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/simd_config.h"
+)
+
+
 #set(CMAKE_CUDA_STANDARD 11)
 #set(CMAKE_CUDA_FLAGS "-std=c++11")
 option(ENABLE_OPENCL
@@ -43,10 +73,15 @@ option(ENABLE_HDF5
         "Enable load data from hdf5 file"
         OFF
 )
-option(ENABLE_PYBIND
-        "Enable original pybind and build CANDY python"
+option(ENABLE_SPTAG
+        "Integrate SPTAG LIBS"
         OFF
 )
+option(ENABLE_PYBIND
+        "Enable original pybind and build CANDYBENCH python"
+        OFF
+)
+
 #OPTIONAL OPENCL
 if (NOT ENABLE_OPENCL)
     message(STATUS "I will NOT include opencl support ")
@@ -126,7 +161,31 @@ configure_file(
         "${PROJECT_SOURCE_DIR}/include/hdf5_config.h.in"
         "${PROJECT_BINARY_DIR}/include/hdf5_config.h"
 )
+# Set SPTAG build directory
+set(SPTAG_BUILD_DIR ${CMAKE_BINARY_DIR}/SPTAG_build)
 
+# Configure build output directories specifically for SPTAG
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
+if (NOT ENABLE_SPTAG)
+    message(STATUS "I will NOT include SPTAG LIBS")
+    set(CANDY_SPTAG 0)
+else ()
+    set(CANDY_SPTAG 1)
+    message(STATUS "I will include support for SPTAG")
+    add_subdirectory(thirdparty/SPTAG)
+    set(LIBRARIES ${LIBRARIES}  SPTAGLib)
+endif ()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/sptag_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/sptag_config.h"
+)
+
+# Reset output directories for the rest of your project
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 message(STATUS "CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS}")
 message(STATUS "CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG}")
@@ -153,6 +212,8 @@ endforeach ()
 message(STATUS " Libraries: ${LIBRARIES}")
 #add_subdirectory(pytorchNN)
 # Add Source Code
+
+
 add_subdirectory(src)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
@@ -160,20 +221,22 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 # Add Library
 get_sources(CANDY_SOURCE_FILES)
 get_headers(CANDY_HEADER_FILES)
-add_library(CANDY SHARED ${CANDY_SOURCE_FILES} ${CANDY_HEADER_FILES} ${CMAKE_CURRENT_BINARY_DIR})
+add_library(CANDYBENCH SHARED ${CANDY_SOURCE_FILES} ${CANDY_HEADER_FILES} ${CMAKE_CURRENT_BINARY_DIR})
 
-set_property(TARGET CANDY PROPERTY CXX_STANDARD 20)
-target_include_directories(CANDY PUBLIC "include")
-target_include_directories(CANDY PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
-target_include_directories(CANDY PUBLIC "thirdparty/papi_build/include")
-target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
-target_link_options(CANDY PUBLIC "-Wl,-rpath,./")
-target_link_libraries(CANDY PUBLIC ${LIBRARIES})
-install(TARGETS CANDY LIBRARY DESTINATION .)
+set_property(TARGET CANDYBENCH PROPERTY CXX_STANDARD 20)
+target_include_directories(CANDYBENCH PUBLIC "include")
+target_include_directories(CANDYBENCH PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/papi_build/include")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/SPTAG")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/SPTAG/AnnService")
+target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
+target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
+target_link_libraries(CANDYBENCH PUBLIC ${LIBRARIES})
+install(TARGETS CANDYBENCH LIBRARY DESTINATION .)
 #add_subdirectory(test)
 #Add benchmarks with command
 add_subdirectory(benchmark)
-set_property(TARGET benchmark PROPERTY CXX_STANDARD 20)
 #Add tests (based on GTest suits)
 #include(GoogleTest)
 
@@ -189,7 +252,7 @@ else ()
     add_subdirectory(thirdparty/pybind11)
     pybind11_add_module(PyCANDY ${PROJECT_SOURCE_DIR}/src/PyCANDY.cpp)
     find_library(TORCH_PYTHON_LIBRARY torch_python PATH "${TORCH_INSTALL_PREFIX}/lib")
-    target_link_libraries(PyCANDY PUBLIC ${LIBRARIES} CANDY ${TORCH_PYTHON_LIBRARY})
+    target_link_libraries(PyCANDY PUBLIC ${LIBRARIES} CANDYBENCH ${TORCH_PYTHON_LIBRARY})
     install(TARGETS PyCANDY LIBRARY DESTINATION .)
     message(STATUS "Additional include torch_python: ${TORCH_PYTHON_LIBRARY}")
     set(CANDY_PYBIND 1)
@@ -199,7 +262,7 @@ configure_file(
         "${PROJECT_SOURCE_DIR}/include/pybind_config.h.in"
         "${PROJECT_BINARY_DIR}/include/pybind_config.h"
 )
-install(DIRECTORY "include" DESTINATION "/CANDY" COMPONENT CANDY)
+install(DIRECTORY "include" DESTINATION "/CANDY" COMPONENT CANDYBENCH)
 # copy scripts
 file(GLOB allCopyFiles "${PROJECT_SOURCE_DIR}/scripts/*")
 file(COPY ${allCopyFiles} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/benchmark/scripts)

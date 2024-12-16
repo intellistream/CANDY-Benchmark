@@ -1,5 +1,5 @@
 import os
-
+import nltk
 
 def testC4Corpus():
     if (os.path.exists('c4/c4done')):
@@ -37,6 +37,7 @@ def gen10MDPR():
 def main():
     # first, install python deps
     os.system('python3 -m pip install -r deps.txt')
+    nltk.download('wordnet')
     # next, download corpus
     testC4Corpus()
     # NEXT, GEN 100K

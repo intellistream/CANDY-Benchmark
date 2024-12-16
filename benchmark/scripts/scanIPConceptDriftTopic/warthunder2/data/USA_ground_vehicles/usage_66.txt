@@ -1,2 +1,0 @@
-Usage of M26E1: 
-The M26E1 was a post-World War II modification of the standard M26 Pershing. This modification changes the barrel length to 73 calibres long with the new 90 mm T54 gun. The gun offers some of the most powerful penetration in-game for Rank IV and is equipped with AP, HE, APCBC and HVAP Rounds. The M26E1 suffers from a very weak side and rear armour, though this is a common weakness on every tank. The front and front part of the turret is able to bounce some enemy shots but can be penetrated by most other tanks in its 6.7 Battle Rating range so beware.

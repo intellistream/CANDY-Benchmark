@@ -20,6 +20,7 @@ set(FAISS_SRC
   IndexFlat.cpp
   IndexFlatCodes.cpp
   IndexHNSW.cpp
+  IndexMNRU.cpp
   IndexIDMap.cpp
   IndexIVF.cpp
   IndexIVFAdditiveQuantizer.cpp
@@ -46,6 +47,7 @@ set(FAISS_SRC
   IndexScalarQuantizer.cpp
   IndexShards.cpp
   IndexShardsIVF.cpp
+  IndexVanama.cpp
   MatrixStats.cpp
   MetaIndexes.cpp
   VectorTransform.cpp
@@ -76,6 +78,7 @@ set(FAISS_SRC
   impl/io.cpp
   impl/lattice_Zn.cpp
   impl/NNDescent.cpp
+  impl/Vanama.cpp
   invlists/BlockInvertedLists.cpp
   invlists/DirectMap.cpp
   invlists/InvertedLists.cpp
@@ -112,6 +115,8 @@ set(FAISS_HEADERS
   IndexFlat.h
   IndexFlatCodes.h
   IndexHNSW.h
+  IndexMNRU.h
+  IndexVanama.h
   IndexIDMap.h
   IndexIVF.h
   IndexIVFAdditiveQuantizer.h
@@ -168,6 +173,7 @@ set(FAISS_HEADERS
   impl/ThreadedIndex.h
   impl/io.h
   impl/io_macros.h
+  impl/Vanama.h
   impl/kmeans1d.h
   impl/lattice_Zn.h
   impl/platform_macros.h

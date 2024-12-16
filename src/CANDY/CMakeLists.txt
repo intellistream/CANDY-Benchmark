@@ -21,6 +21,8 @@ add_sources(
         FlannIndex.cpp
         DPGIndex.cpp
         ThresholdIndex.cpp
+        LSHAPGIndex.cpp
+        FlatGPUIndex.cpp
 )
 add_subdirectory(HashingModels)
 add_subdirectory(ParallelPartitionIndex)
@@ -30,7 +32,12 @@ add_subdirectory(HNSWNaive)
 add_subdirectory(YinYangGraphIndex)
 add_subdirectory(CongestionDropIndex)
 add_subdirectory(FlannIndex)
+add_subdirectory(LSHAPGIndex)
+add_subdirectory(FlatGPUIndex)
 if (ENABLE_RAY)
     add_subdirectory(DistributedPartitionIndex)
     add_sources(DistributedPartitionIndex.cpp)
+endif ()
+if (ENABLE_SPTAG)
+    add_sources(SPTAGIndex.cpp)
 endif ()

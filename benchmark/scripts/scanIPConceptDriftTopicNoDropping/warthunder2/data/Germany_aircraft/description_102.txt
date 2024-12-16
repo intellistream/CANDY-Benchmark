@@ -1,3 +1,0 @@
-Description of Bf_109_K-4: 
-The Bf 109 K-4 is a rank IV German fighter 
-with a battle rating of 6.3 (AB) and 5.7 (RB/SB). It has been in the game since the start of the Open Beta Test prior to Update 1.27. The Kurfürst is the pinnacle of the famed 109 series. "Kurfürst," representing the letter "K" in the Wehrmacht phonetic alphabet, translates to "prince-elector", a reference to the Electors of the Holy Roman Empire. The K-4's frame is the last iteration and was focused on ease of production rather than performance, yet it features the best power to weight ratio and acceleration of any 109, turning this machine into a beast. However, the age of the design is reflected in its poor high-speed characteristics.

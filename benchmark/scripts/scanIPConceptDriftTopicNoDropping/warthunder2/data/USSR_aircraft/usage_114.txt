@@ -1,2 +1,0 @@
-Usage of Tu-2S-44: 
-Once spawned (~3,500 m), locate what ground targets to engage. It is suggested to engage the targets farthest from the enemy's airfield in order to avoid detection. Attack pillboxes (light or heavy, it doesn't matter with 500 kg bombs) as these don't move. Only engage the AI tanks if there are no pillboxes, and if engaging the tanks, judge the speed of the tank column, and release the bombs, making sure to lead where the tanks will be as the bombs fall, not where they are in that moment.

@@ -8,6 +8,8 @@
 #include <faiss/IndexNNDescent.h>
 #include <faiss/IndexLSH.h>
 #include <faiss/IndexNSG.h>
+#include <faiss/IndexVanama.h>
+#include <faiss/IndexMNRU.h>
 
 bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
@@ -24,6 +26,14 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE HNSWFlat");
     auto M = cfg->tryI64("maxConnection", 32, true);
     index = new faiss::IndexHNSWFlat(vecDim, M, faissMetric);
+  } else if (index_type == "Vanama") {
+      INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE VanamaFlat");
+      auto M = cfg->tryI64("maxConnection", 32, true);
+      index = new faiss::IndexVanamaFlat(vecDim, M, faissMetric);
+  } else if (index_type == "MNRU") {
+      INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE MNRUFlat");
+      auto M = cfg->tryI64("maxConnection", 32, true);
+      index = new faiss::IndexMNRUFlat(vecDim, M, faissMetric);
   } else if (index_type == "PQ") {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE PQ");
     // number of bits in PQ
@@ -186,7 +196,8 @@ bool CANDY::FaissIndex::insertTensor(torch::Tensor &t) {
 std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndex(torch::Tensor q, int64_t k) {
 
   auto queryData = q.contiguous().data_ptr<float>();
-  int64_t querySize = q.size(0);
+	std::cout<<"tiny wait"<<std::endl; 
+ int64_t querySize = q.size(0);
 
   if (index_type == "IVFPQ" || index_type == "PQ") {
     INTELLI_INFO("IMCOMPATIBLE DIMENSIONS: PADDING ZEROS FOR PQ and IVFPQ");
@@ -195,6 +206,7 @@ std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndex(torch::Tensor q, int64_
       q_temp.slice(1, 0, vecDim) = q;
       q_temp = q_temp.nan_to_num(0.0);
       auto queryData_padding = q_temp.contiguous().data_ptr<float>();
+	std::cout<<"tiny wait"<<std::endl;
       std::vector<faiss::idx_t> ru(k * querySize);
       std::vector<float> distance(k * querySize);
       index->search(querySize, queryData_padding, k, distance.data(), ru.data());
@@ -230,6 +242,7 @@ std::vector<torch::Tensor> CANDY::FaissIndex::getTensorByIndex(std::vector<faiss
     ru[i] = torch::zeros({k, vecDim});
     for (int64_t j = 0; j < k; j++) {
       int64_t tempIdx = idx[i * k + j];
+      //printf("%ld%ld=%ld\n", i,j,tempIdx);
       float tempSlice[vecDim];
 //            if(index_type=="FaissIVFPQ" || index_type == "FaissPQ"){
 //                if(vecDim=100 || vecDim == 420){

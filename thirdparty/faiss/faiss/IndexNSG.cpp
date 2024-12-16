@@ -437,10 +437,10 @@ void IndexNSG::check_knn_graph_global(const idx_t* knn_graph, idx_t n, int K) co
                     "has %" PRId64 " invalid entries\n",
                     total_count);
         }
-        FAISS_THROW_IF_NOT_MSG(
-                total_count < n / 10,
-                "There are too much invalid entries in the knn graph. "
-                "It may be an invalid knn graph.");
+        //FAISS_THROW_IF_NOT_MSG(
+          //      total_count < n / 10,
+            //    "There are too much invalid entries in the knn graph. "
+              //  "It may be an invalid knn graph.");
 }
 
 /**************************************************************

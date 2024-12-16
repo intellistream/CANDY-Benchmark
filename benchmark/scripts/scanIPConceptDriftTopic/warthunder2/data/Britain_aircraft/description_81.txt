@@ -1,2 +1,0 @@
-Description of Spitfire_LF_Mk_IX: 
-By March 1943, a new version of the Merlin engine had been developed. Designated the Merlin 66, it was even more powerful than the preceding 61 and 63 versions, was tuned for low-altitude operation, and featured a new injection-based carburettor instead of the float carburettor of previous models, completely resolving the fuel-flow issues during zero-G manoeuvres and inverted flight.

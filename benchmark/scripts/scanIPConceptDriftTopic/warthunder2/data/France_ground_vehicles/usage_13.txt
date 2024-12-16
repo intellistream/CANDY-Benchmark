@@ -1,2 +1,0 @@
-Usage of SAu_40: 
-The SAu 40 behaves as a classical casemate SPG as it should provide its teammates with superior firepower from medium to far distance, behind the frontlines where it will be harder to flank. As this is its purposed role, this tank has some issues accomplishing it. The first being its relatively low penetration and shell velocity, which makes long range engagements (>750 m)a bit hard to manage. The second being bad mobility, which complicates the task of positioning.

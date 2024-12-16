@@ -1,2 +1,0 @@
-Usage of Bf_109_F-4/trop: 
-The tropical version is much like the standard F-4 variant. New features are engine intake dust filter, a socket for sun-umbrellas and several other accommodations versus particulate matter. While these modifications allowed for prolonged service life in harsh environments like the Russian veld and Libya's desert, it also (marginally) costs top speed and engine performance due to increased air resistance and power diversion for the filtered aspirator, although these are hardly noticeable in combat.

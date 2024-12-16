@@ -1,0 +1,431 @@
+#!/usr/bin/env python3
+# Note: the concept drift is not learnt by indexing in this group
+import csv
+import numpy as np
+import matplotlib.pyplot as plt
+import accuBar as accuBar
+import groupBar2 as groupBar2
+import groupLine as groupLine
+from autoParase import *
+import itertools as it
+import os
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+import pylab
+from matplotlib.font_manager import FontProperties
+from matplotlib import ticker
+from matplotlib.ticker import LogLocator, LinearLocator
+
+import os
+import pandas as pd
+import sys
+from OoOCommon import *
+import numpy as np
+import struct
+import random
+OPT_FONT_NAME = 'Helvetica'
+TICK_FONT_SIZE = 22
+LABEL_FONT_SIZE = 22
+LEGEND_FONT_SIZE = 22
+LABEL_FP = FontProperties(style='normal', size=LABEL_FONT_SIZE)
+LEGEND_FP = FontProperties(style='normal', size=LEGEND_FONT_SIZE)
+TICK_FP = FontProperties(style='normal', size=TICK_FONT_SIZE)
+
+MARKERS = (['*', '|', 'v', "^", "", "h", "<", ">", "+", "d", "<", "|", "", "+", "_"])
+# you may want to change the color map for different figures
+COLOR_MAP = (
+    '#B03A2E', '#2874A6', '#239B56', '#7D3C98', '#FFFFFF', '#F1C40F', '#F5CBA7', '#82E0AA', '#AEB6BF', '#AA4499')
+# you may want to change the patterns for different figures
+PATTERNS = (["////", "o", "", "||", "-", "//", "\\", "o", "O", "////", ".", "|||", "o", "---", "+", "\\\\", "*"])
+LABEL_WEIGHT = 'bold'
+LINE_COLORS = COLOR_MAP
+LINE_WIDTH = 3.0
+MARKER_SIZE = 15.0
+MARKER_FREQUENCY = 1000
+
+matplotlib.rcParams['ps.useafm'] = True
+matplotlib.rcParams['pdf.use14corefonts'] = True
+matplotlib.rcParams['xtick.labelsize'] = TICK_FONT_SIZE
+matplotlib.rcParams['ytick.labelsize'] = TICK_FONT_SIZE
+matplotlib.rcParams['font.family'] = OPT_FONT_NAME
+matplotlib.rcParams['pdf.fonttype'] = 42
+def read_fvecs(filename):
+    """Read .fvecs file and return a list of vectors."""
+    vectors = []
+    with open(filename, 'rb') as f:
+        while True:
+            # Read dimension of the vector (first 4 bytes, int32)
+            data = f.read(4)
+            if not data:
+                break
+            dim = struct.unpack('i', data)[0]
+            # Read the floats (dim * 4 bytes)
+            vector = struct.unpack('f' * dim, f.read(4 * dim))
+            vectors.append(vector)
+    return np.array(vectors)
+
+def write_fvecs(filename, vectors):
+    """Write a list of vectors to .fvecs file."""
+    with open(filename, 'wb') as f:
+        for vec in vectors:
+            # Write dimension
+            f.write(struct.pack('i', len(vec)))
+            # Write vector data
+            f.write(struct.pack('f' * len(vec), *vec))
+
+def generate_fvecs(A_file, B_file, C_file, n, p):
+    """Generates C.fvecs based on A and B starting from n-th row with probability p."""
+    # Read vectors from A and B
+    A = read_fvecs(A_file)
+    B = read_fvecs(B_file)
+    
+    # Ensure B has enough rows to replace in A
+    if len(B) < len(A) - n:
+        raise ValueError(f"B needs at least {len(A) - n} rows.")
+    
+    # Copy A to C with some rows replaced by B with probability p
+    C = A.copy()
+    for i in range(n, len(A)):
+        if random.random() <= p:  # Replace row from B with probability p
+            C[i] = B[i-n]
+    
+    # Write result to C_file
+    write_fvecs(C_file, C)
+
+def prepareEmbeddings(commonBasePath, aRowVec,exePath):
+    dataMax = 100000
+
+    os.system('sudo mkdir ' + commonBasePath + "/multiModalProp")
+    for i in range(len(aRowVec)):
+        rawData =  exePath + "datasets/coco/data_captions.fvecs"
+        imgData =  exePath + "datasets/coco/data_image.fvecs"
+        rawQuery =  exePath + "datasets/coco/query_captions.fvecs"
+        imgQuery =  exePath + "datasets/coco/query_image.fvecs"
+        desiredDataFname = commonBasePath + "multiModalProp/" + "data_" + str(aRowVec[i]) + '.fvecs'
+        desiredQueryFname = commonBasePath + "multiModalProp/" + "query_" + str(aRowVec[i]) + '.fvecs'
+        if (os.path.exists(desiredDataFname) and os.path.exists(desiredQueryFname)):
+            print('skip embeding generation for ' + str(aRowVec[i]))
+        else:
+            generate_fvecs(rawData,imgData,"data_" + str(aRowVec[i]) + '.fvecs',50000,aRowVec[i])
+            generate_fvecs(rawQuery,imgQuery,"query_" + str(aRowVec[i]) + '.fvecs',50000,aRowVec[i])
+            os.system('sudo cp *.fvecs ' + commonBasePath + "multiModalProp/")
+            os.system('rm *.fvecs')
+            print('done embeding generation for ' + str(aRowVec[i]))
+
+
+def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixTagRaw="null"):
+    # resultFolder="periodTests"
+    prefixTag = str(prefixTagRaw)
+    configFname = "config_period_" + str(prefixTag) + ".csv"
+    configTemplate = "config_e2e_static_lazy.csv"
+    # clear old files
+    os.system("cd " + exePath + "&& sudo rm *.csv")
+    os.system("cp perfListEvaluation.csv " + exePath)
+    dataPathCommon = exePath + "/results/scanMultiModalPropotion/"
+    desiredDataFname = dataPathCommon + "multiModalProp/" + "data_" + str(prefixTag) + '.fvecs'
+    desiredQueryFname = dataPathCommon + "multiModalProp/" + "query_" + str(prefixTag) + '.fvecs'
+    # editConfig(configTemplate, exePath + configFname, "earlierEmitMs", 0)
+    editConfig(configTemplate, "temp3.csv", "dataPath", desiredDataFname)
+    editConfig("temp3.csv", "temp2.csv", "queryPath", desiredQueryFname)
+    editConfig("temp2.csv", exePath + "temp1.csv", "faissIndexTag", algoTag)
+    if (algoTag == 'LSH'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "numberOfBuckets", 1)
+        editConfig(exePath + "temp2.csv", exePath + "temp3.csv", "useCRS", 0)
+        editConfig(exePath + "temp3.csv", exePath + "temp4.csv", "congestionDropWorker_algoTag", "onlineIVFLSH")
+        editConfig(exePath + "temp4.csv", exePath + "temp1.csv", "encodeLen", 3)
+    if (algoTag == 'LSH-H'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "onlineIVFLSH")
+        editConfig(exePath + "temp2.csv", exePath + "temp4.csv", "useCRS", 0)
+        editConfig(exePath + "temp4.csv", exePath + "temp1.csv", "encodeLen", 3)
+    if (algoTag == 'flatAMMIP'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "flatAMMIP")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "sketchSize", 256)
+    if (algoTag == 'flatAMMIPSMPPCA'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "flatAMMIP")
+        editConfig(exePath + "temp2.csv", exePath + "temp4.csv", "sketchSize", 128)
+        editConfig(exePath + "temp4.csv", exePath + "temp1.csv", "ammAlgo", 'smp-pca')
+    if (algoTag == 'flat'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "flat")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "sketchSize", 256)
+    if (algoTag == 'NSW'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "NSW")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "is_NSW", 1)
+    if (algoTag == 'nnDescent'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "nnDescent")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'onlinePQ'):
+        editConfig(exePath + "temp1.csv", exePath + "temp3.csv", "faissIndexTag", "PQ")
+        editConfig(exePath + "temp3.csv", exePath + "temp2.csv", "isOnlinePQ", 1)
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "sketchSize", 256)
+    if (algoTag == 'Flann'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "Flann")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "sketchSize", 256)
+    if (algoTag == 'DPG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "DPG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'LSHAPG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "LSHAPG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'SPTAG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "SPTAG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    exeTag = "onlineInsert"
+    # prepare new file
+    os.system("rm -rf " + exePath + "*.rbt")
+    os.system("cp *.rbt " + exePath)
+    # run
+    # os.system("cd " + exePath + "&& export OMP_NUM_THREADS=1 &&" + "sudo ./" + exeTag + " " + 'temp1.csv')
+    if (algoTag == 'nnDescent2'):
+        os.system("cp dummy.csv " + exePath + "onlineInsert_result.csv")
+    else:
+        os.system("cd " + exePath + "&& export OMP_NUM_THREADS=1 &&" + "sudo ./" + exeTag + " " + 'temp1.csv')
+    # copy result
+    os.system("sudo rm -rf " + resultPath + "/" + str(prefixTag))
+    os.system("sudo mkdir " + resultPath + "/" + str(prefixTag))
+
+    os.system("cd " + exePath + "&& sudo cp *.csv " + resultPath + "/" + str(prefixTag))
+
+
+def runPeriodVector(exePath, algoTag, resultPath, prefixTag, configTemplate="config.csv", reRun=1):
+    for i in range(len(prefixTag)):
+        if reRun == 2:
+            if checkResultSingle(prefixTag[i], resultPath) == 1:
+                print("skip " + str(prefixTag[i]))
+            else:
+                runPeriod(exePath, algoTag, resultPath, configTemplate, prefixTag[i])
+        else:
+            runPeriod(exePath, algoTag, resultPath, configTemplate, prefixTag[i])
+
+
+def readResultSingle(singleValue, resultPath):
+    resultFname = resultPath + "/" + str(singleValue) + "/onlineInsert_result.csv"
+    elapsedTime = readConfig(resultFname, "latencyOfQuery")
+    incrementalBuild = readConfig(resultFname, "95%latency(Insert)")
+    incrementalSearch = readConfig(resultFname, "latencyOfQuery")
+    recall = readConfig(resultFname, "recall")
+    pendingWaitTime = readConfig(resultFname, "pendingWrite")
+    l2Stall = 0
+    l3Stall = 0
+    totalStall = 0
+    froErr = 0
+    return elapsedTime, incrementalBuild, incrementalSearch, recall, pendingWaitTime, l2Stall, l3Stall, totalStall, froErr
+
+
+def readResultVector(singleValueVec, resultPath):
+    elapseTimeVec = []
+    incrementalBuildVec = []
+    incrementalSearchVec = []
+    recallVec = []
+    pendingWaitTimeVec = []
+    l2StallVec = []
+    l3StallVec = []
+    totalStallVec = []
+    froVec = []
+    for i in singleValueVec:
+        elapsedTime, incrementalBuild, incrementalSearch, recall, pendingWaitTime, l2Stall, l3Stall, totalStall, fro = readResultSingle(
+            i, resultPath)
+        elapseTimeVec.append(float(elapsedTime))
+        incrementalBuildVec.append(float(incrementalBuild))
+        incrementalSearchVec.append(float(incrementalSearch))
+        recallVec.append(float(recall))
+        pendingWaitTimeVec.append(float(pendingWaitTime))
+        l2StallVec.append(float(l2Stall))
+        l3StallVec.append(float(l3Stall))
+        totalStallVec.append(float(totalStall))
+        froVec.append(float(fro))
+    return np.array(elapseTimeVec), np.array(incrementalBuildVec), np.array(incrementalSearchVec), np.array(
+        recallVec), np.array(
+        pendingWaitTimeVec), np.array(l2StallVec), np.array(l3StallVec), np.array(totalStallVec), np.array(froVec)
+
+
+def checkResultSingle(singleValue, resultPath):
+    resultFname = resultPath + "/" + str(singleValue) + "/onlineInsert_result.csv"
+    ruExists = 0
+    if os.path.exists(resultFname):
+        ruExists = 1
+    else:
+        print("File does not exist:" + resultFname)
+        ruExists = 0
+    return ruExists
+
+
+def checkResultVector(singleValueVec, resultPath):
+    resultIsComplete = 0
+    for i in singleValueVec:
+        resultIsComplete = checkResultSingle(i, resultPath)
+        if resultIsComplete == 0:
+            return 0
+    return 1
+
+
+def compareMethod(exeSpace, commonPathBase, resultPaths, csvTemplate, algos, dataSetName, reRun=1):
+    elapsedTimeAll = []
+    incrementalBuildAll = []
+    incrementalSearchAll = []
+    periodAll = []
+    recallAll = []
+    pendingWaitTimeAll = []
+    l2StallAll = []
+    l3StallAll = []
+    totalStallAll = []
+    froAll = []
+    resultIsComplete = 1
+    algoCnt = 0
+    for i in range(len(algos)):
+        resultPath = commonPathBase + resultPaths[i]
+        algoTag = algos[i]
+        scanVec = dataSetName
+        if (reRun == 1):
+            os.system("sudo rm -rf " + resultPath)
+            os.system("sudo mkdir " + resultPath)
+            runPeriodVector(exeSpace, algoTag, resultPath, scanVec, csvTemplate)
+        else:
+            if (reRun == 2):
+                resultIsComplete = checkResultVector(scanVec, resultPath)
+                if resultIsComplete == 1:
+                    print(algoTag + " is complete, skip")
+                else:
+                    print(algoTag + " is incomplete, redo it")
+                    if os.path.exists(resultPath) == False:
+                        os.system("sudo mkdir " + resultPath)
+                    runPeriodVector(exeSpace, algoTag, resultPath, scanVec, csvTemplate, 2)
+                    resultIsComplete = checkResultVector(scanVec, resultPath)
+        # exit()
+        if resultIsComplete:
+            elapsedTime, incrementalBuild, incrementalSearch, recall, pendingWaitTime, l2Stall, l3Stall, totalStall, froVec = readResultVector(
+                dataSetName, resultPath)
+            elapsedTimeAll.append(elapsedTime)
+            incrementalBuildAll.append(incrementalBuild)
+            incrementalSearchAll.append(incrementalSearch)
+            periodAll.append(dataSetName)
+            recallAll.append(recall)
+            pendingWaitTimeAll.append(pendingWaitTime)
+            l2StallAll.append(l2Stall)
+            l3StallAll.append(l3Stall)
+            totalStallAll.append(totalStall)
+            froAll.append(froVec)
+            algoCnt = algoCnt + 1
+            print(algoCnt)
+        # periodAll.append(periodVec)
+    return np.array(elapsedTimeAll), np.array(incrementalBuildAll), np.array(periodAll), np.array(recallAll), np.array(
+        incrementalSearchAll), np.array(pendingWaitTimeAll), np.array(l2StallAll), np.array(l3StallAll), np.array(
+        totalStallAll), np.array(froAll)
+
+
+def getCyclesPerMethod(cyclesAll, valueChose):
+    recallPerMethod = []
+    for i in range(len(cyclesAll)):
+        recallPerMethod.append(cyclesAll[int(i)][int(valueChose)])
+    return np.array(recallPerMethod)
+
+
+def main():
+    exeSpace = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/"
+    commonBasePath = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/results/scanMultiModalPropotion/"
+
+    figPath = os.path.abspath(os.path.join(os.getcwd(), "../..")) + "/figures/scanMultiModalPropotion/"
+    random.seed(999)
+    # add the datasets here
+    # srcAVec=["datasets/AST/mcfe.mtx"] # 765*756
+    # srcBVec=["datasets/AST/mcfe.mtx"] # 765*756
+    # dataSetNames=['AST']
+    # srcAVec=['datasets/UTM/utm1700a.mtx'] # 1700*1700
+    # srcBVec=['datasets/UTM/utm1700b.mtx'] # 1700*1700
+    # dataSetNames=['UTM']
+    # srcAVec=['datasets/ECO/wm2.mtx',"datasets/DWAVE/dwa512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700a.mtx','datasets/RDB/rdb2048.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcda_small.mtx',"datasets/BUS/gemat1.mtx",]
+    # srcBVec=['datasets/ECO/wm3.mtx',"datasets/DWAVE/dwb512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700b.mtx','datasets/RDB/rdb2048l.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcdb_small.mtx',"datasets/BUS/gemat1.mtx",]
+    # dataSetNames=['ECO','DWAVE','AST','UTM','RDB','ZENIOS','QCD','BUS']
+    # srcAVec=['datasets/ECO/wm2.mtx',"datasets/DWAVE/dwa512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700a.mtx','datasets/RDB/rdb2048.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcda_small.mtx',"datasets/BUS/gemat1.mtx",]
+    # srcBVec=['datasets/ECO/wm3.mtx',"datasets/DWAVE/dwb512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700b.mtx','datasets/RDB/rdb2048l.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcdb_small.mtx',"datasets/BUS/gemat1.mtx",]
+    # aRowVec= [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
+    aRowVec = [0, 0.2, 0.4,0.8,1.0]
+
+    # exit()
+    # aRowVec=[100, 200]
+    # add the algo tag here
+    # algosVec = ['flat', 'LSH-H','flatAMMIP','flatAMMIPSMPPCA','PQ','IVFPQ','HNSW']
+    algosVec = ['flat', 'Flann','SPTAG','LSH-H','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','Vanama','MNRU']
+    # algosVec = ['flat', 'LSH-H']
+    # algosVec = ['flat', 'onlinePQ']
+    # algosVec=['incrementalRaw']
+    # algosVec=[ 'pq']
+    # algoDisp = ['BrutalForce', 'PQ']
+    algoDisp = ['Baseline', 'Flann','SPTAG','LSH','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','freshDiskAnn','MNRU']
+    # algoDisp=['BrutalForce','LSH-H']
+    # algoDisp=['PQ']
+    # add the algo tag here
+
+    # this template configs all algos as lazy mode, all datasets are static and normalized
+    csvTemplate = 'config_e2e_static_lazy.csv'
+    # do not change the following
+    resultPaths = algosVec
+    os.system("mkdir ../../results")
+    os.system("mkdir ../../figures")
+    os.system("mkdir " + figPath)
+
+    # run
+    reRun = 0
+    if (len(sys.argv) < 2):
+
+        os.system("sudo rm -rf " + commonBasePath)
+
+        reRun = 1
+    else:
+        reRun = int(sys.argv[1])
+    os.system("sudo mkdir " + commonBasePath)
+    prepareEmbeddings(commonBasePath, aRowVec,exeSpace)
+    # exit(0)
+    print(reRun)
+    methodTags = algoDisp
+    elapsedTimeAll, incrementalBuildAll, periodAll, recall, incrementalSearchAll, pendingWaitTimeAll, l2StallAll, l3StallAll, totalStallAll, froAll = compareMethod(
+        exeSpace, commonBasePath, resultPaths, csvTemplate, algosVec, aRowVec, reRun)
+    # Add some pre-process logic for int8 here if it is used
+
+    # groupBar2.DrawFigureYLog(aRowVec, recall/recall[-1], methodTags, "Datasets", "Ins (times of LTMM)", 5, 15, figPath + "/" + "recall", True)
+    # groupBar2.DrawFigureYLog(aRowVec, fpInsAll/fpInsAll[-1], methodTags, "Datasets", "FP Ins (times of LTMM)", 5, 15, figPath + "/" + "FP_recall", True)
+    # groupBar2.DrawFigureYLog(aRowVec, memInsAll/memInsAll[-1], methodTags, "Datasets", "Mem Ins (times of LTMM)", 5, 15, figPath + "/" + "mem_recall", True)
+    # groupBar2.DrawFigure(aRowVec, ratioFpIns, methodTags, "Datasets", "SIMD Utilization (%)", 5, 15, figPath + "/" + "SIMD utilization", True)
+    # groupBar2.DrawFigure(aRowVec, recall/(memLoadAll+memStoreAll), methodTags, "Datasets", "IPM", 5, 15, figPath + "/" + "IPM", True)
+    # groupBar2.DrawFigure(aRowVec, fpInsAll/(memLoadAll+memStoreAll), methodTags, "Datasets", "FP Ins per Unit Mem Access", 5, 15, figPath + "/" + "FPIPM", True)
+    # groupBar2.DrawFigure(aRowVec, (memLoadAll+memStoreAll)/(recall)*100.0, methodTags, "Datasets", "Ratio of Mem Ins (%)", 5, 15, figPath + "/" + "mem", True)
+
+    # groupBar2.DrawFigure(aRowVec, branchAll/recall*100.0, methodTags, "Datasets", "Ratio of Branch Ins (%)", 5, 15, figPath + "/" + "branches", True)
+    # groupBar2.DrawFigure(aRowVec, otherIns/recall*100.0, methodTags, "Datasets", "Ratio of Other Ins (%)", 5, 15, figPath + "/" + "others", True)
+    # print(recall[-1],recall[2])
+
+    # groupBar2.DrawFigure(dataSetNames, np.log(thrAll), methodTags, "Datasets", "elements/ms", 5, 15, figPath + "sec4_1_e2e_static_lazy_throughput_log", True)
+    groupLine.DrawFigureYLog(periodAll, incrementalBuildAll / 1000,
+                             methodTags,
+                             "Drifted Pos", r'95% Latency of insert (ms)', 0, 1,
+                             figPath + "/" + "scanIPMMP_lat_INSERT",
+                             True)
+    groupLine.DrawFigureYLog(periodAll, pendingWaitTimeAll / 1000,
+                             methodTags,
+                             "Drifted Pos", r'Pending wait for insert (ms)', 0, 1,
+                             figPath + "/" + "scanIPMMP_lat_pending",
+                             True)
+    groupLine.DrawFigureYLog(periodAll, incrementalSearchAll / 1000,
+                             methodTags,
+                             "Drifted Pos", r'Latency of search (ms)', 0, 1,
+                             figPath + "/" + "scanIPMMP_lat_search",
+                             False)
+    groupLine.DrawFigureYLog(periodAll, (incrementalSearchAll + pendingWaitTimeAll) / 1000,
+                             methodTags,
+                             "Prop. of Images", r'Latency of query (ms)', 0, 1,
+                             figPath + "/" + "scanIPMMP_lat_instant",
+                             False)
+    groupLine.DrawFigureYnormal(periodAll, recall,
+                                methodTags,
+                                "Prop. of Images", r'Recall@10', 0, 1,
+                                figPath + "/" + "scanIPMMP_recall",
+                                True)
+   
+    groupLine.DrawFigureYLog(periodAll,  1/(incrementalSearchAll / 1e6),
+                                methodTags,
+                                "Prop. of Images", r'Queries Per Second', 0, 1,
+                                figPath + "/" + "scanIPMMP_qps",
+                                False)
+if __name__ == "__main__":
+    main()

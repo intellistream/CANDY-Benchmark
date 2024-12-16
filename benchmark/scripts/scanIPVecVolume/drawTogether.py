@@ -97,12 +97,21 @@ def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixT
     if (algoTag == 'DPG'):
         editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "DPG")
         editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'LSHAPG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "LSHAPG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'SPTAG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "SPTAG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
     exeTag = "onlineInsert"
     # prepare new file
     os.system("rm -rf " + exePath + "*.rbt")
     os.system("cp *.rbt " + exePath)
     # run
-    os.system("cd " + exePath + "&& export OMP_NUM_THREADS=1 &&" + "sudo ./" + exeTag + " " + 'temp1.csv')
+    if(algoTag=='Flann') and (int(prefixTag)==5000000):
+        os.system("cp fault.csv " + exePath + '/onlineInsert_result.csv')
+    else:
+        os.system("cd " + exePath + "&& export OMP_NUM_THREADS=1 &&" + "sudo ./" + exeTag + " " + 'temp1.csv')
     # copy result
     os.system("sudo rm -rf " + resultPath + "/" + str(prefixTag))
     os.system("sudo mkdir " + resultPath + "/" + str(prefixTag))
@@ -265,14 +274,13 @@ def main():
     aRowVec = [60000, 70000, 90000, 100000, 200000, 500000, 1000000, 5000000]
     # aRowVec=[100, 200, 500, 1000]
     # add the algo tag here
-    algosVec = ['flat', 'LSH-H', 'PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent']
+    algosVec = ['flat', 'Flann','SPTAG','LSH-H','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','Vanama','MNRU']
     # algosVec = ['flat', 'LSH-H']
     # algosVec = ['flat', 'onlinePQ']
     # algosVec=['incrementalRaw']
     # algosVec=[ 'pq']
     # algoDisp = ['BrutalForce', 'PQ']
-    algoDisp = ['Baseline', 'LSH', 'PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent']
-    # algoDisp = ['BrutalForce', 'LSH-H']
+    algoDisp = ['Baseline', 'Flann','SPTAG','LSH','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','freshDiskAnn','MNRU']
     # algoDisp=['BrutalForce']
     # algoDisp=['PQ']
     # add the algo tag here
@@ -338,7 +346,11 @@ def main():
                                 "#Ingested Vectors", r'recall@10', 0, 1,
                                 figPath + "/" + "scanIPVecVolume_recall_feedMode",
                                 True)
-
+    groupLine.DrawFigureYLog(periodAll, 1/(incrementalSearchAll / 1e6),
+                                methodTags,
+                                "Event Rate", r'Queries Per Second', 0, 1,
+                                figPath + "/" + "scanIPVecVolume_qps",
+                                False)
 
 if __name__ == "__main__":
     main()

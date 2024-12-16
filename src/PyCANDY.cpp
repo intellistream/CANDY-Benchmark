@@ -10,6 +10,7 @@
 #include <Utils/IntelliLog.h>
 #include <CANDY/AbstractIndex.h>
 #include <DataLoader/DataLoaderTable.h>
+#include <DataLoader/RBTDataLoader.h>
 #include <CANDY/IndexTable.h>
 #include <include/papi_config.h>
 #if CANDY_PAPI == 1
@@ -21,25 +22,25 @@ using namespace CANDY;
 torch::Tensor add_tensors(torch::Tensor a, torch::Tensor b) {
   return a + b;
 }
-py::dict configMapToDict(const std::shared_ptr<ConfigMap>& cfg) {
+py::dict configMapToDict(const std::shared_ptr<ConfigMap> &cfg) {
   py::dict d;
-  auto i64Map=cfg->getI64Map();
-  auto doubleMap=cfg->getDoubleMap();
-  auto strMap=cfg->getStrMap();
+  auto i64Map = cfg->getI64Map();
+  auto doubleMap = cfg->getDoubleMap();
+  auto strMap = cfg->getStrMap();
   for (auto &iter : i64Map) {
-    d[py::cast(iter.first)]=py::cast(iter.second);
+    d[py::cast(iter.first)] = py::cast(iter.second);
   }
   for (auto &iter : doubleMap) {
-    d[py::cast(iter.first)]=py::cast(iter.second);
+    d[py::cast(iter.first)] = py::cast(iter.second);
   }
   for (auto &iter : strMap) {
-    d[py::cast(iter.first)]=py::cast(iter.second);
+    d[py::cast(iter.first)] = py::cast(iter.second);
   }
   return d;
 }
 
 // Function to convert Python dictionary to ConfigMap
-std::shared_ptr<ConfigMap> dictToConfigMap(const py::dict& dict) {
+std::shared_ptr<ConfigMap> dictToConfigMap(const py::dict &dict) {
   auto cfg = std::make_shared<ConfigMap>();
   for (auto item : dict) {
     auto key = py::str(item.first);
@@ -47,18 +48,18 @@ std::shared_ptr<ConfigMap> dictToConfigMap(const py::dict& dict) {
     // Check if the type is int
     if (py::isinstance<py::int_>(value)) {
       int64_t val = value.cast<int64_t>();
-      cfg->edit(key,val);
+      cfg->edit(key, val);
       //std::cout << "Key: " << key.cast<std::string>() << " has an int value." << std::endl;
     }
       // Check if the type is float
     else if (py::isinstance<py::float_>(value)) {
       double val = value.cast<float>();
-      cfg->edit(key,val);
+      cfg->edit(key, val);
     }
       // Check if the type is string
     else if (py::isinstance<py::str>(value)) {
-      std::string val =py::str(value);
-      cfg->edit(key,val);
+      std::string val = py::str(value);
+      cfg->edit(key, val);
     }
       // Add more type checks as needed
     else {
@@ -69,31 +70,61 @@ std::shared_ptr<ConfigMap> dictToConfigMap(const py::dict& dict) {
 }
 AbstractIndexPtr createIndex(std::string nameTag) {
   IndexTable tab;
-  auto ru= tab.getIndex(nameTag);
-  if(ru==nullptr){
-    INTELLI_ERROR("No index named "+nameTag+", return flat");
-    nameTag="flat";
+  auto ru = tab.getIndex(nameTag);
+  if (ru == nullptr) {
+    INTELLI_ERROR("No index named " + nameTag + ", return flat");
+    nameTag = "flat";
     return tab.getIndex(nameTag);
   }
   return ru;
 }
-AbstractDataLoaderPtr  creatDataLoader(std::string nameTag) {
+AbstractDataLoaderPtr creatDataLoader(std::string nameTag) {
   DataLoaderTable dt;
-  auto ru= dt.findDataLoader(nameTag);
-  if(ru==nullptr){
-    INTELLI_ERROR("No index named "+nameTag+", return flat");
-    nameTag="random";
+  auto ru = dt.findDataLoader(nameTag);
+  if (ru == nullptr) {
+    INTELLI_ERROR("No index named " + nameTag + ", return flat");
+    nameTag = "random";
     return dt.findDataLoader(nameTag);
   }
   return ru;
 }
-
+static bool existRow(torch::Tensor base, torch::Tensor row) {
+  for (int64_t i = 0; i < base.size(0); i++) {
+    auto tensor1 = base[i].contiguous();
+    auto tensor2 = row.contiguous();
+    //std::cout<<"base: "<<tensor1<<std::endl;
+    //std::cout<<"query: "<<tensor2<<std::endl;
+    if (torch::equal(tensor1, tensor2)) {
+      return true;
+    }
+  }
+  return false;
+}
+double recallOfTensorList(std::vector<torch::Tensor> groundTruth, std::vector<torch::Tensor> prob) {
+  int64_t truePositives = 0;
+  int64_t falseNegatives = 0;
+  for (size_t i = 0; i < prob.size(); i++) {
+    auto gdI = groundTruth[i];
+    auto probI = prob[i];
+    for (int64_t j = 0; j < probI.size(0); j++) {
+      if (existRow(gdI, probI[j])) {
+        truePositives++;
+      } else {
+        falseNegatives++;
+      }
+    }
+  }
+  double recall = static_cast<double>(truePositives) / (truePositives + falseNegatives);
+  return recall;
+}
+#define COMPILED_TIME (__DATE__ " " __TIME__)
 PYBIND11_MODULE(PyCANDY, m) {
   /**
    * @brief export the configmap class
    */
-  m.attr("__version__") = "0.1.0";  // Set the version of the module
-  py::class_<INTELLI::ConfigMap,std::shared_ptr<INTELLI::ConfigMap>>(m, "ConfigMap")
+  m.attr("__version__") = "0.1.2";  // Set the version of the module
+  m.attr("__compiled_time__") = COMPILED_TIME;  // Set the compile time of the module
+  py::class_<INTELLI::ConfigMap, std::shared_ptr<INTELLI::ConfigMap>>(m, "ConfigMap")
       .def(py::init<>())
       .def("edit", py::overload_cast<const std::string &, int64_t>(&INTELLI::ConfigMap::edit))
       .def("edit", py::overload_cast<const std::string &, double>(&INTELLI::ConfigMap::edit))
@@ -114,7 +145,7 @@ PYBIND11_MODULE(PyCANDY, m) {
   /***
    * @brief abstract index
    */
-  py::class_<AbstractIndex,std::shared_ptr<AbstractIndex>>(m, "AbstractIndex")
+  py::class_<AbstractIndex, std::shared_ptr<AbstractIndex>>(m, "AbstractIndex")
       .def(py::init<>())
       .def("setTier", &AbstractIndex::setTier)
       .def("reset", &AbstractIndex::reset, py::call_guard<py::gil_scoped_release>())
@@ -133,24 +164,37 @@ PYBIND11_MODULE(PyCANDY, m) {
       .def("offlineBuild", &AbstractIndex::offlineBuild)
       .def("waitPendingOperations", &AbstractIndex::waitPendingOperations)
       .def("loadInitialStringObject", &AbstractIndex::loadInitialStringObject)
+      .def("loadInitialU64Object", &AbstractIndex::loadInitialU64Object)
       .def("insertStringObject", &AbstractIndex::insertStringObject)
+      .def("insertU64Object", &AbstractIndex::insertU64Object)
       .def("deleteStringObject", &AbstractIndex::deleteStringObject)
+      .def("deleteU64Object", &AbstractIndex::deleteU64Object)
       .def("searchStringObject", &AbstractIndex::searchStringObject)
+      .def("searchU64Object", &AbstractIndex::searchU64Object)
       .def("searchTensorAndStringObject", &AbstractIndex::searchTensorAndStringObject)
-      .def("loadInitialTensorAndQueryDistribution", &AbstractIndex::loadInitialTensorAndQueryDistribution);
+      .def("loadInitialTensorAndQueryDistribution", &AbstractIndex::loadInitialTensorAndQueryDistribution)
+      .def("resetIndexStatistics", &AbstractIndex::resetIndexStatistics)
+      .def("getIndexStatistics", &AbstractIndex::getIndexStatistics);
   m.def("createIndex", &createIndex, "A function to create new index by name tag");
   m.def("createDataLoader", &creatDataLoader, "A function to create new data loader by name tag");
   m.def("add_tensors", &add_tensors, "A function that adds two tensors");
+  m.def("createRBT", &CANDY::RBTDataLoader::createRBT, "Create a RBT file from tensor");
+  m.def("appendTensorToRBT", &CANDY::RBTDataLoader::appendTensorToRBT, "Append tensor to an RBT file");
+  m.def("readRowsFromRBT", &CANDY::RBTDataLoader::readRowsFromRBT, "read certain rows form RBT file");
+  m.def("getSizesFromRBT", &CANDY::RBTDataLoader::getSizesFromRBT, "get the sizes of RBT file");
+  m.def("recallOfTensorList", &recallOfTensorList, "calculate the recall");
   /**
    * @brief perf
    */
-  py::class_<CANDY::AbstractDataLoader,std::shared_ptr<CANDY::AbstractDataLoader>>(m, "AbstractDataLoader")
+  py::class_<CANDY::AbstractDataLoader, std::shared_ptr<CANDY::AbstractDataLoader>>(m, "AbstractDataLoader")
       .def(py::init<>())
       .def("setConfig", &CANDY::AbstractDataLoader::setConfig)
       .def("getData", &CANDY::AbstractDataLoader::getData)
+      .def("getDataAt", &CANDY::AbstractDataLoader::getDataAt)
+      .def("getQueryAt", &CANDY::AbstractDataLoader::getQueryAt)
       .def("getQuery", &CANDY::AbstractDataLoader::getQuery);
 #if CANDY_PAPI == 1
-  py::class_<INTELLI::ThreadPerfPAPI,std::shared_ptr<INTELLI::ThreadPerfPAPI>>(m, "PAPIPerf")
+  py::class_<INTELLI::ThreadPerfPAPI, std::shared_ptr<INTELLI::ThreadPerfPAPI>>(m, "PAPIPerf")
       .def(py::init<>())
       .def("initEventsByCfg", &INTELLI::ThreadPerfPAPI::initEventsByCfg)
       .def("start", &INTELLI::ThreadPerfPAPI::start)

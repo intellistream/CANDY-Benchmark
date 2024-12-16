@@ -13,6 +13,7 @@
 #include <CANDY/FlatIndex.h>
 #include <CANDY/HNSWNaiveIndex.h>
 #include <CANDY/IndexTable.h>
+#include <CANDY/LSHAPGIndex.h>
 #include <CANDY/NNDescentIndex.h>
 #include <CANDY/OnlineIVFL2HIndex.h>
 #include <CANDY/OnlineIVFLSHIndex.h>
@@ -20,17 +21,21 @@
 #include <CANDY/PQIndex.h>
 #include <CANDY/ParallelPartitionIndex.h>
 #include <CANDY/YinYangGraphIndex.h>
+#include <CANDY/FlatGPUIndex.h>
 #include <CANDY/YinYangGraphSimpleIndex.h>
 #include <CANDY/ThresholdIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
 
-
+#include <include/sptag_config.h>
 #if CANDY_CL == 1
 //#include <CPPAlgos/CLMMCPPAlgo.h>
 #endif
 #if CANDY_RAY == 1
 #include <CANDY/DistributedPartitionIndex.h>
+#endif
+#if CANDY_SPTAG == 1
+#include <CANDY/SPTAGIndex.h>
 #endif
 namespace CANDY {
 CANDY::IndexTable::IndexTable() {
@@ -56,11 +61,17 @@ CANDY::IndexTable::IndexTable() {
   indexMap["DPG"] = newDPGIndex();
   indexMap["threshold"] = newThresholdIndex();
 
+  indexMap["LSHAPG"] = newLSHAPGIndex();
+  indexMap["flatGPU"] = newFlatGPUIndex();
+
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif
 #if CANDY_RAY == 1
   indexMap["distributedPartition"] = newDistributedPartitionIndex();
+#endif
+#if CANDY_SPTAG == 1
+  indexMap["SPTAG"] = newSPTAGIndex();
 #endif
 }
 }  // namespace CANDY

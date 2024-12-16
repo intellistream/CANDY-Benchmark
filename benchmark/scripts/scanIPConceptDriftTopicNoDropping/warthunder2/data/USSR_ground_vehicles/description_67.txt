@@ -1,3 +1,0 @@
-Description of ZSU-37: 
-The ZSU-37 is a rank III Soviet self-propelled anti-aircraft vehicle 
-with a battle rating of 4.0 (AB) and 3.7 (RB/SB). It was introduced in Update 1.43. It is based on a SU-76M chassis with a special turret mounting the 37 mm 61-K mod. 1939 anti-aircraft cannon. Its fast-firing cannon will bring down any plane coming at range and thanks to its HVAP ammunition it also has the potential to destroy tanks with a little less than 90 mm penetration.

@@ -1,3 +1,0 @@
-Description of TPK_6.41: 
-The ACMAT TPK 6.41 VPC is a rank III French SPAA 
-with a battle rating of 5.3 (AB) and 5.7 (RB/SB). It was introduced in Update "Air Superiority".

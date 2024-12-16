@@ -42,6 +42,7 @@ waitPendingWrite,1,I64
 congestionDrop,1,I64
 isOnlinePQ,0,I64
 singleWorkerOpt,1,I64
-learningRate,0.1,Double
+learningRate,0.05,Double
 MLTrainMargin,0.75,Double
-MLTrainEpochs,30,I64
+MLTrainEpochs,200,I64
+expandStep,4000,I64

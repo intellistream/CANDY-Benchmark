@@ -1,2 +1,0 @@
-Usage of Bf_109_G-6: 
-When stock, you should side climb and enter combat with a superior altitude before engaging. Your enemies will render you ineffective if you don't have the height advantage. However, when it's fully upgraded you might omit side-climbing as the plane should generally get you either at the same altitude or above the opponent. WEP is very effective, so use it to get to an effective altitude in the least amount of time. The engine overheats quite fast, but it also cools down rapidly. Don't be afraid to use WEP even if your temperature is yellow or red.

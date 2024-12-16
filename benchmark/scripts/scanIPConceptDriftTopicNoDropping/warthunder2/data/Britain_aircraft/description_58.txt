@@ -1,2 +1,0 @@
-Description of Spitfire_F_Mk_XVI: 
-The final Merlin-powered variant of the Spitfire, the Spitfire F Mk XVI was a Spitfire LF Mk IX equipped with the Packard Merlin 266 engine, a Rolls-Royce Merlin 66 licence-built by the American Packard Motor Company. Notably, the model represented in-game features the new "E-type" wings, which allowed either an all-cannon arrangement like the C-type or installation of M2 Browning heavy machine guns. These could also be "clipped", removing the wingtips to improve low-altitude characteristics at the cost of high-altitude manoeuvrability.

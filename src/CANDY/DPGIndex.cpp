@@ -153,16 +153,20 @@ void DPGIndex::removeLayer1Neighbor(size_t i, size_t j) {
 }
 
 double DPGIndex::calcDist(const torch::Tensor &ta, const torch::Tensor &tb) {
-  auto taPtr = ta.contiguous().data_ptr<float>(),
-       tbPtr = tb.contiguous().data_ptr<float>();
+
   double ans = 0;
   if (faissMetric == faiss::METRIC_L2) {
-    for (size_t i = 0; i < vecDim; ++i) {
-      auto diff = taPtr[i] - tbPtr[i];
-      ans += diff * diff;
-    }
+    // Calculate the squared L2 distance as ||v1 - v2||^2
+    auto diff = ta-tb;
+    auto l2_sqr = torch::sum(diff * diff);
+    // Convert the result back to float and return
+    ans = l2_sqr.item<float>();
   } else {
-    for (size_t i = 0; i < vecDim; ++i) ans -= taPtr[i] * tbPtr[i];
+    //for (size_t i = 0; i < vecDim; ++i) ans -= taPtr[i] * tbPtr[i];
+    // Calculate the inner (dot) product
+    auto inner_product = torch::matmul(ta, tb.t());
+    ans = -inner_product.item<float>();
+    // Convert the result back to float and return
   }
   return ans;
 }

@@ -1,3 +1,0 @@
-Description of T-34-100: 
-The T-34-100 is a premium rank IV Soviet medium tank 
-with a battle rating of 6.3 (AB/RB/SB). It was introduced in Update 1.51 "Cold Steel". The vehicle is that of a T-34 hull and chassis, but with a heavy emphasis in firepower with a 100 mm LB-1 gun as its main armament. This gun is equivalent to those on the SU-100 and the T-54 series. Thus, while suffering from a now obsolete armour thickness, it has the firepower needed to compete on an SF-SF - "see first, shoot first" basis.
