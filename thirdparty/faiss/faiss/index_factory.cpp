@@ -886,6 +886,15 @@ std::unique_ptr<Index> index_factory_sub(
 Index* index_factory(int d, const char* description, MetricType metric) {
     return index_factory_sub(d, description, metric).release();
 }
+Index* index_factory_IP(int d, const char* description) {
+        MetricType metric = METRIC_INNER_PRODUCT;
+        return index_factory_sub(d, description, metric).release();
+}
+
+Index* index_factory_L2(int d, const char* description) {
+        MetricType metric = METRIC_L2;
+        return index_factory_sub(d, description, metric).release();
+    }
 
 IndexBinary* index_binary_factory(int d, const char* description) {
     IndexBinary* index = nullptr;
