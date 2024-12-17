@@ -152,8 +152,11 @@ struct Index {
             idx_t* labels,
             const SearchParameters* params = nullptr) const = 0;
 
-    void search_arrays(idx_t n, const std::vector<float> x, idx_t k, std::vector<float> distances, std::vector<idx_t> labels){
+    std::vector<idx_t> search_arrays(idx_t n, const std::vector<float> x, idx_t k){
+        std::vector<float> distances(n*k);
+        std::vector<idx_t> labels(n*k);
         search(n, x.data(), k, distances.data(), labels.data(), nullptr);
+        return labels;
     }
 
     /** query n vectors of dimension d to the index.
