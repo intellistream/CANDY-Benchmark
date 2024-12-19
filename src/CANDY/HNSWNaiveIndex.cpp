@@ -83,7 +83,7 @@ bool CANDY::HNSWNaiveIndex::insertTensor(torch::Tensor &t) {
           qdis->ads->set_transformed(&hnsw.transformMatrix);
           qdis->ads->set_step(adSampling_step,adSampling_epsilon0);
       }
-
+      int j=0;
     for (int level = orders.size() - 1; level >= 0; level--) {
       CANDY::VisitedTable vt;
 
@@ -92,6 +92,7 @@ bool CANDY::HNSWNaiveIndex::insertTensor(torch::Tensor &t) {
         auto id = orders[level][i];
         auto new_in_vertex = std::make_shared<CANDY::HNSWVertex>(
             CANDY::HNSWVertex(id, level, hnsw.cum_nb_neighbors(level + 1)));
+        new_in_vertex->vid = ntotal+j;
         qdis->set_query(*id);
         if(qdis->opt_mode_ == OPT_LVQ && is_local_lvq) {
             new_in_vertex->code_final_ = qdis->compute_code(id);
@@ -101,6 +102,7 @@ bool CANDY::HNSWNaiveIndex::insertTensor(torch::Tensor &t) {
             new_in_vertex->transformed = newTensor(transformed);
         }
         hnsw.add_without_lock(*qdis, level, new_in_vertex, vt);
+        j++;
       }
     }
   }
@@ -142,4 +144,39 @@ std::vector<torch::Tensor> CANDY::HNSWNaiveIndex::searchTensor(torch::Tensor &q,
     }
   }
   return ru;
+}
+
+std::vector<faiss::idx_t> CANDY::HNSWNaiveIndex::searchIndex(torch::Tensor q, int64_t k) {
+    CANDY::DistanceQueryer disq(vecDim);
+    disq.set_mode(opt_mode_, faissMetric);
+    disq.set_search(true);
+    if (disq.opt_mode_ == OPT_LVQ) {
+        disq.mean_ = &hnsw.mean_;
+    }
+    if(disq.opt_mode_ == OPT_DCO){
+        disq.ads->set_transformed(&hnsw.transformMatrix);
+        disq.ads->set_step(adSampling_step,adSampling_epsilon0);
+    }
+    int64_t query_size = q.size(0);
+    std::vector<faiss::idx_t> ru(query_size*k);
+    CANDY::VisitedTable vt;
+    for (int64_t i = 0; i < query_size; i++) {
+        auto query = q.slice(0, i, i + 1);
+        if(disq.opt_mode_ == OPT_DCO){
+            disq.set_query(query);
+
+            auto transformed = disq.ads->transform(query);
+            disq.transformed = transformed;
+        } else {
+            disq.set_query(query);
+        }
+        auto D = std::vector<float>(k);
+        auto I = std::vector<CANDY::VertexPtr>(k);
+
+        hnsw.search(disq, k, I, D.data(), vt);
+        for (int64_t j = 0; j < k; j++) {
+            ru[i*k+j]= I[j]->vid;
+        }
+    }
+    return ru;
 }
