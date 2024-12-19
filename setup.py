@@ -66,7 +66,7 @@ class CMakeBuild(build_ext):
         for file in so_files:
             shutil.copy(file, extdir)
 setup(
-    name='PyCANDY',
+    name='PyCANDYAlgo',
     version='0.1',
     author='Your Name',
     description='A simple python version of CANDY benchmark built with Pybind11 and CMake',

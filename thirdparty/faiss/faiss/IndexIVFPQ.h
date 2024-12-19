@@ -67,6 +67,8 @@ struct IndexIVFPQ : IndexIVF {
 
     void sa_decode(idx_t n, const uint8_t* bytes, float* x) const override;
 
+    virtual std::vector<idx_t> search_arrays(idx_t n, const std::vector<float> x, idx_t k, int param);
+
     void add_core(
             idx_t n,
             const float* x,

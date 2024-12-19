@@ -71,16 +71,32 @@ std::shared_ptr<ConfigMap> dictToConfigMap(const py::dict &dict) {
   }
   return cfg;
 }
-AbstractIndexPtr createIndex(std::string nameTag) {
-  IndexTable tab;
-  auto ru = tab.getIndex(nameTag);
-  if (ru == nullptr) {
-    INTELLI_ERROR("No index named " + nameTag + ", return flat");
-    nameTag = "flat";
-    return tab.getIndex(nameTag);
-  }
-  return ru;
+//AbstractIndexPtr createIndex(std::string nameTag) {
+//  IndexTable tab;
+//  auto ru = tab.getIndex(nameTag);
+//  if (ru == nullptr) {
+//    INTELLI_ERROR("No index named " + nameTag + ", return flat");
+//    nameTag = "flat";
+//    return tab.getIndex(nameTag);
+//  }
+//  return ru;
+//}
+
+AbstractIndexPtr createIndex(std::string nameTag, int64_t dim) {
+    IndexTable tab;
+    auto ru = tab.getIndex(nameTag);
+    if (ru == nullptr) {
+        INTELLI_ERROR("No index named " + nameTag + ", return flat");
+        nameTag = "flat";
+        return tab.getIndex(nameTag);
+    }
+    ConfigMapPtr cfg = newConfigMap();
+    cfg->edit("vecDim", dim);
+    ru->setConfig(cfg);
+
+    return ru;
 }
+
 //AbstractDataLoaderPtr creatDataLoader(std::string nameTag) {
 //  DataLoaderTable dt;
 //  auto ru = dt.findDataLoader(nameTag);
@@ -121,7 +137,7 @@ double recallOfTensorList(std::vector<torch::Tensor> groundTruth, std::vector<to
   return recall;
 }
 #define COMPILED_TIME (__DATE__ " " __TIME__)
-PYBIND11_MODULE(PyCANDY, m) {
+PYBIND11_MODULE(PyCANDYAlgo, m) {
   /**
    * @brief export the configmap class
    */
@@ -184,6 +200,8 @@ PYBIND11_MODULE(PyCANDY, m) {
 
 
   m.def("recallOfTensorList", &recallOfTensorList, "calculate the recall");
+
+  /// faiss index APIs only
   py::class_<faiss::Index,std::shared_ptr<faiss::Index>>(m, "IndexFAISS")
          // .def(py::init<>())
           .def("add",&faiss::Index::add_arrays)
@@ -194,6 +212,8 @@ PYBIND11_MODULE(PyCANDY, m) {
   m.def("index_factory_ip", &faiss::index_factory_IP, "Create custom index from faiss with IP");
 
   m.def("index_factory_l2", &faiss::index_factory_L2, "Create custom index from faiss with IP");
+
+
 
 
 

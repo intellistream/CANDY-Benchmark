@@ -285,7 +285,14 @@ void IndexHNSW::train(idx_t n, const float* x) {
     storage->train(n, x);
     is_trained = true;
 }
-
+std::vector<idx_t> IndexHNSW::search_arrays(idx_t n, const std::vector<float> x, idx_t k, int param){
+        std::vector<float> distances(n*k);
+        std::vector<idx_t> labels(n*k);
+        SearchParametersHNSW params_in;
+        params_in.efSearch = param;
+        search(n, x.data(), k, distances.data(), labels.data(), &params_in);
+        return labels;
+    }
 void IndexHNSW::search(
         idx_t n,
         const float* x,
