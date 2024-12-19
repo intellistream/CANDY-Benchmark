@@ -312,6 +312,7 @@ void IndexHNSW::search(
         FAISS_THROW_IF_NOT_MSG(params, "params type invalid");
         efSearch = params->efSearch;
     }
+
     size_t n1 = 0, n2 = 0, n3 = 0, ndis = 0, nreorder = 0;
 
     idx_t check_period =
@@ -377,10 +378,13 @@ void IndexHNSW::add(idx_t n, const float* x) {
             "Please use IndexHNSWFlat (or variants) instead of IndexHNSW directly");
     FAISS_THROW_IF_NOT(is_trained);
     int n0 = ntotal;
+    printf("adding %ld vectors\n", n);
     storage->add(n, x);
+
     ntotal = storage->ntotal;
 
     hnsw_add_vertices(*this, n0, n, x, verbose, hnsw.levels.size() == ntotal);
+    printf("adding %ld vectors finishes\n", n);
 }
 
 void IndexHNSW::reset() {

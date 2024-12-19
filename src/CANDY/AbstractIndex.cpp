@@ -34,7 +34,7 @@ bool CANDY::AbstractIndex::offlineBuild(torch::Tensor &t) {
 }
 bool CANDY::AbstractIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   assert(cfg);
-  std::string metricType = cfg->tryString("metricType", "L2", true);
+  std::string metricType = cfg->tryString("metricType", "IP", true);
   faissMetric = faiss::METRIC_L2;
   if (metricType == "dot" || metricType == "IP" || metricType == "cossim") {
     faissMetric = faiss::METRIC_INNER_PRODUCT;
@@ -99,6 +99,10 @@ std::vector<faiss::idx_t> CANDY::AbstractIndex::searchIndex(torch::Tensor q, int
   std::vector<faiss::idx_t> ru(1);
   return ru;
 }
+std::vector<faiss::idx_t> CANDY::AbstractIndex::searchIndexParam(torch::Tensor q, int64_t k, int64_t param){
+    return searchIndex(q,k);
+}
+
 std::vector<std::vector<std::string>> CANDY::AbstractIndex::searchStringObject(torch::Tensor &q, int64_t k) {
   assert(k > 0);
   assert(q.size(1));

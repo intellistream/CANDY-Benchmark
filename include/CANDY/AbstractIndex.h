@@ -107,6 +107,13 @@ class AbstractIndex {
    */
   virtual std::vector<faiss::idx_t> searchIndex(torch::Tensor q, int64_t k);
 
+    /**
+     * @brief search the k-NN of a query tensor, return their index
+     * @param t the tensor, allow multiple rows
+     * @param k the returned neighbors
+     * @return std::vector<faiss::idx_t> the index, follow faiss's order
+     */
+    virtual std::vector<faiss::idx_t> searchIndexParam(torch::Tensor q, int64_t k, int64_t param);
   /**
    * @brief return a vector of tensors according to some index
    * @param idx the index, follow faiss's style, allow the KNN index of multiple queries

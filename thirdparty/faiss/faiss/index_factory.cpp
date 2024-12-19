@@ -27,6 +27,7 @@
 #include <faiss/IndexAdditiveQuantizerFastScan.h>
 #include <faiss/IndexFlat.h>
 #include <faiss/IndexHNSW.h>
+#include <faiss/IndexMNRU.h>
 #include <faiss/IndexIVF.h>
 #include <faiss/IndexIVFAdditiveQuantizer.h>
 #include <faiss/IndexIVFAdditiveQuantizerFastScan.h>
@@ -474,6 +475,24 @@ IndexHNSW* parse_IndexHNSW(
 
     return nullptr;
 }
+IndexMNRU* parse_IndexMNRU(
+                const std::string code_string,
+                int d,
+                MetricType mt,
+                int hnsw_M) {
+            std::smatch sm;
+            auto match = [&sm, &code_string](const std::string& pattern) {
+                return re_match(code_string, pattern, sm);
+            };
+
+            if (match("Flat|")) {
+                return new IndexMNRUFlat(d, hnsw_M, mt);
+            }
+
+            return nullptr;
+        }
+
+
 
 /***************************************************************
  * Parse IndexNSG
@@ -784,6 +803,27 @@ std::unique_ptr<Index> index_factory_sub(
                 description.c_str());
         return std::unique_ptr<Index>(index);
     }
+
+            if (re_match(description, "MNRU([0-9]*)([,_].*)?", sm)) {
+                int mnru_M = mres_to_int(sm[1], 32);
+                // We also accept empty code string (synonym of Flat)
+                std::string code_string =
+                        sm[2].length() > 0 ? sm[2].str().substr(1) : "";
+                if (verbose) {
+                    printf("parsing MNRU string %s code_string=%s mnru_M=%d\n",
+                           description.c_str(),
+                           code_string.c_str(),
+                           mnru_M);
+                }
+
+                IndexMNRU* index = parse_IndexMNRU(code_string, d, metric, mnru_M);
+                FAISS_THROW_IF_NOT_FMT(
+                        index,
+                        "could not parse HNSW code description %s in %s",
+                        code_string.c_str(),
+                        description.c_str());
+                return std::unique_ptr<Index>(index);
+            }
 
     // NSG variants (it was unclear in the old version that the separator was a
     // "," so we support both "_" and ",")

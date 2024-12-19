@@ -176,6 +176,7 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
       .def("deleteTensor", &AbstractIndex::deleteTensor)
       .def("reviseTensor", &AbstractIndex::reviseTensor)
       .def("searchIndex", &AbstractIndex::searchIndex)
+      .def("searchIndexParam", &AbstractIndex::searchIndexParam)
       .def("rawData", &AbstractIndex::rawData)
       .def("searchTensor", &AbstractIndex::searchTensor)
       .def("endHPC", &AbstractIndex::endHPC)
@@ -207,7 +208,8 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
           .def("add",&faiss::Index::add_arrays)
           .def("search",&faiss::Index::search_arrays)
           .def("train",&faiss::Index::train_arrays)
-          .def("add_with_ids", &faiss::Index::add_arrays_with_ids);
+          .def("add_with_ids", &faiss::Index::add_arrays_with_ids)
+        .def_readwrite("verbose", &faiss::Index::verbose);
 
   m.def("index_factory_ip", &faiss::index_factory_IP, "Create custom index from faiss with IP");
 
