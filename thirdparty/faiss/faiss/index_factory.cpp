@@ -548,7 +548,7 @@ Index* parse_other_indexes(
     if (match("LSH(r?)(t?)")) {
         bool rotate_data = sm[1].length() > 0;
         bool train_thresholds = sm[2].length() > 0;
-        FAISS_THROW_IF_NOT(metric == METRIC_L2);
+        //FAISS_THROW_IF_NOT(metric == METRIC_L2);
         return new IndexLSH(d, d, rotate_data, train_thresholds);
     }
 
@@ -569,7 +569,8 @@ Index* parse_other_indexes(
         int M = std::stoi(sm[1].str());
         int nbit = mres_to_int(sm[2], 8, 1);
         IndexPQ* index_pq = new IndexPQ(d, M, nbit, metric);
-        index_pq->do_polysemous_training = sm[3].str() != "np";
+        index_pq->do_polysemous_training =false;
+        index_pq->pq.set_online(sm[3].str() != "np");
         return index_pq;
     }
 
