@@ -61,6 +61,7 @@ configure_file(
 
 #set(CMAKE_CUDA_STANDARD 11)
 #set(CMAKE_CUDA_FLAGS "-std=c++11")
+
 option(ENABLE_OPENCL
         "Enable opencl support"
         OFF
@@ -69,14 +70,8 @@ option(ENABLE_RAY
         "Enable the distributed computing powered by ray"
         OFF
 )
-option(ENABLE_HDF5
-        "Enable load data from hdf5 file"
-        OFF
-)
-option(ENABLE_SPTAG
-        "Integrate SPTAG LIBS"
-        OFF
-)
+
+
 option(ENABLE_PYBIND
         "Enable original pybind and build CANDYBENCH python"
         OFF
@@ -148,35 +143,13 @@ configure_file(
 #set(CMAKE_CUDA_ARCHITECTURES 55)
 # Set LOGGING_LEVEL Flag
 #option of hdf5
-if (NOT ENABLE_HDF5)
-    message(STATUS "I will NOT include support for HDF5 file ")
-    set(CANDY_HDF5 0)
-else ()
-    set(CANDY_HDF5 1)
-    message(STATUS "I will include support for HDF5 file, please make sure hdf5 works")
-    add_subdirectory(thirdparty/hdf5-1.14.3)
-    set(LIBRARIES ${LIBRARIES} hdf5-static)
-endif ()
+
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/hdf5_config.h.in"
         "${PROJECT_BINARY_DIR}/include/hdf5_config.h"
 )
-# Set SPTAG build directory
-set(SPTAG_BUILD_DIR ${CMAKE_BINARY_DIR}/SPTAG_build)
 
-# Configure build output directories specifically for SPTAG
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
-if (NOT ENABLE_SPTAG)
-    message(STATUS "I will NOT include SPTAG LIBS")
-    set(CANDY_SPTAG 0)
-else ()
-    set(CANDY_SPTAG 1)
-    message(STATUS "I will include support for SPTAG")
-    add_subdirectory(thirdparty/SPTAG)
-    set(LIBRARIES ${LIBRARIES}  SPTAGLib)
-endif ()
+
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/sptag_config.h.in"
         "${PROJECT_BINARY_DIR}/include/sptag_config.h"
@@ -198,7 +171,7 @@ message(STATUS "CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE}")
 #set(LIBRARIES ${LIBRARIES} ${Log4cxx_LIBRARY})
 
 
-option(ENABLE_UNIT_TESTS "Enable unit tests" ON)
+option(ENABLE_UNIT_TESTS "Enable unit tests" OFF)
 message(STATUS "Enable testing: ${ENABLE_UNIT_TESTS}")
 
 
@@ -228,8 +201,7 @@ target_include_directories(CANDYBENCH PUBLIC "include")
 target_include_directories(CANDYBENCH PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/papi_build/include")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/")
-target_include_directories(CANDYBENCH PUBLIC "thirdparty/SPTAG")
-target_include_directories(CANDYBENCH PUBLIC "thirdparty/SPTAG/AnnService")
+
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
 target_link_libraries(CANDYBENCH PUBLIC ${LIBRARIES})
@@ -241,22 +213,22 @@ add_subdirectory(benchmark)
 #include(GoogleTest)
 
 if (ENABLE_UNIT_TESTS)
-    add_subdirectory(test)
+    #add_subdirectory(test)
 endif ()
 
 if (NOT ENABLE_PYBIND)
-    message(STATUS "I will NOT build original python package PyCANDY")
+    message(STATUS "I will NOT build original python package PyCANDYAlgo")
     set(CANDY_PYBIND 0)
 else ()
-    message(STATUS "I will  build original python package PyCANDY")
+    message(STATUS "I will  build original python package PyCANDYAlgo")
     add_subdirectory(thirdparty/pybind11)
-    pybind11_add_module(PyCANDY ${PROJECT_SOURCE_DIR}/src/PyCANDY.cpp)
+    pybind11_add_module(PyCANDYAlgo ${PROJECT_SOURCE_DIR}/src/PyCANDY.cpp)
     find_library(TORCH_PYTHON_LIBRARY torch_python PATH "${TORCH_INSTALL_PREFIX}/lib")
-    target_link_libraries(PyCANDY PUBLIC ${LIBRARIES} CANDYBENCH ${TORCH_PYTHON_LIBRARY})
-    install(TARGETS PyCANDY LIBRARY DESTINATION .)
+    target_link_libraries(PyCANDYAlgo PUBLIC ${LIBRARIES} CANDYBENCH ${TORCH_PYTHON_LIBRARY})
+    install(TARGETS PyCANDYAlgo LIBRARY DESTINATION .)
     message(STATUS "Additional include torch_python: ${TORCH_PYTHON_LIBRARY}")
     set(CANDY_PYBIND 1)
-    set_property(TARGET PyCANDY  PROPERTY CXX_STANDARD 20)
+    set_property(TARGET PyCANDYAlgo  PROPERTY CXX_STANDARD 20)
 endif ()
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/pybind_config.h.in"

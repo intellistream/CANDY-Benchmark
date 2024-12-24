@@ -37,6 +37,12 @@ void Index::assign(idx_t n, const float* x, idx_t* labels, idx_t k) const {
     std::vector<float> distances(n * k);
     search(n, x, k, distances.data(), labels);
 }
+std::vector<idx_t> Index::search_arrays(idx_t n, const std::vector<float> x, idx_t k, int param){
+        std::vector<float> distances(n*k);
+        std::vector<idx_t> labels(n*k);
+        search(n, x.data(), k, distances.data(), labels.data());
+        return labels;
+}
 
 void Index::add_with_ids(
         idx_t /*n*/,

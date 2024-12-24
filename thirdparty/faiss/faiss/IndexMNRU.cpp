@@ -495,10 +495,13 @@ namespace faiss{
                 "Please use IndexMNRUFlat (or variants) instead of IndexMNRU directly");
         FAISS_THROW_IF_NOT(is_trained);
         int n0 = ntotal;
+        printf("adding %ld vectors\n", n);
         storage->add(n, x);
         ntotal = storage->ntotal;
 
+
         hnsw_add_vertices(*this, n0, n, x, verbose, main_index.levels.size() == ntotal);
+        printf("adding %ld vectors finishes\n", n);
 
         if(/*ntotal%backup_tau==0||*/true){
             // perform backup index update

@@ -97,6 +97,7 @@ class DPGIndex : public CANDY::AbstractIndex {
   void removeLayer1Neighbor(size_t i, size_t j);
   double calcDist(const torch::Tensor &ta, const torch::Tensor &tb);
   torch::Tensor searchOnce(torch::Tensor q, int64_t k);
+  std::vector<faiss::idx_t> searchOnceIndex(torch::Tensor q, int64_t k);
   std::vector<std::pair<double, size_t>> searchOnceInner(torch::Tensor q,
                                                          int64_t k);
   bool insertOnce(vector<std::pair<double, size_t>> &neighbors,
@@ -182,6 +183,14 @@ class DPGIndex : public CANDY::AbstractIndex {
    * @return std::vector<torch::Tensor> the result tensor for each row of query
    */
   virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
+
+  /**
+   * @brief search the k-NN of a query tensor, return their index
+   * @param t the tensor, allow multiple rows
+   * @param k the returned neighbors
+   * @return std::vector<faiss::idx_t> the index, follow faiss's order
+   */
+    virtual std::vector<faiss::idx_t> searchIndex(torch::Tensor q, int64_t k);
 
   /**
    * @brief some extra set-ups if the index has HPC fetures

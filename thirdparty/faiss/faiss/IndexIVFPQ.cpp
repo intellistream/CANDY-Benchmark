@@ -65,6 +65,15 @@ IndexIVFPQ::IndexIVFPQ(
 /****************************************************************
  * training                                                     */
 
+std::vector<idx_t> IndexIVFPQ::search_arrays(idx_t n, const std::vector<float> x, idx_t k, int param){
+        std::vector<float> distances(n*k);
+        std::vector<idx_t> labels(n*k);
+        IVFPQSearchParameters params_in;
+        params_in.nprobe = param;
+        search(n, x.data(), k, distances.data(), labels.data(), &params_in);
+        return labels;
+}
+
 void IndexIVFPQ::train_encoder(idx_t n, const float* x, const idx_t* assign) {
 
     pq.train(n, x);

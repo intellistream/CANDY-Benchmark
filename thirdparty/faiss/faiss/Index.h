@@ -15,6 +15,7 @@
 #include <sstream>
 #include <string>
 #include <typeinfo>
+#include <vector>
 
 
 #define FAISS_VERSION_MAJOR 1
@@ -97,6 +98,10 @@ struct Index {
      */
     virtual void train(idx_t n, const float* x);
 
+    void train_arrays(idx_t n, const std::vector<float> x){
+        train(n, x.data());
+    }
+
     /** Add n vectors of dimension d to the index.
      *
      * Vectors are implicitly assigned labels ntotal .. ntotal + n - 1
@@ -106,6 +111,12 @@ struct Index {
      * @param x      input matrix, size n * d
      */
     virtual void add(idx_t n, const float* x) = 0;
+
+    void add_arrays(idx_t n, const std::vector<float> x){
+        add(n, x.data());
+    }
+
+
 
     /** Same as add, but stores xids instead of sequential ids.
      *
@@ -117,6 +128,10 @@ struct Index {
      * @param xids      if non-null, ids to store for the vectors (size n)
      */
     virtual void add_with_ids(idx_t n, const float* x, const idx_t* xids);
+
+    void add_arrays_with_ids(idx_t n, const std::vector<float> x,const std::vector<idx_t> xids){
+        add_with_ids(n, x.data(), xids.data());
+    }
 
     /** query n vectors of dimension d to the index.
      *
@@ -136,6 +151,11 @@ struct Index {
             float* distances,
             idx_t* labels,
             const SearchParameters* params = nullptr) const = 0;
+
+    virtual std::vector<idx_t> search_arrays(idx_t n, const std::vector<float> x, idx_t k, int param);
+
+
+
 
     /** query n vectors of dimension d to the index.
      *
