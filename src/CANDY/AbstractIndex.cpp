@@ -56,6 +56,10 @@ bool CANDY::AbstractIndex::insertTensor(torch::Tensor &t) {
   assert(t.size(1));
   return false;
 }
+
+bool CANDY::AbstractIndex::insertTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t){
+    return insertTensor(t);
+}
 bool CANDY::AbstractIndex::insertStringObject(torch::Tensor &t, std::vector<std::string> &strs) {
   assert(t.size(1));
   assert (strs.size());
@@ -72,6 +76,11 @@ bool CANDY::AbstractIndex::loadInitialU64Object(torch::Tensor &t, std::vector<ui
 bool CANDY::AbstractIndex::loadInitialTensor(torch::Tensor &t) {
   return insertTensor(t);
 }
+
+bool CANDY::AbstractIndex::loadInitialTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t) {
+    return loadInitialTensor(t);
+}
+
 bool CANDY::AbstractIndex::loadInitialStringObject(torch::Tensor &t, std::vector<std::string> &strs) {
   return insertStringObject(t, strs);
 }
