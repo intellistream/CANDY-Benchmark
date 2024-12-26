@@ -17,8 +17,15 @@ namespace faiss {
 Index* index_factory(
         int d,
         const char* description,
-        MetricType metric = METRIC_L2);
+        int metric = METRIC_L2);
 
+Index* index_factory_IP(
+        int d,
+        const char* description);
+
+    Index* index_factory_L2(
+            int d,
+            const char* description);
 /// set to > 0 to get more logs from index_factory
 FAISS_API extern int index_factory_verbose;
 

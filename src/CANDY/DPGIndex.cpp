@@ -179,6 +179,14 @@ torch::Tensor DPGIndex::searchOnce(torch::Tensor q, int64_t k) {
   return ans;
 }
 
+std::vector<faiss::idx_t> DPGIndex::searchOnceIndex(torch::Tensor q, int64_t k) {
+    auto neighbors = searchOnceInner(q, k);
+    auto ans = std::vector<faiss::idx_t>(k);
+    for (size_t i = 0; i < neighbors.size(); ++i)
+        ans[i] = neighbors[i].second;
+    return ans;
+}
+
 std::vector<std::pair<double, size_t>> DPGIndex::searchOnceInner(
     torch::Tensor q, int64_t k) {
   if (graphLayer1.empty()) return std::vector<std::pair<double, size_t>>();
@@ -367,6 +375,18 @@ torch::Tensor DPGIndex::rawData() {
       ++offset;
     }
   return ret;
+}
+
+
+std::vector<faiss::idx_t> DPGIndex::searchIndex(torch::Tensor q, int64_t k){
+    std::vector<faiss::idx_t> ans(k * q.size(0));
+    parallelFor(ans.size(),
+                [&](size_t i) {
+        auto results = searchOnceIndex(q.slice(0,i,i+1),k);
+        for(size_t j=0; j<k; j++){
+                ans[i*k+j] = results[j]; };
+                });
+    return ans;
 }
 
 std::vector<torch::Tensor> DPGIndex::searchTensor(torch::Tensor &q, int64_t k) {

@@ -80,6 +80,15 @@ public:
    * @return std::vector<torch::Tensor> the result tensor for each row of query
    */
   virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
+
+    /**
+     * @brief search the k-NN of a query tensor, return their index
+     * @param t the tensor, allow multiple rows
+     * @param k the returned neighbors
+     * @return std::vector<faiss::idx_t> the index, follow faiss's order
+     */
+    virtual std::vector<faiss::idx_t> searchIndex(torch::Tensor q, int64_t k);
+
 };
 #define newHNSWNaiveIndex std::make_shared<CANDY::HNSWNaiveIndex>
 #define newNSWIndex std::make_shared<CANDY::HNSWNaiveIndex>

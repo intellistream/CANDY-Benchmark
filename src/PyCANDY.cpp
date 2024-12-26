@@ -9,13 +9,16 @@
 #include <Utils/ConfigMap.hpp>
 #include <Utils/IntelliLog.h>
 #include <CANDY/AbstractIndex.h>
-#include <DataLoader/DataLoaderTable.h>
-#include <DataLoader/RBTDataLoader.h>
+
+
 #include <CANDY/IndexTable.h>
 #include <include/papi_config.h>
 #if CANDY_PAPI == 1
 #include <Utils/ThreadPerfPAPI.hpp>
 #endif
+
+#include <faiss/index_factory.h>
+
 namespace py = pybind11;
 using namespace INTELLI;
 using namespace CANDY;
@@ -68,26 +71,42 @@ std::shared_ptr<ConfigMap> dictToConfigMap(const py::dict &dict) {
   }
   return cfg;
 }
-AbstractIndexPtr createIndex(std::string nameTag) {
-  IndexTable tab;
-  auto ru = tab.getIndex(nameTag);
-  if (ru == nullptr) {
-    INTELLI_ERROR("No index named " + nameTag + ", return flat");
-    nameTag = "flat";
-    return tab.getIndex(nameTag);
-  }
-  return ru;
+//AbstractIndexPtr createIndex(std::string nameTag) {
+//  IndexTable tab;
+//  auto ru = tab.getIndex(nameTag);
+//  if (ru == nullptr) {
+//    INTELLI_ERROR("No index named " + nameTag + ", return flat");
+//    nameTag = "flat";
+//    return tab.getIndex(nameTag);
+//  }
+//  return ru;
+//}
+
+AbstractIndexPtr createIndex(std::string nameTag, int64_t dim) {
+    IndexTable tab;
+    auto ru = tab.getIndex(nameTag);
+    if (ru == nullptr) {
+        INTELLI_ERROR("No index named " + nameTag + ", return flat");
+        nameTag = "flat";
+        return tab.getIndex(nameTag);
+    }
+    ConfigMapPtr cfg = newConfigMap();
+    cfg->edit("vecDim", dim);
+    ru->setConfig(cfg);
+
+    return ru;
 }
-AbstractDataLoaderPtr creatDataLoader(std::string nameTag) {
-  DataLoaderTable dt;
-  auto ru = dt.findDataLoader(nameTag);
-  if (ru == nullptr) {
-    INTELLI_ERROR("No index named " + nameTag + ", return flat");
-    nameTag = "random";
-    return dt.findDataLoader(nameTag);
-  }
-  return ru;
-}
+
+//AbstractDataLoaderPtr creatDataLoader(std::string nameTag) {
+//  DataLoaderTable dt;
+//  auto ru = dt.findDataLoader(nameTag);
+//  if (ru == nullptr) {
+//    INTELLI_ERROR("No index named " + nameTag + ", return flat");
+//    nameTag = "random";
+//    return dt.findDataLoader(nameTag);
+//  }
+//  return ru;
+//}
 static bool existRow(torch::Tensor base, torch::Tensor row) {
   for (int64_t i = 0; i < base.size(0); i++) {
     auto tensor1 = base[i].contiguous();
@@ -118,7 +137,7 @@ double recallOfTensorList(std::vector<torch::Tensor> groundTruth, std::vector<to
   return recall;
 }
 #define COMPILED_TIME (__DATE__ " " __TIME__)
-PYBIND11_MODULE(PyCANDY, m) {
+PYBIND11_MODULE(PyCANDYAlgo, m) {
   /**
    * @brief export the configmap class
    */
@@ -153,10 +172,14 @@ PYBIND11_MODULE(PyCANDY, m) {
       .def("setConfig", &AbstractIndex::setConfig, py::call_guard<py::gil_scoped_release>())
       .def("startHPC", &AbstractIndex::startHPC)
       .def("insertTensor", &AbstractIndex::insertTensor)
+      .def("insertTensorWithIds", &AbstractIndex::insertTensorWithIds)
       .def("loadInitialTensor", &AbstractIndex::loadInitialTensor)
+      .def("loadInitialTensorWithIds", &AbstractIndex::loadInitialTensorWithIds)
       .def("deleteTensor", &AbstractIndex::deleteTensor)
+      .def("deleteIndex", &AbstractIndex::deleteIndex)
       .def("reviseTensor", &AbstractIndex::reviseTensor)
       .def("searchIndex", &AbstractIndex::searchIndex)
+      .def("searchIndexParam", &AbstractIndex::searchIndexParam)
       .def("rawData", &AbstractIndex::rawData)
       .def("searchTensor", &AbstractIndex::searchTensor)
       .def("endHPC", &AbstractIndex::endHPC)
@@ -176,23 +199,29 @@ PYBIND11_MODULE(PyCANDY, m) {
       .def("resetIndexStatistics", &AbstractIndex::resetIndexStatistics)
       .def("getIndexStatistics", &AbstractIndex::getIndexStatistics);
   m.def("createIndex", &createIndex, "A function to create new index by name tag");
-  m.def("createDataLoader", &creatDataLoader, "A function to create new data loader by name tag");
+
   m.def("add_tensors", &add_tensors, "A function that adds two tensors");
-  m.def("createRBT", &CANDY::RBTDataLoader::createRBT, "Create a RBT file from tensor");
-  m.def("appendTensorToRBT", &CANDY::RBTDataLoader::appendTensorToRBT, "Append tensor to an RBT file");
-  m.def("readRowsFromRBT", &CANDY::RBTDataLoader::readRowsFromRBT, "read certain rows form RBT file");
-  m.def("getSizesFromRBT", &CANDY::RBTDataLoader::getSizesFromRBT, "get the sizes of RBT file");
+
+
   m.def("recallOfTensorList", &recallOfTensorList, "calculate the recall");
-  /**
-   * @brief perf
-   */
-  py::class_<CANDY::AbstractDataLoader, std::shared_ptr<CANDY::AbstractDataLoader>>(m, "AbstractDataLoader")
-      .def(py::init<>())
-      .def("setConfig", &CANDY::AbstractDataLoader::setConfig)
-      .def("getData", &CANDY::AbstractDataLoader::getData)
-      .def("getDataAt", &CANDY::AbstractDataLoader::getDataAt)
-      .def("getQueryAt", &CANDY::AbstractDataLoader::getQueryAt)
-      .def("getQuery", &CANDY::AbstractDataLoader::getQuery);
+
+  /// faiss index APIs only
+  py::class_<faiss::Index,std::shared_ptr<faiss::Index>>(m, "IndexFAISS")
+         // .def(py::init<>())
+          .def("add",&faiss::Index::add_arrays)
+          .def("search",&faiss::Index::search_arrays)
+          .def("train",&faiss::Index::train_arrays)
+          .def("add_with_ids", &faiss::Index::add_arrays_with_ids)
+        .def_readwrite("verbose", &faiss::Index::verbose);
+
+  m.def("index_factory_ip", &faiss::index_factory_IP, "Create custom index from faiss with IP");
+
+  m.def("index_factory_l2", &faiss::index_factory_L2, "Create custom index from faiss with IP");
+
+
+
+
+
 #if CANDY_PAPI == 1
   py::class_<INTELLI::ThreadPerfPAPI, std::shared_ptr<INTELLI::ThreadPerfPAPI>>(m, "PAPIPerf")
       .def(py::init<>())
@@ -201,4 +230,8 @@ PYBIND11_MODULE(PyCANDY, m) {
       .def("end", &INTELLI::ThreadPerfPAPI::end)
       .def("resultToConfigMap", &INTELLI::ThreadPerfPAPI::resultToConfigMap);
 #endif
+
+
+
+
 }

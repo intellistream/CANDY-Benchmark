@@ -136,23 +136,23 @@ if(FAISS_ENABLE_GPU)
 endif()
 
 if(FAISS_ENABLE_PYTHON)
-  add_subdirectory(faiss/python)
+  #add_subdirectory(faiss/python)
 endif()
 
 if(FAISS_ENABLE_C_API)
-  add_subdirectory(c_api)
+  #add_subdirectory(c_api)
 endif()
 
-add_subdirectory(demos)
-add_subdirectory(benchs)
-add_subdirectory(tutorial/cpp)
+#add_subdirectory(demos)
+#add_subdirectory(benchs)
+#add_subdirectory(tutorial/cpp)
 
 # CTest must be included in the top level to enable `make test` target.
 include(CTest)
 if(BUILD_TESTING)
-  add_subdirectory(tests)
+ # add_subdirectory(tests)
 
   if(FAISS_ENABLE_GPU)
-    add_subdirectory(faiss/gpu/test)
+    #add_subdirectory(faiss/gpu/test)
   endif()
 endif()

@@ -381,146 +381,146 @@ std::tuple<std::vector<torch::Tensor>, std::vector<std::vector<std::string>>> CA
   return ru;
 }
 
-std::map<std::string, CANDY::AbstractDataLoaderPtr> torchBounding_dataLoaderMap;
+//std::map<std::string, CANDY::AbstractDataLoaderPtr> torchBounding_dataLoaderMap;
 std::map<std::string, INTELLI::ConfigMapPtr> torchBounding_cfgDlMap;
-/**
-*
-* @brief The c++ bindings to creat an dataLoader at backend
-* @param name the name of this dataLoader
-* @param type the type of this dataLoader, keep the same as that in CANDY::IndexTable
-* @return tensor 1x1, [1] for success
-*/
-torch::Tensor CANDY_dataLoader_create(string name, string type) {
-  CANDY::DataLoaderTable it;
-  auto idx = it.findDataLoader(type);
-  if (idx == nullptr) {
-    return torch::zeros({1, 1});
-  }
-  torchBounding_dataLoaderMap[name] = idx;
-  torchBounding_cfgDlMap[name] = newConfigMap();
-  return torch::zeros({1, 1}) + 1.0;
-}
-/**
-* @brief The c++ bindings to change the config map related to a specific dataLoader
-* @param name the name of the dataLoader
- * @param key the key in the cfg
- * @param value the double value
-* @return tensor 1x1, [1] for success
-*/
-torch::Tensor CANDY_dataLoader_editCfgDouble(string name, string key, double value) {
-  if ((torchBounding_cfgDlMap.count(name) == 1)) // have this dataLoader
-  {
-    torchBounding_cfgDlMap[name]->edit(key, value);
-    return torch::zeros({1, 1}) + 1.0;
-  }
-  return torch::zeros({1, 1});
-}
-
-/**
-* @brief The c++ bindings to change the config map related to a specific dataLoader
-* @param name the name of the dataLoader
- * @param key the key in the cfg
- * @param value the float value
-* @return tensor 1x1, [1] for success
-*/
-torch::Tensor CANDY_dataLoader_editCfgFloat(string name, string key, float value) {
-  if ((torchBounding_cfgDlMap.count(name) == 1)) // have this dataLoader
-  {
-    double v2 = value;
-    torchBounding_cfgDlMap[name]->edit(key, v2);
-    return torch::zeros({1, 1}) + 1.0;
-  }
-  return torch::zeros({1, 1});
-}
-/**
-* @brief The c++ bindings to change the config map related to a specific dataLoader
-* @param name the name of the dataLoader
- * @param key the key in the cfg
- * @param value the string value
-* @return tensor 1x1, [1] for success
-*/
-torch::Tensor CANDY_dataLoader_editCfgStr(string name, string key, string value) {
-  if ((torchBounding_cfgDlMap.count(name) == 1)) // have this dataLoader
-  {
-    torchBounding_cfgDlMap[name]->edit(key, value);
-    return torch::zeros({1, 1}) + 1.0;
-  }
-  return torch::zeros({1, 1});
-}
-/**
-* @brief The c++ bindings to change the config map related to a specific dataLoader
-* @param name the name of the dataLoader
- * @param key the key in the cfg
- * @param value the I64 value
-* @return tensor 1x1, [1] for success
-*/
-torch::Tensor CANDY_dataLoader_editCfgI64(string name, string key, int64_t value) {
-  if ((torchBounding_cfgDlMap.count(name) == 1)) // have this dataLoader
-  {
-    torchBounding_cfgDlMap[name]->edit(key, value);
-    return torch::zeros({1, 1}) + 1.0;
-  }
-  return torch::zeros({1, 1});
-}
-/**
-* @brief The c++ bindings to init an dataLoader with its bounded config
-* @param name the name of the dataLoader
-* @return tensor 1x1, [1] for success
-*/
-torch::Tensor CANDY_dataLoader_init(string name) {
-  if ((torchBounding_dataLoaderMap.count(name) == 1)) // have this dataLoader
-  {
-    torchBounding_dataLoaderMap[name]->setConfig(torchBounding_cfgDlMap[name]);
-    return torch::zeros({1, 1}) + 1.0;
-  }
-  return torch::zeros({1, 1});
-}
-/**
-* @brief The c++ bindings to get data tensor from the specified data loader
-* @param name the name of the dataLoader
- * @param t the tensor
-* @return tensor 1x1, [1] for success
-*/
-torch::Tensor CANDY_dataLoader_getData(string name) {
-  if ((torchBounding_dataLoaderMap.count(name) == 1)) // have this dataLoader
-  {
-    return torchBounding_dataLoaderMap[name]->getData();
-  }
-  return torch::zeros({1, 1});
-}
-/**
-* @brief The c++ bindings to get query tensor from the specified data loader
-* @param name the name of the dataLoader
-* @return the first result tensor
-*/
-torch::Tensor CANDY_dataLoader_getQuery(string name) {
-  if ((torchBounding_dataLoaderMap.count(name) == 1)) // have this dataLoader
-  {
-    return torchBounding_dataLoaderMap[name]->getQuery();
-  }
-  return torch::zeros({1, 1});
-}
-/**
-* @brief The c++ bindings to load tensor from fvecs file
-* @param name the name of file
-* return the result tensor
-*/
-torch::Tensor CANDY_tensorFromFVECS(string name) {
-  return CANDY::FVECSDataLoader::tensorFromFVECS(name);
-}
-/**
-* @brief The c++ bindings to load tensor from HDF5 file
-* @param name the name of file
-* @param attr the attribute
-* return the result tensor
-*/
-torch::Tensor CANDY_tensorFromHDF5(string name, string attr) {
-#if CANDY_HDF5 == 1
-  return CANDY::HDF5DataLoader::tensorFromHDF5(name, attr);
-#else
-  return torch::zeros({1, 1});
-#endif
-}
+///**
+//*
+//* @brief The c++ bindings to creat an dataLoader at backend
+//* @param name the name of this dataLoader
+//* @param type the type of this dataLoader, keep the same as that in CANDY::IndexTable
+//* @return tensor 1x1, [1] for success
+//*/
+//torch::Tensor CANDY_dataLoader_create(string name, string type) {
+//  CANDY::DataLoaderTable it;
+//  auto idx = it.findDataLoader(type);
+//  if (idx == nullptr) {
+//    return torch::zeros({1, 1});
+//  }
+//  torchBounding_dataLoaderMap[name] = idx;
+//  torchBounding_cfgDlMap[name] = newConfigMap();
+//  return torch::zeros({1, 1}) + 1.0;
+//}
+///**
+//* @brief The c++ bindings to change the config map related to a specific dataLoader
+//* @param name the name of the dataLoader
+// * @param key the key in the cfg
+// * @param value the double value
+//* @return tensor 1x1, [1] for success
+//*/
+//torch::Tensor CANDY_dataLoader_editCfgDouble(string name, string key, double value) {
+//  if ((torchBounding_cfgDlMap.count(name) == 1)) // have this dataLoader
+//  {
+//    torchBounding_cfgDlMap[name]->edit(key, value);
+//    return torch::zeros({1, 1}) + 1.0;
+//  }
+//  return torch::zeros({1, 1});
+//}
+//
+///**
+//* @brief The c++ bindings to change the config map related to a specific dataLoader
+//* @param name the name of the dataLoader
+// * @param key the key in the cfg
+// * @param value the float value
+//* @return tensor 1x1, [1] for success
+//*/
+//torch::Tensor CANDY_dataLoader_editCfgFloat(string name, string key, float value) {
+//  if ((torchBounding_cfgDlMap.count(name) == 1)) // have this dataLoader
+//  {
+//    double v2 = value;
+//    torchBounding_cfgDlMap[name]->edit(key, v2);
+//    return torch::zeros({1, 1}) + 1.0;
+//  }
+//  return torch::zeros({1, 1});
+//}
+///**
+//* @brief The c++ bindings to change the config map related to a specific dataLoader
+//* @param name the name of the dataLoader
+// * @param key the key in the cfg
+// * @param value the string value
+//* @return tensor 1x1, [1] for success
+//*/
+//torch::Tensor CANDY_dataLoader_editCfgStr(string name, string key, string value) {
+//  if ((torchBounding_cfgDlMap.count(name) == 1)) // have this dataLoader
+//  {
+//    torchBounding_cfgDlMap[name]->edit(key, value);
+//    return torch::zeros({1, 1}) + 1.0;
+//  }
+//  return torch::zeros({1, 1});
+//}
+///**
+//* @brief The c++ bindings to change the config map related to a specific dataLoader
+//* @param name the name of the dataLoader
+// * @param key the key in the cfg
+// * @param value the I64 value
+//* @return tensor 1x1, [1] for success
+//*/
+//torch::Tensor CANDY_dataLoader_editCfgI64(string name, string key, int64_t value) {
+//  if ((torchBounding_cfgDlMap.count(name) == 1)) // have this dataLoader
+//  {
+//    torchBounding_cfgDlMap[name]->edit(key, value);
+//    return torch::zeros({1, 1}) + 1.0;
+//  }
+//  return torch::zeros({1, 1});
+//}
+///**
+//* @brief The c++ bindings to init an dataLoader with its bounded config
+//* @param name the name of the dataLoader
+//* @return tensor 1x1, [1] for success
+//*/
+//torch::Tensor CANDY_dataLoader_init(string name) {
+//  if ((torchBounding_dataLoaderMap.count(name) == 1)) // have this dataLoader
+//  {
+//    torchBounding_dataLoaderMap[name]->setConfig(torchBounding_cfgDlMap[name]);
+//    return torch::zeros({1, 1}) + 1.0;
+//  }
+//  return torch::zeros({1, 1});
+//}
+///**
+//* @brief The c++ bindings to get data tensor from the specified data loader
+//* @param name the name of the dataLoader
+// * @param t the tensor
+//* @return tensor 1x1, [1] for success
+//*/
+//torch::Tensor CANDY_dataLoader_getData(string name) {
+//  if ((torchBounding_dataLoaderMap.count(name) == 1)) // have this dataLoader
+//  {
+//    return torchBounding_dataLoaderMap[name]->getData();
+//  }
+//  return torch::zeros({1, 1});
+//}
+///**
+//* @brief The c++ bindings to get query tensor from the specified data loader
+//* @param name the name of the dataLoader
+//* @return the first result tensor
+//*/
+//torch::Tensor CANDY_dataLoader_getQuery(string name) {
+//  if ((torchBounding_dataLoaderMap.count(name) == 1)) // have this dataLoader
+//  {
+//    return torchBounding_dataLoaderMap[name]->getQuery();
+//  }
+//  return torch::zeros({1, 1});
+//}
+///**
+//* @brief The c++ bindings to load tensor from fvecs file
+//* @param name the name of file
+//* return the result tensor
+//*/
+//torch::Tensor CANDY_tensorFromFVECS(string name) {
+//  return CANDY::FVECSDataLoader::tensorFromFVECS(name);
+//}
+///**
+//* @brief The c++ bindings to load tensor from HDF5 file
+//* @param name the name of file
+//* @param attr the attribute
+//* return the result tensor
+//*/
+//torch::Tensor CANDY_tensorFromHDF5(string name, string attr) {
+//#if CANDY_HDF5 == 1
+//  return CANDY::HDF5DataLoader::tensorFromHDF5(name, attr);
+//#else
+//  return torch::zeros({1, 1});
+//#endif
+//}
 /**
 *
 * @brief The c++ bindings to wait pending operations features
@@ -562,13 +562,13 @@ TORCH_LIBRARY(CANDY, m2) {
   m2.def("index_waitPending", CANDY_index_waitPendingOperations);
   m2.def("tensorToFile", CANDY_export_tensorToFile);
   m2.def("tensorFromFile", CANDY_export_tensorFromFile);
-  m2.def("dataLoader_create", CANDY_dataLoader_create);
-  m2.def("dataLoader_editCfgDouble", CANDY_dataLoader_editCfgDouble);
-  m2.def("dataLoader_editCfgStr", CANDY_dataLoader_editCfgStr);
-  m2.def("dataLoader_ediCfgI64", CANDY_dataLoader_editCfgI64);
-  m2.def("dataLoader_getData", CANDY_dataLoader_getData);
-  m2.def("dataLoader_getQuery", CANDY_dataLoader_getQuery);
-  m2.def("dataLoader_init", CANDY_dataLoader_init);
+  //m2.def("dataLoader_create", CANDY_dataLoader_create);
+  //m2.def("dataLoader_editCfgDouble", CANDY_dataLoader_editCfgDouble);
+  //m2.def("dataLoader_editCfgStr", CANDY_dataLoader_editCfgStr);
+  //m2.def("dataLoader_ediCfgI64", CANDY_dataLoader_editCfgI64);
+  //m2.def("dataLoader_getData", CANDY_dataLoader_getData);
+  //m2.def("dataLoader_getQuery", CANDY_dataLoader_getQuery);
+  //m2.def("dataLoader_init", CANDY_dataLoader_init);
   m2.def("tensorFromFVECS", CANDY_tensorFromFVECS);
   m2.def("tensorFromHDF5", CANDY_tensorFromHDF5);
   m2.def("index_loadInitialString", CANDY_index_loadInitialString);

@@ -14,7 +14,7 @@
 bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   INTELLI_INFO("SETTING CONFIG FOR FaissIndex");
-  std::string metricType = cfg->tryString("metricType", "L2", true);
+  std::string metricType = cfg->tryString("metricType", "IP", true);
   vecDim = cfg->tryI64("vecDim", 768, true);
   index_type = cfg->tryString("faissIndexTag", "flat", true);
   auto bytes = cfg->tryI64("encodeLen", 1, true);
@@ -120,7 +120,7 @@ bool CANDY::FaissIndex::loadInitialTensor(torch::Tensor &t) {
 
       INTELLI_INFO("FINISH ADDING");
 
-      return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+      return true;
     } else if (vecDim == 1369) {
       auto t_temp = torch::concat({t, torch::zeros({n, 7})}, 1);
       t_temp = t_temp.nan_to_num(0.0);
@@ -132,7 +132,7 @@ bool CANDY::FaissIndex::loadInitialTensor(torch::Tensor &t) {
       INTELLI_INFO("FINISH TRAINING");
       index->add(n, new_data_padding);
       INTELLI_INFO("FINISH ADDING");
-      return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+      return true;
     }
   }
 
@@ -144,7 +144,7 @@ bool CANDY::FaissIndex::loadInitialTensor(torch::Tensor &t) {
   index->add(n, new_data);
   INTELLI_INFO("FINISH ADDING");
   if (index_type == "IVFPQ" || index_type == "PQ" || index_type == "LSH") {
-    return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+    return true;
   } else {
     return true;
   }
@@ -170,7 +170,7 @@ bool CANDY::FaissIndex::insertTensor(torch::Tensor &t) {
       t_temp = t_temp.nan_to_num(0.0);
       float *new_data_padding = t_temp.contiguous().data_ptr<float>();
       index->add(n, new_data_padding);
-      return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+      return true;
     } else if (vecDim == 1369) {
       auto t_temp = torch::zeros({n, vecDim + 7});
       t_temp.slice(1, 0, vecDim) = t;
@@ -179,20 +179,33 @@ bool CANDY::FaissIndex::insertTensor(torch::Tensor &t) {
       t_temp = t_temp.nan_to_num(0.0);
       float *new_data_padding = t_temp.contiguous().data_ptr<float>();
       index->add(n, new_data_padding);
-      return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+      return true;
     }
   }
   if (index_type == "IVFPQ" || index_type == "PQ" || index_type == "LSH") {
     index->add(n, new_data);
-    return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+    //return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+    return true;
   } else {
     index->add(n, new_data);
     //should be unneeded
-    INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+//INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
     return true;
   }
 }
+std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndexParam(torch::Tensor q, int64_t k, int64_t param){
+    if(index_type=="HNSW") {
+        auto indexHNSW = static_cast<faiss::IndexHNSW *>(index);
+        indexHNSW->hnsw.efSearch = param;
+    } else if(index_type=="MNRU") {
+        auto indexMNRU = static_cast<faiss::IndexMNRU *>(index);
+        indexMNRU->main_index.efSearch = param;
+        indexMNRU->backup_index.efSearch = param;
+    }
 
+    return searchIndex(q,k);
+
+}
 std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndex(torch::Tensor q, int64_t k) {
 
   auto queryData = q.contiguous().data_ptr<float>();
@@ -251,15 +264,10 @@ std::vector<torch::Tensor> CANDY::FaissIndex::getTensorByIndex(std::vector<faiss
 //
 //                }
 //            }
-      if (index_type == "IVFPQ" || index_type == "PQ" || index_type == "LSH") {
-        if (tempIdx >= 0) {
-          ru[i].slice(0, j, j + 1) = dbTensor.slice(0, tempIdx, tempIdx + 1);
-        };
-      } else {
-        index->reconstruct(tempIdx, tempSlice);
-        auto tempTensor = torch::from_blob(tempSlice, {1, vecDim});
-        if (tempIdx >= 0) { ru[i].slice(0, j, j + 1) = tempTensor; };
-      }
+          index->reconstruct(tempIdx, tempSlice);
+          auto tempTensor = torch::from_blob(tempSlice, {1, vecDim});
+          if (tempIdx >= 0) { ru[i].slice(0, j, j + 1) = tempTensor; };
+
 
     }
   }

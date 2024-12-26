@@ -34,7 +34,7 @@ bool CANDY::AbstractIndex::offlineBuild(torch::Tensor &t) {
 }
 bool CANDY::AbstractIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   assert(cfg);
-  std::string metricType = cfg->tryString("metricType", "L2", true);
+  std::string metricType = cfg->tryString("metricType", "IP", true);
   faissMetric = faiss::METRIC_L2;
   if (metricType == "dot" || metricType == "IP" || metricType == "cossim") {
     faissMetric = faiss::METRIC_INNER_PRODUCT;
@@ -56,6 +56,10 @@ bool CANDY::AbstractIndex::insertTensor(torch::Tensor &t) {
   assert(t.size(1));
   return false;
 }
+
+bool CANDY::AbstractIndex::insertTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t){
+    return insertTensor(t);
+}
 bool CANDY::AbstractIndex::insertStringObject(torch::Tensor &t, std::vector<std::string> &strs) {
   assert(t.size(1));
   assert (strs.size());
@@ -72,6 +76,13 @@ bool CANDY::AbstractIndex::loadInitialU64Object(torch::Tensor &t, std::vector<ui
 bool CANDY::AbstractIndex::loadInitialTensor(torch::Tensor &t) {
   return insertTensor(t);
 }
+
+bool CANDY::AbstractIndex::loadInitialTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t) {
+    return loadInitialTensor(t);
+}
+
+
+
 bool CANDY::AbstractIndex::loadInitialStringObject(torch::Tensor &t, std::vector<std::string> &strs) {
   return insertStringObject(t, strs);
 }
@@ -80,6 +91,11 @@ bool CANDY::AbstractIndex::deleteTensor(torch::Tensor &t, int64_t k) {
   assert(k > 0);
   return false;
 }
+
+bool CANDY::AbstractIndex::deleteIndex(std::vector<faiss::idx_t>){
+    return false;
+}
+
 bool CANDY::AbstractIndex::deleteU64Object(torch::Tensor &t, int64_t k) {
   return deleteStringObject(t, k);
 }
@@ -99,6 +115,10 @@ std::vector<faiss::idx_t> CANDY::AbstractIndex::searchIndex(torch::Tensor q, int
   std::vector<faiss::idx_t> ru(1);
   return ru;
 }
+std::vector<faiss::idx_t> CANDY::AbstractIndex::searchIndexParam(torch::Tensor q, int64_t k, int64_t param){
+    return searchIndex(q,k);
+}
+
 std::vector<std::vector<std::string>> CANDY::AbstractIndex::searchStringObject(torch::Tensor &q, int64_t k) {
   assert(k > 0);
   assert(q.size(1));
