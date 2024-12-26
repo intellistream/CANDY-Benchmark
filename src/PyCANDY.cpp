@@ -176,6 +176,7 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
       .def("loadInitialTensor", &AbstractIndex::loadInitialTensor)
       .def("loadInitialTensorWithIds", &AbstractIndex::loadInitialTensorWithIds)
       .def("deleteTensor", &AbstractIndex::deleteTensor)
+      .def("deleteIndex", &AbstractIndex::deleteIndex)
       .def("reviseTensor", &AbstractIndex::reviseTensor)
       .def("searchIndex", &AbstractIndex::searchIndex)
       .def("searchIndexParam", &AbstractIndex::searchIndexParam)
