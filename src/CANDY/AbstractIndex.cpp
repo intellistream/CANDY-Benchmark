@@ -81,6 +81,8 @@ bool CANDY::AbstractIndex::loadInitialTensorWithIds(std::vector<faiss::idx_t> id
     return loadInitialTensor(t);
 }
 
+
+
 bool CANDY::AbstractIndex::loadInitialStringObject(torch::Tensor &t, std::vector<std::string> &strs) {
   return insertStringObject(t, strs);
 }
@@ -89,6 +91,11 @@ bool CANDY::AbstractIndex::deleteTensor(torch::Tensor &t, int64_t k) {
   assert(k > 0);
   return false;
 }
+
+bool CANDY::AbstractIndex::deleteIndex(std::vector<faiss::idx_t>){
+    return false;
+}
+
 bool CANDY::AbstractIndex::deleteU64Object(torch::Tensor &t, int64_t k) {
   return deleteStringObject(t, k);
 }

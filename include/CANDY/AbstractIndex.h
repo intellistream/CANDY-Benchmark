@@ -108,6 +108,14 @@ class AbstractIndex {
    */
   virtual bool deleteTensor(torch::Tensor &t, int64_t k = 1);
 
+    /**
+   * @brief delete a tensor, also online function
+   * @param t the tensor, some index needs to be single row
+   * @param k the number of nearest neighbors
+   * @return bool whether the deleting is successful
+   */
+    virtual bool deleteIndex(std::vector<faiss::idx_t>);
+
   /**
    * @brief revise a tensor
    * @param t the tensor to be revised
