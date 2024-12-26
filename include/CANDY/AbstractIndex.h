@@ -77,6 +77,14 @@ class AbstractIndex {
    */
   virtual bool insertTensor(torch::Tensor &t);
 
+    /**
+   * @brief insert a tensor with Ids
+   * @note This is majorly an online function
+   * @param t the tensor, some index need to be single row
+   * @return bool whether the insertion is successful
+   */
+    virtual bool insertTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t);
+
   /**
   * @brief load the initial tensors of a data base, use this BEFORE @ref insertTensor
   * @note This is majorly an offline function, and may be different from @ref insertTensor for some indexes
@@ -84,6 +92,14 @@ class AbstractIndex {
   * @return bool whether the loading is successful
   */
   virtual bool loadInitialTensor(torch::Tensor &t);
+
+    /**
+  * @brief load the initial tensors of a data base, use this BEFORE @ref insertTensor
+  * @note This is majorly an offline function, and may be different from @ref insertTensor for some indexes
+  * @param t the tensor, some index need to be single row
+  * @return bool whether the loading is successful
+  */
+    virtual bool loadInitialTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t);
   /**
    * @brief delete a tensor, also online function
    * @param t the tensor, some index needs to be single row
@@ -238,6 +254,8 @@ class AbstractIndex {
   * @return bool whether the loading is successful
   */
   virtual bool loadInitialTensorAndQueryDistribution(torch::Tensor &t, torch::Tensor &query);
+
+
   /**
    * @brief to reset the internal statistics of this index
    * @return whether the reset is executed

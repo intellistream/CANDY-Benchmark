@@ -154,10 +154,10 @@
 * @{
 * We define the data loader classes . here
 **/
-//#include <DataLoader/AbstractDataLoader.h>
-//#include <DataLoader/DataLoaderTable.h>
-//#include <DataLoader/RandomDataLoader.h>
-//#include <DataLoader/FVECSDataLoader.h>
+#include <DataLoader/AbstractDataLoader.h>
+#include <DataLoader/DataLoaderTable.h>
+#include <DataLoader/RandomDataLoader.h>
+#include <DataLoader/FVECSDataLoader.h>
 //#include <include/hdf5_config.h>
 //#if CANDY_HDF5 == 1
 //#include <DataLoader/HDF5DataLoader.h>
