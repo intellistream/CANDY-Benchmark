@@ -139,7 +139,7 @@ else ()
     set(LIBRARIES ${LIBRARIES} ${RAY_DIR}/libray_api.so)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rayHeader)
 endif ()
-
+set(CANDY_HDF5 0)
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/ray_config.h.in"
         "${PROJECT_BINARY_DIR}/include/ray_config.h"
@@ -173,6 +173,7 @@ else ()
     set(CANDY_PUCK 1)
     message(STATUS "I will include support for PUCK")
     add_subdirectory(thirdparty/puck)
+    set(LIBRARIES ${LIBRARIES}  puck)
 endif ()
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/puck_config.h.in"
@@ -224,7 +225,7 @@ set_property(TARGET CANDYBENCH PROPERTY CXX_STANDARD 20)
 target_include_directories(CANDYBENCH PUBLIC "include")
 
 #these 2 ugly lines are for puck
-add_definitions(-DFINTEGER=int)
+#add_definitions(-DFINTEGER=int)
 target_include_directories(CANDYBENCH PUBLIC "/usr/include/mkl")
 
 target_include_directories(CANDYBENCH PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")

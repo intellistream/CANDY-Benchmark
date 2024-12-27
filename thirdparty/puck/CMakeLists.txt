@@ -5,6 +5,12 @@ project(puck)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 set(THIRD_PARTY_PATH ${CMAKE_CURRENT_BINARY_DIR}/third_libs)
+include_directories(PUBLIC "/usr/include/mkl")
+# config GIT_URL with github mirrors to speed up dependent repos clone
+option(GIT_URL "Git URL to clone dependent repos" ${GIT_URL})
+if(NOT GIT_URL)
+    set(GIT_URL "https://github.com")
+endif()
 
 
 set(CMAKE_CXX_STANDARD 11)
@@ -23,9 +29,6 @@ find_package(MKL REQUIRED)
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/output)
 add_subdirectory(puck)
-add_subdirectory(demo)
-add_subdirectory(tools)
-
 
 
 
