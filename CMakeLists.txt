@@ -71,6 +71,10 @@ option(ENABLE_RAY
         OFF
 )
 
+option(ENABLE_PUCK
+        "Integrate PUCK LIBS from https://github.com/baidu/puck"
+        OFF
+)
 
 option(ENABLE_PYBIND
         "Enable original pybind and build CANDYBENCH python"
@@ -155,6 +159,26 @@ configure_file(
         "${PROJECT_BINARY_DIR}/include/sptag_config.h"
 )
 
+# Set PUCK build directory
+set(PUCK_BUILD_DIR ${CMAKE_BINARY_DIR}/PUCK_build)
+
+# Configure build output directories specifically for PUCK
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PUCK_BUILD_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PUCK_BUILD_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PUCK_BUILD_DIR}/lib)
+if (NOT ENABLE_PUCK)
+    message(STATUS "I will NOT include PUCK LIBS")
+    set(CANDY_PUCK 0)
+else ()
+    set(CANDY_PUCK 1)
+    message(STATUS "I will include support for PUCK")
+    add_subdirectory(thirdparty/puck)
+endif ()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/puck_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/puck_config.h"
+)
+
 # Reset output directories for the rest of your project
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -198,10 +222,16 @@ add_library(CANDYBENCH SHARED ${CANDY_SOURCE_FILES} ${CANDY_HEADER_FILES} ${CMAK
 
 set_property(TARGET CANDYBENCH PROPERTY CXX_STANDARD 20)
 target_include_directories(CANDYBENCH PUBLIC "include")
+
+#these 2 ugly lines are for puck
+add_definitions(-DFINTEGER=int)
+target_include_directories(CANDYBENCH PUBLIC "/usr/include/mkl")
+
 target_include_directories(CANDYBENCH PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/papi_build/include")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/")
-
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck/puck")
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
 target_link_libraries(CANDYBENCH PUBLIC ${LIBRARIES})
