@@ -1,7 +1,7 @@
 //
 // Created by tony on 12/04/24.
 //
-
+#include <gflags/gflags.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <torch/extension.h>
@@ -18,6 +18,7 @@
 #endif
 
 #include <faiss/index_factory.h>
+#include<puck/pyapi_wrapper/py_api_wrapper.h>
 
 namespace py = pybind11;
 using namespace INTELLI;
@@ -136,6 +137,11 @@ double recallOfTensorList(std::vector<torch::Tensor> groundTruth, std::vector<to
   double recall = static_cast<double>(truePositives) / (truePositives + falseNegatives);
   return recall;
 }
+
+void update_gflag(const char* gflag_key, const char* gflag_val) {
+    //gflags::SetCommandLineOption(gflag_key, gflag_val);
+}
+
 #define COMPILED_TIME (__DATE__ " " __TIME__)
 PYBIND11_MODULE(PyCANDYAlgo, m) {
   /**
@@ -143,6 +149,7 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
    */
   m.attr("__version__") = "0.1.2";  // Set the version of the module
   m.attr("__compiled_time__") = COMPILED_TIME;  // Set the compile time of the module
+  m.doc() = "This is top module - PyCANDYAlgo.";
   py::class_<INTELLI::ConfigMap, std::shared_ptr<INTELLI::ConfigMap>>(m, "ConfigMap")
       .def(py::init<>())
       .def("edit", py::overload_cast<const std::string &, int64_t>(&INTELLI::ConfigMap::edit))
@@ -230,6 +237,22 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
       .def("end", &INTELLI::ThreadPerfPAPI::end)
       .def("resultToConfigMap", &INTELLI::ThreadPerfPAPI::resultToConfigMap);
 #endif
+
+
+  auto m_puck = m.def_submodule("puck", "Puck Interface from Baidu.");
+
+  py::class_<py_puck_api::PySearcher, std::shared_ptr<py_puck_api::PySearcher>>(m_puck, "PuckSearcher")
+    .def(py::init<>())
+    .def("init", &py_puck_api::PySearcher::init)
+    .def("show",&py_puck_api::PySearcher::show)
+    .def("build",&py_puck_api::PySearcher::build)
+    .def("search",&py_puck_api::PySearcher::search)
+    .def("batch_add",&py_puck_api::PySearcher::batch_add)
+    .def("batch_delete",&py_puck_api::PySearcher::batch_delete);
+    m_puck.def("update_gflag", &update_gflag, "A function to update gflag");
+
+
+
 
 
 

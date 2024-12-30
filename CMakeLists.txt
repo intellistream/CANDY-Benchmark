@@ -4,13 +4,14 @@ project(CANDYBENCH CXX)
 include (cmake/FindCuda.cmake)
 include (cmake/FindTorch.cmake)
 find_package(Torch REQUIRED)
+find_package(gflags REQUIRED)
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_RULE_MESSAGES OFF)
 # Custom CMake find instructions and macros
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include(cmake/macros.cmake)
 include(cmake/default.cmake)
-
+#include(cmake/gflags.cmake)
 
 # C++ Standard
 #set(CMAKE_CXX_STANDARD 20)
@@ -171,8 +172,11 @@ if (NOT ENABLE_PUCK)
     set(CANDY_PUCK 0)
 else ()
     set(CANDY_PUCK 1)
+
     message(STATUS "I will include support for PUCK")
+
     add_subdirectory(thirdparty/puck)
+
     set(LIBRARIES ${LIBRARIES}  puck)
 endif ()
 configure_file(

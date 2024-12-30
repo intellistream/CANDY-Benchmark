@@ -31,9 +31,7 @@
 namespace py_puck_api {
 
 DEFINE_int32(index_type, 1, "");
-void update_gflag(const char* gflag_key, const char* gflag_val) {
-    google::SetCommandLineOption(gflag_key, gflag_val);
-}
+
 
 void PySearcher::show() {
 

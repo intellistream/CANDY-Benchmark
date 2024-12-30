@@ -361,7 +361,7 @@ find_package_handle_standard_args(MKL REQUIRED_VARS MKL_LIBRARIES)
 
 cmake_pop_check_state()
 set(CMAKE_FIND_LIBRARY_SUFFIXES ${_blas_ORIG_CMAKE_FIND_LIBRARY_SUFFIXES})
-
+set(MKLROOT "/usr/include/mkl")
 find_path(MKL_H mkl.h
   HINTS ${MKLROOT}
   PATH_SUFFIXES include)

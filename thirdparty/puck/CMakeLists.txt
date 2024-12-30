@@ -22,14 +22,24 @@ add_definitions(-DFINTEGER=int)
 add_compile_options(-fopenmp -lpthread -lcrypto -lrt -lgfortran -ldl -lz -fPIC -rdynamic)
 add_compile_options(-Ofast -g -pipe -fPIC -march=native -w)
 
-include(${PROJECT_SOURCE_DIR}/cmake/gflags.cmake)
+#include(${PROJECT_SOURCE_DIR}/cmake/gflags.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/glog.cmake)
 find_package(OpenMP REQUIRED)
 find_package(MKL REQUIRED)
 
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/output)
 add_subdirectory(puck)
-#add_subdirectory(pyapi_wrapper)
+set(PYTHON_MINIMUM_VERSION 3.10)
+
+# find python3
+find_package(Python3 ${PYTHON_MINIMUM_VERSION} REQUIRED COMPONENTS Interpreter Development)
+message(STATUS "Found Python: ${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}.${Python3_VERSION_PATCH}")
+if (NOT Python3_SITELIB)
+    message(FATAL_ERROR "site-packages not found. ")
+else ()
+    message(STATUS "site-packages: ${Python3_SITELIB}")
+endif ()
+add_subdirectory(pyapi_wrapper)
 #
 
 

@@ -27,7 +27,7 @@
 #include "puck/index.h"
 namespace py_puck_api {
 
-void update_gflag(const char* gflag_key, const char* gflag_val);
+//void update_gflag(const char* gflag_key, const char* gflag_val);
 class PySearcher {
 public:
     PySearcher();
