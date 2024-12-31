@@ -138,9 +138,9 @@ double recallOfTensorList(std::vector<torch::Tensor> groundTruth, std::vector<to
   return recall;
 }
 
-//void update_gflag(const char* gflag_key, const char* gflag_val) {
-//    google::SetCommandLineOption(gflag_key, gflag_val);
-//}
+void update_gflag(const char* gflag_key, const char* gflag_val) {
+    google::SetCommandLineOption(gflag_key, gflag_val);
+}
 
 #define COMPILED_TIME (__DATE__ " " __TIME__)
 PYBIND11_MODULE(PyCANDYAlgo, m) {
