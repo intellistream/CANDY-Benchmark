@@ -79,7 +79,6 @@ DECLARE_int32(filter_topk);
 DECLARE_double(radius_rate);
 //tinker
 DECLARE_int32(tinker_search_range);
-
 }
 
 /* vim: set expandtab ts=4 sw=4 sts=4 tw=100 */

@@ -138,9 +138,9 @@ double recallOfTensorList(std::vector<torch::Tensor> groundTruth, std::vector<to
   return recall;
 }
 
-void update_gflag(const char* gflag_key, const char* gflag_val) {
-    //gflags::SetCommandLineOption(gflag_key, gflag_val);
-}
+//void update_gflag(const char* gflag_key, const char* gflag_val) {
+//    google::SetCommandLineOption(gflag_key, gflag_val);
+//}
 
 #define COMPILED_TIME (__DATE__ " " __TIME__)
 PYBIND11_MODULE(PyCANDYAlgo, m) {
@@ -249,7 +249,8 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
     .def("search",&py_puck_api::PySearcher::search)
     .def("batch_add",&py_puck_api::PySearcher::batch_add)
     .def("batch_delete",&py_puck_api::PySearcher::batch_delete);
-    m_puck.def("update_gflag", &update_gflag, "A function to update gflag");
+
+    m_puck.def("update_gflag", &py_puck_api::update_gflag, "A function to update gflag");
 
 
 

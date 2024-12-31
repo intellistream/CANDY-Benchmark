@@ -176,7 +176,7 @@ void InitializeLogger(int choice) {
 
     if (FLAGS_need_log_file) {
         std::string log_file_name = puck::FLAGS_puck_log_file;
-        google::SetLogDestination(choice, log_file_name.c_str());
+        //google::SetLogDestination(choice, log_file_name.c_str());
     }
 }
 

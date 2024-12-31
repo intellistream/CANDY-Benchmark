@@ -8,6 +8,7 @@
 
 #include <queue>
 #include <memory>
+#include <unistd.h>
 #include "puck/puck/dynamic_puck_index.h"
 #include "puck/gflags/puck_gflags.h"
 #include "puck/search_context.h"

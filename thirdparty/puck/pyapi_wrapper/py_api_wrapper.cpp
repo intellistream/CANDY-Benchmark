@@ -28,10 +28,13 @@
 #include "puck/tinker/tinker_index.h"
 #include "puck/hierarchical_cluster/hierarchical_cluster_index.h"
 #include "puck/puck/dynamic_puck_index.h"
+
 namespace py_puck_api {
 
 DEFINE_int32(index_type, 1, "");
-
+void update_gflag(const char* gflag_key, const char* gflag_val) {
+    google::SetCommandLineOption(gflag_key, gflag_val);
+}
 
 void PySearcher::show() {
 
@@ -75,10 +78,8 @@ int PySearcher::build(uint32_t total_cnt) {
 }
 
 int PySearcher::init() {
-    if (FLAGS_index_type == int(puck::IndexType::PUCK)) {
-        _index.reset(new puck::DynamicPuckIndex());
-        LOG(INFO) << "init index of DynamicPuckIndex";
-    } 
+    _index.reset(new puck::DynamicPuckIndex());
+    LOG(INFO) << "init index of DynamicPuckIndex";
     /*
     puck::IndexType index_type = puck::load_index_type();
     index_type = puck::IndexType::DYNAMICPUCK;
@@ -159,40 +160,40 @@ inline void ParallelFor(size_t start, size_t end, size_t numThreads, Function fn
     }
 }
 
-int PySearcher::search(uint32_t n, const float* query_fea, const uint32_t topk, float* distance,
-                       uint32_t* labels) {
+int PySearcher::search(uint32_t n, const std::vector<float> query_fea, const uint32_t topk, std::vector<float> distance,
+                       std::vector<uint32_t> labels) {
 
     ParallelFor(0, n, puck::FLAGS_context_initial_pool_size, [&](int id, int threadId) {
         (void)threadId;
         puck::Request request;
         puck::Response response;
         request.topk = topk;
-        request.feature = query_fea + id * _dim;
+        request.feature = query_fea.data() + id * _dim;
 
-        response.distance = distance + id * topk;
-        response.local_idx = labels + id * topk;
+        response.distance = distance.data() + id * topk;
+        response.local_idx = labels.data() + id * topk;
         _index->search(&request, &response);
     });
 
     return 0;
 }
 
-int PySearcher::batch_add(uint32_t n, uint32_t dim, const float* features, const uint32_t* labels){
+int PySearcher::batch_add(uint32_t n, uint32_t dim, const std::vector<float> features, const std::vector<uint32_t> labels){
     puck::DynamicPuckIndex* dynamic_index = dynamic_cast<puck::DynamicPuckIndex*>(_index.get());
     if(dynamic_index == nullptr){
         LOG(ERROR)<<"dynamic_puck_index is null";
         return -1;
     }
-    dynamic_index->batch_add(n, dim, features, labels);
+    dynamic_index->batch_add(n, dim, features.data(), labels.data());
     return 0;
 }
-int PySearcher::batch_delete(uint32_t n, const uint32_t* labels){
+int PySearcher::batch_delete(uint32_t n, const std::vector<uint32_t> labels){
     puck::DynamicPuckIndex* dynamic_index = dynamic_cast<puck::DynamicPuckIndex*>(_index.get());
     if(dynamic_index == nullptr){
         LOG(ERROR)<<"dynamic_puck_index is null";
         return -1;
     }
-    dynamic_index->batch_delete(n, labels);
+    dynamic_index->batch_delete(n, labels.data());
     return 0;
 }
 PySearcher::~PySearcher() {};

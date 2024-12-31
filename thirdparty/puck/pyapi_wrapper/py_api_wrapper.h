@@ -27,16 +27,16 @@
 #include "puck/index.h"
 namespace py_puck_api {
 
-//void update_gflag(const char* gflag_key, const char* gflag_val);
+void update_gflag(const char* gflag_key, const char* gflag_val);
 class PySearcher {
 public:
     PySearcher();
     void show();
     int init();
     int build(uint32_t n);
-    int search(uint32_t n, const float* query_fea,const uint32_t topk, float* distance, uint32_t* labels);
-    int batch_add(uint32_t n, uint32_t dim, const float* features, const uint32_t* labels);
-    int batch_delete(uint32_t n, const uint32_t* labels);
+    int search(uint32_t n, const std::vector<float> query_fea,const uint32_t topk, std::vector<float> distance, std::vector<uint32_t> labels);
+    int batch_add(uint32_t n, uint32_t dim, const std::vector<float> features, const std::vector<uint32_t> labels);
+    int batch_delete(uint32_t n, const std::vector<uint32_t> labels);
     ~PySearcher();
 private:
     std::unique_ptr<puck::Index> _index;

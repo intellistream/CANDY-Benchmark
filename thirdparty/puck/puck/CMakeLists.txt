@@ -8,6 +8,7 @@ file(
     "./tinker/*.cpp"
     "./tinker/*/*.cc"
     "./*.cpp"
+    "../pyapi_wrapper/py_api_wrapper.cpp"
 )
 file(
     GLOB PUCK_HEAD_FILES
@@ -18,6 +19,7 @@ file(
     "./tinker/*.h"
     "./tinker/*/*.h"
     "./*.h"
+    "../pyapi_wrapper/py_api_wrapper.h"
 )
 
 add_library(puck ${PUCK_CPP_FILES})
@@ -31,8 +33,15 @@ WINDOWS_EXPORT_ALL_SYMBOLS ON
 )
 target_compile_definitions(puck PUBLIC FINTEGER=int)
 
-target_link_libraries(puck PUBLIC gflags)
-target_link_libraries(puck PUBLIC glog)
+#set(CMAKE_PREFIX_PATH "/usr/local/lib/cmake/gflags" ${CMAKE_PREFIX_PATH})
+#set(CMAKE_PREFIX_PATH "/usr/local/lib/cmake/glog" ${CMAKE_PREFIX_PATH})
+#set(GFLAGS_LIBRARIES /usr/local/lib/libgflags.so)
+#set(GLOG_LIBRARIES /usr/local/lib/libglog.so)
+add_compile_definitions(GLOG_USE_GLOG_EXPORT)
+#message(WARNING "PUCK GFLAGS_LIBRARY_DIR: ${GFLAGS_LIBRARIES}")
+
+#target_link_libraries(puck PUBLIC gflags)
+#target_link_libraries(puck PUBLIC glog)
     
 target_link_libraries(puck PUBLIC OpenMP::OpenMP_CXX)
 target_link_libraries(puck PUBLIC ${MKL_LIBRARIES})

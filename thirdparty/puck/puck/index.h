@@ -22,7 +22,6 @@
 #pragma once
 #include "puck/gflags/puck_gflags.h"
 namespace puck {
-
 struct Request;
 struct Response;
 
@@ -55,6 +54,9 @@ public:
      * @@return (int) : 正常返回0，错误返回值<0
      **/
     virtual int build() = 0;
+
+//    virtual void update_gflag(const char* gflag_key, const char* gflag_val);
+//    virtual void update_gflag(const char* gflag_key, const char* gflag_val);
 };
 
 struct Request {
