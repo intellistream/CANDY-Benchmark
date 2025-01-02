@@ -160,9 +160,9 @@ inline void ParallelFor(size_t start, size_t end, size_t numThreads, Function fn
     }
 }
 
-int PySearcher::search(uint32_t n, const std::vector<float> query_fea, const uint32_t topk, std::vector<float> distance,
-                       std::vector<uint32_t> labels) {
-
+std::vector<uint32_t> PySearcher::search(uint32_t n, const std::vector<float> query_fea, const uint32_t topk) {
+    auto distances = std::vector<float>(topk*n);
+    auto labels = std::vector<uint32_t>(topk*n);
     ParallelFor(0, n, puck::FLAGS_context_initial_pool_size, [&](int id, int threadId) {
         (void)threadId;
         puck::Request request;
@@ -170,12 +170,12 @@ int PySearcher::search(uint32_t n, const std::vector<float> query_fea, const uin
         request.topk = topk;
         request.feature = query_fea.data() + id * _dim;
 
-        response.distance = distance.data() + id * topk;
+        response.distance = distances.data() + id * topk;
         response.local_idx = labels.data() + id * topk;
         _index->search(&request, &response);
     });
 
-    return 0;
+    return labels;
 }
 
 int PySearcher::batch_add(uint32_t n, uint32_t dim, const std::vector<float> features, const std::vector<uint32_t> labels){

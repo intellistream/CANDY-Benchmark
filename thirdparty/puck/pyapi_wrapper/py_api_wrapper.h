@@ -34,7 +34,7 @@ public:
     void show();
     int init();
     int build(uint32_t n);
-    int search(uint32_t n, const std::vector<float> query_fea,const uint32_t topk, std::vector<float> distance, std::vector<uint32_t> labels);
+    std::vector<uint32_t> search(uint32_t n, const std::vector<float> query_fea,const uint32_t topk);
     int batch_add(uint32_t n, uint32_t dim, const std::vector<float> features, const std::vector<uint32_t> labels);
     int batch_delete(uint32_t n, const std::vector<uint32_t> labels);
     ~PySearcher();
