@@ -4,13 +4,18 @@ project(CANDYBENCH CXX)
 include (cmake/FindCuda.cmake)
 include (cmake/FindTorch.cmake)
 find_package(Torch REQUIRED)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+
+
+
+include_directories (${gflags_INCLUDE_DIR})
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_RULE_MESSAGES OFF)
 # Custom CMake find instructions and macros
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")
 include(cmake/macros.cmake)
 include(cmake/default.cmake)
-
 
 # C++ Standard
 #set(CMAKE_CXX_STANDARD 20)
@@ -27,6 +32,8 @@ add_subdirectory(thirdparty/faiss)
 set(LIBRARIES ${LIBRARIES} faiss)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
+
+
 # Set Optimization Flags
 set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type -Wno-interference-size")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DNO_RACE_CHECK -DCANDY_DEBUG_MODE=1")
@@ -71,6 +78,10 @@ option(ENABLE_RAY
         OFF
 )
 
+option(ENABLE_PUCK
+        "Integrate PUCK LIBS from https://github.com/baidu/puck"
+        OFF
+)
 
 option(ENABLE_PYBIND
         "Enable original pybind and build CANDYBENCH python"
@@ -135,7 +146,7 @@ else ()
     set(LIBRARIES ${LIBRARIES} ${RAY_DIR}/libray_api.so)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/rayHeader)
 endif ()
-
+set(CANDY_HDF5 0)
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/ray_config.h.in"
         "${PROJECT_BINARY_DIR}/include/ray_config.h"
@@ -153,6 +164,47 @@ configure_file(
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/sptag_config.h.in"
         "${PROJECT_BINARY_DIR}/include/sptag_config.h"
+)
+
+# Set PUCK build directory
+set(PUCK_BUILD_DIR ${CMAKE_BINARY_DIR}/PUCK_build)
+
+# Configure build output directories specifically for PUCK
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PUCK_BUILD_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PUCK_BUILD_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PUCK_BUILD_DIR}/lib)
+if (NOT ENABLE_PUCK)
+    message(STATUS "I will NOT include PUCK LIBS")
+    set(CANDY_PUCK 0)
+else ()
+    set(CANDY_PUCK 1)
+
+    message(STATUS "I will include support for PUCK")
+    set(CMAKE_PREFIX_PATH "/usr/local/lib/cmake/gflags" ${CMAKE_PREFIX_PATH})
+    set(CMAKE_PREFIX_PATH "/usr/local/lib/cmake/glog" ${CMAKE_PREFIX_PATH})
+    find_package(gflags)
+    find_package(glog)
+    #set(GFLAGS_LIBRARIES /usr/local/lib/libgflags.so)
+    #set(GLOG_LIBRARIES /usr/local/lib/libglog.so)
+#
+    add_compile_definitions(GLOG_USE_GLOG_EXPORT)
+    set(LIBRARIES ${LIBRARIES} gflags)
+#
+    set(LIBRARIES ${LIBRARIES} glog)
+
+
+
+    add_subdirectory(thirdparty/puck)
+
+    set(LIBRARIES ${LIBRARIES}  puck)
+
+
+endif ()
+
+message(STATUS " Libraries: ${LIBRARIES}")
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/puck_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/puck_config.h"
 )
 
 # Reset output directories for the rest of your project
@@ -182,7 +234,7 @@ foreach (dir ${dirs})
     message(STATUS "  - ${dir}")
 endforeach ()
 
-message(STATUS " Libraries: ${LIBRARIES}")
+
 #add_subdirectory(pytorchNN)
 # Add Source Code
 
@@ -198,17 +250,26 @@ add_library(CANDYBENCH SHARED ${CANDY_SOURCE_FILES} ${CANDY_HEADER_FILES} ${CMAK
 
 set_property(TARGET CANDYBENCH PROPERTY CXX_STANDARD 20)
 target_include_directories(CANDYBENCH PUBLIC "include")
+
+#these 2 ugly lines are for puck
+#add_definitions(-DFINTEGER=int)
+target_include_directories(CANDYBENCH PUBLIC "/usr/include/mkl")
+
 target_include_directories(CANDYBENCH PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/papi_build/include")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/")
-
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck/puck")
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
+message(WARNING "CANDY GFLAGS_LIBRARY_DIR: ${GFLAGS_LIBRARIES}")
+message(WARNING "CANDY GLOG_LIBRARY_DIR: ${GLOG_LIBRARIES}")
+#target_link_libraries(CANDYBENCH PUBLIC  ${GFLAGS_LIBRARIES} ${GLOG_LIBRARIES})
 target_link_libraries(CANDYBENCH PUBLIC ${LIBRARIES})
 install(TARGETS CANDYBENCH LIBRARY DESTINATION .)
 #add_subdirectory(test)
 #Add benchmarks with command
-add_subdirectory(benchmark)
+#add_subdirectory(benchmark)
 #Add tests (based on GTest suits)
 #include(GoogleTest)
 
@@ -224,6 +285,7 @@ else ()
     add_subdirectory(thirdparty/pybind11)
     pybind11_add_module(PyCANDYAlgo ${PROJECT_SOURCE_DIR}/src/PyCANDY.cpp)
     find_library(TORCH_PYTHON_LIBRARY torch_python PATH "${TORCH_INSTALL_PREFIX}/lib")
+    #target_link_libraries(PyCANDYAlgo PRIVATE gflags glog)
     target_link_libraries(PyCANDYAlgo PUBLIC ${LIBRARIES} CANDYBENCH ${TORCH_PYTHON_LIBRARY})
     install(TARGETS PyCANDYAlgo LIBRARY DESTINATION .)
     message(STATUS "Additional include torch_python: ${TORCH_PYTHON_LIBRARY}")
