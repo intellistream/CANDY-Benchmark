@@ -160,22 +160,23 @@ using NumpyIdxPairFloat = NumpyIdxPair<float>;
 using NumpyIdxQueueInt8 = SPSCQueue<NumpyIdxPairInt8>;
 using NumpyIdxQueueFloat = SPSCQueue<NumpyIdxPairFloat>;
 
+template<class DT>
 class SPSCWrapper{
 public:
 
     SPSCWrapper(size_t capacity){
-        queue = new SPSCQueue<NumpyIdxPairFloat>(capacity);
+        queue = new SPSCQueue<NumpyIdxPair<DT>>(capacity);
     }
-    SPSCQueue<NumpyIdxPairFloat>* queue;
-    void push(NumpyIdxPairFloat &obj){
+    SPSCQueue<NumpyIdxPair<DT>>* queue;
+    void push(NumpyIdxPair<DT> &obj){
         queue->push(obj);
     }
-    bool try_push(NumpyIdxPairFloat &obj){
+    bool try_push(NumpyIdxPair<DT> &obj){
         return queue->try_push(obj);
     }
-    NumpyIdxPairFloat front(){
+    NumpyIdxPair<DT> front(){
 
-        auto temp = NumpyIdxPairFloat(queue->front()->vectors, queue->front()->idx);
+        auto temp = NumpyIdxPair<DT>(queue->front()->vectors, queue->front()->idx);
         return temp;
     }
     void pop(){
@@ -314,15 +315,15 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
             .def_readwrite("vectors", &NumpyIdxPair<float>::vectors)
             .def_readwrite("idx", &NumpyIdxPair<float>::idx);
 
-    py::class_<SPSCWrapper, std::shared_ptr<SPSCWrapper>>(m_utils, "NumpyIdxQueue")
+    py::class_<SPSCWrapper<float>, std::shared_ptr<SPSCWrapper<float>>>(m_utils, "NumpyIdxQueue")
         .def(py::init<const size_t>())
-        .def("push", &SPSCWrapper::push)
-        .def("try_push", &SPSCWrapper::try_push)
-        .def("front", &SPSCWrapper::front)
-        .def("empty", &SPSCWrapper::empty)
-        .def("size", &SPSCWrapper::size)
-        .def("capacity", &SPSCWrapper::capacity)
-        .def("pop", &SPSCWrapper::pop);
+        .def("push", &SPSCWrapper<float>::push)
+        .def("try_push", &SPSCWrapper<float>::try_push)
+        .def("front", &SPSCWrapper<float>::front)
+        .def("empty", &SPSCWrapper<float>::empty)
+        .def("size", &SPSCWrapper<float>::size)
+        .def("capacity", &SPSCWrapper<float>::capacity)
+        .def("pop", &SPSCWrapper<float>::pop);
 
 
 }
