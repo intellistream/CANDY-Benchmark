@@ -31,170 +31,170 @@
 
 namespace py_puck_api {
 
-DEFINE_int32(index_type, 1, "");
-void update_gflag(const char* gflag_key, const char* gflag_val) {
-    google::SetCommandLineOption(gflag_key, gflag_val);
-}
-
-void PySearcher::show() {
-
-    std::cout << "1\n";
-}
-PySearcher::PySearcher() {};
-
-int PySearcher::build(uint32_t total_cnt) {
-    std::cout << "start to train\n";
-
-    if (FLAGS_index_type == int(puck::IndexType::TINKER)) { //Tinker
-        LOG(INFO) << "init index of Tinker";
-        _index.reset(new puck::TinkerIndex());
-    } else if (FLAGS_index_type == int(puck::IndexType::PUCK)) { //PUCK
-        LOG(INFO) << "init index of Puck";
-        _index.reset(new puck::PuckIndex());
-    } else if (FLAGS_index_type == int(puck::IndexType::HIERARCHICAL_CLUSTER)) {
-        _index.reset(new puck::HierarchicalClusterIndex());
-        LOG(INFO) << "init index of Flat";
-    }
-    else {
-        LOG(INFO) << "init index of Error, Nan type";
-        return -1;
-    }
-    LOG(INFO) << "start to train";
-    if (_index->train() != 0) {
-        LOG(ERROR) << "train Faild";
-        return -1;
+    DEFINE_int32(index_type, 1, "");
+    void update_gflag(const char* gflag_key, const char* gflag_val) {
+        google::SetCommandLineOption(gflag_key, gflag_val);
     }
 
-    LOG(INFO) << "train Suc.\n";
-    LOG(INFO) << "start to build\n";
+    void PySearcher::show() {
 
-    if (_index->build() != 0) {
-        LOG(ERROR) << "build Faild";
-        return -1;
+        std::cout << "1\n";
+    }
+    PySearcher::PySearcher() {};
 
+    int PySearcher::build(uint32_t total_cnt) {
+        std::cout << "start to train\n";
+
+        if (FLAGS_index_type == int(puck::IndexType::TINKER)) { //Tinker
+            LOG(INFO) << "init index of Tinker";
+            _index.reset(new puck::TinkerIndex());
+        } else if (FLAGS_index_type == int(puck::IndexType::PUCK)) { //PUCK
+            LOG(INFO) << "init index of Puck";
+            _index.reset(new puck::PuckIndex());
+        } else if (FLAGS_index_type == int(puck::IndexType::HIERARCHICAL_CLUSTER)) {
+            _index.reset(new puck::HierarchicalClusterIndex());
+            LOG(INFO) << "init index of Flat";
+        }
+        else {
+            LOG(INFO) << "init index of Error, Nan type";
+            return -1;
+        }
+        LOG(INFO) << "start to train";
+        if (_index->train() != 0) {
+            LOG(ERROR) << "train Faild";
+            return -1;
+        }
+
+        LOG(INFO) << "train Suc.\n";
+        LOG(INFO) << "start to build\n";
+
+        if (_index->build() != 0) {
+            LOG(ERROR) << "build Faild";
+            return -1;
+
+        }
+
+        return 0;
     }
 
-    return 0;
-}
-
-int PySearcher::init() {
-    _index.reset(new puck::DynamicPuckIndex());
-    LOG(INFO) << "init index of DynamicPuckIndex";
-    /*
-    puck::IndexType index_type = puck::load_index_type();
-    index_type = puck::IndexType::DYNAMICPUCK;
-    if (index_type == puck::IndexType::TINKER) { //Tinker
-        LOG(INFO) << "init index of Tinker";
-        _index.reset(new puck::TinkerIndex());
-    } else if (index_type == puck::IndexType::PUCK) { //PUCK
-        LOG(INFO) << "init index of Puck";
-        _index.reset(new puck::PuckIndex());
-    } else if (index_type == puck::IndexType::HIERARCHICAL_CLUSTER) {
-        _index.reset(new puck::HierarchicalClusterIndex());
-        LOG(INFO) << "init index of Flat";
-    } else if (index_type == puck::IndexType::DYNAMICPUCK) {
+    int PySearcher::init() {
         _index.reset(new puck::DynamicPuckIndex());
         LOG(INFO) << "init index of DynamicPuckIndex";
-    }else {
-        LOG(INFO) << "init index of Error, Nan type";
-        return -1;
+        /*
+        puck::IndexType index_type = puck::load_index_type();
+        index_type = puck::IndexType::DYNAMICPUCK;
+        if (index_type == puck::IndexType::TINKER) { //Tinker
+            LOG(INFO) << "init index of Tinker";
+            _index.reset(new puck::TinkerIndex());
+        } else if (index_type == puck::IndexType::PUCK) { //PUCK
+            LOG(INFO) << "init index of Puck";
+            _index.reset(new puck::PuckIndex());
+        } else if (index_type == puck::IndexType::HIERARCHICAL_CLUSTER) {
+            _index.reset(new puck::HierarchicalClusterIndex());
+            LOG(INFO) << "init index of Flat";
+        } else if (index_type == puck::IndexType::DYNAMICPUCK) {
+            _index.reset(new puck::DynamicPuckIndex());
+            LOG(INFO) << "init index of DynamicPuckIndex";
+        }else {
+            LOG(INFO) << "init index of Error, Nan type";
+            return -1;
+        }
+        */
+
+        if (_index->init() != 0) {
+            LOG(ERROR) << "load index Faild";
+            return -1;
+        }
+
+        puck::IndexConf conf = puck::load_index_conf_file();
+        _dim = conf.feature_dim;
+
+        if (conf.ip2cos) {
+            --_dim;
+        }
+        LOG(INFO)<<"FLAGS_context_initial_pool_size = "<<puck::FLAGS_context_initial_pool_size;
+        return 0;
     }
-    */
 
-    if (_index->init() != 0) {
-        LOG(ERROR) << "load index Faild";
-        return -1;
-    }
+    template <class Function>
+    inline void ParallelFor(size_t start, size_t end, size_t numThreads, Function fn) {
+        std::vector<std::thread> threads;
+        std::atomic<size_t> current(start);
 
-    puck::IndexConf conf = puck::load_index_conf_file();
-    _dim = conf.feature_dim;
+        std::exception_ptr lastException = nullptr;
+        std::mutex lastExceptMutex;
 
-    if (conf.ip2cos) {
-        --_dim;
-    }
-    LOG(INFO)<<"FLAGS_context_initial_pool_size = "<<puck::FLAGS_context_initial_pool_size;
-    return 0;
-}
+        for (size_t threadId = 0; threadId < numThreads; ++threadId) {
+            threads.push_back(std::thread([&, threadId] {
+                while (true) {
+                    size_t id = current.fetch_add(1);
 
-template <class Function>
-inline void ParallelFor(size_t start, size_t end, size_t numThreads, Function fn) {
-    std::vector<std::thread> threads;
-    std::atomic<size_t> current(start);
+                    if ((id >= end)) {
+                        break;
+                    }
 
-    std::exception_ptr lastException = nullptr;
-    std::mutex lastExceptMutex;
-
-    for (size_t threadId = 0; threadId < numThreads; ++threadId) {
-        threads.push_back(std::thread([&, threadId] {
-            while (true) {
-                size_t id = current.fetch_add(1);
-
-                if ((id >= end)) {
-                    break;
+                    try {
+                        fn(id, threadId);
+                    } catch (...) {
+                        std::unique_lock<std::mutex> lastExcepLock(lastExceptMutex);
+                        lastException = std::current_exception();
+                        /*
+                        * This will work even when current is the largest value that
+                        * size_t can fit, because fetch_add returns the previous value
+                        * before the increment (what will result in overflow
+                        * and produce 0 instead of current + 1).
+                        */
+                        current = end;
+                        break;
+                    }
                 }
+            }));
+        }
 
-                try {
-                    fn(id, threadId);
-                } catch (...) {
-                    std::unique_lock<std::mutex> lastExcepLock(lastExceptMutex);
-                    lastException = std::current_exception();
-                    /*
-                    * This will work even when current is the largest value that
-                    * size_t can fit, because fetch_add returns the previous value
-                    * before the increment (what will result in overflow
-                    * and produce 0 instead of current + 1).
-                    */
-                    current = end;
-                    break;
-                }
-            }
-        }));
+        for (auto& thread : threads) {
+            thread.join();
+        }
+
+        if (lastException) {
+            std::rethrow_exception(lastException);
+        }
     }
 
-    for (auto& thread : threads) {
-        thread.join();
+    std::vector<uint32_t> PySearcher::search(uint32_t n, const std::vector<float> query_fea, const uint32_t topk) {
+        auto distances = std::vector<float>(topk*n);
+        auto labels = std::vector<uint32_t>(topk*n);
+        ParallelFor(0, n, puck::FLAGS_context_initial_pool_size, [&](int id, int threadId) {
+            (void)threadId;
+            puck::Request request;
+            puck::Response response;
+            request.topk = topk;
+            request.feature = query_fea.data() + id * _dim;
+
+            response.distance = distances.data() + id * topk;
+            response.local_idx = labels.data() + id * topk;
+            _index->search(&request, &response);
+        });
+
+        return labels;
     }
 
-    if (lastException) {
-        std::rethrow_exception(lastException);
+    int PySearcher::batch_add(uint32_t n, uint32_t dim, const std::vector<float> features, const std::vector<uint32_t> labels){
+        puck::DynamicPuckIndex* dynamic_index = dynamic_cast<puck::DynamicPuckIndex*>(_index.get());
+        if(dynamic_index == nullptr){
+            LOG(ERROR)<<"dynamic_puck_index is null";
+            return -1;
+        }
+        dynamic_index->batch_add(n, dim, features.data(), labels.data());
+        return 0;
     }
-}
-
-int PySearcher::search(uint32_t n, const std::vector<float> query_fea, const uint32_t topk, std::vector<float> distance,
-                       std::vector<uint32_t> labels) {
-
-    ParallelFor(0, n, puck::FLAGS_context_initial_pool_size, [&](int id, int threadId) {
-        (void)threadId;
-        puck::Request request;
-        puck::Response response;
-        request.topk = topk;
-        request.feature = query_fea.data() + id * _dim;
-
-        response.distance = distance.data() + id * topk;
-        response.local_idx = labels.data() + id * topk;
-        _index->search(&request, &response);
-    });
-
-    return 0;
-}
-
-int PySearcher::batch_add(uint32_t n, uint32_t dim, const std::vector<float> features, const std::vector<uint32_t> labels){
-    puck::DynamicPuckIndex* dynamic_index = dynamic_cast<puck::DynamicPuckIndex*>(_index.get());
-    if(dynamic_index == nullptr){
-        LOG(ERROR)<<"dynamic_puck_index is null";
-        return -1;
+    int PySearcher::batch_delete(uint32_t n, const std::vector<uint32_t> labels){
+        puck::DynamicPuckIndex* dynamic_index = dynamic_cast<puck::DynamicPuckIndex*>(_index.get());
+        if(dynamic_index == nullptr){
+            LOG(ERROR)<<"dynamic_puck_index is null";
+            return -1;
+        }
+        dynamic_index->batch_delete(n, labels.data());
+        return 0;
     }
-    dynamic_index->batch_add(n, dim, features.data(), labels.data());
-    return 0;
-}
-int PySearcher::batch_delete(uint32_t n, const std::vector<uint32_t> labels){
-    puck::DynamicPuckIndex* dynamic_index = dynamic_cast<puck::DynamicPuckIndex*>(_index.get());
-    if(dynamic_index == nullptr){
-        LOG(ERROR)<<"dynamic_puck_index is null";
-        return -1;
-    }
-    dynamic_index->batch_delete(n, labels.data());
-    return 0;
-}
-PySearcher::~PySearcher() {};
+    PySearcher::~PySearcher() {};
 };//namespace py_puck_api
