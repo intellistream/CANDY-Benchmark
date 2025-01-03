@@ -173,9 +173,9 @@ public:
     bool try_push(NumpyIdxPairFloat &obj){
         return queue->try_push(obj);
     }
-    NumpyIdxPairFloat* front(){
+    NumpyIdxPairFloat front(){
 
-        auto temp = new NumpyIdxPairFloat(queue->front()->vectors, queue->front()->idx);
+        auto temp = NumpyIdxPairFloat(queue->front()->vectors, queue->front()->idx);
         return temp;
     }
     void pop(){
