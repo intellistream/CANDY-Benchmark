@@ -40,46 +40,10 @@ class SPSCQueue {
  public:
   pthread_cond_t cond;
   pthread_mutex_t mutex;
-  // this one is for pybind
-  explicit SPSCQueue(const size_t capacity){
-      capacity_=capacity;
-      allocator_ = Allocator();
-
-      // The queue needs at least one element
-      if (capacity_ < 1) {
-          capacity_ = 1;
-      }
-      capacity_++; // Needs one slack element
-      // Prevent overflowing size_t
-      if (capacity_ > SIZE_MAX - 2 * kPadding) {
-          capacity_ = SIZE_MAX - 2 * kPadding;
-      }
-
-#if defined(__cpp_if_constexpr) && defined(__cpp_lib_void_t)
-      if constexpr (has_allocate_at_least<Allocator>::value) {
-          auto res = allocator_.allocate_at_least(capacity_ + 2 * kPadding);
-          slots_ = res.ptr;
-          capacity_ = res.count - 2 * kPadding;
-      } else {
-          slots_ = std::allocator_traits<Allocator>::allocate(
-                  allocator_, capacity_ + 2 * kPadding);
-      }
-#else
-      slots_ = std::allocator_traits<Allocator>::allocate(
-        allocator_, capacity_ + 2 * kPadding);
-#endif
-
-      static_assert(alignof(SPSCQueue<T>) == kCacheLineSize, "");
-      static_assert(sizeof(SPSCQueue<T>) >= 3 * kCacheLineSize, "");
-      assert(reinterpret_cast<char *>(&readIdx_) -
-             reinterpret_cast<char *>(&writeIdx_) >=
-             static_cast<std::ptrdiff_t>(kCacheLineSize));
-
-  }
 
 
   explicit SPSCQueue(const size_t capacity,
-                     const Allocator &allocator)
+                     const Allocator &allocator = Allocator())
       : capacity_(capacity), allocator_(allocator) {
 
     // The queue needs at least one element

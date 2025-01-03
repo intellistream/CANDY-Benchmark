@@ -147,8 +147,8 @@ public:
     NumpyIdxPair(){};
     ~NumpyIdxPair(){};
     int64_t idx;
-    py::array_t<DT, py::array::c_style | py::array::forcecast> vectors;
-    NumpyIdxPair( py::array_t<DT, py::array::c_style | py::array::forcecast> _vectors, int64_t _idx){
+    py::array_t<DT> vectors;
+    NumpyIdxPair(const py::array_t<DT> _vectors, int64_t _idx){
         idx=_idx;
         vectors = _vectors;
     }
@@ -160,31 +160,42 @@ using NumpyIdxPairFloat = NumpyIdxPair<float>;
 using NumpyIdxQueueInt8 = SPSCQueue<NumpyIdxPairInt8>;
 using NumpyIdxQueueFloat = SPSCQueue<NumpyIdxPairFloat>;
 
+class SPSCWrapper{
+public:
+
+    SPSCWrapper(size_t capacity){
+        queue = new SPSCQueue<NumpyIdxPairFloat>(capacity);
+    }
+    SPSCQueue<NumpyIdxPairFloat>* queue;
+    void push(NumpyIdxPairFloat &obj){
+        queue->push(obj);
+    }
+    bool try_push(NumpyIdxPairFloat &obj){
+        return queue->try_push(obj);
+    }
+    NumpyIdxPairFloat* front(){
+
+        auto temp = new NumpyIdxPairFloat(queue->front()->vectors, queue->front()->idx);
+        return temp;
+    }
+    void pop(){
+        queue->pop();
+    }
+    size_t capacity(){
+        return queue->capacity();
+    }
+
+    size_t size(){
+        return queue->size();
+    }
+
+    bool empty(){
+        return queue->empty();
+    }
 
 
-template <typename DT> inline void add_variant(py::module_ &m, const std::string &type){
-    py::class_<NumpyIdxPair<DT>,std::shared_ptr<NumpyIdxPair<DT>>>(m,("NumpyIdxPair"+type).c_str())
-            .def(py::init<>())
-            .def(py::init<py::array_t<DT, py::array::c_style | py::array::forcecast>, int64_t>())
-            .def_readwrite("vectors", &NumpyIdxPair<DT>::vectors)
-            .def_readwrite("idx", &NumpyIdxPair<DT>::idx);
 
-
-//    py::class_<SPSCQueue<NumpyIdxPair<DT>>, std::shared_ptr<SPSCQueue<NumpyIdxPair<DT>>>>(m, ("NumpyIdxQueue"+type).c_str())
-//            .def(py::init<const size_t>())
-//            .def("wake_up_sink",&SPSCQueue<NumpyIdxPair<DT>>::wakeUpSink)
-//            .def("wait_for_source",&SPSCQueue<NumpyIdxPair<DT>>::waitForSource)
-//            .def("emplace",&SPSCQueue<NumpyIdxPair<DT>>::emplace)
-//            .def("try_emplace",&SPSCQueue<NumpyIdxPair<DT>>::try_emplace)
-//            .def("push",&SPSCQueue<NumpyIdxPair<DT>>::push)
-//            .def("try_push",&SPSCQueue<NumpyIdxPair<DT>>::try_push)
-//            .def("front",&SPSCQueue<NumpyIdxPair<DT>>::front)
-//            .def("pop",&SPSCQueue<NumpyIdxPair<DT>>::pop)
-//            .def("size",&SPSCQueue<NumpyIdxPair<DT>>::size)
-//            .def("capacity",&SPSCQueue<NumpyIdxPair<DT>>::capacity);
-
-
-}
+};
 
 
 #define COMPILED_TIME (__DATE__ " " __TIME__)
@@ -297,55 +308,21 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
     m_puck.def("update_gflag", &py_puck_api::update_gflag, "A function to update gflag");
 
     auto m_utils = m.def_submodule("utils", "Utility Classes from CANDY.");
-    add_variant<float>(m_utils, "Float");
-    add_variant<int8_t>(m_utils, "Int8");
+    py::class_<NumpyIdxPair<float>,std::shared_ptr<NumpyIdxPair<float>>>(m_utils,"NumpyIdxPair")
+            .def(py::init<>())
+            .def(py::init<py::array_t<float, py::array::c_style | py::array::forcecast>, int64_t>())
+            .def_readwrite("vectors", &NumpyIdxPair<float>::vectors)
+            .def_readwrite("idx", &NumpyIdxPair<float>::idx);
 
-    py::class_<NumpyIdxQueueFloat, std::shared_ptr<NumpyIdxQueueFloat>>(m_utils, "NumpyIdxQueueFloat")
-            .def(py::init<const size_t>())
-            .def("wake_up_sink",&NumpyIdxQueueFloat::wakeUpSink)
-            .def("wait_for_source",&NumpyIdxQueueFloat::waitForSource)
-            .def("emplace", [](SPSCQueue<NumpyIdxPair<float>> &queue, py::array_t<float> vectors, int64_t idx) {
-                queue.emplace(NumpyIdxPair<float>(vectors, idx));
-            }, py::arg("vectors"), py::arg("idx"))
-            .def("try_emplace", [](SPSCQueue<NumpyIdxPair<float>> &queue, py::array_t<float> vectors, int64_t idx) {
-                queue.try_emplace(NumpyIdxPair<float>(vectors, idx));
-            }, py::arg("vectors"), py::arg("idx"))
-            .def("push", [](NumpyIdxQueueFloat& self, py::object obj) {
-                if (py::isinstance<py::tuple>(obj)) {
-                    // Extract arguments from the tuple and emplace
-                    auto vectors = obj.attr("vectors").cast<py::array_t<float>>();
-                    auto idx = obj.attr("idx").cast<int64_t>();
-                    self.push(NumpyIdxPair<float>(vectors, idx));
-                } else {
-                    self.push(obj.cast<NumpyIdxPair<float>>());
-                }
-            })
-            .def("try_push", [](NumpyIdxQueueFloat& self, py::object obj) {
-                if (py::isinstance<py::tuple>(obj)) {
-                    // Extract arguments from the tuple and emplace
-                    auto vectors = obj.attr("vectors").cast<py::array_t<float>>();
-                    auto idx = obj.attr("idx").cast<int64_t>();
-                    self.push(NumpyIdxPair<float>(vectors, idx));
-                } else {
-                    self.push(obj.cast<NumpyIdxPair<float>>());
-                }
-            })
-            .def("front",&NumpyIdxQueueFloat::front)
-            .def("pop",&NumpyIdxQueueFloat::pop)
-            .def("size",&NumpyIdxQueueFloat::size)
-            .def("capacity",&NumpyIdxQueueFloat::capacity);
-
-
-
-
-
-
-
-
-
-
-
-
+    py::class_<SPSCWrapper, std::shared_ptr<SPSCWrapper>>(m_utils, "NumpyIdxQueue")
+        .def(py::init<const size_t>())
+        .def("push", &SPSCWrapper::push)
+        .def("try_push", &SPSCWrapper::try_push)
+        .def("front", &SPSCWrapper::front)
+        .def("empty", &SPSCWrapper::empty)
+        .def("size", &SPSCWrapper::size)
+        .def("capacity", &SPSCWrapper::capacity)
+        .def("pop", &SPSCWrapper::pop);
 
 
 }
