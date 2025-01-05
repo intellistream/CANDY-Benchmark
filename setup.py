@@ -29,7 +29,10 @@ class CMakeBuild(build_ext):
             self.build_extension(ext)
 
     def build_extension(self, ext):
+        print(sys.executable)
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
+        debug = int(os.environ.get("DEBUG", 0)) if self.debug is None else self.debug
+        cfg = "Debug" if debug else "Release"
         os.system("python3 -c 'import torch;print(torch.utils.cmake_prefix_path)' >> 1.txt")
         with open('1.txt', 'r') as file:
             torchCmake = file.read().rstrip('\n')
@@ -48,8 +51,14 @@ class CMakeBuild(build_ext):
                     '-DENABLE_PYBIND=ON',
                     '-DCMAKE_INSTALL_PREFIX=/usr/local/lib',
                     '-DENABLE_PAPI=OFF',
+                    '-DENABLE_DiskANN=ON',
+                    '-DPYBIND=ON',
+                      f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={extdir}{os.sep}",
+                      f"-DPYTHON_EXECUTABLE={sys.executable}",
+                      f"-DCMAKE_BUILD_TYPE={cfg}",  # not used on MSVC, but no harm
+                      f"-DVERSION_INFO={self.distribution.get_version()}"  # commented out, we want this set in the CMake file
                    ]
-        
+
         cfg = 'Debug' if self.debug else 'Release'
         cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
 
