@@ -168,10 +168,10 @@ template <typename T> inline void add_variant(py::module_ &m, const Variant &var
           "data_file_path"_a, "index_output_path"_a, "graph_degree"_a, "complexity"_a, "alpha"_a, "num_threads"_a,
           "use_pq_build"_a, "num_pq_bytes"_a, "use_opq"_a, "filter_complexity"_a = 0, "use_tags"_a = false);
     py::class_<diskannpy::DynamicMemoryIndex<T>>(m, variant.dynamic_memory_index_name.c_str())
-        .def(py::init<const diskann::Metric, const size_t, const size_t, const uint32_t, const uint32_t, const bool,
+        .def(py::init<const diskann::AlgoType ,const diskann::Metric, const size_t, const size_t, const uint32_t, const uint32_t, const bool,
                       const uint32_t, const float, const uint32_t, const uint32_t, const uint32_t, const uint32_t,
                       const uint32_t, const bool>(),
-             "distance_metric"_a, "dimensions"_a, "max_vectors"_a, "complexity"_a, "graph_degree"_a,
+             "algo_type"_a,"distance_metric"_a, "dimensions"_a, "max_vectors"_a, "complexity"_a, "graph_degree"_a,
              "saturate_graph"_a = diskann::defaults::SATURATE_GRAPH,
              "max_occlusion_size"_a = diskann::defaults::MAX_OCCLUSION_SIZE, "alpha"_a = diskann::defaults::ALPHA,
              "num_threads"_a = diskann::defaults::NUM_THREADS,
@@ -320,6 +320,11 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
         .value("L2", diskann::Metric::L2)
         .value("INNER_PRODUCT", diskann::Metric::INNER_PRODUCT)
         .value("COSINE", diskann::Metric::COSINE)
+        .export_values();
+  py::enum_<diskann::AlgoType>(m_diskann, "AlgoType")
+        .value("DISKANN", diskann::AlgoType::DISKANN)
+        .value("CUFE", diskann::AlgoType::CUFE)
+        .value("PYANNS", diskann::AlgoType::PYANNS)
         .export_values();
   m_diskann.attr("defaults") = default_values;
   m.attr("diskannpy") = m_diskann;
