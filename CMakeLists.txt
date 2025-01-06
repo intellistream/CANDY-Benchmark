@@ -361,6 +361,7 @@ message(WARNING "CANDY GLOG_LIBRARY_DIR: ${GLOG_LIBRARIES}")
 target_link_libraries(CANDYBENCH PUBLIC ${LIBRARIES})
 install(TARGETS CANDYBENCH LIBRARY DESTINATION .)
 find_library(LIBAIO_LIBRARIES NAMES aio)
+message(STATUS "LIBAIO_LIBRARIES: ${LIBAIO_LIBRARIES}")
 target_link_libraries(CANDYBENCH PUBLIC ${LIBAIO_LIBRARIES})
 #add_subdirectory(test)
 #Add benchmarks with command
