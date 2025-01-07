@@ -4,6 +4,8 @@ project(CANDYBENCH CXX)
 include (cmake/FindCuda.cmake)
 include (cmake/FindTorch.cmake)
 find_package(Torch REQUIRED)
+find_package(Python3 REQUIRED COMPONENTS Development)
+include_directories(${Python3_INCLUDE_DIRS})
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 
@@ -87,6 +89,26 @@ option(ENABLE_PYBIND
         "Enable original pybind and build CANDYBENCH python"
         OFF
 )
+option(ENABLE_DiskANN
+        "Enable DiskANN support"
+        OFF
+)
+
+if (NOT MSVC)
+    set(DISKANN_ASYNC_LIB aio)
+endif()
+
+set(ENV{TCMALLOC_LARGE_ALLOC_REPORT_THRESHOLD} 500000000000)
+#	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -DDEBUG -O0 -fsanitize=address -fsanitize=leak -fsanitize=undefined")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -DDEBUG -Wall -Wextra")
+if (NOT PYBIND)
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast -DNDEBUG -march=native -mtune=native -ftree-vectorize")
+else()
+    #-Ofast is super problematic for python.  see: https://moyix.blogspot.com/2022/09/someones-been-messing-with-my-subnormals.html
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNDEBUG -march=native -mtune=native -ftree-vectorize")
+    add_compile_options(-fPIC)
+endif()
+add_compile_options(-march=native -Wall -fno-builtin-malloc -fno-builtin-calloc -fno-builtin-realloc -fno-builtin-free -fopenmp -fopenmp-simd -funroll-loops -Wfatal-errors -DUSE_AVX2)
 
 #OPTIONAL OPENCL
 if (NOT ENABLE_OPENCL)
@@ -164,6 +186,42 @@ configure_file(
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/sptag_config.h.in"
         "${PROJECT_BINARY_DIR}/include/sptag_config.h"
+)
+
+file(GLOB_RECURSE DISKANN_SRC_FILES
+        "thirdparty/DiskANN/src/*.cpp"
+        "thirdparty/DiskANN/python/src/*.cpp"
+)
+set(DiskANN_BUILD_DIR ${CMAKE_BINARY_DIR}/DiskANN_build)
+# Configure build output directories specifically for PUCK
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/lib)
+file(GLOB DISKANN_SRC_FILES "thirdparty/DiskANN/src/*.cpp"  )
+file(GLOB DISKANN_HEADER_FILES "thirdparty/DiskANN/include/*.h")
+if (NOT ENABLE_DiskANN)
+    message(STATUS "I will NOT include diskann LIBS")
+    set(CANDY_DiskANN 0)
+else ()
+    set(CANDY_DiskANN 1)
+
+    message(STATUS "I will include support for DiskANN")
+
+    # Add DiskANN
+    find_package(OpenMP REQUIRED)
+
+
+    add_subdirectory(thirdparty/DiskANN)
+    include_directories(thirdparty/DiskANN/include)
+    #    add_sources(
+    #            thirdparty/DiskANN/src/pq_flash_index.cpp
+    #
+    #    )
+    set(LIBRARIES ${LIBRARIES}  diskann)
+endif ()
+configure_file(
+        "${PROJECT_SOURCE_DIR}/include/diskann_config.h.in"
+        "${PROJECT_BINARY_DIR}/include/diskann_config.h"
 )
 
 # Set PUCK build directory
@@ -251,15 +309,50 @@ add_library(CANDYBENCH SHARED ${CANDY_SOURCE_FILES} ${CANDY_HEADER_FILES} ${CMAK
 set_property(TARGET CANDYBENCH PROPERTY CXX_STANDARD 20)
 target_include_directories(CANDYBENCH PUBLIC "include")
 
+# 设置 MKL 库的路径
+set(MKL_INCLUDE_DIR "/usr/include/mkl")
+set(MKL_LIB_DIR "/usr/lib/x86_64-linux-gnu")
+#set(MPI_INCLUDE_PATH "/usr/include/openmpi-x86_64")
+#set(MPI_LIBRARIES "/usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so")
+
+set(MKL_LIBRARIES
+        "${MKL_LIB_DIR}/libmkl_intel_lp64.so"
+        "${MKL_LIB_DIR}/libmkl_sequential.so"
+        "${MKL_LIB_DIR}/libmkl_core.so"
+)
+target_include_directories(CANDYBENCH PUBLIC ${MKL_INCLUDE_DIR})
+# MKL 和其他库的链接
+target_link_libraries(CANDYBENCH PUBLIC
+        ${MKL_LIBRARIES}
+        iomp5
+        pthread
+        m
+        dl
+)
+target_compile_options(CANDYBENCH PUBLIC
+        -m64
+        -DUSE_MKL
+        -I${MKL_INCLUDE_DIR}
+)
+link_directories(${MKL_LIB_DIR})
+
 #these 2 ugly lines are for puck
 #add_definitions(-DFINTEGER=int)
-target_include_directories(CANDYBENCH PUBLIC "/usr/include/mkl")
+#target_include_directories(CANDYBENCH PUBLIC "/usr/include/mkl")
 
 target_include_directories(CANDYBENCH PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/papi_build/include")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck/puck")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN/python/include")
+target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN/include")
+target_sources(CANDYBENCH PUBLIC ${DISKANN_SRC_FILES})
+target_sources(CANDYBENCH PUBLIC thirdparty/DiskANN/python/src/dynamic_memory_index.cpp)
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(CANDYBENCH PRIVATE OpenMP::OpenMP_CXX)
+endif()
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
 message(WARNING "CANDY GFLAGS_LIBRARY_DIR: ${GFLAGS_LIBRARIES}")
@@ -267,6 +360,9 @@ message(WARNING "CANDY GLOG_LIBRARY_DIR: ${GLOG_LIBRARIES}")
 #target_link_libraries(CANDYBENCH PUBLIC  ${GFLAGS_LIBRARIES} ${GLOG_LIBRARIES})
 target_link_libraries(CANDYBENCH PUBLIC ${LIBRARIES})
 install(TARGETS CANDYBENCH LIBRARY DESTINATION .)
+find_library(LIBAIO_LIBRARIES NAMES aio)
+message(STATUS "LIBAIO_LIBRARIES: ${LIBAIO_LIBRARIES}")
+target_link_libraries(CANDYBENCH PUBLIC ${LIBAIO_LIBRARIES})
 #add_subdirectory(test)
 #Add benchmarks with command
 #add_subdirectory(benchmark)
