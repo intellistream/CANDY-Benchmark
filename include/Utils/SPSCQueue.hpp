@@ -41,6 +41,7 @@ class SPSCQueue {
   pthread_cond_t cond;
   pthread_mutex_t mutex;
 
+
   explicit SPSCQueue(const size_t capacity,
                      const Allocator &allocator = Allocator())
       : capacity_(capacity), allocator_(allocator) {

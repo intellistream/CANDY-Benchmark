@@ -4,10 +4,12 @@
 #include <gflags/gflags.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <pybind11/numpy.h>
 #include <torch/extension.h>
 #include <torch/torch.h>
 #include <Utils/ConfigMap.hpp>
 #include <Utils/IntelliLog.h>
+#include <Utils/SPSCQueue.hpp>
 #include <CANDY/AbstractIndex.h>
 
 
@@ -142,9 +144,90 @@ double recallOfTensorList(std::vector<torch::Tensor> groundTruth, std::vector<to
   return recall;
 }
 
-void update_gflag(const char* gflag_key, const char* gflag_val) {
-    google::SetCommandLineOption(gflag_key, gflag_val);
-}
+
+template <class DT>
+class NumpyIdxPair{
+public:
+    NumpyIdxPair(){};
+    ~NumpyIdxPair(){};
+    std::vector<int64_t> idx;
+    py::array_t<DT> vectors;
+    NumpyIdxPair(const py::array_t<DT> _vectors, const std::vector<int64_t> _idx){
+        idx=_idx;
+        vectors = _vectors;
+    }
+};
+
+using NumpyIdxPairInt8 = NumpyIdxPair<int8_t>;
+using NumpyIdxPairFloat = NumpyIdxPair<float>;
+
+using NumpyIdxQueueInt8 = SPSCQueue<NumpyIdxPairInt8>;
+using NumpyIdxQueueFloat = SPSCQueue<NumpyIdxPairFloat>;
+
+template<class DT>
+class SPSCWrapperNumpy{
+public:
+    SPSCWrapperNumpy(size_t capacity){
+        queue = new SPSCQueue<NumpyIdxPair<DT>>(capacity);
+    }
+    SPSCQueue<NumpyIdxPair<DT>>* queue;
+    void push(NumpyIdxPair<DT> &obj){
+        queue->push(obj);
+    }
+    bool try_push(NumpyIdxPair<DT> &obj){
+        return queue->try_push(obj);
+    }
+    NumpyIdxPair<DT> front(){
+
+        auto temp = NumpyIdxPair<DT>(queue->front()->vectors, queue->front()->idx);
+        return temp;
+    }
+    void pop(){
+        queue->pop();
+    }
+    size_t capacity(){
+        return queue->capacity();
+    }
+    size_t size(){
+        return queue->size();
+    }
+    bool empty(){
+        return queue->empty();
+    }
+};
+
+class SPSCWrapperIdx{
+public:
+    SPSCWrapperIdx(size_t capacity){
+        queue = new SPSCQueue<int64_t>(capacity);
+    }
+    SPSCQueue<int64_t>* queue;
+    void push(int64_t &obj){
+        queue->push(obj);
+    }
+    bool try_push(int64_t &obj){
+        return queue->try_push(obj);
+    }
+    int64_t front(){
+
+        auto temp = *(queue->front());
+        return temp;
+    }
+    void pop(){
+        queue->pop();
+    }
+    size_t capacity(){
+        return queue->capacity();
+    }
+    size_t size(){
+        return queue->size();
+    }
+    bool empty(){
+        return queue->empty();
+    }
+
+};
+
 
 struct Variant
 {
@@ -290,7 +373,6 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
 
 
   auto m_puck = m.def_submodule("puck", "Puck Interface from Baidu.");
-
   py::class_<py_puck_api::PySearcher, std::shared_ptr<py_puck_api::PySearcher>>(m_puck, "PuckSearcher")
     .def(py::init<>())
     .def("init", &py_puck_api::PySearcher::init)
@@ -301,6 +383,33 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
     .def("batch_delete",&py_puck_api::PySearcher::batch_delete);
 
     m_puck.def("update_gflag", &py_puck_api::update_gflag, "A function to update gflag");
+
+
+    auto m_utils = m.def_submodule("utils", "Utility Classes from CANDY.");
+    py::class_<NumpyIdxPair<float>,std::shared_ptr<NumpyIdxPair<float>>>(m_utils,"NumpyIdxPair")
+            .def(py::init<>())
+            .def(py::init<py::array_t<float, py::array::c_style | py::array::forcecast>, std::vector<int64_t>>())
+            .def_readwrite("vectors", &NumpyIdxPair<float>::vectors)
+            .def_readwrite("idx", &NumpyIdxPair<float>::idx);
+
+    py::class_<SPSCWrapperNumpy<float>, std::shared_ptr<SPSCWrapperNumpy<float>>>(m_utils, "NumpyIdxQueue")
+        .def(py::init<const size_t>())
+        .def("push", &SPSCWrapperNumpy<float>::push)
+        .def("try_push", &SPSCWrapperNumpy<float>::try_push)
+        .def("front", &SPSCWrapperNumpy<float>::front)
+        .def("empty", &SPSCWrapperNumpy<float>::empty)
+        .def("size", &SPSCWrapperNumpy<float>::size)
+        .def("capacity", &SPSCWrapperNumpy<float>::capacity)
+        .def("pop", &SPSCWrapperNumpy<float>::pop);
+    py::class_<SPSCWrapperIdx, std::shared_ptr<SPSCWrapperIdx>>(m_utils, "IdxQueue")
+            .def(py::init<const size_t>())
+            .def("push", &SPSCWrapperIdx::push)
+            .def("try_push", &SPSCWrapperIdx::try_push)
+            .def("front", &SPSCWrapperIdx::front)
+            .def("empty", &SPSCWrapperIdx::empty)
+            .def("size", &SPSCWrapperIdx::size)
+            .def("capacity", &SPSCWrapperIdx::capacity)
+            .def("pop", &SPSCWrapperIdx::pop);
 
 
   auto m_diskann = m.def_submodule("diskannpy","diskann interface from microsoft.");
