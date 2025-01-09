@@ -21,7 +21,7 @@ namespace faiss {
 
 struct IndexVanama;
 
-struct ReconstructFromNeighborsbd {
+struct ReconstructFromNeighborsVanama {
     typedef Vanama::storage_idx_t storage_idx_t;
 
     const IndexVanama& index;
@@ -37,7 +37,7 @@ struct ReconstructFromNeighborsbd {
     size_t ntotal;
     size_t d, dsub; // derived values
 
-    explicit ReconstructFromNeighborsbd(
+    explicit ReconstructFromNeighborsVanama(
             const IndexVanama& index,
             size_t k = 256,
             size_t nsq = 1);
@@ -77,7 +77,7 @@ struct IndexVanama : Index {
     bool own_fields = false;
     Index* storage = nullptr;
 
-    ReconstructFromNeighborsbd* reconstruct_from_neighbors = nullptr;
+    ReconstructFromNeighborsVanama* reconstruct_from_neighbors = nullptr;
 
     explicit IndexVanama(int d = 0, int M = 32, MetricType metric = METRIC_L2);
     explicit IndexVanama(Index* storage, int M = 32);

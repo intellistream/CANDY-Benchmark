@@ -205,7 +205,7 @@ void vanama_add_vertices(
 
             bool interrupt = false;
 
-//#pragma omp parallel if (i1 > i0 + 100)
+#pragma omp parallel if (i1 > i0 + 100)
             {
                 VisitedTable vt(ntotal);
 
@@ -218,7 +218,7 @@ void vanama_add_vertices(
                 // here we should do schedule(dynamic) but this segfaults for
                 // some versions of LLVM. The performance impact should not be
                 // too large when (i1 - i0) / num_threads >> 1
-//#pragma omp for schedule(static)
+#pragma omp for schedule(static)
                 for (int i = i0; i < i1; i++) {
                     storage_idx_t pt_id = order[i];
                     dis->set_query(x + (pt_id - n0) * d);
@@ -309,18 +309,18 @@ void IndexVanama::search(
 
     idx_t check_period =
             InterruptCallback::get_period_hint(vanama.max_level * d * efSearch);
-    vanama.bd_stat.reset();
+
     for (idx_t i0 = 0; i0 < n; i0 += check_period) {
         idx_t i1 = std::min(i0 + check_period, n);
 
-//#pragma omp parallel
+#pragma omp parallel
         {
             VisitedTable vt(ntotal);
 
             std::unique_ptr<DistanceComputer> dis(
                     storage_distance_computer(storage));
 
-//#pragma omp for reduction(+ : n1, n2, n3, ndis, nreorder) schedule(guided)
+#pragma omp for reduction(+ : n1, n2, n3, ndis, nreorder) schedule(guided)
             for (idx_t i = i0; i < i1; i++) {
                 idx_t* idxi = labels + i * k;
                 float* simi = distances + i * k;
@@ -362,7 +362,6 @@ void IndexVanama::search(
     }
 
     hnsw_stats.combine({n1, n2, n3, ndis, nreorder});
-    vanama.bd_stat.print();
 }
 
 void IndexVanama::add(idx_t n, const float* x) {
@@ -373,9 +372,8 @@ void IndexVanama::add(idx_t n, const float* x) {
     int n0 = ntotal;
     storage->add(n, x);
     ntotal = storage->ntotal;
-    vanama.bd_stat.reset();
     vanama_add_vertices(*this, n0, n, x, verbose, vanama.levels.size() == ntotal);
-    vanama.bd_stat.print();
+
 }
 
 void IndexVanama::reset() {
@@ -389,12 +387,12 @@ void IndexVanama::reconstruct(idx_t key, float* recons) const {
 }
 
 void IndexVanama::shrink_level_0_neighbors(int new_size) {
-//#pragma omp parallel
+#pragma omp parallel
     {
         std::unique_ptr<DistanceComputer> dis(
                 storage_distance_computer(storage));
 
-//#pragma omp for
+#pragma omp for
         for (idx_t i = 0; i < ntotal; i++) {
             size_t begin, end;
             vanama.neighbor_range(i, 0, &begin, &end);
@@ -412,7 +410,7 @@ void IndexVanama::shrink_level_0_neighbors(int new_size) {
 
             std::vector<NodeDistFarther> shrunk_list;
             Vanama::shrink_neighbor_list(
-                    *dis, initial_list, shrunk_list, new_size, vanama.bd_stat);
+                    *dis, initial_list, shrunk_list, new_size);
 
             for (size_t j = begin; j < end; j++) {
                 if (j - begin < shrunk_list.size())
@@ -439,14 +437,14 @@ void IndexVanama::search_level_0(
 
     storage_idx_t ntotal = vanama.levels.size();
 
-//#pragma omp parallel
+#pragma omp parallel
     {
         std::unique_ptr<DistanceComputer> qdis(
                 storage_distance_computer(storage));
         HNSWStats search_stats;
         VisitedTable vt(ntotal);
 
-//#pragma omp for
+#pragma omp for
         for (idx_t i = 0; i < n; i++) {
             idx_t* idxi = labels + i * k;
             float* simi = distances + i * k;
@@ -469,7 +467,7 @@ void IndexVanama::search_level_0(
             vt.advance();
             maxheap_reorder(k, simi, idxi);
         }
-//#pragma omp critical
+#pragma omp critical
         { hnsw_stats.combine(search_stats); }
     }
 }
@@ -480,7 +478,7 @@ void IndexVanama::init_level_0_from_knngraph(
         const idx_t* I) {
     int dest_size = vanama.nb_neighbors(0);
 
-//#pragma omp parallel for
+#pragma omp parallel for
     for (idx_t i = 0; i < ntotal; i++) {
         DistanceComputer* qdis = storage_distance_computer(storage);
         std::vector<float> vec(d);
@@ -499,7 +497,7 @@ void IndexVanama::init_level_0_from_knngraph(
         }
 
         std::vector<NodeDistFarther> shrunk_list;
-        Vanama::shrink_neighbor_list(*qdis, initial_list, shrunk_list, dest_size, vanama.bd_stat);
+        Vanama::shrink_neighbor_list(*qdis, initial_list, shrunk_list, dest_size);
 
         size_t begin, end;
         vanama.neighbor_range(i, 0, &begin, &end);
@@ -521,7 +519,7 @@ void IndexVanama::init_level_0_from_entry_points(
     for (int i = 0; i < ntotal; i++)
         omp_init_lock(&locks[i]);
 
-//#pragma omp parallel
+#pragma omp parallel
     {
         VisitedTable vt(ntotal);
 
@@ -529,7 +527,7 @@ void IndexVanama::init_level_0_from_entry_points(
                 storage_distance_computer(storage));
         std::vector<float> vec(storage->d);
 
-//#pragma omp for schedule(dynamic)
+#pragma omp for schedule(dynamic)
         for (int i = 0; i < n; i++) {
             storage_idx_t pt_id = points[i];
             storage_idx_t nearest = nearests[i];
@@ -556,7 +554,7 @@ void IndexVanama::init_level_0_from_entry_points(
 void IndexVanama::reorder_links() {
     int M = vanama.nb_neighbors(0);
 
-//#pragma omp parallel
+#pragma omp parallel
     {
         std::vector<float> distances(M);
         std::vector<size_t> order(M);
@@ -564,7 +562,7 @@ void IndexVanama::reorder_links() {
         std::unique_ptr<DistanceComputer> dis(
                 storage_distance_computer(storage));
 
-//#pragma omp for
+#pragma omp for
         for (storage_idx_t i = 0; i < ntotal; i++) {
             size_t begin, end;
             vanama.neighbor_range(i, 0, &begin, &end);
@@ -636,7 +634,7 @@ void IndexVanama::permute_entries(const idx_t* perm) {
  * ReconstructFromNeighbors implementation
  **************************************************************/
 
-ReconstructFromNeighborsbd::ReconstructFromNeighborsbd(
+ReconstructFromNeighborsVanama::ReconstructFromNeighborsVanama(
         const IndexVanama& index,
         size_t k,
         size_t nsq)
@@ -651,7 +649,7 @@ ReconstructFromNeighborsbd::ReconstructFromNeighborsbd(
     k_reorder = -1;
 }
 
-void ReconstructFromNeighborsbd::reconstruct(
+void ReconstructFromNeighborsVanama::reconstruct(
         storage_idx_t i,
         float* x,
         float* tmp) const {
@@ -759,21 +757,21 @@ void ReconstructFromNeighborsbd::reconstruct(
     }
 }
 
-void ReconstructFromNeighborsbd::reconstruct_n(
+void ReconstructFromNeighborsVanama::reconstruct_n(
         storage_idx_t n0,
         storage_idx_t ni,
         float* x) const {
-//#pragma omp parallel
+#pragma omp parallel
     {
         std::vector<float> tmp(index.d);
-//#pragma omp for
+#pragma omp for
         for (storage_idx_t i = 0; i < ni; i++) {
             reconstruct(n0 + i, x + i * index.d, tmp.data());
         }
     }
 }
 
-size_t ReconstructFromNeighborsbd::compute_distances(
+size_t ReconstructFromNeighborsVanama::compute_distances(
         size_t n,
         const idx_t* shortlist,
         const float* query,
@@ -790,7 +788,7 @@ size_t ReconstructFromNeighborsbd::compute_distances(
     return ncomp;
 }
 
-void ReconstructFromNeighborsbd::get_neighbor_table(storage_idx_t i, float* tmp1)
+void ReconstructFromNeighborsVanama::get_neighbor_table(storage_idx_t i, float* tmp1)
         const {
     const Vanama& vanama = index.vanama;
     size_t begin, end;
@@ -808,7 +806,7 @@ void ReconstructFromNeighborsbd::get_neighbor_table(storage_idx_t i, float* tmp1
 }
 
 /// called by add_codes
-void ReconstructFromNeighborsbd::estimate_code(
+void ReconstructFromNeighborsVanama::estimate_code(
         const float* x,
         storage_idx_t i,
         uint8_t* code) const {
@@ -855,13 +853,13 @@ void ReconstructFromNeighborsbd::estimate_code(
     }
 }
 
-void ReconstructFromNeighborsbd::add_codes(size_t n, const float* x) {
+void ReconstructFromNeighborsVanama::add_codes(size_t n, const float* x) {
     if (k == 1) { // nothing to encode
         ntotal += n;
         return;
     }
     codes.resize(codes.size() + code_size * n);
-//#pragma omp parallel for
+#pragma omp parallel for
     for (int i = 0; i < n; i++) {
         estimate_code(
                 x + i * index.d,
@@ -1036,7 +1034,7 @@ void IndexVanama2Level::search(
                 labels,
                 false);
 
-//#pragma omp parallel
+#pragma omp parallel
         {
             VisitedTable vt(ntotal);
             std::unique_ptr<DistanceComputer> dis(
@@ -1045,7 +1043,7 @@ void IndexVanama2Level::search(
             int candidates_size = vanama.upper_beam;
             MinimaxHeap candidates(candidates_size);
 
-//#pragma omp for reduction(+ : n1, n2, n3, ndis, nreorder)
+#pragma omp for reduction(+ : n1, n2, n3, ndis, nreorder)
             for (idx_t i = 0; i < n; i++) {
                 idx_t* idxi = labels + i * k;
                 float* simi = distances + i * k;
