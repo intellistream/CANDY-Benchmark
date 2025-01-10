@@ -126,7 +126,6 @@ struct Vanama {
 
     typedef std::pair<float, storage_idx_t> Node;
 
-    mutable struct Vanama_breakdown_stats bd_stat;
 
     /** Heap structure that allows fast
      */
@@ -299,8 +298,7 @@ struct Vanama {
             DistanceComputer& qdis,
             std::priority_queue<NodeDistFarther>& input,
             std::vector<NodeDistFarther>& output,
-            int max_size,
-	    struct Vanama_breakdown_stats& bd_stats);
+            int max_size);
 
     void permute_entries(const idx_t* map);
 };

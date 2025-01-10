@@ -65,7 +65,7 @@ void Vanama::neighbor_range(idx_t no, int layer_no, size_t* begin, size_t* end)
 Vanama::Vanama(int M) : rng(12345) {
     set_default_probas(M, 1.0 / log(M));
     offsets.push_back(0);
-    bd_stat.reset();
+
     M_ = M;
 }
 
@@ -120,7 +120,7 @@ void Vanama::print_neighbor_stats(int level) const {
            level,
            nb_neighbors(level));
     size_t tot_neigh = 0, tot_common = 0, tot_reciprocal = 0, n_node = 0;
-    //#pragma omp parallel for reduction(+: tot_neigh) reduction(+: tot_common) \
+    #pragma omp parallel for reduction(+: tot_neigh) reduction(+: tot_common) \
   reduction(+: tot_reciprocal) reduction(+: n_node)
     for (int i = 0; i < levels.size(); i++) {
         if (levels[i] > level) {
@@ -214,8 +214,8 @@ void Vanama::fill_with_random_links(size_t n) {
     } else {
         FAISS_ASSERT(n0 == levels.size());
         for (int i = 0; i < n; i++) {
-            //int pt_level = random_level();
-            int pt_level=0;
+            int pt_level = random_level();
+            //int pt_level=0;
             levels.push_back(pt_level + 1);
         }
     }
@@ -240,8 +240,7 @@ void Vanama::shrink_neighbor_list(
         DistanceComputer& qdis,
         std::priority_queue<NodeDistFarther>& input,
         std::vector<NodeDistFarther>& output,
-        int max_size,
-	struct Vanama_breakdown_stats& bd_stats) {
+        int max_size) {
 
     double alpha = 1.1;
 
@@ -259,10 +258,8 @@ void Vanama::shrink_neighbor_list(
     while((output.size() < max_size) && (!input1.empty())) {
         NodeDistFarther p_prime = input1.top();
         input1.pop();
-        auto start = std::chrono::high_resolution_clock::now();
+
         float dist_pstar_pprime = qdis.symmetric_dis(p_star.id, p_prime.id);
-        bd_stats.time_dc_linking += chronoElapsedTime(start);
-        bd_stats.step_linking +=1;
 
         if ( (alpha * dist_pstar_pprime) > p_prime.d) {
                 output.push_back(p_prime);
@@ -290,8 +287,7 @@ using NodeDistFarther = Vanama::NodeDistFarther;
 void shrink_neighbor_list(
         DistanceComputer& qdis,
         std::priority_queue<NodeDistCloser>& resultSet1,
-        int max_size,
-	struct Vanama_breakdown_stats& bd_stats) {
+        int max_size) {
     if (resultSet1.size() < max_size) {
         return;
     }
@@ -302,7 +298,7 @@ void shrink_neighbor_list(
         resultSet1.pop();
     }
 
-    Vanama::shrink_neighbor_list(qdis, resultSet, returnlist, max_size, bd_stats);
+    Vanama::shrink_neighbor_list(qdis, resultSet, returnlist, max_size);
 
     for (NodeDistFarther curen2 : returnlist) {
         resultSet1.emplace(curen2.d, curen2.id);
@@ -335,20 +331,19 @@ void add_link(
 
     // copy to resultSet...
     std::priority_queue<NodeDistCloser> resultSet;
-    auto start = std::chrono::high_resolution_clock::now();
+
     auto dist = qdis.symmetric_dis(src,dest);
-            vanama.bd_stat.time_dc_linking += chronoElapsedTime(start);
+
     resultSet.emplace(dist, dest);
     for (size_t i = begin; i < end; i++) { // HERE WAS THE BUG
         storage_idx_t neigh = vanama.neighbors[i];
-	auto start = std::chrono::high_resolution_clock::now();
+
 	dist = qdis.symmetric_dis(src,neigh);
-        vanama.bd_stat.time_dc_linking += chronoElapsedTime(start);
-        vanama.bd_stat.step_before_shrinking +=1;
+
         resultSet.emplace(dist, neigh);
     }
 
-    shrink_neighbor_list(qdis, resultSet, end - begin, vanama.bd_stat);
+    shrink_neighbor_list(qdis, resultSet, end - begin);
 
     // ...and back
     size_t i = begin;
@@ -406,11 +401,10 @@ void search_neighbors_to_add(
             if (vt.get(nodeId))
                 continue;
             vt.set(nodeId);
-            vanama.bd_stat.steps_iterating_add =
-                    vanama.bd_stat.steps_iterating_add + 1;
-		auto start = std::chrono::high_resolution_clock::now();
+
+
             float dis = qdis(nodeId);
-            vanama.bd_stat.time_dc+=chronoElapsedTime(start);
+
             NodeDistFarther evE1(dis, nodeId);
 
             if (results.size() < vanama.efConstruction || results.top().d > dis) {
@@ -442,7 +436,7 @@ void greedy_update_nearest(
         size_t begin, end;
         vanama.neighbor_range(nearest, level, &begin, &end);
         for (size_t i = begin; i < end; i++) {
-            vanama.bd_stat.steps_greedy = vanama.bd_stat.steps_greedy + 1;
+
             storage_idx_t v = vanama.neighbors[i];
             if (v < 0)
                 break;
@@ -471,16 +465,16 @@ void Vanama::add_links_starting_from(
         omp_lock_t* locks,
         VisitedTable& vt) {
     std::priority_queue<NodeDistCloser> link_targets;
-    auto start = std::chrono::high_resolution_clock::now();
+
     search_neighbors_to_add(
             *this, ptdis, link_targets, nearest, d_nearest, level, vt);
-    bd_stat.time_searching_neighbors_to_add += chronoElapsedTime(start);
+
 
     // but we can afford only this many neighbors
     int M = nb_neighbors(level);
 
-    start = std::chrono::high_resolution_clock::now();
-    ::faiss::shrink_neighbor_list(ptdis, link_targets, M,bd_stat);
+
+    ::faiss::shrink_neighbor_list(ptdis, link_targets, M);
 
     std::vector<storage_idx_t> neighbors;
     neighbors.reserve(link_targets.size());
@@ -498,7 +492,7 @@ void Vanama::add_links_starting_from(
         omp_unset_lock(&locks[other_id]);
     }
     omp_set_lock(&locks[pt_id]);
-    bd_stat.time_add_links += chronoElapsedTime(start);
+
 }
 
 /**************************************************************
@@ -514,7 +508,7 @@ void Vanama::add_with_locks(
     //  greedy search on upper levels
 
     storage_idx_t nearest;
-    //#pragma omp critical
+    #pragma omp critical
     {
         nearest = entry_point;
 
@@ -537,7 +531,7 @@ void Vanama::add_with_locks(
         greedy_update_nearest(*this, ptdis, level, nearest, d_nearest);
     }*/
     greedy_update_nearest(*this, ptdis, level, nearest, d_nearest);
-    bd_stat.time_greedy_insert += chronoElapsedTime(greedy_start);
+
     for (; level >= 0; level--) {
         //greedy_update_nearest(*this, ptdis, level, nearest, d_nearest);
         add_links_starting_from(
@@ -667,8 +661,7 @@ int search_from_candidates(
 
         for (size_t j = begin; j < jmax; j++) {
             int v1 = vanama.neighbors[j];
-            vanama.bd_stat.steps_iterating_search =
-                    vanama.bd_stat.steps_iterating_search + 1;
+
             bool vget = vt.get(v1);
             vt.set(v1);
             saved_j[counter] = v1;
@@ -861,21 +854,21 @@ HNSWStats Vanama::search(
         //  greedy search on upper levels
         storage_idx_t nearest = entry_point;
         float d_nearest = qdis(nearest);
-        auto start = std::chrono::high_resolution_clock::now();
+
         for (int level = max_level; level >= 1; level--) {
             greedy_update_nearest(*this, qdis, level, nearest, d_nearest);
         }
-        bd_stat.time_greedy_search += chronoElapsedTime(start);
+
 
         int ef = std::max(efSearch, k);
         if (search_bounded_queue) { // this is the most common branch
             MinimaxHeap candidates(ef);
 
             candidates.push(nearest, d_nearest);
-            start = std::chrono::high_resolution_clock::now();
+
             search_from_candidates(
                     *this, qdis, k, I, D, candidates, vt, stats, 0, 0, params);
-            bd_stat.time_search_from_candidates += chronoElapsedTime(start);
+
         } else {
             std::priority_queue<Node> top_candidates =
                     search_from_candidate_unbounded(

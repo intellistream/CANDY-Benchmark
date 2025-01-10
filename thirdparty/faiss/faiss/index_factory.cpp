@@ -27,6 +27,7 @@
 #include <faiss/IndexAdditiveQuantizerFastScan.h>
 #include <faiss/IndexFlat.h>
 #include <faiss/IndexHNSW.h>
+#include <faiss/IndexNSW.h>
 #include <faiss/IndexMNRU.h>
 #include <faiss/IndexIVF.h>
 #include <faiss/IndexIVFAdditiveQuantizer.h>
@@ -492,6 +493,22 @@ IndexMNRU* parse_IndexMNRU(
             return nullptr;
         }
 
+        IndexNSW* parse_IndexNSW(
+                const std::string code_string,
+                int d,
+                MetricType mt,
+                int hnsw_M) {
+            std::smatch sm;
+            auto match = [&sm, &code_string](const std::string& pattern) {
+                return re_match(code_string, pattern, sm);
+            };
+
+            if (match("Flat|")) {
+                return new IndexNSWFlat(d, hnsw_M, mt);
+            }
+
+            return nullptr;
+        }
 
 
 /***************************************************************
@@ -818,6 +835,27 @@ std::unique_ptr<Index> index_factory_sub(
                 }
 
                 IndexMNRU* index = parse_IndexMNRU(code_string, d, metric, mnru_M);
+                FAISS_THROW_IF_NOT_FMT(
+                        index,
+                        "could not parse HNSW code description %s in %s",
+                        code_string.c_str(),
+                        description.c_str());
+                return std::unique_ptr<Index>(index);
+            }
+
+            if (re_match(description, "NSW([0-9]*)([,_].*)?", sm)) {
+                int nsw_M = mres_to_int(sm[1], 32);
+                // We also accept empty code string (synonym of Flat)
+                std::string code_string =
+                        sm[2].length() > 0 ? sm[2].str().substr(1) : "";
+                if (verbose) {
+                    printf("parsing NSW string %s code_string=%s nsw_M=%d\n",
+                           description.c_str(),
+                           code_string.c_str(),
+                           nsw_M);
+                }
+
+                IndexNSW* index = parse_IndexNSW(code_string, d, metric, nsw_M);
                 FAISS_THROW_IF_NOT_FMT(
                         index,
                         "could not parse HNSW code description %s in %s",

@@ -58,14 +58,14 @@ void IndexScalarQuantizer::search(
     FAISS_THROW_IF_NOT(
             metric_type == METRIC_L2 || metric_type == METRIC_INNER_PRODUCT);
 
-//#pragma omp parallel
+#pragma omp parallel
     {
         std::unique_ptr<InvertedListScanner> scanner(
                 sq.select_InvertedListScanner(metric_type, nullptr, true, sel));
 
         scanner->list_no = 0; // directly the list number
 
-//#pragma omp for
+#pragma omp for
         for (idx_t i = 0; i < n; i++) {
             float* D = distances + k * i;
             idx_t* I = labels + k * i;
@@ -155,11 +155,11 @@ void IndexIVFScalarQuantizer::encode_vectors(
     size_t coarse_size = include_listnos ? coarse_code_size() : 0;
     memset(codes, 0, (code_size + coarse_size) * n);
 
-//#pragma omp parallel if (n > 1000)
+#pragma omp parallel if (n > 1000)
     {
         std::vector<float> residual(d);
 
-//#pragma omp for
+#pragma omp for
         for (idx_t i = 0; i < n; i++) {
             int64_t list_no = list_nos[i];
             if (list_no >= 0) {
@@ -183,11 +183,11 @@ void IndexIVFScalarQuantizer::sa_decode(idx_t n, const uint8_t* codes, float* x)
     std::unique_ptr<ScalarQuantizer::SQuantizer> squant(sq.select_quantizer());
     size_t coarse_size = coarse_code_size();
 
-//#pragma omp parallel if (n > 1000)
+#pragma omp parallel if (n > 1000)
     {
         std::vector<float> residual(d);
 
-//#pragma omp for
+#pragma omp for
         for (idx_t i = 0; i < n; i++) {
             const uint8_t* code = codes + i * (code_size + coarse_size);
             int64_t list_no = decode_listno(code);
@@ -215,7 +215,7 @@ void IndexIVFScalarQuantizer::add_core(
 
     DirectMapAdd dm_add(direct_map, n, xids);
 
-//#pragma omp parallel reduction(+ : nadd)
+#pragma omp parallel reduction(+ : nadd)
     {
         std::vector<float> residual(d);
         std::vector<uint8_t> one_code(code_size);

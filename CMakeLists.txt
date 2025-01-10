@@ -188,23 +188,24 @@ configure_file(
         "${PROJECT_BINARY_DIR}/include/sptag_config.h"
 )
 
-file(GLOB_RECURSE DISKANN_SRC_FILES
-        "thirdparty/DiskANN/src/*.cpp"
-        "thirdparty/DiskANN/python/src/*.cpp"
-)
+
 set(DiskANN_BUILD_DIR ${CMAKE_BINARY_DIR}/DiskANN_build)
 # Configure build output directories specifically for PUCK
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/lib)
-file(GLOB DISKANN_SRC_FILES "thirdparty/DiskANN/src/*.cpp"  )
-file(GLOB DISKANN_HEADER_FILES "thirdparty/DiskANN/include/*.h")
+
 if (NOT ENABLE_DiskANN)
     message(STATUS "I will NOT include diskann LIBS")
     set(CANDY_DiskANN 0)
 else ()
     set(CANDY_DiskANN 1)
-
+    file(GLOB_RECURSE DISKANN_SRC_FILES
+            "thirdparty/DiskANN/src/*.cpp"
+            "thirdparty/DiskANN/python/src/*.cpp"
+    )
+    file(GLOB DISKANN_SRC_FILES "thirdparty/DiskANN/src/*.cpp"  )
+    file(GLOB DISKANN_HEADER_FILES "thirdparty/DiskANN/include/*.h")
     message(STATUS "I will include support for DiskANN")
 
     # Add DiskANN
@@ -343,13 +344,17 @@ link_directories(${MKL_LIB_DIR})
 target_include_directories(CANDYBENCH PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/papi_build/include")
 target_include_directories(CANDYBENCH PUBLIC "thirdparty/")
-target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck")
-target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck/puck")
-target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN")
-target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN/python/include")
-target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN/include")
-target_sources(CANDYBENCH PUBLIC ${DISKANN_SRC_FILES})
-target_sources(CANDYBENCH PUBLIC thirdparty/DiskANN/python/src/dynamic_memory_index.cpp)
+if (ENABLE_PUCK)
+    target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck")
+    target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck/puck")
+endif ()
+if (ENABLE_DiskANN)
+    target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN")
+    target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN/python/include")
+    target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN/include")
+    target_sources(CANDYBENCH PUBLIC ${DISKANN_SRC_FILES})
+    target_sources(CANDYBENCH PUBLIC thirdparty/DiskANN/python/src/dynamic_memory_index.cpp)
+endif ()
 if(OpenMP_CXX_FOUND)
     target_link_libraries(CANDYBENCH PRIVATE OpenMP::OpenMP_CXX)
 endif()
@@ -365,7 +370,7 @@ message(STATUS "LIBAIO_LIBRARIES: ${LIBAIO_LIBRARIES}")
 target_link_libraries(CANDYBENCH PUBLIC ${LIBAIO_LIBRARIES})
 #add_subdirectory(test)
 #Add benchmarks with command
-#add_subdirectory(benchmark)
+add_subdirectory(benchmark)
 #Add tests (based on GTest suits)
 #include(GoogleTest)
 

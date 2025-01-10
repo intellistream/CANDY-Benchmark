@@ -151,7 +151,7 @@ size_t DirectMap::remove_ids(const IDSelector& sel, InvertedLists* invlists) {
 
     if (type == NoMap) {
         // exhaustive scan of IVF
-//#pragma omp parallel for
+#pragma omp parallel for
         for (idx_t i = 0; i < nlist; i++) {
             idx_t l0 = invlists->list_size(i), l = l0, j = 0;
             ScopedIds idsi(invlists, i);

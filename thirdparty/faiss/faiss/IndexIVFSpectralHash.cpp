@@ -123,7 +123,7 @@ void IndexIVFSpectralHash::train_encoder(
 
     trained.resize(n * nbit);
     // compute medians
-//#pragma omp for
+#pragma omp for
     for (int i = 0; i < nlist; i++) {
         size_t i0 = i == 0 ? 0 : sizes[i - 1];
         size_t i1 = sizes[i];
@@ -175,7 +175,7 @@ void IndexIVFSpectralHash::encode_vectors(
 
     std::vector<float> zero(nbit);
 
-//#pragma omp for
+#pragma omp for
     for (idx_t i = 0; i < n; i++) {
         int64_t list_no = list_nos[i];
         uint8_t* code = codes + i * (code_size + coarse_size);

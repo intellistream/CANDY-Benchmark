@@ -154,7 +154,7 @@ NNDescent::NNDescent(const int d, const int K) : K(K), d(d) {
 NNDescent::~NNDescent() {}
 
 void NNDescent::join(DistanceComputer& qdis) {
-//#pragma omp parallel for default(shared) schedule(dynamic, 100)
+#pragma omp parallel for default(shared) schedule(dynamic, 100)
     for (int n = 0; n < ntotal; n++) {
         graph[n].join([&](int i, int j) {
             if (i != j) {
@@ -171,7 +171,7 @@ void NNDescent::join(DistanceComputer& qdis) {
 void NNDescent::update() {
     // Step 1.
     // Clear all nn_new and nn_old
-//#pragma omp parallel for
+#pragma omp parallel for
     for (int i = 0; i < ntotal; i++) {
         std::vector<int>().swap(graph[i].nn_new);
         std::vector<int>().swap(graph[i].nn_old);
@@ -181,7 +181,7 @@ void NNDescent::update() {
     // Compute the number of neighbors which is new i.e. flag is true
     // in the candidate pool. This must not exceed the sample number S.
     // That means We only select S new neighbors.
-//#pragma omp parallel for
+#pragma omp parallel for
     for (int n = 0; n < ntotal; ++n) {
         auto& nn = graph[n];
         std::sort(nn.pool.begin(), nn.pool.end());
@@ -205,10 +205,10 @@ void NNDescent::update() {
     // Step 3.
     // Find reverse links for each node
     // Randomly choose R reverse links.
-//#pragma omp parallel
+#pragma omp parallel
     {
         std::mt19937 rng(random_seed * 5081 + omp_get_thread_num());
-//#pragma omp for
+#pragma omp for
         for (int n = 0; n < ntotal; ++n) {
             auto& node = graph[n];
             auto& nn_new = node.nn_new;
@@ -258,7 +258,7 @@ void NNDescent::update() {
     // Step 4.
     // Combine the forward and the reverse links
     // R = 0 means no reverse links are used.
-//#pragma omp parallel for
+#pragma omp parallel for
     for (int i = 0; i < ntotal; ++i) {
         auto& nn_new = graph[i].nn_new;
         auto& nn_old = graph[i].nn_old;
@@ -301,7 +301,7 @@ void NNDescent::generate_eval_set(
         std::vector<int>& c,
         std::vector<std::vector<int>>& v,
         int N) {
-//#pragma omp parallel for
+#pragma omp parallel for
     for (int i = 0; i < c.size(); i++) {
         std::vector<Neighbor> tmp;
         for (int j = 0; j < N; j++) {
@@ -349,10 +349,10 @@ void NNDescent::init_graph(DistanceComputer& qdis) {
             graph.push_back(Nhood(L, S, rng, (int)ntotal));
         }
     }
-//#pragma omp parallel
+#pragma omp parallel
     {
         std::mt19937 rng(random_seed * 7741 + omp_get_thread_num());
-//#pragma omp for
+#pragma omp for
         for (int i = 0; i < ntotal; i++) {
             std::vector<int> tmp(S);
 
