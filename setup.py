@@ -50,6 +50,7 @@ class CMakeBuild(build_ext):
                     '-DENABLE_PYBIND=ON',
                     '-DCMAKE_INSTALL_PREFIX=/usr/local/lib',
                     '-DENABLE_PAPI=OFF',
+                    '-DENABLE_SPTAG=ON',
                     '-DENABLE_PUCK=ON',
                       '-DENABLE_DiskANN=ON',
                       '-DPYBIND=ON',
