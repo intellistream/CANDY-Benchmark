@@ -25,7 +25,7 @@
 //#include <CANDY/YinYangGraphSimpleIndex.h>
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
-//#include <include/sptag_config.h>
+#include <include/sptag_config.h>
 #if CANDY_CL == 1
 //#include <CPPAlgos/CLMMCPPAlgo.h>
 #endif
@@ -33,7 +33,7 @@
 #include <CANDY/DistributedPartitionIndex.h>
 #endif
 #if CANDY_SPTAG == 1
-//#include <CANDY/SPTAGIndex.h>
+#include <CANDY/SPTAGIndex.h>
 #endif
 namespace CANDY {
 CANDY::IndexTable::IndexTable() {
@@ -66,7 +66,7 @@ CANDY::IndexTable::IndexTable() {
   indexMap["distributedPartition"] = newDistributedPartitionIndex();
 #endif
 #if CANDY_SPTAG == 1
-  //indexMap["SPTAG"] = newSPTAGIndex();
+  indexMap["SPTAG"] = newSPTAGIndex();
 #endif
 }
 }  // namespace CANDY

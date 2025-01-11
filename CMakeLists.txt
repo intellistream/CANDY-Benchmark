@@ -79,7 +79,10 @@ option(ENABLE_RAY
         "Enable the distributed computing powered by ray"
         OFF
 )
-
+option(ENABLE_SPTAG
+        "Integrate SPTAG LIBS"
+        OFF
+)
 option(ENABLE_PUCK
         "Integrate PUCK LIBS from https://github.com/baidu/puck"
         OFF
@@ -182,7 +185,22 @@ configure_file(
         "${PROJECT_BINARY_DIR}/include/hdf5_config.h"
 )
 
+# Set SPTAG build directory
+set(SPTAG_BUILD_DIR ${CMAKE_BINARY_DIR}/SPTAG_build)
 
+# Configure build output directories specifically for SPTAG
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${SPTAG_BUILD_DIR}/lib)
+if (NOT ENABLE_SPTAG)
+    message(STATUS "I will NOT include SPTAG LIBS")
+    set(CANDY_SPTAG 0)
+else ()
+    set(CANDY_SPTAG 1)
+    message(STATUS "I will include support for SPTAG")
+    add_subdirectory(thirdparty/SPTAG)
+    set(LIBRARIES ${LIBRARIES}  SPTAGLib)
+endif ()
 configure_file(
         "${PROJECT_SOURCE_DIR}/include/sptag_config.h.in"
         "${PROJECT_BINARY_DIR}/include/sptag_config.h"
@@ -190,7 +208,7 @@ configure_file(
 
 
 set(DiskANN_BUILD_DIR ${CMAKE_BINARY_DIR}/DiskANN_build)
-# Configure build output directories specifically for PUCK
+# Configure build output directories specifically for DISKANN
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/lib)
@@ -347,6 +365,10 @@ target_include_directories(CANDYBENCH PUBLIC "thirdparty/")
 if (ENABLE_PUCK)
     target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck")
     target_include_directories(CANDYBENCH PUBLIC "thirdparty/puck/puck")
+endif ()
+if (ENABLE_SPTAG)
+    target_include_directories(CANDYBENCH PUBLIC "thirdparty/SPTAG")
+    target_include_directories(CANDYBENCH PUBLIC "thirdparty/SPTAG/AnnService")
 endif ()
 if (ENABLE_DiskANN)
     target_include_directories(CANDYBENCH PUBLIC "thirdparty/DiskANN")
