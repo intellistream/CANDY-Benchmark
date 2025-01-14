@@ -18,12 +18,12 @@
 #if CANDY_PAPI == 1
 #include <Utils/ThreadPerfPAPI.hpp>
 #endif
-#if CANDY_DiskANN == 1
+//#if CANDY_DiskANN == 1
 #include "defaults.h"
 #include "distance.h"
 #include <DiskANN/python/include/dynamic_memory_index.h>
 #include <DiskANN/python/include/builder.h>
-#endif
+//#endif
 #include <faiss/index_factory.h>
 
 
@@ -234,7 +234,7 @@ public:
 
 
 
-#if CANDY_DiskANN == 1
+//#if CANDY_DiskANN == 1
 struct Variant
 {
   std::string disk_builder_name;
@@ -282,7 +282,7 @@ template <typename T> inline void add_variant(py::module_ &m, const Variant &var
         .def("consolidate_delete", &diskannpy::DynamicMemoryIndex<T>::consolidate_delete);
 
 }
-#endif
+//#endif
 #define COMPILED_TIME (__DATE__ " " __TIME__)
 PYBIND11_MODULE(PyCANDYAlgo, m) {
   /**
@@ -424,7 +424,7 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
   m_diskann.def("add_tensors", &add_tensors, "A function that adds two tensors");
 
 
-#if CANDY_DiskANN == 1
+//#if CANDY_DiskANN == 1
   py::module_ default_values = m_diskann.def_submodule(
         "defaults",
         "A collection of the default values used for common diskann operations. `GRAPH_DEGREE` and `COMPLEXITY` are not"
@@ -460,7 +460,7 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
         .export_values();
   m_diskann.attr("defaults") = default_values;
   m.attr("diskannpy") = m_diskann;
-#endif
+//#endif
 
 
 
