@@ -30,6 +30,8 @@ class CMakeBuild(build_ext):
 
     def build_extension(self, ext):
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
+        debug = int(os.environ.get("DEBUG", 0)) if self.debug is None else self.debug
+        cfg = "Debug" if debug else "Release"
         os.system("python3 -c 'import torch;print(torch.utils.cmake_prefix_path)' >> 1.txt")
         with open('1.txt', 'r') as file:
             torchCmake = file.read().rstrip('\n')
@@ -37,16 +39,25 @@ class CMakeBuild(build_ext):
         os.system('nproc >> 1.txt')
         with open('1.txt', 'r') as file:
             threads = file.read().rstrip('\n')
+        threads = str(2)
         os.system('rm 1.txt')
-        os.system('cd thirdparty&&./makeClean.sh&&./installPAPI.sh')
-        print(threads) 
+        #os.system('cd thirdparty&&./makeClean.sh&&./installPAPI.sh')
+        print(threads)
         cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
                       '-DPYTHON_EXECUTABLE=' + sys.executable,
                     '-DCMAKE_PREFIX_PATH='+torchCmake,
-                    '-DENABLE_HDF5=ON', 
+                    '-DENABLE_HDF5=OFF', 
                     '-DENABLE_PYBIND=ON',
                     '-DCMAKE_INSTALL_PREFIX=/usr/local/lib',
-                    '-DENABLE_PAPI=ON',
+                    '-DENABLE_PAPI=OFF',
+                    '-DENABLE_SPTAG=ON',
+                    '-DENABLE_PUCK=ON',
+                      '-DENABLE_DiskANN=ON',
+                      '-DPYBIND=ON',
+                      f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={extdir}{os.sep}",
+                      f"-DPYTHON_EXECUTABLE={sys.executable}",
+                      f"-DCMAKE_BUILD_TYPE={cfg}",  # not used on MSVC, but no harm
+                      f"-DVERSION_INFO={self.distribution.get_version()}"  # commented out, we want this set in the CMake file
                    ]
         
         cfg = 'Debug' if self.debug else 'Release'
@@ -60,10 +71,12 @@ class CMakeBuild(build_ext):
         subprocess.run(['cmake', '--build', '.'] + build_args, cwd=self.build_temp,check=True)
         # Now copy all *.so files from the build directory to the final installation directory
         so_files = glob.glob(os.path.join(self.build_temp, '*.so'))
+        print("so_files:")
+        print(so_files)
         for file in so_files:
             shutil.copy(file, extdir)
 setup(
-    name='PyCANDY',
+    name='PyCANDYAlgo',
     version='0.1',
     author='Your Name',
     description='A simple python version of CANDY benchmark built with Pybind11 and CMake',

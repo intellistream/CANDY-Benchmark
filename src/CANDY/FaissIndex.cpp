@@ -8,12 +8,14 @@
 #include <faiss/IndexNNDescent.h>
 #include <faiss/IndexLSH.h>
 #include <faiss/IndexNSG.h>
-#include <faiss/IndexHNSWbd.h>
+#include <faiss/IndexVanama.h>
+#include <faiss/IndexMNRU.h>
+#include <faiss/IndexNSW.h>
 
 bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   AbstractIndex::setConfig(cfg);
   INTELLI_INFO("SETTING CONFIG FOR FaissIndex");
-  std::string metricType = cfg->tryString("metricType", "L2", true);
+  std::string metricType = cfg->tryString("metricType", "IP", true);
   vecDim = cfg->tryI64("vecDim", 768, true);
   index_type = cfg->tryString("faissIndexTag", "flat", true);
   auto bytes = cfg->tryI64("encodeLen", 1, true);
@@ -25,10 +27,20 @@ bool CANDY::FaissIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE HNSWFlat");
     auto M = cfg->tryI64("maxConnection", 32, true);
     index = new faiss::IndexHNSWFlat(vecDim, M, faissMetric);
-  } else if (index_type == "HNSWbd") {
-    INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE HNSWFlat with breakdown enabled!");
-    auto M = cfg->tryI64("maxConnection", 32, true);
-    index = new faiss::IndexHNSWbdFlat(vecDim, M, faissMetric);
+
+  } else if (index_type == "Vanama") {
+      INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE VanamaFlat");
+      auto M = cfg->tryI64("maxConnection", 32, true);
+      index = new faiss::IndexVanamaFlat(vecDim, M, faissMetric);
+  } else if (index_type == "MNRU") {
+      INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE MNRUFlat");
+      auto M = cfg->tryI64("maxConnection", 32, true);
+      index = new faiss::IndexMNRUFlat(vecDim, M, faissMetric);
+  } else if (index_type == "NSW") {
+      INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE NSWFlat");
+      auto M = cfg->tryI64("maxConnection", 32, true);
+      index = new faiss::IndexNSWFlat(vecDim, M, faissMetric);
+
   } else if (index_type == "PQ") {
     INTELLI_INFO("ENCAPSULATED FAISS INDEX: USE PQ");
     // number of bits in PQ
@@ -115,7 +127,7 @@ bool CANDY::FaissIndex::loadInitialTensor(torch::Tensor &t) {
 
       INTELLI_INFO("FINISH ADDING");
 
-      return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+      return true;
     } else if (vecDim == 1369) {
       auto t_temp = torch::concat({t, torch::zeros({n, 7})}, 1);
       t_temp = t_temp.nan_to_num(0.0);
@@ -127,7 +139,7 @@ bool CANDY::FaissIndex::loadInitialTensor(torch::Tensor &t) {
       INTELLI_INFO("FINISH TRAINING");
       index->add(n, new_data_padding);
       INTELLI_INFO("FINISH ADDING");
-      return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+      return true;
     }
   }
 
@@ -139,7 +151,7 @@ bool CANDY::FaissIndex::loadInitialTensor(torch::Tensor &t) {
   index->add(n, new_data);
   INTELLI_INFO("FINISH ADDING");
   if (index_type == "IVFPQ" || index_type == "PQ" || index_type == "LSH") {
-    return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+    return true;
   } else {
     return true;
   }
@@ -165,7 +177,7 @@ bool CANDY::FaissIndex::insertTensor(torch::Tensor &t) {
       t_temp = t_temp.nan_to_num(0.0);
       float *new_data_padding = t_temp.contiguous().data_ptr<float>();
       index->add(n, new_data_padding);
-      return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+      return true;
     } else if (vecDim == 1369) {
       auto t_temp = torch::zeros({n, vecDim + 7});
       t_temp.slice(1, 0, vecDim) = t;
@@ -174,24 +186,38 @@ bool CANDY::FaissIndex::insertTensor(torch::Tensor &t) {
       t_temp = t_temp.nan_to_num(0.0);
       float *new_data_padding = t_temp.contiguous().data_ptr<float>();
       index->add(n, new_data_padding);
-      return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+      return true;
     }
   }
   if (index_type == "IVFPQ" || index_type == "PQ" || index_type == "LSH") {
     index->add(n, new_data);
-    return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+    //return INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+    return true;
   } else {
     index->add(n, new_data);
     //should be unneeded
-    INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
+//INTELLI::IntelliTensorOP::appendRowsBufferMode(&dbTensor, &t, &lastNNZ, expandStep);
     return true;
   }
 }
+std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndexParam(torch::Tensor q, int64_t k, int64_t param){
+    if(index_type=="HNSW") {
+        auto indexHNSW = static_cast<faiss::IndexHNSW *>(index);
+        indexHNSW->hnsw.efSearch = param;
+    } else if(index_type=="MNRU") {
+        auto indexMNRU = static_cast<faiss::IndexMNRU *>(index);
+        indexMNRU->main_index.efSearch = param;
+        indexMNRU->backup_index.efSearch = param;
+    }
 
+    return searchIndex(q,k);
+
+}
 std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndex(torch::Tensor q, int64_t k) {
 
   auto queryData = q.contiguous().data_ptr<float>();
-  int64_t querySize = q.size(0);
+	std::cout<<"tiny wait"<<std::endl; 
+ int64_t querySize = q.size(0);
 
   if (index_type == "IVFPQ" || index_type == "PQ") {
     INTELLI_INFO("IMCOMPATIBLE DIMENSIONS: PADDING ZEROS FOR PQ and IVFPQ");
@@ -200,6 +226,7 @@ std::vector<faiss::idx_t> CANDY::FaissIndex::searchIndex(torch::Tensor q, int64_
       q_temp.slice(1, 0, vecDim) = q;
       q_temp = q_temp.nan_to_num(0.0);
       auto queryData_padding = q_temp.contiguous().data_ptr<float>();
+	std::cout<<"tiny wait"<<std::endl;
       std::vector<faiss::idx_t> ru(k * querySize);
       std::vector<float> distance(k * querySize);
       index->search(querySize, queryData_padding, k, distance.data(), ru.data());
@@ -243,6 +270,7 @@ std::vector<torch::Tensor> CANDY::FaissIndex::getTensorByIndex(std::vector<faiss
     ru[i] = torch::zeros({k, vecDim});
     for (int64_t j = 0; j < k; j++) {
       int64_t tempIdx = idx[i * k + j];
+      //printf("%ld%ld=%ld\n", i,j,tempIdx);
       float tempSlice[vecDim];
 //            if(index_type=="FaissIVFPQ" || index_type == "FaissPQ"){
 //                if(vecDim=100 || vecDim == 420){
@@ -251,15 +279,10 @@ std::vector<torch::Tensor> CANDY::FaissIndex::getTensorByIndex(std::vector<faiss
 //
 //                }
 //            }
-      if (index_type == "IVFPQ" || index_type == "PQ" || index_type == "LSH") {
-        if (tempIdx >= 0) {
-          ru[i].slice(0, j, j + 1) = dbTensor.slice(0, tempIdx, tempIdx + 1);
-        };
-      } else {
-        index->reconstruct(tempIdx, tempSlice);
-        auto tempTensor = torch::from_blob(tempSlice, {1, vecDim});
-        if (tempIdx >= 0) { ru[i].slice(0, j, j + 1) = tempTensor; };
-      }
+          index->reconstruct(tempIdx, tempSlice);
+          auto tempTensor = torch::from_blob(tempSlice, {1, vecDim});
+          if (tempIdx >= 0) { ru[i].slice(0, j, j + 1) = tempTensor; };
+
 
     }
   }

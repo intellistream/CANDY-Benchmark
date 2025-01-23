@@ -1,3 +1,0 @@
-Description of Ju_87_G-2: 
-The Ju 87 G-2 is a rank I German strike aircraft 
-with a battle rating of 2.0 (AB), 1.7 (RB), and 2.7 (SB). It has been in the game since the start of the Open Beta Test prior to Update 1.27. The flight model is identical to the G-1 with similar values to the Ju 87 D series. The differences between the G-1 and the G-2 is that the G-1 has the wing of the D-3 while the G-2 has the same wing area as the Ju 87 D-5 variant.

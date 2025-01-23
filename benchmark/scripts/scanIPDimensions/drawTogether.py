@@ -97,6 +97,12 @@ def runPeriod(exePath, algoTag, resultPath, configTemplate="config.csv", prefixT
     if (algoTag == 'DPG'):
         editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "DPG")
         editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'LSHAPG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "LSHAPG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
+    if (algoTag == 'SPTAG'):
+        editConfig(exePath + "temp1.csv", exePath + "temp2.csv", "congestionDropWorker_algoTag", "SPTAG")
+        editConfig(exePath + "temp2.csv", exePath + "temp1.csv", "frozenLevel", 1)
     exeTag = "onlineInsert"
     # prepare new file
     os.system("rm -rf " + exePath + "*.rbt")
@@ -262,16 +268,21 @@ def main():
     # srcAVec=['datasets/ECO/wm2.mtx',"datasets/DWAVE/dwa512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700a.mtx','datasets/RDB/rdb2048.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcda_small.mtx',"datasets/BUS/gemat1.mtx",]
     # srcBVec=['datasets/ECO/wm3.mtx',"datasets/DWAVE/dwb512.mtx","datasets/AST/mcfe.mtx",'datasets/UTM/utm1700b.mtx','datasets/RDB/rdb2048l.mtx','datasets/ZENIOS/zenios.mtx','datasets/QCD/qcdb_small.mtx',"datasets/BUS/gemat1.mtx",]
     # aRowVec= [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
-    aRowVec = [64, 128, 256, 512, 768, 1024, 4096]
+    aRowVec = [64, 256, 768, 1024, 4096]
     # aRowVec=[100, 200, 500, 1000]
     # add the algo tag here
-    algosVec = ['flat', 'LSH-H', 'Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG']
     # algosVec = ['flat', 'LSH-H']
     # algosVec = ['flat', 'onlinePQ']
     # algosVec=['incrementalRaw']
     # algosVec=[ 'pq']
     # algoDisp = ['BrutalForce', 'PQ']
-    algoDisp = ['Baseline', 'LSH','Flann','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG', 'nnDescent','DPG']
+    algosVec = ['flat', 'Flann','SPTAG','LSH-H','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','Vanama','MNRU']
+    # algosVec = ['flat', 'LSH-H']
+    # algosVec = ['flat', 'onlinePQ']
+    # algosVec=['incrementalRaw']
+    # algosVec=[ 'pq']
+    # algoDisp = ['BrutalForce', 'PQ']
+    algoDisp = ['Baseline', 'Flann','SPTAG','LSH','LSHAPG','PQ', 'IVFPQ', 'onlinePQ', 'HNSW', 'NSW', 'NSG','DPG','freshDiskAnn','MNRU']
     # algoDisp = ['BrutalForce', 'LSH-H']
     # algoDisp=['BrutalForce']
     # algoDisp=['PQ']
@@ -335,10 +346,14 @@ def main():
                              False)
     groupLine.DrawFigureYnormal(periodAll, recall,
                                 methodTags,
-                                "Dimensions", r'recall@10', 0, 1,
+                                "Dimensions", r'Recall@10', 0, 1,
                                 figPath + "/" + "scanIPDimensions_recall_feedMode",
                                 True)
-
+    groupLine.DrawFigureYLog(periodAll, 1/(incrementalSearchAll / 1e6),
+                                methodTags,
+                                "Dimensions", r'Queries Per Second', 0, 1,
+                                figPath + "/" + "scanIPDimensions_qps",
+                                False)
 
 if __name__ == "__main__":
     main()

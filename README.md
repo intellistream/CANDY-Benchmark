@@ -1,87 +1,251 @@
 # CANDY
 
-A Lib and benchmark for AKNN. This project is compatable with
-libtorch
+A library and benchmark suite for Approximate Nearest Neighbor Search (ANNS). This project is compatible with LibTorch.
 
-## Extra Cmake options (set by cmake -Dxxx=ON/OFF)
-- ENABLE_PAPI, this will enable PAPI-based perf tools (OFF by default) 
-    - you need first cd to thirdparty and run installPAPI.sh to enable PAPI support, or also set REBUILD_PAPI to ON
-    - not used in C++ benchmark currently
-- ENABLE_HDF5, this will enable you to load data from HDF5 (OFF by default)
-    - we have included the source code of hdf5 lib, no extra dependency
-- ENABLE_PYBIND, this will enable you to make python binds, i.e., PyRAINA (OFF by default)
-  - we have included the source code of pybind 11 in third party folder, please make sur it is complete
-## One-Key build examples with auto solving of dependencies
-- buildWithCuda.sh To build CANDY and PyCANDY with cuda support, make sure you have cuda installed before it
-- buildCPUOnly.sh This is a CPU-only version
-- After either one, you can run the following to add PyCANDY To your default python environment
-```shell
- python3 setup.py install --user
-```
-### Where are the evaluation scripts
-See build/benchmark/scripts/rerunAll.sh after one-key build
-## Manual build
-### Requires G++11
+## Table of Contents
 
-The default version of gcc/g++ on ubuntu 22.04 (jammy) is good enough.
+- [Quick Start Guide](#quick-start-guide)
+  - [Docker Support](#docker-support)
+  - [Build Without Docker](#build-without-docker)
+    - [Build with CUDA Support](#build-with-cuda-support)
+    - [Build without CUDA (CPU-Only Version)](#build-without-cuda-cpu-only-version)
+  - [Installing PyCANDY](#installing-pycandy)
+  - [CLion Configuration](#clion-configuration)
+- [Evaluation Scripts](#evaluation-scripts)
+- [Additional Information](#additional-information)
+---
 
-#### For x64 ubuntu older than 21.10
+## Quick Start Guide
 
-run following first
+### Docker Support
 
-```shell
-sudo add-apt-repository 'deb http://mirrors.kernel.org/ubuntu jammy main universe'
-sudo apt-get update
-```
+We provide Docker support to simplify the setup process.
 
-Then, install the default gcc/g++ of ubuntu22.04
+1. **Navigate to the `./docker` directory:**
 
-```shell
-sudo apt-get install gcc g++ cmake python3 python3-pip
-```
+   ```shell
+   cd ./docker
+   ```
 
-#### For other architectures
+2. **Build and start the Docker container:**
 
-Please manually edit your /etc/sources.list, and add a jammy source, then
+   ```shell
+   ./start.sh
+   ```
 
-```shell
-sudo apt-get update
-sudo apt-get install gcc g++ cmake 
-```
+   This script will build the Docker container and start it.
 
-Please invalidate the jammy source after installing the gcc/g++ from jammy, as some packs from
-jammy may crash down your older version
+3. **Inside the Docker container, run the build script to install dependencies and build the project:**
 
-#### WARNNING
+  - **With CUDA support:**
 
-Please do not install the python3 from jammy!!! Keep it raw is safer!!!
+    ```shell
+    ./buildWithCuda.sh
+    ```
 
-### Requires BLAS and LAPACK
+  - **Without CUDA (CPU-only version):**
 
-```shell
-sudo apt install liblapack-dev libblas-dev
-```
+    ```shell
+    ./buildCPUOnly.sh
+    ```
 
-### (Optional) Install graphviz
+### Build Without Docker
+
+If you prefer to build without Docker, follow these steps.
+
+#### Build with CUDA Support
+
+To build CANDY and PyCANDY with CUDA support:
 
 ```shell
-sudo apt-get install graphviz
-pip install torchviz
+./buildWithCuda.sh
 ```
 
-### Requires Torch
+#### Build without CUDA (CPU-Only Version)
 
-You may refer to https://pytorch.org/get-started/locally/ for mor details, following are the minimal requirements
-DO NOT USE CONADA!!!!!
+For a CPU-only version:
 
-#### (Optional) Cuda-based torch
+```shell
+./buildCPUOnly.sh
+```
 
-Note:
+These scripts will install dependencies and build the project.
 
-- useCuda config is only valid when cuda is installed
-- this branch only allows blackbox call on torch-cuda functions!
-  You may wish to install cuda for faster pre-training on models, following is a reference procedure. Please refer
-  to https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#ubuntu
+### Installing PyCANDY
+
+After building, you can install PyCANDY to your default Python environment:
+
+```shell
+python3 setup.py install --user
+```
+
+### CLion Configuration
+
+When developing in CLion, you must manually configure:
+
+1. **CMake Prefix Path:**
+
+
+### Requires BLAS, LAPACK, boost and swig
+
+```shell
+sudo apt install liblapack-dev libblas-dev libboost-all-dev swig
+```
+
+  - Run the following command in your terminal to get the CMake prefix path:
+
+    ```shell
+    python3 -c 'import torch; print(torch.utils.cmake_prefix_path)'
+    ```
+
+
+  - Copy the output path and set it in CLion's CMake settings as:
+
+    ```
+    -DCMAKE_PREFIX_PATH=<output_path>
+    ```
+
+2. **Environment Variable `CUDACXX`:**
+
+  - Manually set the environment variable `CUDACXX` to:
+
+    ```
+    /usr/local/cuda/bin/nvcc
+    ```
+
+## Evaluation Scripts
+
+Evaluation scripts are located under `benchmark/scripts`.
+
+To run an evaluation (e.g., scanning the dimensions):
+
+```shell
+cd build/benchmark/scripts/scanIPDimensions
+sudo ls  # Required for perf events
+python3 drawTogether.py 2
+cd ../figures
+```
+
+Figures will be generated in the `figures` directory.
+
+---
+
+## Additional Information
+
+<details>
+<summary><strong>Click to Expand</strong></summary>
+
+### Table of Contents
+
+- [Extra CMake Options](#extra-cmake-options)
+- [Manual Build Instructions](#manual-build-instructions)
+  - [Requirements](#requirements)
+  - [Build Steps](#build-steps)
+  - [CLion Build Tips](#clion-build-tips)
+- [CUDA Installation (Optional)](#cuda-installation-optional)
+  - [Install CUDA (if using CUDA-based Torch)](#install-cuda-if-using-cuda-based-torch)
+  - [CUDA on Jetson Devices](#cuda-on-jetson-devices)
+- [Torch Installation](#torch-installation)
+  - [Install Python and Pip](#install-python-and-pip)
+  - [Install PyTorch](#install-pytorch)
+- [PAPI Support (Optional)](#papi-support-optional)
+  - [Build PAPI](#build-papi)
+  - [Verify PAPI Installation](#verify-papi-installation)
+  - [Enable PAPI in CANDY](#enable-papi-in-candy)
+- [Distributed CANDY with Ray (Optional)](#distributed-candy-with-ray-optional)
+  - [Build with Ray Support](#build-with-ray-support)
+  - [Running with Ray](#running-with-ray)
+  - [Ray Dashboard (Optional)](#ray-dashboard-optional)
+- [Local Documentation Generation (Optional)](#local-documentation-generation-optional)
+  - [Install Required Packages](#install-required-packages)
+  - [Generate Documentation](#generate-documentation)
+    - [Accessing Documentation](#accessing-documentation)
+- [Known Issues](#known-issues)
+
+---
+
+### Extra CMake Options
+
+You can set additional CMake options using `cmake -D<option>=ON/OFF`:
+
+- `ENABLE_PAPI` (OFF by default)
+  - Enables PAPI-based performance tools.
+  - **Setup**:
+    - Navigate to the `thirdparty` directory.
+    - Run `installPAPI.sh` to enable PAPI support.
+    - Alternatively, set `REBUILD_PAPI` to `ON`.
+- `ENABLE_HDF5` (OFF by default)
+  - Enables loading data from HDF5 files.
+  - The HDF5 source code is included; no extra dependency is required.
+- `ENABLE_PYBIND` (OFF by default)
+  - Enables building Python bindings (PyCANDY).
+  - Ensure the `pybind11` source code in the `thirdparty` folder is complete.
+
+### Manual Build Instructions
+
+#### Requirements
+
+- **Compiler**: G++11 or newer.
+  - The default `gcc/g++` version on Ubuntu 22.04 (Jammy) is sufficient.
+- **BLAS and LAPACK**:
+  ```shell
+  sudo apt install liblapack-dev libblas-dev
+  ```
+- **Graphviz (Optional)**:
+  ```shell
+  sudo apt-get install graphviz
+  pip install torchviz
+  ```
+
+#### Build Steps
+
+1. **Set the CUDA Compiler Path** (if using CUDA):
+
+   ```shell
+   export CUDACXX=/usr/local/cuda/bin/nvcc
+   ```
+
+2. **Create Build Directory**:
+
+   ```shell
+   mkdir build && cd build
+   ```
+
+3. **Configure CMake**:
+
+   ```shell
+   cmake -DCMAKE_PREFIX_PATH=`python3 -c 'import torch; print(torch.utils.cmake_prefix_path)'` ..
+   ```
+
+4. **Build the Project**:
+
+   ```shell
+   make
+   ```
+
+**For Debug Build**:
+
+```shell
+cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=`python3 -c 'import torch; print(torch.utils.cmake_prefix_path)'` ..
+make
+```
+
+#### CLion Build Tips
+
+- Manually retrieve the CMake prefix path:
+
+  ```shell
+  python3 -c 'import torch; print(torch.utils.cmake_prefix_path)'
+  ```
+
+- Set the `-DCMAKE_PREFIX_PATH` in CLion's CMake settings.
+- Set the environment variable `CUDACXX` to `/usr/local/cuda/bin/nvcc` in CLion.
+
+### CUDA Installation (Optional)
+
+#### Install CUDA (if using CUDA-based Torch)
+
+Refer to the [NVIDIA CUDA Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#ubuntu) for more details.
 
 ```shell
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
@@ -92,216 +256,158 @@ sudo apt-get install nvidia-gds
 sudo apt-get install libcudnn8 libcudnn8-dev libcublas-11-7
 ```
 
-The libcublas depends on your specific version.
-Then you may have to reboot for enabling cuda.
+**Note**: Ensure CUDA is installed before installing CUDA-based Torch. Reboot your system after installation.
 
-DO INSTALL CUDA BEFORE INSTALL CUDA-BASED TORCH!!!
+#### CUDA on Jetson Devices
 
-##### Cuda on Jetson
+- No need to install CUDA if using a pre-built JetPack on Jetson.
+- Ensure `libcudnn8` and `libcublas` are installed:
 
-There is no need to install cuda if you use a pre-build jetpack on jetson. It will neither work,:(
-Instead, please only check your libcudnn8 and libcublas
+  ```shell
+  sudo apt-get install libcudnn8 libcudnn8-dev libcublas-*
+  ```
 
-```shell
-sudo apt-get install libcudnn8 libcudnn8-dev libcublas-*
-```
+### Torch Installation
 
-#### (Required) Install pytorch (should install separately)
+Refer to the [PyTorch Get Started Guide](https://pytorch.org/get-started/locally/) for more details.
+
+#### Install Python and Pip
 
 ```shell
 sudo apt-get install python3 python3-pip
 ```
 
-(w/ CUDA):
-(Please make all cuda dependencies installed before pytorch!!!)
+#### Install PyTorch
 
-```shell
-pip3 install torch==1.13.0 torchvision torchaudio
-```
+- **With CUDA**:
 
-(w/o CUDA)
+  ```shell
+  pip3 install torch==2.4.0 torchvision torchaudio
+  ```
 
-```shell
-pip3 install --ignore-installed torch==1.13.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-```
+- **Without CUDA**:
 
-*Note: Conflict between torch1.13.0+cpu and torchaudio+cpu may occur under python version > 3.10*
+  ```shell
+  pip3 install --ignore-installed torch==2.4.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+  ```
 
+**Note**: Conflict between `torch2.4.0+cpu` and `torchaudio+cpu` may occur with Python versions > 3.10.
 
-### (optional) Requires PAPI (contained source in this repo as third party)
+### PAPI Support (Optional)
 
-PAPI is a consistent interface and methodology for collecting performance counter information from various hardware and
-software components: https://icl.utk.edu/papi/.
-, CANDY includes it in thirdparty/papi_7_0_1.
+PAPI provides a consistent interface for collecting performance counter information.
 
-#### How to build PAPI
+#### Build PAPI
 
-- cd to thirdparty and run installPAPI.sh, PAPI will be compiled and installed in thirdparty/papi_build
+- Navigate to the `thirdparty` directory.
+- Run `installPAPI.sh`.
+- PAPI will be compiled and installed in `thirdparty/papi_build`.
 
-#### How to verify if PAPI works on my machine
+#### Verify PAPI Installation
 
-- cd to thirdparty/papi_build/bin , and run papi_avail by sudo, there should be at least one event avaliable
-- the run papi_native_avail, the printed tags are valid native events.
-- please report to PAPI authors if you find your machine not supported
+- Navigate to `thirdparty/papi_build/bin`.
+- Run `sudo ./papi_avail` to check available events.
+- Run `./papi_native_avail` to view native events.
 
-#### How to use PAPI in CANDY
+#### Enable PAPI in CANDY
 
-- set -DENABLE_PAPI=ON in cmake CANDY
-- in your top config file, add two config options:
-    - usePAPI,1,U64
-    - perfUseExternalList,1,U64
-    - if you want to change the file to event lists, please also set the following:
-        - perfListSrc,<the path to your list>,String
-- edit the perfLists/perfList.csv in your BINARY build path of benchmark (or your own list path), use the following
-  format
-    - <the event name tag you want CANDY to display>, <The inline PAPI tags from papi_native_avail/papi_avail>,
-      String
-- please note that papi has a limitation of events due to hardware constraints, so only put 2~3 in each run
+- Set `-DENABLE_PAPI=ON` when configuring CMake.
+- Add the following to your top-level config file:
 
-### Build steps
+  ```
+  usePAPI,1,U64
+  perfUseExternalList,1,U64
+  ```
 
-(CUDA-related is only necessary if your pytorch has cuda, but it's harmless if you don't have cuda.)
+- To specify custom event lists, set:
 
-#### Build in shell
+  ```
+  perfListSrc,<path_to_your_list>,String
+  ```
 
-```shell
-export CUDACXX=/usr/local/cuda/bin/nvcc
-mkdir build && cd build
-```
+- Edit `perfLists/perfList.csv` in your build directory to include desired events.
 
-Build for release by default:
+### Distributed CANDY with Ray (Optional)
 
-```shell
-cmake -DCMAKE_PREFIX_PATH=`python3 -c 'import torch;print(torch.utils.cmake_prefix_path)'` ..
-make 
-```
+#### Build with Ray Support
 
-Or you can build with debug mode to debug cpp dynamic lib:
-
-```shell
-cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_PREFIX_PATH=`python3 -c 'import torch;print(torch.utils.cmake_prefix_path)'` ..
-make 
-```
-
-#### Tips for build in Clion
-
-There are bugs in the built-in cmake of Clion, so you can not run
--DCMAKE_PREFIX_PATH=`python3 -c 'import torch;print(torch.utils.cmake_prefix_path)'`.
-Following may help:
-
-- Please run 'import torch;print(torch.utils.cmake_prefix_path)' manually first, and copy the path
-- Paste the path to -DCMAKE_PREFIX_PATH=
-- Manually set the environment variable CUDACXX as "/usr/local/cuda/bin/nvcc" in Clion's cmake settings
-
-### (Optional) Distributed CANDY with Ray
-
-#### To build
-
-1. Install ray by
-
-```shell
-pip install ray==2.8.1 ray-cpp==2.8.1
-```
-
-Get the installation path by
-
-```shell
- ray cpp --show-library-path
-```
-
-*Note: use sudo before pip if does not work
-
-2. Run the following before building me
-
-```shell
- export RAYPATH= <The lib path printed in setp 1>
-```
-
-3. Add the following Cmake options in cmake me
-
-```shell
--DENABLE_RAY=ON
-```
-
-4. Go to https://docs.ray.io/en/latest/ray-observability/getting-started.html#observability-getting-started if you need
-   a dashboard
-
-#### To run
-
-* Please set up the cluster before run the program
-    * To start the head node
-   ```shell
-   ray start --head
-   ``` 
-    * To start the other nodes
-   ```shell
-   ray start --address <ip of head node>:6379 --node-ip-address <ip of this node>
-   ``` 
-  or
+1. **Install Ray**:
 
    ```shell
-   ray start --address <ip of head node>:6379
-   ``` 
+   pip install ray==2.8.1 ray-cpp==2.8.1
+   ```
 
-    * To run the program
+2. **Get Ray Library Path**:
 
    ```shell
-   export RAY_ADDRESS=<ip:6379>
-   ./<a program with ray support>
-   ``` 	
+   ray cpp --show-library-path
+   ```
 
-* Please make sure the file path of built progarm, other dependency like torch, is totally the same for all computers in
-  the cluster
-* For different arch, please recompile from source code, but keep the path, name of the *.so and binary the same
-* torch::Tensor seems to be unable to be packed as remote args (both in and out), please convert to std::vector<float>
+3. **Set `RAYPATH` Environment Variable**:
 
-#### Known issues
+   ```shell
+   export RAYPATH=<ray_library_path>
+   ```
 
-Does not work with python
+4. **Configure CMake**:
 
-### Local generation of the documents
+   ```shell
+   cmake -DENABLE_RAY=ON ..
+   ```
 
-You can also re-generate them locally, if you have the doxygen and graphviz. Following are how to install them in ubuntu
-21.10/22.04
+#### Running with Ray
+
+- **Start the Head Node**:
+
+  ```shell
+  ray start --head
+  ```
+
+- **Start Worker Nodes**:
+
+  ```shell
+  ray start --address <head_node_ip>:6379 --node-ip-address <worker_node_ip>
+  ```
+
+- **Run the Program**:
+
+  ```shell
+  export RAY_ADDRESS=<head_node_ip>:6379
+  ./<your_program_with_ray_support>
+  ```
+
+**Notes**:
+
+- Ensure the file paths and dependencies are identical across all nodes.
+- For different architectures, recompile the source code on each node.
+- `torch::Tensor` may not be serializable; consider using `std::vector<float>` instead.
+
+#### Ray Dashboard (Optional)
+
+Refer to the [Ray Observability Guide](https://docs.ray.io/en/latest/ray-observability/getting-started.html#observability-getting-started) to set up a dashboard.
+
+### Local Documentation Generation (Optional)
+
+#### Install Required Packages
 
 ```shell
-sudo apt-get install doxygen
-sudo apt-get install graphviz
-sudo apt-get install texlive-latex-base
-sudo apt-get install texlive-fonts-recommended
-sudo apt-get install texlive-fonts-extra
-sudo apt-get install texlive-latex-extra
+sudo apt-get install doxygen graphviz
+sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
 ```
 
-Then, you can do
+#### Generate Documentation
 
 ```shell
 ./genDoc.SH
 ```
 
-#### HTML pages
+##### Accessing Documentation
 
-To get the documents in doc/html folder, and start at index.html
+- **HTML Pages**: Located in `doc/html/index.html`.
+- **PDF Manual**: Found at `refman.pdf` in the root directory.
 
-#### pdf manual
+### Known Issues
 
-To find the refman.pdf at the root
+- Conflicts may occur with certain versions of PyTorch and Python.
 
-## Evaluation scripts
-
-They are place under benchmark.scripts, for instance, the following allows to scan the number of elements in
-the matrix A's row
-(Assuming you are at the root dir of this project, and everything is built under build folder)
-
-```shell
-cd build/benchmark/scripts
-cd scanARow #enter what you want to evaluate
-sudo ls # run an ls to make it usable, as perf events requires sudo
-python3 drawTogether.py # no sudo here, sudo is insider *.py
-cd ../figures
-```
-
-You will find the figures then.
-
-## Known issues
-
+</details>

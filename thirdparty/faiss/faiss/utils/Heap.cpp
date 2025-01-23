@@ -16,14 +16,14 @@ namespace faiss {
 
 template <typename C>
 void HeapArray<C>::heapify() {
-//#pragma omp parallel for
+#pragma omp parallel for
     for (int64_t j = 0; j < nh; j++)
         heap_heapify<C>(k, val + j * k, ids + j * k);
 }
 
 template <typename C>
 void HeapArray<C>::reorder() {
-//#pragma omp parallel for
+#pragma omp parallel for
     for (int64_t j = 0; j < nh; j++)
         heap_reorder<C>(k, val + j * k, ids + j * k);
 }
@@ -33,7 +33,7 @@ void HeapArray<C>::addn(size_t nj, const T* vin, TI j0, size_t i0, int64_t ni) {
     if (ni == -1)
         ni = nh;
     assert(i0 >= 0 && i0 + ni <= nh);
-//#pragma omp parallel for if (ni * nj > 100000)
+#pragma omp parallel for if (ni * nj > 100000)
     for (int64_t i = i0; i < i0 + ni; i++) {
         T* __restrict simi = get_val(i);
         TI* __restrict idxi = get_ids(i);
@@ -63,7 +63,7 @@ void HeapArray<C>::addn_with_ids(
     if (ni == -1)
         ni = nh;
     assert(i0 >= 0 && i0 + ni <= nh);
-//#pragma omp parallel for if (ni * nj > 100000)
+#pragma omp parallel for if (ni * nj > 100000)
     for (int64_t i = i0; i < i0 + ni; i++) {
         T* __restrict simi = get_val(i);
         TI* __restrict idxi = get_ids(i);
@@ -91,7 +91,7 @@ void HeapArray<C>::addn_query_subset_with_ids(
     if (id_stride < 0) {
         id_stride = nj;
     }
-//#pragma omp parallel for if (nsubset * nj > 100000)
+#pragma omp parallel for if (nsubset * nj > 100000)
     for (int64_t si = 0; si < nsubset; si++) {
         TI i = subset[si];
         T* __restrict simi = get_val(i);
@@ -110,7 +110,7 @@ void HeapArray<C>::addn_query_subset_with_ids(
 
 template <typename C>
 void HeapArray<C>::per_line_extrema(T* out_val, TI* out_ids) const {
-//#pragma omp parallel for if (nh * k > 100000)
+#pragma omp parallel for if (nh * k > 100000)
     for (int64_t j = 0; j < nh; j++) {
         int64_t imin = -1;
         typename C::T xval = C::Crev::neutral();
@@ -169,7 +169,7 @@ void merge_knn_results(
         return;
     }
     long stride = n * k;
-//#pragma omp parallel if (n * nshard * k > 100000)
+#pragma omp parallel if (n * nshard * k > 100000)
     {
         std::vector<int> buf(2 * nshard);
         // index in each shard's result list
@@ -179,7 +179,7 @@ void merge_knn_results(
         int* shard_ids = pointer + nshard;
         std::vector<distance_t> buf2(nshard);
         distance_t* heap_vals = buf2.data();
-//#pragma omp for
+#pragma omp for
         for (long i = 0; i < n; i++) {
             // the heap maps values to the shard where they are
             // produced.

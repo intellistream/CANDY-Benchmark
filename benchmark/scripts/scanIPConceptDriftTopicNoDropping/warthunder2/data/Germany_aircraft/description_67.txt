@@ -1,3 +1,0 @@
-Description of S.M.79_serie_4_(Germany): 
-The ▀S.M.79 Sparviero serie 4 (1937) is a gift rank II German bomber 
-with a battle rating of 2.3 (AB/RB/SB). Though initially in the game pre-1.27, this plane was removed upon Update 1.37 due to redundancy.

@@ -1,3 +1,0 @@
-Description of G.50_AS_serie_7: 
-The G.50 Freccia AS serie 7 is a rank I Italian fighter 
-with a battle rating of 2.0 (AB/SB) and 1.7 (RB). It was introduced in Update 1.69 "Regia Aeronautica", though a variant existed in the German tech tree prior to the update.

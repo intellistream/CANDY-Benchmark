@@ -107,7 +107,7 @@ void Preprocess::load_data(const std::string& path)
 	data.val = &(data.query[MaxQueryNum]);
 	data.N -= MaxQueryNum;
 
-	std::cout << "Load from new file: " << file << "\n";
+	//std::cout << "Load from new file: " << file << "\n";
 	std::cout << "N=    " << data.N << "\n";
 	std::cout << "dim=  " << data.dim << "\n\n";
 

@@ -5,6 +5,7 @@ add_sources(
         FVECSDataLoader.cpp
         ZipfDataLoader.cpp
         ExpFamilyDataLoader.cpp
+        RBTDataLoader.cpp
 )
 if (ENABLE_HDF5)
     add_sources(HDF5DataLoader.cpp)

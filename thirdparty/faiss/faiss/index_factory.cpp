@@ -27,6 +27,8 @@
 #include <faiss/IndexAdditiveQuantizerFastScan.h>
 #include <faiss/IndexFlat.h>
 #include <faiss/IndexHNSW.h>
+#include <faiss/IndexNSW.h>
+#include <faiss/IndexMNRU.h>
 #include <faiss/IndexIVF.h>
 #include <faiss/IndexIVFAdditiveQuantizer.h>
 #include <faiss/IndexIVFAdditiveQuantizerFastScan.h>
@@ -474,6 +476,40 @@ IndexHNSW* parse_IndexHNSW(
 
     return nullptr;
 }
+IndexMNRU* parse_IndexMNRU(
+                const std::string code_string,
+                int d,
+                MetricType mt,
+                int hnsw_M) {
+            std::smatch sm;
+            auto match = [&sm, &code_string](const std::string& pattern) {
+                return re_match(code_string, pattern, sm);
+            };
+
+            if (match("Flat|")) {
+                return new IndexMNRUFlat(d, hnsw_M, mt);
+            }
+
+            return nullptr;
+        }
+
+        IndexNSW* parse_IndexNSW(
+                const std::string code_string,
+                int d,
+                MetricType mt,
+                int hnsw_M) {
+            std::smatch sm;
+            auto match = [&sm, &code_string](const std::string& pattern) {
+                return re_match(code_string, pattern, sm);
+            };
+
+            if (match("Flat|")) {
+                return new IndexNSWFlat(d, hnsw_M, mt);
+            }
+
+            return nullptr;
+        }
+
 
 /***************************************************************
  * Parse IndexNSG
@@ -529,7 +565,7 @@ Index* parse_other_indexes(
     if (match("LSH(r?)(t?)")) {
         bool rotate_data = sm[1].length() > 0;
         bool train_thresholds = sm[2].length() > 0;
-        FAISS_THROW_IF_NOT(metric == METRIC_L2);
+        //FAISS_THROW_IF_NOT(metric == METRIC_L2);
         return new IndexLSH(d, d, rotate_data, train_thresholds);
     }
 
@@ -550,7 +586,8 @@ Index* parse_other_indexes(
         int M = std::stoi(sm[1].str());
         int nbit = mres_to_int(sm[2], 8, 1);
         IndexPQ* index_pq = new IndexPQ(d, M, nbit, metric);
-        index_pq->do_polysemous_training = sm[3].str() != "np";
+        index_pq->do_polysemous_training =false;
+        index_pq->pq.set_online(sm[3].str() != "np");
         return index_pq;
     }
 
@@ -785,6 +822,48 @@ std::unique_ptr<Index> index_factory_sub(
         return std::unique_ptr<Index>(index);
     }
 
+            if (re_match(description, "MNRU([0-9]*)([,_].*)?", sm)) {
+                int mnru_M = mres_to_int(sm[1], 32);
+                // We also accept empty code string (synonym of Flat)
+                std::string code_string =
+                        sm[2].length() > 0 ? sm[2].str().substr(1) : "";
+                if (verbose) {
+                    printf("parsing MNRU string %s code_string=%s mnru_M=%d\n",
+                           description.c_str(),
+                           code_string.c_str(),
+                           mnru_M);
+                }
+
+                IndexMNRU* index = parse_IndexMNRU(code_string, d, metric, mnru_M);
+                FAISS_THROW_IF_NOT_FMT(
+                        index,
+                        "could not parse HNSW code description %s in %s",
+                        code_string.c_str(),
+                        description.c_str());
+                return std::unique_ptr<Index>(index);
+            }
+
+            if (re_match(description, "NSW([0-9]*)([,_].*)?", sm)) {
+                int nsw_M = mres_to_int(sm[1], 32);
+                // We also accept empty code string (synonym of Flat)
+                std::string code_string =
+                        sm[2].length() > 0 ? sm[2].str().substr(1) : "";
+                if (verbose) {
+                    printf("parsing NSW string %s code_string=%s nsw_M=%d\n",
+                           description.c_str(),
+                           code_string.c_str(),
+                           nsw_M);
+                }
+
+                IndexNSW* index = parse_IndexNSW(code_string, d, metric, nsw_M);
+                FAISS_THROW_IF_NOT_FMT(
+                        index,
+                        "could not parse HNSW code description %s in %s",
+                        code_string.c_str(),
+                        description.c_str());
+                return std::unique_ptr<Index>(index);
+            }
+
     // NSG variants (it was unclear in the old version that the separator was a
     // "," so we support both "_" and ",")
     if (re_match(description, "NSG([0-9]*)([,_].*)?", sm)) {
@@ -886,6 +965,15 @@ std::unique_ptr<Index> index_factory_sub(
 Index* index_factory(int d, const char* description, MetricType metric) {
     return index_factory_sub(d, description, metric).release();
 }
+Index* index_factory_IP(int d, const char* description) {
+        MetricType metric = METRIC_INNER_PRODUCT;
+        return index_factory_sub(d, description, metric).release();
+}
+
+Index* index_factory_L2(int d, const char* description) {
+        MetricType metric = METRIC_L2;
+        return index_factory_sub(d, description, metric).release();
+    }
 
 IndexBinary* index_binary_factory(int d, const char* description) {
     IndexBinary* index = nullptr;

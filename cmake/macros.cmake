@@ -55,3 +55,47 @@ endmacro()
 macro(get_headers HEADER_FILES)
     file(GLOB_RECURSE ${HEADER_FILES} "include/*.h" "include/*.hpp")
 endmacro()
+
+# Define the function to detect AVX-512 support
+function(detect_avx512_support result_var)
+    include(CheckCXXSourceCompiles)
+    set(CMAKE_REQUIRED_FLAGS "-mavx512f")
+    check_cxx_source_compiles("
+    #include <immintrin.h>
+    int main() {
+        __m512i vec = _mm512_set1_epi32(1);  // AVX-512 intrinsic
+        return 0;
+    }
+" HAVE_AVX512)
+
+    if(HAVE_AVX512)
+        #message(STATUS "AVX-512 support detected.")
+        set(${result_var} 1 PARENT_SCOPE)
+    else()
+        # message(STATUS "AVX-512 support NOT detected.")
+        set(${result_var} 0 PARENT_SCOPE)
+    endif()
+endfunction()
+
+function(detect_avx2_support result_var)
+    include(CheckCXXSourceCompiles)
+    # Save the current compiler flags to restore them later
+    set(saved_flags "${CMAKE_CXX_FLAGS}")
+    # Test AVX2 intrinsic support by compiling a minimal test program
+    check_cxx_source_compiles("
+        #include <immintrin.h>
+        int main() {
+            __m256i vec = _mm256_set1_epi32(1);  // AVX2 intrinsic
+            return 0;
+        }
+    " HAVE_AVX2)
+
+    # Restore the original compiler flags
+    set(CMAKE_CXX_FLAGS "${saved_flags}" PARENT_SCOPE)
+    # Return TRUE or FALSE based on the test result
+    if(HAVE_AVX2)
+        set(${result_var} 1 PARENT_SCOPE)
+    else()
+        set(${result_var} 0 PARENT_SCOPE)
+    endif()
+endfunction()

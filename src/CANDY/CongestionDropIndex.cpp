@@ -182,7 +182,7 @@ bool CANDY::CongestionDropIndex::loadInitialTensor(torch::Tensor &t) {
     INTELLI_INFO("Initial tensor load single worker mode");
     //workers[0]->waitPendingOperations();
     workers[0]->loadInitialTensor(t);
-    usleep(1000);
+    usleep(100000);
     workers[0]->waitPendingOperations();
     return true;
   }

@@ -61,10 +61,33 @@ class AbstractDataLoader {
   virtual torch::Tensor getData();
 
   /**
+   * @brief get the data tensor at specific offset
+   * @note implement and use this when the whole data tensor does not fit into main memory
+   * @return the generated data tensor
+   */
+  virtual torch::Tensor getDataAt(int64_t startPos, int64_t endPos);
+  /**
   * @brief get the query tensor
   * @return the generated query tensor
   */
   virtual torch::Tensor getQuery();
+
+  /**
+   * @brief get the data tensor at specific offset
+   * @note implement and use this when the whole data tensor does not fit into main memory
+   * @return the generated data tensor
+   */
+  virtual torch::Tensor getQueryAt(int64_t startPos, int64_t endPos);
+  /**
+   * @brief get the dimension of data
+   * @return the dimension
+   */
+  virtual int64_t getDimension();
+  /**
+   * @brief get the number of rows of data
+   * @return the rows
+   */
+  virtual int64_t size();
 };
 
 /**

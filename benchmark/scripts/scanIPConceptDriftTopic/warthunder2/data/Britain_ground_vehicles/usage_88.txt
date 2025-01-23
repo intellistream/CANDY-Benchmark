@@ -1,2 +1,0 @@
-Usage of Warrior: 
-Generally, Warrior needs to quickly get into the medium range of the expected enemy, then figure out its strategy for the current battle. While moving towards an objective, Warrior should keep a low profile and scout every enemy it can notice.

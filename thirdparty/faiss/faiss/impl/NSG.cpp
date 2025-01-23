@@ -185,7 +185,7 @@ void NSG::build(
         final_graph = std::make_shared<nsg::Graph<idx_t>>(n, R);
         std::fill_n(final_graph->data, n * R, EMPTY_ID);
 
-//#pragma omp parallel for
+#pragma omp parallel for
         for (int i = 0; i < n; i++) {
             int cnt = 0;
             for (int j = 0; j < R; j++) {
@@ -357,7 +357,7 @@ void NSG::link(
         const nsg::Graph<idx_t>& knn_graph,
         nsg::Graph<Node>& graph,
         bool /* verbose */) {
-//#pragma omp parallel
+#pragma omp parallel
     {
         std::unique_ptr<float[]> vec(new float[storage->d]);
 
@@ -368,7 +368,7 @@ void NSG::link(
         std::unique_ptr<DistanceComputer> dis(
                 storage_distance_computer(storage));
 
-//#pragma omp for schedule(dynamic, 100)
+#pragma omp for schedule(dynamic, 100)
         for (int i = 0; i < ntotal; i++) {
             storage->reconstruct(i, vec.get());
             dis->set_query(vec.get());
@@ -386,12 +386,12 @@ void NSG::link(
     } // omp parallel
 
     std::vector<std::mutex> locks(ntotal);
-//#pragma omp parallel
+#pragma omp parallel
     {
         std::unique_ptr<DistanceComputer> dis(
                 storage_distance_computer(storage));
 
-//#pragma omp for schedule(dynamic, 100)
+#pragma omp for schedule(dynamic, 100)
         for (int i = 0; i < ntotal; ++i) {
             add_reverse_links(i, locks, *dis, graph);
         }
@@ -662,7 +662,7 @@ int NSG::attach_unlinked(
 }
 
 void NSG::check_graph() const {
-//#pragma omp parallel for
+#pragma omp parallel for
     for (int i = 0; i < ntotal; i++) {
         for (int j = 0; j < R; j++) {
             int id = final_graph->at(i, j);

@@ -11,6 +11,9 @@ bool LSHAPGIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   if(this->faissMetric==faiss::METRIC_INNER_PRODUCT) {
     _g_dist_mes=1;
     INTELLI_INFO("switch into inner product");
+  } else {
+      _g_dist_mes=0;
+    INTELLI_INFO("switch back to L2");
   }
   vecDim = cfg->tryI64("vecDim", 768, true);
   flatBuffer.setConfig(cfg);

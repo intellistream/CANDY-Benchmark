@@ -20,7 +20,10 @@ set(FAISS_SRC
   IndexFlat.cpp
   IndexFlatCodes.cpp
   IndexHNSW.cpp
-  IndexHNSWbd.cpp
+
+  IndexNSW.cpp
+  IndexMNRU.cpp
+
   IndexIDMap.cpp
   IndexIVF.cpp
   IndexIVFAdditiveQuantizer.cpp
@@ -47,6 +50,7 @@ set(FAISS_SRC
   IndexScalarQuantizer.cpp
   IndexShards.cpp
   IndexShardsIVF.cpp
+  IndexVanama.cpp
   MatrixStats.cpp
   MetaIndexes.cpp
   VectorTransform.cpp
@@ -57,7 +61,9 @@ set(FAISS_SRC
   impl/IDSelector.cpp
   impl/FaissException.cpp
   impl/HNSW.cpp
-  impl/HNSWbd.cpp
+
+  impl/NSW.cpp
+
   impl/NSG.cpp
   impl/PolysemousTraining.cpp
   impl/ProductQuantizer.cpp
@@ -78,6 +84,7 @@ set(FAISS_SRC
   impl/io.cpp
   impl/lattice_Zn.cpp
   impl/NNDescent.cpp
+  impl/Vanama.cpp
   invlists/BlockInvertedLists.cpp
   invlists/DirectMap.cpp
   invlists/InvertedLists.cpp
@@ -114,7 +121,11 @@ set(FAISS_HEADERS
   IndexFlat.h
   IndexFlatCodes.h
   IndexHNSW.h
-  IndexHNSWbd.h
+
+  IndexNSW.h
+  IndexMNRU.h
+  IndexVanama.h
+
   IndexIDMap.h
   IndexIVF.h
   IndexIVFAdditiveQuantizer.h
@@ -155,7 +166,8 @@ set(FAISS_HEADERS
   impl/FaissAssert.h
   impl/FaissException.h
   impl/HNSW.h
-  impl/HNSWbd.h
+
+  impl/NSW.h
   impl/LocalSearchQuantizer.h
   impl/ProductAdditiveQuantizer.h
   impl/LookupTableScaler.h
@@ -172,6 +184,7 @@ set(FAISS_HEADERS
   impl/ThreadedIndex.h
   impl/io.h
   impl/io_macros.h
+  impl/Vanama.h
   impl/kmeans1d.h
   impl/lattice_Zn.h
   impl/platform_macros.h

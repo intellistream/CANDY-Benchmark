@@ -1,2 +1,0 @@
-Usage of Strv_m/38: 
-The Strv m/38 provides the player with a fast, manoeuvrable light tank boasting effective firepower for its BR. As a light tank, the armour cannot be relied upon to stop enemy fire, being too weak to stop even .50 cal MG fire. However, it has access to APDS, which allows it to punch through all opponents at its BR and even most tanks a rank above. Because of the excellent APDS shell, it is advised to keep it as your primary shell, but keep a few APBC shells to finish lighter opponents, as the APDS has poor post-penetration damage.

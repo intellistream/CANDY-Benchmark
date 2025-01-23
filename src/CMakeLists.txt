@@ -1,7 +1,7 @@
 add_subdirectory(Utils)
 
 add_subdirectory(CANDY)
-add_subdirectory(DataLoader)
+#add_subdirectory(DataLoader)
 #gcc options
 if (DEFINED ENV{CANDY_CL})
     add_sources(
@@ -9,6 +9,6 @@ if (DEFINED ENV{CANDY_CL})
     )
 endif ()
 add_sources(
-        torchBounds.cpp
+        #torchBounds.cpp
 )
 include_directories("../include/")

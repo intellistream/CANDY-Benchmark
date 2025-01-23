@@ -153,16 +153,20 @@ void DPGIndex::removeLayer1Neighbor(size_t i, size_t j) {
 }
 
 double DPGIndex::calcDist(const torch::Tensor &ta, const torch::Tensor &tb) {
-  auto taPtr = ta.contiguous().data_ptr<float>(),
-       tbPtr = tb.contiguous().data_ptr<float>();
+
   double ans = 0;
   if (faissMetric == faiss::METRIC_L2) {
-    for (size_t i = 0; i < vecDim; ++i) {
-      auto diff = taPtr[i] - tbPtr[i];
-      ans += diff * diff;
-    }
+    // Calculate the squared L2 distance as ||v1 - v2||^2
+    auto diff = ta-tb;
+    auto l2_sqr = torch::sum(diff * diff);
+    // Convert the result back to float and return
+    ans = l2_sqr.item<float>();
   } else {
-    for (size_t i = 0; i < vecDim; ++i) ans -= taPtr[i] * tbPtr[i];
+    //for (size_t i = 0; i < vecDim; ++i) ans -= taPtr[i] * tbPtr[i];
+    // Calculate the inner (dot) product
+    auto inner_product = torch::matmul(ta, tb.t());
+    ans = -inner_product.item<float>();
+    // Convert the result back to float and return
   }
   return ans;
 }
@@ -173,6 +177,14 @@ torch::Tensor DPGIndex::searchOnce(torch::Tensor q, int64_t k) {
   for (size_t i = 0; i < neighbors.size(); ++i)
     ans.slice(0, i, i + 1) = tensor[neighbors[i].second];
   return ans;
+}
+
+std::vector<faiss::idx_t> DPGIndex::searchOnceIndex(torch::Tensor q, int64_t k) {
+    auto neighbors = searchOnceInner(q, k);
+    auto ans = std::vector<faiss::idx_t>(k);
+    for (size_t i = 0; i < neighbors.size(); ++i)
+        ans[i] = neighbors[i].second;
+    return ans;
 }
 
 std::vector<std::pair<double, size_t>> DPGIndex::searchOnceInner(
@@ -363,6 +375,18 @@ torch::Tensor DPGIndex::rawData() {
       ++offset;
     }
   return ret;
+}
+
+
+std::vector<faiss::idx_t> DPGIndex::searchIndex(torch::Tensor q, int64_t k){
+    std::vector<faiss::idx_t> ans(k * q.size(0));
+    parallelFor(ans.size(),
+                [&](size_t i) {
+        auto results = searchOnceIndex(q.slice(0,i,i+1),k);
+        for(size_t j=0; j<k; j++){
+                ans[i*k+j] = results[j]; };
+                });
+    return ans;
 }
 
 std::vector<torch::Tensor> DPGIndex::searchTensor(torch::Tensor &q, int64_t k) {

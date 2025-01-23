@@ -25,6 +25,7 @@ namespace CANDY {
 class HNSWVertex {
 public:
   INTELLI::TensorPtr id;
+  faiss::idx_t vid;
   /// used for LVQ
   int8_t* code_final_ = nullptr;
   /// used for adsampling
