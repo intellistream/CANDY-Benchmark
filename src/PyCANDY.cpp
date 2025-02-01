@@ -27,7 +27,10 @@
 #include <faiss/index_factory.h>
 
 
+
 #include<puck/pyapi_wrapper/py_api_wrapper.h>
+
+#include<faiss/gpu/GpuCloner.h>
 
 namespace py = pybind11;
 using namespace INTELLI;
@@ -365,6 +368,8 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
   m.def("index_factory_ip", &faiss::index_factory_IP, "Create custom index from faiss with IP");
 
   m.def("index_factory_l2", &faiss::index_factory_L2, "Create custom index from faiss with IP");
+
+  m.def("index_cpu_to_gpu", &faiss::gpu::index_cpu_to_gpu, "Move a Faiss CPU index to GPU");
 
 
 

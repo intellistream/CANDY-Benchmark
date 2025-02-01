@@ -26,8 +26,9 @@ function(find_valid_cuda MIN_CUDA_VERSION MAX_CUDA_VERSION)
             set(CUDA_VERSION ${CMAKE_MATCH_1})
 
             # Check if the CUDA version is within the provided range
-            if (CUDA_VERSION VERSION_GREATER_EQUAL ${MIN_CUDA_VERSION} AND
-                    CUDA_VERSION VERSION_LESS_EQUAL ${MAX_CUDA_VERSION})
+            if (CUDA_VERSION VERSION_GREATER_EQUAL ${MIN_CUDA_VERSION}
+                    #AND CUDA_VERSION VERSION_LESS_EQUAL ${MAX_CUDA_VERSION}
+            )
                 message(STATUS "Found valid CUDA compiler: ${CUDA_COMPILER_PATH}")
                 message(STATUS "CUDA version: ${CUDA_VERSION}")
                 set(VALID_CUDA_FOUND TRUE)

@@ -21,7 +21,7 @@
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
 set(FAISS_LANGUAGES CXX)
-
+set(FAISS_ENABLE_GPU 1)
 if(FAISS_ENABLE_GPU)
   list(APPEND FAISS_LANGUAGES CUDA)
 endif()
@@ -115,10 +115,10 @@ endif()
 
 
 
-option(FAISS_ENABLE_GPU "Enable support for GPU indexes." OFF)
+option(FAISS_ENABLE_GPU "Enable support for GPU indexes." ON)
 option(FAISS_ENABLE_RAFT "Enable RAFT for GPU indexes." OFF)
 option(FAISS_ENABLE_PYTHON "Build Python extension." OFF)
-option(FAISS_ENABLE_C_API "Build C API." OFF)
+option(FAISS_ENABLE_C_API "Build C API." ON)
 
 if(FAISS_ENABLE_GPU)
   set(CMAKE_CUDA_HOST_COMPILER ${CMAKE_CXX_COMPILER})
@@ -140,7 +140,7 @@ if(FAISS_ENABLE_PYTHON)
 endif()
 
 if(FAISS_ENABLE_C_API)
-  #add_subdirectory(c_api)
+  add_subdirectory(c_api)
 endif()
 
 #add_subdirectory(demos)

@@ -32,6 +32,7 @@ add_subdirectory(thirdparty/faiss)
 # Set specific options for Faiss compilation
 #target_compile_options(faiss PRIVATE "-fno-openmp")
 set(LIBRARIES ${LIBRARIES} faiss)
+#set(LIBRARIES ${LIBRARIES} faiss_c)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
 
@@ -40,6 +41,7 @@ set(LIBRARIES ${LIBRARIES} ${TORCH_LIBRARIES})
 set(CMAKE_CXX_FLAGS "-std=c++20 -Wall -Werror=return-type -Wno-interference-size")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DNO_RACE_CHECK -DCANDY_DEBUG_MODE=1")
 set(CMAKE_CXX_FLAGS_RELEASE "-Wno-ignored-qualifiers -Wno-sign-compare -O3")
+
 set(PROJECT_BINARY_DIR_RAW ${PROJECT_BINARY_DIR})
 
 # Valid values are "generic", "avx2", "avx512".
@@ -382,8 +384,7 @@ if(OpenMP_CXX_FOUND)
 endif()
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
 target_link_options(CANDYBENCH PUBLIC "-Wl,-rpath,./")
-message(WARNING "CANDY GFLAGS_LIBRARY_DIR: ${GFLAGS_LIBRARIES}")
-message(WARNING "CANDY GLOG_LIBRARY_DIR: ${GLOG_LIBRARIES}")
+
 #target_link_libraries(CANDYBENCH PUBLIC  ${GFLAGS_LIBRARIES} ${GLOG_LIBRARIES})
 target_link_libraries(CANDYBENCH PUBLIC ${LIBRARIES})
 install(TARGETS CANDYBENCH LIBRARY DESTINATION .)
