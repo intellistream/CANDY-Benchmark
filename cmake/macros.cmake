@@ -53,7 +53,8 @@ macro(get_sources SOURCE_FILES)
 endmacro()
 
 macro(get_headers HEADER_FILES)
-    file(GLOB_RECURSE ${HEADER_FILES} "include/*.h" "include/*.hpp")
+    #    file(GLOB_RECURSE ${HEADER_FILES} "include/*.h" "include/*.hpp")
+    file(GLOB_RECURSE ${HEADER_FILES} "include/*.h" "include/*.hpp" "include/*.cuh")
 endmacro()
 
 # Define the function to detect AVX-512 support
