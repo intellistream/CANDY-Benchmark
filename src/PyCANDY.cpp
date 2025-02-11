@@ -320,6 +320,7 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
       .def("setConfig", &AbstractIndex::setConfig, py::call_guard<py::gil_scoped_release>())
       .def("startHPC", &AbstractIndex::startHPC)
       .def("insertTensor", &AbstractIndex::insertTensor)
+      .def("ccInsertAndSearchTensor", &AbstractIndex::ccInsertAndSearchTensor)
       .def("insertTensorWithIds", &AbstractIndex::insertTensorWithIds)
       .def("loadInitialTensor", &AbstractIndex::loadInitialTensor)
       .def("loadInitialTensorWithIds", &AbstractIndex::loadInitialTensorWithIds)
