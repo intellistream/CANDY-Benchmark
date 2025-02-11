@@ -75,7 +75,7 @@ class AbstractIndex {
    * @param t the tensor, some index need to be single row
    * @return bool whether the insertion is successful
    */
-  virtual bool ccInsertTensor(torch::Tensor &t);
+  virtual bool ccInsertAnsSearchTensor(torch::Tensor &t, torch::Tensor &qt, int64_t k);
 
     /**
    * @brief insert a tensor with Ids
@@ -83,7 +83,8 @@ class AbstractIndex {
    * @param t the tensor, some index need to be single row
    * @return bool whether the insertion is successful
    */
-    virtual bool ccInsertAndSearchTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t);
+    virtual bool ccInsertAndSearchTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t
+      std::vector<faiss::idx_t> qids, torch::Tensor &qt, int64_t k);
   /**
    * @brief insert a tensor
    * @note This is majorly an online function
