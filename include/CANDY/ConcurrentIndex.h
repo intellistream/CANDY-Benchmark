@@ -7,10 +7,7 @@
 #include <tuple>
 #include <Utils/IntelliTensorOP.hpp>
 #include <CANDY/AbstractIndex.h>
-
-namespace CANDY {
-
-class ConcurrentIndex : public CANDY::AbstractIndex {
+#include <CANDY/IndexTable.h>
 
 using BatchIndex = size_t;
 using QueryIndex = size_t;
@@ -18,6 +15,9 @@ using QueryIndex = size_t;
 using SearchResults = std::vector<torch::Tensor>;
 using SearchRecord = std::tuple<BatchIndex, QueryIndex, SearchResults>;
 
+namespace CANDY {
+
+class ConcurrentIndex : public CANDY::AbstractIndex {
  protected:
   AbstractIndexPtr myIndexAlgo = nullptr;
   std::string myConfigString = "";
@@ -25,6 +25,7 @@ using SearchRecord = std::tuple<BatchIndex, QueryIndex, SearchResults>;
   int64_t vecDim = 0;
   double writeRatio = 0.0;
   int64_t numThreads = 1;
+  int64_t batchSize = 0;
 
  public:
   ConcurrentIndex() {
@@ -46,7 +47,7 @@ using SearchRecord = std::tuple<BatchIndex, QueryIndex, SearchResults>;
   virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
 };
 
-typedef std::shared_ptr<class CANDY::CongestionDropIndex> CongestionDropIndexPtr;
+typedef std::shared_ptr<class CANDY::ConcurrentIndex> ConcurrentIndexPtr;
 
 #define newConcurrentIndex std::make_shared<CANDY::ConcurrentIndex>
 }

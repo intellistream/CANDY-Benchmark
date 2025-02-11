@@ -35,7 +35,7 @@ bool CANDY::ConcurrentIndex::loadInitialTensor(torch::Tensor &t) {
   return ru;
 }
 
-std::vector<SearchRecord> CANDY::ConcurrentIndexWorker::ccInsertAndSearchTensor(torch::Tensor &t, 
+std::vector<SearchRecord> CANDY::ConcurrentIndex::ccInsertAndSearchTensor(torch::Tensor &t, 
     torch::Tensor &qt, int64_t k) {
   if (!myIndexAlgo) {
     throw std::runtime_error("Index algorithm not initialized.");
@@ -51,7 +51,7 @@ std::vector<SearchRecord> CANDY::ConcurrentIndexWorker::ccInsertAndSearchTensor(
   std::vector<SearchRecord> searchRes;
 
   while (commitedOps < writeTotal) {
-    size_t insertCnt = std::min(batchSize, writeTotal - commitedOps.load());
+    size_t insertCnt = std::min(batchSize, static_cast<int64_t>(writeTotal - commitedOps.load()));
     size_t searchCnt = insertCnt / writeRatio;  
 
     std::atomic<size_t> currentInsert(0);
@@ -62,10 +62,11 @@ std::vector<SearchRecord> CANDY::ConcurrentIndexWorker::ccInsertAndSearchTensor(
         while (true) {
           size_t idx = currentInsert.fetch_add(1);
           if (idx >= insertCnt) break;
-          size_t globalIdx = commitedOps.fetch_add(1);
-          if (globalIdx >= writeTotal) break;
+          size_t gIdx = commitedOps.fetch_add(1);
+          if (gIdx >= writeTotal) break;
           try {
-            myIndexAlgo->insertTensor(t[globalIdx]);  
+            auto in = t[gIdx];
+            myIndexAlgo->insertTensor(in);  
           } catch (...) {
             std::unique_lock<std::mutex> lock(lastExceptMutex);
             lastException = std::current_exception();
@@ -86,7 +87,8 @@ std::vector<SearchRecord> CANDY::ConcurrentIndexWorker::ccInsertAndSearchTensor(
           if (idx >= searchCnt) break;
           size_t queryIdx = std::rand() % searchTotal;
           try {
-            auto res = myIndexAlgo->searchTensor(qt[queryIdx], k);
+            auto q = qt[queryIdx];
+            auto res = myIndexAlgo->searchTensor(q, k);
             threadRes.emplace_back(commitedOps.load(), queryIdx, res);
           } catch (...) {
             std::unique_lock<std::mutex> lock(lastExceptMutex);
@@ -119,9 +121,9 @@ std::vector<SearchRecord> CANDY::ConcurrentIndexWorker::ccInsertAndSearchTensor(
     std::rethrow_exception(lastException);
   }
 
-  return true;
+  return searchRes;
 }
 
-std::vector<torch::Tensor> CANDY::ConcurrentIndexWorker::searchTensor(torch::Tensor &q, int64_t k) {
+std::vector<torch::Tensor> CANDY::ConcurrentIndex::searchTensor(torch::Tensor &q, int64_t k) {
   return myIndexAlgo->searchTensor(q, k);
 }
