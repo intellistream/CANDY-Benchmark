@@ -43,6 +43,8 @@ benchmark/torchscripts/
 benchmark/torchscripts*
 /.vscode
 PyCANDY.egg-info/
+PyCANDYAlgo.egg-info/
 dist/
 commit_info
 commit.sh
+

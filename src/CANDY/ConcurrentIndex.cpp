@@ -127,3 +127,7 @@ std::vector<SearchRecord> CANDY::ConcurrentIndex::ccInsertAndSearchTensor(torch:
 std::vector<torch::Tensor> CANDY::ConcurrentIndex::searchTensor(torch::Tensor &q, int64_t k) {
   return myIndexAlgo->searchTensor(q, k);
 }
+
+void CANDY::ConcurrentIndex::reset() {
+
+}
