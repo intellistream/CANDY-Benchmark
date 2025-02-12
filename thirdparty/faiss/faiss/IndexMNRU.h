@@ -46,6 +46,8 @@ namespace faiss{
                 idx_t* labels,
                 const SearchParameters* params = nullptr) const override;
 
+        virtual std::vector<idx_t> search_arrays(idx_t n, const std::vector<float> x, idx_t k, int param);
+
         void reconstruct(idx_t key, float* recons) const override;
 
         void reset() override;

@@ -43,7 +43,7 @@ struct IndexLSH : IndexFlatCodes {
     const float* apply_preprocess(idx_t n, const float* x) const;
 
     void train(idx_t n, const float* x) override;
-
+    virtual std::vector<idx_t> search_arrays(idx_t n, const std::vector<float> x, idx_t k, int param);
     void search(
             idx_t n,
             const float* x,

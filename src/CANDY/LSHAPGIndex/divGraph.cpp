@@ -731,7 +731,7 @@ void divGraph::oneByOneInsert()
   first_id = idx[0];
   insertLSHRefine(idx[0]);//Ensure there is at least one point in the graph before parallelizing
   //lsh::progress_display pd(N - 1);
-//#pragma omp parallel for
+#pragma omp parallel for
   for (int i = 1; i < N; i++) {
     insertLSHRefine(idx[i]);
    // ++pd;

@@ -397,6 +397,15 @@ namespace faiss{
         }
     }
 
+    std::vector<idx_t> IndexMNRU::search_arrays(idx_t n, const std::vector<float> x, idx_t k, int param){
+        std::vector<float> distances(n*k);
+        std::vector<idx_t> labels(n*k);
+        SearchParametersHNSW params_in;
+        params_in.efSearch = param;
+        search(n, x.data(), k, distances.data(), labels.data(), &params_in);
+        return labels;
+    }
+
 
     void IndexMNRU::search(
             idx_t n,
