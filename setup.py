@@ -54,7 +54,6 @@ class CMakeBuild(build_ext):
                       '-DENABLE_PUCK=ON',
                       '-DENABLE_DiskANN=ON',
                       '-DPYBIND=ON',
-                      '-DCMAKE_CXX_FLAGS=-L/usr/local/lib -lglog',
                       f"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={extdir}{os.sep}",
                       f"-DPYTHON_EXECUTABLE={sys.executable}",
                       f"-DCMAKE_BUILD_TYPE={cfg}",  # not used on MSVC, but no harm
