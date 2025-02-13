@@ -58,7 +58,7 @@ bool CANDY::AbstractIndex::insertTensor(torch::Tensor &t) {
 }
 
 bool CANDY::AbstractIndex::insertTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t){
-    return insertTensor(t);
+  return insertTensor(t);
 }
 bool CANDY::AbstractIndex::insertStringObject(torch::Tensor &t, std::vector<std::string> &strs) {
   assert(t.size(1));
@@ -78,10 +78,18 @@ bool CANDY::AbstractIndex::loadInitialTensor(torch::Tensor &t) {
 }
 
 bool CANDY::AbstractIndex::loadInitialTensorWithIds(std::vector<faiss::idx_t> ids, torch::Tensor &t) {
-    return loadInitialTensor(t);
+  return loadInitialTensor(t);
 }
 
+std::vector<std::tuple<size_t, size_t, std::vector<torch::Tensor>>> 
+CANDY::AbstractIndex::ccInsertAndSearchTensor(torch::Tensor &t, torch::Tensor &qt, int64_t k) {
+  std::vector<torch::Tensor> ru(1);
+  ru[0] = torch::rand({1, 1});
 
+  std::tuple<size_t, size_t, std::vector<torch::Tensor>> tp(1, 1, ru);
+
+  return {tp};  
+}
 
 bool CANDY::AbstractIndex::loadInitialStringObject(torch::Tensor &t, std::vector<std::string> &strs) {
   return insertStringObject(t, strs);

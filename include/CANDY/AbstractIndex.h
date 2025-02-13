@@ -13,6 +13,7 @@
 #include <Utils/IntelliTensorOP.hpp>
 #include <faiss/IndexFlat.h>
 #include <tuple>
+
 namespace CANDY {
 
 /**
@@ -69,6 +70,14 @@ class AbstractIndex {
    * @return bool whether the HPC set-up is successful
    */
   virtual bool startHPC();
+  /**
+   * @brief insert a tensor
+   * @note This is majorly an online function
+   * @param t the tensor, some index need to be single row
+   * @return bool whether the insertion is successful
+   */
+  virtual std::vector<std::tuple<size_t, size_t, std::vector<torch::Tensor>>> 
+    ccInsertAndSearchTensor(torch::Tensor &t, torch::Tensor &qt, int64_t k);
   /**
    * @brief insert a tensor
    * @note This is majorly an online function
