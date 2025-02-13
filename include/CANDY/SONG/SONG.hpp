@@ -5,8 +5,8 @@
  * Description: [Provide description here]
  */
 
-#ifndef CANDY_INCLUDE_ALGORITHMS_SONG_SONG_HPP
-#define CANDY_INCLUDE_ALGORITHMS_SONG_SONG_HPP
+#ifndef CANDY__SONG_SONG_HPP
+#define CANDY_S_SONG_SONG_HPP
 
 #include <CANDY/AbstractIndex.h>
 #include <Utils/ConfigMap.hpp>
@@ -17,14 +17,13 @@
 #include "kernelgraph.cuh"
 
 namespace CANDY{
-class SONG;
 
-class SONG final : public AbstractIndex {
+class SONG : public AbstractIndex {
  protected:
   INTELLI::ConfigMapPtr myCfg = nullptr;
   torch::Tensor dbTensor, objTensor;
   int64_t vecDim = 768;
-  int64_t vecVolume = 1000;
+  int64_t vecVolume = 1000000;
   int64_t idx = 0;
   faiss::MetricType Metric = faiss::METRIC_L2;
   std::unique_ptr<SONG_KERNEL::Data> data = nullptr;
@@ -57,14 +56,13 @@ class SONG final : public AbstractIndex {
 
   virtual bool setConfig(INTELLI::ConfigMapPtr cfg);
 
-  virtual bool insertTensor(const torch::Tensor& t);
+  virtual bool insertTensor(torch::Tensor &t);
 
   virtual bool deleteTensor(torch::Tensor& t, int64_t k = 1);
 
   virtual bool reviseTensor(torch::Tensor& t, torch::Tensor& w);
 
-  virtual std::vector<torch::Tensor> searchTensor(const torch::Tensor& q,
-                                          int64_t k);
+  virtual std::vector<torch::Tensor> searchTensor(torch::Tensor& q,int64_t k);
 
   [[nodiscard]] int64_t size() const { return idx; }
 

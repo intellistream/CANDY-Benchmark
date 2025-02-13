@@ -196,8 +196,8 @@ static void warp_independent_search_kernel(value_t* d_data,value_t* d_query,idx_
 	}
 	__syncthreads();
     while(heap_size[cid] > 1){
-    	printf("heap_size[%d] %d\n", cid, heap_size[cid]);
-    	printf("topk_heap_size %d\n", topk_heap_size);
+    	// printf("heap_size[%d] %d\n", cid, heap_size[cid]);
+    	// printf("topk_heap_size %d\n", topk_heap_size);
 // #ifdef __ENABLE_MEASURE
 		auto stage1_start = clock64();
 // #endif

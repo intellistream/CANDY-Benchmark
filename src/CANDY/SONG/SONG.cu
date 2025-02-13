@@ -22,7 +22,7 @@ bool CANDY::SONG::setConfig(INTELLI::ConfigMapPtr cfg) {
   std::string metricType = cfg->tryString("metricType", "L2", true);
   faissMetric = metricType == "L2" ? faiss::METRIC_L2 : faiss::METRIC_INNER_PRODUCT;
   vecDim = cfg->tryI64("vecDim", 768, true);
-  vecVolume = cfg->tryI64("vecVolume", 1000, true);
+  vecVolume = cfg->tryI64("vecVolume", 1000000, true);
   data = std::make_unique<SONG_KERNEL::Data> (vecVolume,vecDim);
   if (metricType == "L2") {
     graph = std::make_unique<SONG_KERNEL::KernelFixedDegreeGraph<0>> (data.get());
@@ -38,7 +38,7 @@ bool CANDY::SONG::setConfig(INTELLI::ConfigMapPtr cfg) {
   return true;
 }
 
-bool CANDY::SONG::insertTensor(const torch::Tensor &t) {
+bool CANDY::SONG::insertTensor(torch::Tensor &t) {
   std::vector<std::vector<std::pair<int,SONG_KERNEL::value_t>>> vertexs;
   INTELLI_INFO("START CONVERT TENSOR TO VECTOR");
   convertTensorToVectorPairBatch(const_cast<torch::Tensor&>(t), vertexs);
@@ -75,7 +75,7 @@ bool CANDY::SONG::reviseTensor(torch::Tensor &t, torch::Tensor &w) {
   return false;
 }
 
-std::vector<torch::Tensor> CANDY::SONG::searchTensor(const torch::Tensor &q, int64_t k) {
+std::vector<torch::Tensor> CANDY::SONG::searchTensor(torch::Tensor &q, int64_t k) {
   int query_size = q.size(0);
   std::vector<std::vector<std::pair<int,SONG_KERNEL::value_t>>> queries(query_size);
   std::vector<std::vector<SONG_KERNEL::idx_t>> result_id(query_size);
@@ -85,6 +85,11 @@ std::vector<torch::Tensor> CANDY::SONG::searchTensor(const torch::Tensor &q, int
 
   for (int i = 0; i < query_size; i++) {
     result_t[i] = torch::from_blob(result_id[i].data(), {k}, torch::kInt64).clone();
+
+    // std::cout << "Query " << i << " results: ";
+    // for (auto id : result_id[i]) std::cout << id << " ";
+    // std::cout << std::endl;
+
   }
   return result_t;
 }

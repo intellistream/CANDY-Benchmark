@@ -63,7 +63,7 @@ CANDY::IndexTable::IndexTable() {
   indexMap["LSHAPG"] = newLSHAPGIndex();
   indexMap["flatGPU"] = newFlatGPUIndex();
 #ifdef ENABLE_CUDA
-  indexMap["SONG"] = std::make_shared<SONG>();
+  indexMap["SONG"] = newSONG();
 #endif
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();

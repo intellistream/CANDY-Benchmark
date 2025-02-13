@@ -1,16 +1,22 @@
-
-cmake_minimum_required(VERSION 3.18)
+#set(CMAKE_C_COMPILER "/usr/bin/gcc-11")
+#set(CMAKE_CXX_COMPILER "/usr/bin/g++-11")
+#set(CMAKE_CUDA_HOST_COMPILER "${CMAKE_CXX_COMPILER}")
+cmake_minimum_required(VERSION 3.27)
 project(CANDYBENCH CXX)
 
 option(ENABLE_CUDA "Enable cuda" ON)
-
+message(STATUS "1.0 CUDA enabled: ${ENABLE_CUDA}")
 include (cmake/FindCuda.cmake)
 include (cmake/FindTorch.cmake)
-set(CMAKE_CUDA_ARCHITECTURES "70;75;80")
+#set(CMAKE_CUDA_ARCHITECTURES "70;75;80")
+set(CMAKE_CUDA_ARCHITECTURES ALL)
 find_package(Torch REQUIRED)
 find_package(Python3 REQUIRED COMPONENTS Development)
 include_directories(${Python3_INCLUDE_DIRS})
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+
+
 
 include_directories (${gflags_INCLUDE_DIR})
 set(CMAKE_VERBOSE_MAKEFILE OFF)
@@ -29,13 +35,15 @@ include(cmake/default.cmake)
 #test avx2
 
 # Option to enable/disable CUDA
-message(STATUS "CUDA enabled: ${ENABLE_CUDA}")
+message(STATUS "2.0 CUDA enabled: ${ENABLE_CUDA}")
 if (ENABLE_CUDA)
     enable_language(CUDA)
     set(CMAKE_CUDA_STANDARD 20)
-    set(CMAKE_CUDA_STANDARD_REQUIRED ON)
     set(CMAKE_CUDA_ARCHITECTURES OFF)
     add_definitions(-DENABLE_CUDA=1)
+    message(STATUS "CUDA is enabled")
+else()
+    message(STATUS "CUDA is not enabled")
 endif ()
 
 add_subdirectory(thirdparty/faiss)
@@ -351,7 +359,7 @@ target_include_directories(CANDYBENCH PUBLIC "include")
 if (ENABLE_CUDA)
     set(LIBRARIES ${LIBRARIES} cublas cudart)
     set_target_properties(CANDYBENCH PROPERTIES
-            CUDA_STANDARD 17
+            CUDA_STANDARD 20
             CXX_STANDARD 20
     )
 else ()
