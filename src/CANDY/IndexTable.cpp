@@ -15,6 +15,7 @@
 #include <CANDY/IndexTable.h>
 #include <CANDY/LSHAPGIndex.h>
 #include <CANDY/NNDescentIndex.h>
+#include <CANDY/ConcurrentIndex.h>
 //#include <CANDY/OnlineIVFL2HIndex.h>
 //#include <CANDY/OnlineIVFLSHIndex.h>
 #include <CANDY/OnlinePQIndex.h>
@@ -26,6 +27,7 @@
 #include <include/opencl_config.h>
 #include <include/ray_config.h>
 #include <include/sptag_config.h>
+
 #if CANDY_CL == 1
 //#include <CPPAlgos/CLMMCPPAlgo.h>
 #endif
@@ -59,6 +61,7 @@ CANDY::IndexTable::IndexTable() {
   indexMap["DPG"] = newDPGIndex();
   indexMap["LSHAPG"] = newLSHAPGIndex();
   indexMap["flatGPU"] = newFlatGPUIndex();
+  indexMap["Concurrent"] = newConcurrentIndex();
 #if CANDY_CL == 1
   // indexMap["cl"] = newCLMMCPPAlgo();
 #endif
