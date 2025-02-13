@@ -101,6 +101,7 @@ AbstractIndexPtr createIndex(std::string nameTag, int64_t dim) {
         nameTag = "flat";
         return tab.getIndex(nameTag);
     }
+    std::cout << "Found index with name: " << nameTag << std::endl;
     ConfigMapPtr cfg = newConfigMap();
     cfg->edit("vecDim", dim);
     ru->setConfig(cfg);

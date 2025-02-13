@@ -42,6 +42,7 @@ function(find_valid_cuda MIN_CUDA_VERSION MAX_CUDA_VERSION)
 
     # If no valid CUDA was found, print a warning
     if (NOT VALID_CUDA_FOUND)
+        set(ENABLE_CUDA OFF PARENT_SCOPE)
         message(WARNING "No valid CUDA compiler found in the range ${MIN_CUDA_VERSION} - ${MAX_CUDA_VERSION}. I don't think you can use CUDA...")
     else()
         set(ENV{CUDACXX} ${CUDA_COMPILER_PATH})
@@ -50,4 +51,4 @@ function(find_valid_cuda MIN_CUDA_VERSION MAX_CUDA_VERSION)
 endfunction()
 
 # Call the function to find valid CUDA compilers with a specific version range
-find_valid_cuda("11.0" "12.5")
+find_valid_cuda("11.0" "12.6")
