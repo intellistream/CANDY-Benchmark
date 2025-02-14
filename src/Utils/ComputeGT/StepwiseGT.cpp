@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <mkl.h>   
 #include <boost/program_options.hpp>
 
 namespace po = boost::program_options;
@@ -17,21 +18,25 @@ void COMPUTE_GT::computeL2sq(float* pointsL2sq, const float* matrix, const int64
 void COMPUTE_GT::distSqToPoints(const size_t dim, float* distMatrix, size_t npoints, const float* points,
                                   const float* pointsL2sq, size_t nqueries, const float* queries,
                                   const float* queriesL2sq, float* onesVec) {
+  bool onesVecAlloc = false;
   if (onesVec == nullptr) {
     onesVec = new float[std::max(npoints, nqueries)]();
     std::fill_n(onesVec, std::max(npoints, nqueries), 1.0f);
+    onesVecAlloc = true;
   }
-  cblas_sgemm(CblasColMajor, CblasTrans, CblasNoTrans, npoints, nqueries, dim, -2.0f,
-              points, dim, queries, dim, 0.0f, distMatrix, npoints);
-  cblas_sgemm(CblasColMajor, CblasNoTrans, CblasTrans, npoints, nqueries, 1,
-              pointsL2sq, npoints, onesVec, nqueries, 1.0f, distMatrix, npoints);
-  cblas_sgemm(CblasColMajor, CblasNoTrans, CblasTrans, npoints, nqueries, 1,
-              onesVec, npoints, queriesL2sq, nqueries, 1.0f, distMatrix, npoints);
-  delete[] onesVec;
+  cblas_sgemm(CblasColMajor, CblasTrans, CblasNoTrans, npoints, nqueries, dim, (float)-2.0, 
+                points, dim, queries, dim, (float)0.0, distMatrix, npoints);
+  cblas_sgemm(CblasColMajor, CblasNoTrans, CblasTrans, npoints, nqueries, 1, (float)1.0, 
+                pointsL2sq, npoints, onesVec, nqueries, (float)1.0, distMatrix, npoints);
+  cblas_sgemm(CblasColMajor, CblasNoTrans, CblasTrans, npoints, nqueries, 1, (float)1.0, 
+                onesVec, npoints, queriesL2sq, nqueries, (float)1.0, distMatrix, npoints);
+
+  if (onesVecAlloc)
+      delete[] onesVec;
 }
 
 void COMPUTE_GT::innerProdToPoints(const size_t dim, float* distMatrix, size_t npoints, const float* points,
-                                  size_t nqueries, const float* queries, float* onesVec) {
+                                    size_t nqueries, const float* queries, float* onesVec) {
   cblas_sgemm(CblasColMajor, CblasTrans, CblasNoTrans, npoints, nqueries, dim, -1.0f,
               points, dim, queries, dim, 0.0f, distMatrix, npoints);
 }
@@ -76,25 +81,6 @@ void COMPUTE_GT::exactKnn(const size_t dim, const size_t k, size_t* closestPoint
   delete[] queriesL2sq;
 }
 
-template <typename T>
-void COMPUTE_GT::loadBinAsFloat(const char* filename, float*& data, size_t& npts, size_t& ndims, int partNum) {
-  std::ifstream reader(filename, std::ios::binary);
-  int npts_i32, ndims_i32;
-  reader.read((char*)&npts_i32, sizeof(int));
-  reader.read((char*)&ndims_i32, sizeof(int));
-  npts = std::min((size_t)npts_i32, (partNum + 1) * PARTSIZE) - partNum * PARTSIZE;
-  ndims = (size_t)ndims_i32;
-  data = new float[npts * ndims];
-  reader.seekg((partNum * PARTSIZE) * ndims * sizeof(T) + 2 * sizeof(int), std::ios::beg);
-  T* temp = new T[npts * ndims];
-  reader.read((char*)temp, npts * ndims * sizeof(T));
-  #pragma omp parallel for
-  for (size_t i = 0; i < npts * ndims; ++i) {
-    data[i] = static_cast<float>(temp[i]);
-  }
-  delete[] temp;
-}
-
 void COMPUTE_GT::saveGTVectorsAsFile(const std::string& filename, int step, float* queryVectors, float* gtVectors,
                                       size_t npts, size_t ndims) {
   std::ofstream writer(filename, std::ios::binary | std::ios::app);
@@ -118,9 +104,9 @@ void COMPUTE_GT::saveGTVectorsAsFile(const std::string& filename, int step, floa
   writer.close();
 }
 
-void COMPUTE_GT::clacStepwiseGT(const std::string& baseFile, const std::string& queryFile,
-                                    const std::string& gtFile, size_t k, COMPUTE_GT::Metric metric,
-                                    size_t batchSize) {
+void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& queryFile,
+                                  const std::string& gtFile, size_t k, COMPUTE_GT::Metric metric,
+                                  size_t batchSize) {
   float* baseData = nullptr;
   size_t npoints, dim;
   loadBinAsFloat<float>(baseFile.c_str(), baseData, npoints, dim, 0);
@@ -149,7 +135,7 @@ void COMPUTE_GT::clacStepwiseGT(const std::string& baseFile, const std::string& 
       std::memcpy(gtVectors + i * dim, baseData + gtIdx * dim, dim * sizeof(float));
     }
 
-    saveVectorsWithGT(gtFile, step, batchVectors, gtVectors, insertCount, dim);
+    saveGTVectorsAsFile(gtFile, step, batchVectors, gtVectors, insertCount, dim);
 
     delete[] gtVectors;
     delete[] closestPoints;
@@ -164,7 +150,7 @@ void COMPUTE_GT::clacStepwiseGT(const std::string& baseFile, const std::string& 
 }
 
 int main(int argc, char** argv) {
-  std::string dataType, distFn, baseFile, queryFile, gtFile;
+  std::string dataType, distFn, baseFile, queryFile, gtFile, recallFile;
   uint64_t K, batchSize;
 
   try {
@@ -176,6 +162,7 @@ int main(int argc, char** argv) {
       ("base_file", po::value<std::string>(&baseFile)->required(), "Base vectors binary file")
       ("query_file", po::value<std::string>(&queryFile)->required(), "Query vectors binary file")
       ("gt_file", po::value<std::string>(&gtFile)->required(), "Output GT file")
+      ("recall_file", po::value<std::string>(&recallFile)->required(), "Output recall file")
       ("K", po::value<uint64_t>(&K)->required(), "Number of neighbors to compute")
       ("batch_size", po::value<uint64_t>(&batchSize)->default_value(100), "Batch size for incremental computation");
 
@@ -204,7 +191,7 @@ int main(int argc, char** argv) {
     return -1;
   }
 
-  COMPUTE_GT::clacStepwiseGT(baseFile, queryFile, gtFile, K, metric, batchSize);
+  COMPUTE_GT::calcStepwiseGT(baseFile, queryFile, gtFile, K, metric, batchSize);
 
   std::cout << "Stepwise GT computation completed." << std::endl;
 

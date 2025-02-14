@@ -12,8 +12,8 @@
 #include <ctime>
 
 bool COMPUTE_GT::readBatchFromFile(const std::string& filename, uint64_t& step, uint64_t& npts, uint64_t& ndims,
-                        std::vector<std::vector<float>>& queryVectors,
-                        std::vector<std::vector<float>>& annsResults) {
+                                    std::vector<std::vector<float>>& queryVectors,
+                                    std::vector<std::vector<float>>& annsResults) {
   std::ifstream file(filename, std::ios::binary);
   if (!file) {
     std::cerr << "Error opening prediction file: " << filename << std::endl;
@@ -38,7 +38,7 @@ bool COMPUTE_GT::readBatchFromFile(const std::string& filename, uint64_t& step, 
 }
 
 bool COMPUTE_GT::readGTFile(const std::string& filename, uint64_t& npts, uint64_t& ndims,
-                  std::vector<std::vector<float>>& gtVectors) {
+                              std::vector<std::vector<float>>& gtVectors) {
   std::ifstream file(filename, std::ios::binary);
   if (!file) {
     std::cerr << "Error opening ground truth file: " << filename << std::endl;
@@ -57,8 +57,8 @@ bool COMPUTE_GT::readGTFile(const std::string& filename, uint64_t& npts, uint64_
 }
 
 double COMPUTE_GT::computeRecallWithQueryVec(const std::vector<std::vector<float>>& queryVectors,
-                                  const std::vector<std::vector<float>>& annsResult,
-                                  const std::vector<std::vector<float>>& gtVectors) {
+                                              const std::vector<std::vector<float>>& annsResult,
+                                              const std::vector<std::vector<float>>& gtVectors) {
   if (queryVectors.empty() || annsResult.empty() || gtVectors.empty()) {
     std::cerr << "Error: Input vectors cannot be empty." << std::endl;
     return 0.0;

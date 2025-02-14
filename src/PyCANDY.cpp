@@ -10,6 +10,8 @@
 #include <Utils/ConfigMap.hpp>
 #include <Utils/IntelliLog.h>
 #include <Utils/SPSCQueue.hpp>
+#include <Utils/ComputeGT/StepwiseGT.hpp>
+#include <Utils/ComputeGT/StepwiseRecall.hpp>
 #include <CANDY/AbstractIndex.h>
 
 
@@ -82,16 +84,6 @@ std::shared_ptr<ConfigMap> dictToConfigMap(const py::dict &dict) {
   }
   return cfg;
 }
-//AbstractIndexPtr createIndex(std::string nameTag) {
-//  IndexTable tab;
-//  auto ru = tab.getIndex(nameTag);
-//  if (ru == nullptr) {
-//    INTELLI_ERROR("No index named " + nameTag + ", return flat");
-//    nameTag = "flat";
-//    return tab.getIndex(nameTag);
-//  }
-//  return ru;
-//}
 
 AbstractIndexPtr createIndex(std::string nameTag, int64_t dim) {
     IndexTable tab;
@@ -108,16 +100,6 @@ AbstractIndexPtr createIndex(std::string nameTag, int64_t dim) {
     return ru;
 }
 
-//AbstractDataLoaderPtr creatDataLoader(std::string nameTag) {
-//  DataLoaderTable dt;
-//  auto ru = dt.findDataLoader(nameTag);
-//  if (ru == nullptr) {
-//    INTELLI_ERROR("No index named " + nameTag + ", return flat");
-//    nameTag = "random";
-//    return dt.findDataLoader(nameTag);
-//  }
-//  return ru;
-//}
 static bool existRow(torch::Tensor base, torch::Tensor row) {
   for (int64_t i = 0; i < base.size(0); i++) {
     auto tensor1 = base[i].contiguous();
@@ -232,9 +214,6 @@ public:
 
 };
 
-
-
-//#if CANDY_DiskANN == 1
 struct Variant
 {
   std::string disk_builder_name;
@@ -365,11 +344,7 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
 
   m.def("index_factory_ip", &faiss::index_factory_IP, "Create custom index from faiss with IP");
 
-  m.def("index_factory_l2", &faiss::index_factory_L2, "Create custom index from faiss with IP");
-
-
-
-
+  m.def("index_factory_l2", &faiss::index_facto/ry_L2, "Create custom index from faiss with IP");
 
 #if CANDY_PAPI == 1
   py::class_<INTELLI::ThreadPerfPAPI, std::shared_ptr<INTELLI::ThreadPerfPAPI>>(m, "PAPIPerf")
@@ -425,7 +400,6 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
   m_diskann.def("add_tensors", &add_tensors, "A function that adds two tensors");
 
 
-//#if CANDY_DiskANN == 1
   py::module_ default_values = m_diskann.def_submodule(
         "defaults",
         "A collection of the default values used for common diskann operations. `GRAPH_DEGREE` and `COMPLEXITY` are not"
@@ -461,7 +435,6 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
         .export_values();
   m_diskann.attr("defaults") = default_values;
   m.attr("diskannpy") = m_diskann;
-//#endif
 
 
 
