@@ -213,6 +213,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${DiskANN_BUILD_DIR}/lib)
 
+find_package(OpenMP REQUIRED)
+
 if (NOT ENABLE_DiskANN)
     message(STATUS "I will NOT include diskann LIBS")
     set(CANDY_DiskANN 0)
@@ -225,9 +227,6 @@ else ()
     file(GLOB DISKANN_SRC_FILES "thirdparty/DiskANN/src/*.cpp"  )
     file(GLOB DISKANN_HEADER_FILES "thirdparty/DiskANN/include/*.h")
     message(STATUS "I will include support for DiskANN")
-
-    # Add DiskANN
-    find_package(OpenMP REQUIRED)
 
 
     add_subdirectory(thirdparty/DiskANN)
@@ -298,6 +297,8 @@ message(STATUS "CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE}")
 #find_package(Log4cxx REQUIRED)
 #include_directories(${Log4cxx_INCLUDE_DIR})
 #set(LIBRARIES ${LIBRARIES} ${Log4cxx_LIBRARY})
+
+find_package(Boost REQUIRED COMPONENTS program_options)
 
 
 option(ENABLE_UNIT_TESTS "Enable unit tests" OFF)

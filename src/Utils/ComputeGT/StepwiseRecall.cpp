@@ -11,7 +11,7 @@
 #include <cstdint>
 #include <ctime>
 
-bool readBatchFromFile(const std::string& filename, uint64_t& step, uint64_t& npts, uint64_t& ndims,
+bool COMPUTE_GT::readBatchFromFile(const std::string& filename, uint64_t& step, uint64_t& npts, uint64_t& ndims,
                         std::vector<std::vector<float>>& queryVectors,
                         std::vector<std::vector<float>>& annsResults) {
   std::ifstream file(filename, std::ios::binary);
@@ -37,7 +37,7 @@ bool readBatchFromFile(const std::string& filename, uint64_t& step, uint64_t& np
   return true;
 }
 
-bool readGTFile(const std::string& filename, uint64_t& npts, uint64_t& ndims,
+bool COMPUTE_GT::readGTFile(const std::string& filename, uint64_t& npts, uint64_t& ndims,
                   std::vector<std::vector<float>>& gtVectors) {
   std::ifstream file(filename, std::ios::binary);
   if (!file) {
@@ -56,7 +56,7 @@ bool readGTFile(const std::string& filename, uint64_t& npts, uint64_t& ndims,
   return true;
 }
 
-double computeRecallWithQueryVec(const std::vector<std::vector<float>>& queryVectors,
+double COMPUTE_GT::computeRecallWithQueryVec(const std::vector<std::vector<float>>& queryVectors,
                                   const std::vector<std::vector<float>>& annsResult,
                                   const std::vector<std::vector<float>>& gtVectors) {
   if (queryVectors.empty() || annsResult.empty() || gtVectors.empty()) {
@@ -97,7 +97,7 @@ double computeRecallWithQueryVec(const std::vector<std::vector<float>>& queryVec
   return static_cast<double>(correct_count) / (nqueries * ndims);
 }
 
-void calculateStepwiseRecall(const std::string& predFile, const std::string& gtFile, const std::string& outputFile) {
+void COMPUTE_GT::calcStepwiseRecall(const std::string& predFile, const std::string& gtFile, const std::string& outputFile) {
   uint64_t npts, ndims;
   std::vector<std::vector<float>> gtVectors;
   if (!readGTFile(gtFile, npts, ndims, gtVectors)) {

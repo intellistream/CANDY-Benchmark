@@ -1,4 +1,5 @@
 #include <Utils/ComputeGT/StepwiseGT.hpp>
+#include <Utils/ComputeGT/StepwiseRecall.hpp>
 
 #include <iostream>
 #include <string>
@@ -117,8 +118,8 @@ void COMPUTE_GT::saveGTVectorsAsFile(const std::string& filename, int step, floa
   writer.close();
 }
 
-void COMPUTE_GT::stepwiseGTCalc(const std::string& baseFile, const std::string& queryFile,
-                                    const std::string& gtFile, size_t k, diskann::Metric metric,
+void COMPUTE_GT::clacStepwiseGT(const std::string& baseFile, const std::string& queryFile,
+                                    const std::string& gtFile, size_t k, COMPUTE_GT::Metric metric,
                                     size_t batchSize) {
   float* baseData = nullptr;
   size_t npoints, dim;
@@ -191,21 +192,25 @@ int main(int argc, char** argv) {
     return -1;
   }
 
-  Metric metric;
+  COMPUTE_GT::Metric metric;
   if (distFn == "l2") {
-    metric = Metric::L2;
+    metric = COMPUTE_GT::Metric::L2;
   } else if (distFn == "mips") {
-    metric = Metric::INNER_PRODUCT;
+    metric = COMPUTE_GT::Metric::INNER_PRODUCT;
   } else if (distFn == "cosine") {
-    metric = Metric::COSINE;
+    metric = COMPUTE_GT::Metric::COSINE;
   } else {
     std::cerr << "Unsupported distance function. Use l2/mips/cosine." << std::endl;
     return -1;
   }
 
-  COMPUTE_GT::stepwiseGTCalc(baseFile, queryFile, gtFile, K, metric, batchSize);
+  COMPUTE_GT::clacStepwiseGT(baseFile, queryFile, gtFile, K, metric, batchSize);
 
   std::cout << "Stepwise GT computation completed." << std::endl;
+
+  COMPUTE_GT::calcStepwiseRecall(queryFile, gtFile, recallFile);
+  std::cout << "Stepwise Recall computation completed. Results saved to " << recallFile << std::endl;
+
   return 0;
 }
 

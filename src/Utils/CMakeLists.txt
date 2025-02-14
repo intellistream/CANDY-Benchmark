@@ -5,3 +5,4 @@ add_sources(
         IntelliTimeStampGenerator.cpp
 )
 add_subdirectory(Meters)
+add_subdirectory(ComputeGT)

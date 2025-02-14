@@ -9,7 +9,6 @@
 #include <cmath>
 #include <cstring>
 #include <omp.h>
-#include <mkl.h>
 
 namespace COMPUTE_GT {
 
@@ -39,7 +38,7 @@ void loadBinAsFloat(const char* filename, float*& data, size_t& npts, size_t& nd
 void saveGTVectorsAsFile(const std::string& filename, int32_t* data, float* distances,
                           size_t npts, size_t ndims);
 
-void stepwiseGTCalc(const std::string& baseFile, const std::string& queryFile,
+void calcStepwiseGT(const std::string& baseFile, const std::string& queryFile,
                       const std::string& gtFile, size_t k, Metric metric,
                       size_t batchSize);
 }
