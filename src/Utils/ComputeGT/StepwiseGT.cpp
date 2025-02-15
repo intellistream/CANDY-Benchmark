@@ -105,8 +105,8 @@ void COMPUTE_GT::saveGTVectorsAsFile(const std::string& filename, int step, floa
 }
 
 void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& queryFile,
-                                  const std::string& gtFile, size_t k, 
-                                  const std::string& distFn, size_t batchSize) {
+                                  const std::string& gtFile, size_t k, const std::string& distFn, 
+                                  size_t batchSize. size_t initialPoints) {
   COMPUTE_GT::Metric metric;
   if (distFn == "l2") {
     metric = COMPUTE_GT::Metric::L2;
@@ -127,13 +127,13 @@ void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& 
   size_t nqueries;
   loadBinAsFloat<float>(queryFile.c_str(), queryData, nqueries, dim, 0);
 
-  size_t currentPoints = 0;
+  size_t currentPoints = initialPoints;
   size_t step = 0;
 
   while (currentPoints < npoints) {
-    size_t insertCount = std::min(batchSize, npoints - currentPoints);
-    float* batchVectors = baseData + currentPoints * dim;
-    currentPoints += insertCount;
+    size_t nextStepPoints = currentPoints + batchSize > npoints ? npoints : currentPoints + batchSize;
+    size_t insertCount = nextStepPoints - currentPoints;
+    currentPoints = nextStepPoints;
     step++;
 
     float* gtVectors = new float[nqueries * dim];
@@ -161,9 +161,10 @@ void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& 
   delete[] queryData;
 }
 
+// Test 
 int main(int argc, char** argv) {
   std::string dataType, distFn, baseFile, queryFile, gtFile, recallFile;
-  uint64_t K, batchSize;
+  uint64_t K, batchSize, initSize;
 
   try {
     po::options_description desc{"Arguments"};
@@ -177,6 +178,7 @@ int main(int argc, char** argv) {
       ("recall_file", po::value<std::string>(&recallFile)->required(), "Output recall file")
       ("K", po::value<uint64_t>(&K)->required(), "Number of neighbors to compute")
       ("batch_size", po::value<uint64_t>(&batchSize)->default_value(100), "Batch size for incremental computation");
+      ("init_size", po::value<uint64_t>(&initSize)->default_value(100), "Initial size before stepwise");
 
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, desc), vm);
@@ -203,7 +205,7 @@ int main(int argc, char** argv) {
     return -1;
   }
 
-  COMPUTE_GT::calcStepwiseGT(baseFile, queryFile, gtFile, K, distFn, batchSize);
+  COMPUTE_GT::calcStepwiseGT(baseFile, queryFile, gtFile, K, distFn, batchSize, init_size);
 
   std::cout << "Stepwise GT computation completed." << std::endl;
 
