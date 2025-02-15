@@ -76,8 +76,8 @@ class AbstractIndex {
    * @param t the tensor, some index need to be single row
    * @return bool whether the insertion is successful
    */
-  virtual std::vector<std::tuple<size_t, size_t, std::vector<torch::Tensor>>> 
-    ccInsertAndSearchTensor(torch::Tensor &t, torch::Tensor &qt, int64_t k);
+  virtual bool ccInsertAndSearchTensor(
+    torch::Tensor &t, torch::Tensor &qt, int64_t k, std::string &resFile);
   /**
    * @brief insert a tensor
    * @note This is majorly an online function

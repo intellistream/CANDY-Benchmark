@@ -11,46 +11,28 @@
 #include <cstdint>
 #include <ctime>
 
-bool COMPUTE_GT::readBatchFromFile(const std::string& filename, uint64_t& step, uint64_t& npts, uint64_t& ndims,
-                                    std::vector<std::vector<float>>& queryVectors,
-                                    std::vector<std::vector<float>>& annsResults) {
+bool COMPUTE_GT::readStepwiseFile(const std::string& filename, uint64_t& npts, uint64_t& ndims, 
+                                    std::vector<size_t>* indices, std::vector<std::vector<float>>& data, 
+                                    bool readIndices) {
   std::ifstream file(filename, std::ios::binary);
   if (!file) {
-    std::cerr << "Error opening prediction file: " << filename << std::endl;
-    return false;
-  }
-
-  if (!file.read(reinterpret_cast<char*>(&step), sizeof(uint64_t))) return false;
-  if (!file.read(reinterpret_cast<char*>(&npts), sizeof(uint64_t))) return false;
-  if (!file.read(reinterpret_cast<char*>(&ndims), sizeof(uint64_t))) return false;
-
-  queryVectors.resize(npts, std::vector<float>(ndims));
-  for (size_t i = 0; i < npts; i++) {
-    if (!file.read(reinterpret_cast<char*>(queryVectors[i].data()), ndims * sizeof(float))) return false;
-  }
-
-  annsResults.resize(npts, std::vector<float>(ndims));
-  for (size_t i = 0; i < npts; i++) {
-    if (!file.read(reinterpret_cast<char*>(annsResults[i].data()), ndims * sizeof(float))) return false;
-  }
-
-  return true;
-}
-
-bool COMPUTE_GT::readGTFile(const std::string& filename, uint64_t& npts, uint64_t& ndims,
-                              std::vector<std::vector<float>>& gtVectors) {
-  std::ifstream file(filename, std::ios::binary);
-  if (!file) {
-    std::cerr << "Error opening ground truth file: " << filename << std::endl;
+    std::cerr << "Error opening file: " << filename << std::endl;
     return false;
   }
 
   if (!file.read(reinterpret_cast<char*>(&npts), sizeof(uint64_t))) return false;
   if (!file.read(reinterpret_cast<char*>(&ndims), sizeof(uint64_t))) return false;
 
-  gtVectors.resize(npts, std::vector<float>(ndims));
+  if (readIndices && indices) {
+    indices->resize(npts);
+    for (size_t i = 0; i < npts; i++) {
+      if (!file.read(reinterpret_cast<char*>(&(*indices)[i]), sizeof(size_t))) return false;
+    }
+  }
+
+  data.resize(npts, std::vector<float>(ndims));
   for (size_t i = 0; i < npts; i++) {
-    if (!file.read(reinterpret_cast<char*>(gtVectors[i].data()), ndims * sizeof(float))) return false;
+    if (!file.read(reinterpret_cast<char*>(data[i].data()), ndims * sizeof(float))) return false;
   }
 
   return true;
@@ -97,45 +79,31 @@ double COMPUTE_GT::computeRecallWithQueryVec(const std::vector<std::vector<float
   return static_cast<double>(correct_count) / (nqueries * ndims);
 }
 
-void COMPUTE_GT::calcStepwiseRecall(const std::string& predFile, const std::string& gtFile, const std::string& outputFile) {
+void COMPUTE_GT::calcStepwiseRecall(const std::string& annsFile, 
+                                      const std::string& gtFile, 
+                                      const std::string& outputFile) {
   uint64_t npts, ndims;
   std::vector<std::vector<float>> gtVectors;
-  if (!readGTFile(gtFile, npts, ndims, gtVectors)) {
+  if (!readStepwiseFile(gtFile, npts, ndims, nullptr, gtVectors, false)) {
     std::cerr << "Failed to read ground truth file." << std::endl;
     return;
   }
 
-  std::ifstream predStream(predFile, std::ios::binary);
-  if (!predStream) {
-    std::cerr << "Failed to open prediction file." << std::endl;
-    return;
-  }
+  uint64_t step, batchNpts, batchNdims;
+  std::vector<size_t> queryIndices;
+  std::vector<std::vector<float>> annsResult;
 
-  std::ofstream outFile(outputFile);
-  if (!outFile) {
-    std::cerr << "Failed to open output file." << std::endl;
-    return;
-  }
-
-  while (true) {
-    uint64_t step, batchNpts, batchNdims;
-    std::vector<std::vector<float>> queryVectors, annsResult;
-    if (!readBatchFromFile(predFile, step, batchNpts, batchNdims, queryVectors, annsResult)) {
-      break;
+  while (readStepwiseFile(annsFile, batchNpts, batchNdims, &queryIndices, annsResult, true)) {
+    double recall = computeRecallWithQueryVec(gtVectors, annsResult, gtVectors);
+    std::ofstream outFile(outputFile, std::ios::app);
+    if (!outFile) {
+      std::cerr << "Failed to open output file." << std::endl;
+      return;
     }
-
-    if (batchNdims != ndims) {
-      std::cerr << "Dimension mismatch detected." << std::endl;
-      break;
-    }
-
-    double recall = computeRecallWithQueryVec(queryVectors, annsResult, gtVectors);
     outFile << "Step " << step << ": Recall = " << recall << std::endl;
     std::cout << "Step " << step << ": Recall = " << recall << std::endl;
+    outFile.close();
   }
-
-  predStream.close();
-  outFile.close();
 
   std::cout << "Stepwise recall written to " << outputFile << std::endl;
 }

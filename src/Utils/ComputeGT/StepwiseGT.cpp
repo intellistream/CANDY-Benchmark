@@ -82,8 +82,8 @@ void COMPUTE_GT::exactKnn(const size_t dim, const size_t k, size_t* closestPoint
 }
 
 void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& queryFile,
-                                const std::string& gtFile, size_t k, 
-                                const std::string& distFn, size_t batchSize, size_t initialCount) {
+                                  const std::string& gtFile, size_t k, 
+                                  const std::string& distFn, size_t batchSize, size_t initialCount) {
   COMPUTE_GT::Metric metric;
   if (distFn == "l2") {
     metric = COMPUTE_GT::Metric::L2;
@@ -142,7 +142,9 @@ void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& 
     writer.write(reinterpret_cast<const char*>(&step64), sizeof(step64));
     writer.write(reinterpret_cast<const char*>(&insertCount), sizeof(insertCount));
     writer.write(reinterpret_cast<const char*>(&dim), sizeof(dim));
-    writer.write(reinterpret_cast<const char*>(baseData + (currentPoints - insertCount) * dim), insertCount * dim * sizeof(float));
+
+    for (size_t i = 0; i < nqueries; i++) 
+      writer.write(reinterpret_cast<const char*>(&i), sizeof(i));  
     writer.write(reinterpret_cast<const char*>(gtVectors), nqueries * dim * sizeof(float));
 
     delete[] gtVectors;

@@ -44,7 +44,8 @@ class ConcurrentIndex : public CANDY::AbstractIndex {
 
   virtual bool setConfig(INTELLI::ConfigMapPtr cfg);
 
-  virtual std::vector<SearchRecord> ccInsertAndSearchTensor(torch::Tensor &t, torch::Tensor &qt, int64_t k);
+  virtual bool ccInsertAndSearchTensor(
+    torch::Tensor &t, torch::Tensor &qt, int64_t k, std::string &resFile);
 
   virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
 };

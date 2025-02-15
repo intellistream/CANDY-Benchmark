@@ -36,10 +36,11 @@ bool CANDY::ConcurrentIndex::loadInitialTensor(torch::Tensor &t) {
   return ru;
 }
 
-std::vector<SearchRecord> CANDY::ConcurrentIndex::ccInsertAndSearchTensor(torch::Tensor &t, 
-    torch::Tensor &qt, int64_t k) {
+bool CANDY::ConcurrentIndex::ccInsertAndSearchTensor(
+    torch::Tensor &t, torch::Tensor &qt, int64_t k, std::string& resFile) {
   if (!myIndexAlgo) {
     throw std::runtime_error("Index algorithm not initialized.");
+    return false;
   }
 
   std::atomic<size_t> commitedOps(0); 
@@ -122,7 +123,28 @@ std::vector<SearchRecord> CANDY::ConcurrentIndex::ccInsertAndSearchTensor(torch:
     std::rethrow_exception(lastException);
   }
 
-  return searchRes;
+  std::ofstream outFile(resFile, std::ios::binary);
+  if (!outFile.is_open()) {
+    throw std::runtime_error("Failed to open result file.");
+    return false;
+  }
+  
+  for (const auto& rec : searchRes) {
+    uint64_t step = std::get<0>(rec);
+    uint64_t queryIdx = std::get<1>(rec);
+    auto results = std::get<2>(rec);
+
+    outFile.write(reinterpret_cast<const char*>(&step), sizeof(step));
+    outFile.write(reinterpret_cast<const char*>(&queryIdx), sizeof(queryIdx));
+
+    for (const auto& tensor : results) {
+      auto data = tensor.data_ptr<float>();
+      outFile.write(reinterpret_cast<const char*>(data), tensor.numel() * sizeof(float));
+    }
+  }
+  outFile.close();
+
+  return true;
 }
 
 std::vector<torch::Tensor> CANDY::ConcurrentIndex::searchTensor(torch::Tensor &q, int64_t k) {

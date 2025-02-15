@@ -12,18 +12,15 @@ struct StepRecall {
   double recall;       
 };
 
-bool readBatchFromFile(const std::string& filename, uint64_t& step, uint64_t& npts, uint64_t& ndims,
-                        std::vector<std::vector<float>>& queryVectors,
-                        std::vector<std::vector<float>>& annsResults);
-
-bool readGTFile(const std::string& filename, uint64_t& npts, uint64_t& ndims,
-                  std::vector<std::vector<float>>& gtVectors);
+bool readStepwiseFile(const std::string& filename, uint64_t& npts, uint64_t& ndims, 
+                        std::vector<size_t>* indices, std::vector<std::vector<float>>& data, 
+                        bool readIndices);
 
 double computeRecallWithQueryVec(const std::vector<std::vector<float>>& queryVectors,
                                     const std::vector<std::vector<float>>& annsResult,
                                     const std::vector<std::vector<float>>& gtVectors);
 
-void calcStepwiseRecall(const std::string& predFile, const std::string& gtFile, 
+void calcStepwiseRecall(const std::string& annsFile, const std::string& gtFile, 
                           const std::string& outputFile);
 } 
 
