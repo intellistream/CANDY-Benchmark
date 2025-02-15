@@ -39,7 +39,7 @@ void saveGTVectorsAsFile(const std::string& filename, int step, float* queryVect
                           float* gtVectors, size_t npts, size_t ndims);
 
 void calcStepwiseGT(const std::string& baseFile, const std::string& queryFile,
-                      const std::string& gtFile, size_t k, Metric metric,
+                      const std::string& gtFile, size_t k, const std::string& distFn,
                       size_t batchSize);
 
 template <class T> T *aligned_malloc(const size_t n, const size_t alignment) {

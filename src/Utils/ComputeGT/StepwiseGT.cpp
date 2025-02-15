@@ -105,8 +105,20 @@ void COMPUTE_GT::saveGTVectorsAsFile(const std::string& filename, int step, floa
 }
 
 void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& queryFile,
-                                  const std::string& gtFile, size_t k, COMPUTE_GT::Metric metric,
-                                  size_t batchSize) {
+                                  const std::string& gtFile, size_t k, 
+                                  const std::string& distFn, size_t batchSize) {
+  COMPUTE_GT::Metric metric;
+  if (distFn == "l2") {
+    metric = COMPUTE_GT::Metric::L2;
+  } else if (distFn == "mips") {
+    metric = COMPUTE_GT::Metric::INNER_PRODUCT;
+  } else if (distFn == "cosine") {
+    metric = COMPUTE_GT::Metric::COSINE;
+  } else {
+    std::cerr << "Unsupported distance function. Use l2/mips/cosine." << std::endl;
+    return;
+  }
+
   float* baseData = nullptr;
   size_t npoints, dim;
   loadBinAsFloat<float>(baseFile.c_str(), baseData, npoints, dim, 0);
@@ -191,7 +203,7 @@ int main(int argc, char** argv) {
     return -1;
   }
 
-  COMPUTE_GT::calcStepwiseGT(baseFile, queryFile, gtFile, K, metric, batchSize);
+  COMPUTE_GT::calcStepwiseGT(baseFile, queryFile, gtFile, K, distFn, batchSize);
 
   std::cout << "Stepwise GT computation completed." << std::endl;
 

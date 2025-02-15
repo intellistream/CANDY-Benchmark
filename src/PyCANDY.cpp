@@ -330,7 +330,6 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
 
   m.def("add_tensors", &add_tensors, "A function that adds two tensors");
 
-
   m.def("recallOfTensorList", &recallOfTensorList, "calculate the recall");
 
   /// faiss index APIs only
@@ -344,7 +343,7 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
 
   m.def("index_factory_ip", &faiss::index_factory_IP, "Create custom index from faiss with IP");
 
-  m.def("index_factory_l2", &faiss::index_facto/ry_L2, "Create custom index from faiss with IP");
+  m.def("index_factory_l2", &faiss::index_factory_L2, "Create custom index from faiss with IP");
 
 #if CANDY_PAPI == 1
   py::class_<INTELLI::ThreadPerfPAPI, std::shared_ptr<INTELLI::ThreadPerfPAPI>>(m, "PAPIPerf")
@@ -355,6 +354,9 @@ PYBIND11_MODULE(PyCANDYAlgo, m) {
       .def("resultToConfigMap", &INTELLI::ThreadPerfPAPI::resultToConfigMap);
 #endif
 
+
+  m.def("calc_stepwise_gt", &COMPUTE_GT::calcStepwiseGT, "Calculate stepwise ground truth");
+  m.def("calc_stepwise_recall", &COMPUTE_GT::calcStepwiseRecall, "Calculate stepwise recall");
 
   auto m_puck = m.def_submodule("puck", "Puck Interface from Baidu.");
   py::class_<py_puck_api::PySearcher, std::shared_ptr<py_puck_api::PySearcher>>(m_puck, "PuckSearcher")
