@@ -21,7 +21,7 @@ double computeRecallWithQueryVec(const std::vector<std::vector<float>>& queryVec
                                     const std::vector<std::vector<float>>& gtVectors);
 
 void calcStepwiseRecall(const std::string& annsFile, const std::string& gtFile, 
-                          const std::string& outputFile);
+                          const std::string& outFile);
 } 
 
 #endif // UTILS_COMPUTE_GT_STEPWISE_RECALL_HPP

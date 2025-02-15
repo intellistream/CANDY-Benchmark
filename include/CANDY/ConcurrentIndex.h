@@ -11,7 +11,6 @@
 
 using BatchIndex = size_t;
 using QueryIndex = size_t;
-
 using SearchResults = std::vector<torch::Tensor>;
 using SearchRecord = std::tuple<BatchIndex, QueryIndex, SearchResults>;
 
@@ -29,6 +28,8 @@ class ConcurrentIndex : public CANDY::AbstractIndex {
   int64_t initSize = 0;
   int64_t randomMode = true;
 
+  std::vector<SearchRecord> searchRes;
+
  public:
   ConcurrentIndex() {
 
@@ -44,8 +45,9 @@ class ConcurrentIndex : public CANDY::AbstractIndex {
 
   virtual bool setConfig(INTELLI::ConfigMapPtr cfg);
 
-  virtual bool ccInsertAndSearchTensor(
-    torch::Tensor &t, torch::Tensor &qt, int64_t k, std::string &resFile);
+  virtual bool ccInsertAndSearchTensor(torch::Tensor &t, torch::Tensor &qt, int64_t k);
+
+  virtual bool ccSaveResultAsFile(std::string &resFile);
 
   virtual std::vector<torch::Tensor> searchTensor(torch::Tensor &q, int64_t k);
 };

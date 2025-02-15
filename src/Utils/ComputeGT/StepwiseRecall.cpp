@@ -81,7 +81,7 @@ double COMPUTE_GT::computeRecallWithQueryVec(const std::vector<std::vector<float
 
 void COMPUTE_GT::calcStepwiseRecall(const std::string& annsFile, 
                                       const std::string& gtFile, 
-                                      const std::string& outputFile) {
+                                      const std::string& outFile) {
   uint64_t npts, ndims;
   std::vector<std::vector<float>> gtVectors;
   if (!readStepwiseFile(gtFile, npts, ndims, nullptr, gtVectors, false)) {
@@ -95,15 +95,15 @@ void COMPUTE_GT::calcStepwiseRecall(const std::string& annsFile,
 
   while (readStepwiseFile(annsFile, batchNpts, batchNdims, &queryIndices, annsResult, true)) {
     double recall = computeRecallWithQueryVec(gtVectors, annsResult, gtVectors);
-    std::ofstream outFile(outputFile, std::ios::app);
-    if (!outFile) {
+    std::ofstream file(outFile, std::ios::app);
+    if (!file) {
       std::cerr << "Failed to open output file." << std::endl;
       return;
     }
-    outFile << "Step " << step << ": Recall = " << recall << std::endl;
+    file << "Step " << step << ": Recall = " << recall << std::endl;
     std::cout << "Step " << step << ": Recall = " << recall << std::endl;
-    outFile.close();
+    file.close();
   }
 
-  std::cout << "Stepwise recall written to " << outputFile << std::endl;
+  std::cout << "Stepwise recall written to " << outFile << std::endl;
 }

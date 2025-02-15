@@ -85,6 +85,10 @@ bool CANDY::AbstractIndex::ccInsertAndSearchTensor(torch::Tensor &t, torch::Tens
   return false; 
 }
 
+bool CANDY::AbstractIndex::ccSaveResultAsFile(std::string &outFile) {
+  return false;
+}
+
 bool CANDY::AbstractIndex::loadInitialStringObject(torch::Tensor &t, std::vector<std::string> &strs) {
   return insertStringObject(t, strs);
 }

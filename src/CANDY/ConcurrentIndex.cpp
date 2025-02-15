@@ -36,8 +36,7 @@ bool CANDY::ConcurrentIndex::loadInitialTensor(torch::Tensor &t) {
   return ru;
 }
 
-bool CANDY::ConcurrentIndex::ccInsertAndSearchTensor(
-    torch::Tensor &t, torch::Tensor &qt, int64_t k, std::string& resFile) {
+bool CANDY::ConcurrentIndex::ccInsertAndSearchTensor(torch::Tensor &t, torch::Tensor &qt, int64_t k) {
   if (!myIndexAlgo) {
     throw std::runtime_error("Index algorithm not initialized.");
     return false;
@@ -49,8 +48,6 @@ bool CANDY::ConcurrentIndex::ccInsertAndSearchTensor(
   std::exception_ptr lastException = nullptr;
   std::mutex lastExceptMutex;
   std::mutex resultMutex;
-  
-  std::vector<SearchRecord> searchRes;
 
   while (commitedOps < writeTotal) {
     size_t insertCnt = std::min(batchSize, static_cast<int64_t>(writeTotal - commitedOps.load()));
@@ -123,8 +120,12 @@ bool CANDY::ConcurrentIndex::ccInsertAndSearchTensor(
     std::rethrow_exception(lastException);
   }
 
-  std::ofstream outFile(resFile, std::ios::binary);
-  if (!outFile.is_open()) {
+  return true;
+}
+
+bool CANDY::ConcurrentIndex::ccSaveResultAsFile(std::string &outFile) {
+  std::ofstream file(outFile, std::ios::binary);
+  if (!file.is_open()) {
     throw std::runtime_error("Failed to open result file.");
     return false;
   }
@@ -134,15 +135,15 @@ bool CANDY::ConcurrentIndex::ccInsertAndSearchTensor(
     uint64_t queryIdx = std::get<1>(rec);
     auto results = std::get<2>(rec);
 
-    outFile.write(reinterpret_cast<const char*>(&step), sizeof(step));
-    outFile.write(reinterpret_cast<const char*>(&queryIdx), sizeof(queryIdx));
+    file.write(reinterpret_cast<const char*>(&step), sizeof(step));
+    file.write(reinterpret_cast<const char*>(&queryIdx), sizeof(queryIdx));
 
     for (const auto& tensor : results) {
       auto data = tensor.data_ptr<float>();
-      outFile.write(reinterpret_cast<const char*>(data), tensor.numel() * sizeof(float));
+      file.write(reinterpret_cast<const char*>(data), tensor.numel() * sizeof(float));
     }
   }
-  outFile.close();
+  file.close();
 
   return true;
 }
