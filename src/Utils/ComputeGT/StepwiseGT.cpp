@@ -81,32 +81,9 @@ void COMPUTE_GT::exactKnn(const size_t dim, const size_t k, size_t* closestPoint
   delete[] queriesL2sq;
 }
 
-void COMPUTE_GT::saveGTVectorsAsFile(const std::string& filename, int step, float* queryVectors, float* gtVectors,
-                                      size_t npts, size_t ndims) {
-  std::ofstream writer(filename, std::ios::binary | std::ios::app);
-  if (!writer) {
-    std::cerr << "Error opening file: " << filename << std::endl;
-    return;
-  }
-
-  // write step, npts and ndims
-  uint64_t step64 = static_cast<uint64_t>(step);
-  writer.write(reinterpret_cast<const char*>(&step64), sizeof(step64));
-  writer.write(reinterpret_cast<const char*>(&npts), sizeof(npts));
-  writer.write(reinterpret_cast<const char*>(&ndims), sizeof(ndims));
-
-  // write query vectors
-  writer.write(reinterpret_cast<const char*>(queryVectors), npts * ndims * sizeof(float));
-
-  // write gt vectors
-  writer.write(reinterpret_cast<const char*>(gtVectors), npts * ndims * sizeof(float));
-
-  writer.close();
-}
-
 void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& queryFile,
-                                  const std::string& gtFile, size_t k, const std::string& distFn, 
-                                  size_t batchSize. size_t initialPoints) {
+                                const std::string& gtFile, size_t k, 
+                                const std::string& distFn, size_t batchSize, size_t initialCount) {
   COMPUTE_GT::Metric metric;
   if (distFn == "l2") {
     metric = COMPUTE_GT::Metric::L2;
@@ -123,12 +100,26 @@ void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& 
   size_t npoints, dim;
   loadBinAsFloat<float>(baseFile.c_str(), baseData, npoints, dim, 0);
 
+  if (initialCount > npoints) {
+    std::cerr << "Initial count exceeds total number of points." << std::endl;
+    delete[] baseData;
+    return;
+  }
+
   float* queryData = nullptr;
   size_t nqueries;
   loadBinAsFloat<float>(queryFile.c_str(), queryData, nqueries, dim, 0);
 
-  size_t currentPoints = initialPoints;
+  size_t currentPoints = initialCount;
   size_t step = 0;
+
+  std::ofstream writer(gtFile, std::ios::binary | std::ios::app);
+  if (!writer) {
+    std::cerr << "Error opening file: " << gtFile << std::endl;
+    delete[] baseData;
+    delete[] queryData;
+    return;
+  }
 
   while (currentPoints < npoints) {
     size_t nextStepPoints = currentPoints + batchSize > npoints ? npoints : currentPoints + batchSize;
@@ -143,11 +134,16 @@ void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& 
     exactKnn(dim, k, closestPoints, distClosestPoints, currentPoints, baseData, nqueries, queryData, metric);
 
     for (size_t i = 0; i < nqueries; i++) {
-      size_t gtIdx = closestPoints[i * k];  
+      size_t gtIdx = closestPoints[i * k];
       std::memcpy(gtVectors + i * dim, baseData + gtIdx * dim, dim * sizeof(float));
     }
 
-    saveGTVectorsAsFile(gtFile, step, batchVectors, gtVectors, insertCount, dim);
+    uint64_t step64 = static_cast<uint64_t>(step);
+    writer.write(reinterpret_cast<const char*>(&step64), sizeof(step64));
+    writer.write(reinterpret_cast<const char*>(&insertCount), sizeof(insertCount));
+    writer.write(reinterpret_cast<const char*>(&dim), sizeof(dim));
+    writer.write(reinterpret_cast<const char*>(baseData + (currentPoints - insertCount) * dim), insertCount * dim * sizeof(float));
+    writer.write(reinterpret_cast<const char*>(gtVectors), nqueries * dim * sizeof(float));
 
     delete[] gtVectors;
     delete[] closestPoints;
@@ -157,6 +153,7 @@ void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& 
               << " vectors. Total: " << currentPoints << std::endl;
   }
 
+  writer.close();
   delete[] baseData;
   delete[] queryData;
 }
@@ -205,7 +202,7 @@ int main(int argc, char** argv) {
     return -1;
   }
 
-  COMPUTE_GT::calcStepwiseGT(baseFile, queryFile, gtFile, K, distFn, batchSize, init_size);
+  COMPUTE_GT::calcStepwiseGT(baseFile, queryFile, gtFile, K, distFn, batchSize, initSize);
 
   std::cout << "Stepwise GT computation completed." << std::endl;
 

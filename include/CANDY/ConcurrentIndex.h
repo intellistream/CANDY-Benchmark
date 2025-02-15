@@ -26,6 +26,8 @@ class ConcurrentIndex : public CANDY::AbstractIndex {
   double writeRatio = 0.0;
   int64_t numThreads = 1;
   int64_t batchSize = 0;
+  int64_t initSize = 0;
+  int64_t randomMode = true;
 
  public:
   ConcurrentIndex() {

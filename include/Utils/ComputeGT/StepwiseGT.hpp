@@ -35,9 +35,6 @@ void exactKnn(const size_t dim, const size_t k, size_t* closestPoints, float* di
                 size_t npoints, float* pointsIn, size_t nqueries, float* queriesIn,
                 Metric metric);
 
-void saveGTVectorsAsFile(const std::string& filename, int step, float* queryVectors, 
-                          float* gtVectors, size_t npts, size_t ndims);
-
 void calcStepwiseGT(const std::string& baseFile, const std::string& queryFile,
                       const std::string& gtFile, size_t k, const std::string& distFn,
                       size_t batchSize, size_t initSize);

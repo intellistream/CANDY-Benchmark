@@ -21,17 +21,18 @@ bool CANDY::ConcurrentIndex::setConfig(INTELLI::ConfigMapPtr cfg) {
   }
 
   vecDim = cfg->tryI64("vecDim", 128, true);;
-  double writeRatio = cfg->tryDouble("concurrentWriteRatio", 0.5, true);
-  int64_t batchSize = cfg->tryI64("concurrentBatchSize", 100, true);
-  int64_t numThreads = cfg->tryI64("concurrentNumThreads", 1, true);
+  writeRatio = cfg->tryDouble("ccWriteRatio", 0.5, true);
+  batchSize = cfg->tryI64("ccBatchSize", 100, true);
+  numThreads = cfg->tryI64("ccNumThreads", 1, true);
+  randomMode = cfg->tryI64("ccRandomMode", 1, false);
 
   myIndexAlgo->setConfig(cfg);
-
   return true;
 }
 
 bool CANDY::ConcurrentIndex::loadInitialTensor(torch::Tensor &t) {
   auto ru = myIndexAlgo->loadInitialTensor(t);
+  initSize = t.size(0);
   return ru;
 }
 
@@ -85,7 +86,7 @@ std::vector<SearchRecord> CANDY::ConcurrentIndex::ccInsertAndSearchTensor(torch:
         while (true) {
           size_t idx = currentSearch.fetch_add(1);
           if (idx >= searchCnt) break;
-          size_t queryIdx = std::rand() % searchTotal;
+          size_t queryIdx = randomMode ? (std::rand() % searchTotal) : (idx % searchTotal);
           try {
             auto q = qt[queryIdx];
             auto res = myIndexAlgo->searchTensor(q, k);
