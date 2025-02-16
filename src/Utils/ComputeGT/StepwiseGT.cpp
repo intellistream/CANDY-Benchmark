@@ -4,9 +4,6 @@
 #include <iostream>
 #include <string>
 #include <mkl.h>   
-#include <boost/program_options.hpp>
-
-namespace po = boost::program_options;
 
 void COMPUTE_GT::computeL2sq(float* pointsL2sq, const float* matrix, const int64_t numPoints, const uint64_t dim) {
 #pragma omp parallel for schedule(static, 65536)
@@ -159,58 +156,3 @@ void COMPUTE_GT::calcStepwiseGT(const std::string& baseFile, const std::string& 
   delete[] baseData;
   delete[] queryData;
 }
-
-// Test 
-int main(int argc, char** argv) {
-  std::string dataType, distFn, baseFile, queryFile, gtFile, recallFile;
-  uint64_t K, batchSize, initSize;
-
-  try {
-    po::options_description desc{"Arguments"};
-
-    desc.add_options()
-      ("data_type", po::value<std::string>(&dataType)->required(), "Data type <int8/uint8/float>")
-      ("dist_fn", po::value<std::string>(&distFn)->required(), "Distance function <l2/mips/cosine>")
-      ("base_file", po::value<std::string>(&baseFile)->required(), "Base vectors binary file")
-      ("query_file", po::value<std::string>(&queryFile)->required(), "Query vectors binary file")
-      ("gt_file", po::value<std::string>(&gtFile)->required(), "Output GT file")
-      ("recall_file", po::value<std::string>(&recallFile)->required(), "Output recall file")
-      ("K", po::value<uint64_t>(&K)->required(), "Number of neighbors to compute")
-      ("batch_size", po::value<uint64_t>(&batchSize)->default_value(100), "Batch size for incremental computation");
-      ("init_size", po::value<uint64_t>(&initSize)->default_value(100), "Initial size before stepwise");
-
-    po::variables_map vm;
-    po::store(po::parse_command_line(argc, argv, desc), vm);
-
-    if (vm.count("help")) {
-      std::cout << desc << std::endl;
-      return 0;
-    }
-    po::notify(vm);
-  } catch (const std::exception &ex) {
-    std::cerr << ex.what() << std::endl;
-    return -1;
-  }
-
-  COMPUTE_GT::Metric metric;
-  if (distFn == "l2") {
-    metric = COMPUTE_GT::Metric::L2;
-  } else if (distFn == "mips") {
-    metric = COMPUTE_GT::Metric::INNER_PRODUCT;
-  } else if (distFn == "cosine") {
-    metric = COMPUTE_GT::Metric::COSINE;
-  } else {
-    std::cerr << "Unsupported distance function. Use l2/mips/cosine." << std::endl;
-    return -1;
-  }
-
-  COMPUTE_GT::calcStepwiseGT(baseFile, queryFile, gtFile, K, distFn, batchSize, initSize);
-
-  std::cout << "Stepwise GT computation completed." << std::endl;
-
-  COMPUTE_GT::calcStepwiseRecall(queryFile, gtFile, recallFile);
-  std::cout << "Stepwise Recall computation completed. Results saved to " << recallFile << std::endl;
-
-  return 0;
-}
-

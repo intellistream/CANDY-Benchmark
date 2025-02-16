@@ -326,10 +326,6 @@ add_library(CANDYBENCH SHARED ${CANDY_SOURCE_FILES} ${CANDY_HEADER_FILES} ${CMAK
 set_property(TARGET CANDYBENCH PROPERTY CXX_STANDARD 20)
 target_include_directories(CANDYBENCH PUBLIC "include")
 
-find_package(Boost 1.74 REQUIRED COMPONENTS program_options)
-include_directories(${Boost_INCLUDE_DIRS})
-link_directories(${Boost_LIBRARY_DIRS})
-
 # 设置 MKL 库的路径
 set(MKL_INCLUDE_DIR "/usr/include/mkl")
 set(MKL_LIB_DIR "/usr/lib/x86_64-linux-gnu")
@@ -345,7 +341,6 @@ target_include_directories(CANDYBENCH PUBLIC ${MKL_INCLUDE_DIR})
 # MKL 和其他库的链接
 target_link_libraries(CANDYBENCH PUBLIC
         ${MKL_LIBRARIES}
-        Boost::program_options
         iomp5
         pthread
         m
@@ -357,11 +352,6 @@ target_compile_options(CANDYBENCH PUBLIC
         -I${MKL_INCLUDE_DIR}
 )
 link_directories(${MKL_LIB_DIR})
-link_directories(${Boost_LIBRARY_DIRS})
-
-set(CMAKE_SKIP_BUILD_RPATH FALSE)
-set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
-set(CMAKE_INSTALL_RPATH "${Boost_LIBRARY_DIRS}")
 
 #these 2 ugly lines are for puck
 #add_definitions(-DFINTEGER=int)
